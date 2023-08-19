@@ -9,7 +9,7 @@ export const rusLng = {
 
   projectBlockUsedToWorkText: 'Раньше работал в: ',
   projectBlockUsedToWorkTextMC: 'MaxConference',
-  projectBlockUsedToWorkTextTR: 'Tomson Reuters',
+  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
   projectBlockUsedToWorkTextKG: 'Концерне Калашников',
   projectBlockUsedToWorkTextLRNPT: 'Лукойл-РНП-Трейдинг',
 
@@ -31,7 +31,7 @@ export const engLng = {
 
   projectBlockUsedToWorkText: 'Worked at: ',
   projectBlockUsedToWorkTextMC: 'MaxConference',
-  projectBlockUsedToWorkTextTR: 'Tomson Reuters',
+  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
   projectBlockUsedToWorkTextKG: 'Kalashnikov Group',
   projectBlockUsedToWorkTextLRNPT: 'Lukoil-RNP-Trading',
 
