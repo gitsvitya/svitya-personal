@@ -1,0 +1,53 @@
+.about {
+  padding: 50px;
+  display: flex;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s linear;
+  gap: 30px;
+  align-items: center;
+  width: 100%;
+}
+
+.photo {
+  background-image: url('../../images/website_photo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  width: 100vw;
+  height: 100vh;
+  max-height: 200px;
+  max-width: 200px;
+  transition: all 0.5s linear;
+}
+
+.text {
+  flex-direction: column;
+  transition: all 0.5s linear;
+}
+
+.header {
+  padding: 0;
+  margin: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 40px;
+  transition: all 0.5s linear;
+  text-rendering: optimizeLegibility;
+}
+
+.subheader {
+  padding: 0;
+  margin: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  padding-top: 20px;
+  transition: all 0.5s linear;
+  text-rendering: optimizeLegibility;
+}

@@ -1,0 +1,30 @@
+.header {
+  padding: 50px;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s linear;
+  width: 100%;
+}
+
+.lngChanger {
+  padding: 0;
+  margin: 0;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 44px;
+  text-rendering: optimizeLegibility;
+  text-decoration: underline;
+}
+
+.lngChanger:hover {
+  cursor: pointer;
+  color: #F74843;
+}
