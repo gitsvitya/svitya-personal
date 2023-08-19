@@ -1,4 +1,10 @@
 .footer {
+  width: 100%;
+  transition: all 0.5s linear;
+  margin-top: auto;
+}
+
+.container {
   padding: 50px;
   display: flex;
   max-width: 1440px;
@@ -6,14 +12,14 @@
   margin-right: auto;
   transition: all 0.5s linear;
   justify-content: space-between;
-  width: 100%;
-  margin-top: auto;
+
 }
 
 .contactsBlock {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 15px;
+  transition: all 0.5s linear;
 }
 
 .text {
@@ -35,6 +41,7 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+  transition: all 0.5s linear;
 }
 
 .navigationListItem {
@@ -54,11 +61,13 @@
   text-decoration: underline;
   outline: none;
   color: black;
+  transition: all 0.5s linear;
 }
 
 .link:hover {
   cursor: pointer;
   color: #F74843;
+  transition: all 0.5s linear;
 }
 
 .year {
@@ -71,4 +80,65 @@
   line-height: 36px;
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
+  transition: all 0.5s linear;
+}
+
+@media (max-width: 769px) {
+  .container {
+    padding: 30px;
+  }
+
+  .text {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .navigationListItem {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .year {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contactsBlock {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .year {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 501px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .text {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .navigationListItem {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .navigationList {
+    gap: 40px;
+  }
+
+  .year {
+    font-size: 26px;
+    line-height: 32px;
+    text-align: center;
+    padding-top: 40px;
+    align-self: auto;
+  }
 }

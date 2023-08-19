@@ -1,12 +1,14 @@
 import react from 'react';
 import styles from './Projects.module.css'
 
-function Projects() {
+function Projects(props) {
   return(
     <div className={styles.projects}>
-      <p className={styles.text}>Сейчас работаю в <a className={styles.link} href='https://namex.org/' target='_blank'>Национальной товарной бирже</a>.</p>
-      <p className={styles.text}>Раньше работал в: <a className={styles.link} href='https://maxconf.ru/' target='_blank'>MaxConference</a>, <a className={styles.link} href='https://www.thomsonreuters.com/' target='_blank'>Tomson Reuters</a>, <a className={styles.link} href='https://kalashnikovgroup.ru/' target='_blank'>Концерне Калашников</a>, <a className={styles.link} href='https://trading.lukoil.ru/' target='_blank'>Лукойл-РНП-Трейдинг</a>.</p>
-      <p className={styles.text}>Также запускал собственные проекты: <a className={styles.link} href='https://venivi.ru/' target='_blank'>Venivi.ru</a>, <a className={styles.link} href='https://www.mappngo.com/' target='_blank'>MappNgo</a>.</p>
+      <div className={styles.container}>
+        <p className={styles.text}>{props.text.projectBlockWorkNowText}<a className={styles.link} href='https://namex.org/' target='_blank'>{props.text.projectBlockWorkLink}</a>.</p>
+        <p className={styles.text}>{props.text.projectBlockUsedToWorkText}<a className={styles.link} href='https://maxconf.ru/' target='_blank'>{props.text.projectBlockUsedToWorkTextMC}</a>, <a className={styles.link} href='https://www.thomsonreuters.com/' target='_blank'>{props.text.projectBlockUsedToWorkTextTR}</a>, <a className={styles.link} href='https://kalashnikovgroup.ru/' target='_blank'>{props.text.projectBlockUsedToWorkTextKG}</a>, <a className={styles.link} href='https://trading.lukoil.ru/' target='_blank'>{props.text.projectBlockUsedToWorkTextLRNPT}</a>.</p>
+        <p className={styles.text}>{props.text.projectBlockFoundedText}<a className={styles.link} href='https://venivi.ru/' target='_blank'>{props.text.projectBlockFoundedTextVenivi}</a>, <a className={styles.link} href='https://www.mappngo.com/' target='_blank'>{props.text.projectBlockFoundedTextMappNgo}</a>.</p>
+      </div>
     </div>
   )
 }

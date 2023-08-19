@@ -1,13 +1,15 @@
 import react from 'react';
 import styles from './About.module.css'
 
-function About() {
+function About(props) {
   return (
     <div className={styles.about}>
-      <div className={styles.photo}></div>
-      <div className={styles.text}>
-        <h1 className={styles.header}>Виктор Строков</h1>
-        <h2 className={styles.subheader}>Продуктовый маркетинг, управление проектами, аналитика и исследования.</h2>
+      <div className={styles.container}>
+        <div className={styles.photo}></div>
+        <div className={styles.text}>
+          <h1 className={styles.header}>{props.text.aboutBlockHeader}</h1>
+          <h2 className={styles.subheader}>{props.text.aboutBlockSubHeader}</h2>
+        </div>
       </div>
     </div>
   )
