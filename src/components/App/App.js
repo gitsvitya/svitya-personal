@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './App.module.css';
-import AppHeader from '../AppHeader/AppHeader';
-import About from '../About/About';
-import Projects from '../Projects/Projects';
-import AppFooter from '../AppFooter/AppFooter';
-import { rusLng, engLng } from '../../utils/lng';
+import React from "react";
+import styles from "./App.module.css";
+import AppHeader from "../AppHeader/AppHeader";
+import About from "../About/About";
+import Projects from "../Projects/Projects";
+import AppFooter from "../AppFooter/AppFooter";
+import { rusLng, engLng } from "../../utils/lng";
 
 function App() {
   const [Language, ChangeLanguage] = React.useState("en");
@@ -17,7 +17,11 @@ function App() {
 
   return (
     <div className={styles.page}>
-      <AppHeader text={currentText} ChangeLanguage={ChangeLanguage} Language={Language}></AppHeader>
+      <AppHeader
+        text={currentText}
+        ChangeLanguage={ChangeLanguage}
+        Language={Language}
+      ></AppHeader>
       <main>
         <About text={currentText}></About>
         <Projects text={currentText}></Projects>

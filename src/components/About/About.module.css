@@ -68,7 +68,7 @@
 
   .subheader {
     font-size: 30px;
-  line-height: 36px;
+    line-height: 36px;
   }
 }
 
@@ -77,9 +77,11 @@
     flex-direction: column;
     align-items: center;
   }
+
   .header {
     text-align: center;
   }
+
   .subheader {
     text-align: center;
   }
@@ -91,10 +93,12 @@
     padding: 20px;
     gap: 20px;
   }
+
   .header {
     font-size: 34px;
     line-height: 38px;
   }
+
   .subheader {
     font-size: 28px;
     line-height: 34px;

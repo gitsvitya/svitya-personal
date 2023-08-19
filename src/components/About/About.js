@@ -1,5 +1,4 @@
-import react from 'react';
-import styles from './About.module.css'
+import styles from "./About.module.css";
 
 function About(props) {
   return (
@@ -12,7 +11,7 @@ function About(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default About;

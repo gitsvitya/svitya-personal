@@ -1,9 +1,7 @@
-import react from 'react';
-import styles from './AppHeader.module.css';
+import styles from "./AppHeader.module.css";
 
 function AppHeader(props) {
-
- let nextLng = "";
+  let nextLng = "";
 
   if (props.Language === "ru") nextLng = "en";
   else nextLng = "ru";
@@ -11,10 +9,17 @@ function AppHeader(props) {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <button className={styles.lngChanger} onClick={() => {props.ChangeLanguage(`${nextLng}`)}}>{props.text.appHeaderLangButton}</button>
+        <button
+          className={styles.lngChanger}
+          onClick={() => {
+            props.ChangeLanguage(`${nextLng}`);
+          }}
+        >
+          {props.text.appHeaderLangButton}
+        </button>
       </div>
     </header>
-  )
+  );
 }
 
 export default AppHeader;
