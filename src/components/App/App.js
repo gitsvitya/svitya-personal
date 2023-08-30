@@ -12,7 +12,7 @@ function App() {
   let currentText = engLng;
   console.log(Language);
 
-  if (Language === "en") currentText = engLng;
+  if (Language === "ru") currentText = engLng;
   else currentText = rusLng;
 
   return (
