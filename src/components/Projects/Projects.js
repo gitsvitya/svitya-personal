@@ -28,7 +28,7 @@ function Projects(props) {
           ,{" "}
           <a
             className={styles.link}
-            href="https://kalashnikovgroup.ru/"
+            href="https://transkomplektholding.ru/"
             target="_blank"
           >
             {props.text.projectBlockUsedToWorkTextKG}
