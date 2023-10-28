@@ -1,5 +1,5 @@
 # Svitya.com webpage
-[Svitya] (https://svitya.com/) (Strokov Vitya’s) personal webpage. 
+[Svitya](https://svitya.com/) (Strokov Vitya’s) personal webpage. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
