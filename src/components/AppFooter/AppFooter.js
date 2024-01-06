@@ -47,7 +47,7 @@ function AppFooter(props) {
             </ul>
           </nav>
         </div>
-        <p className={styles.year}>2023</p>
+        <p className={styles.year}>2024</p>
       </div>
     </footer>
   );
