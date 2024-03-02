@@ -35,15 +35,6 @@ function AppFooter(props) {
                   li
                 </a>
               </li>
-              <li className={styles.navigationListItem}>
-                <a
-                  className={styles.link}
-                  href="https://github.com/gitsvitya"
-                  target="_blank"
-                >
-                  gh
-                </a>
-              </li>
             </ul>
           </nav>
         </div>
