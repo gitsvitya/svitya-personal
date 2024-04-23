@@ -10,8 +10,6 @@ function App() {
   const [Language, ChangeLanguage] = React.useState("en");
 
   let currentText = engLng;
-  console.log(Language);
-
   if (Language === "ru") currentText = engLng;
   else currentText = rusLng;
 
