@@ -29,7 +29,7 @@ function AppFooter(props) {
               <li className={styles.navigationListItem}>
                 <a
                   className={styles.link}
-                  href="https://www.linkedin.com/in/victor-strokov-85128b10b"
+                  href="https://www.linkedin.com/in/victor-strokov"
                   target="_blank"
                 >
                   li
