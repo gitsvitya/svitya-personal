@@ -14,16 +14,12 @@ function Projects(props) {
         </p>
         <p className={styles.text}>
           {props.text.projectBlockUsedToWorkText}
-          <a className={styles.link} href="https://maxconf.ru/" target="_blank">
-            {props.text.projectBlockUsedToWorkTextMC}
-          </a>
-          ,{" "}
           <a
             className={styles.link}
-            href="https://www.thomsonreuters.com/"
+            href="https://trading.lukoil.ru/"
             target="_blank"
           >
-            {props.text.projectBlockUsedToWorkTextTR}
+            {props.text.projectBlockUsedToWorkTextLRNPT}
           </a>
           ,{" "}
           <a
@@ -36,25 +32,25 @@ function Projects(props) {
           ,{" "}
           <a
             className={styles.link}
-            href="https://trading.lukoil.ru/"
+            href="https://www.thomsonreuters.com/"
             target="_blank"
           >
-            {props.text.projectBlockUsedToWorkTextLRNPT}
+            {props.text.projectBlockUsedToWorkTextTR}
           </a>
           .
         </p>
         <p className={styles.text}>
           {props.text.projectBlockFoundedText}
-          <a className={styles.link} href="https://venivi.ru/" target="_blank">
-            {props.text.projectBlockFoundedTextVenivi}
-          </a>
-          ,{" "}
           <a
             className={styles.link}
             href="https://www.mappngo.com/"
             target="_blank"
           >
             {props.text.projectBlockFoundedTextMappNgo}
+          </a>
+          ,{" "}
+          <a className={styles.link} href="https://venivi.ru/" target="_blank">
+            {props.text.projectBlockFoundedTextVenivi}
           </a>
           .
         </p>
