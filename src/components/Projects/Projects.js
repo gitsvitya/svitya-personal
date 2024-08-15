@@ -5,15 +5,20 @@ function Projects(props) {
   return (
     <div className={styles.projects}>
       <div className={styles.container}>
-        <p className={styles.text}>
+        {/* <p className={styles.text}>
           {props.text.projectBlockWorkNowText}
           <a className={styles.link} href="https://namex.org/" target="_blank">
             {props.text.projectBlockWorkLink}
           </a>
           .
-        </p>
+        </p> */}
+          {/* . */}
         <p className={styles.text}>
           {props.text.projectBlockUsedToWorkText}
+          <a className={styles.link} href="https://namex.org/" target="_blank">
+            {props.text.projectBlockUsedToWorkTextNTB}
+          </a>
+          ,{" "}
           <a
             className={styles.link}
             href="https://trading.lukoil.ru/"

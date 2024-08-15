@@ -5,12 +5,13 @@ export const rusLng = {
   aboutBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика.',
 
   projectBlockWorkNowText: 'Сейчас работаю в ',
-  projectBlockWorkLink: 'Национальной товарной бирже',
+  // projectBlockWorkLink: 'Национальной товарной бирже',
 
   projectBlockUsedToWorkText: 'Раньше работал в: ',
+  projectBlockUsedToWorkTextNTB: 'Национальной товарной бирже',
   projectBlockUsedToWorkTextMC: 'MaxConference',
   projectBlockUsedToWorkTextTR: 'Thomson Reuters',
-  projectBlockUsedToWorkTextKG: 'Концерн Калашников',
+  projectBlockUsedToWorkTextKG: 'Концерне Калашников',
   projectBlockUsedToWorkTextLRNPT: 'Лукойл-РНП-Трейдинг',
 
   projectBlockFoundedText: 'Также запускал собственные проекты: ',
@@ -27,9 +28,10 @@ export const engLng = {
   aboutBlockSubHeader: 'Project management, product development, research and analytics.',
 
   projectBlockWorkNowText: 'Work at ',
-  projectBlockWorkLink: 'National Mercantile Exchange',
+  // projectBlockWorkLink: 'National Mercantile Exchange',
 
   projectBlockUsedToWorkText: 'Worked at: ',
+  projectBlockUsedToWorkTextNTB: 'National Mercantile Exchange',
   projectBlockUsedToWorkTextMC: 'MaxConference',
   projectBlockUsedToWorkTextTR: 'Thomson Reuters',
   projectBlockUsedToWorkTextKG: 'Kalashnikov Group',
