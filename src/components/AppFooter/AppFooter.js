@@ -18,13 +18,13 @@ function AppFooter(props) {
                 </a>
               </li>
               <li className={styles.navigationListItem}>
-                <a
+                {/* <a
                   className={styles.link}
                   href="https://www.instagram.com/vitya.strokov"
                   target="_blank"
                 >
                   ig
-                </a>
+                </a> */}
               </li>
               <li className={styles.navigationListItem}>
                 <a
