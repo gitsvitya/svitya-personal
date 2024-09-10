@@ -9,6 +9,7 @@ import { rusLng, engLng } from "../../utils/lng";
 function App() {
   const [Language, ChangeLanguage] = React.useState("en");
 
+  // let test = window.navigator.language;
   let currentText = engLng;
   if (Language === "ru") currentText = engLng;
   else currentText = rusLng;

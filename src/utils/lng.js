@@ -7,18 +7,18 @@ export const rusLng = {
   projectBlockWorkNowText: 'Сейчас работаю в ',
   // projectBlockWorkLink: 'Национальной товарной бирже',
 
-  projectBlockUsedToWorkText: 'Раньше работал в: ',
+  projectBlockUsedToWorkText: 'Работал в: ',
   projectBlockUsedToWorkTextNTB: 'Национальной товарной бирже',
   projectBlockUsedToWorkTextMC: 'MaxConference',
   projectBlockUsedToWorkTextTR: 'Thomson Reuters',
   projectBlockUsedToWorkTextKG: 'Концерне Калашников',
   projectBlockUsedToWorkTextLRNPT: 'Лукойл-РНП-Трейдинг',
 
-  projectBlockFoundedText: 'Также запускал собственные проекты: ',
+  projectBlockFoundedText: 'Собственные проекты: ',
   projectBlockFoundedTextVenivi: 'Venivi.ru',
   projectBlockFoundedTextMappNgo: 'MappNgo',
 
-  appFooterContacts: 'Связаться со мной:',
+  appFooterContacts: 'Соцсети:',
 }
 
 export const engLng = {
@@ -41,5 +41,5 @@ export const engLng = {
   projectBlockFoundedTextVenivi: 'Venivi.ru',
   projectBlockFoundedTextMappNgo: 'MappNgo',
 
-  appFooterContacts: 'Available at:',
+  appFooterContacts: 'Socials:',
 }

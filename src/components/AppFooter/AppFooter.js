@@ -5,7 +5,7 @@ function AppFooter(props) {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.contactsBlock}>
-          {/* <p className={styles.text}>{props.text.appFooterContacts}</p> */}
+          { <p className={styles.text}>{props.text.appFooterContacts}</p> }
           <nav className={styles.navigation}>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>
@@ -14,17 +14,17 @@ function AppFooter(props) {
                   href="https://www.t.me/vstrokov"
                   target="_blank"
                 >
-                  tg
+                  Telegram
                 </a>
               </li>
               <li className={styles.navigationListItem}>
-                {/* <a
+                <a
                   className={styles.link}
                   href="https://www.instagram.com/vitya.strokov"
                   target="_blank"
                 >
-                  ig
-                </a> */}
+                  Instagram
+                </a>
               </li>
               <li className={styles.navigationListItem}>
                 <a
@@ -32,7 +32,7 @@ function AppFooter(props) {
                   href="https://www.linkedin.com/in/victor-strokov"
                   target="_blank"
                 >
-                  li
+                  LinkedIn
                 </a>
               </li>
             </ul>
