@@ -1,11 +1,10 @@
 export const rusLng = {
   appHeaderLangButton: 'En',
 
-  aboutBlockHeader: 'Виктор Строков',
-  aboutBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
+  titleBlockHeader: 'Виктор Строков',
+  titleBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
 
   projectBlockWorkNowText: 'Сейчас работаю в ',
-  // projectBlockWorkLink: 'Национальной товарной бирже',
 
   projectBlockUsedToWorkText: 'Работал в: ',
   projectBlockUsedToWorkTextNTB: 'Национальной товарной бирже',
@@ -24,11 +23,10 @@ export const rusLng = {
 export const engLng = {
   appHeaderLangButton: 'Ru',
 
-  aboutBlockHeader: 'Victor Strokov',
-  aboutBlockSubHeader: 'Project management, product development, research and analytics',
+  titleBlockHeader: 'Victor Strokov',
+  titleBlockSubHeader: 'Project management, product development, research and analytics',
 
   projectBlockWorkNowText: 'Work at ',
-  // projectBlockWorkLink: 'National Mercantile Exchange',
 
   projectBlockUsedToWorkText: 'Worked at: ',
   projectBlockUsedToWorkTextNTB: 'National Mercantile Exchange',

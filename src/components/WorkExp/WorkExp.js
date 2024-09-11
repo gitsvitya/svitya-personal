@@ -1,19 +1,10 @@
-import react from "react";
-import styles from "./Projects.module.css";
+import styles from "./WorkExp.module.css";
 
-function Projects(props) {
+function WorkExp(props) {
   return (
-    <div className={styles.projects}>
+    <div className={styles.workExp}>
       <div className={styles.container}>
-        {/* <p className={styles.text}>
-          {props.text.projectBlockWorkNowText}
-          <a className={styles.link} href="https://namex.org/" target="_blank">
-            {props.text.projectBlockWorkLink}
-          </a>
-          .
-        </p> */}
-          {/* . */}
-        <p className={styles.text}>
+      <p className={styles.text}>
           {props.text.projectBlockUsedToWorkText}
           <a className={styles.link} href="https://namex.org/" target="_blank">
             {props.text.projectBlockUsedToWorkTextNTB}
@@ -44,24 +35,9 @@ function Projects(props) {
           </a>
           .
         </p>
-        <p className={styles.text}>
-          {props.text.projectBlockFoundedText}
-          <a
-            className={styles.link}
-            href="https://www.mappngo.com/"
-            target="_blank"
-          >
-            {props.text.projectBlockFoundedTextMappNgo}
-          </a>
-          ,{" "}
-          <a className={styles.link} href="https://venivi.ru/" target="_blank">
-            {props.text.projectBlockFoundedTextVenivi}
-          </a>
-          .
-        </p>
       </div>
     </div>
-  );
+  )
 }
 
-export default Projects;
+export default WorkExp;

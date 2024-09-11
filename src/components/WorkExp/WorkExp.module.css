@@ -1,4 +1,4 @@
-.header {
+.workExp {
   width: 100%;
   transition: all 0.5s linear;
 }
@@ -6,49 +6,47 @@
 .container {
   padding: 50px;
   display: flex;
-  justify-content: flex-end;
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
   transition: all 0.5s linear;
+  flex-direction: column;
+  gap: 50px;
 }
 
-.lngChanger {
-  display: flex;
-  padding: 0;
+.text {
   margin: 0;
-  border: none;
-  color: inherit;
-  background-color: transparent;
+  padding: 0;
   font-family: 'VremenaGrotesk', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 36px;
+  transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
+}
+
+.link {
+  text-decoration: none;
+  text-decoration: underline;
+  outline: none;
+  color: black;
   transition: all 0.5s linear;
-  gap: 5px;
 }
 
-.lngSwitcher {
-  max-width: 30px;
-  max-height: 20px;
-  align-self: center;
-}
-
-.lngChanger:hover {
-  cursor: pointer;
+.link:hover {
   color: #F74843;
+  cursor: pointer;
   transition: all 0.5s linear;
-  fill: #F74843;
 }
 
 @media (max-width: 769px) {
   .container {
     padding: 30px;
+    gap: 40px;
   }
 
-  .lngChanger {
+  .text {
     font-size: 28px;
     line-height: 34px;
   }
@@ -56,11 +54,13 @@
 
 @media (max-width: 501px) {
   .container {
+    flex-direction: column;
     padding: 20px;
+    gap: 30px;
   }
 
-  .lngChanger {
-    font-size: 24px;
+  .text {
+    font-size: 26px;
     line-height: 32px;
   }
 }

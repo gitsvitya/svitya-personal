@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
-import About from "../About/About";
-import Projects from "../Projects/Projects";
+import Title from "../About/Title";
+import ProjectsExp from "../ProjectsExp/ProjectsExp";
 import AppFooter from "../AppFooter/AppFooter";
+import WorkExp from "../WorkExp/WorkExp";
 import { rusLng, engLng } from "../../utils/lng";
 
 function App() {
@@ -22,8 +23,9 @@ function App() {
         Language={Language}
       ></AppHeader>
       <main>
-        <About text={currentText}></About>
-        <Projects text={currentText}></Projects>
+        <Title text={currentText}></Title>
+        <WorkExp text={currentText}></WorkExp>
+        <ProjectsExp text={currentText}></ProjectsExp>
       </main>
       <AppFooter text={currentText}></AppFooter>
     </div>
