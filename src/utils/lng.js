@@ -2,7 +2,7 @@ export const rusLng = {
   appHeaderLangButton: 'En',
 
   aboutBlockHeader: 'Виктор Строков',
-  aboutBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика.',
+  aboutBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
 
   projectBlockWorkNowText: 'Сейчас работаю в ',
   // projectBlockWorkLink: 'Национальной товарной бирже',
@@ -25,7 +25,7 @@ export const engLng = {
   appHeaderLangButton: 'Ru',
 
   aboutBlockHeader: 'Victor Strokov',
-  aboutBlockSubHeader: 'Project management, product development, research and analytics.',
+  aboutBlockSubHeader: 'Project management, product development, research and analytics',
 
   projectBlockWorkNowText: 'Work at ',
   // projectBlockWorkLink: 'National Mercantile Exchange',
