@@ -11,7 +11,7 @@
   margin-right: auto;
   transition: all 0.5s linear;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
 }
 
 .header {
@@ -29,7 +29,7 @@
 
 .cardBox {
 display: grid;
-grid-template-columns: 580px 580px;
+grid-template-columns: repeat(2, 1fr);
 /* grid-template-rows: ; */
 margin: auto;
 gap: 20px;
@@ -57,7 +57,7 @@ gap: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 60%;
+  width: 60%;
 }
 
 .cardYear {
@@ -76,13 +76,35 @@ gap: 20px;
   line-height: 20px;
 }
 
+.cardButton {
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #F74843;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: white;
+  width: 50%;
+  align-self: center;
+  transition: all 0.5s linear;
+  opacity: 0;
+  height: 0;
+}
+
+.card:hover .cardButton {
+  opacity: 1;
+  height: 30px;
+}
+
 .logoBlock {
   display: flex;
   max-width: 200px;
   transition: all 0.5s linear;
   position: relative;
   z-index: -1;
+  align-self: center;
   justify-content: end;
+  align-items: end;
 }
 
 .logoPic {
@@ -90,15 +112,18 @@ gap: 20px;
   height: 100%;
   z-index: -1;
   overflow: visible;
+  transition: all 0.5s linear;
 }
 
 .card:hover .logoPic {
-  width: 103%;
+  width: 105%;
+  height: 105%;
   transition: all 0.5s linear;
 }
 
 .card:hover .cardCompanyName {
   color: #F74843;
+  transition: all 0.5s linear;
 }
 
 

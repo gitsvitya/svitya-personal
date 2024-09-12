@@ -9,16 +9,22 @@ export const rusLng = {
   workExpBlockCompanyNameNTB: 'Национальная товарная биржа',
   workExpBlockComopanyTitleNTB: 'Руководитель направления развития бизнеса',
 
-  projectBlockUsedToWorkTextMC: 'MaxConference',
-  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
-  projectBlockUsedToWorkTextKG: 'Концерне Калашников',
   projectBlockUsedToWorkTextLRNPT: 'Лукойл-РНП-Трейдинг',
+  workExpBlockComopanyTitleLRNPT: 'Ведущий специалист отдела развития бизнеса и анализа рынков',
+
+  projectBlockUsedToWorkTextKG: 'Концерне Калашников',
+  workExpBlockComopanyTitleKG: 'Менеджер по маркетинговым исследованиям',
+
+  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
+  workExpBlockComopanyTitleTR: 'Аналитик рынков',
 
   projectBlockFoundedText: 'Собственные проекты: ',
   projectBlockFoundedTextVenivi: 'Venivi.ru',
   projectBlockFoundedTextMappNgo: 'MappNgo',
 
   appFooterContacts: 'Соцсети:',
+
+  cardButtonText: 'Подробнее',
 }
 
 export const engLng = {
@@ -33,14 +39,20 @@ export const engLng = {
   workExpBlockCompanyNameNTB: 'National Mercantile Exchange',
   workExpBlockComopanyTitleNTB: 'Head of Business Development',
 
-  projectBlockUsedToWorkTextMC: 'MaxConference',
-  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
-  projectBlockUsedToWorkTextKG: 'Kalashnikov Group',
   projectBlockUsedToWorkTextLRNPT: 'Lukoil-RNP-Trading',
+  workExpBlockComopanyTitleLRNPT: 'Leading Specialist of Business Development Department',
+
+  projectBlockUsedToWorkTextKG: 'Kalashnikov Group',
+  workExpBlockComopanyTitleKG: 'Marketing Research Manager',
+
+  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
+  workExpBlockComopanyTitleTR: 'Market Analyst',
 
   projectBlockFoundedText: 'Founded: ',
   projectBlockFoundedTextVenivi: 'Venivi.ru',
   projectBlockFoundedTextMappNgo: 'MappNgo',
 
   appFooterContacts: 'Socials:',
+
+  cardButtonText: 'Details',
 }
