@@ -1,10 +1,25 @@
 import styles from "./WorkExp.module.css";
+import { HandySvg } from "handy-svg";
+import moexLogo from '../../images/moex_logo.svg';
 
 function WorkExp(props) {
   return (
     <div className={styles.workExp}>
       <div className={styles.container}>
-      <p className={styles.text}>
+      <h2 className={styles.header}>{props.text.workExpBlockHeaderText}</h2>
+        <div className={styles.cardBox}>
+          <div className={styles.card}>
+            <div className={styles.cardText}>
+              <span className={styles.cardYear}>2021-2024</span>
+              <span className={styles.cardCompanyName}>{props.text.workExpBlockCompanyNameNTB}</span>
+              <span className={styles.cardTitle}>{props.text.workExpBlockComopanyTitleNTB}</span>
+            </div>
+              <div className={styles.logoBlock}>
+              <HandySvg className={styles.logoPic} src={moexLogo}></HandySvg>
+              </div>
+          </div>
+        </div>
+      {/* <p className={styles.text}>
           {props.text.projectBlockUsedToWorkText}
           <a className={styles.link} href="https://namex.org/" target="_blank">
             {props.text.projectBlockUsedToWorkTextNTB}
@@ -34,7 +49,7 @@ function WorkExp(props) {
             {props.text.projectBlockUsedToWorkTextTR}
           </a>
           .
-        </p>
+        </p> */}
       </div>
     </div>
   )

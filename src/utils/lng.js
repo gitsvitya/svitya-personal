@@ -4,10 +4,11 @@ export const rusLng = {
   titleBlockHeader: 'Виктор Строков',
   titleBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
 
-  projectBlockWorkNowText: 'Сейчас работаю в ',
+  workExpBlockHeaderText: 'Опыт работы',
 
-  projectBlockUsedToWorkText: 'Работал в: ',
-  projectBlockUsedToWorkTextNTB: 'Национальной товарной бирже',
+  workExpBlockCompanyNameNTB: 'Национальная товарная биржа',
+  workExpBlockComopanyTitleNTB: 'Руководитель направления развития бизнеса',
+
   projectBlockUsedToWorkTextMC: 'MaxConference',
   projectBlockUsedToWorkTextTR: 'Thomson Reuters',
   projectBlockUsedToWorkTextKG: 'Концерне Калашников',
@@ -26,10 +27,12 @@ export const engLng = {
   titleBlockHeader: 'Victor Strokov',
   titleBlockSubHeader: 'Project management, product development, research and analytics',
 
-  projectBlockWorkNowText: 'Work at ',
 
-  projectBlockUsedToWorkText: 'Worked at: ',
-  projectBlockUsedToWorkTextNTB: 'National Mercantile Exchange',
+  workExpBlockHeaderText: 'Work experience',
+
+  workExpBlockCompanyNameNTB: 'National Mercantile Exchange',
+  workExpBlockComopanyTitleNTB: 'Head of Business Development',
+
   projectBlockUsedToWorkTextMC: 'MaxConference',
   projectBlockUsedToWorkTextTR: 'Thomson Reuters',
   projectBlockUsedToWorkTextKG: 'Kalashnikov Group',
