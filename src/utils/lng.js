@@ -12,7 +12,7 @@ export const rusLng = {
   projectBlockUsedToWorkTextLRNPT: 'Лукойл-РНП-Трейдинг',
   workExpBlockComopanyTitleLRNPT: 'Ведущий специалист отдела развития бизнеса и анализа рынков',
 
-  projectBlockUsedToWorkTextKG: 'Концерне Калашников',
+  projectBlockUsedToWorkTextKG: 'Концерн Калашников',
   workExpBlockComopanyTitleKG: 'Менеджер по маркетинговым исследованиям',
 
   projectBlockUsedToWorkTextTR: 'Thomson Reuters',
