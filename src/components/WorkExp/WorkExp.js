@@ -25,7 +25,7 @@ function WorkExp(props) {
               <div className={styles.card}>
               <div className={styles.cardText}>
                 <span className={styles.cardYear}>2020-2021</span>
-                <span className={styles.cardCompanyName}>{props.text.projectBlockUsedToWorkTextLRNPT}</span>
+                <span className={styles.cardCompanyName}>{props.text.workExpBlockCompanyNameLRNPT}</span>
                 <span className={styles.cardTitle}>{props.text.workExpBlockComopanyTitleLRNPT}</span>
                 <span className={styles.cardButton}>{props.text.cardButtonText}</span>
               </div>
@@ -36,7 +36,7 @@ function WorkExp(props) {
               <div className={styles.card}>
               <div className={styles.cardText}>
                 <span className={styles.cardYear}>2018-2019</span>
-                <span className={styles.cardCompanyName}>{props.text.projectBlockUsedToWorkTextKG}</span>
+                <span className={styles.cardCompanyName}>{props.text.workExpBlockCompanyNameKG}</span>
                 <span className={styles.cardTitle}>{props.text.workExpBlockComopanyTitleKG}</span>
                 <span className={styles.cardButton}>{props.text.cardButtonText}</span>
               </div>
@@ -47,7 +47,7 @@ function WorkExp(props) {
               <div className={styles.card}>
               <div className={styles.cardText}>
                 <span className={styles.cardYear}>2014-2018</span>
-                <span className={styles.cardCompanyName}>{props.text.projectBlockUsedToWorkTextTR}</span>
+                <span className={styles.cardCompanyName}>{props.text.workExpBlockCompanyNameTR}</span>
                 <span className={styles.cardTitle}>{props.text.workExpBlockComopanyTitleTR}</span>
                 <span className={styles.cardButton}>{props.text.cardButtonText}</span>
               </div>

@@ -9,18 +9,23 @@ export const rusLng = {
   workExpBlockCompanyNameNTB: 'Национальная товарная биржа',
   workExpBlockComopanyTitleNTB: 'Руководитель направления развития бизнеса',
 
-  projectBlockUsedToWorkTextLRNPT: 'Лукойл-РНП-Трейдинг',
+  workExpBlockCompanyNameLRNPT: 'Лукойл-РНП-Трейдинг',
   workExpBlockComopanyTitleLRNPT: 'Ведущий специалист отдела развития бизнеса и анализа рынков',
 
-  projectBlockUsedToWorkTextKG: 'Концерн Калашников',
+  workExpBlockCompanyNameKG: 'Концерн Калашников',
   workExpBlockComopanyTitleKG: 'Менеджер по маркетинговым исследованиям',
 
-  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
+  workExpBlockCompanyNameTR: 'Thomson Reuters',
   workExpBlockComopanyTitleTR: 'Аналитик рынков',
 
-  projectBlockFoundedText: 'Собственные проекты: ',
-  projectBlockFoundedTextVenivi: 'Venivi.ru',
-  projectBlockFoundedTextMappNgo: 'MappNgo',
+  projectExpBlockHeaderText: 'Собственные проекты',
+
+  projectExpBlockCompanyNameMappNgo: 'MappNgo',
+  projectExpBlockComopanyTitleMappNgo: 'Основатель',
+
+  projectExpBlockCompanyNameVenivi: 'Venivi.ru',
+  projectExpBlockComopanyVenivi: 'Сооснователь',
+
 
   appFooterContacts: 'Соцсети:',
 
@@ -39,18 +44,23 @@ export const engLng = {
   workExpBlockCompanyNameNTB: 'National Mercantile Exchange',
   workExpBlockComopanyTitleNTB: 'Head of Business Development',
 
-  projectBlockUsedToWorkTextLRNPT: 'Lukoil-RNP-Trading',
+  workExpBlockCompanyNameLRNPT: 'Lukoil-RNP-Trading',
   workExpBlockComopanyTitleLRNPT: 'Leading Specialist of Business Development Department',
 
-  projectBlockUsedToWorkTextKG: 'Kalashnikov Group',
+  workExpBlockCompanyNameKG: 'Kalashnikov Group',
   workExpBlockComopanyTitleKG: 'Marketing Research Manager',
 
-  projectBlockUsedToWorkTextTR: 'Thomson Reuters',
+  workExpBlockCompanyNameTR: 'Thomson Reuters',
   workExpBlockComopanyTitleTR: 'Market Analyst',
 
-  projectBlockFoundedText: 'Founded: ',
-  projectBlockFoundedTextVenivi: 'Venivi.ru',
-  projectBlockFoundedTextMappNgo: 'MappNgo',
+  projectExpBlockHeaderText: 'Founded',
+
+  projectExpBlockCompanyNameMappNgo: 'MappNgo',
+  projectExpBlockComopanyTitleMappNgo: 'Founder',
+
+  projectExpBlockCompanyNameVenivi: 'Venivi.ru',
+  projectExpBlockComopanyVenivi: 'Co-founder',
+
 
   appFooterContacts: 'Socials:',
 

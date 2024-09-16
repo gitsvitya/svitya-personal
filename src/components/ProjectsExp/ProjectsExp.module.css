@@ -11,7 +11,118 @@
   margin-right: auto;
   transition: all 0.5s linear;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
+}
+
+.header {
+  padding: 0;
+  margin: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
+  transition: all 0.5s linear;
+  text-rendering: optimizeLegibility;
+  text-align: center;
+}
+
+.cardBox {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+margin: auto;
+gap: 20px;
+transition: all 0.5s linear;
+}
+
+.card {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  border: 3px solid black;
+  border-radius: 20px;
+  border-color: black;
+  box-sizing: border-box;
+  transition: all 0.5s linear;
+  width: 580px;
+  height: 280px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.cardYear {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.cardCompanyName {
+  font-size: 26px;
+  line-height: 30px;
+  transition: all 0.5s linear;
+}
+
+.cardTitle {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.cardButton {
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #F74843;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: white;
+  width: 50%;
+  align-self: center;
+  transition: all 0.5s linear;
+  opacity: 0;
+  height: 0;
+}
+
+.card:hover .cardButton {
+  opacity: 1;
+  height: 30px;
+}
+
+.logoBlock {
+  display: flex;
+  max-width: 200px;
+  transition: all 0.5s linear;
+  position: relative;
+  z-index: -1;
+  align-self: center;
+  justify-content: end;
+  align-items: end;
+}
+
+.logoPic {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: visible;
+  transition: all 0.5s linear;
+}
+
+.card:hover .logoPic {
+  width: 105%;
+  height: 105%;
+  transition: all 0.5s linear;
+}
+
+.card:hover .cardCompanyName {
+  color: #F74843;
+  transition: all 0.5s linear;
 }
 
 .text {
@@ -40,6 +151,13 @@
   transition: all 0.5s linear;
 }
 
+@media (max-width: 1279px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+    transition: all 0.5s linear;
+  }
+}
+
 @media (max-width: 769px) {
   .container {
     padding: 30px;
@@ -52,15 +170,45 @@
   }
 }
 
+@media (max-width: 639px) {
+  .cardBox {
+    width: 100%;
+  }
+  .card {
+    width: 100%;
+  }
+}
+
 @media (max-width: 501px) {
+
   .container {
-    flex-direction: column;
     padding: 20px;
-    gap: 30px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 401px) {
+
+  .card {
+    height: 230px;
   }
 
-  .text {
-    font-size: 26px;
-    line-height: 32px;
+  .cardYear {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .cardCompanyName {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .cardTitle {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .cardButton {
+    font-size: 12px;
   }
 }
