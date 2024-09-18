@@ -5,7 +5,7 @@ function AppFooter(props) {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.contactsBlock}>
-          { <p className={styles.text}>{props.text.appFooterContacts}</p> }
+          {<p className={styles.text}>{props.text.appFooterContacts}</p>}
           <nav className={styles.navigation}>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>

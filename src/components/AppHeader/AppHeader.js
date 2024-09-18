@@ -1,8 +1,7 @@
 import styles from "./AppHeader.module.css";
 import { HandySvg } from "handy-svg";
-import lngSwitcherPic from '../../images/icon-lang-toggle.svg'
-import lngSwitcherPicInv from '../../images/icon-lang-toggle-inv.svg'
-
+import lngSwitcherPic from "../../images/icon-lang-toggle.svg";
+import lngSwitcherPicInv from "../../images/icon-lang-toggle-inv.svg";
 
 function AppHeader(props) {
   let nextLng = "";
@@ -21,7 +20,12 @@ function AppHeader(props) {
         >
           <span>Ru</span>
 
-          {<HandySvg className={styles.lngSwitcher} src={props.Language == 'en' ? lngSwitcherPic : lngSwitcherPicInv}></HandySvg>}
+          {
+            <HandySvg
+              className={styles.lngSwitcher}
+              src={props.Language == "en" ? lngSwitcherPic : lngSwitcherPicInv}
+            ></HandySvg>
+          }
 
           <span>En</span>
         </button>

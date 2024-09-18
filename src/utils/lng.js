@@ -32,11 +32,17 @@ export const rusLng = {
 
   projectExpBlockHeaderText: 'Собственные проекты',
 
+  projectExpBlockCompanyYearMappNgo: '2019-2020',
   projectExpBlockCompanyNameMappNgo: 'MappNgo',
   projectExpBlockComopanyTitleMappNgo: 'Основатель',
+  projectExpBlockComopanyAboutMappNgo: 'iOS приложение, в котором пользователи могли проходить и добавлять пешие маршруты. Выбрать маршрут можно было по интересующим местам или по его расположению.',
+  projectExpBlockComopanyResultsMappNgo: 'тест',
 
+  projectExpBlockCompanyYearVenivi: '2013-2014',
   projectExpBlockCompanyNameVenivi: 'Venivi.ru',
-  projectExpBlockComopanyVenivi: 'Сооснователь',
+  projectExpBlockComopanyTitleVenivi: 'Сооснователь',
+  projectExpBlockComopanyAboutVenivi: 'Конкурсная площадка, где рекламодатели проводили различные конкурсы и розыгрыши призов для привлечения аудитории.',
+  projectExpBlockComopanyResultsVenivi: 'тест',
 
 
   appFooterContacts: 'Соцсети:',
@@ -79,11 +85,17 @@ export const engLng = {
 
   projectExpBlockHeaderText: 'Founded',
 
+  projectExpBlockCompanyYearMappNgo: '2019-2020',
   projectExpBlockCompanyNameMappNgo: 'MappNgo',
   projectExpBlockComopanyTitleMappNgo: 'Founder',
+  projectExpBlockComopanyAboutMappNgo: 'An iOS application with a lot of unique, interesting, and secret city walks, provided by MappNgo or its users. Route guides could be found by location or included points.',
+  projectExpBlockComopanyResultsMappNgo: 'test',
 
+  projectExpBlockCompanyYearVenivi: '2013-2014',
   projectExpBlockCompanyNameVenivi: 'Venivi.ru',
   projectExpBlockComopanyVenivi: 'Co-founder',
+  projectExpBlockComopanyAboutVenivi: 'A task platform for giveaways where advertisers could interact with users by various prize drawings and quizzes.',
+  projectExpBlockComopanyResultsVenivi: 'test',
 
 
   appFooterContacts: 'Socials:',

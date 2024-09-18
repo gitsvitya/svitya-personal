@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import styles from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
 import Title from "../Title/Title";
@@ -10,9 +10,9 @@ import ModalContent from "../ModalContent/ModalContent";
 import { rusLng, engLng } from "../../utils/lng";
 
 function App() {
-  const [Language, ChangeLanguage] = React.useState("en");
-  const [ModalOpen, ModalOpened] = React.useState(false);
-  const [ModalContentCompany, SetModalContentCompany] = React.useState("");
+  const [Language, ChangeLanguage] = useState("en");
+  const [ModalOpen, ModalOpened] = useState(false);
+  const [ModalContentCompany, SetModalContentCompany] = useState("");
 
   // let test = window.navigator.language;
   let currentText = engLng;
@@ -27,26 +27,45 @@ function App() {
     ModalOpened(false);
   }
 
-  return (<>
-    <div className={styles.page}>
-      <AppHeader
-        text={currentText}
-        ChangeLanguage={ChangeLanguage}
-        Language={Language}
-      ></AppHeader>
-      <main>
-        <Title text={currentText}></Title>
-        <WorkExp text={currentText} ModalOpen={ModalOpen} ModalContentCompany={ModalContentCompany} SetModalContentCompany={SetModalContentCompany} openModal={openModal} closeModal={closeModal}></WorkExp>
-        <ProjectsExp text={currentText}></ProjectsExp>
-      </main>
-      <AppFooter text={currentText}></AppFooter>
-    </div>
-    {ModalOpen && (
-      <Modal closeModal={closeModal}>
-        <ModalContent ModalContent={ModalContentCompany} text={currentText}></ModalContent>
-      </Modal>
-  )}
-  </>);
+  return (
+    <>
+      <div className={styles.page}>
+        <AppHeader
+          text={currentText}
+          ChangeLanguage={ChangeLanguage}
+          Language={Language}
+        ></AppHeader>
+        <main>
+          <Title text={currentText}></Title>
+          <WorkExp
+            text={currentText}
+            ModalOpen={ModalOpen}
+            ModalContentCompany={ModalContentCompany}
+            SetModalContentCompany={SetModalContentCompany}
+            openModal={openModal}
+            closeModal={closeModal}
+          ></WorkExp>
+          <ProjectsExp
+            text={currentText}
+            ModalOpen={ModalOpen}
+            ModalContentCompany={ModalContentCompany}
+            SetModalContentCompany={SetModalContentCompany}
+            openModal={openModal}
+            closeModal={closeModal}
+          ></ProjectsExp>
+        </main>
+        <AppFooter text={currentText}></AppFooter>
+      </div>
+      {ModalOpen && (
+        <Modal closeModal={closeModal}>
+          <ModalContent
+            ModalContent={ModalContentCompany}
+            text={currentText}
+          ></ModalContent>
+        </Modal>
+      )}
+    </>
+  );
 }
 
 export default App;
