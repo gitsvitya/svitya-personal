@@ -1,0 +1,139 @@
+.card {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  border: 3px solid black;
+  border-radius: 20px;
+  border-color: black;
+  box-sizing: border-box;
+  transition: all 0.5s linear;
+  width: 580px;
+  height: 280px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.cardYear {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  text-rendering: optimizeLegibility;
+}
+
+.cardCompanyName {
+  font-size: 26px;
+  line-height: 30px;
+  transition: all 0.5s linear;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+.cardTitle {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+.cardButton {
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #F74843;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: white;
+  width: 50%;
+  align-self: center;
+  transition: all 0.5s linear;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+.card:hover .cardButton {
+  opacity: 1;
+  height: 30px;
+}
+
+.logoBlock {
+  display: flex;
+  max-width: 200px;
+  transition: all 0.5s linear;
+  z-index: -1;
+  align-self: center;
+  justify-content: end;
+  align-items: end;
+}
+
+.logoPic {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: visible;
+  transition: all 0.5s linear;
+}
+
+.card:hover .logoPic {
+  width: 105%;
+  height: 105%;
+  transition: all 0.5s linear;
+}
+
+.card:hover .cardCompanyName {
+  color: #F74843;
+  transition: all 0.5s linear;
+}
+
+@media (max-width: 639px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 401px) {
+  .card {
+    height: 230px;
+  }
+
+  .cardYear {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .cardCompanyName {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .cardTitle {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .cardButton {
+    font-size: 12px;
+  }
+}
