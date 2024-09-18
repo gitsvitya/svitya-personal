@@ -1,0 +1,62 @@
+.modalWindow {
+  font-family: 'VremenaGrotesk', sans-serif;
+  width: 60vw;
+  max-width: 600px;
+  max-height: fit-content;
+  box-sizing: border-box;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 3;
+  background-color: white;
+  border-radius: 12px;
+  transition: all 0.5s linear;
+  padding: 30px;
+}
+
+.closeIcon {
+  background-image: url('../../images/close_button.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  border: 0;
+  display: block;
+  max-height: 32px;
+  max-width: 32px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  transition: all 0.5s linear;
+}
+
+.closeIcon:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 999px) {
+  .modalWindow {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 499px) {
+  .closeIcon {
+    right: -20px;
+    top: -20px;
+    max-height: 16px;
+    max-width: 16px;
+  }
+}
+
+@media (max-width: 201px) {
+  .closeIcon {
+    display: none;
+  }
+}

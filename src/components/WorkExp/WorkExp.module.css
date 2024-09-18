@@ -99,7 +99,6 @@ transition: all 0.5s linear;
   display: flex;
   max-width: 200px;
   transition: all 0.5s linear;
-  position: relative;
   z-index: -1;
   align-self: center;
   justify-content: end;
@@ -151,6 +150,99 @@ transition: all 0.5s linear;
   transition: all 0.5s linear;
 }
 
+.modalContentRenderGeneralWindow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.modalContentRenderTextLogoWindow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.modalContentRenderCompanyTextBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modalContentRendercardYear {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.modalContentRendercardCompanyName {
+  font-size: 26px;
+  line-height: 30px;
+  transition: all 0.5s linear;
+}
+
+.modalContentRenderlink {
+  font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
+  outline: none;
+  color: black;
+  transition: all 0.5s linear;
+}
+
+.modalContentRenderlink:hover {
+  color: #F74843;
+  cursor: pointer;
+  transition: all 0.5s linear;
+}
+
+.modalContentRendercardTitle {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.modalContentRenderlogoBlock {
+  display: flex;
+  max-width: 200px;
+  transition: all 0.5s linear;
+  z-index: -1;
+  align-self: center;
+  justify-content: end;
+  align-items: end;
+}
+
+.modalContentRenderlogoPic {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: visible;
+  transition: all 0.5s linear;
+}
+
+.modalContentRenderParagraphBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalContentRenderParagraphCompanyDescription {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+  text-align: justify
+}
+
+.modalContentRenderParagraphPersonalDescription {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+  text-align: justify
+}
+
 @media (max-width: 1279px) {
   .cardBox {
     grid-template-columns: repeat(1, 1fr);
@@ -169,7 +261,12 @@ transition: all 0.5s linear;
     line-height: 34px;
   }
 }
-
+@media (max-width: 639px) {
+.modalContentRenderTextLogoWindow {
+  /* flex-direction: column; */
+  /* gap: 0; */
+}
+}
 @media (max-width: 639px) {
   .card {
     width: 100%;
@@ -181,6 +278,10 @@ transition: all 0.5s linear;
   .container {
     padding: 20px;
     gap: 20px;
+  }
+
+  .modalContentRenderlogoBlock {
+    max-width: 70px;
   }
 }
 
