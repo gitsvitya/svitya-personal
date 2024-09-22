@@ -2,11 +2,11 @@ import styles from "./AppFooter.module.css";
 
 function AppFooter(props) {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="footer">
       <div className={styles.container}>
         <div className={styles.contactsBlock}>
-          {<p className={styles.text}>{props.text.appFooterContacts}</p>}
-          <nav className={styles.navigation}>
+          {<p className={styles.text}>{props.text.appFooterContacts}:</p>}
+          <div className={styles.navigation}>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>
                 <a
@@ -36,7 +36,7 @@ function AppFooter(props) {
                 </a>
               </li>
             </ul>
-          </nav>
+          </div>
         </div>
         <p className={styles.year}>2024</p>
       </div>

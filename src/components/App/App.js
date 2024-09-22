@@ -7,7 +7,9 @@ import AppFooter from "../AppFooter/AppFooter";
 import WorkExp from "../WorkExp/WorkExp";
 import Modal from "../Modal/Modal";
 import ModalContent from "../ModalContent/ModalContent";
+import About from "../About/About";
 import { rusLng, engLng } from "../../utils/lng";
+import OtherExp from "../OtherExp/OtherExp";
 
 function App() {
   const [Language, ChangeLanguage] = useState("en");
@@ -36,7 +38,12 @@ function App() {
           Language={Language}
         ></AppHeader>
         <main>
-          <Title text={currentText}></Title>
+          <Title
+          text={currentText}
+          ></Title>
+          <About
+          text={currentText}
+          ></About>
           <WorkExp
             text={currentText}
             ModalOpen={ModalOpen}
@@ -53,6 +60,14 @@ function App() {
             openModal={openModal}
             closeModal={closeModal}
           ></ProjectsExp>
+          <OtherExp
+          text={currentText}
+          ModalOpen={ModalOpen}
+          ModalContentCompany={ModalContentCompany}
+          SetModalContentCompany={SetModalContentCompany}
+          openModal={openModal}
+          closeModal={closeModal}
+          ></OtherExp>
         </main>
         <AppFooter text={currentText}></AppFooter>
       </div>

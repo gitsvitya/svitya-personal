@@ -6,12 +6,56 @@
 .container {
   padding: 50px;
   display: flex;
-  justify-content: flex-end;
-  max-width: 1440px;
+  justify-content: space-between;
+  max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
   transition: all 0.5s linear;
+  gap: 120px;
 }
+
+.navigationBlock {
+  display: flex;
+  align-items: center;
+}
+
+.listItems {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  transition: all 0.5s linear;
+}
+
+.listItem {
+  margin: 0;
+  padding: 0;
+}
+
+.listItemLink {
+  margin: 0;
+  padding: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: normal;
+  transition: all 0.5s linear;
+  text-rendering: optimizeLegibility;
+  text-decoration: none;
+  color: black;
+  outline: none;
+  transition: all 0.5s linear;
+}
+
+.listItemLink:hover {
+  cursor: pointer;
+  color: #F74843;
+  transition: all 0.5s linear;
+}
+
 
 .lngChanger {
   display: flex;

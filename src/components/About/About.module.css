@@ -1,0 +1,40 @@
+.about {
+  width: 100%;
+  transition: all 0.5s linear;
+}
+
+.container {
+  padding: 50px;
+  display: flex;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s linear;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  padding: 0;
+  margin: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
+  transition: all 0.5s linear;
+  text-rendering: optimizeLegibility;
+  text-align: center;
+}
+
+.paragraph {
+  padding: 0;
+  margin: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+  text-align: justify
+}

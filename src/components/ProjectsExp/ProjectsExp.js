@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 
 function ProjectsExp(props) {
   return (
-    <div className={styles.projectsExp}>
+    <div className={styles.projectsExp} id="projectsExp">
       <div className={styles.container}>
         <h2 className={styles.header}>
           {props.text.projectExpBlockHeaderText}

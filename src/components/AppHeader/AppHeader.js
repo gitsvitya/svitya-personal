@@ -12,6 +12,25 @@ function AppHeader(props) {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
+          <nav className={styles.navigationBlock}>
+            <ul className={styles.listItems}>
+              <li className={styles.listItem}>
+                <a className={styles.listItemLink} href="#about">{props.text.aboutBlockHeaderText}</a>
+              </li>
+              <li className={styles.listItem}>
+                <a className={styles.listItemLink} href="#workExp">{props.text.workExpBlockHeaderText}</a>
+              </li>
+              <li className={styles.listItem}>
+                <a className={styles.listItemLink} href="#projectsExp">{props.text.projectExpBlockHeaderText}</a>
+              </li>
+              <li className={styles.listItem}>
+                <a className={styles.listItemLink} href="#otherExp">{props.text.otherExpBlockHeaderText}</a>
+              </li>
+              <li className={styles.listItem}>
+                <a className={styles.listItemLink} href="#footer">{props.text.appFooterContacts}</a>
+              </li>
+            </ul>
+          </nav>
         <button
           className={styles.lngChanger}
           onClick={() => {

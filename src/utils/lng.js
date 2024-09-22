@@ -4,6 +4,9 @@ export const rusLng = {
   titleBlockHeader: 'Виктор Строков',
   titleBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
 
+  aboutBlockHeaderText: 'Обо мне',
+  aboutBlockParagraphText: 'Руководитель проектов развития бизнеса и продуктов с опытом 10 лет в российских и международных компаниях. Начинал карьеру рыночным аналитиком в Thomson Reuters, вырос до менеджера по маркетинговым исследованиям в промышленном секторе. Последние годы курирую разработку новых и поддержание текущих ценовых продуктов Национальной товарной биржи (агропродукция), а также координирую процесс проведения торгов на ежедневной основе. Ключевые компетенции: управление проектами, стратегическая и маркетинговая аналитика, разработка и поддержка ценовых индикаторов продукции.',
+
   workExpBlockHeaderText: 'Опыт работы',
 
   workExpBlockCompanyYearNTB: '2021-2024',
@@ -35,7 +38,7 @@ export const rusLng = {
   projectExpBlockCompanyYearMappNgo: '2019-2020',
   projectExpBlockCompanyNameMappNgo: 'MappNgo',
   projectExpBlockComopanyTitleMappNgo: 'Основатель',
-  projectExpBlockComopanyAboutMappNgo: 'iOS приложение, в котором пользователи могли проходить и добавлять пешие маршруты. Выбрать маршрут можно было по интересующим местам или по его расположению.',
+  projectExpBlockComopanyAboutMappNgo: 'iOS приложение, в котором пользователи могли проходить и добавлять пешие маршруты.',
   projectExpBlockComopanyResultsMappNgo: 'тест',
 
   projectExpBlockCompanyYearVenivi: '2013-2014',
@@ -44,8 +47,10 @@ export const rusLng = {
   projectExpBlockComopanyAboutVenivi: 'Конкурсная площадка, где рекламодатели проводили различные конкурсы и розыгрыши призов для привлечения аудитории.',
   projectExpBlockComopanyResultsVenivi: 'тест',
 
+  otherExpBlockHeaderText: 'Прочие активности',
 
-  appFooterContacts: 'Соцсети:',
+
+  appFooterContacts: 'Соцсети',
 
   cardButtonText: 'Подробнее',
 }
@@ -56,6 +61,8 @@ export const engLng = {
   titleBlockHeader: 'Victor Strokov',
   titleBlockSubHeader: 'Project management, product development, research and analytics',
 
+  aboutBlockHeaderText: 'About me',
+  aboutBlockParagraphText: 'Head of product & business development projects with 10 + years experience in Russian and international companies. Started career as a market analyst at Thomson Reuters and reached the position of industrial sector marketing research manager. Recently was in charge of the new product development and covered maintenance of current price products of the National Commodity Exchange (agricultural products) and coordinating the commodity trading process. Key competencies: project management, strategic and marketing analytics, development and support of product price indicators.',
 
   workExpBlockHeaderText: 'Work experience',
 
@@ -97,8 +104,10 @@ export const engLng = {
   projectExpBlockComopanyAboutVenivi: 'A task platform for giveaways where advertisers could interact with users by various prize drawings and quizzes.',
   projectExpBlockComopanyResultsVenivi: 'test',
 
+  otherExpBlockHeaderText: 'Other activities',
 
-  appFooterContacts: 'Socials:',
+
+  appFooterContacts: 'Socials',
 
   cardButtonText: 'Details',
 }

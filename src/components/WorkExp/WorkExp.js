@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 
 function WorkExp(props) {
   return (
-    <div className={styles.workExp}>
+    <div className={styles.workExp} id="workExp">
       <div className={styles.container}>
         <h2 className={styles.header}>{props.text.workExpBlockHeaderText}</h2>
         <div className={styles.cardBox}>
