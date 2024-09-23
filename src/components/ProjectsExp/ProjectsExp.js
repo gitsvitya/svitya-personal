@@ -5,9 +5,9 @@ function ProjectsExp(props) {
   return (
     <div className={styles.projectsExp} id="projectsExp">
       <div className={styles.container}>
-        <h2 className={styles.header}>
+        <h3 className={styles.header}>
           {props.text.projectExpBlockHeaderText}
-        </h2>
+        </h3>
         <div className={styles.cardBox}>
           <Card
             CompanyName={"MNG"}

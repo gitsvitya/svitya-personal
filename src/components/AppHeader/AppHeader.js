@@ -4,7 +4,7 @@ import lngSwitcherPic from "../../images/icon-lang-toggle.svg";
 import lngSwitcherPicInv from "../../images/icon-lang-toggle-inv.svg";
 
 function AppHeader(props) {
-  let nextLng = "";
+  let nextLng;
 
   if (props.Language === "ru") nextLng = "en";
   else nextLng = "ru";
@@ -26,7 +26,7 @@ function AppHeader(props) {
               <li className={styles.listItem}>
                 <a className={styles.listItemLink} href="#otherExp">{props.text.otherExpBlockHeaderText}</a>
               </li>
-              <li className={styles.listItem}>
+              <li className={`${styles.listItem} ${styles.listItemFooter}`}>
                 <a className={styles.listItemLink} href="#footer">{props.text.appFooterContacts}</a>
               </li>
             </ul>
@@ -37,16 +37,16 @@ function AppHeader(props) {
             props.ChangeLanguage(`${nextLng}`);
           }}
         >
-          <span>Ru</span>
+          <span className={styles.lngChangerText}>En</span>
 
           {
             <HandySvg
               className={styles.lngSwitcher}
-              src={props.Language == "en" ? lngSwitcherPic : lngSwitcherPicInv}
+              src={props.Language == "ru" ? lngSwitcherPicInv : lngSwitcherPic}
             ></HandySvg>
           }
 
-          <span>En</span>
+          <span className={styles.lngChangerText}>Ru</span>
         </button>
       </div>
     </header>

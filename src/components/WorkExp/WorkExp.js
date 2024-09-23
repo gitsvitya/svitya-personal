@@ -5,7 +5,7 @@ function WorkExp(props) {
   return (
     <div className={styles.workExp} id="workExp">
       <div className={styles.container}>
-        <h2 className={styles.header}>{props.text.workExpBlockHeaderText}</h2>
+        <h3 className={styles.header}>{props.text.workExpBlockHeaderText}</h3>
         <div className={styles.cardBox}>
           <Card
             CompanyName={"NTB"}

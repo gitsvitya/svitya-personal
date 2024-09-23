@@ -1,4 +1,6 @@
 export const rusLng = {
+  pageTitle: 'Виктор Строков — Управление проектами, разработка продуктов, исследования и аналитика',
+
   appHeaderLangButton: 'En',
 
   titleBlockHeader: 'Виктор Строков',
@@ -33,7 +35,7 @@ export const rusLng = {
   workExpBlockComopanyAboutTR: 'Международная медиагруппа, включающая в себя информационное агентство Рейтер и it-платформу Eikon для мониторинга и анализа товарных и финансовых рынков.',
   workExpBlockComopanyResultsTR: 'тест',
 
-  projectExpBlockHeaderText: 'Собственные проекты',
+  projectExpBlockHeaderText: 'Проекты',
 
   projectExpBlockCompanyYearMappNgo: '2019-2020',
   projectExpBlockCompanyNameMappNgo: 'MappNgo',
@@ -47,7 +49,7 @@ export const rusLng = {
   projectExpBlockComopanyAboutVenivi: 'Конкурсная площадка, где рекламодатели проводили различные конкурсы и розыгрыши призов для привлечения аудитории.',
   projectExpBlockComopanyResultsVenivi: 'тест',
 
-  otherExpBlockHeaderText: 'Прочие активности',
+  otherExpBlockHeaderText: 'Активности',
 
 
   appFooterContacts: 'Соцсети',
@@ -56,6 +58,8 @@ export const rusLng = {
 }
 
 export const engLng = {
+  pageTitle: 'Victor Strokov — Project management, product development, research and analytics',
+
   appHeaderLangButton: 'Ru',
 
   titleBlockHeader: 'Victor Strokov',
@@ -104,7 +108,7 @@ export const engLng = {
   projectExpBlockComopanyAboutVenivi: 'A task platform for giveaways where advertisers could interact with users by various prize drawings and quizzes.',
   projectExpBlockComopanyResultsVenivi: 'test',
 
-  otherExpBlockHeaderText: 'Other activities',
+  otherExpBlockHeaderText: 'Activities',
 
 
   appFooterContacts: 'Socials',

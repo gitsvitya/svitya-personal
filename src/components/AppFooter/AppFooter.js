@@ -1,4 +1,8 @@
 import styles from "./AppFooter.module.css";
+import { HandySvg } from "handy-svg";
+import telegramLogo from "../../images/telegram_logo.svg";
+import instagramLogo from "../../images/instagram_logo.svg";
+import linkedinLogo from "../../images/linkedin_logo.svg";
 
 function AppFooter(props) {
   return (
@@ -14,6 +18,7 @@ function AppFooter(props) {
                   href="https://www.t.me/vstrokov"
                   target="_blank"
                 >
+                  <HandySvg className={styles.linkPic} src={telegramLogo}></HandySvg>
                   Telegram
                 </a>
               </li>
@@ -23,6 +28,7 @@ function AppFooter(props) {
                   href="https://www.instagram.com/vitya.strokov"
                   target="_blank"
                 >
+                  <HandySvg className={styles.linkPic} src={instagramLogo}></HandySvg>
                   Instagram
                 </a>
               </li>
@@ -32,6 +38,7 @@ function AppFooter(props) {
                   href="https://www.linkedin.com/in/victor-strokov"
                   target="_blank"
                 >
+                  <HandySvg className={styles.linkPic} src={linkedinLogo}></HandySvg>
                   LinkedIn
                 </a>
               </li>

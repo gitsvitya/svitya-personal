@@ -5,9 +5,9 @@ function OtherExp (props) {
   return(
     <div className={styles.otherExp} id="otherExp">
       <div className={styles.container}>
-        <h2 className={styles.header}>
+        <h3 className={styles.header}>
           {props.text.otherExpBlockHeaderText}
-        </h2>
+        </h3>
         <div className={styles.cardBox}>
           <Card
           CompanyName={"MNG"}

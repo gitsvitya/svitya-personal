@@ -1,17 +1,15 @@
 .title {
   width: 100%;
-  transition: all 0.5s linear;
 }
 
 .container {
-  padding: 50px;
   display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 50px;
   max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
-  transition: all 0.5s linear;
-  gap: 30px;
-  align-items: center;
 }
 
 .photo {
@@ -21,14 +19,14 @@
   border-radius: 50%;
   width: 100vw;
   height: 100vh;
-  max-height: 200px;
-  max-width: 200px;
-  transition: all 0.5s linear;
+  max-height: 250px;
+  max-width: 250px;
 }
 
-.text {
+.textBlock {
+  display: flex;
   flex-direction: column;
-  transition: all 0.5s linear;
+  gap: 20px;
 }
 
 .header {
@@ -38,7 +36,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 38px;
-  line-height: 42px;
+  line-height: normal;
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
 }
@@ -50,8 +48,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
-  line-height: 38px;
-  padding-top: 20px;
+  line-height: normal;
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
 }

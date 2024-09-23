@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
 import Title from "../Title/Title";
@@ -12,14 +12,13 @@ import { rusLng, engLng } from "../../utils/lng";
 import OtherExp from "../OtherExp/OtherExp";
 
 function App() {
-  const [Language, ChangeLanguage] = useState("en");
+  const [Language, ChangeLanguage] = useState(window.navigator.language);
   const [ModalOpen, ModalOpened] = useState(false);
   const [ModalContentCompany, SetModalContentCompany] = useState("");
 
-  // let test = window.navigator.language;
-  let currentText = engLng;
-  if (Language === "ru") currentText = engLng;
-  else currentText = rusLng;
+  let currentText;
+  if (Language === "ru") currentText = rusLng;
+  else currentText = engLng;
 
   function openModal() {
     ModalOpened(true);
@@ -28,6 +27,10 @@ function App() {
   function closeModal() {
     ModalOpened(false);
   }
+
+  useEffect(() => {
+    document.title = currentText.pageTitle;
+  });
 
   return (
     <>
