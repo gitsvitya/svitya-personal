@@ -104,7 +104,7 @@ export const engLng = {
 
   projectExpBlockCompanyYearVenivi: '2013-2014',
   projectExpBlockCompanyNameVenivi: 'Venivi.ru',
-  projectExpBlockComopanyVenivi: 'Co-founder',
+  projectExpBlockCompanyVenivi: 'Co-founder',
   projectExpBlockComopanyAboutVenivi: 'A task platform for giveaways where advertisers could interact with users by various prize drawings and quizzes.',
   projectExpBlockComopanyResultsVenivi: 'test',
 

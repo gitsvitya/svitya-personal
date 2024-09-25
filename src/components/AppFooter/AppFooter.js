@@ -9,7 +9,7 @@ function AppFooter(props) {
     <footer className={styles.footer} id="footer">
       <div className={styles.container}>
         <div className={styles.contactsBlock}>
-          {<p className={styles.text}>{props.text.appFooterContacts}:</p>}
+          {<span className={styles.text}>{props.text.appFooterContacts}:</span>}
           <div className={styles.navigation}>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>
@@ -45,7 +45,7 @@ function AppFooter(props) {
             </ul>
           </div>
         </div>
-        <p className={styles.year}>2024</p>
+        <span className={styles.year}>2024</span>
       </div>
     </footer>
   );

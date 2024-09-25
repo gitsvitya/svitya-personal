@@ -5,7 +5,6 @@
 .container {
   display: flex;
   justify-content: space-between;
-  gap: 60px;
   max-width: 1180px;
   padding: 50px;
   margin-left: auto;
@@ -33,7 +32,6 @@
   display: block;
   padding: 0;
   margin: 0;
-  scroll-behavior: smooth;
 }
 
 .listItemLink {
@@ -96,6 +94,10 @@
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(2, auto);
     gap: 20px;
+  }
+
+  .lngChanger {
+    align-self: flex-start;
   }
 }
 

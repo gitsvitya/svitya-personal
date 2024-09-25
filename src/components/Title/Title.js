@@ -7,7 +7,7 @@ function Title(props) {
         <div className={styles.photo}></div>
         <div className={styles.textBlock}>
           <h1 className={styles.header}>{props.text.titleBlockHeader}</h1>
-          <h2 className={styles.subheader}>{props.text.titleBlockSubHeader}</h2>
+          <p className={styles.paragraph}>{props.text.titleBlockSubHeader}</p>
         </div>
       </div>
     </div>

@@ -1,25 +1,21 @@
 .footer {
   width: 100%;
-  transition: all 0.5s linear;
-  margin-top: auto;
 }
 
 .container {
-  padding: 50px;
   display: flex;
+  justify-content: space-between;
   max-width: 1180px;
+  padding: 50px;
   margin-left: auto;
   margin-right: auto;
-  transition: all 0.5s linear;
-  justify-content: space-between;
 
 }
 
 .contactsBlock {
   display: flex;
   flex-direction: row;
-  gap: 15px;
-  transition: all 0.5s linear;
+  gap: 20px;
   align-items: center;
 }
 
@@ -27,11 +23,10 @@
   margin: 0;
   padding: 0;
   font-family: 'VremenaGrotesk', sans-serif;
+  font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
-  transition: all 0.5s linear;
+  line-height: normal;
   text-rendering: optimizeLegibility;
 }
 
@@ -42,42 +37,39 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  transition: all 0.5s linear;
 }
 
 .navigationListItem {
   margin: 0;
   padding: 0;
   font-family: 'VremenaGrotesk', sans-serif;
+  font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
-  transition: all 0.5s linear;
+  line-height: normal;
   text-rendering: optimizeLegibility;
 }
 
 .link {
+  display: flex;
+  gap: 3px;
+  align-items: center;
   text-decoration: none;
   outline: none;
   color: black;
-  transition: all 0.5s linear;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  transition: color 0.5s ease-in-out;
 }
 
 .linkPic {
   margin: 0;
   padding: 0;
-  max-height: 40px;
-  max-width: 40px;
+  max-height: 30px;
+  max-width: 30px;
 }
 
 .link:hover {
   cursor: pointer;
   color: #F74843;
-  transition: all 0.5s linear;
 }
 
 .year {
@@ -86,11 +78,10 @@
   font-family: 'VremenaGrotesk', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 22px;
+  line-height: normal;
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
-  transition: all 0.5s linear;
   align-self: center;
 }
 
@@ -98,31 +89,14 @@
   .container {
     padding: 30px;
     flex-direction: column;
-    align-self: auto;
-    text-align: center;
-    gap: 30px;
-  }
-
-  .text {
-    font-size: 28px;
-    line-height: 34px;
-  }
-
-  .navigationListItem {
-    font-size: 28px;
-    line-height: 34px;
-  }
-
-  .year {
-    font-size: 28px;
-    line-height: 34px;
+    gap: 40px;
   }
 }
 
 @media (max-width: 640px) {
   .contactsBlock {
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
   }
 
   .navigationList {
@@ -132,19 +106,7 @@
 
 @media (max-width: 501px) {
   .container {
-    flex-direction: column;
     padding: 20px;
-    gap: 40px;
-  }
-
-  .text {
-    font-size: 26px;
-    line-height: 32px;
-  }
-
-  .navigationListItem {
-    font-size: 26px;
-    line-height: 32px;
   }
 
   .navigationList {
@@ -152,12 +114,7 @@
     flex-direction: column;
   }
 
-  .year {
-    font-size: 26px;
-    line-height: 32px;
-  }
-
   .contactsBlock {
-    gap: 20px;
+    gap: 10px;
   }
 }
