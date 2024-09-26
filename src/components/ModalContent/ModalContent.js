@@ -40,10 +40,10 @@ function ModalContent(props) {
           </div>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraphCompanyDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyAboutNTB}
           </p>
-          <p className={styles.modalContentRenderParagraphPersonalDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyResultsNTB}
           </p>
         </div>
@@ -57,16 +57,18 @@ function ModalContent(props) {
             <span className={styles.modalContentRendercardYear}>
               {props.text.workExpBlockCompanyYearLRNPT}
             </span>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {props.text.workExpBlockCompanyNameLRNPT}
-            </span>
-            <a
-              className={styles.modalContentRenderlink}
-              href="https://trading.lukoil.ru/"
-              target="_blank"
-            >
-              trading.lukoil.ru
-            </a>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.workExpBlockCompanyNameLRNPT}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://trading.lukoil.ru/"
+                target="_blank"
+              >
+                trading.lukoil.ru
+              </a>
+            </div>
             <span className={styles.modalContentRendercardTitle}>
               {props.text.workExpBlockComopanyTitleLRNPT}
             </span>
@@ -79,10 +81,10 @@ function ModalContent(props) {
           </div>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraphCompanyDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyAboutLRNPT}
           </p>
-          <p className={styles.modalContentRenderParagraphPersonalDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyResultsLRNPT}
           </p>
         </div>
@@ -96,16 +98,18 @@ function ModalContent(props) {
             <span className={styles.modalContentRendercardYear}>
               {props.text.workExpBlockCompanyYearKG}
             </span>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {props.text.workExpBlockCompanyNameKG}
-            </span>
-            <a
-              className={styles.modalContentRenderlink}
-              href="https://kalashnikovgroup.ru/"
-              target="_blank"
-            >
-              kalashnikovgroup.ru
-            </a>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.workExpBlockCompanyNameKG}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://kalashnikovgroup.ru/"
+                target="_blank"
+              >
+                kalashnikovgroup.ru
+              </a>
+            </div>
             <span className={styles.modalContentRendercardTitle}>
               {props.text.workExpBlockComopanyTitleKG}
             </span>
@@ -118,10 +122,10 @@ function ModalContent(props) {
           </div>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraphCompanyDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyAboutKG}
           </p>
-          <p className={styles.modalContentRenderParagraphPersonalDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyResultsKG}
           </p>
         </div>
@@ -135,16 +139,18 @@ function ModalContent(props) {
             <span className={styles.modalContentRendercardYear}>
               {props.text.workExpBlockCompanyYearTR}
             </span>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {props.text.workExpBlockCompanyNameTR}
-            </span>
-            <a
-              className={styles.modalContentRenderlink}
-              href="https://www.thomsonreuters.com/"
-              target="_blank"
-            >
-              thomsonreuters.com
-            </a>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.workExpBlockCompanyNameTR}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://www.thomsonreuters.com/"
+                target="_blank"
+              >
+                thomsonreuters.com
+              </a>
+            </div>
             <span className={styles.modalContentRendercardTitle}>
               {props.text.workExpBlockComopanyTitleTR}
             </span>
@@ -157,10 +163,10 @@ function ModalContent(props) {
           </div>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraphCompanyDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyAboutTR}
           </p>
-          <p className={styles.modalContentRenderParagraphPersonalDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.workExpBlockComopanyResultsTR}
           </p>
         </div>
@@ -174,16 +180,18 @@ function ModalContent(props) {
             <span className={styles.modalContentRendercardYear}>
               {props.text.projectExpBlockCompanyYearMappNgo}
             </span>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {props.text.projectExpBlockCompanyNameMappNgo}
-            </span>
-            <a
-              className={styles.modalContentRenderlink}
-              href="https://www.mappngo.com/"
-              target="_blank"
-            >
-              mappngo.com
-            </a>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.projectExpBlockCompanyNameMappNgo}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://www.mappngo.com/"
+                target="_blank"
+              >
+                mappngo.com
+              </a>
+            </div>
             <span className={styles.modalContentRendercardTitle}>
               {props.text.projectExpBlockComopanyTitleMappNgo}
             </span>
@@ -196,10 +204,10 @@ function ModalContent(props) {
           </div>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraphCompanyDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.projectExpBlockComopanyAboutMappNgo}
           </p>
-          <p className={styles.modalContentRenderParagraphPersonalDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.projectExpBlockComopanyResultsMappNgo}
           </p>
         </div>
@@ -213,16 +221,18 @@ function ModalContent(props) {
             <span className={styles.modalContentRendercardYear}>
               {props.text.projectExpBlockCompanyYearVenivi}
             </span>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {props.text.projectExpBlockCompanyNameVenivi}
-            </span>
-            <a
-              className={styles.modalContentRenderlink}
-              href="https://venivi.ru/"
-              target="_blank"
-            >
-              venivi.ru
-            </a>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.projectExpBlockCompanyNameVenivi}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://venivi.ru/"
+                target="_blank"
+              >
+                venivi.ru
+              </a>
+            </div>
             <span className={styles.modalContentRendercardTitle}>
               {props.text.projectExpBlockComopanyTitleVenivi}
             </span>
@@ -235,10 +245,10 @@ function ModalContent(props) {
           </div>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraphCompanyDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.projectExpBlockComopanyAboutVenivi}
           </p>
-          <p className={styles.modalContentRenderParagraphPersonalDescription}>
+          <p className={styles.modalContentRenderParagraph}>
             {props.text.projectExpBlockComopanyResultsVenivi}
           </p>
         </div>

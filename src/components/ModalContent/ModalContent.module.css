@@ -16,15 +16,15 @@
 .modalContentRenderCompanyTextBox {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding-right: 10px;
+  gap: 10px;
 }
 
 .modalContentRendercardYear {
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -41,7 +41,7 @@
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 26px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -52,7 +52,7 @@
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -66,7 +66,7 @@
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -74,37 +74,26 @@
 }
 
 .modalContentRenderlogoBlock {
-  display: flex;
-  max-width: 150px;
+  align-self: center;
+  height: 120px;
 }
 
 .modalContentRenderlogoPic {
+  height: 100%;
   width: 100%;
 }
 
 .modalContentRenderParagraphBlock {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
 }
 
-.modalContentRenderParagraphCompanyDescription {
+.modalContentRenderParagraph {
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-rendering: optimizeLegibility;
-  text-align: justify
-}
-
-.modalContentRenderParagraphPersonalDescription {
-  padding: 0;
-  margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -117,9 +106,54 @@
   cursor: pointer;
 }
 
-@media (max-width: 501px) {
+@media (max-width: 867px) {
+  .modalContentRenderCompanyTextBox {
+    gap: 20px;
+  }
+}
 
-  .modalContentRenderlogoBlock {
-    max-width: 70px;
+@media (max-width: 650px) {
+  .modalContentRendercardYear {
+    font-size: 16px;
+  }
+  .modalContentRendercardCompanyName {
+    font-size: 30px;
+  }
+  .modalContentRenderlink {
+    font-size: 14px;
+  }
+  .modalContentRendercardTitle {
+    font-size: 20px;
+  }
+  .modalContentRenderParagraph {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 580px) {
+  .modalContentRenderTextLogoWindow {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .modalContentRenderCompanyTextBox {
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 501px) {
+  .modalContentRendercardYear {
+    font-size: 14px;
+  }
+  .modalContentRendercardCompanyName {
+    font-size: 26px;
+  }
+  .modalContentRenderlink {
+    font-size: 12px;
+  }
+  .modalContentRendercardTitle {
+    font-size: 18px;
+  }
+  .modalContentRenderParagraph {
+    font-size: 14px;
   }
 }

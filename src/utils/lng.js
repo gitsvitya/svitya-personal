@@ -14,7 +14,7 @@ export const rusLng = {
   workExpBlockCompanyYearNTB: '2021-2024',
   workExpBlockCompanyNameNTB: 'Национальная товарная биржа',
   workExpBlockComopanyTitleNTB: 'Руководитель направления развития бизнеса',
-  workExpBlockComopanyAboutNTB: 'Дочерняя структура Московской биржи, отвечающая за товарные направления.',
+  workExpBlockComopanyAboutNTB: 'Национальная товарная Биржа (НТБ) - дочерняя структура Московской биржи, отвечающая за товарные направления.',
   workExpBlockComopanyResultsNTB: 'Запустил более 10 ценовых индикаторов и 2 платных b2b информационных продукта с охватом более 30 клиентов. Отвечал за BI систему клиентской и рыночной аналитики. Координировал разработку и внедрения frontend системы автоматизации обработки заявок для биржевых торгов.',
 
   workExpBlockCompanyYearLRNPT: '2020-2021',
