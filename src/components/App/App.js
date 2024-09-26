@@ -15,6 +15,7 @@ function App() {
   const [Language, ChangeLanguage] = useState(window.navigator.language);
   const [ModalOpen, ModalOpened] = useState(false);
   const [ModalContentCompany, SetModalContentCompany] = useState("");
+  const [showContent, SetShowContent] = useState(false);
 
   let currentText;
   if (Language === "ru") currentText = rusLng;
@@ -25,7 +26,10 @@ function App() {
   }
 
   function closeModal() {
-    ModalOpened(false);
+    SetShowContent(false);
+    setTimeout(() => {
+      ModalOpened(false);
+    }, 500);
   }
 
   useEffect(() => {
@@ -75,7 +79,7 @@ function App() {
         <AppFooter text={currentText}></AppFooter>
       </div>
       {ModalOpen && (
-        <Modal closeModal={closeModal}>
+        <Modal closeModal={closeModal} showContent={showContent} SetShowContent={SetShowContent} >
           <ModalContent
             ModalContent={ModalContentCompany}
             text={currentText}

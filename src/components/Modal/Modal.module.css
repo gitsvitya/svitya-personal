@@ -14,6 +14,12 @@
   background-color: white;
   border-radius: 12px;
   padding: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.showModalWindow {
+  opacity: 1;
 }
 
 .closeIcon {

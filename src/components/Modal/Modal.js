@@ -1,12 +1,16 @@
-import React from "react";
+import {useEffect} from "react";
 import ReactDOM from "react-dom";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import styles from "./Modal.module.css";
 
-const Modal = ({ children, closeModal }) => {
+const Modal = ({ children, closeModal, showContent, SetShowContent }) => {
   const container = document.querySelector("#modal");
 
-  React.useEffect(() => {
+  useEffect(() => {
+    SetShowContent(true);
+  }, [])
+
+  useEffect(() => {
     function closeModalByEsc(evt) {
       evt.key === "Escape" && closeModal();
     }
@@ -19,11 +23,11 @@ const Modal = ({ children, closeModal }) => {
 
   return ReactDOM.createPortal(
     <>
-      <div className={styles.modalWindow}>
+      <div className={`${styles.modalWindow} ${showContent && styles.showModalWindow}`}>
         <div className={styles.closeIcon} onClick={closeModal}></div>
         {children}
       </div>
-      <ModalOverlay onClick={closeModal} />
+      <ModalOverlay onClick={closeModal} showContent = {showContent} />
     </>,
     container
   );
