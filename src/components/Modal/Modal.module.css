@@ -1,5 +1,4 @@
 .modalWindow {
-  font-family: 'VremenaGrotesk', sans-serif;
   width: 60vw;
   max-width: 600px;
   max-height: fit-content;
@@ -14,7 +13,6 @@
   z-index: 3;
   background-color: white;
   border-radius: 12px;
-  transition: all 0.5s linear;
   padding: 30px;
 }
 
@@ -33,7 +31,6 @@
   position: absolute;
   right: -40px;
   top: -40px;
-  transition: all 0.5s linear;
 }
 
 .closeIcon:hover {

@@ -1,26 +1,24 @@
 .about {
   width: 100%;
-  transition: all 0.5s linear;
 }
 
 .container {
-  padding: 50px;
   display: flex;
-  max-width: 1180px;
-  margin-left: auto;
-  margin-right: auto;
-  transition: all 0.5s linear;
   flex-direction: column;
   gap: 20px;
+  max-width: 1180px;
+  padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header {
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
+  font-size: 36px;
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
   line-height: normal;
   text-rendering: optimizeLegibility;
   text-align: center;
@@ -30,9 +28,9 @@
   padding: 0;
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
   line-height: normal;
   text-rendering: optimizeLegibility;
   text-align: justify

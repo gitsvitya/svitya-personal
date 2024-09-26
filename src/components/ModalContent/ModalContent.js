@@ -16,16 +16,18 @@ function ModalContent(props) {
             <span className={styles.modalContentRendercardYear}>
               {props.text.workExpBlockCompanyYearNTB}
             </span>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {props.text.workExpBlockCompanyNameNTB}
-            </span>
-            <a
-              className={styles.modalContentRenderlink}
-              href="https://namex.org/"
-              target="_blank"
-            >
-              namex.org
-            </a>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.workExpBlockCompanyNameNTB}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://namex.org/"
+                target="_blank"
+              >
+                namex.org
+              </a>
+            </div>
             <span className={styles.modalContentRendercardTitle}>
               {props.text.workExpBlockComopanyTitleNTB}
             </span>

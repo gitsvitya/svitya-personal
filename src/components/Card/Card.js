@@ -27,9 +27,9 @@ function Card(props) {
           <span className={styles.cardTitle}>
             {props.props.text.workExpBlockComopanyTitleNTB}
           </span>
-          <span className={styles.cardButton}>
+          <button className={styles.cardButton}>
             {props.props.text.cardButtonText}
-          </span>
+          </button>
         </div>
         <div className={styles.logoBlock}>
           <HandySvg className={styles.logoPic} src={moexLogo}></HandySvg>
@@ -55,9 +55,9 @@ function Card(props) {
           <span className={styles.cardTitle}>
             {props.props.text.workExpBlockComopanyTitleLRNPT}
           </span>
-          <span className={styles.cardButton}>
+          <button className={styles.cardButton}>
             {props.props.text.cardButtonText}
-          </span>
+          </button>
         </div>
         <div className={styles.logoBlock}>
           <HandySvg className={styles.logoPic} src={lukoilLogo}></HandySvg>
@@ -83,9 +83,9 @@ function Card(props) {
           <span className={styles.cardTitle}>
             {props.props.text.workExpBlockComopanyTitleKG}
           </span>
-          <span className={styles.cardButton}>
+          <button className={styles.cardButton}>
             {props.props.text.cardButtonText}
-          </span>
+          </button>
         </div>
         <div className={styles.logoBlock}>
           <HandySvg
@@ -114,9 +114,9 @@ function Card(props) {
           <span className={styles.cardTitle}>
             {props.props.text.workExpBlockComopanyTitleTR}
           </span>
-          <span className={styles.cardButton}>
+          <button className={styles.cardButton}>
             {props.props.text.cardButtonText}
-          </span>
+          </button>
         </div>
         <div className={styles.logoBlock}>
           <HandySvg className={styles.logoPic} src={reutersLogo}></HandySvg>
@@ -126,7 +126,7 @@ function Card(props) {
   if (props.CompanyName === "MNG")
     return (
       <div
-        className={styles.card}
+        className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
           props.SetModalContentCompany("MNG");
@@ -142,9 +142,9 @@ function Card(props) {
           <span className={styles.cardTitle}>
             {props.props.text.projectExpBlockComopanyTitleMappNgo}
           </span>
-          <span className={styles.cardButton}>
+          <button className={styles.cardButton}>
             {props.props.text.cardButtonText}
-          </span>
+          </button>
         </div>
         <div className={styles.logoBlock}>
           <HandySvg className={styles.logoPic} src={mappngoLogo}></HandySvg>
@@ -154,7 +154,7 @@ function Card(props) {
   if (props.CompanyName === "VNV")
     return (
       <div
-        className={styles.card}
+      className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
           props.SetModalContentCompany("VNV");
@@ -170,9 +170,9 @@ function Card(props) {
           <span className={styles.cardTitle}>
             {props.props.text.projectExpBlockComopanyTitleVenivi}
           </span>
-          <span className={styles.cardButton}>
+          <button className={styles.cardButton}>
             {props.props.text.cardButtonText}
-          </span>
+          </button>
         </div>
         <div className={styles.logoBlock}>
           <img className={styles.logoPic} src={veniviLogo}></img>

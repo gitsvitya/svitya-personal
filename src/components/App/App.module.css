@@ -1,7 +1,6 @@
 .page {
   display: flex;
   flex-direction: column;
-  font-family: 'VremenaGrotesk', sans-serif;
   padding: 0;
   margin: 0;
 }
