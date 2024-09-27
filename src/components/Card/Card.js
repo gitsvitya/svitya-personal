@@ -1,10 +1,9 @@
 import styles from "./Card.module.css";
-import { HandySvg } from "handy-svg";
-import moexLogo from "../../images/moex_logo.svg";
-import lukoilLogo from "../../images/lukoil_logo.svg";
-import kalashnikovlLogo from "../../images/kalashnikov_logo.svg";
-import reutersLogo from "../../images/reuters_logo.svg";
-import mappngoLogo from "../../images/mappngoLogo_black.svg";
+import moexLogo from "../../images/moex_logo.png";
+import lukoilLogo from "../../images/lukoil_logo.png";
+import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
+import reutersLogo from "../../images/reuters_logo.png";
+import mappngoLogo from "../../images/mappngoLogo_black.png";
 import veniviLogo from "../../images/veniviLogo.png";
 
 function Card(props) {
@@ -31,9 +30,7 @@ function Card(props) {
             {props.props.text.cardButtonText}
           </button>
         </div>
-        <div className={styles.logoBlock}>
-          <HandySvg className={styles.logoPic} src={moexLogo}></HandySvg>
-        </div>
+        <img className={styles.logoPic} src={moexLogo}></img>
       </div>
     );
   if (props.CompanyName === "LRNPT")
@@ -59,9 +56,7 @@ function Card(props) {
             {props.props.text.cardButtonText}
           </button>
         </div>
-        <div className={styles.logoBlock}>
-          <HandySvg className={styles.logoPic} src={lukoilLogo}></HandySvg>
-        </div>
+        <img className={styles.logoPic} src={lukoilLogo}></img>
       </div>
     );
   if (props.CompanyName === "KG")
@@ -87,12 +82,7 @@ function Card(props) {
             {props.props.text.cardButtonText}
           </button>
         </div>
-        <div className={styles.logoBlock}>
-          <HandySvg
-            className={styles.logoPic}
-            src={kalashnikovlLogo}
-          ></HandySvg>
-        </div>
+        <img className={styles.logoPic} src={kalashnikovlLogo}></img>
       </div>
     );
   if (props.CompanyName === "TR")
@@ -118,9 +108,7 @@ function Card(props) {
             {props.props.text.cardButtonText}
           </button>
         </div>
-        <div className={styles.logoBlock}>
-          <HandySvg className={styles.logoPic} src={reutersLogo}></HandySvg>
-        </div>
+        <img className={styles.logoPic} src={reutersLogo}></img>
       </div>
     );
   if (props.CompanyName === "MNG")
@@ -146,15 +134,13 @@ function Card(props) {
             {props.props.text.cardButtonText}
           </button>
         </div>
-        <div className={styles.logoBlock}>
-          <HandySvg className={styles.logoPic} src={mappngoLogo}></HandySvg>
-        </div>
+        <img className={styles.logoPic} src={mappngoLogo}></img>
       </div>
     );
   if (props.CompanyName === "VNV")
     return (
       <div
-      className={`${styles.card} ${styles.cardIncreasedLogo}`}
+        className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
           props.SetModalContentCompany("VNV");
@@ -174,9 +160,7 @@ function Card(props) {
             {props.props.text.cardButtonText}
           </button>
         </div>
-        <div className={styles.logoBlock}>
-          <img className={styles.logoPic} src={veniviLogo}></img>
-        </div>
+        <img className={styles.logoPic} src={veniviLogo}></img>
       </div>
     );
 }

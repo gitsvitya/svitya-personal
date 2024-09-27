@@ -1,10 +1,9 @@
 import styles from "./ModalContent.module.css";
-import { HandySvg } from "handy-svg";
-import moexLogo from "../../images/moex_logo.svg";
-import lukoilLogo from "../../images/lukoil_logo.svg";
-import kalashnikovlLogo from "../../images/kalashnikov_logo.svg";
-import reutersLogo from "../../images/reuters_logo.svg";
-import mappngoLogo from "../../images/mappngoLogo_black.svg";
+import moexLogo from "../../images/moex_logo.png";
+import lukoilLogo from "../../images/lukoil_logo.png";
+import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
+import reutersLogo from "../../images/reuters_logo.png";
+import mappngoLogo from "../../images/mappngoLogo_black.png";
 import veniviLogo from "../../images/veniviLogo.png";
 
 function ModalContent(props) {
@@ -32,12 +31,10 @@ function ModalContent(props) {
               {props.text.workExpBlockComopanyTitleNTB}
             </span>
           </div>
-          <div className={styles.modalContentRenderlogoBlock}>
-            <HandySvg
-              className={styles.modalContentRenderlogoPic}
-              src={moexLogo}
-            ></HandySvg>
-          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={moexLogo}
+          ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -73,12 +70,10 @@ function ModalContent(props) {
               {props.text.workExpBlockComopanyTitleLRNPT}
             </span>
           </div>
-          <div className={styles.modalContentRenderlogoBlock}>
-            <HandySvg
-              className={styles.modalContentRenderlogoPic}
-              src={lukoilLogo}
-            ></HandySvg>
-          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={lukoilLogo}
+          ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -114,12 +109,10 @@ function ModalContent(props) {
               {props.text.workExpBlockComopanyTitleKG}
             </span>
           </div>
-          <div className={styles.modalContentRenderlogoBlock}>
-            <HandySvg
-              className={styles.modalContentRenderlogoPic}
-              src={kalashnikovlLogo}
-            ></HandySvg>
-          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={kalashnikovlLogo}
+          ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -155,12 +148,10 @@ function ModalContent(props) {
               {props.text.workExpBlockComopanyTitleTR}
             </span>
           </div>
-          <div className={styles.modalContentRenderlogoBlock}>
-            <HandySvg
-              className={styles.modalContentRenderlogoPic}
-              src={reutersLogo}
-            ></HandySvg>
-          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={reutersLogo}
+          ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -196,12 +187,10 @@ function ModalContent(props) {
               {props.text.projectExpBlockComopanyTitleMappNgo}
             </span>
           </div>
-          <div className={styles.modalContentRenderlogoBlock}>
-            <HandySvg
-              className={styles.modalContentRenderlogoPic}
-              src={mappngoLogo}
-            ></HandySvg>
-          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={mappngoLogo}
+          ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -237,12 +226,10 @@ function ModalContent(props) {
               {props.text.projectExpBlockComopanyTitleVenivi}
             </span>
           </div>
-          <div className={styles.modalContentRenderlogoBlock}>
-            <img
-              className={styles.modalContentRenderlogoPic}
-              src={veniviLogo}
-            ></img>
-          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={veniviLogo}
+          ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>

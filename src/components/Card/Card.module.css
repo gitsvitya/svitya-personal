@@ -75,15 +75,10 @@
     height 0.5s ease-in-out;
 }
 
-.logoBlock {
-  display: flex;
-  align-self: center;
-  justify-content: end;
-  width: 100%;
-}
-
 .logoPic {
   width: 100%;
+  align-self: center;
+  justify-self: end;
   overflow: visible;
   transition:
     width 0.5s ease-in-out,

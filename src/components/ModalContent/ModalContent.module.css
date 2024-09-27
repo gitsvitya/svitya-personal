@@ -73,14 +73,9 @@
   text-rendering: optimizeLegibility;
 }
 
-.modalContentRenderlogoBlock {
-  align-self: center;
-  height: 120px;
-}
-
 .modalContentRenderlogoPic {
-  height: 100%;
-  width: 100%;
+  align-self: center;
+  width: 25%;
 }
 
 .modalContentRenderParagraphBlock {
