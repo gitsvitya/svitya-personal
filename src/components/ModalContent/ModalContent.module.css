@@ -149,18 +149,18 @@
 
 @media (max-width: 501px) {
   .modalContentRendercardYear {
-    font-size: 14px;
-  }
-  .modalContentRendercardCompanyName {
-    font-size: 22px;
-  }
-  .modalContentRenderlink {
-    font-size: 12px;
-  }
-  .modalContentRendercardTitle {
     font-size: 16px;
   }
-  .modalContentRenderParagraph {
+  .modalContentRendercardCompanyName {
+    font-size: 26px;
+  }
+  .modalContentRenderlink {
     font-size: 14px;
+  }
+  .modalContentRendercardTitle {
+    font-size: 18px;
+  }
+  .modalContentRenderParagraph {
+    font-size: 16px;
   }
 }

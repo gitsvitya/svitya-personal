@@ -68,6 +68,7 @@
   font-weight: 400;
   line-height: normal;
   text-rendering: optimizeLegibility;
+  color: black;
   transition: color 0.5s ease-in-out;
 }
 
@@ -104,7 +105,7 @@
 @media (max-width: 769px) {
   .container {
     padding: 30px;
-    gap: 20px;
+    gap: 40px;
   }
 }
 

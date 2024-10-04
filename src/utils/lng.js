@@ -82,7 +82,7 @@ export const engLng = {
   titleBlockHeader: 'Victor Strokov',
   titleBlockSubHeader: 'Project management, product development, research and analytics',
 
-  aboutBlockHeaderText: 'About',
+  aboutBlockHeaderText: 'About me',
   aboutBlockParagraphText: 'I began my professional journey over a decade ago, working for both Russian and international companies. Also launched and developed my own projects. In my leisure time, I cultivate hot chili peppers and create a variety of dishes and beverages from them. I also develop websites, including this one, and incorporate automation into my daily work. Furthermore, there are numerous other my activities that you can find out about below. If you wish to connect with me, the most convenient method is through Telegram by clicking on the link in the «Socials» section.',
 
   workExpBlockHeaderText: 'Work experience',
