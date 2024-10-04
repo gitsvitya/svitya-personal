@@ -10,22 +10,20 @@ function OtherExp (props) {
         </h3>
         <div className={styles.cardBox}>
           <Card
-          CompanyName={"MNG"}
+          CompanyName={"SKO"}
           props={props}
           openModal={props.openModal}
           SetModalContentCompany={props.SetModalContentCompany}></Card>
           <Card
-            CompanyName={"MNG"}
-            props={props}
-            openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
-          ></Card>
-          <Card
-          CompanyName={"MNG"}
+          CompanyName={"SDC"}
           props={props}
           openModal={props.openModal}
-          SetModalContentCompany={props.SetModalContentCompany}
-          ></Card>
+          SetModalContentCompany={props.SetModalContentCompany}></Card>
+          <Card
+          CompanyName={"STS"}
+          props={props}
+          openModal={props.openModal}
+          SetModalContentCompany={props.SetModalContentCompany}></Card>
         </div>
       </div>
     </div>

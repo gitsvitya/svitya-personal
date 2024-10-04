@@ -5,6 +5,9 @@ import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
 import reutersLogo from "../../images/reuters_logo.png";
 import mappngoLogo from "../../images/mappngoLogo_black.png";
 import veniviLogo from "../../images/veniviLogo.png";
+import strokeOffLabel from "../../images/stroke_off_label.png";
+import svityaComLabel from "../../images/svitya_com_label.png";
+import soldatovTshirtLabel from "../../images/soldatov_tshirt_label.png";
 
 function Card(props) {
   if (props.CompanyName === "NTB")
@@ -163,6 +166,86 @@ function Card(props) {
         <img className={styles.logoPic} src={veniviLogo}></img>
       </div>
     );
+
+    if (props.CompanyName === "SKO")
+      return (
+        <div
+          className={`${styles.card} ${styles.cardIncreasedLogo}`}
+          onClick={() => {
+            props.openModal();
+            props.SetModalContentCompany("SKO");
+          }}
+        >
+          <div className={styles.cardText}>
+            <span className={styles.cardYear}>
+              {props.props.text.projectExpBlockCompanyYearStrokeOff}
+            </span>
+            <span className={styles.cardCompanyName}>
+              {props.props.text.projectExpBlockCompanyNameStrokeOff}
+            </span>
+            <span className={styles.cardTitle}>
+              {props.props.text.projectExpBlockComopanyTitleStrokeOff}
+            </span>
+            <button className={styles.cardButton}>
+              {props.props.text.cardButtonText}
+            </button>
+          </div>
+          <img className={styles.logoPic} src={strokeOffLabel}></img>
+        </div>
+      );
+
+      if (props.CompanyName === "SDC")
+        return (
+          <div
+            className={`${styles.card} ${styles.cardIncreasedLogo}`}
+            onClick={() => {
+              props.openModal();
+              props.SetModalContentCompany("SDC");
+            }}
+          >
+            <div className={styles.cardText}>
+              <span className={styles.cardYear}>
+                {props.props.text.projectExpBlockCompanyYearSvityaWeb}
+              </span>
+              <span className={styles.cardCompanyName}>
+                {props.props.text.projectExpBlockCompanyNameSvityaWeb}
+              </span>
+              <span className={styles.cardTitle}>
+                {props.props.text.projectExpBlockComopanyTitleSvityaWeb}
+              </span>
+              <button className={styles.cardButton}>
+                {props.props.text.cardButtonText}
+              </button>
+            </div>
+            <img className={styles.logoPic} src={svityaComLabel}></img>
+          </div>
+        );
+        if (props.CompanyName === "STS")
+          return (
+            <div
+              className={`${styles.card} ${styles.cardIncreasedLogo}`}
+              onClick={() => {
+                props.openModal();
+                props.SetModalContentCompany("STS");
+              }}
+            >
+              <div className={styles.cardText}>
+                <span className={styles.cardYear}>
+                  {props.props.text.projectExpBlockCompanyYearSoldatovTS}
+                </span>
+                <span className={styles.cardCompanyName}>
+                  {props.props.text.projectExpBlockCompanyNameSoldatovTS}
+                </span>
+                <span className={styles.cardTitle}>
+                  {props.props.text.projectExpBlockComopanyTitleSoldatovTS}
+                </span>
+                <button className={styles.cardButton}>
+                  {props.props.text.cardButtonText}
+                </button>
+              </div>
+              <img className={styles.logoPic} src={soldatovTshirtLabel}></img>
+            </div>
+          );
 }
 
 export default Card;

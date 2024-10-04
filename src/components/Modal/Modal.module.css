@@ -58,8 +58,14 @@
   }
 }
 
-@media (max-width: 201px) {
-  .closeIcon {
-    display: none;
+@media (max-width: 350px) {
+  .modalWindow {
+    max-height: 70vh;
+  }
+}
+
+@media (max-height: 1000px) {
+  .modalWindow {
+    max-height: 70vh;
   }
 }

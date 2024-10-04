@@ -5,6 +5,9 @@ import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
 import reutersLogo from "../../images/reuters_logo.png";
 import mappngoLogo from "../../images/mappngoLogo_black.png";
 import veniviLogo from "../../images/veniviLogo.png";
+import strokeOffLabel from "../../images/stroke_off_label.png";
+import svityaComLabel from "../../images/svitya_com_label.png";
+import soldatovTshirtLabel from "../../images/soldatov_tshirt_label.png";
 
 function ModalContent(props) {
   if (props.ModalContent === "WorkNTB")
@@ -241,6 +244,123 @@ function ModalContent(props) {
         </div>
       </div>
     );
+    if (props.ModalContent === "SKO")
+      return (
+        <div className={styles.modalContentRenderGeneralWindow}>
+          <div className={styles.modalContentRenderTextLogoWindow}>
+            <div className={styles.modalContentRenderCompanyTextBox}>
+              <span className={styles.modalContentRendercardYear}>
+                {props.text.projectExpBlockCompanyYearStrokeOff}
+              </span>
+              <div className={styles.modalContentRenderCompanyLinkBox}>
+                <span className={styles.modalContentRendercardCompanyName}>
+                  {props.text.projectExpBlockCompanyNameStrokeOff}
+                </span>
+                <a
+                  className={styles.modalContentRenderlink}
+                  href="https://www.instagram.com/vitya.strokov/"
+                  target="_blank"
+                >
+                  instagram.com/vitya.strokov
+                </a>
+              </div>
+              <span className={styles.modalContentRendercardTitle}>
+                {props.text.projectExpBlockComopanyTitleStrokeOff}
+              </span>
+            </div>
+            <img
+              className={styles.modalContentRenderlogoPic}
+              src={strokeOffLabel}
+            ></img>
+          </div>
+          <div className={styles.modalContentRenderParagraphBlock}>
+            <p className={styles.modalContentRenderParagraph}>
+              {props.text.projectExpBlockComopanyAboutStrokeOff}
+            </p>
+            <p className={styles.modalContentRenderParagraph}>
+              {props.text.projectExpBlockComopanyResultsStrokeOff}
+            </p>
+          </div>
+        </div>
+      );
+      if (props.ModalContent === "SDC")
+        return (
+          <div className={styles.modalContentRenderGeneralWindow}>
+            <div className={styles.modalContentRenderTextLogoWindow}>
+              <div className={styles.modalContentRenderCompanyTextBox}>
+                <span className={styles.modalContentRendercardYear}>
+                  {props.text.projectExpBlockCompanyYearSvityaWeb}
+                </span>
+                <div className={styles.modalContentRenderCompanyLinkBox}>
+                  <span className={styles.modalContentRendercardCompanyName}>
+                    {props.text.projectExpBlockCompanyNameSvityaWeb}
+                  </span>
+                  <a
+                    className={styles.modalContentRenderlink}
+                    href="https://github.com/gitsvitya"
+                    target="_blank"
+                  >
+                    github.com/gitsvitya
+                  </a>
+                </div>
+                <span className={styles.modalContentRendercardTitle}>
+                  {props.text.projectExpBlockComopanyTitleSvityaWeb}
+                </span>
+              </div>
+              <img
+                className={styles.modalContentRenderlogoPic}
+                src={svityaComLabel}
+              ></img>
+            </div>
+            <div className={styles.modalContentRenderParagraphBlock}>
+              <p className={styles.modalContentRenderParagraph}>
+                {props.text.projectExpBlockComopanyAboutSvityaWeb}
+              </p>
+              <p className={styles.modalContentRenderParagraph}>
+                {props.text.projectExpBlockComopanyResultsSvityaWeb}
+              </p>
+            </div>
+          </div>
+        );
+        if (props.ModalContent === "STS")
+          return (
+            <div className={styles.modalContentRenderGeneralWindow}>
+              <div className={styles.modalContentRenderTextLogoWindow}>
+                <div className={styles.modalContentRenderCompanyTextBox}>
+                  <span className={styles.modalContentRendercardYear}>
+                    {props.text.projectExpBlockCompanyYearSoldatovTS}
+                  </span>
+                  <div className={styles.modalContentRenderCompanyLinkBox}>
+                    <span className={styles.modalContentRendercardCompanyName}>
+                      {props.text.projectExpBlockCompanyNameSoldatovTS}
+                    </span>
+                    <a
+                      className={styles.modalContentRenderlink}
+                      href="https://www.instagram.com/vitya.strokov/"
+                      target="_blank"
+                    >
+                      instagram.com/vitya.strokov
+                    </a>
+                  </div>
+                  <span className={styles.modalContentRendercardTitle}>
+                    {props.text.projectExpBlockComopanyTitleSoldatovTS}
+                  </span>
+                </div>
+                <img
+                  className={styles.modalContentRenderlogoPic}
+                  src={soldatovTshirtLabel}
+                ></img>
+              </div>
+              <div className={styles.modalContentRenderParagraphBlock}>
+                <p className={styles.modalContentRenderParagraph}>
+                  {props.text.projectExpBlockComopanyAboutSoldatovTS}
+                </p>
+                <p className={styles.modalContentRenderParagraph}>
+                  {props.text.projectExpBlockComopanyResultsSoldatovTS}
+                </p>
+              </div>
+            </div>
+          );
 }
 
 export default ModalContent;
