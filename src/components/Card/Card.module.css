@@ -129,13 +129,11 @@
     font-size: 18px;
   }
 
-  .cardButton {
+  /* .cardButton {
     opacity: 1;
     height: 30px;
     width: 100px;
-    cursor: pointer;
-    font-size: 12px;
-  }
+  } */
 }
 
 @media (max-width: 440px) {
