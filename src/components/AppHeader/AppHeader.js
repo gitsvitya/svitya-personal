@@ -6,7 +6,7 @@ import lngSwitcherPicInv from "../../images/icon-lang-toggle-inv.svg";
 function AppHeader(props) {
   let nextLng;
 
-  if (props.Language === "ru") nextLng = "en";
+  if (props.language === "ru") nextLng = "en";
   else nextLng = "ru";
 
   return (
@@ -34,7 +34,7 @@ function AppHeader(props) {
         <button
           className={styles.lngChanger}
           onClick={() => {
-            props.ChangeLanguage(`${nextLng}`);
+            props.SetLanguage(`${nextLng}`);
           }}
         >
           <span className={styles.lngChangerText}>En</span>
@@ -42,7 +42,7 @@ function AppHeader(props) {
           {
             <HandySvg
               className={styles.lngSwitcher}
-              src={props.Language == "ru" ? lngSwitcherPicInv : lngSwitcherPic}
+              src={props.language == "ru" ? lngSwitcherPicInv : lngSwitcherPic}
             ></HandySvg>
           }
 

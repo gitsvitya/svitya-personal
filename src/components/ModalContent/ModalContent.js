@@ -10,7 +10,7 @@ import svityaComLabel from "../../images/svitya_com_label.png";
 import soldatovTshirtLabel from "../../images/soldatov_tshirt_label.png";
 
 function ModalContent(props) {
-  if (props.ModalContent === "WorkNTB")
+  if (props.modalContent === "WorkNTB")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
@@ -49,7 +49,7 @@ function ModalContent(props) {
         </div>
       </div>
     );
-  if (props.ModalContent === "WorkLRNPT")
+  if (props.modalContent === "WorkLRNPT")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
@@ -88,7 +88,7 @@ function ModalContent(props) {
         </div>
       </div>
     );
-  if (props.ModalContent === "WorkKG")
+  if (props.modalContent === "WorkKG")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
@@ -127,7 +127,7 @@ function ModalContent(props) {
         </div>
       </div>
     );
-  if (props.ModalContent === "WorkTR")
+  if (props.modalContent === "WorkTR")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
@@ -166,7 +166,7 @@ function ModalContent(props) {
         </div>
       </div>
     );
-  if (props.ModalContent === "MNG")
+  if (props.modalContent === "MNG")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
@@ -205,7 +205,7 @@ function ModalContent(props) {
         </div>
       </div>
     );
-  if (props.ModalContent === "VNV")
+  if (props.modalContent === "VNV")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
@@ -244,7 +244,7 @@ function ModalContent(props) {
         </div>
       </div>
     );
-    if (props.ModalContent === "SKO")
+    if (props.modalContent === "SKO")
       return (
         <div className={styles.modalContentRenderGeneralWindow}>
           <div className={styles.modalContentRenderTextLogoWindow}>
@@ -283,7 +283,7 @@ function ModalContent(props) {
           </div>
         </div>
       );
-      if (props.ModalContent === "SDC")
+      if (props.modalContent === "SDC")
         return (
           <div className={styles.modalContentRenderGeneralWindow}>
             <div className={styles.modalContentRenderTextLogoWindow}>
@@ -322,7 +322,7 @@ function ModalContent(props) {
             </div>
           </div>
         );
-        if (props.ModalContent === "STS")
+        if (props.modalContent === "STS")
           return (
             <div className={styles.modalContentRenderGeneralWindow}>
               <div className={styles.modalContentRenderTextLogoWindow}>

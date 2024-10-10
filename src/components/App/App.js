@@ -12,76 +12,89 @@ import { rusLng, engLng } from "../../utils/lng";
 import OtherExp from "../OtherExp/OtherExp";
 
 function App() {
-  const [Language, ChangeLanguage] = useState(window.navigator.language);
-  const [ModalOpen, ModalOpened] = useState(false);
-  const [ModalContentCompany, SetModalContentCompany] = useState("");
+  // Состояния текущего языка страницы, которое изначально определяется по языку браузера
+  const [language, SetLanguage] = useState(window.navigator.language);
+  // Состояние открытого модального окна
+  const [modalOpened, SetModalOpened] = useState(false);
+  // Состояние для рендера контента модельного окна, принимает на вход абберивиатуру компании
+  const [modalContentCompany, SetModalContentCompany] = useState("");
+  // Состояние для анимации модального окна
   const [showContent, SetShowContent] = useState(false);
 
+  // Определяем на каком языке показывать страницу - русский или английский
   let currentText;
-  if (Language === "ru") currentText = rusLng;
+  if (language === "ru") currentText = rusLng;
   else currentText = engLng;
 
+  // Функция, меняющая состояние открытия модального окна на true
   function openModal() {
-    ModalOpened(true);
+    SetModalOpened(true);
   }
 
+  //Функция, меняющая состояние открытия модального окна на false с задержкой в 0.5 секунды, чтобы проигралась анимация закрытия
   function closeModal() {
     SetShowContent(false);
     setTimeout(() => {
-      ModalOpened(false);
+      SetModalOpened(false);
     }, 500);
   }
 
+  //Эффект, меняющий pageTitle в зависимости от текста страницы
   useEffect(() => {
     document.title = currentText.pageTitle;
   });
+
+  // Функция по скрытию скролла во время открытия модального окна
+  // useEffect(() => {
+  //   document.body.style.overflow = modalOpened ? "hidden" : "unset";
+  // }, [modalOpened]);
 
   return (
     <>
       <div className={styles.page}>
         <AppHeader
           text={currentText}
-          ChangeLanguage={ChangeLanguage}
-          Language={Language}
+          SetLanguage={SetLanguage}
+          language={language}
         ></AppHeader>
         <main>
-          <Title
-          text={currentText}
-          ></Title>
-          <About
-          text={currentText}
-          ></About>
+          <Title text={currentText}></Title>
+          <About text={currentText}></About>
           <WorkExp
             text={currentText}
-            ModalOpen={ModalOpen}
-            ModalContentCompany={ModalContentCompany}
+            modalOpened={modalOpened}
+            modalContentCompany={modalContentCompany}
             SetModalContentCompany={SetModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
           ></WorkExp>
           <ProjectsExp
             text={currentText}
-            ModalOpen={ModalOpen}
-            ModalContentCompany={ModalContentCompany}
+            modalOpened={modalOpened}
+            modalContentCompany={modalContentCompany}
             SetModalContentCompany={SetModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
           ></ProjectsExp>
           <OtherExp
-          text={currentText}
-          ModalOpen={ModalOpen}
-          ModalContentCompany={ModalContentCompany}
-          SetModalContentCompany={SetModalContentCompany}
-          openModal={openModal}
-          closeModal={closeModal}
+            text={currentText}
+            modalOpened={modalOpened}
+            modalContentCompany={modalContentCompany}
+            SetModalContentCompany={SetModalContentCompany}
+            openModal={openModal}
+            closeModal={closeModal}
           ></OtherExp>
         </main>
         <AppFooter text={currentText}></AppFooter>
       </div>
-      {ModalOpen && (
-        <Modal closeModal={closeModal} showContent={showContent} SetShowContent={SetShowContent} >
+      {modalOpened && (
+        <Modal
+          closeModal={closeModal}
+          showContent={showContent}
+          SetShowContent={SetShowContent}
+        >
           <ModalContent
-            ModalContent={ModalContentCompany}
+            modalContent={modalContentCompany}
             text={currentText}
           ></ModalContent>
         </Modal>

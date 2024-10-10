@@ -33,7 +33,7 @@
   font-weight: 400;
   line-height: normal;
   text-rendering: optimizeLegibility;
-  text-align: justify
+  text-align: justify;
 }
 
 @media (max-width: 1000px) {
