@@ -50,17 +50,15 @@
 }
 
 @media (max-width: 499px) {
+  .modalWindow {
+    max-height: 70vh;
+  }
+
   .closeIcon {
     right: -20px;
     top: -20px;
     max-height: 16px;
     max-width: 16px;
-  }
-}
-
-@media (max-width: 350px) {
-  .modalWindow {
-    max-height: 70vh;
   }
 }
 

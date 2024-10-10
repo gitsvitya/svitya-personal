@@ -52,7 +52,7 @@ export const rusLng = {
 
   projectExpBlockCompanyYearStrokeOff: '2021-н.в',
   projectExpBlockCompanyNameStrokeOff: 'Продукция «Stroke Off»',
-  projectExpBlockComopanyTitleStrokeOff: 'Преимущественно из домашних перцев чили сорта «Каролинский жнец»',
+  projectExpBlockComopanyTitleStrokeOff: 'Из перцев чили «Каролинский жнец»',
   projectExpBlockComopanyAboutStrokeOff: 'Stroke Off — бренд, под которым я объединяю всю свою домашнюю продукцию, которую делаю для себя и друзей (на некоммерческой основе).',
   projectExpBlockComopanyResultsStrokeOff: 'В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая «Каролинский жнец» — один из самых жгучих в мире. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом «Stroke off». Особенно всем полюбились перцовка и тайский сладкий соус чили. Фотографии моих творений можно найти в профиле Instagram по ссылке выше.',
 
@@ -129,7 +129,7 @@ export const engLng = {
 
   projectExpBlockCompanyYearStrokeOff: '2021-current',
   projectExpBlockCompanyNameStrokeOff: '«Stroke Off» products',
-  projectExpBlockComopanyTitleStrokeOff: 'Mainly made from homegrown chili peppers of the Carolina Reaper variety',
+  projectExpBlockComopanyTitleStrokeOff: 'Made from «Carolina Reaper» chili peppers',
   projectExpBlockComopanyAboutStrokeOff: 'Stroke Off is a brand that combines all of my home products, which I create for myself and my friends (on a non-commercial basis).',
   projectExpBlockComopanyResultsStrokeOff: 'In 2020, I planted several different varieties of hot chili peppers at home, including the Carolina Reaper, one of the most burning in the world. The peppers have successfully grown and started bearing fruit. As the harvest matures, I prepare various spicy products from them under the brand «Stroke off». Everyone was especially fond of pepper and Thai sweet chili sauce. Photos of my creations can be found in my Instagram profile at the link above.',
 
