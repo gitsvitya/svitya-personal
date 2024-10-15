@@ -1,7 +1,7 @@
-import styles from "./ProjectsExp.module.css";
+import styles from "./AppProjectsExp.module.css";
 import Card from "../Card/Card";
 
-function ProjectsExp(props) {
+function AppProjectsExp(props) {
   return (
     <div className={styles.projectsExp} id="projectsExp">
       <div className={styles.container}>
@@ -27,4 +27,4 @@ function ProjectsExp(props) {
   );
 }
 
-export default ProjectsExp;
+export default AppProjectsExp;

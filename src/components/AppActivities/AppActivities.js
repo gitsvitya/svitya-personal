@@ -1,7 +1,7 @@
-import styles from './OtherExp.module.css';
+import styles from './AppActivities.module.css';
 import Card from '../Card/Card';
 
-function OtherExp (props) {
+function AppActivities (props) {
   return(
     <div className={styles.otherExp} id="otherExp">
       <div className={styles.container}>
@@ -30,4 +30,4 @@ function OtherExp (props) {
   );
 }
 
-export default OtherExp;
+export default AppActivities;

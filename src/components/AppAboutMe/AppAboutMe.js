@@ -1,6 +1,6 @@
-import styles from "./About.module.css";
+import styles from "./AppAboutMe.module.css";
 
-function About(props) {
+function AppAboutMe(props) {
   return (
     <div className={styles.about} id="about">
       <div className={styles.container}>
@@ -11,4 +11,4 @@ function About(props) {
   );
 }
 
-export default About;
+export default AppAboutMe;

@@ -1,7 +1,7 @@
-import styles from "./WorkExp.module.css";
+import styles from "./AppWorkExp.module.css";
 import Card from "../Card/Card";
 
-function WorkExp(props) {
+function AppWorkExp(props) {
   return (
     <div className={styles.workExp} id="workExp">
       <div className={styles.container}>
@@ -37,4 +37,4 @@ function WorkExp(props) {
   );
 }
 
-export default WorkExp;
+export default AppWorkExp;

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
-import Title from "../Title/Title";
-import ProjectsExp from "../ProjectsExp/ProjectsExp";
+import AppTitlePicture from "../AppTitlePicture/AppTitlePicture";
+import AppProjectsExp from "../AppProjectsExp/AppProjectsExp";
 import AppFooter from "../AppFooter/AppFooter";
-import WorkExp from "../WorkExp/WorkExp";
+import AppWorkExp from "../AppWorkExp/AppWorkExp";
 import Modal from "../Modal/Modal";
 import ModalContent from "../ModalContent/ModalContent";
-import About from "../About/About";
+import AppAboutMe from "../AppAboutMe/AppAboutMe";
 import { rusLng, engLng } from "../../utils/lng";
-import OtherExp from "../OtherExp/OtherExp";
+import AppActivities from "../AppActivities/AppActivities";
 
 function App() {
   // Состояния текущего языка страницы, которое изначально определяется по языку браузера
@@ -58,32 +58,32 @@ function App() {
           language={language}
         ></AppHeader>
         <main>
-          <Title text={currentText}></Title>
-          <About text={currentText}></About>
-          <WorkExp
+          <AppTitlePicture text={currentText}></AppTitlePicture>
+          <AppAboutMe text={currentText}></AppAboutMe>
+          <AppWorkExp
             text={currentText}
             modalOpened={modalOpened}
             modalContentCompany={modalContentCompany}
             SetModalContentCompany={SetModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
-          ></WorkExp>
-          <ProjectsExp
+          ></AppWorkExp>
+          <AppProjectsExp
             text={currentText}
             modalOpened={modalOpened}
             modalContentCompany={modalContentCompany}
             SetModalContentCompany={SetModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
-          ></ProjectsExp>
-          <OtherExp
+          ></AppProjectsExp>
+          <AppActivities
             text={currentText}
             modalOpened={modalOpened}
             modalContentCompany={modalContentCompany}
             SetModalContentCompany={SetModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
-          ></OtherExp>
+          ></AppActivities>
         </main>
         <AppFooter text={currentText}></AppFooter>
       </div>

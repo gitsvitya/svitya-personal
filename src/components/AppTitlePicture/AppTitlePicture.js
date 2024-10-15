@@ -1,6 +1,6 @@
-import styles from "./Title.module.css";
+import styles from "./AppTitlePicture.module.css";
 
-function Title(props) {
+function AppTitlePicture(props) {
   return (
     <div className={styles.title}>
       <div className={styles.container}>
@@ -14,4 +14,4 @@ function Title(props) {
   );
 }
 
-export default Title;
+export default AppTitlePicture;
