@@ -30,7 +30,9 @@ function Card(props) {
             {props.props.text.workExpBlockComopanyTitleNTB}
           </span>
           <button className={styles.cardButton}>
-            {props.props.text.cardButtonText}
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
           </button>
         </div>
         <img className={styles.logoPic} src={moexLogo}></img>
@@ -56,7 +58,9 @@ function Card(props) {
             {props.props.text.workExpBlockComopanyTitleLRNPT}
           </span>
           <button className={styles.cardButton}>
-            {props.props.text.cardButtonText}
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
           </button>
         </div>
         <img className={styles.logoPic} src={lukoilLogo}></img>
@@ -82,7 +86,9 @@ function Card(props) {
             {props.props.text.workExpBlockComopanyTitleKG}
           </span>
           <button className={styles.cardButton}>
-            {props.props.text.cardButtonText}
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
           </button>
         </div>
         <img className={styles.logoPic} src={kalashnikovlLogo}></img>
@@ -108,7 +114,9 @@ function Card(props) {
             {props.props.text.workExpBlockComopanyTitleTR}
           </span>
           <button className={styles.cardButton}>
-            {props.props.text.cardButtonText}
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
           </button>
         </div>
         <img className={styles.logoPic} src={reutersLogo}></img>
@@ -134,7 +142,9 @@ function Card(props) {
             {props.props.text.projectExpBlockComopanyTitleMappNgo}
           </span>
           <button className={styles.cardButton}>
-            {props.props.text.cardButtonText}
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
           </button>
         </div>
         <img className={styles.logoPic} src={mappngoLogo}></img>
@@ -160,92 +170,100 @@ function Card(props) {
             {props.props.text.projectExpBlockComopanyTitleVenivi}
           </span>
           <button className={styles.cardButton}>
-            {props.props.text.cardButtonText}
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
           </button>
         </div>
         <img className={styles.logoPic} src={veniviLogo}></img>
       </div>
     );
 
-    if (props.CompanyName === "SKO")
-      return (
-        <div
-          className={`${styles.card} ${styles.cardIncreasedLogo}`}
-          onClick={() => {
-            props.openModal();
-            props.SetModalContentCompany("SKO");
-          }}
-        >
-          <div className={styles.cardText}>
-            <span className={styles.cardYear}>
-              {props.props.text.projectExpBlockCompanyYearStrokeOff}
-            </span>
-            <span className={styles.cardCompanyName}>
-              {props.props.text.projectExpBlockCompanyNameStrokeOff}
-            </span>
-            <span className={styles.cardTitle}>
-              {props.props.text.projectExpBlockComopanyTitleStrokeOff}
-            </span>
-            <button className={styles.cardButton}>
+  if (props.CompanyName === "SKO")
+    return (
+      <div
+        className={`${styles.card} ${styles.cardIncreasedLogo}`}
+        onClick={() => {
+          props.openModal();
+          props.SetModalContentCompany("SKO");
+        }}
+      >
+        <div className={styles.cardText}>
+          <span className={styles.cardYear}>
+            {props.props.text.projectExpBlockCompanyYearStrokeOff}
+          </span>
+          <span className={styles.cardCompanyName}>
+            {props.props.text.projectExpBlockCompanyNameStrokeOff}
+          </span>
+          <span className={styles.cardTitle}>
+            {props.props.text.projectExpBlockComopanyTitleStrokeOff}
+          </span>
+          <button className={styles.cardButton}>
+            <span className={styles.cardButtonText}>
               {props.props.text.cardButtonText}
-            </button>
-          </div>
-          <img className={styles.logoPic} src={strokeOffLabel}></img>
+            </span>
+          </button>
         </div>
-      );
+        <img className={styles.logoPic} src={strokeOffLabel}></img>
+      </div>
+    );
 
-      if (props.CompanyName === "SDC")
-        return (
-          <div
-            className={`${styles.card} ${styles.cardIncreasedLogo}`}
-            onClick={() => {
-              props.openModal();
-              props.SetModalContentCompany("SDC");
-            }}
-          >
-            <div className={styles.cardText}>
-              <span className={styles.cardYear}>
-                {props.props.text.projectExpBlockCompanyYearSvityaWeb}
-              </span>
-              <span className={styles.cardCompanyName}>
-                {props.props.text.projectExpBlockCompanyNameSvityaWeb}
-              </span>
-              <span className={styles.cardTitle}>
-                {props.props.text.projectExpBlockComopanyTitleSvityaWeb}
-              </span>
-              <button className={styles.cardButton}>
-                {props.props.text.cardButtonText}
-              </button>
-            </div>
-            <img className={styles.logoPic} src={svityaComLabel}></img>
-          </div>
-        );
-        if (props.CompanyName === "STS")
-          return (
-            <div
-              className={`${styles.card} ${styles.cardIncreasedLogo}`}
-              onClick={() => {
-                props.openModal();
-                props.SetModalContentCompany("STS");
-              }}
-            >
-              <div className={styles.cardText}>
-                <span className={styles.cardYear}>
-                  {props.props.text.projectExpBlockCompanyYearSoldatovTS}
-                </span>
-                <span className={styles.cardCompanyName}>
-                  {props.props.text.projectExpBlockCompanyNameSoldatovTS}
-                </span>
-                <span className={styles.cardTitle}>
-                  {props.props.text.projectExpBlockComopanyTitleSoldatovTS}
-                </span>
-                <button className={styles.cardButton}>
-                  {props.props.text.cardButtonText}
-                </button>
-              </div>
-              <img className={styles.logoPic} src={soldatovTshirtLabel}></img>
-            </div>
-          );
+  if (props.CompanyName === "SDC")
+    return (
+      <div
+        className={`${styles.card} ${styles.cardIncreasedLogo}`}
+        onClick={() => {
+          props.openModal();
+          props.SetModalContentCompany("SDC");
+        }}
+      >
+        <div className={styles.cardText}>
+          <span className={styles.cardYear}>
+            {props.props.text.projectExpBlockCompanyYearSvityaWeb}
+          </span>
+          <span className={styles.cardCompanyName}>
+            {props.props.text.projectExpBlockCompanyNameSvityaWeb}
+          </span>
+          <span className={styles.cardTitle}>
+            {props.props.text.projectExpBlockComopanyTitleSvityaWeb}
+          </span>
+          <button className={styles.cardButton}>
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
+          </button>
+        </div>
+        <img className={styles.logoPic} src={svityaComLabel}></img>
+      </div>
+    );
+  if (props.CompanyName === "STS")
+    return (
+      <div
+        className={`${styles.card} ${styles.cardIncreasedLogo}`}
+        onClick={() => {
+          props.openModal();
+          props.SetModalContentCompany("STS");
+        }}
+      >
+        <div className={styles.cardText}>
+          <span className={styles.cardYear}>
+            {props.props.text.projectExpBlockCompanyYearSoldatovTS}
+          </span>
+          <span className={styles.cardCompanyName}>
+            {props.props.text.projectExpBlockCompanyNameSoldatovTS}
+          </span>
+          <span className={styles.cardTitle}>
+            {props.props.text.projectExpBlockComopanyTitleSoldatovTS}
+          </span>
+          <button className={styles.cardButton}>
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
+          </button>
+        </div>
+        <img className={styles.logoPic} src={soldatovTshirtLabel}></img>
+      </div>
+    );
 }
 
 export default Card;
