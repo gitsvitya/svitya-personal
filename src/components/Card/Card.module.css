@@ -88,26 +88,30 @@
     height 0.5s ease-in-out;
 }
 
-.card:hover {
-  cursor: pointer;
-}
 
-.card:hover .cardText {
-  justify-content: space-between;
-}
 
-.card:hover .cardCompanyName {
-  color: #F74843;
-}
+@media (min-width: 639px) {
+  .card:hover {
+    cursor: pointer;
+  }
 
-.card:hover .cardButton {
-  opacity: 1;
-  height: 30px;
-  cursor: pointer;
-}
+  .card:hover .cardText {
+    justify-content: space-between;
+  }
 
-.card:hover .logoPic {
-  width: 105%;
+  .card:hover .cardCompanyName {
+    color: #F74843;
+  }
+
+  .card:hover .cardButton {
+    opacity: 1;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .card:hover .logoPic {
+    width: 105%;
+  }
 }
 
 @media (max-width: 639px) {

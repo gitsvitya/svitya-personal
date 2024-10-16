@@ -67,11 +67,6 @@
   max-width: 30px;
 }
 
-.link:hover {
-  cursor: pointer;
-  color: #F74843;
-}
-
 .year {
   margin: 0;
   padding: 0;
@@ -83,6 +78,14 @@
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
   align-self: center;
+}
+
+@media (min-width: 639px) {
+  .link:hover {
+    cursor: pointer;
+    color: #F74843;
+  }
+
 }
 
 @media (max-width: 769px) {
