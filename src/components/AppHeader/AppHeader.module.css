@@ -71,6 +71,7 @@
   text-rendering: optimizeLegibility;
   color: black;
   transition: color 0.5s ease-in-out;
+  text-align: center;
 }
 
 .lngSwitcher {
