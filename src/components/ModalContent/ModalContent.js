@@ -7,7 +7,7 @@ import mappngoLogo from "../../images/mappngoLogo_black.png";
 import veniviLogo from "../../images/veniviLogo.png";
 import strokeOffLabel from "../../images/stroke_off_label.png";
 import svityaComLabel from "../../images/svitya_com_label.png";
-import soldatovTshirtLabel from "../../images/soldatov_tshirt_label.png";
+import mbcLogo from "../../images/mbc_logo.png";
 
 function ModalContent(props) {
   if (props.modalContent === "WorkNTB")
@@ -166,6 +166,45 @@ function ModalContent(props) {
         </div>
       </div>
     );
+    if (props.modalContent === "MBC")
+      return (
+        <div className={styles.modalContentRenderGeneralWindow}>
+          <div className={styles.modalContentRenderTextLogoWindow}>
+            <div className={styles.modalContentRenderCompanyTextBox}>
+              <span className={styles.modalContentRendercardYear}>
+                {props.text.projectExpBlockCompanyYearMadBurglarCat}
+              </span>
+              <div className={styles.modalContentRenderCompanyLinkBox}>
+                <span className={styles.modalContentRendercardCompanyName}>
+                  {props.text.projectExpBlockCompanyNameMadBurglarCat}
+                </span>
+                <a
+                  className={styles.modalContentRenderlink}
+                  href="https://madburglarcat.ru/"
+                  target="_blank"
+                >
+                  madburglarcat.ru
+                </a>
+              </div>
+              <span className={styles.modalContentRendercardTitle}>
+                {props.text.projectExpBlockComopanyTitleMadBurglarCat}
+              </span>
+            </div>
+            <img
+              className={styles.modalContentRenderlogoPic}
+              src={mbcLogo}
+            ></img>
+          </div>
+          <div className={styles.modalContentRenderParagraphBlock}>
+            <p className={styles.modalContentRenderParagraph}>
+              {props.text.projectExpBlockComopanyAboutMadBurglarCat}
+            </p>
+            <p className={styles.modalContentRenderParagraph}>
+              {props.text.projectExpBlockComopanyResultsMadBurglarCat}
+            </p>
+          </div>
+        </div>
+      );
   if (props.modalContent === "MNG")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
@@ -322,45 +361,6 @@ function ModalContent(props) {
             </div>
           </div>
         );
-        if (props.modalContent === "STS")
-          return (
-            <div className={styles.modalContentRenderGeneralWindow}>
-              <div className={styles.modalContentRenderTextLogoWindow}>
-                <div className={styles.modalContentRenderCompanyTextBox}>
-                  <span className={styles.modalContentRendercardYear}>
-                    {props.text.projectExpBlockCompanyYearSoldatovTS}
-                  </span>
-                  <div className={styles.modalContentRenderCompanyLinkBox}>
-                    <span className={styles.modalContentRendercardCompanyName}>
-                      {props.text.projectExpBlockCompanyNameSoldatovTS}
-                    </span>
-                    <a
-                      className={styles.modalContentRenderlink}
-                      href="https://www.instagram.com/vitya.strokov/"
-                      target="_blank"
-                    >
-                      instagram.com/vitya.strokov
-                    </a>
-                  </div>
-                  <span className={styles.modalContentRendercardTitle}>
-                    {props.text.projectExpBlockComopanyTitleSoldatovTS}
-                  </span>
-                </div>
-                <img
-                  className={styles.modalContentRenderlogoPic}
-                  src={soldatovTshirtLabel}
-                ></img>
-              </div>
-              <div className={styles.modalContentRenderParagraphBlock}>
-                <p className={styles.modalContentRenderParagraph}>
-                  {props.text.projectExpBlockComopanyAboutSoldatovTS}
-                </p>
-                <p className={styles.modalContentRenderParagraph}>
-                  {props.text.projectExpBlockComopanyResultsSoldatovTS}
-                </p>
-              </div>
-            </div>
-          );
 }
 
 export default ModalContent;

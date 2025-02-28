@@ -36,6 +36,12 @@ export const rusLng = {
 
   projectExpBlockHeaderText: 'Проекты',
 
+  projectExpBlockCompanyYearMadBurglarCat: '2024-н.в.',
+  projectExpBlockCompanyNameMadBurglarCat: 'Mad Burglar Cat',
+  projectExpBlockComopanyTitleMadBurglarCat: 'Основатель',
+  projectExpBlockComopanyAboutMadBurglarCat: 'Mad Burglar Cat — интернет-магазин по продаже товаров собственного производства по индивидуальным заказам.',
+  projectExpBlockComopanyResultsMadBurglarCat: 'Являюсь автором проекта. Самостоятельно сверстал и выстроил небольшую площадку для реализации товаров и услуг с автоматическим приемом платежей, выставлением чеков и доставкой. Фокусируюсь на разработке и улучшении продуктов. С графическим дизайном и производством помогает небольшая команда на аутсорсе.',
+
   projectExpBlockCompanyYearMappNgo: '2019-2020',
   projectExpBlockCompanyNameMappNgo: 'MappNgo',
   projectExpBlockComopanyTitleMappNgo: 'Основатель',
@@ -50,26 +56,18 @@ export const rusLng = {
 
   otherExpBlockHeaderText: 'Активности',
 
-  projectExpBlockCompanyYearStrokeOff: '2021-н.в',
+  projectExpBlockCompanyYearStrokeOff: '2021-н.в.',
   projectExpBlockCompanyNameStrokeOff: 'Продукция «Stroke Off»',
   projectExpBlockComopanyTitleStrokeOff: 'Из перцев чили «Каролинский жнец»',
   projectExpBlockComopanyAboutStrokeOff: 'Stroke Off — бренд, под которым я объединяю всю свою домашнюю продукцию, которую делаю для себя и друзей (на некоммерческой основе).',
   projectExpBlockComopanyResultsStrokeOff: 'В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая «Каролинский жнец» — один из самых жгучих в мире. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом «Stroke off». Особенно всем полюбились перцовка и тайский сладкий соус чили. Фотографии моих творений можно найти в профиле Instagram по ссылке выше.',
 
 
-  projectExpBlockCompanyYearSvityaWeb: '2019-н.в',
+  projectExpBlockCompanyYearSvityaWeb: '2019-н.в.',
   projectExpBlockCompanyNameSvityaWeb: 'Сайт Svitya.com',
   projectExpBlockComopanyTitleSvityaWeb: 'А также другие разработки',
   projectExpBlockComopanyAboutSvityaWeb: 'С 2019 года в качестве хобби разрабатываю веб-решения (React) и внедряю автоматизацию в свою рабочую среду (SQL, Python, Tableau).',
   projectExpBlockComopanyResultsSvityaWeb: 'В 2019-2020 году прошел обучение веб-разработке и обработке данных на Python на курсах Мичиганского университета, после чего закрепил свои знания в Яндекс.Практикуме. В результате чего на свет появился этот сайт, а также несколько других учебных и авторских проектов, с которыми можно ознакомиться по ссылке на мой GitHub, указанной выше. По мере освоения новых технологий и наличия свободного времени сайт продолжает обрастать новыми технологиями и функциями.',
-
-
-  projectExpBlockCompanyYearSoldatovTS: '2021',
-  projectExpBlockCompanyNameSoldatovTS: 'Дизайн и производство футболок',
-  projectExpBlockComopanyTitleSoldatovTS: 'Для дружеской благотворительной акции',
-  projectExpBlockComopanyAboutSoldatovTS: 'В 2021 году мой знакомый оказался в сложной финансовой ситуации. Я решил помочь ему и организовать благотворительный сбор среди наших общих знакомых. Все, кто участвовал в акции, могли получить уникальные футболки с принтом, посвящённым герою этой истории.',
-  projectExpBlockComopanyResultsSoldatovTS: 'Дизайн футболок был создан с учетом уникальных особенностей жизни главного героя: его увлечением морской регатой, работой в офисе в Москва-Сити и жилищем в панельной многоэтажке. В итоге было выпущено более 20 футболок, а главный герой получил поддержку в преодолении трудной жизненной ситуации. Посмотреть фотоотчет по этой истории можно в профиле Instagram по ссылке выше.',
-
 
   appFooterContacts: 'Соцсети',
 
@@ -113,6 +111,12 @@ export const engLng = {
 
   projectExpBlockHeaderText: 'Founded',
 
+  projectExpBlockCompanyYearMadBurglarCat: '2024-current',
+  projectExpBlockCompanyNameMadBurglarCat: 'Mad Burglar Cat',
+  projectExpBlockComopanyTitleMadBurglarCat: 'Founder',
+  projectExpBlockComopanyAboutMadBurglarCat: 'Mad Burglar Cat is an online store that offers a range of products from its own production available for individual orders.',
+  projectExpBlockComopanyResultsMadBurglarCat: 'The author of this project. Desined and developed a small platform for the sale of own-produced goods and services, with automatic payment processing, check issuance, and delivery. Now focusing on product development and improvement. A small team of outsourced professionals helps with graphic design and production.',
+
   projectExpBlockCompanyYearMappNgo: '2019-2020',
   projectExpBlockCompanyNameMappNgo: 'MappNgo',
   projectExpBlockComopanyTitleMappNgo: 'Founder',
@@ -139,12 +143,6 @@ export const engLng = {
   projectExpBlockComopanyTitleSvityaWeb: 'As well as other developments',
   projectExpBlockComopanyAboutSvityaWeb: 'Since 2019, I have been working on various web projects as a hobby and have developed my skills in web development (currently using React) and automation in my work environment. I have also gained experience using SQL, Python, and Tableau to implement these automation solutions.',
   projectExpBlockComopanyResultsSvityaWeb: 'In 2019 and 2020, I underwent training in web development and data analysis using Python at the University of Michigan. Following this, I further enhanced my skills at Yandex.Practicum. This experience has led to the creation of this website, as well as several other educational and personal projects, which you can find on my GitHub account. As I continue to develop my technical expertise and have more free time, the website will continue to evolve, incorporating new features and technologies.',
-
-  projectExpBlockCompanyYearSoldatovTS: '2021',
-  projectExpBlockCompanyNameSoldatovTS: 'T-shirt design and production',
-  projectExpBlockComopanyTitleSoldatovTS: 'For a friendly charity event',
-  projectExpBlockComopanyAboutSoldatovTS: 'In 2021, a friend of mine found himself in a difficult financial situation. I wanted to help and organized a charity event with our mutual friends. Anyone who participated in the event could receive a unique T-shirt with a special design dedicated to the protagonist of the story.',
-  projectExpBlockComopanyResultsSoldatovTS: 'The design of the T-shirts was created based on the lifestyle of the main character: a sailor who loves sea regattas, works in an office in Moscow, and lives in a typical panel apartment building. Over 20 T-shirts were produced, and they helped him get through difficult times. A photo report of this story can be found on my Instagram profile linked above.',
 
   appFooterContacts: 'Socials',
 

@@ -9,6 +9,12 @@ function AppProjectsExp(props) {
           {props.text.projectExpBlockHeaderText}
         </h3>
         <div className={styles.cardBox}>
+        <Card
+            CompanyName={"MBC"}
+            props={props}
+            openModal={props.openModal}
+            SetModalContentCompany={props.SetModalContentCompany}
+          ></Card>
           <Card
             CompanyName={"MNG"}
             props={props}

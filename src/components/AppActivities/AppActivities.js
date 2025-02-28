@@ -19,11 +19,6 @@ function AppActivities (props) {
           props={props}
           openModal={props.openModal}
           SetModalContentCompany={props.SetModalContentCompany}></Card>
-          <Card
-          CompanyName={"STS"}
-          props={props}
-          openModal={props.openModal}
-          SetModalContentCompany={props.SetModalContentCompany}></Card>
         </div>
       </div>
     </div>
