@@ -7,6 +7,12 @@ function AppWorkExp(props) {
       <div className={styles.container}>
         <h3 className={styles.header}>{props.text.workExpBlockHeaderText}</h3>
         <div className={styles.cardBox}>
+        <Card
+            CompanyName={"CI"}
+            props={props}
+            openModal={props.openModal}
+            SetModalContentCompany={props.SetModalContentCompany}
+          ></Card>
           <Card
             CompanyName={"NTB"}
             props={props}

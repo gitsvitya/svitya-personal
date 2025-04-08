@@ -8,8 +8,48 @@ import veniviLogo from "../../images/veniviLogo.png";
 import strokeOffLabel from "../../images/stroke_off_label.png";
 import svityaComLabel from "../../images/svitya_com_label.png";
 import mbcLogo from "../../images/mbc_logo.png";
+import ciLogo from "../../images/ci_logo.png";
 
 function ModalContent(props) {
+  if (props.modalContent === "WorkCI")
+    return (
+      <div className={styles.modalContentRenderGeneralWindow}>
+        <div className={styles.modalContentRenderTextLogoWindow}>
+          <div className={styles.modalContentRenderCompanyTextBox}>
+            <span className={styles.modalContentRendercardYear}>
+              {props.text.workExpBlockCompanyYearCI}
+            </span>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {props.text.workExpBlockCompanyNameCI}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://cheminsight.ru/"
+                target="_blank"
+              >
+                cheminsight.ru
+              </a>
+            </div>
+            <span className={styles.modalContentRendercardTitle}>
+              {props.text.workExpBlockComopanyTitleCI}
+            </span>
+          </div>
+          <img
+            className={styles.modalContentRenderlogoPic}
+            src={ciLogo}
+          ></img>
+        </div>
+        <div className={styles.modalContentRenderParagraphBlock}>
+          <p className={styles.modalContentRenderParagraph}>
+            {props.text.workExpBlockComopanyAboutCI}
+          </p>
+          <p className={styles.modalContentRenderParagraph}>
+            {props.text.workExpBlockComopanyResultsCI}
+          </p>
+        </div>
+      </div>
+    );
   if (props.modalContent === "WorkNTB")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
@@ -295,13 +335,13 @@ function ModalContent(props) {
                 <span className={styles.modalContentRendercardCompanyName}>
                   {props.text.projectExpBlockCompanyNameStrokeOff}
                 </span>
-                <a
+                {/* <a
                   className={styles.modalContentRenderlink}
                   href="https://www.instagram.com/vitya.strokov/"
                   target="_blank"
                 >
                   instagram.com/vitya.strokov
-                </a>
+                </a> */}
               </div>
               <span className={styles.modalContentRendercardTitle}>
                 {props.text.projectExpBlockComopanyTitleStrokeOff}

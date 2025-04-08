@@ -8,8 +8,37 @@ import veniviLogo from "../../images/veniviLogo.png";
 import strokeOffLabel from "../../images/stroke_off_label.png";
 import svityaComLabel from "../../images/svitya_com_label.png";
 import mbcLogo from "../../images/mbc_logo.png";
+import ciLogo from "../../images/ci_logo.png";
 
 function Card(props) {
+  if (props.CompanyName === "CI")
+    return (
+      <div
+        className={styles.card}
+        onClick={() => {
+          props.openModal();
+          props.SetModalContentCompany("WorkCI");
+        }}
+      >
+        <div className={styles.cardText}>
+          <span className={styles.cardYear}>
+            {props.props.text.workExpBlockCompanyYearCI}
+          </span>
+          <span className={styles.cardCompanyName}>
+            {props.props.text.workExpBlockCompanyNameCI}
+          </span>
+          <span className={styles.cardTitle}>
+            {props.props.text.workExpBlockComopanyTitleCI}
+          </span>
+          <button className={styles.cardButton}>
+            <span className={styles.cardButtonText}>
+              {props.props.text.cardButtonText}
+            </span>
+          </button>
+        </div>
+        <img className={styles.logoPic} src={ciLogo}></img>
+      </div>
+    );
   if (props.CompanyName === "NTB")
     return (
       <div

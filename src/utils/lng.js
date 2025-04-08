@@ -6,9 +6,15 @@ export const rusLng = {
 
   aboutBlockHeaderText: 'Обо мне',
 
-  aboutBlockParagraphText: 'Привет! Я — Витя Строков, менеджер проектов с упором на развитие продуктов и аналитику с опытом работы более 10 лет в международных/российских компаниях и собственных проектах. Всегда рад новым знакомствам и любой возможности посотрудничать.',
+  aboutBlockParagraphText: 'Привет! Меня зовут Виктор, я менеджер проектов с упором на развитие продуктов и аналитику с опытом работы более 10 лет в международных и российских компаниях, а также собственных проектах. Всегда открыт к новым знакомствам и сотрудничеству.',
 
   workExpBlockHeaderText: 'Опыт работы',
+
+  workExpBlockCompanyYearCI: '2025-н.в.',
+  workExpBlockCompanyNameCI: 'Ценовое агентство ХимИнсайт',
+  workExpBlockComopanyTitleCI: 'Внештатный консультант',
+  workExpBlockComopanyAboutCI: 'ХимИнсайт — независимое ценовое агентство, занимающееся экспертной оценкой рынка нефтегазохимии.',
+  workExpBlockComopanyResultsCI: 'Проектная работа по договору оказания услуг. Налаживание связей между экспертами, редакторами и дизайнером для формирования информационных продуктов для клиентов, распространяемых на платной основе.',
 
   workExpBlockCompanyYearNTB: '2021-2024',
   workExpBlockCompanyNameNTB: 'Национальная товарная биржа',
@@ -60,7 +66,7 @@ export const rusLng = {
   projectExpBlockCompanyNameStrokeOff: 'Продукция «Stroke Off»',
   projectExpBlockComopanyTitleStrokeOff: 'Из перцев чили «Каролинский жнец»',
   projectExpBlockComopanyAboutStrokeOff: 'Stroke Off — бренд, под которым я объединяю всю свою домашнюю продукцию, которую делаю для себя и друзей (на некоммерческой основе).',
-  projectExpBlockComopanyResultsStrokeOff: 'В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая «Каролинский жнец» — один из самых жгучих в мире. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом «Stroke off». Особенно всем полюбились перцовка и тайский сладкий соус чили. Фотографии моих творений можно найти в профиле Instagram по ссылке выше.',
+  projectExpBlockComopanyResultsStrokeOff: 'В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая «Каролинский жнец» — один из самых жгучих в мире. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом «Stroke off». Особенно всем полюбились перцовка и тайский сладкий соус чили.',
 
 
   projectExpBlockCompanyYearSvityaWeb: '2019-н.в.',
@@ -81,9 +87,15 @@ export const engLng = {
   titleBlockSubHeader: 'Project management, product development, research and analytics',
 
   aboutBlockHeaderText: 'About me',
-  aboutBlockParagraphText: 'Hey! I am Vitya Strokov, a project manager with a focus on product development and analytics with over 10 years of experience in international/Russian companies and my own projects. Always glad to meet new people and to have any opportunity to cooperate.',
+  aboutBlockParagraphText: `Hey! My name is Victor and I am a project manager with a passion for product development and analytics. I have over 10 years of experience working in international and Russian companies, as well as on my own projects. I'm always open to meeting new people and collaborating.`,
 
   workExpBlockHeaderText: 'Work experience',
+
+  workExpBlockCompanyYearCI: '2025-current',
+  workExpBlockCompanyNameCI: 'ChemInsight price agency',
+  workExpBlockComopanyTitleCI: 'Freelance consultant',
+  workExpBlockComopanyAboutCI: 'ChemInsight is an independent pricing agency yhat provides expert assessment of the petrochemical market.',
+  workExpBlockComopanyResultsCI: 'Project work under a service agreement involves establishing links between experts, editors, and designer to create information products for clients that are distributed on a paid basis.',
 
   workExpBlockCompanyYearNTB: '2021-2024',
   workExpBlockCompanyNameNTB: 'National Mercantile Exchange',
@@ -135,7 +147,7 @@ export const engLng = {
   projectExpBlockCompanyNameStrokeOff: '«Stroke Off» products',
   projectExpBlockComopanyTitleStrokeOff: 'Made from «Carolina Reaper» chili peppers',
   projectExpBlockComopanyAboutStrokeOff: 'Stroke Off is a brand that combines all of my home products, which I create for myself and my friends (on a non-commercial basis).',
-  projectExpBlockComopanyResultsStrokeOff: 'In 2020, I planted several different varieties of hot chili peppers at home, including the Carolina Reaper, one of the most burning in the world. The peppers have successfully grown and started bearing fruit. As the harvest matures, I prepare various spicy products from them under the brand «Stroke off». Everyone was especially fond of pepper and Thai sweet chili sauce. Photos of my creations can be found in my Instagram profile at the link above.',
+  projectExpBlockComopanyResultsStrokeOff: 'In 2020, I planted several different varieties of hot chili peppers at home, including the Carolina Reaper, one of the most burning in the world. The peppers have successfully grown and started bearing fruit. As the harvest matures, I prepare various spicy products from them under the brand «Stroke off». Everyone was especially fond of pepper and Thai sweet chili sauce.',
 
 
   projectExpBlockCompanyYearSvityaWeb: '2019-current',
