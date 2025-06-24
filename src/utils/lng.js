@@ -1,5 +1,5 @@
 export const rusLng = {
-  pageTitle: 'Виктор Строков — Управление проектами, разработка продуктов, исследования и аналитика',
+  pageTitle: 'Виктор Строков',
 
   titleBlockHeader: 'Виктор Строков',
   titleBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
@@ -81,7 +81,7 @@ export const rusLng = {
 }
 
 export const engLng = {
-  pageTitle: 'Victor Strokov — Project management, product development, research and analytics',
+  pageTitle: 'Victor Strokov',
 
   titleBlockHeader: 'Victor Strokov',
   titleBlockSubHeader: 'Project management, product development, research and analytics',
