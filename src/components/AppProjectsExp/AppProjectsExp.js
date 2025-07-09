@@ -11,19 +11,19 @@ function AppProjectsExp(props) {
         <div className={styles.cardBox}>
         <Card
             CompanyName={"MBC"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"MNG"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"VNV"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>

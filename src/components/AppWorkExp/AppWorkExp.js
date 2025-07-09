@@ -9,31 +9,31 @@ function AppWorkExp(props) {
         <div className={styles.cardBox}>
         <Card
             CompanyName={"CI"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"NTB"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"LRNPT"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"KG"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"TR"}
-            props={props}
+            text={props.text}
             openModal={props.openModal}
             setModalContentCompany={props.setModalContentCompany}
           ></Card>

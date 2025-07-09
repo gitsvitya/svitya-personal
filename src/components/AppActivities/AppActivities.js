@@ -11,12 +11,12 @@ function AppActivities (props) {
         <div className={styles.cardBox}>
           <Card
           CompanyName={"SKO"}
-          props={props}
+          text={props.text}
           openModal={props.openModal}
           setModalContentCompany={props.setModalContentCompany}></Card>
           <Card
           CompanyName={"SDC"}
-          props={props}
+          text={props.text}
           openModal={props.openModal}
           setModalContentCompany={props.setModalContentCompany}></Card>
         </div>
