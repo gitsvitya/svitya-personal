@@ -20,7 +20,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.workExpBlockCompanyNameCI}
           </span>
           <span className={styles.cardTitle}>
-            {text.workExpBlockComopanyTitleCI}
+            {text.workExpBlockCompanyTitleCI}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -48,7 +48,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.workExpBlockCompanyNameNTB}
           </span>
           <span className={styles.cardTitle}>
-            {text.workExpBlockComopanyTitleNTB}
+            {text.workExpBlockCompanyTitleNTB}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -76,7 +76,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.workExpBlockCompanyNameLRNPT}
           </span>
           <span className={styles.cardTitle}>
-            {text.workExpBlockComopanyTitleLRNPT}
+            {text.workExpBlockCompanyTitleLRNPT}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -104,7 +104,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.workExpBlockCompanyNameKG}
           </span>
           <span className={styles.cardTitle}>
-            {text.workExpBlockComopanyTitleKG}
+            {text.workExpBlockCompanyTitleKG}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -132,7 +132,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.workExpBlockCompanyNameTR}
           </span>
           <span className={styles.cardTitle}>
-            {text.workExpBlockComopanyTitleTR}
+            {text.workExpBlockCompanyTitleTR}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -160,7 +160,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
               {text.projectExpBlockCompanyNameMadBurglarCat}
             </span>
             <span className={styles.cardTitle}>
-              {text.projectExpBlockComopanyTitleMadBurglarCat}
+              {text.projectExpBlockCompanyTitleMadBurglarCat}
             </span>
             <button className={styles.cardButton}>
               <span className={styles.cardButtonText}>
@@ -188,7 +188,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.projectExpBlockCompanyNameMappNgo}
           </span>
           <span className={styles.cardTitle}>
-            {text.projectExpBlockComopanyTitleMappNgo}
+            {text.projectExpBlockCompanyTitleMappNgo}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -216,7 +216,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.projectExpBlockCompanyNameVenivi}
           </span>
           <span className={styles.cardTitle}>
-            {text.projectExpBlockComopanyTitleVenivi}
+            {text.projectExpBlockCompanyTitleVenivi}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -245,7 +245,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.projectExpBlockCompanyNameStrokeOff}
           </span>
           <span className={styles.cardTitle}>
-            {text.projectExpBlockComopanyTitleStrokeOff}
+            {text.projectExpBlockCompanyTitleStrokeOff}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>
@@ -274,7 +274,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             {text.projectExpBlockCompanyNameSvityaWeb}
           </span>
           <span className={styles.cardTitle}>
-            {text.projectExpBlockComopanyTitleSvityaWeb}
+            {text.projectExpBlockCompanyTitleSvityaWeb}
           </span>
           <button className={styles.cardButton}>
             <span className={styles.cardButtonText}>

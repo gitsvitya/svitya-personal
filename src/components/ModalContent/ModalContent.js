@@ -36,7 +36,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.workExpBlockComopanyTitleCI}
+              {text.workExpBlockCompanyTitleCI}
             </span>
           </div>
           <img
@@ -46,10 +46,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyAboutCI}
+            {text.workExpBlockCompanyAboutCI}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyResultsCI}
+            {text.workExpBlockCompanyResultsCI}
           </p>
         </div>
       </div>
@@ -75,7 +75,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.workExpBlockComopanyTitleNTB}
+              {text.workExpBlockCompanyTitleNTB}
             </span>
           </div>
           <img
@@ -85,10 +85,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyAboutNTB}
+            {text.workExpBlockCompanyAboutNTB}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyResultsNTB}
+            {text.workExpBlockCompanyResultsNTB}
           </p>
         </div>
       </div>
@@ -114,7 +114,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.workExpBlockComopanyTitleLRNPT}
+              {text.workExpBlockCompanyTitleLRNPT}
             </span>
           </div>
           <img
@@ -124,10 +124,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyAboutLRNPT}
+            {text.workExpBlockCompanyAboutLRNPT}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyResultsLRNPT}
+            {text.workExpBlockCompanyResultsLRNPT}
           </p>
         </div>
       </div>
@@ -153,7 +153,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.workExpBlockComopanyTitleKG}
+              {text.workExpBlockCompanyTitleKG}
             </span>
           </div>
           <img
@@ -163,10 +163,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyAboutKG}
+            {text.workExpBlockCompanyAboutKG}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyResultsKG}
+            {text.workExpBlockCompanyResultsKG}
           </p>
         </div>
       </div>
@@ -192,7 +192,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.workExpBlockComopanyTitleTR}
+              {text.workExpBlockCompanyTitleTR}
             </span>
           </div>
           <img
@@ -202,10 +202,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyAboutTR}
+            {text.workExpBlockCompanyAboutTR}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockComopanyResultsTR}
+            {text.workExpBlockCompanyResultsTR}
           </p>
         </div>
       </div>
@@ -231,7 +231,7 @@ function ModalContent({modalContent, text}) {
                 </a>
               </div>
               <span className={styles.modalContentRendercardTitle}>
-                {text.projectExpBlockComopanyTitleMadBurglarCat}
+                {text.projectExpBlockCompanyTitleMadBurglarCat}
               </span>
             </div>
             <img
@@ -241,10 +241,10 @@ function ModalContent({modalContent, text}) {
           </div>
           <div className={styles.modalContentRenderParagraphBlock}>
             <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockComopanyAboutMadBurglarCat}
+              {text.projectExpBlockCompanyAboutMadBurglarCat}
             </p>
             <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockComopanyResultsMadBurglarCat}
+              {text.projectExpBlockCompanyResultsMadBurglarCat}
             </p>
           </div>
         </div>
@@ -270,7 +270,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.projectExpBlockComopanyTitleMappNgo}
+              {text.projectExpBlockCompanyTitleMappNgo}
             </span>
           </div>
           <img
@@ -280,10 +280,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.projectExpBlockComopanyAboutMappNgo}
+            {text.projectExpBlockCompanyAboutMappNgo}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.projectExpBlockComopanyResultsMappNgo}
+            {text.projectExpBlockCompanyResultsMappNgo}
           </p>
         </div>
       </div>
@@ -309,7 +309,7 @@ function ModalContent({modalContent, text}) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {text.projectExpBlockComopanyTitleVenivi}
+              {text.projectExpBlockCompanyTitleVenivi}
             </span>
           </div>
           <img
@@ -319,10 +319,10 @@ function ModalContent({modalContent, text}) {
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {text.projectExpBlockComopanyAboutVenivi}
+            {text.projectExpBlockCompanyAboutVenivi}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {text.projectExpBlockComopanyResultsVenivi}
+            {text.projectExpBlockCompanyResultsVenivi}
           </p>
         </div>
       </div>
@@ -348,7 +348,7 @@ function ModalContent({modalContent, text}) {
                 </a> */}
               </div>
               <span className={styles.modalContentRendercardTitle}>
-                {text.projectExpBlockComopanyTitleStrokeOff}
+                {text.projectExpBlockCompanyTitleStrokeOff}
               </span>
             </div>
             <img
@@ -358,10 +358,10 @@ function ModalContent({modalContent, text}) {
           </div>
           <div className={styles.modalContentRenderParagraphBlock}>
             <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockComopanyAboutStrokeOff}
+              {text.projectExpBlockCompanyAboutStrokeOff}
             </p>
             <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockComopanyResultsStrokeOff}
+              {text.projectExpBlockCompanyResultsStrokeOff}
             </p>
           </div>
         </div>
@@ -387,7 +387,7 @@ function ModalContent({modalContent, text}) {
                   </a>
                 </div>
                 <span className={styles.modalContentRendercardTitle}>
-                  {text.projectExpBlockComopanyTitleSvityaWeb}
+                  {text.projectExpBlockCompanyTitleSvityaWeb}
                 </span>
               </div>
               <img
@@ -397,10 +397,10 @@ function ModalContent({modalContent, text}) {
             </div>
             <div className={styles.modalContentRenderParagraphBlock}>
               <p className={styles.modalContentRenderParagraph}>
-                {text.projectExpBlockComopanyAboutSvityaWeb}
+                {text.projectExpBlockCompanyAboutSvityaWeb}
               </p>
               <p className={styles.modalContentRenderParagraph}>
-                {text.projectExpBlockComopanyResultsSvityaWeb}
+                {text.projectExpBlockCompanyResultsSvityaWeb}
               </p>
             </div>
           </div>
