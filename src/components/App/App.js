@@ -13,7 +13,8 @@ import AppActivities from "../AppActivities/AppActivities";
 
 function App() {
   // Состояния текущего языка страницы, которое изначально определяется по языку браузера
-  const [language, setLanguage] = useState(window.navigator.language);
+  const browserLng = window.navigator.language.startsWith("ru") ? "ru" : "en";
+  const [language, setLanguage] = useState(browserLng);
   // Состояние открытого модального окна
   const [modalOpened, setModalOpened] = useState(false);
   // Состояние для рендера контента модельного окна, принимает на вход абберивиатуру компании
@@ -62,27 +63,18 @@ function App() {
           <AppAboutMe text={currentText}></AppAboutMe>
           <AppWorkExp
             text={currentText}
-            modalOpened={modalOpened}
-            modalContentCompany={modalContentCompany}
             setModalContentCompany={setModalContentCompany}
             openModal={openModal}
-            closeModal={closeModal}
           ></AppWorkExp>
           <AppProjectsExp
             text={currentText}
-            modalOpened={modalOpened}
-            modalContentCompany={modalContentCompany}
             setModalContentCompany={setModalContentCompany}
             openModal={openModal}
-            closeModal={closeModal}
           ></AppProjectsExp>
           <AppActivities
             text={currentText}
-            modalOpened={modalOpened}
-            modalContentCompany={modalContentCompany}
             setModalContentCompany={setModalContentCompany}
             openModal={openModal}
-            closeModal={closeModal}
           ></AppActivities>
         </main>
         <AppFooter text={currentText}></AppFooter>

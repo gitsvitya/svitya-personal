@@ -1,23 +1,22 @@
 import styles from "./AppProjectsExp.module.css";
 import Card from "../Card/Card";
+import { projectCompanies } from "../../utils/companiesList.js";
 
-function AppProjectsExp(props) {
-  const projectCompanies = ["MBC", "MNG", "VNV"];
-
+function AppProjectsExp({text, setModalContentCompany, openModal}) {
   return (
     <div className={styles.projectsExp} id="projectsExp">
       <div className={styles.container}>
         <h3 className={styles.header}>
-          {props.text.projectExpBlockHeaderText}
+          {text.projectExpBlockHeaderText}
         </h3>
         <div className={styles.cardBox}>
           {projectCompanies.map((name) => (
             <Card
               key={name}
               CompanyName={name}
-              text={props.text}
-              openModal={props.openModal}
-              setModalContentCompany={props.setModalContentCompany}
+              text={text}
+              openModal={openModal}
+              setModalContentCompany={setModalContentCompany}
             />
           ))}
         </div>

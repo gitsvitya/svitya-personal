@@ -1,27 +1,31 @@
 import styles from "./ModalContent.module.css";
-import moexLogo from "../../images/moex_logo.png";
-import lukoilLogo from "../../images/lukoil_logo.png";
-import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
-import reutersLogo from "../../images/reuters_logo.png";
-import mappngoLogo from "../../images/mappngoLogo_black.png";
-import veniviLogo from "../../images/veniviLogo.png";
-import strokeOffLabel from "../../images/stroke_off_label.png";
-import svityaComLabel from "../../images/svitya_com_label.png";
-import mbcLogo from "../../images/mbc_logo.png";
-import ciLogo from "../../images/ci_logo.png";
+import { logos } from "../../utils/cardLogos";
 
-function ModalContent(props) {
-  if (props.modalContent === "WorkCI")
+
+// import moexLogo from "../../images/moex_logo.png";
+// import lukoilLogo from "../../images/lukoil_logo.png";
+// import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
+// import reutersLogo from "../../images/reuters_logo.png";
+// import mappngoLogo from "../../images/mappngoLogo_black.png";
+// import veniviLogo from "../../images/veniviLogo.png";
+// import strokeOffLabel from "../../images/stroke_off_label.png";
+// import svityaComLabel from "../../images/svitya_com_label.png";
+// import mbcLogo from "../../images/mbc_logo.png";
+// import ciLogo from "../../images/ci_logo.png";
+
+function ModalContent({modalContent, text}) {
+  const logo = logos[modalContent];
+  if (modalContent === "CI")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.workExpBlockCompanyYearCI}
+              {text.workExpBlockCompanyYearCI}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.workExpBlockCompanyNameCI}
+                {text.workExpBlockCompanyNameCI}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -32,35 +36,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.workExpBlockComopanyTitleCI}
+              {text.workExpBlockComopanyTitleCI}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={ciLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyAboutCI}
+            {text.workExpBlockComopanyAboutCI}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyResultsCI}
+            {text.workExpBlockComopanyResultsCI}
           </p>
         </div>
       </div>
     );
-  if (props.modalContent === "WorkNTB")
+  if (modalContent === "NTB")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.workExpBlockCompanyYearNTB}
+              {text.workExpBlockCompanyYearNTB}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.workExpBlockCompanyNameNTB}
+                {text.workExpBlockCompanyNameNTB}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -71,35 +75,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.workExpBlockComopanyTitleNTB}
+              {text.workExpBlockComopanyTitleNTB}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={moexLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyAboutNTB}
+            {text.workExpBlockComopanyAboutNTB}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyResultsNTB}
+            {text.workExpBlockComopanyResultsNTB}
           </p>
         </div>
       </div>
     );
-  if (props.modalContent === "WorkLRNPT")
+  if (modalContent === "LRNPT")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.workExpBlockCompanyYearLRNPT}
+              {text.workExpBlockCompanyYearLRNPT}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.workExpBlockCompanyNameLRNPT}
+                {text.workExpBlockCompanyNameLRNPT}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -110,35 +114,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.workExpBlockComopanyTitleLRNPT}
+              {text.workExpBlockComopanyTitleLRNPT}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={lukoilLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyAboutLRNPT}
+            {text.workExpBlockComopanyAboutLRNPT}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyResultsLRNPT}
+            {text.workExpBlockComopanyResultsLRNPT}
           </p>
         </div>
       </div>
     );
-  if (props.modalContent === "WorkKG")
+  if (modalContent === "KG")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.workExpBlockCompanyYearKG}
+              {text.workExpBlockCompanyYearKG}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.workExpBlockCompanyNameKG}
+                {text.workExpBlockCompanyNameKG}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -149,35 +153,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.workExpBlockComopanyTitleKG}
+              {text.workExpBlockComopanyTitleKG}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={kalashnikovlLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyAboutKG}
+            {text.workExpBlockComopanyAboutKG}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyResultsKG}
+            {text.workExpBlockComopanyResultsKG}
           </p>
         </div>
       </div>
     );
-  if (props.modalContent === "WorkTR")
+  if (modalContent === "TR")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.workExpBlockCompanyYearTR}
+              {text.workExpBlockCompanyYearTR}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.workExpBlockCompanyNameTR}
+                {text.workExpBlockCompanyNameTR}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -188,35 +192,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.workExpBlockComopanyTitleTR}
+              {text.workExpBlockComopanyTitleTR}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={reutersLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyAboutTR}
+            {text.workExpBlockComopanyAboutTR}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.workExpBlockComopanyResultsTR}
+            {text.workExpBlockComopanyResultsTR}
           </p>
         </div>
       </div>
     );
-    if (props.modalContent === "MBC")
+    if (modalContent === "MBC")
       return (
         <div className={styles.modalContentRenderGeneralWindow}>
           <div className={styles.modalContentRenderTextLogoWindow}>
             <div className={styles.modalContentRenderCompanyTextBox}>
               <span className={styles.modalContentRendercardYear}>
-                {props.text.projectExpBlockCompanyYearMadBurglarCat}
+                {text.projectExpBlockCompanyYearMadBurglarCat}
               </span>
               <div className={styles.modalContentRenderCompanyLinkBox}>
                 <span className={styles.modalContentRendercardCompanyName}>
-                  {props.text.projectExpBlockCompanyNameMadBurglarCat}
+                  {text.projectExpBlockCompanyNameMadBurglarCat}
                 </span>
                 <a
                   className={styles.modalContentRenderlink}
@@ -227,35 +231,35 @@ function ModalContent(props) {
                 </a>
               </div>
               <span className={styles.modalContentRendercardTitle}>
-                {props.text.projectExpBlockComopanyTitleMadBurglarCat}
+                {text.projectExpBlockComopanyTitleMadBurglarCat}
               </span>
             </div>
             <img
               className={styles.modalContentRenderlogoPic}
-              src={mbcLogo}
+              src={logo}
             ></img>
           </div>
           <div className={styles.modalContentRenderParagraphBlock}>
             <p className={styles.modalContentRenderParagraph}>
-              {props.text.projectExpBlockComopanyAboutMadBurglarCat}
+              {text.projectExpBlockComopanyAboutMadBurglarCat}
             </p>
             <p className={styles.modalContentRenderParagraph}>
-              {props.text.projectExpBlockComopanyResultsMadBurglarCat}
+              {text.projectExpBlockComopanyResultsMadBurglarCat}
             </p>
           </div>
         </div>
       );
-  if (props.modalContent === "MNG")
+  if (modalContent === "MNG")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.projectExpBlockCompanyYearMappNgo}
+              {text.projectExpBlockCompanyYearMappNgo}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.projectExpBlockCompanyNameMappNgo}
+                {text.projectExpBlockCompanyNameMappNgo}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -266,35 +270,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.projectExpBlockComopanyTitleMappNgo}
+              {text.projectExpBlockComopanyTitleMappNgo}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={mappngoLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.projectExpBlockComopanyAboutMappNgo}
+            {text.projectExpBlockComopanyAboutMappNgo}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.projectExpBlockComopanyResultsMappNgo}
+            {text.projectExpBlockComopanyResultsMappNgo}
           </p>
         </div>
       </div>
     );
-  if (props.modalContent === "VNV")
+  if (modalContent === "VNV")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
         <div className={styles.modalContentRenderTextLogoWindow}>
           <div className={styles.modalContentRenderCompanyTextBox}>
             <span className={styles.modalContentRendercardYear}>
-              {props.text.projectExpBlockCompanyYearVenivi}
+              {text.projectExpBlockCompanyYearVenivi}
             </span>
             <div className={styles.modalContentRenderCompanyLinkBox}>
               <span className={styles.modalContentRendercardCompanyName}>
-                {props.text.projectExpBlockCompanyNameVenivi}
+                {text.projectExpBlockCompanyNameVenivi}
               </span>
               <a
                 className={styles.modalContentRenderlink}
@@ -305,35 +309,35 @@ function ModalContent(props) {
               </a>
             </div>
             <span className={styles.modalContentRendercardTitle}>
-              {props.text.projectExpBlockComopanyTitleVenivi}
+              {text.projectExpBlockComopanyTitleVenivi}
             </span>
           </div>
           <img
             className={styles.modalContentRenderlogoPic}
-            src={veniviLogo}
+            src={logo}
           ></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.projectExpBlockComopanyAboutVenivi}
+            {text.projectExpBlockComopanyAboutVenivi}
           </p>
           <p className={styles.modalContentRenderParagraph}>
-            {props.text.projectExpBlockComopanyResultsVenivi}
+            {text.projectExpBlockComopanyResultsVenivi}
           </p>
         </div>
       </div>
     );
-    if (props.modalContent === "SKO")
+    if (modalContent === "SKO")
       return (
         <div className={styles.modalContentRenderGeneralWindow}>
           <div className={styles.modalContentRenderTextLogoWindow}>
             <div className={styles.modalContentRenderCompanyTextBox}>
               <span className={styles.modalContentRendercardYear}>
-                {props.text.projectExpBlockCompanyYearStrokeOff}
+                {text.projectExpBlockCompanyYearStrokeOff}
               </span>
               <div className={styles.modalContentRenderCompanyLinkBox}>
                 <span className={styles.modalContentRendercardCompanyName}>
-                  {props.text.projectExpBlockCompanyNameStrokeOff}
+                  {text.projectExpBlockCompanyNameStrokeOff}
                 </span>
                 {/* <a
                   className={styles.modalContentRenderlink}
@@ -344,35 +348,35 @@ function ModalContent(props) {
                 </a> */}
               </div>
               <span className={styles.modalContentRendercardTitle}>
-                {props.text.projectExpBlockComopanyTitleStrokeOff}
+                {text.projectExpBlockComopanyTitleStrokeOff}
               </span>
             </div>
             <img
               className={styles.modalContentRenderlogoPic}
-              src={strokeOffLabel}
+              src={logo}
             ></img>
           </div>
           <div className={styles.modalContentRenderParagraphBlock}>
             <p className={styles.modalContentRenderParagraph}>
-              {props.text.projectExpBlockComopanyAboutStrokeOff}
+              {text.projectExpBlockComopanyAboutStrokeOff}
             </p>
             <p className={styles.modalContentRenderParagraph}>
-              {props.text.projectExpBlockComopanyResultsStrokeOff}
+              {text.projectExpBlockComopanyResultsStrokeOff}
             </p>
           </div>
         </div>
       );
-      if (props.modalContent === "SDC")
+      if (modalContent === "SDC")
         return (
           <div className={styles.modalContentRenderGeneralWindow}>
             <div className={styles.modalContentRenderTextLogoWindow}>
               <div className={styles.modalContentRenderCompanyTextBox}>
                 <span className={styles.modalContentRendercardYear}>
-                  {props.text.projectExpBlockCompanyYearSvityaWeb}
+                  {text.projectExpBlockCompanyYearSvityaWeb}
                 </span>
                 <div className={styles.modalContentRenderCompanyLinkBox}>
                   <span className={styles.modalContentRendercardCompanyName}>
-                    {props.text.projectExpBlockCompanyNameSvityaWeb}
+                    {text.projectExpBlockCompanyNameSvityaWeb}
                   </span>
                   <a
                     className={styles.modalContentRenderlink}
@@ -383,20 +387,20 @@ function ModalContent(props) {
                   </a>
                 </div>
                 <span className={styles.modalContentRendercardTitle}>
-                  {props.text.projectExpBlockComopanyTitleSvityaWeb}
+                  {text.projectExpBlockComopanyTitleSvityaWeb}
                 </span>
               </div>
               <img
                 className={styles.modalContentRenderlogoPic}
-                src={svityaComLabel}
+                src={logo}
               ></img>
             </div>
             <div className={styles.modalContentRenderParagraphBlock}>
               <p className={styles.modalContentRenderParagraph}>
-                {props.text.projectExpBlockComopanyAboutSvityaWeb}
+                {text.projectExpBlockComopanyAboutSvityaWeb}
               </p>
               <p className={styles.modalContentRenderParagraph}>
-                {props.text.projectExpBlockComopanyResultsSvityaWeb}
+                {text.projectExpBlockComopanyResultsSvityaWeb}
               </p>
             </div>
           </div>

@@ -1,23 +1,15 @@
 import styles from "./Card.module.css";
-import moexLogo from "../../images/moex_logo.png";
-import lukoilLogo from "../../images/lukoil_logo.png";
-import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
-import reutersLogo from "../../images/reuters_logo.png";
-import mappngoLogo from "../../images/mappngoLogo_black.png";
-import veniviLogo from "../../images/veniviLogo.png";
-import strokeOffLabel from "../../images/stroke_off_label.png";
-import svityaComLabel from "../../images/svitya_com_label.png";
-import mbcLogo from "../../images/mbc_logo.png";
-import ciLogo from "../../images/ci_logo.png";
+import { logos } from "../../utils/cardLogos";
 
 function Card({ CompanyName, openModal, setModalContentCompany, text }) {
+  const logo = logos[CompanyName];
   if (CompanyName === "CI")
     return (
       <div
         className={styles.card}
         onClick={() => {
           openModal();
-          setModalContentCompany("WorkCI");
+          setModalContentCompany("CI");
         }}
       >
         <div className={styles.cardText}>
@@ -36,7 +28,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={ciLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
   if (CompanyName === "NTB")
@@ -45,7 +37,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
         className={styles.card}
         onClick={() => {
           openModal();
-          setModalContentCompany("WorkNTB");
+          setModalContentCompany("NTB");
         }}
       >
         <div className={styles.cardText}>
@@ -64,7 +56,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={moexLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
   if (CompanyName === "LRNPT")
@@ -73,7 +65,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
         className={styles.card}
         onClick={() => {
           openModal();
-          setModalContentCompany("WorkLRNPT");
+          setModalContentCompany("LRNPT");
         }}
       >
         <div className={styles.cardText}>
@@ -92,7 +84,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={lukoilLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
   if (CompanyName === "KG")
@@ -101,7 +93,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
         className={styles.card}
         onClick={() => {
           openModal();
-          setModalContentCompany("WorkKG");
+          setModalContentCompany("KG");
         }}
       >
         <div className={styles.cardText}>
@@ -120,7 +112,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={kalashnikovlLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
   if (CompanyName === "TR")
@@ -129,7 +121,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
         className={styles.card}
         onClick={() => {
           openModal();
-          setModalContentCompany("WorkTR");
+          setModalContentCompany("TR");
         }}
       >
         <div className={styles.cardText}>
@@ -148,7 +140,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={reutersLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
     if (CompanyName === "MBC")
@@ -176,7 +168,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
               </span>
             </button>
           </div>
-          <img className={styles.logoPic} src={mbcLogo}></img>
+          <img className={styles.logoPic} src={logo}></img>
         </div>
       );
   if (CompanyName === "MNG")
@@ -204,7 +196,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={mappngoLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
   if (CompanyName === "VNV")
@@ -232,7 +224,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={veniviLogo}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
 
@@ -261,7 +253,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={strokeOffLabel}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
 
@@ -290,7 +282,7 @@ function Card({ CompanyName, openModal, setModalContentCompany, text }) {
             </span>
           </button>
         </div>
-        <img className={styles.logoPic} src={svityaComLabel}></img>
+        <img className={styles.logoPic} src={logo}></img>
       </div>
     );
 }
