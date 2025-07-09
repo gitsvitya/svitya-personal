@@ -2,6 +2,8 @@ import styles from "./AppProjectsExp.module.css";
 import Card from "../Card/Card";
 
 function AppProjectsExp(props) {
+  const projectCompanies = ["MBC", "MNG", "VNV"];
+
   return (
     <div className={styles.projectsExp} id="projectsExp">
       <div className={styles.container}>
@@ -9,24 +11,15 @@ function AppProjectsExp(props) {
           {props.text.projectExpBlockHeaderText}
         </h3>
         <div className={styles.cardBox}>
-        <Card
-            CompanyName={"MBC"}
-            text={props.text}
-            openModal={props.openModal}
-            setModalContentCompany={props.setModalContentCompany}
-          ></Card>
-          <Card
-            CompanyName={"MNG"}
-            text={props.text}
-            openModal={props.openModal}
-            setModalContentCompany={props.setModalContentCompany}
-          ></Card>
-          <Card
-            CompanyName={"VNV"}
-            text={props.text}
-            openModal={props.openModal}
-            setModalContentCompany={props.setModalContentCompany}
-          ></Card>
+          {projectCompanies.map((name) => (
+            <Card
+              key={name}
+              CompanyName={name}
+              text={props.text}
+              openModal={props.openModal}
+              setModalContentCompany={props.setModalContentCompany}
+            />
+          ))}
         </div>
       </div>
     </div>
