@@ -34,7 +34,7 @@
   margin: 0;
   font-family: 'VremenaGrotesk', sans-serif;
   font-size: 60px;
-  font-style: normal;
+  font-style: 1.4;
   font-weight: 400;
   line-height: normal;
   text-rendering: optimizeLegibility;
@@ -47,7 +47,7 @@
   font-size: 34px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.4;
   text-rendering: optimizeLegibility;
 }
 

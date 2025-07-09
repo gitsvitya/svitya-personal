@@ -35,7 +35,7 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
 
@@ -52,7 +52,7 @@
   font-size: 32px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.4;
   text-rendering: optimizeLegibility;
 }
 
@@ -63,7 +63,7 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.5;
   text-decoration: none;
   outline: none;
   color: black;
@@ -77,7 +77,7 @@
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.375;
   text-rendering: optimizeLegibility;
 }
 
@@ -99,7 +99,7 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
   /* text-align: justify */
 }

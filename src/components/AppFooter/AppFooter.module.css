@@ -26,7 +26,7 @@
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.375;
   text-rendering: optimizeLegibility;
 }
 
@@ -46,7 +46,7 @@
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.375;
   text-rendering: optimizeLegibility;
 }
 
@@ -74,7 +74,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  line-height: normal;
+  line-height: 1.375;
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
   align-self: center;
