@@ -17,7 +17,7 @@ function Card(props) {
         className={styles.card}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("WorkCI");
+          props.setModalContentCompany("WorkCI");
         }}
       >
         <div className={styles.cardText}>
@@ -45,7 +45,7 @@ function Card(props) {
         className={styles.card}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("WorkNTB");
+          props.setModalContentCompany("WorkNTB");
         }}
       >
         <div className={styles.cardText}>
@@ -73,7 +73,7 @@ function Card(props) {
         className={styles.card}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("WorkLRNPT");
+          props.setModalContentCompany("WorkLRNPT");
         }}
       >
         <div className={styles.cardText}>
@@ -101,7 +101,7 @@ function Card(props) {
         className={styles.card}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("WorkKG");
+          props.setModalContentCompany("WorkKG");
         }}
       >
         <div className={styles.cardText}>
@@ -129,7 +129,7 @@ function Card(props) {
         className={styles.card}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("WorkTR");
+          props.setModalContentCompany("WorkTR");
         }}
       >
         <div className={styles.cardText}>
@@ -157,7 +157,7 @@ function Card(props) {
           className={`${styles.card} ${styles.cardIncreasedLogo}`}
           onClick={() => {
             props.openModal();
-            props.SetModalContentCompany("MBC");
+            props.setModalContentCompany("MBC");
           }}
         >
           <div className={styles.cardText}>
@@ -185,7 +185,7 @@ function Card(props) {
         className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("MNG");
+          props.setModalContentCompany("MNG");
         }}
       >
         <div className={styles.cardText}>
@@ -213,7 +213,7 @@ function Card(props) {
         className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("VNV");
+          props.setModalContentCompany("VNV");
         }}
       >
         <div className={styles.cardText}>
@@ -242,7 +242,7 @@ function Card(props) {
         className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("SKO");
+          props.setModalContentCompany("SKO");
         }}
       >
         <div className={styles.cardText}>
@@ -271,7 +271,7 @@ function Card(props) {
         className={`${styles.card} ${styles.cardIncreasedLogo}`}
         onClick={() => {
           props.openModal();
-          props.SetModalContentCompany("SDC");
+          props.setModalContentCompany("SDC");
         }}
       >
         <div className={styles.cardText}>

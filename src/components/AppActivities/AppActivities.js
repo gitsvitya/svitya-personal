@@ -13,12 +13,12 @@ function AppActivities (props) {
           CompanyName={"SKO"}
           props={props}
           openModal={props.openModal}
-          SetModalContentCompany={props.SetModalContentCompany}></Card>
+          setModalContentCompany={props.setModalContentCompany}></Card>
           <Card
           CompanyName={"SDC"}
           props={props}
           openModal={props.openModal}
-          SetModalContentCompany={props.SetModalContentCompany}></Card>
+          setModalContentCompany={props.setModalContentCompany}></Card>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ function AppHeader(props) {
         <button
           className={styles.lngChanger}
           onClick={() => {
-            props.SetLanguage(`${nextLng}`);
+            props.setLanguage(`${nextLng}`);
           }}
         >
           <span className={styles.lngChangerText}>En</span>

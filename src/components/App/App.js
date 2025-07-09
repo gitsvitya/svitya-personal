@@ -13,13 +13,13 @@ import AppActivities from "../AppActivities/AppActivities";
 
 function App() {
   // Состояния текущего языка страницы, которое изначально определяется по языку браузера
-  const [language, SetLanguage] = useState(window.navigator.language);
+  const [language, setLanguage] = useState(window.navigator.language);
   // Состояние открытого модального окна
-  const [modalOpened, SetModalOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   // Состояние для рендера контента модельного окна, принимает на вход абберивиатуру компании
-  const [modalContentCompany, SetModalContentCompany] = useState("");
+  const [modalContentCompany, setModalContentCompany] = useState("");
   // Состояние для анимации модального окна
-  const [showContent, SetShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   // Определяем на каком языке показывать страницу - русский или английский
   let currentText;
@@ -28,14 +28,14 @@ function App() {
 
   // Функция, меняющая состояние открытия модального окна на true
   function openModal() {
-    SetModalOpened(true);
+    setModalOpened(true);
   }
 
   //Функция, меняющая состояние открытия модального окна на false с задержкой в 0.5 секунды, чтобы проигралась анимация закрытия
   function closeModal() {
-    SetShowContent(false);
+    setShowContent(false);
     setTimeout(() => {
-      SetModalOpened(false);
+      setModalOpened(false);
     }, 500);
   }
 
@@ -54,7 +54,7 @@ function App() {
       <div className={styles.page}>
         <AppHeader
           text={currentText}
-          SetLanguage={SetLanguage}
+          setLanguage={setLanguage}
           language={language}
         ></AppHeader>
         <main>
@@ -64,7 +64,7 @@ function App() {
             text={currentText}
             modalOpened={modalOpened}
             modalContentCompany={modalContentCompany}
-            SetModalContentCompany={SetModalContentCompany}
+            setModalContentCompany={setModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
           ></AppWorkExp>
@@ -72,7 +72,7 @@ function App() {
             text={currentText}
             modalOpened={modalOpened}
             modalContentCompany={modalContentCompany}
-            SetModalContentCompany={SetModalContentCompany}
+            setModalContentCompany={setModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
           ></AppProjectsExp>
@@ -80,7 +80,7 @@ function App() {
             text={currentText}
             modalOpened={modalOpened}
             modalContentCompany={modalContentCompany}
-            SetModalContentCompany={SetModalContentCompany}
+            setModalContentCompany={setModalContentCompany}
             openModal={openModal}
             closeModal={closeModal}
           ></AppActivities>
@@ -91,7 +91,7 @@ function App() {
         <Modal
           closeModal={closeModal}
           showContent={showContent}
-          SetShowContent={SetShowContent}
+          setShowContent={setShowContent}
         >
           <ModalContent
             modalContent={modalContentCompany}

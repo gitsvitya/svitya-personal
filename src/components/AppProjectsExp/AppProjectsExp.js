@@ -13,19 +13,19 @@ function AppProjectsExp(props) {
             CompanyName={"MBC"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"MNG"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"VNV"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
         </div>
       </div>

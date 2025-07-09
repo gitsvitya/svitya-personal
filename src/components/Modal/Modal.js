@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import styles from "./Modal.module.css";
 
-const Modal = ({ children, closeModal, showContent, SetShowContent }) => {
+const Modal = ({ children, closeModal, showContent, setShowContent }) => {
   const container = document.querySelector("#modal");
 
   useEffect(() => {
-    SetShowContent(true);
+    setShowContent(true);
   }, [])
 
   useEffect(() => {

@@ -11,31 +11,31 @@ function AppWorkExp(props) {
             CompanyName={"CI"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"NTB"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"LRNPT"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"KG"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
           <Card
             CompanyName={"TR"}
             props={props}
             openModal={props.openModal}
-            SetModalContentCompany={props.SetModalContentCompany}
+            setModalContentCompany={props.setModalContentCompany}
           ></Card>
         </div>
       </div>
