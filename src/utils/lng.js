@@ -11,7 +11,7 @@ export const rusLng = {
   workExpBlockHeaderText: 'Опыт работы',
 
   workExpBlockCompanyYearCI: '2025-н.в.',
-  workExpBlockCompanyNameCI: 'Ценовое агентство ХимИнсайт',
+  workExpBlockCompanyNameCI: 'ХимИнсайт',
   workExpBlockCompanyTitleCI: 'Внештатный консультант',
   workExpBlockCompanyAboutCI: 'ХимИнсайт — независимое ценовое агентство, специализирующееся на экспертной оценке рынка нефтегазохимии.',
   workExpBlockCompanyResultsCI: 'Проектная работа по договору оказания услуг. Налаживание взаимодействия между экспертами, редакторами и дизайнером для подготовки информационных продуктов для клиентов, распространяемых на платной основе.',
@@ -92,7 +92,7 @@ export const engLng = {
   workExpBlockHeaderText: 'Work experience',
 
   workExpBlockCompanyYearCI: '2025-current',
-  workExpBlockCompanyNameCI: 'ChemInsight price agency',
+  workExpBlockCompanyNameCI: 'ChemInsight',
   workExpBlockCompanyTitleCI: 'Freelance consultant',
   workExpBlockCompanyAboutCI: 'ChemInsight is an independent price reporting agency specializing in expert analysis of the oil, gas, and petrochemical markets.',
   workExpBlockCompanyResultsCI: 'Contract-based project work. Coordinating collaboration between experts, editors, and a designer to create paid informational products for clients.',
