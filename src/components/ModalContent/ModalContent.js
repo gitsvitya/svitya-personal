@@ -1,59 +1,46 @@
 import styles from "./ModalContent.module.css";
 import { logos } from "../../utils/cardLogos";
+import { cardMap } from "../../utils/cardMap.js";
 
-
-// import moexLogo from "../../images/moex_logo.png";
-// import lukoilLogo from "../../images/lukoil_logo.png";
-// import kalashnikovlLogo from "../../images/kalashnikov_logo.png";
-// import reutersLogo from "../../images/reuters_logo.png";
-// import mappngoLogo from "../../images/mappngoLogo_black.png";
-// import veniviLogo from "../../images/veniviLogo.png";
-// import strokeOffLabel from "../../images/stroke_off_label.png";
-// import svityaComLabel from "../../images/svitya_com_label.png";
-// import mbcLogo from "../../images/mbc_logo.png";
-// import ciLogo from "../../images/ci_logo.png";
-
-function ModalContent({modalContent, text}) {
+function ModalContent({ modalContent, text }) {
   const logo = logos[modalContent];
-  if (modalContent === "CI")
-    return (
-      <div className={styles.modalContentRenderGeneralWindow}>
-        <div className={styles.modalContentRenderTextLogoWindow}>
-          <div className={styles.modalContentRenderCompanyTextBox}>
-            <span className={styles.modalContentRendercardYear}>
-              {text.workExpBlockCompanyYearCI}
+  const config = cardMap[modalContent];
+  if (!config) return null;
+  return (
+    <div className={styles.modalContentRenderGeneralWindow}>
+      <div className={styles.modalContentRenderTextLogoWindow}>
+        <div className={styles.modalContentRenderCompanyTextBox}>
+          <span className={styles.modalContentRendercardYear}>
+            {text[config.yearKey]}
+          </span>
+          <div className={styles.modalContentRenderCompanyLinkBox}>
+            <span className={styles.modalContentRendercardCompanyName}>
+              {text[config.nameKey]}
             </span>
-            <div className={styles.modalContentRenderCompanyLinkBox}>
-              <span className={styles.modalContentRendercardCompanyName}>
-                {text.workExpBlockCompanyNameCI}
-              </span>
-              <a
-                className={styles.modalContentRenderlink}
-                href="https://cheminsight.ru/"
-                target="_blank"
-              >
-                cheminsight.ru
-              </a>
-            </div>
-            <span className={styles.modalContentRendercardTitle}>
-              {text.workExpBlockCompanyTitleCI}
-            </span>
+            <a
+              className={styles.modalContentRenderlink}
+              href={config.linkKey}
+              target="_blank"
+            >
+              {config.linkNameKey}
+            </a>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <span className={styles.modalContentRendercardTitle}>
+            {text[config.titleKey]}
+          </span>
         </div>
-        <div className={styles.modalContentRenderParagraphBlock}>
-          <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockCompanyAboutCI}
-          </p>
-          <p className={styles.modalContentRenderParagraph}>
-            {text.workExpBlockCompanyResultsCI}
-          </p>
-        </div>
+        <img className={styles.modalContentRenderlogoPic} src={logo}></img>
       </div>
-    );
+      <div className={styles.modalContentRenderParagraphBlock}>
+        <p className={styles.modalContentRenderParagraph}>
+          {text[config.aboutKey]}
+        </p>
+        <p className={styles.modalContentRenderParagraph}>
+          {text[config.resultsKey]}
+        </p>
+      </div>
+    </div>
+  );
   if (modalContent === "NTB")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
@@ -78,10 +65,7 @@ function ModalContent({modalContent, text}) {
               {text.workExpBlockCompanyTitleNTB}
             </span>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -117,10 +101,7 @@ function ModalContent({modalContent, text}) {
               {text.workExpBlockCompanyTitleLRNPT}
             </span>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -156,10 +137,7 @@ function ModalContent({modalContent, text}) {
               {text.workExpBlockCompanyTitleKG}
             </span>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -195,10 +173,7 @@ function ModalContent({modalContent, text}) {
               {text.workExpBlockCompanyTitleTR}
             </span>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -210,45 +185,42 @@ function ModalContent({modalContent, text}) {
         </div>
       </div>
     );
-    if (modalContent === "MBC")
-      return (
-        <div className={styles.modalContentRenderGeneralWindow}>
-          <div className={styles.modalContentRenderTextLogoWindow}>
-            <div className={styles.modalContentRenderCompanyTextBox}>
-              <span className={styles.modalContentRendercardYear}>
-                {text.projectExpBlockCompanyYearMadBurglarCat}
+  if (modalContent === "MBC")
+    return (
+      <div className={styles.modalContentRenderGeneralWindow}>
+        <div className={styles.modalContentRenderTextLogoWindow}>
+          <div className={styles.modalContentRenderCompanyTextBox}>
+            <span className={styles.modalContentRendercardYear}>
+              {text.projectExpBlockCompanyYearMadBurglarCat}
+            </span>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {text.projectExpBlockCompanyNameMadBurglarCat}
               </span>
-              <div className={styles.modalContentRenderCompanyLinkBox}>
-                <span className={styles.modalContentRendercardCompanyName}>
-                  {text.projectExpBlockCompanyNameMadBurglarCat}
-                </span>
-                <a
-                  className={styles.modalContentRenderlink}
-                  href="https://madburglarcat.ru/"
-                  target="_blank"
-                >
-                  madburglarcat.ru
-                </a>
-              </div>
-              <span className={styles.modalContentRendercardTitle}>
-                {text.projectExpBlockCompanyTitleMadBurglarCat}
-              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://madburglarcat.ru/"
+                target="_blank"
+              >
+                madburglarcat.ru
+              </a>
             </div>
-            <img
-              className={styles.modalContentRenderlogoPic}
-              src={logo}
-            ></img>
+            <span className={styles.modalContentRendercardTitle}>
+              {text.projectExpBlockCompanyTitleMadBurglarCat}
+            </span>
           </div>
-          <div className={styles.modalContentRenderParagraphBlock}>
-            <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockCompanyAboutMadBurglarCat}
-            </p>
-            <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockCompanyResultsMadBurglarCat}
-            </p>
-          </div>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
-      );
+        <div className={styles.modalContentRenderParagraphBlock}>
+          <p className={styles.modalContentRenderParagraph}>
+            {text.projectExpBlockCompanyAboutMadBurglarCat}
+          </p>
+          <p className={styles.modalContentRenderParagraph}>
+            {text.projectExpBlockCompanyResultsMadBurglarCat}
+          </p>
+        </div>
+      </div>
+    );
   if (modalContent === "MNG")
     return (
       <div className={styles.modalContentRenderGeneralWindow}>
@@ -273,10 +245,7 @@ function ModalContent({modalContent, text}) {
               {text.projectExpBlockCompanyTitleMappNgo}
             </span>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -312,10 +281,7 @@ function ModalContent({modalContent, text}) {
               {text.projectExpBlockCompanyTitleVenivi}
             </span>
           </div>
-          <img
-            className={styles.modalContentRenderlogoPic}
-            src={logo}
-          ></img>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
         <div className={styles.modalContentRenderParagraphBlock}>
           <p className={styles.modalContentRenderParagraph}>
@@ -327,84 +293,78 @@ function ModalContent({modalContent, text}) {
         </div>
       </div>
     );
-    if (modalContent === "SKO")
-      return (
-        <div className={styles.modalContentRenderGeneralWindow}>
-          <div className={styles.modalContentRenderTextLogoWindow}>
-            <div className={styles.modalContentRenderCompanyTextBox}>
-              <span className={styles.modalContentRendercardYear}>
-                {text.projectExpBlockCompanyYearStrokeOff}
+  if (modalContent === "SKO")
+    return (
+      <div className={styles.modalContentRenderGeneralWindow}>
+        <div className={styles.modalContentRenderTextLogoWindow}>
+          <div className={styles.modalContentRenderCompanyTextBox}>
+            <span className={styles.modalContentRendercardYear}>
+              {text.projectExpBlockCompanyYearStrokeOff}
+            </span>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {text.projectExpBlockCompanyNameStrokeOff}
               </span>
-              <div className={styles.modalContentRenderCompanyLinkBox}>
-                <span className={styles.modalContentRendercardCompanyName}>
-                  {text.projectExpBlockCompanyNameStrokeOff}
-                </span>
-                {/* <a
+              {/* <a
                   className={styles.modalContentRenderlink}
                   href="https://www.instagram.com/vitya.strokov/"
                   target="_blank"
                 >
                   instagram.com/vitya.strokov
                 </a> */}
-              </div>
-              <span className={styles.modalContentRendercardTitle}>
-                {text.projectExpBlockCompanyTitleStrokeOff}
-              </span>
             </div>
-            <img
-              className={styles.modalContentRenderlogoPic}
-              src={logo}
-            ></img>
+            <span className={styles.modalContentRendercardTitle}>
+              {text.projectExpBlockCompanyTitleStrokeOff}
+            </span>
           </div>
-          <div className={styles.modalContentRenderParagraphBlock}>
-            <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockCompanyAboutStrokeOff}
-            </p>
-            <p className={styles.modalContentRenderParagraph}>
-              {text.projectExpBlockCompanyResultsStrokeOff}
-            </p>
-          </div>
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
         </div>
-      );
-      if (modalContent === "SDC")
-        return (
-          <div className={styles.modalContentRenderGeneralWindow}>
-            <div className={styles.modalContentRenderTextLogoWindow}>
-              <div className={styles.modalContentRenderCompanyTextBox}>
-                <span className={styles.modalContentRendercardYear}>
-                  {text.projectExpBlockCompanyYearSvityaWeb}
-                </span>
-                <div className={styles.modalContentRenderCompanyLinkBox}>
-                  <span className={styles.modalContentRendercardCompanyName}>
-                    {text.projectExpBlockCompanyNameSvityaWeb}
-                  </span>
-                  <a
-                    className={styles.modalContentRenderlink}
-                    href="https://github.com/gitsvitya"
-                    target="_blank"
-                  >
-                    github.com/gitsvitya
-                  </a>
-                </div>
-                <span className={styles.modalContentRendercardTitle}>
-                  {text.projectExpBlockCompanyTitleSvityaWeb}
-                </span>
-              </div>
-              <img
-                className={styles.modalContentRenderlogoPic}
-                src={logo}
-              ></img>
+        <div className={styles.modalContentRenderParagraphBlock}>
+          <p className={styles.modalContentRenderParagraph}>
+            {text.projectExpBlockCompanyAboutStrokeOff}
+          </p>
+          <p className={styles.modalContentRenderParagraph}>
+            {text.projectExpBlockCompanyResultsStrokeOff}
+          </p>
+        </div>
+      </div>
+    );
+  if (modalContent === "SDC")
+    return (
+      <div className={styles.modalContentRenderGeneralWindow}>
+        <div className={styles.modalContentRenderTextLogoWindow}>
+          <div className={styles.modalContentRenderCompanyTextBox}>
+            <span className={styles.modalContentRendercardYear}>
+              {text.projectExpBlockCompanyYearSvityaWeb}
+            </span>
+            <div className={styles.modalContentRenderCompanyLinkBox}>
+              <span className={styles.modalContentRendercardCompanyName}>
+                {text.projectExpBlockCompanyNameSvityaWeb}
+              </span>
+              <a
+                className={styles.modalContentRenderlink}
+                href="https://github.com/gitsvitya"
+                target="_blank"
+              >
+                github.com/gitsvitya
+              </a>
             </div>
-            <div className={styles.modalContentRenderParagraphBlock}>
-              <p className={styles.modalContentRenderParagraph}>
-                {text.projectExpBlockCompanyAboutSvityaWeb}
-              </p>
-              <p className={styles.modalContentRenderParagraph}>
-                {text.projectExpBlockCompanyResultsSvityaWeb}
-              </p>
-            </div>
+            <span className={styles.modalContentRendercardTitle}>
+              {text.projectExpBlockCompanyTitleSvityaWeb}
+            </span>
           </div>
-        );
+          <img className={styles.modalContentRenderlogoPic} src={logo}></img>
+        </div>
+        <div className={styles.modalContentRenderParagraphBlock}>
+          <p className={styles.modalContentRenderParagraph}>
+            {text.projectExpBlockCompanyAboutSvityaWeb}
+          </p>
+          <p className={styles.modalContentRenderParagraph}>
+            {text.projectExpBlockCompanyResultsSvityaWeb}
+          </p>
+        </div>
+      </div>
+    );
 }
 
 export default ModalContent;

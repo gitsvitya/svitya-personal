@@ -1,8 +1,8 @@
-import styles from "./AppActivities.module.css";
-import Card from "../Card/Card";
+import styles from "./AppActivitiesExp.module.css";
+import Card from "../Card/Card.js";
 import { activityCompanies } from "../../utils/companiesList.js";
 
-function AppActivities({text, setModalContentCompany, openModal}) {
+function AppActivitiesExp({text, setModalContentCompany, openModal}) {
   return (
     <div className={styles.otherExp} id="otherExp">
       <div className={styles.container}>
@@ -11,7 +11,7 @@ function AppActivities({text, setModalContentCompany, openModal}) {
           {activityCompanies.map((name) => (
             <Card
               key={name}
-              CompanyName={name}
+              companyName={name}
               text={text}
               openModal={openModal}
               setModalContentCompany={setModalContentCompany}
@@ -23,4 +23,4 @@ function AppActivities({text, setModalContentCompany, openModal}) {
   );
 }
 
-export default AppActivities;
+export default AppActivitiesExp;

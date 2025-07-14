@@ -13,7 +13,7 @@ function AppProjectsExp({text, setModalContentCompany, openModal}) {
           {projectCompanies.map((name) => (
             <Card
               key={name}
-              CompanyName={name}
+              companyName={name}
               text={text}
               openModal={openModal}
               setModalContentCompany={setModalContentCompany}

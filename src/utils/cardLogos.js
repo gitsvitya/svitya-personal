@@ -10,17 +10,27 @@ import mbcLogo from "../images/mbc_logo.png";
 import ciLogo from "../images/ci_logo.png";
 
 export const logos = {
+  // Work
+  CI: ciLogo,
+  NTB: moexLogo,
+  LRNPT: lukoilLogo,
+  KG: kalashnikovlLogo,
+  TR: reutersLogo,
+  // Projects
+  MBC: mbcLogo,
+  MNG: mappngoLogo,
+  VNV: veniviLogo,
   // Activities
   SKO: strokeOffLabel,
-  SDC: svityaComLabel,
-  // Projects
-  VNV: veniviLogo,
-  MNG: mappngoLogo,
-  MBC: mbcLogo,
-  // Work
-  TR: reutersLogo,
-  KG: kalashnikovlLogo,
-  LRNPT: lukoilLogo,
-  NTB: moexLogo,
-  CI: ciLogo
+  SDC: svityaComLabel
+
+
+
+
+
+
+
+
+
+
 }

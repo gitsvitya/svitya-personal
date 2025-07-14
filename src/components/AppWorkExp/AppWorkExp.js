@@ -11,7 +11,7 @@ function AppWorkExp({text, setModalContentCompany, openModal}) {
           {workCompanies.map((name) => (
             <Card
               key={name}
-              CompanyName={name}
+              companyName={name}
               text={text}
               openModal={openModal}
               setModalContentCompany={setModalContentCompany}

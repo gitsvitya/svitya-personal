@@ -9,7 +9,7 @@ import Modal from "../Modal/Modal";
 import ModalContent from "../ModalContent/ModalContent";
 import AppAboutMe from "../AppAboutMe/AppAboutMe";
 import { rusLng, engLng } from "../../utils/lng";
-import AppActivities from "../AppActivities/AppActivities";
+import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
 
 function App() {
   // Состояния текущего языка страницы, которое изначально определяется по языку браузера
@@ -71,11 +71,11 @@ function App() {
             setModalContentCompany={setModalContentCompany}
             openModal={openModal}
           ></AppProjectsExp>
-          <AppActivities
+          <AppActivitiesExp
             text={currentText}
             setModalContentCompany={setModalContentCompany}
             openModal={openModal}
-          ></AppActivities>
+          ></AppActivitiesExp>
         </main>
         <AppFooter text={currentText}></AppFooter>
       </div>
