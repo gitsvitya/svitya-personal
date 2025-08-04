@@ -1,15 +1,15 @@
 import styles from "./AppFooter.module.css";
 import { HandySvg } from "handy-svg";
 import telegramLogo from "../../images/telegram_logo.svg";
-import instagramLogo from "../../images/instagram_logo.svg";
+// import instagramLogo from "../../images/instagram_logo.svg";
 import linkedinLogo from "../../images/linkedin_logo.svg";
 
-function AppFooter(props) {
+function AppFooter({text}) {
   return (
     <footer className={styles.footer} id="footer">
       <div className={styles.container}>
         <div className={styles.contactsBlock}>
-          {<span className={styles.text}>{props.text.appFooterContacts}:</span>}
+          {<span className={styles.text}>{text.appFooterContacts}:</span>}
           <div className={styles.navigation}>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>
@@ -22,7 +22,7 @@ function AppFooter(props) {
                   Telegram
                 </a>
               </li>
-              <li className={styles.navigationListItem}>
+              {/* <li className={styles.navigationListItem}>
                 <a
                   className={styles.link}
                   href="https://www.instagram.com/vitya.strokov"
@@ -31,7 +31,7 @@ function AppFooter(props) {
                   <HandySvg className={styles.linkPic} src={instagramLogo}></HandySvg>
                   Instagram
                 </a>
-              </li>
+              </li> */}
               <li className={styles.navigationListItem}>
                 <a
                   className={styles.link}

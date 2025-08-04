@@ -8,6 +8,9 @@ export const rusLng = {
 
   aboutBlockParagraphText: 'Привет! Меня зовут Виктор. Я менеджер проектов с упором на развитие продуктов и аналитику, с опытом работы более 10 лет в международных и российских компаниях, а также собственных проектах. Всегда открыт к новым знакомствам и сотрудничеству.',
 
+  cookieBannerBlockParagraphText: 'Для корректной работы сайта я использую технические и аналитические cookies. Продолжая работать с сайтом, Вы принимаете это.',
+  cookieBannerBlockButtonText: 'Принимаю',
+
   workExpBlockHeaderText: 'Опыт работы',
 
   workExpBlockCompanyYearCI: '2025-н.в.',
@@ -88,6 +91,10 @@ export const engLng = {
 
   aboutBlockHeaderText: 'About me',
   aboutBlockParagraphText: `Hey! My name is Victor. I’m a project manager with a focus on product development and analytics, with over 10 years of experience in international and Russian companies, as well as my own projects. Always open to new connections and collaborations.`,
+
+
+  cookieBannerBlockParagraphText: 'For the proper functioning of this website, I use technical and analytical cookies. By continuing to browse the site, you accept this.',
+  cookieBannerBlockButtonText: 'Accept',
 
   workExpBlockHeaderText: 'Work experience',
 

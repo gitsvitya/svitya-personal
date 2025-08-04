@@ -10,6 +10,7 @@ import ModalContent from "../ModalContent/ModalContent";
 import AppAboutMe from "../AppAboutMe/AppAboutMe";
 import { rusLng, engLng } from "../../utils/lng";
 import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
+import CookieBanner from "../CookieBanner/CookieBanner";
 
 function App() {
   // Состояния текущего языка страницы, которое изначально определяется по языку браузера
@@ -78,6 +79,9 @@ function App() {
           ></AppActivitiesExp>
         </main>
         <AppFooter text={currentText}></AppFooter>
+        <CookieBanner
+          text={currentText}
+        ></CookieBanner>
       </div>
       {modalOpened && (
         <Modal
