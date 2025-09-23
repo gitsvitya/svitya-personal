@@ -1,6 +1,6 @@
 # Victor Strokov Personal Website
 
-Welcome to my personal portfolio website! This project serves as an interactive resume, showcasing my professional experience, personal projects, and areas of expertise. The website is designed to be clean, responsive, and informative, providing visitors with a clear overview of my career path and ongoing work.
+This project serves as an interactive resume, showcasing my professional experience, personal projects, and areas of expertise. The website is designed to be clean, responsive, and informative, providing visitors with a clear overview of my career path and ongoing work.
 
 ---
 
