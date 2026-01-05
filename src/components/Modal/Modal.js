@@ -24,7 +24,12 @@ const Modal = ({ children, closeModal, showContent, setShowContent }) => {
   return ReactDOM.createPortal(
     <>
       <div className={`${styles.modalWindow} ${showContent && styles.showModalWindow}`}>
-        <div className={styles.closeIcon} onClick={closeModal}></div>
+        <button
+          type="button"
+          className={styles.closeIcon}
+          onClick={closeModal}
+          aria-label="Закрыть модальное окно"
+        ></button>
         {children}
       </div>
       <ModalOverlay onClick={closeModal} showContent = {showContent} />

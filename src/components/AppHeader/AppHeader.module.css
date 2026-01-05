@@ -47,6 +47,13 @@
   outline: none;
   text-rendering: optimizeLegibility;
   transition: color 0.5s ease-in-out;
+  outline: none;
+}
+
+.listItemLink:focus-visible,
+.lngChanger:focus-visible {
+  outline: 2px solid #F74843;
+  outline-offset: 4px;
 }
 
 .lngChanger {
@@ -60,6 +67,7 @@
   max-height: 31px;
   border: none;
   background-color: transparent;
+  outline: none;
 }
 
 .lngChangerText {

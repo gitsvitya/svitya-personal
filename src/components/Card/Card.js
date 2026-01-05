@@ -6,13 +6,26 @@ function Card({ companyName, openModal, setModalContentCompany, text }) {
   const logo = logos[companyName];
   const config = cardMap[companyName];
   if (!config) return null;
+
+  function handleActivate() {
+    openModal();
+    setModalContentCompany(companyName);
+  }
+
+  function handleKeyDown(evt) {
+    if (evt.key === "Enter" || evt.key === " ") {
+      evt.preventDefault();
+      handleActivate();
+    }
+  }
+
   return (
     <div
       className={styles.card}
-      onClick={() => {
-        openModal();
-        setModalContentCompany(companyName);
-      }}
+      role="button"
+      tabIndex={0}
+      onClick={handleActivate}
+      onKeyDown={handleKeyDown}
     >
       <div className={styles.cardText}>
         <span className={styles.cardYear}>{text[config.yearKey]}</span>

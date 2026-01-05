@@ -1,7 +1,9 @@
 .banner {
   position: fixed;
-  bottom: 5px;
-  width: 50%;
+  bottom: 12px;
+  left: 16px;
+  right: 16px;
+  width: min(960px, calc(100% - 64px));
   background-color: #333;
   color: white;
   padding: 16px;
@@ -14,6 +16,8 @@
   gap: 16px;
   border-radius: 10px;
   max-width: 1500px;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .paragraph {
@@ -64,10 +68,16 @@
   max-width: 102px;
   max-height: 38.5px;
   align-self: center;
+  outline: none;
 }
 
 .button:hover {
   cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
 }
 
 @media (max-width: 900px) {

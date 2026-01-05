@@ -8,6 +8,12 @@
   border-radius: 20px;
   border-color: black;
   box-sizing: border-box;
+  outline: none;
+}
+
+.card:focus-visible {
+  outline: 3px solid #F74843;
+  outline-offset: 6px;
 }
 
 .cardText {

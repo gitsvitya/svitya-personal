@@ -44,7 +44,7 @@ function App() {
   //Эффект, меняющий pageTitle в зависимости от текста страницы
   useEffect(() => {
     document.title = currentText.pageTitle;
-  });
+  }, [currentText.pageTitle]);
 
   // Функция по скрытию скролла во время открытия модального окна
   // useEffect(() => {
