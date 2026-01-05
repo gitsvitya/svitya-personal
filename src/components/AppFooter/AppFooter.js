@@ -45,7 +45,7 @@ function AppFooter({text}) {
             </ul>
           </div>
         </div>
-        <span className={styles.year}>2025</span>
+        <span className={styles.year}>2026</span>
       </div>
     </footer>
   );
