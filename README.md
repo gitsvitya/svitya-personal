@@ -14,15 +14,15 @@ This is a personal portfolio website built using **React (Create React App)**. I
 - Modal windows for in-depth descriptions of work and projects
 - Responsive design optimized for all screen sizes
 - Cookie consent banner that appears on the first visit
+- Dark theme mode
 
 ---
 
 ## Roadmap
 
-- 25Q3: **Dark mode** theme
-- 25Q3: Implementation of client-side **routing**
-- 25Q4: Migration to **Next.js** for improved performance and SEO
-- 26Q1: Backend integration for dynamic content rendering
+- 26Q1: Implementation of client-side **routing**
+- 25Q2: Migration to **Next.js** for improved performance and SEO
+- 26Q3: Backend integration for dynamic content rendering
 
 ---
 
