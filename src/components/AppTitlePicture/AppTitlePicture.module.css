@@ -101,7 +101,7 @@
 @media (max-width: 501px) {
   .container {
     padding: 20px;
-    gap: 10px;
+    gap: 20px;
   }
 
   .textBlock {

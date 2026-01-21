@@ -16,7 +16,7 @@ function AppHeader({ text, setLanguage, language, theme, setTheme }) {
           >
             <span
               className={`${styles.controlChangerText} ${
-                theme === "light" ? styles.themeActive : ""
+                theme === "light" ? styles.controlSwitcherActive : ""
               }`}
             >
               {text.themeLight}
@@ -30,7 +30,7 @@ function AppHeader({ text, setLanguage, language, theme, setTheme }) {
             </div>
             <span
               className={`${styles.controlChangerText} ${
-                theme === "dark" ? styles.themeActive : ""
+                theme === "dark" ? styles.controlSwitcherActive : ""
               }`}
             >
               {text.themeDark}
@@ -42,7 +42,9 @@ function AppHeader({ text, setLanguage, language, theme, setTheme }) {
               setLanguage(`${nextLng}`);
             }}
           >
-            <span className={styles.controlChangerText}>En</span>
+            <span className={`${styles.controlChangerText} ${
+              language === "en" ? styles.controlSwitcherActive : ""
+            }`}>En</span>
             <div
               className={`${styles.controlSwitcher} ${
                 language === "ru" ? styles.controlSwitcherActive : ""
@@ -51,7 +53,9 @@ function AppHeader({ text, setLanguage, language, theme, setTheme }) {
               <div className={styles.switcherThumb}></div>
             </div>
 
-            <span className={styles.controlChangerText}>Ru</span>
+            <span className={`${styles.controlChangerText} ${
+              language === "ru" ? styles.controlSwitcherActive : ""
+            }`}>Ru</span>
           </button>
         </div>
         <nav className={styles.navigationBlock}>
