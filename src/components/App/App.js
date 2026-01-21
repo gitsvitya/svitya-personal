@@ -16,6 +16,9 @@ function App() {
   // Состояния текущего языка страницы, которое изначально определяется по языку браузера
   const browserLng = window.navigator.language.startsWith("ru") ? "ru" : "en";
   const [language, setLanguage] = useState(browserLng);
+  // Состояние темы с привязкой к системной настройке
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useState(prefersDark ? "dark" : "light");
   // Состояние открытого модального окна
   const [modalOpened, setModalOpened] = useState(false);
   // Состояние для рендера контента модельного окна, принимает на вход абберивиатуру компании
@@ -46,6 +49,11 @@ function App() {
     document.title = currentText.pageTitle;
   }, [currentText.pageTitle]);
 
+  // Эффект установки выбранной темы на документ
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   // Функция по скрытию скролла во время открытия модального окна
   // useEffect(() => {
   //   document.body.style.overflow = modalOpened ? "hidden" : "unset";
@@ -58,6 +66,8 @@ function App() {
           text={currentText}
           setLanguage={setLanguage}
           language={language}
+          theme={theme}
+          setTheme={setTheme}
         ></AppHeader>
         <main>
           <AppTitlePicture text={currentText}></AppTitlePicture>

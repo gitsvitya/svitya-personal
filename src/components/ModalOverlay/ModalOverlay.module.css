@@ -1,6 +1,6 @@
 .modalOverlay {
   display: flex;
-  background-color: #000000;
+  background-color: var(--overlay-base);
   opacity: 0;
   width: 100vw;
   height: 100vh;

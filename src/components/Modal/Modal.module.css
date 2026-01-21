@@ -11,7 +11,7 @@
   right: 0;
   margin: auto;
   z-index: 3;
-  background-color: white;
+  background-color: var(--bg-surface);
   border-radius: 12px;
   padding: 30px;
   opacity: 0;
@@ -46,7 +46,7 @@
 }
 
 .closeIcon:focus-visible {
-  outline: 2px solid #F74843;
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
   border-radius: 50%;
 }

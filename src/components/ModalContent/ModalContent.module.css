@@ -66,7 +66,7 @@
   line-height: 1.5;
   text-decoration: none;
   outline: none;
-  color: black;
+  color: var(--text-primary);
   transition: color 0.5s ease-in-out;
 }
 
@@ -101,16 +101,15 @@
   font-weight: 400;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
-  /* text-align: justify */
 }
 
 .modalContentRenderlink:hover {
-  color: #F74843;
+  color: var(--accent);
   cursor: pointer;
 }
 
 .modalContentRenderlink:focus-visible {
-  outline: 2px solid #F74843;
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 

@@ -19,7 +19,7 @@ function AppFooter({text}) {
                   target="_blank"
                 >
                   <HandySvg className={styles.linkPic} src={telegramLogo}></HandySvg>
-                  Telegram
+                  <span className={styles.linkText}>Telegram</span>
                 </a>
               </li>
               {/* <li className={styles.navigationListItem}>
@@ -39,7 +39,7 @@ function AppFooter({text}) {
                   target="_blank"
                 >
                   <HandySvg className={styles.linkPic} src={linkedinLogo}></HandySvg>
-                  LinkedIn
+                  <span className={styles.linkText}>LinkedIn</span>
                 </a>
               </li>
             </ul>

@@ -3,9 +3,9 @@
   bottom: 12px;
   left: 16px;
   right: 16px;
-  width: min(960px, calc(100% - 64px));
-  background-color: #333;
-  color: white;
+  width: min(960px, calc(100% - 32px));
+  background-color: var(--banner-bg);
+  color: var(--banner-text);
   padding: 16px;
   display: flex;
   align-self: center;
@@ -29,6 +29,7 @@
   font-weight: 400;
   line-height: 1.375;
   text-rendering: optimizeLegibility;
+  color: var(--banner-text);
 }
 
 /* .closeIcon {
@@ -53,8 +54,8 @@
 } */
 
 .button {
-  background-color: #f74843;
-  color: white;
+  background-color: var(--accent);
+  color: var(--button-text);
   border: none;
   padding: 8px 16px;
   /* margin-left: 16px; */
@@ -76,7 +77,7 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid white;
+  outline: 2px solid var(--banner-text);
   outline-offset: 3px;
 }
 

@@ -4,16 +4,79 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  flex-direction: column;
   max-width: 1180px;
   padding: 50px;
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  align-self: flex-end;
+}
+
+.controlChanger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin: 0;
+  max-height: 40px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  border-radius: 999px;
+  outline: none;
+  color: var(--text-primary);
+  transition: border-color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.controlChangerText {
+  margin: 0;
+  padding: 0;
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  color: var(--text-primary);
+  text-align:start;
+  transition: color 0.5s ease-in-out;
+}
+
+.controlSwitcher {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: var(--control-track);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+  transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+.switcherThumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--control-thumb);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.controlSwitcherActive .switcherThumb {
+  transform: translateX(22px);
 }
 
 .navigationBlock {
   display: flex;
-  order: 1;
 }
 
 .listItems {
@@ -43,69 +106,16 @@
   font-weight: 400;
   line-height: 1.375;
   text-decoration: none;
-  color: black;
-  outline: none;
+  color: var(--text-primary);
   text-rendering: optimizeLegibility;
   transition: color 0.5s ease-in-out;
   outline: none;
 }
 
-.listItemLink:focus-visible,
-.lngChanger:focus-visible {
-  outline: 2px solid #F74843;
+  .controlChanger:focus-visible,
+  .listItemLink:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
-}
-
-.lngChanger {
-  display: flex;
-  order: 2;
-  align-self: center;
-  align-content: center;
-  gap: 5px;
-  padding: 0;
-  margin: 0;
-  max-height: 31px;
-  border: none;
-  background-color: transparent;
-  outline: none;
-}
-
-.lngChangerText {
-  margin: 0;
-  padding: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.375;
-  text-rendering: optimizeLegibility;
-  color: black;
-  transition: color 0.5s ease-in-out;
-  text-align: center;
-}
-
-.lngSwitcher {
-  max-width: 30px;
-  max-height: 20px;
-  align-self: center;
-  transition: fill 0.5s ease-in-out;
-}
-
-@media (min-width: 639px) {
-  .listItemLink:hover {
-    cursor: pointer;
-    color: #F74843;
-  }
-
-  .lngChanger:hover {
-    cursor: pointer;
-    color: #F74843;
-    fill: #F74843;
-  }
-
-  .lngChanger:hover .lngChangerText {
-    color: #F74843;
-  }
 }
 
 @media (max-width: 1000px) {
@@ -114,9 +124,26 @@
     grid-template-rows: repeat(2, auto);
     gap: 20px;
   }
+}
 
-  .lngChanger {
-    align-self: flex-start;
+@media (min-height: 780px) {
+  .listItemLink:hover {
+    cursor: pointer;
+    color: var(--accent);
+    transition: color 0.5s ease-in-out;
+  }
+
+  .controlChanger:hover {
+      cursor: pointer;
+      border-color: var(--accent);
+    }
+
+  .controlChanger:hover .themeActive {
+    color: var(--accent);
+  }
+
+  .controlChanger:hover .switcherThumb {
+    background-color: var(--accent);
   }
 }
 
@@ -124,21 +151,6 @@
   .container {
     padding: 30px;
     gap: 40px;
-  }
-}
-
-@media (max-width: 610px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .lngChanger {
-    order: 1;
-    align-self: flex-end;
-  }
-
-  .navigationBlock {
-    order: 2;
   }
 }
 
@@ -164,8 +176,15 @@
     justify-items: center;
   }
 
-  .listItemFooter {
-    grid-column: span 2;
+  .controlChangerText {
+    font-size: 14px;
+  }
+}
+@media (max-width: 380px) {
+  .controls {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
   }
 }
 

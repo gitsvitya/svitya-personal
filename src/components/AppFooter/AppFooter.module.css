@@ -28,6 +28,7 @@
   font-weight: 400;
   line-height: 1.375;
   text-rendering: optimizeLegibility;
+  color: var(--text-primary);
 }
 
 .navigationList {
@@ -42,29 +43,36 @@
 .navigationListItem {
   margin: 0;
   padding: 0;
+}
+
+.link {
+  display: flex;
+  gap: 3px;
+  text-decoration: none;
+  outline: none;
+  transition: color 0.5s ease-in-out;
+}
+
+.linkText {
+  margin: 0;
+  padding: 0;
   font-family: 'VremenaGrotesk', sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.375;
   text-rendering: optimizeLegibility;
-}
-
-.link {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-  text-decoration: none;
-  outline: none;
-  color: black;
+  color: var(--text-primary);
   transition: color 0.5s ease-in-out;
 }
 
 .linkPic {
   margin: 0;
   padding: 0;
-  max-height: 30px;
-  max-width: 30px;
+  max-height: 25px;
+  max-width: 25px;
+  color: var(--footer-link);
+  transition: color 0.5s ease-in-out;
 }
 
 .year {
@@ -78,19 +86,26 @@
   transition: all 0.5s linear;
   text-rendering: optimizeLegibility;
   align-self: center;
-}
-
-@media (min-width: 639px) {
-  .link:hover {
-    cursor: pointer;
-    color: #F74843;
-  }
-
+  color: var(--text-primary);
 }
 
 .link:focus-visible {
-  outline: 2px solid #F74843;
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
+}
+@media (min-width: 780px) {
+  .link:hover {
+    cursor: pointer;
+    color: var(--accent);
+  }
+
+  .link:hover .linkPic {
+    color: var(--accent);
+  }
+
+  .link:hover .linkText {
+    color: var(--accent);
+  }
 }
 
 @media (max-width: 769px) {

@@ -4,6 +4,9 @@ export const rusLng = {
   titleBlockHeader: 'Виктор Строков',
   titleBlockSubHeader: 'Управление проектами, разработка продуктов, исследования и аналитика',
 
+  themeLight: 'Светлая',
+  themeDark: 'Темная',
+
   aboutBlockHeaderText: 'Обо мне',
 
   aboutBlockParagraphText: 'Привет! Меня зовут Виктор. Я менеджер проектов с упором на развитие продуктов и аналитику, с опытом работы более 10 лет в международных и российских компаниях, а также собственных проектах. Всегда открыт к новым знакомствам и сотрудничеству.',
@@ -88,6 +91,9 @@ export const engLng = {
 
   titleBlockHeader: 'Victor Strokov',
   titleBlockSubHeader: 'Project management, product development, research, and analytics',
+
+  themeLight: 'Light',
+  themeDark: 'Dark',
 
   aboutBlockHeaderText: 'About me',
   aboutBlockParagraphText: `Hey! My name is Victor. I’m a project manager with a focus on product development and analytics, with over 10 years of experience in international and Russian companies, as well as my own projects. Always open to new connections and collaborations.`,

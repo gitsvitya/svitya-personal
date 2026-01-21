@@ -1,3 +1,36 @@
+:root {
+  --bg-page: #ffffff;
+  --bg-surface: #ffffff;
+  --text-primary: #111217;
+  --text-subtle: #2b303a;
+  --accent: #F74843;
+  --border-color: #111217;
+  --overlay-base: #000000;
+  --banner-bg: #333333;
+  --banner-text: #ffffff;
+  --button-text: #ffffff;
+  --control-track: #dfe3eb;
+  --control-thumb: #ffffff;
+  --footer-link: #111217;
+}
+
+:root[data-theme="dark"] {
+  --bg-page: #0c111a;
+  --bg-surface: #101826;
+  --text-primary: #edf1f7;
+  --text-subtle: #c7d0df;
+  --accent: #F74843;
+  --border-color: #edf1f7;
+  --overlay-base: #000000;
+  --banner-bg: #1c2433;
+  --banner-text: #e6ebf5;
+  --button-text: #ffffff;
+  --control-track: #1f2a3b;
+  /* --control-thumb: #0c111a; */
+  --control-thumb: #ffffff;
+  --footer-link: #1f2a3b;
+}
+
 html {
   scroll-behavior: smooth;
   height: 100%;
@@ -11,8 +44,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 @font-face {
