@@ -6,7 +6,7 @@
   display: flex;
   gap: 20px;
   flex-direction: column;
-  max-width: 1180px;
+  max-width: 1280px;
   padding: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -36,15 +36,15 @@
 }
 
 .controlChangerText {
+  font-family: 'VremenaGrotesk', sans-serif;
+  text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  text-rendering: optimizeLegibility;
   color: var(--text-primary);
-  text-align:start;
+  text-align: start;
   transition: color 0.5s ease-in-out;
 }
 
@@ -100,14 +100,12 @@
 .listItemLink {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.375;
   text-decoration: none;
   color: var(--text-primary);
-  text-rendering: optimizeLegibility;
   transition: color 0.5s ease-in-out;
   outline: none;
 }

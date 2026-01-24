@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import styles from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
 import AppTitlePicture from "../AppTitlePicture/AppTitlePicture";
@@ -12,18 +12,22 @@ import { rusLng, engLng } from "../../utils/lng";
 import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
 import CookieBanner from "../CookieBanner/CookieBanner";
 
-function App() {
-  // Состояния текущего языка страницы, которое изначально определяется по языку браузера
+// Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
+function App({ initialTheme = "light" }) {
+  // Определяем язык по браузеру; дальше язык управляется локальным стейтом.
   const browserLng = window.navigator.language.startsWith("ru") ? "ru" : "en";
   const [language, setLanguage] = useState(browserLng);
-  // Состояние темы с привязкой к системной настройке
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useState(prefersDark ? "dark" : "light");
-  // Состояние открытого модального окна
+  // Флаг для плавной анимации смены языка.
+  const [isLanguageSwitching, setIsLanguageSwitching] = useState(false);
+  // Храним таймауты, чтобы корректно сбрасывать анимацию при быстрых переключениях.
+  const languageTimeouts = useRef([]);
+  // Тема берётся из расчёта на сервере (head-скрипт) и дальше хранится в state.
+  const [theme, setTheme] = useState(initialTheme);
+  // Проверка на открыто ли модальное окно.
   const [modalOpened, setModalOpened] = useState(false);
-  // Состояние для рендера контента модельного окна, принимает на вход абберивиатуру компании
+  // Какая карточка должна быть показана в модальном окне.
   const [modalContentCompany, setModalContentCompany] = useState("");
-  // Состояние для анимации модального окна
+  // Управляет плавным появлением контента внутри модалки.
   const [showContent, setShowContent] = useState(false);
 
   // Определяем на каком языке показывать страницу - русский или английский
@@ -31,40 +35,67 @@ function App() {
   if (language === "ru") currentText = rusLng;
   else currentText = engLng;
 
-  // Функция, меняющая состояние открытия модального окна на true
-  function openModal() {
+  // Открываем модалку (link stable для передачи в карточки).
+  const openModal = useCallback(() => {
     setModalOpened(true);
-  }
+  }, []);
 
-  //Функция, меняющая состояние открытия модального окна на false с задержкой в 0.5 секунды, чтобы проигралась анимация закрытия
-  function closeModal() {
+  // Закрываем модалку с задержкой, чтобы успела отыграть CSS-анимация.
+  const closeModal = useCallback(() => {
     setShowContent(false);
     setTimeout(() => {
       setModalOpened(false);
     }, 500);
-  }
+  }, []);
 
-  //Эффект, меняющий pageTitle в зависимости от текста страницы
+  // Обновляем заголовок вкладки при смене языка.
   useEffect(() => {
     document.title = currentText.pageTitle;
   }, [currentText.pageTitle]);
 
+  // Убираем незавершённые таймеры анимации при размонтировании.
+  useEffect(() => {
+    return () => {
+      languageTimeouts.current.forEach(clearTimeout);
+    };
+  }, []);
+
+  const changeLanguageWithFade = useCallback(
+    (nextLanguage) => {
+      if (nextLanguage === language) return;
+      languageTimeouts.current.forEach(clearTimeout);
+      languageTimeouts.current = [];
+      setIsLanguageSwitching(true);
+      const fadeOutTimer = setTimeout(() => {
+        setLanguage(nextLanguage);
+        const fadeInTimer = setTimeout(() => {
+          setIsLanguageSwitching(false);
+        }, 300);
+        languageTimeouts.current.push(fadeInTimer);
+      }, 300);
+      languageTimeouts.current.push(fadeOutTimer);
+    },
+    [language]
+  );
+
   // Эффект установки выбранной темы на документ
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    const root = document.documentElement;
+    root.setAttribute("data-theme", theme);
+    const bgPage = getComputedStyle(root).getPropertyValue("--bg-page");
+    root.style.backgroundColor = bgPage;
   }, [theme]);
-
-  // Функция по скрытию скролла во время открытия модального окна
-  // useEffect(() => {
-  //   document.body.style.overflow = modalOpened ? "hidden" : "unset";
-  // }, [modalOpened]);
 
   return (
     <>
-      <div className={styles.page}>
+      <div
+        className={`${styles.page} ${
+          isLanguageSwitching ? styles.pageFading : styles.pageVisible
+        }`}
+      >
         <AppHeader
           text={currentText}
-          setLanguage={setLanguage}
+          onLanguageChange={changeLanguageWithFade}
           language={language}
           theme={theme}
           setTheme={setTheme}

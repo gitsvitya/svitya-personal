@@ -4,6 +4,7 @@ import telegramLogo from "../../images/telegram_logo.svg";
 // import instagramLogo from "../../images/instagram_logo.svg";
 import linkedinLogo from "../../images/linkedin_logo.svg";
 
+// Футер с соцссылками и годом; иконки загружены через HandySvg.
 function AppFooter({text}) {
   return (
     <footer className={styles.footer} id="footer">
@@ -17,6 +18,7 @@ function AppFooter({text}) {
                   className={styles.link}
                   href="https://www.t.me/vstrokov"
                   target="_blank"
+                  rel="noreferrer noopener"
                 >
                   <HandySvg className={styles.linkPic} src={telegramLogo}></HandySvg>
                   <span className={styles.linkText}>Telegram</span>
@@ -27,6 +29,7 @@ function AppFooter({text}) {
                   className={styles.link}
                   href="https://www.instagram.com/vitya.strokov"
                   target="_blank"
+                  rel="noreferrer noopener"
                 >
                   <HandySvg className={styles.linkPic} src={instagramLogo}></HandySvg>
                   Instagram
@@ -37,6 +40,7 @@ function AppFooter({text}) {
                   className={styles.link}
                   href="https://www.linkedin.com/in/victor-strokov"
                   target="_blank"
+                  rel="noreferrer noopener"
                 >
                   <HandySvg className={styles.linkPic} src={linkedinLogo}></HandySvg>
                   <span className={styles.linkText}>LinkedIn</span>

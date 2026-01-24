@@ -46,9 +46,17 @@ body {
   padding: 0;
   background-color: var(--bg-page);
   color: var(--text-primary);
+  font-family: 'VremenaGrotesk', sans-serif;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 @font-face {

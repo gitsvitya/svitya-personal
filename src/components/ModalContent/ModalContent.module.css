@@ -31,12 +31,10 @@
 .modalContentRendercardYear {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
-  text-rendering: optimizeLegibility;
 }
 
 .modalContentRenderCompanyLinkBox {
@@ -48,18 +46,15 @@
 .modalContentRendercardCompanyName {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 32px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.4;
-  text-rendering: optimizeLegibility;
 }
 
 .modalContentRenderlink {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -73,12 +68,10 @@
 .modalContentRendercardTitle {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.375;
-  text-rendering: optimizeLegibility;
 }
 
 .modalContentRenderlogoPic {
@@ -95,12 +88,10 @@
 .modalContentRenderParagraph {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
-  text-rendering: optimizeLegibility;
 }
 
 .modalContentRenderlink:hover {

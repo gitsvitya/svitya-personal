@@ -6,11 +6,15 @@
   height: 280px;
   border: 3px solid var(--border-color);
   border-radius: 20px;
-  border-color: var(--border-color);
   box-sizing: border-box;
   background-color: var(--bg-surface);
   color: var(--text-primary);
+  font-family: 'VremenaGrotesk', sans-serif;
+  text-rendering: optimizeLegibility;
   outline: none;
+  text-align: left;
+  appearance: none;
+  cursor: pointer;
 }
 
 .card:focus-visible {
@@ -28,23 +32,19 @@
 .cardYear {
   margin: 0;
   padding: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
-  text-rendering: optimizeLegibility;
 }
 
 .cardCompanyName {
   margin: 0;
   padding: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.375;
-  text-rendering: optimizeLegibility;
   transition: color 0.5s ease-in-out;
   color: var(--text-primary);
 }
@@ -52,44 +52,38 @@
 .cardTitle {
   margin: 0;
   padding: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
-  text-rendering: optimizeLegibility;
 }
 
-.cardButton {
+.cardCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  width: 50%;
+  align-self: center;
   background-color: var(--accent);
   color: var(--button-text);
   border: none;
   border-radius: 20px;
-  box-sizing: border-box;
-  width: 50%;
-  align-self: center;
   opacity: 0;
-  height: 0;
-  text-rendering: optimizeLegibility;
-  transition:
-    opacity 0.5s ease-in-out,
-    height 0.5s ease-in-out;
-}
-
-.cardButtonText {
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  height: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(8px);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
-  text-align: center;
-    transition:
-    opacity 0.25s ease-in-out,
-    height 0.25s ease-in-out;
+  transition:
+    opacity 0.5s ease-in-out,
+    max-height 0.35s ease-in-out,
+    padding 0.35s ease-in-out,
+    transform 0.4s ease-in-out,
+    background-color 0.5s ease-in-out,
+    color 0.5s ease-in-out;
 }
 
 .logoPic {
@@ -105,10 +99,6 @@
 
 
 @media (min-width: 640px) {
-  .card:hover {
-    cursor: pointer;
-  }
-
   .card:hover .cardText {
     justify-content: space-between;
   }
@@ -117,15 +107,13 @@
     color: var(--accent);
   }
 
-  .card:hover .cardButton {
+  .card:hover .cardCta,
+  .card:focus-visible .cardCta,
+  .card:active .cardCta {
     opacity: 1;
-    height: 30px;
-    cursor: pointer;
-  }
-
-  .card:hover .cardButtonText {
-    opacity: 1;
-    height: 100%;
+    max-height: 40px;
+    padding: 8px 12px;
+    transform: translateY(0);
   }
 
   .card:hover .logoPic {
@@ -155,8 +143,8 @@
     font-size: 18px;
   }
 
-  .cardButtonText {
-    font-size: 12px;
+  .cardCta {
+    font-size: 14px;
   }
 }
 
@@ -172,6 +160,10 @@
   .cardTitle {
     font-size: 16px;
   }
+
+  .cardCta {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 440px) {
@@ -181,12 +173,6 @@
     height: 180px;
   }
 
-  .cardIncreasedLogo {
-    grid-template-columns: 70% 30%;
-  }
-}
-
-@media (max-width: 440px) {
   .cardCompanyName {
     font-size: 16px;
   }

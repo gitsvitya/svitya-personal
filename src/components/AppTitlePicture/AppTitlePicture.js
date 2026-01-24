@@ -1,5 +1,6 @@
 import styles from "./AppTitlePicture.module.css";
 
+// Хедер-герой: аватар + заголовок/подзаголовок на выбранном языке.
 function AppTitlePicture({text}) {
   return (
     <div className={styles.title}>

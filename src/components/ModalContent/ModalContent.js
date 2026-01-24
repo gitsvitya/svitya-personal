@@ -2,6 +2,7 @@ import styles from "./ModalContent.module.css";
 import { logos } from "../../utils/cardLogos";
 import { cardMap } from "../../utils/cardMap.js";
 
+// Отрисовывает содержимое модалки: детали выбранной карточки с логотипом и ссылкой.
 function ModalContent({ modalContent, text }) {
   const logo = logos[modalContent];
   const config = cardMap[modalContent];
@@ -32,7 +33,12 @@ function ModalContent({ modalContent, text }) {
             {text[config.titleKey]}
           </span>
         </div>
-        <img className={styles.modalContentRenderlogoPic} src={logo}></img>
+        <img
+          className={styles.modalContentRenderlogoPic}
+          src={logo}
+          alt={text[config.nameKey]}
+          loading="lazy"
+        />
       </div>
       <div className={styles.modalContentRenderParagraphBlock}>
         <p className={styles.modalContentRenderParagraph}>

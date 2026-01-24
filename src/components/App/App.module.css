@@ -3,4 +3,14 @@
   flex-direction: column;
   padding: 0;
   margin: 0;
+  opacity: 1;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.pageFading {
+  opacity: 0;
+}
+
+.pageVisible {
+  opacity: 1;
 }

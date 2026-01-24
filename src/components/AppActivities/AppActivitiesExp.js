@@ -1,25 +1,24 @@
-import styles from "./AppActivitiesExp.module.css";
 import Card from "../Card/Card.js";
 import { activityCompanies } from "../../utils/companiesList.js";
+import Section from "../Section/Section";
+import sectionStyles from "../Section/Section.module.css";
 
-function AppActivitiesExp({text, setModalContentCompany, openModal}) {
+// Секция «Активности»: те же карточки, но для сторонних занятий/проектов.
+function AppActivitiesExp({ text, setModalContentCompany, openModal }) {
   return (
-    <div className={styles.otherExp} id="otherExp">
-      <div className={styles.container}>
-        <h3 className={styles.header}>{text.otherExpBlockHeaderText}</h3>
-        <div className={styles.cardBox}>
-          {activityCompanies.map((name) => (
-            <Card
-              key={name}
-              companyName={name}
-              text={text}
-              openModal={openModal}
-              setModalContentCompany={setModalContentCompany}
-            />
-          ))}
-        </div>
+    <Section id="otherExp" title={text.otherExpBlockHeaderText}>
+      <div className={sectionStyles.cardsGrid}>
+        {activityCompanies.map((name) => (
+          <Card
+            key={name}
+            companyName={name}
+            text={text}
+            openModal={openModal}
+            setModalContentCompany={setModalContentCompany}
+          />
+        ))}
       </div>
-    </div>
+    </Section>
   );
 }
 

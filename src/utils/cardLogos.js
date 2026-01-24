@@ -9,6 +9,7 @@ import svityaComLabel from "../images/svitya_com_label.png";
 import mbcLogo from "../images/mbc_logo.png";
 import ciLogo from "../images/ci_logo.png";
 
+// Карта соответствия ключей компаний и путей к логотипам.
 export const logos = {
   // Work
   CI: ciLogo,

@@ -1,25 +1,24 @@
-import styles from "./AppWorkExp.module.css";
 import Card from "../Card/Card";
 import { workCompanies } from "../../utils/companiesList.js";
+import Section from "../Section/Section";
+import sectionStyles from "../Section/Section.module.css";
 
-function AppWorkExp({text, setModalContentCompany, openModal}) {
+// Секция с опытом работы: рендерит карточки компаний и пробрасывает хендлер модалки.
+function AppWorkExp({ text, setModalContentCompany, openModal }) {
   return (
-    <div className={styles.workExp} id="workExp">
-      <div className={styles.container}>
-        <h3 className={styles.header}>{text.workExpBlockHeaderText}</h3>
-        <div className={styles.cardBox}>
-          {workCompanies.map((name) => (
-            <Card
-              key={name}
-              companyName={name}
-              text={text}
-              openModal={openModal}
-              setModalContentCompany={setModalContentCompany}
-            />
-          ))}
-        </div>
+    <Section id="workExp" title={text.workExpBlockHeaderText}>
+      <div className={sectionStyles.cardsGrid}>
+        {workCompanies.map((name) => (
+          <Card
+            key={name}
+            companyName={name}
+            text={text}
+            openModal={openModal}
+            setModalContentCompany={setModalContentCompany}
+          />
+        ))}
       </div>
-    </div>
+    </Section>
   );
 }
 

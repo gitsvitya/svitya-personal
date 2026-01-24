@@ -3,6 +3,7 @@ import styles from './CookieBanner.module.css';
 
 const COOKIE_KEY = 'cookieAccepted';
 
+// Баннер про cookies: показываем, если ранее не принимали, и записываем флаг в localStorage.
 function CookieBanner({text}) {
  const [visible, setVisible] = useState(false);
 
@@ -16,6 +17,7 @@ function CookieBanner({text}) {
   localStorage.setItem(COOKIE_KEY, 'true');
   setVisible(false);
  }
+
  if (!visible) {
   return null;
  }

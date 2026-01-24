@@ -1,60 +1,73 @@
 import styles from "./AppHeader.module.css";
 
-function AppHeader({ text, setLanguage, language, theme, setTheme }) {
+// Шапка страницы: переключатели языка/темы и навигация по якорям.
+function AppHeader({ text, onLanguageChange, language, theme, setTheme }) {
   const nextLng = language === "ru" ? "en" : "ru";
   const nextTheme = theme === "light" ? "dark" : "light";
+  const isDarkTheme = theme === "dark";
+  const isRussian = language === "ru";
+
+  // Переключаем тему и фиксируем состояние активного варианта.
+  function toggleTheme() {
+    setTheme(nextTheme);
+  }
+
+  // Запускаем смену языка с анимацией из родителя.
+  function toggleLanguage() {
+    onLanguageChange(nextLng);
+  }
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.controls}>
           <button
+            type="button"
             className={styles.controlChanger}
-            onClick={() => {
-              setTheme(nextTheme);
-            }}
+            onClick={toggleTheme}
+            aria-pressed={isDarkTheme}
           >
             <span
               className={`${styles.controlChangerText} ${
-                theme === "light" ? styles.controlSwitcherActive : ""
+                !isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
               {text.themeLight}
             </span>
             <div
               className={`${styles.controlSwitcher} ${
-                theme === "dark" ? styles.controlSwitcherActive : ""
+                isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
               <div className={styles.switcherThumb}></div>
             </div>
             <span
               className={`${styles.controlChangerText} ${
-                theme === "dark" ? styles.controlSwitcherActive : ""
+                isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
               {text.themeDark}
             </span>
           </button>
           <button
+            type="button"
             className={styles.controlChanger}
-            onClick={() => {
-              setLanguage(`${nextLng}`);
-            }}
+            onClick={toggleLanguage}
+            aria-pressed={isRussian}
           >
             <span className={`${styles.controlChangerText} ${
-              language === "en" ? styles.controlSwitcherActive : ""
+              !isRussian ? styles.controlSwitcherActive : ""
             }`}>En</span>
             <div
               className={`${styles.controlSwitcher} ${
-                language === "ru" ? styles.controlSwitcherActive : ""
+                isRussian ? styles.controlSwitcherActive : ""
               }`}
             >
               <div className={styles.switcherThumb}></div>
             </div>
 
             <span className={`${styles.controlChangerText} ${
-              language === "ru" ? styles.controlSwitcherActive : ""
+              isRussian ? styles.controlSwitcherActive : ""
             }`}>Ru</span>
           </button>
         </div>

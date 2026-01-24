@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  max-width: 1180px;
+  max-width: 1280px;
   padding: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -32,23 +32,19 @@
 .header {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 60px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-rendering: optimizeLegibility;
 }
 
 .paragraph {
   padding: 0;
   margin: 0;
-  font-family: 'VremenaGrotesk', sans-serif;
   font-size: 34px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.4;
-  text-rendering: optimizeLegibility;
 }
 
 @media (max-width: 1085px) {
