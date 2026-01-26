@@ -88,41 +88,42 @@ function App({ initialTheme = "light" }) {
 
   return (
     <>
-      <div
-        className={`${styles.page} ${
-          isLanguageSwitching ? styles.pageFading : styles.pageVisible
-        }`}
-      >
+      <div className={styles.page}>
         <AppHeader
           text={currentText}
           onLanguageChange={changeLanguageWithFade}
           language={language}
           theme={theme}
           setTheme={setTheme}
+          isLanguageSwitching={isLanguageSwitching}
         ></AppHeader>
-        <main>
-          <AppTitlePicture text={currentText}></AppTitlePicture>
-          <AppAboutMe text={currentText}></AppAboutMe>
-          <AppWorkExp
-            text={currentText}
-            setModalContentCompany={setModalContentCompany}
-            openModal={openModal}
-          ></AppWorkExp>
-          <AppProjectsExp
-            text={currentText}
-            setModalContentCompany={setModalContentCompany}
-            openModal={openModal}
-          ></AppProjectsExp>
-          <AppActivitiesExp
-            text={currentText}
-            setModalContentCompany={setModalContentCompany}
-            openModal={openModal}
-          ></AppActivitiesExp>
-        </main>
-        <AppFooter text={currentText}></AppFooter>
-        <CookieBanner
-          text={currentText}
-        ></CookieBanner>
+        <div
+          className={`${styles.content} ${
+            isLanguageSwitching ? styles.pageFading : styles.pageVisible
+          }`}
+        >
+          <main>
+            <AppTitlePicture text={currentText}></AppTitlePicture>
+            <AppAboutMe text={currentText}></AppAboutMe>
+            <AppWorkExp
+              text={currentText}
+              setModalContentCompany={setModalContentCompany}
+              openModal={openModal}
+            ></AppWorkExp>
+            <AppProjectsExp
+              text={currentText}
+              setModalContentCompany={setModalContentCompany}
+              openModal={openModal}
+            ></AppProjectsExp>
+            <AppActivitiesExp
+              text={currentText}
+              setModalContentCompany={setModalContentCompany}
+              openModal={openModal}
+            ></AppActivitiesExp>
+          </main>
+          <AppFooter text={currentText}></AppFooter>
+          <CookieBanner text={currentText}></CookieBanner>
+        </div>
       </div>
       {modalOpened && (
         <Modal

@@ -1,7 +1,14 @@
 import styles from "./AppHeader.module.css";
 
 // Шапка страницы: переключатели языка/темы и навигация по якорям.
-function AppHeader({ text, onLanguageChange, language, theme, setTheme }) {
+function AppHeader({
+  text,
+  onLanguageChange,
+  language,
+  theme,
+  setTheme,
+  isLanguageSwitching,
+}) {
   const nextLng = language === "ru" ? "en" : "ru";
   const nextTheme = theme === "light" ? "dark" : "light";
   const isDarkTheme = theme === "dark";
@@ -23,7 +30,9 @@ function AppHeader({ text, onLanguageChange, language, theme, setTheme }) {
         <div className={styles.controls}>
           <button
             type="button"
-            className={styles.controlChanger}
+            className={`${styles.controlChanger} ${styles.fadeTransition} ${
+              isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
+            }`}
             onClick={toggleTheme}
             aria-pressed={isDarkTheme}
           >
@@ -71,7 +80,11 @@ function AppHeader({ text, onLanguageChange, language, theme, setTheme }) {
             }`}>Ru</span>
           </button>
         </div>
-        <nav className={styles.navigationBlock}>
+        <nav
+          className={`${styles.navigationBlock} ${styles.fadeTransition} ${
+            isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
+          }`}
+        >
           <ul className={styles.listItems}>
             <li className={styles.listItem}>
               <a className={styles.listItemLink} href="#about">
