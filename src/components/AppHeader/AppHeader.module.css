@@ -90,6 +90,65 @@
 
 .navigationBlock {
   display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menuToggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 20px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.menuToggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.menuToggleActive {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.menuToggleLabel {
+  font-family: 'VremenaGrotesk', sans-serif;
+}
+
+.menuIcon {
+  width: 22px;
+  height: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menuIcon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
+}
+
+.menuToggleActive .menuIcon span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuToggleActive .menuIcon span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuToggleActive .menuIcon span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .listItems {
@@ -119,7 +178,7 @@
   line-height: 1.375;
   text-decoration: none;
   color: var(--text-primary);
-  transition: pacity 0.35s ease-in-out, color 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, color 0.5s ease-in-out;
   outline: none;
 }
 
@@ -172,19 +231,53 @@
 }
 
 @media (max-width: 428px) {
-  .listItemLink {
-    font-size: 18px;
+  .navigationBlock {
+    width: 100%;
+    justify-content: flex-end;
   }
 
-  .navigationBlock {
-    justify-content: center;
+  .menuToggle {
+    display: inline-flex;
   }
 
   .listItems {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
-    justify-items: center;
+    display: grid;
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    gap: 15px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-width: 180px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition:
+      opacity 0.5s ease-in-out,
+      transform 0.5s ease-in-out,
+      visibility 0.5s ease-in-out,
+      color 0.5s ease-in-out,
+      border 0.5s ease-in-out,
+      background-color 0.5s ease-in-out;
+  }
+
+  .menuOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .listItemLink {
+    font-size: 22px;
   }
 
   .controlChangerText {

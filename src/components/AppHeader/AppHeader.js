@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "./AppHeader.module.css";
 
 // Шапка страницы: переключатели языка/темы и навигация по якорям.
@@ -9,6 +10,7 @@ function AppHeader({
   setTheme,
   isLanguageSwitching,
 }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const nextLng = language === "ru" ? "en" : "ru";
   const nextTheme = theme === "light" ? "dark" : "light";
   const isDarkTheme = theme === "dark";
@@ -22,6 +24,35 @@ function AppHeader({
   // Запускаем смену языка с анимацией из родителя.
   function toggleLanguage() {
     onLanguageChange(nextLng);
+  }
+
+  // Сворачиваем меню при Esc и когда выходим за мобильную ширину.
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    }
+
+    function handleResize() {
+      if (window.innerWidth > 428 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMenuOpen]);
+
+  function toggleMenu() {
+    setIsMenuOpen((prev) => !prev);
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false);
   }
 
   return (
@@ -85,29 +116,48 @@ function AppHeader({
             isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
           }`}
         >
-          <ul className={styles.listItems}>
+          <button
+            type="button"
+            className={`${styles.menuToggle} ${
+              isMenuOpen ? styles.menuToggleActive : ""
+            }`}
+            aria-expanded={isMenuOpen}
+            aria-controls="app-nav-list"
+            onClick={toggleMenu}
+          >
+            <span className={styles.menuToggleLabel}>{text.navigationLowResMenu}</span>
+            <span className={styles.menuIcon} aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+          <ul
+            id="app-nav-list"
+            className={`${styles.listItems} ${isMenuOpen ? styles.menuOpen : ""}`}
+          >
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#about">
+              <a className={styles.listItemLink} href="#about" onClick={closeMenu}>
                 {text.aboutBlockHeaderText}
               </a>
             </li>
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#workExp">
+              <a className={styles.listItemLink} href="#workExp" onClick={closeMenu}>
                 {text.workExpBlockHeaderText}
               </a>
             </li>
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#projectsExp">
+              <a className={styles.listItemLink} href="#projectsExp" onClick={closeMenu}>
                 {text.projectExpBlockHeaderText}
               </a>
             </li>
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#otherExp">
+              <a className={styles.listItemLink} href="#otherExp" onClick={closeMenu}>
                 {text.otherExpBlockHeaderText}
               </a>
             </li>
             <li className={`${styles.listItem} ${styles.listItemFooter}`}>
-              <a className={styles.listItemLink} href="#footer">
+              <a className={styles.listItemLink} href="#footer" onClick={closeMenu}>
                 {text.appFooterContacts}
               </a>
             </li>

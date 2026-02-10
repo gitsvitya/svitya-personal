@@ -42,7 +42,7 @@ const Modal = ({ children, closeModal, showContent, setShowContent }) => {
           onClick={closeModal}
           aria-label="Закрыть модальное окно"
         ></button>
-        {children}
+        <div className={styles.modalBody}>{children}</div>
       </div>
       <ModalOverlay onClick={closeModal} showContent = {showContent} />
     </>,
