@@ -150,49 +150,56 @@ function App({ initialTheme = "light" }) {
           activePath={activePath}
           onNavigate={navigateTo}
         ></AppHeader>
-        <div
-          className={`${styles.content} ${
+        <main
+          className={`${styles.main} ${styles.fade} ${
             isFading ? styles.pageFading : styles.pageVisible
           }`}
         >
-          <main>
-            <Routes location={location}>
-              <Route path="/about" element={<AppAboutMe text={currentText}></AppAboutMe>} />
-              <Route
-                path="/work"
-                element={
-                  <AppWorkExp
-                    text={currentText}
-                    setModalContentCompany={setModalContentCompany}
-                    openModal={openModal}
-                  ></AppWorkExp>
-                }
-              />
-              <Route
-                path="/projects"
-                element={
-                  <AppProjectsExp
-                    text={currentText}
-                    setModalContentCompany={setModalContentCompany}
-                    openModal={openModal}
-                  ></AppProjectsExp>
-                }
-              />
-              <Route
-                path="/activities"
-                element={
-                  <AppActivitiesExp
-                    text={currentText}
-                    setModalContentCompany={setModalContentCompany}
-                    openModal={openModal}
-                  ></AppActivitiesExp>
-                }
-              />
-              <Route path="/" element={<Navigate to="/about" replace />} />
-              <Route path="*" element={<Navigate to="/about" replace />} />
-            </Routes>
-          </main>
-          <AppFooter text={currentText}></AppFooter>
+          <Routes location={location}>
+            <Route path="/about" element={<AppAboutMe text={currentText}></AppAboutMe>} />
+            <Route
+              path="/work"
+              element={
+                <AppWorkExp
+                  text={currentText}
+                  setModalContentCompany={setModalContentCompany}
+                  openModal={openModal}
+                ></AppWorkExp>
+              }
+            />
+            <Route
+              path="/projects"
+              element={
+                <AppProjectsExp
+                  text={currentText}
+                  setModalContentCompany={setModalContentCompany}
+                  openModal={openModal}
+                ></AppProjectsExp>
+              }
+            />
+            <Route
+              path="/activities"
+              element={
+                <AppActivitiesExp
+                  text={currentText}
+                  setModalContentCompany={setModalContentCompany}
+                  openModal={openModal}
+                ></AppActivitiesExp>
+              }
+            />
+            <Route path="/" element={<Navigate to="/about" replace />} />
+            <Route path="*" element={<Navigate to="/about" replace />} />
+          </Routes>
+        </main>
+        <AppFooter
+          text={currentText}
+          isLanguageSwitching={isLanguageSwitching}
+        ></AppFooter>
+        <div
+          className={`${styles.fade} ${
+            isLanguageSwitching ? styles.pageFading : styles.pageVisible
+          }`}
+        >
           <CookieBanner text={currentText}></CookieBanner>
         </div>
       </div>

@@ -5,9 +5,14 @@ import telegramLogo from "../../images/telegram_logo.svg";
 import linkedinLogo from "../../images/linkedin_logo.svg";
 
 // Футер с соцссылками и годом; иконки загружены через HandySvg.
-function AppFooter({text}) {
+function AppFooter({ text, isLanguageSwitching }) {
   return (
-    <footer className={styles.footer} id="footer">
+    <footer
+      className={`${styles.footer} ${styles.fadeTransition} ${
+        isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
+      }`}
+      id="footer"
+    >
       <div className={styles.container}>
         <div className={styles.contactsBlock}>
           {<span className={styles.text}>{text.appFooterContacts}:</span>}

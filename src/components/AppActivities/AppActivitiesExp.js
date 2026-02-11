@@ -7,7 +7,7 @@ import sectionStyles from "../Section/Section.module.css";
 function AppActivitiesExp({ text, setModalContentCompany, openModal }) {
   return (
     <Section id="otherExp"
-    // title={text.otherExpBlockHeaderText}
+    title={text.otherExpBlockHeaderText}
     >
       <div className={sectionStyles.cardsGrid}>
         {activityCompanies.map((name) => (
