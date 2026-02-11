@@ -6,7 +6,9 @@ import sectionStyles from "../Section/Section.module.css";
 // Секция с опытом работы: рендерит карточки компаний и пробрасывает хендлер модалки.
 function AppWorkExp({ text, setModalContentCompany, openModal }) {
   return (
-    <Section id="workExp" title={text.workExpBlockHeaderText}>
+    <Section id="workExp"
+    // title={text.workExpBlockHeaderText}
+    >
       <div className={sectionStyles.cardsGrid}>
         {workCompanies.map((name) => (
           <Card

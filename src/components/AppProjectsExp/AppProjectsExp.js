@@ -6,7 +6,9 @@ import sectionStyles from "../Section/Section.module.css";
 // Секция «Проекты»: выводит карточки основанных проектов с деталями в модалке.
 function AppProjectsExp({ text, setModalContentCompany, openModal }) {
   return (
-    <Section id="projectsExp" title={text.projectExpBlockHeaderText}>
+    <Section id="projectsExp"
+    // title={text.projectExpBlockHeaderText}
+    >
       <div className={sectionStyles.cardsGrid}>
         {projectCompanies.map((name) => (
           <Card

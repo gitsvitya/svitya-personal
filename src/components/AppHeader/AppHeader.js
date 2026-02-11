@@ -9,7 +9,11 @@ function AppHeader({
   theme,
   setTheme,
   isLanguageSwitching,
+  activePath,
+  onNavigate,
 }) {
+
+  // Объявляем состояния для переключения меню на маленьких мобильных разрешениях, а также переменные для переключения языка.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const nextLng = language === "ru" ? "en" : "ru";
   const nextTheme = theme === "light" ? "dark" : "light";
@@ -137,30 +141,58 @@ function AppHeader({
             className={`${styles.listItems} ${isMenuOpen ? styles.menuOpen : ""}`}
           >
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#about" onClick={closeMenu}>
+              <button
+                type="button"
+                className={`${styles.listItemLink} ${activePath === "/about" ? styles.listItemLinkActive : ""}`}
+                onClick={() => {
+                  onNavigate("/about");
+                  closeMenu();
+                }}
+              >
                 {text.aboutBlockHeaderText}
-              </a>
+              </button>
             </li>
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#workExp" onClick={closeMenu}>
+              <button
+                type="button"
+                className={`${styles.listItemLink} ${activePath === "/work" ? styles.listItemLinkActive : ""}`}
+                onClick={() => {
+                  onNavigate("/work");
+                  closeMenu();
+                }}
+              >
                 {text.workExpBlockHeaderText}
-              </a>
+              </button>
             </li>
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#projectsExp" onClick={closeMenu}>
+              <button
+                type="button"
+                className={`${styles.listItemLink} ${activePath === "/projects" ? styles.listItemLinkActive : ""}`}
+                onClick={() => {
+                  onNavigate("/projects");
+                  closeMenu();
+                }}
+              >
                 {text.projectExpBlockHeaderText}
-              </a>
+              </button>
             </li>
             <li className={styles.listItem}>
-              <a className={styles.listItemLink} href="#otherExp" onClick={closeMenu}>
+              <button
+                type="button"
+                className={`${styles.listItemLink} ${activePath === "/activities" ? styles.listItemLinkActive : ""}`}
+                onClick={() => {
+                  onNavigate("/activities");
+                  closeMenu();
+                }}
+              >
                 {text.otherExpBlockHeaderText}
-              </a>
+              </button>
             </li>
-            <li className={`${styles.listItem} ${styles.listItemFooter}`}>
+            {/* <li className={`${styles.listItem} ${styles.listItemFooter}`}>
               <a className={styles.listItemLink} href="#footer" onClick={closeMenu}>
                 {text.appFooterContacts}
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
