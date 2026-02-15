@@ -35,7 +35,6 @@ function App({ initialTheme = "light" }) {
   // Управляет плавной сменой разделов.
   const [isRouteSwitching, setIsRouteSwitching] = useState(false);
   const routeTimeoutRef = useRef(null);
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -64,6 +63,7 @@ function App({ initialTheme = "light" }) {
   // Открываем модалку (link stable для передачи в карточки).
   const openModal = useCallback(() => {
     setModalOpened(true);
+    document.body.style.overflow = "hidden";
   }, []);
 
   // Закрываем модалку с задержкой, чтобы успела отыграть CSS-анимация.
@@ -71,6 +71,7 @@ function App({ initialTheme = "light" }) {
     setShowContent(false);
     setTimeout(() => {
       setModalOpened(false);
+      document.body.style.overflow = "";
     }, 500);
   }, []);
 
@@ -78,6 +79,11 @@ function App({ initialTheme = "light" }) {
   useEffect(() => {
     document.title = currentText.pageTitle;
   }, [currentText.pageTitle]);
+
+  // Сохраняем выбранную тему для последующих заходов.
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Убираем незавершённые таймеры анимации при размонтировании.
   useEffect(() => {
