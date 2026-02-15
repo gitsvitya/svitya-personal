@@ -12,6 +12,9 @@
   --control-track: #dfe3eb;
   --control-thumb: #ffffff;
   --footer-link: #111217;
+  --transition-fast: 0.35s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  --overlay-opacity: 0.6;
 }
 
 :root[data-theme="dark"] {
@@ -63,6 +66,36 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.fade-transition {
+  transition:
+    opacity var(--transition-fast),
+    color var(--transition-slow),
+    border-color var(--transition-slow),
+    background-color var(--transition-slow);
+}
+
+.fade-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @font-face {

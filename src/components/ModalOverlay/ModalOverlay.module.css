@@ -7,10 +7,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
-  transition: opacity 0.5s ease-in-out;
+  z-index: 10000;
+  transition: opacity var(--transition-slow);
 }
 
 .showModalOverlay {
-  opacity: 0.6;
+  opacity: var(--overlay-opacity);
 }

@@ -2,8 +2,9 @@
   display: grid;
   grid-template-columns: 70% 30%;
   padding: 20px;
-  width: 580px;
-  height: 280px;
+  width: 100%;
+  max-width: 580px;
+  min-height: 260px;
   border: 3px solid var(--border-color);
   border-radius: 20px;
   box-sizing: border-box;
@@ -125,8 +126,7 @@
 
 @media (max-width: 639px) {
   .card {
-    height: 250px;
-    width: 100%;
+    min-height: 230px;
   }
 
   .cardText {
@@ -152,7 +152,7 @@
 
 @media (max-width: 550px) {
   .card{
-    height: 200px;
+    min-height: 200px;
   }
 
   .cardCompanyName {

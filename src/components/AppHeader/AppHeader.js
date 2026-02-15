@@ -65,8 +65,8 @@ function AppHeader({
         <div className={styles.controls}>
           <button
             type="button"
-            className={`${styles.controlChanger} ${styles.fadeTransition} ${
-              isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
+            className={`${styles.controlChanger} fade-transition ${
+              isLanguageSwitching ? "fade-hidden" : "fade-visible"
             }`}
             onClick={toggleTheme}
             aria-pressed={isDarkTheme}
@@ -116,8 +116,8 @@ function AppHeader({
           </button>
         </div>
         <nav
-          className={`${styles.navigationBlock} ${styles.fadeTransition} ${
-            isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
+          className={`${styles.navigationBlock} fade-transition ${
+            isLanguageSwitching ? "fade-hidden" : "fade-visible"
           }`}
         >
           <button

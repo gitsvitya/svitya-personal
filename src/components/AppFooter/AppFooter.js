@@ -8,8 +8,8 @@ import linkedinLogo from "../../images/linkedin_logo.svg";
 function AppFooter({ text, isLanguageSwitching }) {
   return (
     <footer
-      className={`${styles.footer} ${styles.fadeTransition} ${
-        isLanguageSwitching ? styles.fadeHidden : styles.fadeVisible
+      className={`${styles.footer} fade-transition ${
+        isLanguageSwitching ? "fade-hidden" : "fade-visible"
       }`}
       id="footer"
     >

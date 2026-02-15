@@ -13,19 +13,6 @@
   align-items: center;
 }
 
-.fadeTransition {
-  transition: opacity 0.35s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out, background-color 0.5s ease-in-out;
-}
-
-.fadeHidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.fadeVisible {
-  opacity: 1;
-}
-
 .controls {
   display: flex;
   gap: 12px;
