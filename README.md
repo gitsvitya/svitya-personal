@@ -15,13 +15,13 @@ This is a personal portfolio website built using **React (Create React App)**. I
 - Responsive design optimized for all screen sizes
 - Cookie consent banner that appears on the first visit
 - Dark theme mode
+- Client-side routing
 
 ---
 
 ## Roadmap
 
-- 26Q1: Implementation of client-side **routing**
-- 25Q2: Migration to **Next.js** for improved performance and SEO
+- 26Q2: Migration to **Next.js** for improved performance and SEO
 - 26Q3: Backend integration for dynamic content rendering
 
 ---
@@ -64,7 +64,6 @@ npm run lint
 ## Author
 
 **Victor Strokov**\
-Project Manager & Product Developer
 
 ---
 
