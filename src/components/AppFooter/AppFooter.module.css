@@ -66,12 +66,39 @@
 }
 
 .linkPic {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
   margin: 0;
   padding: 0;
-  max-height: 25px;
-  max-width: 25px;
-  color: var(--footer-link);
-  transition: color var(--transition-slow);
+  height: 25px;
+  width: 25px;
+  transition: background-image var(--transition-slow);
+}
+
+.linkPicTelegram {
+  background-image: url('../../images/telegram_logo.svg');
+}
+
+.link:hover .linkPicTelegram {
+  background-image: url('../../images/telegram_logo_active.svg');
+}
+
+.linkPicInstagram {
+  background-image: url('../../images/instagram_logo.svg');
+}
+
+.link:hover .linkPicInstagram {
+  background-image: url('../../images/instagram_logo_active.svg');
+}
+
+.linkPicLinkedin {
+  background-image: url('../../images/linkedin_logo.svg');
+}
+
+.link:hover .linkPicLinkedin {
+  background-image: url('../../images/linkedin_logo_active.svg');
 }
 
 .year {
@@ -99,10 +126,6 @@
 @media (min-width: 780px) {
   .link:hover {
     cursor: pointer;
-    color: var(--accent);
-  }
-
-  .link:hover .linkPic {
     color: var(--accent);
   }
 

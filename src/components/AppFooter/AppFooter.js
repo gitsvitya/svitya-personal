@@ -1,10 +1,6 @@
 import styles from "./AppFooter.module.css";
-import { HandySvg } from "handy-svg";
-import telegramLogo from "../../images/telegram_logo.svg";
-import instagramLogo from "../../images/instagram_logo.svg";
-import linkedinLogo from "../../images/linkedin_logo.svg";
 
-// Футер с соцссылками и годом; иконки загружены через HandySvg.
+// Футер с соцссылками и годом.
 function AppFooter({ text, isLanguageSwitching }) {
   return (
     <footer
@@ -26,7 +22,7 @@ function AppFooter({ text, isLanguageSwitching }) {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  <HandySvg className={styles.linkPic} src={telegramLogo}></HandySvg>
+                  <div className={`${styles.linkPic} ${styles.linkPicTelegram}`}></div>
                   <span className={styles.linkText}>Telegram</span>
                 </a>
               </li>
@@ -37,7 +33,7 @@ function AppFooter({ text, isLanguageSwitching }) {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  <HandySvg className={styles.linkPic} src={instagramLogo}></HandySvg>
+                  <div className={`${styles.linkPic} ${styles.linkPicInstagram}`}></div>
                   <span className={styles.linkText}>Instagram*</span>
                 </a>
               </li>}
@@ -48,7 +44,7 @@ function AppFooter({ text, isLanguageSwitching }) {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  <HandySvg className={styles.linkPic} src={linkedinLogo}></HandySvg>
+                  <div className={`${styles.linkPic} ${styles.linkPicLinkedin}`}></div>
                   <span className={styles.linkText}>LinkedIn</span>
                 </a>
               </li>

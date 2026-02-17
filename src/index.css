@@ -11,7 +11,6 @@
   --button-text: #ffffff;
   --control-track: #dfe3eb;
   --control-thumb: #ffffff;
-  --footer-link: #111217;
   --transition-fast: 0.35s ease-in-out;
   --transition-slow: 0.5s ease-in-out;
   --overlay-opacity: 0.6;
@@ -33,9 +32,7 @@
   --banner-text: #e6ebf5;
   --button-text: #ffffff;
   --control-track: #1f2a3b;
-  /* --control-thumb: #0c111a; */
   --control-thumb: #ffffff;
-  --footer-link: #1f2a3b;
 }
 
 html {
@@ -91,7 +88,6 @@ body {
 
 .layout-container {
   display: flex;
-  /* flex-direction: column; */
   gap: 20px;
   max-width: var(--layout-max-width);
   padding: var(--layout-padding-desktop);

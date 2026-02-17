@@ -29,14 +29,12 @@
 
 .closeIcon {
   background-image: url('../../images/close_button.svg');
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: transparent;
   border: 0;
   display: block;
-  max-height: 32px;
-  max-width: 32px;
   height: 32px;
   width: 32px;
   position: absolute;
