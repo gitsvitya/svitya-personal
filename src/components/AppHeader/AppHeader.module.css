@@ -137,7 +137,7 @@
   display: grid;
   grid-template-columns: repeat(4, auto);
   align-items: center;
-  column-gap: 50px;
+  column-gap: 36px;
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -199,33 +199,22 @@
   }
 }
 
-@media (max-width: 769px) {
-  .container {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 667px) {
+@media (max-width: 900px) {
   .listItems {
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(2, auto);
-    row-gap: 20px;
+    column-gap: 24px;
   }
-  .listItem {
-    display: block;
-    align-items: center;
-  }
-
   .listItemLink {
-    align-self: center;
-    width: 100%;
+    font-size: 20px;
+  }
+  .container {
+    gap: 24px;
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 780px) {
   .container {
-  gap: 16px;
-}
+    gap: 20px;
+  }
 
   .navigationBlock {
     width: 100%;
@@ -249,7 +238,7 @@
     gap: 15px;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    min-width: 180px;
+    min-width: 200px;
     z-index: 10;
     opacity: 0;
     visibility: hidden;
@@ -279,6 +268,13 @@
   .controlChangerText {
     font-size: 14px;
   }
+}
+
+@media (max-width: 428px) {
+  .container {
+  gap: 16px;
+}
+
 }
 @media (max-width: 380px) {
   .controls {

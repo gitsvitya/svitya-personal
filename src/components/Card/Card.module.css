@@ -147,6 +147,10 @@
 
   .cardCta {
     font-size: 14px;
+    opacity: 1;
+    max-height: 40px;
+    padding: 8px 12px;
+    transform: translateY(0);
   }
 }
 
@@ -172,7 +176,7 @@
   .card {
     padding: 10px;
     grid-template-columns: 75% 25%;
-    min-height: 160px;
+    min-height: 180px;
   }
 
   .cardCompanyName {
