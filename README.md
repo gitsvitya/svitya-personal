@@ -1,4 +1,4 @@
-# Victor Strokov Personal Website
+# Svitya's Personal Website
 
 This project serves as an interactive resume, showcasing my professional experience, personal projects, and areas of expertise. The website is designed to be clean, responsive, and informative, providing visitors with a clear overview of my career path and ongoing work.
 
@@ -63,7 +63,7 @@ npm run lint
 
 ## Author
 
-**Victor Strokov**\
+**Victor Strokov**
 
 ---
 
