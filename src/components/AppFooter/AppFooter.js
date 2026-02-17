@@ -1,7 +1,7 @@
 import styles from "./AppFooter.module.css";
 import { HandySvg } from "handy-svg";
 import telegramLogo from "../../images/telegram_logo.svg";
-// import instagramLogo from "../../images/instagram_logo.svg";
+import instagramLogo from "../../images/instagram_logo.svg";
 import linkedinLogo from "../../images/linkedin_logo.svg";
 
 // Футер с соцссылками и годом; иконки загружены через HandySvg.
@@ -13,7 +13,8 @@ function AppFooter({ text, isLanguageSwitching }) {
       }`}
       id="footer"
     >
-      <div className={styles.container}>
+      <div className={`layout-container ${styles.container}`}>
+        <div className={styles.disclaimerBlock}>
         <div className={styles.contactsBlock}>
           {<span className={styles.text}>{text.appFooterContacts}:</span>}
           <div className={styles.navigation}>
@@ -29,7 +30,7 @@ function AppFooter({ text, isLanguageSwitching }) {
                   <span className={styles.linkText}>Telegram</span>
                 </a>
               </li>
-              {/* <li className={styles.navigationListItem}>
+              {<li className={styles.navigationListItem}>
                 <a
                   className={styles.link}
                   href="https://www.instagram.com/vitya.strokov"
@@ -37,9 +38,9 @@ function AppFooter({ text, isLanguageSwitching }) {
                   rel="noreferrer noopener"
                 >
                   <HandySvg className={styles.linkPic} src={instagramLogo}></HandySvg>
-                  Instagram
+                  <span className={styles.linkText}>Instagram*</span>
                 </a>
-              </li> */}
+              </li>}
               <li className={styles.navigationListItem}>
                 <a
                   className={styles.link}
@@ -53,6 +54,8 @@ function AppFooter({ text, isLanguageSwitching }) {
               </li>
             </ul>
           </div>
+        </div>
+        <span className={styles.metaDisclaimer}>{text.appFooterMetaDisclaimer}</span>
         </div>
         <span className={styles.year}>2026</span>
       </div>

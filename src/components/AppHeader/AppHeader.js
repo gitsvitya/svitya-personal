@@ -61,7 +61,7 @@ function AppHeader({
 
   return (
     <header className={styles.header}>
-      <div className={styles.container}>
+      <div className={`layout-container ${styles.container}`}>
         <div className={styles.controls}>
           <button
             type="button"

@@ -1,5 +1,5 @@
 .container {
-  gap: 50px;
+  gap: 30px;
 }
 
 .photoBlock {
@@ -15,8 +15,8 @@
   background-position: center;
   border-radius: 50%;
   width: 250px;
+  height: 250px;
   aspect-ratio: 1 / 1;
-  height: auto;
 }
 
 .textBlock {
@@ -61,6 +61,7 @@
 @media (max-width: 1000px) {
   .photo {
     width: 200px;
+    height: 200px;
   }
 
   .header {
@@ -84,6 +85,7 @@
 
   .photo {
     width: 220px;
+    height: 220px;
   }
 
   .header,
@@ -99,12 +101,10 @@
 }
 
 @media (max-width: 501px) {
-  .container {
-    gap: 16px;
-  }
 
   .photo {
     width: 200px;
+    height: 200px;
   }
 
   .header {

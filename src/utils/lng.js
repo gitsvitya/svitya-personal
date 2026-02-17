@@ -15,7 +15,7 @@ export const rusLng = {
   aboutBlockParagraphText: 'Привет! Меня зовут Виктор. Я руководитель проектов с более чем 10-летним опытом работы в международных и российских компаниях, а также в собственных проектах. Занимаюсь развитием информационных и цифровых продуктов, выстраиваю бизнес-процессы и работаю на стыке аналитики, продукта и бизнеса. Всегда открыт к новым знакомствам и профессиональному сотрудничеству.',
 
   cookieBannerBlockParagraphText: 'Для корректной работы сайта я использую технические и аналитические cookie-файлы. Продолжая работать с сайтом, Вы принимаете это.',
-  cookieBannerBlockButtonText: 'Принимаю',
+  cookieBannerBlockButtonText: 'Закрыть',
 
   workExpBlockHeaderText: 'Опыт работы',
 
@@ -85,6 +85,8 @@ export const rusLng = {
 
   appFooterContacts: 'Соцсети',
 
+  appFooterMetaDisclaimer: '*принадлежит компании Meta, признанной экстремистской и запрещённой в РФ',
+
   cardButtonText: 'Подробнее',
 }
 
@@ -103,7 +105,7 @@ export const engLng = {
   aboutBlockParagraphText: `Hi! My name is Victor. I am a project manager with over 10 years of experience working in international and Russian companies, as well as on my own projects. I focus on developing information and digital products, building business processes, and working at the intersection of analytics, product, and business. I am always open to new connections and professional collaboration.`,
 
   cookieBannerBlockParagraphText: 'This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this',
-  cookieBannerBlockButtonText: 'Accept',
+  cookieBannerBlockButtonText: 'Close',
 
   workExpBlockHeaderText: 'Work experience',
 
@@ -172,6 +174,8 @@ export const engLng = {
   otherExpBlockCompanyResultsSDC: 'In 2019–2020, I completed training in web development and data processing with Python through courses from the University of Michigan, and later reinforced this knowledge at Yandex.Practicum. As a result, this website was created, along with several other educational and personal projects, which can be found via the GitHub link above. As I continue to learn new technologies and when time allows, the site keeps evolving with new features and capabilities.',
 
   appFooterContacts: 'Socials',
+
+  appFooterMetaDisclaimer: '*is owned by Meta Platforms, which is recognized as extremist and banned in the Russian Federation',
 
   cardButtonText: 'Details',
 }

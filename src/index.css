@@ -15,6 +15,10 @@
   --transition-fast: 0.35s ease-in-out;
   --transition-slow: 0.5s ease-in-out;
   --overlay-opacity: 0.6;
+  --layout-max-width: 1280px;
+  --layout-padding-desktop: 30px;
+  --layout-padding-tablet: 24px;
+  --layout-padding-mobile: 16px;
 }
 
 :root[data-theme="dark"] {
@@ -83,6 +87,29 @@ body {
 
 .fade-visible {
   opacity: 1;
+}
+
+.layout-container {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+  max-width: var(--layout-max-width);
+  padding: var(--layout-padding-desktop);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 769px) {
+  .layout-container {
+    padding: var(--layout-padding-tablet);
+  }
+}
+
+@media (max-width: 501px) {
+  .layout-container {
+    padding: var(--layout-padding-mobile);
+    gap: 10px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

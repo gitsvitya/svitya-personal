@@ -6,8 +6,8 @@ function Section({ id, title, children, className = "", contentClassName = "" })
     ? `${styles.section} ${className}`
     : styles.section;
   const containerClassName = contentClassName
-    ? `${styles.container} ${contentClassName}`
-    : styles.container;
+    ? `layout-container ${styles.container} ${contentClassName}`
+    : `layout-container ${styles.container}`;
 
   return (
     <section className={sectionClassName} id={id}>

@@ -4,12 +4,14 @@
 
 .container {
   display: flex;
+  flex-direction: row;
+  gap: 5px;
   justify-content: space-between;
-  max-width: 1280px;
-  padding: 50px;
-  margin-left: auto;
-  margin-right: auto;
+}
 
+.disclaimerBlock {
+  display: flex;
+  flex-direction: column;
 }
 
 .contactsBlock {
@@ -27,7 +29,7 @@
   font-weight: 400;
   line-height: 1.375;
   color: var(--text-primary);
-  transition: color 0.5s ease-in-out;
+  transition: color var(--transition-slow);
 }
 
 .navigationList {
@@ -49,7 +51,7 @@
   gap: 3px;
   text-decoration: none;
   outline: none;
-  transition: color 0.5s ease-in-out;
+  transition: color var(--transition-slow);
 }
 
 .linkText {
@@ -60,7 +62,7 @@
   font-weight: 400;
   line-height: 1.375;
   color: var(--text-primary);
-  transition: color 0.5s ease-in-out;
+  transition: color var(--transition-slow);
 }
 
 .linkPic {
@@ -69,7 +71,7 @@
   max-height: 25px;
   max-width: 25px;
   color: var(--footer-link);
-  transition: color 0.5s ease-in-out;
+  transition: color var(--transition-slow);
 }
 
 .year {
@@ -81,13 +83,19 @@
   line-height: 1.375;
   align-self: center;
   color: var(--text-primary);
-  transition: color 0.5s ease-in-out;
+  transition: color var(--transition-slow);
+  align-self: flex-end;
+}
+
+.metaDisclaimer {
+  font-size: 12px;
 }
 
 .link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
+
 @media (min-width: 780px) {
   .link:hover {
     cursor: pointer;
@@ -105,9 +113,18 @@
 
 @media (max-width: 769px) {
   .container {
-    padding: 30px;
+    gap: 16px;
+  }
+  .disclaimerBlock {
+    gap: 10px;
+  }
+}
+@media (max-width: 660px) {
+  .container {
     flex-direction: column;
-    gap: 40px;
+  }
+  .year {
+    align-self: center;
   }
 }
 
@@ -123,9 +140,6 @@
 }
 
 @media (max-width: 501px) {
-  .container {
-    padding: 20px;
-  }
 
   .navigationList {
     gap: 10px;
