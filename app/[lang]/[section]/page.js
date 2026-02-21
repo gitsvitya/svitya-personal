@@ -1,7 +1,5 @@
 import { redirect } from "next/navigation";
-import App from "../../../src/components/App/App";
 import { buildPageMetadata } from "../../seo";
-import { getServerTheme } from "../../theme.server";
 import {
   DEFAULT_LANGUAGE,
   getPageCopy,
@@ -35,7 +33,6 @@ export function generateMetadata({ params }) {
 export default async function LocalizedSectionPage({ params }) {
   const language = resolveLanguage(params?.lang);
   const section = resolveSection(params?.section);
-  const initialTheme = await getServerTheme();
 
   if (!isSupportedLanguage(params?.lang)) {
     redirect(`/${DEFAULT_LANGUAGE}/${section}`);
@@ -45,11 +42,5 @@ export default async function LocalizedSectionPage({ params }) {
     redirect(`/${language}/about`);
   }
 
-  return (
-    <App
-      initialPath={`/${language}/${section}`}
-      initialLanguage={language}
-      initialTheme={initialTheme}
-    />
-  );
+  return null;
 }
