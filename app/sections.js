@@ -11,6 +11,19 @@ export function isSupportedLanguage(value) {
   return SUPPORTED_LANGUAGES.includes(value);
 }
 
+export function resolveLanguageFromHeader(acceptLanguage) {
+  if (!acceptLanguage || typeof acceptLanguage !== "string") {
+    return DEFAULT_LANGUAGE;
+  }
+
+  const normalized = acceptLanguage.toLowerCase();
+  for (const language of SUPPORTED_LANGUAGES) {
+    if (normalized.includes(language)) return language;
+  }
+
+  return DEFAULT_LANGUAGE;
+}
+
 export function resolveSection(value) {
   if (SUPPORTED_SECTIONS.includes(value)) return value;
   return "about";

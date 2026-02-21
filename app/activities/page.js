@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
+import { getPreferredLanguage } from "../redirectByLocale";
 
-export default function LegacyActivitiesPage() {
-  redirect("/en/activities");
+export default async function LegacyActivitiesPage() {
+  const language = await getPreferredLanguage();
+  redirect(`/${language}/activities`);
 }

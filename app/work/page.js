@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
+import { getPreferredLanguage } from "../redirectByLocale";
 
-export default function LegacyWorkPage() {
-  redirect("/en/work");
+export default async function LegacyWorkPage() {
+  const language = await getPreferredLanguage();
+  redirect(`/${language}/work`);
 }

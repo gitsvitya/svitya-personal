@@ -104,7 +104,7 @@ export const engLng = {
   aboutBlockHeaderText: 'About me',
   aboutBlockParagraphText: `Hi! My name is Victor. I am a project manager with over 10 years of experience working in international and Russian companies, as well as on my own projects. I focus on developing information and digital products, building business processes, and working at the intersection of analytics, product, and business. I am always open to new connections and professional collaboration.`,
 
-  cookieBannerBlockParagraphText: 'This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this',
+  cookieBannerBlockParagraphText: 'This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.',
   cookieBannerBlockButtonText: 'Close',
 
   workExpBlockHeaderText: 'Work experience',

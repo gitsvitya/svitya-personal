@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
+import { getPreferredLanguage } from "../redirectByLocale";
 
-export default function UnknownPage() {
-  redirect("/en/about");
+export default async function UnknownPage() {
+  const language = await getPreferredLanguage();
+  redirect(`/${language}/about`);
 }
