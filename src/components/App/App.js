@@ -145,10 +145,6 @@ function App({
   }, []);
 
   useEffect(() => {
-    document.title = currentText.pageTitle;
-  }, [currentText.pageTitle]);
-
-  useEffect(() => {
     if (!isThemeSynced) return;
     localStorage.setItem(THEME_KEY, theme);
     document.cookie = `theme=${theme}; path=/; max-age=31536000; samesite=lax`;
