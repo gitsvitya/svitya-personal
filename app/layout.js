@@ -3,6 +3,7 @@ import "../src/index.css";
 
 export const metadata = {
   metadataBase: new URL("https://svitya.com"),
+  manifest: "/manifest.json",
   title: "Виктор Строков",
   description:
     "Виктор Строков - управление проектами, разработка продуктов, исследования и аналитика",
@@ -24,6 +25,20 @@ export const metadata = {
     url: "https://svitya.com",
     images: ["/logo512.png"],
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo192.png",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c111a" },
+  ],
 };
 
 export default function RootLayout({ children }) {

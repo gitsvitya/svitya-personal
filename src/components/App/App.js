@@ -28,6 +28,14 @@ function normalizePath(path) {
   return "/about";
 }
 
+function getLegacyHashPath() {
+  if (typeof window === "undefined") return null;
+  const { hash } = window.location;
+  if (!hash || !hash.startsWith("#/")) return null;
+  const candidate = trimPath(hash.slice(1));
+  return ALLOWED_PATHS.includes(candidate) ? candidate : null;
+}
+
 // Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
 function App({ initialPath = "/about" }) {
   const [language, setLanguage] = useState("en");
@@ -58,6 +66,13 @@ function App({ initialPath = "/about" }) {
   // Сохраняем предыдущую логику: неизвестные пути и корень ведут на /about.
   useEffect(() => {
     const trimmed = trimPath(currentPath);
+    const legacyPath = getLegacyHashPath();
+
+    if ((trimmed === "/" || trimmed === "/about") && legacyPath && legacyPath !== trimmed) {
+      router.replace(legacyPath);
+      return;
+    }
+
     if (!ALLOWED_PATHS.includes(trimmed)) {
       router.replace("/about");
     }
