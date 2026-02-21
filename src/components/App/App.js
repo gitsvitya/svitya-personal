@@ -88,6 +88,8 @@ function App({
   const [showContent, setShowContent] = useState(false);
   const [isRouteSwitching, setIsRouteSwitching] = useState(false);
   const routeTimeoutRef = useRef(null);
+  const routeFadeInTimeoutRef = useRef(null);
+  const pendingRouteSwitchRef = useRef(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -102,6 +104,20 @@ function App({
       clearTimeout(routeTimeoutRef.current);
       routeTimeoutRef.current = null;
     }
+    if (routeFadeInTimeoutRef.current) {
+      clearTimeout(routeFadeInTimeoutRef.current);
+      routeFadeInTimeoutRef.current = null;
+    }
+
+    if (pendingRouteSwitchRef.current) {
+      pendingRouteSwitchRef.current = false;
+      // Новый контент сначала рендерим в состоянии hidden, затем плавно показываем.
+      routeFadeInTimeoutRef.current = setTimeout(() => {
+        setIsRouteSwitching(false);
+      }, 300);
+      return;
+    }
+
     setIsRouteSwitching(false);
   }, [pathname]);
 
@@ -161,6 +177,7 @@ function App({
   useEffect(() => {
     return () => {
       if (routeTimeoutRef.current) clearTimeout(routeTimeoutRef.current);
+      if (routeFadeInTimeoutRef.current) clearTimeout(routeFadeInTimeoutRef.current);
     };
   }, []);
 
@@ -224,11 +241,12 @@ function App({
       const normalized = normalizeSectionPath(path);
       if (normalized === activePath) return;
       if (routeTimeoutRef.current) clearTimeout(routeTimeoutRef.current);
+      if (routeFadeInTimeoutRef.current) clearTimeout(routeFadeInTimeoutRef.current);
 
+      pendingRouteSwitchRef.current = true;
       setIsRouteSwitching(true);
       routeTimeoutRef.current = setTimeout(() => {
         router.push(buildLocalizedPath(currentRouteLanguage, normalized));
-        setTimeout(() => setIsRouteSwitching(false), 10);
       }, FADE_DURATION);
     },
     [activePath, currentRouteLanguage, router]
