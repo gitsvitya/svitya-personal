@@ -2,6 +2,7 @@ import Script from "next/script";
 import "../src/index.css";
 
 export const metadata = {
+  metadataBase: new URL("https://svitya.com"),
   title: "Виктор Строков",
   description:
     "Виктор Строков - управление проектами, разработка продуктов, исследования и аналитика",
@@ -27,7 +28,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function setInitialTheme(){

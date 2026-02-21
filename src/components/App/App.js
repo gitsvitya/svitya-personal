@@ -17,20 +17,6 @@ import CookieBanner from "../CookieBanner/CookieBanner";
 const ALLOWED_PATHS = ["/about", "/work", "/projects", "/activities"];
 const FADE_DURATION = 300;
 
-function getInitialLanguage() {
-  if (typeof window === "undefined") return "en";
-  return window.navigator.language.startsWith("ru") ? "ru" : "en";
-}
-
-function getInitialTheme() {
-  if (typeof document === "undefined") return "light";
-
-  const saved = localStorage.getItem("theme");
-  if (saved === "light" || saved === "dark") return saved;
-
-  return document.documentElement.getAttribute("data-theme") || "light";
-}
-
 function trimPath(path) {
   if (!path) return "/";
   return path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
@@ -44,10 +30,11 @@ function normalizePath(path) {
 
 // Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
 function App({ initialPath = "/about" }) {
-  const [language, setLanguage] = useState(getInitialLanguage);
+  const [language, setLanguage] = useState("en");
   const [isLanguageSwitching, setIsLanguageSwitching] = useState(false);
   const languageTimeouts = useRef([]);
-  const [theme, setTheme] = useState(getInitialTheme);
+  const [theme, setTheme] = useState("light");
+  const [isThemeReady, setIsThemeReady] = useState(false);
   const [modalOpened, setModalOpened] = useState(false);
   const [modalContentCompany, setModalContentCompany] = useState("");
   const [showContent, setShowContent] = useState(false);
@@ -98,8 +85,9 @@ function App({ initialPath = "/about" }) {
   }, [currentText.pageTitle]);
 
   useEffect(() => {
+    if (!isThemeReady) return;
     localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [isThemeReady, theme]);
 
   useEffect(() => {
     return () => {
@@ -132,11 +120,34 @@ function App({ initialPath = "/about" }) {
   );
 
   useEffect(() => {
+    if (!isThemeReady) return;
     const root = document.documentElement;
     root.setAttribute("data-theme", theme);
     const bgPage = getComputedStyle(root).getPropertyValue("--bg-page");
     root.style.backgroundColor = bgPage;
-  }, [theme]);
+  }, [isThemeReady, theme]);
+
+  // После гидрации подтягиваем реальные пользовательские настройки.
+  useEffect(() => {
+    const browserLng = window.navigator.language.startsWith("ru") ? "ru" : "en";
+    setLanguage(browserLng);
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      setTheme(savedTheme);
+      setIsThemeReady(true);
+      return;
+    }
+
+    const domTheme = document.documentElement.getAttribute("data-theme");
+    if (domTheme === "light" || domTheme === "dark") {
+      setTheme(domTheme);
+      setIsThemeReady(true);
+      return;
+    }
+
+    setIsThemeReady(true);
+  }, []);
 
   const navigateTo = useCallback(
     (path) => {
