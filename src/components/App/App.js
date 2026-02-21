@@ -107,10 +107,8 @@ function App({
 
   // Синхронизируем state языка с языком из URL.
   useEffect(() => {
-    if (language !== currentRouteLanguage) {
-      setLanguage(currentRouteLanguage);
-    }
-  }, [currentRouteLanguage, language]);
+    setLanguage(currentRouteLanguage);
+  }, [currentRouteLanguage]);
 
   // Сохраняем предыдущую логику: legacy hash и невалидные пути перенаправляем на локализованные адреса.
   useEffect(() => {
@@ -175,12 +173,16 @@ function App({
 
       const fadeOutTimer = setTimeout(() => {
         setLanguage(nextLanguage);
-        router.push(buildLocalizedPath(nextLanguage, activePath));
+        // Даём переключателю языка завершить анимацию до смены роут-сегмента и размонтирования.
+        const navigateTimer = setTimeout(() => {
+          router.push(buildLocalizedPath(nextLanguage, activePath));
+        }, 500);
         const fadeInTimer = setTimeout(() => {
           setIsLanguageSwitching(false);
         }, 300);
+        languageTimeouts.current.push(navigateTimer);
         languageTimeouts.current.push(fadeInTimer);
-      }, 300);
+      }, 500);
 
       languageTimeouts.current.push(fadeOutTimer);
     },
