@@ -172,21 +172,19 @@ function App({
       setIsLanguageSwitching(true);
 
       const fadeOutTimer = setTimeout(() => {
+        const nextPath = buildLocalizedPath(nextLanguage, activePath);
         setLanguage(nextLanguage);
-        // Даём переключателю языка завершить анимацию до смены роут-сегмента и размонтирования.
-        const navigateTimer = setTimeout(() => {
-          router.push(buildLocalizedPath(nextLanguage, activePath));
-        }, 500);
+        // Обновляем URL без навигации App Router, чтобы не размонтировать header.
+        window.history.pushState({}, "", nextPath);
         const fadeInTimer = setTimeout(() => {
           setIsLanguageSwitching(false);
         }, 300);
-        languageTimeouts.current.push(navigateTimer);
         languageTimeouts.current.push(fadeInTimer);
       }, 500);
 
       languageTimeouts.current.push(fadeOutTimer);
     },
-    [activePath, language, router]
+    [activePath, language]
   );
 
   useEffect(() => {
