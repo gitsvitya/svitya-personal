@@ -1,6 +1,6 @@
 # Svitya's Personal Website
 
-This project serves as an interactive resume, showcasing professional experience, personal projects, and areas of expertise.
+This project serves as an interactive resume, showcasing my professional experience, personal projects, and areas of expertise. The website is designed to be clean, responsive, and informative, providing visitors with a clear overview of my career path and ongoing work.
 
 ## Project Overview
 
@@ -12,7 +12,7 @@ A personal portfolio website built with **Next.js** and **React**. It includes i
 - Multi-section navigation with localized routes (`/ru/about`, `/ru/work`, `/en/about`, etc.)
 - Responsive layout for desktop and mobile
 - Cookie consent banner
-- Dark/light theme toggle
+- Dark/light theme mode
 - RU/EN content switch
 
 ## Tech Stack
@@ -47,3 +47,4 @@ Victor Strokov
 - [My GitHub](https://github.com/gitsvitya)
 - [Live Website](https://svitya.com)
 - [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
