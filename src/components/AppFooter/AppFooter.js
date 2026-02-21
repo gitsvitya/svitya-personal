@@ -2,6 +2,8 @@ import styles from "./AppFooter.module.css";
 
 // Футер с соцссылками и годом.
 function AppFooter({ text, isLanguageSwitching }) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer
       className={`${styles.footer} fade-transition ${
@@ -12,7 +14,7 @@ function AppFooter({ text, isLanguageSwitching }) {
       <div className={`layout-container ${styles.container}`}>
         <div className={styles.disclaimerBlock}>
         <div className={styles.contactsBlock}>
-          {<span className={styles.text}>{text.appFooterContacts}:</span>}
+          <span className={styles.text}>{text.appFooterContacts}:</span>
           <div className={styles.navigation}>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>
@@ -26,7 +28,7 @@ function AppFooter({ text, isLanguageSwitching }) {
                   <span className={styles.linkText}>Telegram</span>
                 </a>
               </li>
-              {<li className={styles.navigationListItem}>
+              <li className={styles.navigationListItem}>
                 <a
                   className={styles.link}
                   href="https://www.instagram.com/vitya.strokov"
@@ -36,7 +38,7 @@ function AppFooter({ text, isLanguageSwitching }) {
                   <div className={`${styles.linkPic} ${styles.linkPicInstagram}`}></div>
                   <span className={styles.linkText}>Instagram*</span>
                 </a>
-              </li>}
+              </li>
               <li className={styles.navigationListItem}>
                 <a
                   className={styles.link}
@@ -53,7 +55,7 @@ function AppFooter({ text, isLanguageSwitching }) {
         </div>
         <span className={styles.metaDisclaimer}>{text.appFooterMetaDisclaimer}</span>
         </div>
-        <span className={styles.year}>2026</span>
+        <span className={styles.year}>{currentYear}</span>
       </div>
     </footer>
   );

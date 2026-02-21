@@ -30,7 +30,7 @@ export function generateMetadata({ params }) {
   });
 }
 
-export default async function LocalizedSectionPage({ params }) {
+export default function LocalizedSectionPage({ params }) {
   const language = resolveLanguage(params?.lang);
   const section = resolveSection(params?.section);
 

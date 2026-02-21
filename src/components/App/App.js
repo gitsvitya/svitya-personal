@@ -166,6 +166,7 @@ function App({
 
   useEffect(() => {
     localStorage.setItem(LANGUAGE_KEY, language);
+    document.cookie = `lang=${language}; path=/; max-age=31536000; samesite=lax`;
   }, [language]);
 
   useEffect(() => {
@@ -191,17 +192,22 @@ function App({
       const fadeOutTimer = setTimeout(() => {
         const nextPath = buildLocalizedPath(nextLanguage, activePath);
         setLanguage(nextLanguage);
-        // Обновляем URL без навигации App Router, чтобы не размонтировать header.
-        window.history.pushState({}, "", nextPath);
-        const fadeInTimer = setTimeout(() => {
-          setIsLanguageSwitching(false);
+
+        // Даем переключателю языка время проиграть transition до смены роутинга.
+        const navigateTimer = setTimeout(() => {
+          router.push(nextPath);
+          const fadeInTimer = setTimeout(() => {
+            setIsLanguageSwitching(false);
+          }, 300);
+          languageTimeouts.current.push(fadeInTimer);
         }, 300);
-        languageTimeouts.current.push(fadeInTimer);
-      }, 500);
+
+        languageTimeouts.current.push(navigateTimer);
+      }, 300);
 
       languageTimeouts.current.push(fadeOutTimer);
     },
-    [activePath, language]
+    [activePath, language, router]
   );
 
   useEffect(() => {

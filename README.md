@@ -9,7 +9,7 @@ A personal portfolio website built with **Next.js** and **React**. It includes i
 ## Key Functionalities
 
 - Interactive experience cards with modal details
-- Multi-section navigation (`/about`, `/work`, `/projects`, `/activities`)
+- Multi-section navigation with localized routes (`/ru/about`, `/ru/work`, `/en/about`, etc.)
 - Responsive layout for desktop and mobile
 - Cookie consent banner
 - Dark/light theme toggle

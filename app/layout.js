@@ -1,6 +1,8 @@
 import Script from "next/script";
 import "../src/index.css";
+import App from "../src/components/App/App";
 import { getServerTheme } from "./theme.server";
+import { getServerLanguage } from "./language.server";
 
 export const metadata = {
   metadataBase: new URL("https://svitya.com"),
@@ -44,11 +46,12 @@ export const viewport = {
 
 export default async function RootLayout({ children }) {
   const initialTheme = await getServerTheme();
+  const initialLanguage = await getServerLanguage();
   const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
 
   return (
     <html
-      lang="ru"
+      lang={initialLanguage}
       data-theme={initialTheme}
       style={{ backgroundColor: initialBackground }}
       suppressHydrationWarning
@@ -97,6 +100,7 @@ export default async function RootLayout({ children }) {
           </div>
         </noscript>
 
+        <App initialLanguage={initialLanguage} initialTheme={initialTheme} />
         {children}
         <div id="modal" />
       </body>
