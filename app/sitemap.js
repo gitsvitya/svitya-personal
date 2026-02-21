@@ -1,4 +1,4 @@
-const BASE_URL = "https://svitya.com";
+import { BASE_URL } from "./seo";
 
 export default function sitemap() {
   const now = new Date();
