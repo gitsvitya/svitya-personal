@@ -1,76 +1,49 @@
 # Svitya's Personal Website
 
-This project serves as an interactive resume, showcasing my professional experience, personal projects, and areas of expertise. The website is designed to be clean, responsive, and informative, providing visitors with a clear overview of my career path and ongoing work.
-
----
+This project serves as an interactive resume, showcasing professional experience, personal projects, and areas of expertise.
 
 ## Project Overview
 
-This is a personal portfolio website built using **React (Create React App)**. It features interactive project cards, modal pop-ups with detailed information, and a responsive layout designed for both desktop and mobile devices.
+A personal portfolio website built with **Next.js** and **React**. It includes interactive cards, modal windows with details, language/theme switching, and a responsive layout for desktop and mobile.
 
-### Key Functionalities:
+## Key Functionalities
 
-- Interactive project cards with expandable details
-- Modal windows for in-depth descriptions of work and projects
-- Responsive design optimized for all screen sizes
-- Cookie consent banner that appears on the first visit
-- Dark theme mode
-- Client-side routing
-
----
-
-## Roadmap
-
-- 26Q2: Migration to **Next.js** for improved performance and SEO
-- 26Q3: Backend integration for dynamic content rendering
-
----
+- Interactive experience cards with modal details
+- Multi-section navigation (`/about`, `/work`, `/projects`, `/activities`)
+- Responsive layout for desktop and mobile
+- Cookie consent banner
+- Dark/light theme toggle
+- RU/EN content switch
 
 ## Tech Stack
 
-| Technology          | Description                                     |
-| ------------------- | ----------------------------------------------- |
-| React               | Frontend library for building UI components     |
-| Create React App    | Project scaffolding and build configuration     |
-| CSS Modules         | Component-scoped CSS for modular styling        |
-| LocalStorage        | Used to persist cookie consent state            |
-| HTML/CSS/JavaScript | Core web technologies for structure and styling |
+- Next.js (App Router)
+- React
+- CSS Modules
+- LocalStorage
 
----
-
-## Available Commands (RCA Scripts)
-
-This project is bootstrapped with **Create React App (CRA)**. Here are the main scripts you can run:
+## Available Commands
 
 ```bash
 # Install dependencies
 npm install
 
-# Start the development server
-npm start
+# Start development server
+npm run dev
 
-# Builds the app for production to the 'build' folder
+# Build for production
 npm run build
 
-# Runs the app in production mode (after build)
-serve -s build
-
-# Runs ESLint to check for code linting issues
-npm run lint
+# Run production server
+npm run start
 ```
-
----
 
 ## Author
 
-**Victor Strokov**
-
----
+Victor Strokov
 
 ## Links
 
 - [My GitHub](https://github.com/gitsvitya)
 - [Live Website](https://svitya.com)
-- React Documentation: [react.dev](https://react.dev)
-- Create React App: [create-react-app.dev](https://create-react-app.dev/)
-- Vremena Grotesk Font by Roman Gornitsky: [type.tmpstate.net](https://type.tmpstate.net/)
+- [Next.js Documentation](https://nextjs.org/docs)

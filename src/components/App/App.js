@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
 import AppProjectsExp from "../AppProjectsExp/AppProjectsExp";
@@ -15,58 +17,74 @@ import CookieBanner from "../CookieBanner/CookieBanner";
 const ALLOWED_PATHS = ["/about", "/work", "/projects", "/activities"];
 const FADE_DURATION = 300;
 
+function getInitialLanguage() {
+  if (typeof window === "undefined") return "en";
+  return window.navigator.language.startsWith("ru") ? "ru" : "en";
+}
+
+function getInitialTheme() {
+  if (typeof document === "undefined") return "light";
+
+  const saved = localStorage.getItem("theme");
+  if (saved === "light" || saved === "dark") return saved;
+
+  return document.documentElement.getAttribute("data-theme") || "light";
+}
+
+function trimPath(path) {
+  if (!path) return "/";
+  return path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
+}
+
+function normalizePath(path) {
+  const trimmed = trimPath(path);
+  if (ALLOWED_PATHS.includes(trimmed)) return trimmed;
+  return "/about";
+}
+
 // Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
-function App({ initialTheme = "light" }) {
-  // Определяем язык по браузеру; дальше язык управляется локальным стейтом.
-  const browserLng = window.navigator.language.startsWith("ru") ? "ru" : "en";
-  const [language, setLanguage] = useState(browserLng);
-  // Флаг для плавной анимации смены языка.
+function App({ initialPath = "/about" }) {
+  const [language, setLanguage] = useState(getInitialLanguage);
   const [isLanguageSwitching, setIsLanguageSwitching] = useState(false);
-  // Храним таймауты, чтобы корректно сбрасывать анимацию при быстрых переключениях смены языка.
   const languageTimeouts = useRef([]);
-  // Тема берётся из расчёта на сервере (head-скрипт) и дальше хранится в state.
-  const [theme, setTheme] = useState(initialTheme);
-  // Проверка на открыто ли модальное окно.
+  const [theme, setTheme] = useState(getInitialTheme);
   const [modalOpened, setModalOpened] = useState(false);
-  // Какая карточка должна быть показана в модальном окне.
   const [modalContentCompany, setModalContentCompany] = useState("");
-  // Управляет плавным появлением контента внутри модалки.
   const [showContent, setShowContent] = useState(false);
-  // Управляет плавной сменой разделов.
   const [isRouteSwitching, setIsRouteSwitching] = useState(false);
   const routeTimeoutRef = useRef(null);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const normalizePath = useCallback((path) => {
-    const trimmed = path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
-    if (ALLOWED_PATHS.includes(trimmed)) return trimmed;
-    return "/about";
-  }, []);
+  const currentPath = pathname || initialPath;
+  const activePath = normalizePath(currentPath);
 
-  const activePath = normalizePath(location.pathname);
-
-  // Если путь сменился другим способом (например, кнопки браузера), снимаем флаг анимации.
+  // Если путь сменился (например, кнопки браузера), снимаем флаг анимации.
   useEffect(() => {
     if (routeTimeoutRef.current) {
       clearTimeout(routeTimeoutRef.current);
       routeTimeoutRef.current = null;
     }
     setIsRouteSwitching(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
-  // Определяем на каком языке показывать страницу - русский или английский
+  // Сохраняем предыдущую логику: неизвестные пути и корень ведут на /about.
+  useEffect(() => {
+    const trimmed = trimPath(currentPath);
+    if (!ALLOWED_PATHS.includes(trimmed)) {
+      router.replace("/about");
+    }
+  }, [currentPath, router]);
+
   let currentText;
   if (language === "ru") currentText = rusLng;
   else currentText = engLng;
 
-  // Открываем модалку (link stable для передачи в карточки).
   const openModal = useCallback(() => {
     setModalOpened(true);
     document.body.style.overflow = "hidden";
   }, []);
 
-  // Закрываем модалку с задержкой, чтобы успела отыграть CSS-анимация.
   const closeModal = useCallback(() => {
     setShowContent(false);
     setTimeout(() => {
@@ -75,24 +93,20 @@ function App({ initialTheme = "light" }) {
     }, 500);
   }, []);
 
-  // Обновляем заголовок вкладки при смене языка.
   useEffect(() => {
     document.title = currentText.pageTitle;
   }, [currentText.pageTitle]);
 
-  // Сохраняем выбранную тему для последующих заходов.
   useEffect(() => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Убираем незавершённые таймеры анимации при размонтировании.
   useEffect(() => {
     return () => {
       languageTimeouts.current.forEach(clearTimeout);
     };
   }, []);
 
-  // Чистим таймер смены разделов.
   useEffect(() => {
     return () => {
       if (routeTimeoutRef.current) clearTimeout(routeTimeoutRef.current);
@@ -117,7 +131,6 @@ function App({ initialTheme = "light" }) {
     [language]
   );
 
-  // Эффект установки выбранной темы на документ
   useEffect(() => {
     const root = document.documentElement;
     root.setAttribute("data-theme", theme);
@@ -133,12 +146,11 @@ function App({ initialTheme = "light" }) {
 
       setIsRouteSwitching(true);
       routeTimeoutRef.current = setTimeout(() => {
-        navigate(normalized);
-        // Небольшая задержка, чтобы новый контент плавно появился.
+        router.push(normalized);
         setTimeout(() => setIsRouteSwitching(false), 10);
       }, FADE_DURATION);
     },
-    [activePath, navigate, normalizePath]
+    [activePath, router]
   );
 
   const isFading = isLanguageSwitching || isRouteSwitching;
@@ -161,41 +173,28 @@ function App({ initialTheme = "light" }) {
             isFading ? styles.pageFading : styles.pageVisible
           }`}
         >
-          <Routes location={location}>
-            <Route path="/about" element={<AppAboutMe text={currentText}></AppAboutMe>} />
-            <Route
-              path="/work"
-              element={
-                <AppWorkExp
-                  text={currentText}
-                  setModalContentCompany={setModalContentCompany}
-                  openModal={openModal}
-                ></AppWorkExp>
-              }
-            />
-            <Route
-              path="/projects"
-              element={
-                <AppProjectsExp
-                  text={currentText}
-                  setModalContentCompany={setModalContentCompany}
-                  openModal={openModal}
-                ></AppProjectsExp>
-              }
-            />
-            <Route
-              path="/activities"
-              element={
-                <AppActivitiesExp
-                  text={currentText}
-                  setModalContentCompany={setModalContentCompany}
-                  openModal={openModal}
-                ></AppActivitiesExp>
-              }
-            />
-            <Route path="/" element={<Navigate to="/about" replace />} />
-            <Route path="*" element={<Navigate to="/about" replace />} />
-          </Routes>
+          {activePath === "/about" && <AppAboutMe text={currentText}></AppAboutMe>}
+          {activePath === "/work" && (
+            <AppWorkExp
+              text={currentText}
+              setModalContentCompany={setModalContentCompany}
+              openModal={openModal}
+            ></AppWorkExp>
+          )}
+          {activePath === "/projects" && (
+            <AppProjectsExp
+              text={currentText}
+              setModalContentCompany={setModalContentCompany}
+              openModal={openModal}
+            ></AppProjectsExp>
+          )}
+          {activePath === "/activities" && (
+            <AppActivitiesExp
+              text={currentText}
+              setModalContentCompany={setModalContentCompany}
+              openModal={openModal}
+            ></AppActivitiesExp>
+          )}
         </main>
         <AppFooter
           text={currentText}

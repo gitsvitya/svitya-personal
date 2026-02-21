@@ -9,29 +9,24 @@ import svityaComLabel from "../images/svitya_com_label.png";
 import mbcLogo from "../images/mbc_logo.png";
 import ciLogo from "../images/ci_logo.png";
 
+function resolveImageSrc(image) {
+  if (typeof image === "string") return image;
+  return image?.src || "";
+}
+
 // Карта соответствия ключей компаний и путей к логотипам.
 export const logos = {
   // Work
-  CI: ciLogo,
-  NTB: moexLogo,
-  LRNPT: lukoilLogo,
-  KG: kalashnikovlLogo,
-  TR: reutersLogo,
+  CI: resolveImageSrc(ciLogo),
+  NTB: resolveImageSrc(moexLogo),
+  LRNPT: resolveImageSrc(lukoilLogo),
+  KG: resolveImageSrc(kalashnikovlLogo),
+  TR: resolveImageSrc(reutersLogo),
   // Projects
-  MBC: mbcLogo,
-  MNG: mappngoLogo,
-  VNV: veniviLogo,
+  MBC: resolveImageSrc(mbcLogo),
+  MNG: resolveImageSrc(mappngoLogo),
+  VNV: resolveImageSrc(veniviLogo),
   // Activities
-  SKO: strokeOffLabel,
-  SDC: svityaComLabel
-
-
-
-
-
-
-
-
-
-
-}
+  SKO: resolveImageSrc(strokeOffLabel),
+  SDC: resolveImageSrc(svityaComLabel),
+};
