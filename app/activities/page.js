@@ -1,12 +1,5 @@
-import App from "../../src/components/App/App";
-import { buildPageMetadata } from "../seo";
+import { redirect } from "next/navigation";
 
-export const metadata = buildPageMetadata({
-  title: "Активности | Виктор Строков",
-  description: "Дополнительные активности, инициативы и профессиональные интересы Виктора Строкова.",
-  path: "/activities",
-});
-
-export default function ActivitiesPage() {
-  return <App initialPath="/activities" />;
+export default function LegacyActivitiesPage() {
+  redirect("/en/activities");
 }

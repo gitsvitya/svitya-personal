@@ -1,4 +1,4 @@
-import { BASE_URL } from "./seo";
+import { BASE_URL } from "./site";
 
 export default function robots() {
   return {

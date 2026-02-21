@@ -1,12 +1,5 @@
-import App from "../../src/components/App/App";
-import { buildPageMetadata } from "../seo";
+import { redirect } from "next/navigation";
 
-export const metadata = buildPageMetadata({
-  title: "Проекты | Виктор Строков",
-  description: "Личные и профессиональные проекты Виктора Строкова.",
-  path: "/projects",
-});
-
-export default function ProjectsPage() {
-  return <App initialPath="/projects" />;
+export default function LegacyProjectsPage() {
+  redirect("/en/projects");
 }

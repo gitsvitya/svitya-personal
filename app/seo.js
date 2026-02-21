@@ -1,16 +1,33 @@
-const BASE_URL = "https://svitya.com";
+import { BASE_URL } from "./site";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, resolveLanguage, resolveSection } from "./sections";
+
 const DEFAULT_OG_IMAGE = "/logo512.png";
 const SITE_NAME = "Виктор Строков";
 
-export function buildPageMetadata({ title, description, path }) {
-  const canonicalPath = path.startsWith("/") ? path : `/${path}`;
+function ensureSectionPath(section) {
+  const resolvedSection = resolveSection(section);
+  return `/${resolvedSection}`;
+}
+
+export function buildPageMetadata({ title, description, section, language }) {
+  const resolvedLanguage = resolveLanguage(language);
+  const sectionPath = ensureSectionPath(section);
+  const canonicalPath = `/${resolvedLanguage}${sectionPath}`;
   const canonicalUrl = `${BASE_URL}${canonicalPath}`;
+  const languageAlternates = {
+    "x-default": `/${DEFAULT_LANGUAGE}${sectionPath}`,
+  };
+
+  for (const lang of SUPPORTED_LANGUAGES) {
+    languageAlternates[lang] = `/${lang}${sectionPath}`;
+  }
 
   return {
     title,
     description,
     alternates: {
       canonical: canonicalPath,
+      languages: languageAlternates,
     },
     openGraph: {
       title,
@@ -28,5 +45,3 @@ export function buildPageMetadata({ title, description, path }) {
     },
   };
 }
-
-export { BASE_URL };

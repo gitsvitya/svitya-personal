@@ -1,12 +1,5 @@
-import App from "../../src/components/App/App";
-import { buildPageMetadata } from "../seo";
+import { redirect } from "next/navigation";
 
-export const metadata = buildPageMetadata({
-  title: "Опыт работы | Виктор Строков",
-  description: "Опыт работы Виктора Строкова: роли, компании, задачи и результаты.",
-  path: "/work",
-});
-
-export default function WorkPage() {
-  return <App initialPath="/work" />;
+export default function LegacyWorkPage() {
+  redirect("/en/work");
 }

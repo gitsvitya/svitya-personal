@@ -14,18 +14,53 @@ import { rusLng, engLng } from "../../utils/lng";
 import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
 import CookieBanner from "../CookieBanner/CookieBanner";
 
-const ALLOWED_PATHS = ["/about", "/work", "/projects", "/activities"];
+const ALLOWED_SECTION_PATHS = ["/about", "/work", "/projects", "/activities"];
+const ALLOWED_LANGUAGES = ["ru", "en"];
+const DEFAULT_LANGUAGE = "en";
 const FADE_DURATION = 300;
+const LANGUAGE_KEY = "language";
 
 function trimPath(path) {
   if (!path) return "/";
   return path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
 }
 
-function normalizePath(path) {
+function isAllowedSectionPath(path) {
+  return ALLOWED_SECTION_PATHS.includes(path);
+}
+
+function normalizeSectionPath(path) {
   const trimmed = trimPath(path);
-  if (ALLOWED_PATHS.includes(trimmed)) return trimmed;
+  if (isAllowedSectionPath(trimmed)) return trimmed;
   return "/about";
+}
+
+function parseLocalizedPath(path) {
+  const trimmed = trimPath(path);
+  const chunks = trimmed.split("/").filter(Boolean);
+
+  if (chunks.length > 0 && ALLOWED_LANGUAGES.includes(chunks[0])) {
+    const sectionPath = chunks[1] ? `/${chunks[1]}` : "/about";
+    return {
+      hasLocale: true,
+      language: chunks[0],
+      sectionPath,
+      isSectionValid: isAllowedSectionPath(sectionPath),
+    };
+  }
+
+  return {
+    hasLocale: false,
+    language: null,
+    sectionPath: trimmed,
+    isSectionValid: isAllowedSectionPath(trimmed),
+  };
+}
+
+function buildLocalizedPath(language, sectionPath) {
+  const normalizedLanguage = ALLOWED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE;
+  const normalizedSectionPath = normalizeSectionPath(sectionPath);
+  return `/${normalizedLanguage}${normalizedSectionPath}`;
 }
 
 function getLegacyHashPath() {
@@ -33,12 +68,12 @@ function getLegacyHashPath() {
   const { hash } = window.location;
   if (!hash || !hash.startsWith("#/")) return null;
   const candidate = trimPath(hash.slice(1));
-  return ALLOWED_PATHS.includes(candidate) ? candidate : null;
+  return isAllowedSectionPath(candidate) ? candidate : null;
 }
 
 // Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
-function App({ initialPath = "/about" }) {
-  const [language, setLanguage] = useState("en");
+function App({ initialPath = "/en/about", initialLanguage = DEFAULT_LANGUAGE }) {
+  const [language, setLanguage] = useState(initialLanguage);
   const [isLanguageSwitching, setIsLanguageSwitching] = useState(false);
   const languageTimeouts = useRef([]);
   const [theme, setTheme] = useState("light");
@@ -52,7 +87,9 @@ function App({ initialPath = "/about" }) {
   const router = useRouter();
 
   const currentPath = pathname || initialPath;
-  const activePath = normalizePath(currentPath);
+  const parsedPath = parseLocalizedPath(currentPath);
+  const currentRouteLanguage = parsedPath.language || initialLanguage || DEFAULT_LANGUAGE;
+  const activePath = normalizeSectionPath(parsedPath.sectionPath);
 
   // Если путь сменился (например, кнопки браузера), снимаем флаг анимации.
   useEffect(() => {
@@ -63,20 +100,27 @@ function App({ initialPath = "/about" }) {
     setIsRouteSwitching(false);
   }, [pathname]);
 
-  // Сохраняем предыдущую логику: неизвестные пути и корень ведут на /about.
+  // Синхронизируем state языка с языком из URL.
   useEffect(() => {
-    const trimmed = trimPath(currentPath);
-    const legacyPath = getLegacyHashPath();
+    if (language !== currentRouteLanguage) {
+      setLanguage(currentRouteLanguage);
+    }
+  }, [currentRouteLanguage, language]);
 
-    if ((trimmed === "/" || trimmed === "/about") && legacyPath && legacyPath !== trimmed) {
-      router.replace(legacyPath);
+  // Сохраняем предыдущую логику: legacy hash и невалидные пути перенаправляем на локализованные адреса.
+  useEffect(() => {
+    const legacyPath = getLegacyHashPath();
+    const localizedCurrentPath = buildLocalizedPath(currentRouteLanguage, activePath);
+
+    if (!parsedPath.hasLocale && legacyPath && legacyPath !== activePath) {
+      router.replace(buildLocalizedPath(currentRouteLanguage, legacyPath));
       return;
     }
 
-    if (!ALLOWED_PATHS.includes(trimmed)) {
-      router.replace("/about");
+    if (!parsedPath.hasLocale || !parsedPath.isSectionValid) {
+      router.replace(localizedCurrentPath);
     }
-  }, [currentPath, router]);
+  }, [activePath, currentRouteLanguage, parsedPath.hasLocale, parsedPath.isSectionValid, router]);
 
   let currentText;
   if (language === "ru") currentText = rusLng;
@@ -105,6 +149,10 @@ function App({ initialPath = "/about" }) {
   }, [isThemeReady, theme]);
 
   useEffect(() => {
+    localStorage.setItem(LANGUAGE_KEY, language);
+  }, [language]);
+
+  useEffect(() => {
     return () => {
       languageTimeouts.current.forEach(clearTimeout);
     };
@@ -118,20 +166,23 @@ function App({ initialPath = "/about" }) {
 
   const changeLanguageWithFade = useCallback(
     (nextLanguage) => {
-      if (nextLanguage === language) return;
+      if (!ALLOWED_LANGUAGES.includes(nextLanguage) || nextLanguage === language) return;
       languageTimeouts.current.forEach(clearTimeout);
       languageTimeouts.current = [];
       setIsLanguageSwitching(true);
+
       const fadeOutTimer = setTimeout(() => {
         setLanguage(nextLanguage);
+        router.push(buildLocalizedPath(nextLanguage, activePath));
         const fadeInTimer = setTimeout(() => {
           setIsLanguageSwitching(false);
         }, 300);
         languageTimeouts.current.push(fadeInTimer);
       }, 300);
+
       languageTimeouts.current.push(fadeOutTimer);
     },
-    [language]
+    [activePath, language, router]
   );
 
   useEffect(() => {
@@ -142,11 +193,8 @@ function App({ initialPath = "/about" }) {
     root.style.backgroundColor = bgPage;
   }, [isThemeReady, theme]);
 
-  // После гидрации подтягиваем реальные пользовательские настройки.
+  // После гидрации подтягиваем пользовательские настройки темы.
   useEffect(() => {
-    const browserLng = window.navigator.language.startsWith("ru") ? "ru" : "en";
-    setLanguage(browserLng);
-
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light" || savedTheme === "dark") {
       setTheme(savedTheme);
@@ -166,17 +214,17 @@ function App({ initialPath = "/about" }) {
 
   const navigateTo = useCallback(
     (path) => {
-      const normalized = normalizePath(path);
+      const normalized = normalizeSectionPath(path);
       if (normalized === activePath) return;
       if (routeTimeoutRef.current) clearTimeout(routeTimeoutRef.current);
 
       setIsRouteSwitching(true);
       routeTimeoutRef.current = setTimeout(() => {
-        router.push(normalized);
+        router.push(buildLocalizedPath(currentRouteLanguage, normalized));
         setTimeout(() => setIsRouteSwitching(false), 10);
       }, FADE_DURATION);
     },
-    [activePath, router]
+    [activePath, currentRouteLanguage, router]
   );
 
   const isFading = isLanguageSwitching || isRouteSwitching;
