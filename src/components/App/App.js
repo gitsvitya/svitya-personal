@@ -19,6 +19,7 @@ const ALLOWED_LANGUAGES = ["ru", "en"];
 const DEFAULT_LANGUAGE = "en";
 const FADE_DURATION = 300;
 const LANGUAGE_KEY = "language";
+const THEME_KEY = "theme";
 
 function trimPath(path) {
   if (!path) return "/";
@@ -72,12 +73,16 @@ function getLegacyHashPath() {
 }
 
 // Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
-function App({ initialPath = "/en/about", initialLanguage = DEFAULT_LANGUAGE }) {
+function App({
+  initialPath = "/en/about",
+  initialLanguage = DEFAULT_LANGUAGE,
+  initialTheme = "light",
+}) {
   const [language, setLanguage] = useState(initialLanguage);
   const [isLanguageSwitching, setIsLanguageSwitching] = useState(false);
   const languageTimeouts = useRef([]);
-  const [theme, setTheme] = useState("light");
-  const [isThemeReady, setIsThemeReady] = useState(false);
+  const [theme, setTheme] = useState(initialTheme);
+  const [isThemeSynced, setIsThemeSynced] = useState(false);
   const [modalOpened, setModalOpened] = useState(false);
   const [modalContentCompany, setModalContentCompany] = useState("");
   const [showContent, setShowContent] = useState(false);
@@ -144,9 +149,10 @@ function App({ initialPath = "/en/about", initialLanguage = DEFAULT_LANGUAGE }) 
   }, [currentText.pageTitle]);
 
   useEffect(() => {
-    if (!isThemeReady) return;
-    localStorage.setItem("theme", theme);
-  }, [isThemeReady, theme]);
+    if (!isThemeSynced) return;
+    localStorage.setItem(THEME_KEY, theme);
+    document.cookie = `theme=${theme}; path=/; max-age=31536000; samesite=lax`;
+  }, [isThemeSynced, theme]);
 
   useEffect(() => {
     localStorage.setItem(LANGUAGE_KEY, language);
@@ -186,31 +192,36 @@ function App({ initialPath = "/en/about", initialLanguage = DEFAULT_LANGUAGE }) 
   );
 
   useEffect(() => {
-    if (!isThemeReady) return;
+    if (!isThemeSynced) return;
     const root = document.documentElement;
     root.setAttribute("data-theme", theme);
     const bgPage = getComputedStyle(root).getPropertyValue("--bg-page");
     root.style.backgroundColor = bgPage;
-  }, [isThemeReady, theme]);
+  }, [isThemeSynced, theme]);
 
-  // После гидрации подтягиваем пользовательские настройки темы.
+  // На первом маунте подтягиваем тему из localStorage или из data-theme, уже выставленного ранним script.
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem(THEME_KEY);
     if (savedTheme === "light" || savedTheme === "dark") {
-      setTheme(savedTheme);
-      setIsThemeReady(true);
+      if (savedTheme !== theme) setTheme(savedTheme);
+      setIsThemeSynced(true);
       return;
     }
 
     const domTheme = document.documentElement.getAttribute("data-theme");
     if (domTheme === "light" || domTheme === "dark") {
-      setTheme(domTheme);
-      setIsThemeReady(true);
+      if (domTheme !== theme) setTheme(domTheme);
+      setIsThemeSynced(true);
       return;
     }
 
-    setIsThemeReady(true);
-  }, []);
+    if (initialTheme === "light" || initialTheme === "dark") {
+      setTheme(initialTheme);
+    } else {
+      setTheme("light");
+    }
+    setIsThemeSynced(true);
+  }, [initialTheme, theme]);
 
   const navigateTo = useCallback(
     (path) => {

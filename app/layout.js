@@ -1,5 +1,6 @@
 import Script from "next/script";
 import "../src/index.css";
+import { getServerTheme } from "./theme.server";
 
 export const metadata = {
   metadataBase: new URL("https://svitya.com"),
@@ -41,19 +42,33 @@ export const viewport = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const initialTheme = await getServerTheme();
+  const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
+
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html
+      lang="ru"
+      data-theme={initialTheme}
+      style={{ backgroundColor: initialBackground }}
+      suppressHydrationWarning
+    >
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function setInitialTheme(){
             try {
+              var cookieMatch = document.cookie.match(/(?:^|;\\s*)theme=(light|dark)(?:;|$)/);
+              var themeFromCookie = cookieMatch ? cookieMatch[1] : null;
               var saved = localStorage.getItem("theme");
               var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-              var theme = (saved === "light" || saved === "dark") ? saved : (prefersDark ? "dark" : "light");
+              var theme = (saved === "light" || saved === "dark")
+                ? saved
+                : ((themeFromCookie === "light" || themeFromCookie === "dark") ? themeFromCookie : (prefersDark ? "dark" : "light"));
               var doc = document.documentElement;
               doc.setAttribute("data-theme", theme);
               doc.style.backgroundColor = theme === "dark" ? "#0c111a" : "#ffffff";
+              localStorage.setItem("theme", theme);
+              document.cookie = "theme=" + theme + "; path=/; max-age=31536000; samesite=lax";
             } catch (e) {}
           })();`}
         </Script>
