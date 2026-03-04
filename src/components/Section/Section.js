@@ -1,6 +1,6 @@
 import styles from "./Section.module.css";
 
-// Универсальный блок-секция с общими отступами/шапкой; принимает кастомные классы и содержимое.
+// Рендерит универсальную секцию с контейнером, заголовком и вложенным контентом.
 function Section({ id, title, children, className = "", contentClassName = "" }) {
   const sectionClassName = className
     ? `${styles.section} ${className}`

@@ -1,3 +1,4 @@
+/* Стили контента модалки: шапка с логотипом, ссылка и описательные абзацы. */
 .modalContentRenderGeneralWindow {
   display: flex;
   flex-direction: column;

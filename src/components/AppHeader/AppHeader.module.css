@@ -1,3 +1,4 @@
+/* Стили хедера: переключатели темы/языка, меню и мобильная навигация. */
 .header {
   width: 100%;
 }
@@ -152,6 +153,7 @@
 .listItemLink {
   font-family: 'VremenaGrotesk', sans-serif;
   text-rendering: optimizeLegibility;
+  position: relative;
   padding: 0;
   margin: 0;
   font-size: 22px;
@@ -160,20 +162,40 @@
   line-height: 1.375;
   text-decoration: none;
   color: var(--text-primary);
-  transition: opacity var(--transition-slow), color var(--transition-slow), font-size var(--transition-slow);
+  transition: opacity var(--transition-slow), color var(--transition-slow), text-decoration var(--transition-slow);
   outline: none;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
-.listItemLinkActive {
-  color: var(--accent);
-  font-size: 26px;
+.listItemLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
-  .controlChanger:focus-visible,
-  .listItemLink:focus-visible {
+.listItemLinkActive {
+  color: var(--accent);
+}
+
+.listItemLinkActive::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.controlChanger:focus-visible,
+.listItemLink:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
@@ -186,9 +208,9 @@
   }
 
   .controlChanger:hover {
-      cursor: pointer;
-      border-color: var(--accent);
-    }
+    cursor: pointer;
+    border-color: var(--accent);
+  }
 
   .controlChanger:hover .controlSwitcherActive {
     color: var(--accent);
@@ -272,9 +294,8 @@
 
 @media (max-width: 428px) {
   .container {
-  gap: 16px;
-}
-
+    gap: 16px;
+  }
 }
 @media (max-width: 380px) {
   .controls {

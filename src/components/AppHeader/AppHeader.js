@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./AppHeader.module.css";
 
-// Шапка страницы: переключатели языка/темы и навигация по якорям.
+// Рендерит верхнюю панель с переключением темы/языка и навигацией по разделам.
 function AppHeader({
   text,
   onLanguageChange,
@@ -12,32 +12,32 @@ function AppHeader({
   activePath,
   onNavigate,
 }) {
-
-  // Объявляем состояния для переключения меню на маленьких мобильных разрешениях, а также переменные для переключения языка.
+  // Хранит состояние мобильного меню.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Вычисляет целевые значения для переключателей языка и темы.
   const nextLng = language === "ru" ? "en" : "ru";
   const nextTheme = theme === "light" ? "dark" : "light";
   const isDarkTheme = theme === "dark";
   const isRussian = language === "ru";
 
-  // Переключаем тему и фиксируем состояние активного варианта.
+  // Переключает тему между светлой и темной.
   function toggleTheme() {
     setTheme(nextTheme);
   }
 
-  // Запускаем смену языка с анимацией из родителя.
+  // Передает в родитель запрос на смену языка.
   function toggleLanguage() {
     onLanguageChange(nextLng);
   }
 
-  // Сворачиваем меню при Esc и когда выходим за мобильную ширину.
+  // Закрывает мобильное меню по Escape и при выходе за мобильный брейкпоинт.
   useEffect(() => {
     function handleKeyDown(event) {
       if (event.key === "Escape") setIsMenuOpen(false);
     }
 
     function handleResize() {
-      if (window.innerWidth > 428 && isMenuOpen) {
+      if (window.innerWidth > 780 && isMenuOpen) {
         setIsMenuOpen(false);
       }
     }
@@ -51,10 +51,12 @@ function AppHeader({
     };
   }, [isMenuOpen]);
 
+  // Переключает видимость мобильного меню.
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);
   }
 
+  // Явно закрывает мобильное меню после перехода по разделу.
   function closeMenu() {
     setIsMenuOpen(false);
   }
@@ -188,11 +190,6 @@ function AppHeader({
                 {text.otherExpBlockHeaderText}
               </button>
             </li>
-            {/* <li className={`${styles.listItem} ${styles.listItemFooter}`}>
-              <a className={styles.listItemLink} href="#footer" onClick={closeMenu}>
-                {text.appFooterContacts}
-              </a>
-            </li> */}
           </ul>
         </nav>
       </div>

@@ -1,5 +1,6 @@
 import { BASE_URL } from "./site";
 
+// Генерирует карту сайта для всех локализованных разделов.
 export default function sitemap() {
   const now = new Date();
   const routes = [

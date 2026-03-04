@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+// Конфигурация Next.js для сборки standalone-артефакта.
 const nextConfig = {
   output: "standalone",
 };

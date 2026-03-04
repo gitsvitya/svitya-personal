@@ -3,12 +3,10 @@ import { workCompanies } from "../../utils/companiesList.js";
 import Section from "../Section/Section";
 import sectionStyles from "../Section/Section.module.css";
 
-// Секция с опытом работы: рендерит карточки компаний и пробрасывает хендлер модалки.
+// Отрисовывает секцию опыта работы со списком карточек компаний.
 function AppWorkExp({ text, setModalContentCompany, openModal }) {
   return (
-    <Section id="workExp"
-    title={text.workExpBlockHeaderText}
-    >
+    <Section id="workExp" title={text.workExpBlockHeaderText}>
       <div className={sectionStyles.cardsGrid}>
         {workCompanies.map((name) => (
           <Card

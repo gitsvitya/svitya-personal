@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 
+// Набор поддерживаемых языковых префиксов URL.
 const SUPPORTED_LANGUAGES = new Set(["ru", "en"]);
 
+// Синхронизирует cookie языка с первым сегментом локализованного маршрута.
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/").filter(Boolean)[0];
@@ -26,6 +28,7 @@ export function middleware(request) {
   return response;
 }
 
+// Ограничивает выполнение middleware только пользовательскими страницами.
 export const config = {
   matcher: ["/((?!_next|api|favicon.ico|manifest.json|robots.txt|sitemap.xml).*)"],
 };

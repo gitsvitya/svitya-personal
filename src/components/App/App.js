@@ -14,28 +14,39 @@ import { rusLng, engLng } from "../../utils/lng";
 import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
 import CookieBanner from "../CookieBanner/CookieBanner";
 
+// Разрешенные разделы для клиентской навигации.
 const ALLOWED_SECTION_PATHS = ["/about", "/work", "/projects", "/activities"];
+// Разрешенные языковые префиксы в URL.
 const ALLOWED_LANGUAGES = ["ru", "en"];
+// Язык по умолчанию для всех fallback-сценариев.
 const DEFAULT_LANGUAGE = "en";
+// Единая длительность fade-анимаций при навигации.
 const FADE_DURATION = 300;
+// Длительность закрытия модального окна.
+const MODAL_CLOSE_DURATION = 500;
+// Ключи для хранения пользовательских настроек.
 const LANGUAGE_KEY = "language";
 const THEME_KEY = "theme";
 
+// Нормализует путь, убирая хвостовой слеш (кроме корня).
 function trimPath(path) {
   if (!path) return "/";
   return path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
 }
 
+// Проверяет, относится ли путь к поддерживаемым разделам.
 function isAllowedSectionPath(path) {
   return ALLOWED_SECTION_PATHS.includes(path);
 }
 
+// Возвращает валидный путь раздела или fallback на "/about".
 function normalizeSectionPath(path) {
   const trimmed = trimPath(path);
   if (isAllowedSectionPath(trimmed)) return trimmed;
   return "/about";
 }
 
+// Разбирает URL на язык и раздел с признаком валидности.
 function parseLocalizedPath(path) {
   const trimmed = trimPath(path);
   const chunks = trimmed.split("/").filter(Boolean);
@@ -58,12 +69,14 @@ function parseLocalizedPath(path) {
   };
 }
 
+// Собирает локализованный путь вида "/{lang}/{section}".
 function buildLocalizedPath(language, sectionPath) {
   const normalizedLanguage = ALLOWED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE;
   const normalizedSectionPath = normalizeSectionPath(sectionPath);
   return `/${normalizedLanguage}${normalizedSectionPath}`;
 }
 
+// Поддерживает legacy-маршрутизацию через hash-ссылки формата "#/about".
 function getLegacyHashPath() {
   if (typeof window === "undefined") return null;
   const { hash } = window.location;
@@ -98,7 +111,7 @@ function App({
   const currentRouteLanguage = parsedPath.language || initialLanguage || DEFAULT_LANGUAGE;
   const activePath = normalizeSectionPath(parsedPath.sectionPath);
 
-  // Если путь сменился (например, кнопки браузера), снимаем флаг анимации.
+  // Сбрасывает/доигрывает анимацию при смене маршрута из браузерной истории.
   useEffect(() => {
     if (routeTimeoutRef.current) {
       clearTimeout(routeTimeoutRef.current);
@@ -111,22 +124,21 @@ function App({
 
     if (pendingRouteSwitchRef.current) {
       pendingRouteSwitchRef.current = false;
-      // Новый контент сначала рендерим в состоянии hidden, затем плавно показываем.
       routeFadeInTimeoutRef.current = setTimeout(() => {
         setIsRouteSwitching(false);
-      }, 300);
+      }, FADE_DURATION);
       return;
     }
 
     setIsRouteSwitching(false);
   }, [pathname]);
 
-  // Синхронизируем state языка с языком из URL.
+  // Синхронизирует текущий язык с языком из URL.
   useEffect(() => {
     setLanguage(currentRouteLanguage);
   }, [currentRouteLanguage]);
 
-  // Сохраняем предыдущую логику: legacy hash и невалидные пути перенаправляем на локализованные адреса.
+  // Редиректит на корректный локализованный путь для legacy/hash и невалидных URL.
   useEffect(() => {
     const legacyPath = getLegacyHashPath();
     const localizedCurrentPath = buildLocalizedPath(currentRouteLanguage, activePath);
@@ -141,40 +153,45 @@ function App({
     }
   }, [activePath, currentRouteLanguage, parsedPath.hasLocale, parsedPath.isSectionValid, router]);
 
-  let currentText;
-  if (language === "ru") currentText = rusLng;
-  else currentText = engLng;
+  // Выбирает словарь интерфейса по активному языку.
+  const currentText = language === "ru" ? rusLng : engLng;
 
+  // Открывает модальное окно и блокирует прокрутку страницы.
   const openModal = useCallback(() => {
     setModalOpened(true);
     document.body.style.overflow = "hidden";
   }, []);
 
+  // Закрывает модальное окно после завершения анимации.
   const closeModal = useCallback(() => {
     setShowContent(false);
     setTimeout(() => {
       setModalOpened(false);
       document.body.style.overflow = "";
-    }, 500);
+    }, MODAL_CLOSE_DURATION);
   }, []);
 
+  // Сохраняет тему в localStorage и cookie после первичной синхронизации.
   useEffect(() => {
     if (!isThemeSynced) return;
     localStorage.setItem(THEME_KEY, theme);
     document.cookie = `theme=${theme}; path=/; max-age=31536000; samesite=lax`;
   }, [isThemeSynced, theme]);
 
+  // Сохраняет язык в localStorage и cookie при каждом переключении.
   useEffect(() => {
     localStorage.setItem(LANGUAGE_KEY, language);
     document.cookie = `lang=${language}; path=/; max-age=31536000; samesite=lax`;
   }, [language]);
 
+  // Чистит таймеры переключения языка при размонтировании.
   useEffect(() => {
     return () => {
       languageTimeouts.current.forEach(clearTimeout);
     };
   }, []);
 
+  // Чистит таймеры переключения маршрутов при размонтировании.
   useEffect(() => {
     return () => {
       if (routeTimeoutRef.current) clearTimeout(routeTimeoutRef.current);
@@ -182,6 +199,7 @@ function App({
     };
   }, []);
 
+  // Переключает язык с анимацией и последующей навигацией.
   const changeLanguageWithFade = useCallback(
     (nextLanguage) => {
       if (!ALLOWED_LANGUAGES.includes(nextLanguage) || nextLanguage === language) return;
@@ -193,23 +211,23 @@ function App({
         const nextPath = buildLocalizedPath(nextLanguage, activePath);
         setLanguage(nextLanguage);
 
-        // Даем переключателю языка время проиграть transition до смены роутинга.
         const navigateTimer = setTimeout(() => {
           router.push(nextPath);
           const fadeInTimer = setTimeout(() => {
             setIsLanguageSwitching(false);
-          }, 300);
+          }, FADE_DURATION);
           languageTimeouts.current.push(fadeInTimer);
-        }, 300);
+        }, FADE_DURATION);
 
         languageTimeouts.current.push(navigateTimer);
-      }, 300);
+      }, FADE_DURATION);
 
       languageTimeouts.current.push(fadeOutTimer);
     },
     [activePath, language, router]
   );
 
+  // Применяет тему к корневому элементу и синхронизирует цвет фона документа.
   useEffect(() => {
     if (!isThemeSynced) return;
     const root = document.documentElement;
@@ -218,30 +236,21 @@ function App({
     root.style.backgroundColor = bgPage;
   }, [isThemeSynced, theme]);
 
-  // На первом маунте подтягиваем тему из localStorage или из data-theme, уже выставленного ранним script.
+  // Инициализирует тему из localStorage, data-theme или server-side значения.
   useEffect(() => {
     const savedTheme = localStorage.getItem(THEME_KEY);
-    if (savedTheme === "light" || savedTheme === "dark") {
-      if (savedTheme !== theme) setTheme(savedTheme);
-      setIsThemeSynced(true);
-      return;
-    }
-
     const domTheme = document.documentElement.getAttribute("data-theme");
-    if (domTheme === "light" || domTheme === "dark") {
-      if (domTheme !== theme) setTheme(domTheme);
-      setIsThemeSynced(true);
-      return;
-    }
+    const hasSavedTheme = savedTheme === "light" || savedTheme === "dark";
+    const hasDomTheme = domTheme === "light" || domTheme === "dark";
 
-    if (initialTheme === "light" || initialTheme === "dark") {
-      setTheme(initialTheme);
-    } else {
-      setTheme("light");
-    }
+    if (hasSavedTheme) setTheme(savedTheme);
+    else if (hasDomTheme) setTheme(domTheme);
+    else if (initialTheme === "light" || initialTheme === "dark") setTheme(initialTheme);
+    else setTheme("light");
     setIsThemeSynced(true);
-  }, [initialTheme, theme]);
+  }, [initialTheme]);
 
+  // Выполняет переход между разделами с fade-анимацией.
   const navigateTo = useCallback(
     (path) => {
       const normalized = normalizeSectionPath(path);
@@ -258,6 +267,7 @@ function App({
     [activePath, currentRouteLanguage, router]
   );
 
+  // Объединяет флаги анимации языка и маршрута для управления прозрачностью контента.
   const isFading = isLanguageSwitching || isRouteSwitching;
 
   return (

@@ -2,7 +2,7 @@ import styles from "./ModalContent.module.css";
 import { logos } from "../../utils/cardLogos";
 import { cardMap } from "../../utils/cardMap.js";
 
-// Отрисовывает содержимое модалки: детали выбранной карточки с логотипом и ссылкой.
+// Отрисовывает содержимое модального окна для выбранной карточки компании.
 function ModalContent({ modalContent, text }) {
   const logo = logos[modalContent];
   const config = cardMap[modalContent];

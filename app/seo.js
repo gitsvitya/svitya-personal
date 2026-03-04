@@ -1,14 +1,17 @@
 import { BASE_URL } from "./site";
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, resolveLanguage, resolveSection } from "./sections";
 
+// Значения по умолчанию для социальных превью.
 const DEFAULT_OG_IMAGE = "/logo512.png";
 const SITE_NAME = "Виктор Строков";
 
+// Формирует нормализованный путь раздела для canonical и alternates.
 function ensureSectionPath(section) {
   const resolvedSection = resolveSection(section);
   return `/${resolvedSection}`;
 }
 
+// Собирает метаданные страницы с canonical, alternate links и social previews.
 export function buildPageMetadata({ title, description, section, language }) {
   const resolvedLanguage = resolveLanguage(language);
   const sectionPath = ensureSectionPath(section);

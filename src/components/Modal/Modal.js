@@ -3,19 +3,19 @@ import ReactDOM from "react-dom";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import styles from "./Modal.module.css";
 
-// Обёртка модального окна: монтирует содержимое в портал и управляет анимацией/закрытием.
+// Рендерит модальное окно через портал и управляет клавиатурным взаимодействием.
 const Modal = ({ children, closeModal, showContent, setShowContent }) => {
   const container = document.getElementById("modal");
   const modalRef = useRef(null);
   const closeBtnRef = useRef(null);
   const prevFocusedRef = useRef(null);
 
-  // Запускаем появление контента после монтирования.
+  // Запускает анимацию появления после монтирования компонента.
   useEffect(() => {
     setShowContent(true);
   }, [setShowContent]);
 
-  // Позволяем закрыть модалку по Esc.
+  // Закрывает модалку по Escape и удерживает фокус внутри окна по Tab.
   useEffect(() => {
     function closeModalByEsc(evt) {
       if (evt.key === "Escape") closeModal();
@@ -48,10 +48,9 @@ const Modal = ({ children, closeModal, showContent, setShowContent }) => {
     };
   }, [closeModal]);
 
-  // Фокус: запоминаем предыдущий элемент, переводим фокус в модалку и возвращаем при закрытии.
+  // Переносит фокус в модалку при открытии и возвращает его при закрытии.
   useEffect(() => {
     prevFocusedRef.current = document.activeElement;
-    // Ждём отрисовку класса show и потом ставим фокус на крестик (если есть) или окно.
     const timer = setTimeout(() => {
       if (closeBtnRef.current) closeBtnRef.current.focus();
       else if (modalRef.current) modalRef.current.focus();

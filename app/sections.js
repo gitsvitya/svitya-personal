@@ -1,16 +1,22 @@
+// Поддерживаемые языки интерфейса.
 export const SUPPORTED_LANGUAGES = ["ru", "en"];
+// Язык по умолчанию для fallback-редиректов и SEO-альтернатив.
 export const DEFAULT_LANGUAGE = "en";
+// Поддерживаемые разделы сайта.
 export const SUPPORTED_SECTIONS = ["about", "work", "projects", "activities"];
 
+// Нормализует язык к поддерживаемому значению.
 export function resolveLanguage(value) {
   if (SUPPORTED_LANGUAGES.includes(value)) return value;
   return DEFAULT_LANGUAGE;
 }
 
+// Проверяет, поддерживается ли язык.
 export function isSupportedLanguage(value) {
   return SUPPORTED_LANGUAGES.includes(value);
 }
 
+// Определяет язык по заголовку Accept-Language.
 export function resolveLanguageFromHeader(acceptLanguage) {
   if (!acceptLanguage || typeof acceptLanguage !== "string") {
     return DEFAULT_LANGUAGE;
@@ -24,15 +30,18 @@ export function resolveLanguageFromHeader(acceptLanguage) {
   return DEFAULT_LANGUAGE;
 }
 
+// Нормализует раздел к поддерживаемому значению.
 export function resolveSection(value) {
   if (SUPPORTED_SECTIONS.includes(value)) return value;
   return "about";
 }
 
+// Проверяет, поддерживается ли раздел.
 export function isSupportedSection(value) {
   return SUPPORTED_SECTIONS.includes(value);
 }
 
+// Тексты title/description для каждой языковой версии и раздела.
 const PAGE_COPY = {
   ru: {
     about: {
@@ -75,6 +84,7 @@ const PAGE_COPY = {
   },
 };
 
+// Возвращает SEO-тексты по языку и разделу с учетом fallback-логики.
 export function getPageCopy(language, section) {
   const lang = resolveLanguage(language);
   const page = resolveSection(section);

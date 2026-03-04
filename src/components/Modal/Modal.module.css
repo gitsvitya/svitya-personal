@@ -23,7 +23,8 @@
 }
 
 .modalBody {
-  max-height: min(70vh, calc(100vh - 80px - 60px)); /* viewport minus top/bottom offsets and paddings */
+  /* Ограничивает высоту контента модалки с учетом внешних отступов и внутренних паддингов. */
+  max-height: min(70vh, calc(100vh - 80px - 60px));
   overflow: auto;
 }
 
@@ -57,11 +58,11 @@
   }
 }
 
-@media (min-height: 780px) {
+@media (hover: hover) {
   .closeIcon:hover {
-  cursor: pointer;
-  background-image: url('../../images/close_button_red.svg');
-}
+    cursor: pointer;
+    background-image: url('../../images/close_button_red.svg');
+  }
 }
 
 @media (max-width: 1166px) {

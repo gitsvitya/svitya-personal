@@ -2,13 +2,13 @@ import styles from "./Card.module.css";
 import { logos } from "../../utils/cardLogos.js";
 import { cardMap } from "../../utils/cardMap.js";
 
-// Карточка опыта: подтягивает данные по ключу, показывает логотип и открывает модалку по клику.
+// Рендерит интерактивную карточку компании и передает выбранный ключ в модальное окно.
 function Card({ companyName, openModal, setModalContentCompany, text }) {
   const logo = logos[companyName];
   const config = cardMap[companyName];
   if (!config) return null;
 
-  // Активируем карточку: запоминаем источник и открываем модальное окно.
+  // Открывает модалку и сохраняет идентификатор выбранной карточки.
   function handleActivate() {
     openModal();
     setModalContentCompany(companyName);

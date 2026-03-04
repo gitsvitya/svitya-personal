@@ -1,3 +1,4 @@
+/* Базовая раскладка страницы и классы для fade-анимаций контента. */
 .page {
   display: flex;
   flex-direction: column;

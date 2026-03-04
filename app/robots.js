@@ -1,5 +1,6 @@
 import { BASE_URL } from "./site";
 
+// Возвращает robots-правила и ссылку на sitemap для поисковых систем.
 export default function robots() {
   return {
     rules: {

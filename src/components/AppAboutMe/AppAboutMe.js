@@ -1,12 +1,11 @@
 import Section from "../Section/Section";
 import styles from "./AppAboutMe.module.css";
 
-//  Блок «Обо мне».
+// Отрисовывает главный блок "Обо мне" с фото, именем и кратким описанием.
 function AppAboutMe({ text }) {
   return (
     <Section
       id="about"
-      // title={text.aboutBlockHeaderText}
       contentClassName={styles.container}
     >
       <div className={styles.photoBlock}>

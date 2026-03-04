@@ -9,24 +9,22 @@ import svityaComLabel from "../images/svitya_com_label.png";
 import mbcLogo from "../images/mbc_logo.png";
 import ciLogo from "../images/ci_logo.png";
 
+// Приводит импорт изображения к строковому URL для использования в обычном <img>.
 function resolveImageSrc(image) {
   if (typeof image === "string") return image;
   return image?.src || "";
 }
 
-// Карта соответствия ключей компаний и путей к логотипам.
+// Словарь соответствия ключей компаний и логотипов.
 export const logos = {
-  // Work
   CI: resolveImageSrc(ciLogo),
   NTB: resolveImageSrc(moexLogo),
   LRNPT: resolveImageSrc(lukoilLogo),
   KG: resolveImageSrc(kalashnikovlLogo),
   TR: resolveImageSrc(reutersLogo),
-  // Projects
   MBC: resolveImageSrc(mbcLogo),
   MNG: resolveImageSrc(mappngoLogo),
   VNV: resolveImageSrc(veniviLogo),
-  // Activities
   SKO: resolveImageSrc(strokeOffLabel),
   SDC: resolveImageSrc(svityaComLabel),
 };

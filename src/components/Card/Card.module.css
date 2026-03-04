@@ -1,3 +1,4 @@
+/* Стили карточки опыта с CTA, логотипом и состояниями взаимодействия. */
 .card {
   display: grid;
   grid-template-columns: 70% 30%;
@@ -16,7 +17,7 @@
   text-align: left;
   appearance: none;
   cursor: pointer;
-  transition: background-color var(--transition-slow), border var(--transition-slow);
+  transition: background-color var(--transition-slow), border-color var(--transition-slow);
 }
 
 .card:focus-visible {
@@ -99,8 +100,6 @@
     height var(--transition-slow);
 }
 
-
-
 @media (min-width: 640px) {
   .card:hover .cardText {
     justify-content: space-between;
@@ -155,7 +154,7 @@
 }
 
 @media (max-width: 550px) {
-  .card{
+  .card {
     min-height: 200px;
   }
 

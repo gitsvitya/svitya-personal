@@ -1,6 +1,7 @@
 import { cookies, headers } from "next/headers";
 import { resolveLanguage, resolveLanguageFromHeader } from "./sections";
 
+// Определяет язык на сервере: сначала cookie, затем Accept-Language.
 export async function getServerLanguage() {
   const cookieStore = await cookies();
   const cookieLanguage = cookieStore.get("lang")?.value;

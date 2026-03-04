@@ -1,6 +1,5 @@
-// Сопоставление ключей компаний с текстовыми полями и ссылками для карточек/модалок.
+// Словарь метаданных для карточек и модальных окон по ключам компаний.
 export const cardMap = {
-  // Work
   CI: {
     yearKey: 'workExpBlockCompanyYearCI',
     nameKey: 'workExpBlockCompanyNameCI',
@@ -47,7 +46,6 @@ export const cardMap = {
     aboutKey: 'workExpBlockCompanyAboutTR',
     resultsKey: 'workExpBlockCompanyResultsTR'
   },
-  // Projects
   MBC: {
     yearKey: 'projectExpBlockCompanyYearMBC',
     nameKey: 'projectExpBlockCompanyNameMBC',
@@ -75,13 +73,10 @@ export const cardMap = {
     aboutKey: 'projectExpBlockCompanyAboutVNV',
     resultsKey: 'projectExpBlockCompanyResultsVNV'
   },
-  // Activities
   SKO: {
     yearKey: 'otherExpBlockCompanyYearSKO',
     nameKey: 'otherExpBlockCompanyNameSKO',
     titleKey: 'otherExpBlockCompanyTitleSKO',
-    // linkKey: 'https://trading.lukoil.ru/',
-    // linkNameKey: 'trading.lukoil.ru',
     aboutKey: 'otherExpBlockCompanyAboutSKO',
     resultsKey: 'otherExpBlockCompanyResultsSKO'
   },
