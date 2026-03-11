@@ -95,7 +95,7 @@ body {
 @media (max-width: 501px) {
   .layout-container {
     padding: var(--layout-padding-mobile);
-    gap: 10px;
+    gap: 28px;
   }
 }
 
