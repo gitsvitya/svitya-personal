@@ -27,7 +27,7 @@ export const rusLng = {
 
   workExpBlockCompanyYearNTB: '2021-2024',
   workExpBlockCompanyNameNTB: 'Национальная товарная биржа',
-  workExpBlockCompanyTitleNTB: 'Руководитель направления развития бизнеса',
+  workExpBlockCompanyTitleNTB: 'Руководитель направления методологии / развития бизнеса',
   workExpBlockCompanyAboutNTB: 'Дочерняя структура Московской биржи, специализирующаяся на товарных направлениях.',
   workExpBlockCompanyResultsNTB: 'Запускал ценовые индикаторы и B2B-информационные продукты. Развивал торги на товарных аукционах. Координировал разработку и внедрение frontend-системы автоматизации обработки заявок для биржевых торгов.',
 
@@ -117,7 +117,7 @@ export const engLng = {
 
   workExpBlockCompanyYearNTB: '2021-2024',
   workExpBlockCompanyNameNTB: 'National Mercantile Exchange',
-  workExpBlockCompanyTitleNTB: 'Head of Business Development',
+  workExpBlockCompanyTitleNTB: 'Head of Methology / Business Development',
   workExpBlockCompanyAboutNTB: 'A subsidiary of the Moscow Exchange specializing in commodity markets.',
   workExpBlockCompanyResultsNTB: 'Launched price indicators and B2B information products. Developed trading activities on commodity auctions. Coordinated the development and implementation of a frontend system for automating bid processing for exchange trading.',
 
