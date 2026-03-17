@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { CompanyId, Language } from "../../types/domain";
 import { getCompaniesBySection, getLocalizedCompany } from "../../content/companies";
-import type { AppTranslations } from "../../utils/lng";
+import type { AppTranslations } from "../../content/ui-text";
 import Card from "../Card/Card";
 import Section from "../Section/Section";
 import sectionStyles from "../Section/Section.module.css";

@@ -1,6 +1,6 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import type { Language, SectionPath, Theme } from "../../types/domain";
-import type { AppTranslations } from "../../utils/lng";
+import type { AppTranslations } from "../../content/ui-text";
 import styles from "./AppHeader.module.css";
 
 type AppHeaderProps = {

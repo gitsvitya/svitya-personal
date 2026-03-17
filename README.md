@@ -14,13 +14,21 @@ A personal portfolio website built with **Next.js** and **React**. It includes i
 - Cookie consent banner
 - Dark/light theme mode
 - RU/EN content switch
+- TypeScript-based architecture with typed routing, shared UI translations, and centralized company content data
 
 ## Tech Stack
 
 - Next.js (App Router)
 - React
+- TypeScript
 - CSS Modules
 - LocalStorage
+
+## Content Structure
+
+- `src/content/companies.ts` stores structured company/project/activity content and localized card/modal data
+- `src/content/ui-text.ts` stores shared UI translations for navigation, about section, footer, cookie banner, and controls
+- `src/hooks/*` contains extracted client logic for theme, modal state, and localized navigation
 
 ## Available Commands
 

@@ -1,6 +1,6 @@
 import type { Language } from "../types/domain";
 
-export const translations = {
+export const uiText = {
   ru: {
     page: {
       title: "Виктор Строков",
@@ -77,8 +77,8 @@ export const translations = {
   },
 } as const;
 
-export type AppTranslations = (typeof translations)[Language];
+export type AppTranslations = (typeof uiText)[Language];
 
 export function getTranslations(language: Language): AppTranslations {
-  return translations[language];
+  return uiText[language];
 }

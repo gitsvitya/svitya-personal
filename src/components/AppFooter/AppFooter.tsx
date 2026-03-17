@@ -1,4 +1,4 @@
-import type { AppTranslations } from "../../utils/lng";
+import type { AppTranslations } from "../../content/ui-text";
 import styles from "./AppFooter.module.css";
 
 type AppFooterProps = {

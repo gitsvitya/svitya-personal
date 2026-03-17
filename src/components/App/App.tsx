@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { Language, SectionPath, Theme } from "../../types/domain";
 import { DEFAULT_LANGUAGE } from "../../types/domain";
-import { getTranslations, type AppTranslations } from "../../utils/lng";
+import { getTranslations, type AppTranslations } from "../../content/ui-text";
 import { normalizeSectionPath, parseLocalizedPath } from "../../utils/routing";
 import { useAppModal } from "../../hooks/useAppModal";
 import { useLocalizedNavigation } from "../../hooks/useLocalizedNavigation";

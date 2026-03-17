@@ -1,4 +1,4 @@
-import type { AppTranslations } from "../../utils/lng";
+import type { AppTranslations } from "../../content/ui-text";
 import Section from "../Section/Section";
 import styles from "./AppAboutMe.module.css";
 

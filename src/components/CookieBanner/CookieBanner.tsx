@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { AppTranslations } from "../../utils/lng";
+import type { AppTranslations } from "../../content/ui-text";
 import styles from "./CookieBanner.module.css";
 
 // Ключ флага, подтверждающего согласие пользователя на использование cookie.
