@@ -1,27 +1,33 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { CompanyId } from "../../types/domain";
+import type { CompanyId, Language } from "../../types/domain";
+import { getCompaniesBySection, getLocalizedCompany } from "../../content/companies";
 import type { Dictionary } from "../../utils/lng";
 import Card from "../Card/Card";
-import { projectCompanies } from "../../utils/companiesList";
 import Section from "../Section/Section";
 import sectionStyles from "../Section/Section.module.css";
 
 type AppProjectsExpProps = {
   text: Dictionary;
+  language: Language;
   setModalContentCompany: Dispatch<SetStateAction<CompanyId | null>>;
   openModal: () => void;
 };
 
 // Отрисовывает секцию проектов со списком карточек и открытием деталей в модалке.
-function AppProjectsExp({ text, setModalContentCompany, openModal }: AppProjectsExpProps) {
+function AppProjectsExp({
+  text,
+  language,
+  setModalContentCompany,
+  openModal,
+}: AppProjectsExpProps) {
   return (
     <Section id="projectsExp" title={text.projectExpBlockHeaderText}>
       <div className={sectionStyles.cardsGrid}>
-        {projectCompanies.map((name) => (
+        {getCompaniesBySection("projects").map((company) => (
           <Card
-            key={name}
-            companyName={name}
-            text={text}
+            key={company.id}
+            company={getLocalizedCompany(company.id, language)}
+            ctaLabel={text.cardButtonText}
             openModal={openModal}
             setModalContentCompany={setModalContentCompany}
           />

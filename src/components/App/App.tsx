@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { getLocalizedCompany } from "../../content/companies";
 import type { CompanyId, Language, SectionPath, Theme } from "../../types/domain";
 import type { Dictionary } from "../../utils/lng";
 import { DEFAULT_LANGUAGE } from "../../types/domain";
@@ -222,6 +223,8 @@ function App({
 
   // Объединяет флаги анимации языка и маршрута для управления прозрачностью контента.
   const isFading = isLanguageSwitching || isRouteSwitching;
+  const activeModalCompany =
+    modalContentCompany === null ? null : getLocalizedCompany(modalContentCompany, language);
 
   return (
     <>
@@ -245,6 +248,7 @@ function App({
           {activePath === "/work" && (
             <AppWorkExp
               text={currentText}
+              language={language}
               setModalContentCompany={setModalContentCompany}
               openModal={openModal}
             />
@@ -252,6 +256,7 @@ function App({
           {activePath === "/projects" && (
             <AppProjectsExp
               text={currentText}
+              language={language}
               setModalContentCompany={setModalContentCompany}
               openModal={openModal}
             />
@@ -259,6 +264,7 @@ function App({
           {activePath === "/activities" && (
             <AppActivitiesExp
               text={currentText}
+              language={language}
               setModalContentCompany={setModalContentCompany}
               openModal={openModal}
             />
@@ -275,7 +281,7 @@ function App({
       </div>
       {modalOpened && (
         <Modal closeModal={closeModal} showContent={showContent} setShowContent={setShowContent}>
-          <ModalContent modalContent={modalContentCompany} text={currentText} />
+          <ModalContent company={activeModalCompany} />
         </Modal>
       )}
     </>

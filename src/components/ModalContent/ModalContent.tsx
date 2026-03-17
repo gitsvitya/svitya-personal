@@ -1,53 +1,43 @@
-import type { CompanyId } from "../../types/domain";
-import type { Dictionary } from "../../utils/lng";
+import type { LocalizedCompany } from "../../content/companies";
 import styles from "./ModalContent.module.css";
-import { logos } from "../../utils/cardLogos";
-import { cardMap } from "../../utils/cardMap";
 
 type ModalContentProps = {
-  modalContent: CompanyId | null;
-  text: Dictionary;
+  company: LocalizedCompany | null;
 };
 
 // Отрисовывает содержимое модального окна для выбранной карточки компании.
-function ModalContent({ modalContent, text }: ModalContentProps) {
-  if (!modalContent) return null;
-
-  const logo = logos[modalContent];
-  const config = cardMap[modalContent];
-
+function ModalContent({ company }: ModalContentProps) {
+  if (!company) return null;
   return (
     <div className={styles.modalContentRenderGeneralWindow}>
       <div className={styles.modalContentRenderTextLogoWindow}>
         <div className={styles.modalContentRenderCompanyTextBox}>
-          <span className={styles.modalContentRendercardYear}>{text[config.yearKey]}</span>
+          <span className={styles.modalContentRendercardYear}>{company.year}</span>
           <div className={styles.modalContentRenderCompanyLinkBox}>
-            <span className={styles.modalContentRendercardCompanyName}>
-              {text[config.nameKey]}
-            </span>
-            {config.linkKey && (
+            <span className={styles.modalContentRendercardCompanyName}>{company.name}</span>
+            {company.url && (
               <a
                 className={styles.modalContentRenderlink}
-                href={config.linkKey}
+                href={company.url}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                {config.linkNameKey}
+                {company.linkLabel}
               </a>
             )}
           </div>
-          <span className={styles.modalContentRendercardTitle}>{text[config.titleKey]}</span>
+          <span className={styles.modalContentRendercardTitle}>{company.title}</span>
         </div>
         <img
           className={styles.modalContentRenderlogoPic}
-          src={logo}
-          alt={text[config.nameKey]}
+          src={company.logo}
+          alt={company.name}
           loading="lazy"
         />
       </div>
       <div className={styles.modalContentRenderParagraphBlock}>
-        <p className={styles.modalContentRenderParagraph}>{text[config.aboutKey]}</p>
-        <p className={styles.modalContentRenderParagraph}>{text[config.resultsKey]}</p>
+        <p className={styles.modalContentRenderParagraph}>{company.about}</p>
+        <p className={styles.modalContentRenderParagraph}>{company.results}</p>
       </div>
     </div>
   );

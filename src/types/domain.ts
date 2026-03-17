@@ -1,6 +1,7 @@
 export const LANGUAGES = ["ru", "en"] as const;
 export const DEFAULT_LANGUAGE = "en" as const;
 export const SECTIONS = ["about", "work", "projects", "activities"] as const;
+export const COMPANY_SECTIONS = ["work", "projects", "activities"] as const;
 export const SECTION_PATHS = ["/about", "/work", "/projects", "/activities"] as const;
 export const THEMES = ["light", "dark"] as const;
 export const COMPANY_IDS = [
@@ -18,6 +19,7 @@ export const COMPANY_IDS = [
 
 export type Language = (typeof LANGUAGES)[number];
 export type Section = (typeof SECTIONS)[number];
+export type CompanySection = (typeof COMPANY_SECTIONS)[number];
 export type SectionPath = (typeof SECTION_PATHS)[number];
 export type Theme = (typeof THEMES)[number];
 export type CompanyId = (typeof COMPANY_IDS)[number];
