@@ -1,13 +1,13 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { CompanyId, Language } from "../../types/domain";
 import { getCompaniesBySection, getLocalizedCompany } from "../../content/companies";
-import type { Dictionary } from "../../utils/lng";
+import type { AppTranslations } from "../../utils/lng";
 import Card from "../Card/Card";
 import Section from "../Section/Section";
 import sectionStyles from "../Section/Section.module.css";
 
 type AppProjectsExpProps = {
-  text: Dictionary;
+  text: AppTranslations;
   language: Language;
   setModalContentCompany: Dispatch<SetStateAction<CompanyId | null>>;
   openModal: () => void;
@@ -21,13 +21,13 @@ function AppProjectsExp({
   openModal,
 }: AppProjectsExpProps) {
   return (
-    <Section id="projectsExp" title={text.projectExpBlockHeaderText}>
+    <Section id="projectsExp" title={text.sections.projects}>
       <div className={sectionStyles.cardsGrid}>
         {getCompaniesBySection("projects").map((company) => (
           <Card
             key={company.id}
             company={getLocalizedCompany(company.id, language)}
-            ctaLabel={text.cardButtonText}
+            ctaLabel={text.card.button}
             openModal={openModal}
             setModalContentCompany={setModalContentCompany}
           />

@@ -1,9 +1,9 @@
-import type { Dictionary } from "../../utils/lng";
+import type { AppTranslations } from "../../utils/lng";
 import Section from "../Section/Section";
 import styles from "./AppAboutMe.module.css";
 
 type AppAboutMeProps = {
-  text: Dictionary;
+  text: AppTranslations;
 };
 
 // Отрисовывает главный блок "Обо мне" с фото, именем и кратким описанием.
@@ -13,11 +13,11 @@ function AppAboutMe({ text }: AppAboutMeProps) {
       <div className={styles.photoBlock}>
         <div className={styles.photo} />
         <div className={styles.textBlock}>
-          <h1 className={styles.header}>{text.titleBlockHeader}</h1>
-          <p className={styles.subheader}>{text.titleBlockSubHeader}</p>
+          <h1 className={styles.header}>{text.about.title}</h1>
+          <p className={styles.subheader}>{text.about.subtitle}</p>
         </div>
       </div>
-      <p className={styles.paragraph}>{text.aboutBlockParagraphText}</p>
+      <p className={styles.paragraph}>{text.about.description}</p>
     </Section>
   );
 }

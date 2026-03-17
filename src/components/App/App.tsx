@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getLocalizedCompany } from "../../content/companies";
 import type { CompanyId, Language, SectionPath, Theme } from "../../types/domain";
-import type { Dictionary } from "../../utils/lng";
 import { DEFAULT_LANGUAGE } from "../../types/domain";
+import { getTranslations, type AppTranslations } from "../../utils/lng";
 import {
   buildLocalizedPath,
   getLegacyHashPath,
@@ -20,7 +20,6 @@ import AppWorkExp from "../AppWorkExp/AppWorkExp";
 import Modal from "../Modal/Modal";
 import ModalContent from "../ModalContent/ModalContent";
 import AppAboutMe from "../AppAboutMe/AppAboutMe";
-import { engLng, rusLng } from "../../utils/lng";
 import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
 import CookieBanner from "../CookieBanner/CookieBanner";
 
@@ -107,7 +106,7 @@ function App({
   }, [activePath, currentRouteLanguage, parsedPath.hasLocale, parsedPath.isSectionValid, router]);
 
   // Выбирает словарь интерфейса по активному языку.
-  const currentText: Dictionary = language === "ru" ? rusLng : engLng;
+  const currentText: AppTranslations = getTranslations(language);
 
   // Открывает модальное окно и блокирует прокрутку страницы.
   const openModal = useCallback(() => {

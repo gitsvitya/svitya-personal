@@ -1,13 +1,13 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { CompanyId, Language } from "../../types/domain";
 import { getCompaniesBySection, getLocalizedCompany } from "../../content/companies";
-import type { Dictionary } from "../../utils/lng";
+import type { AppTranslations } from "../../utils/lng";
 import Card from "../Card/Card";
 import Section from "../Section/Section";
 import sectionStyles from "../Section/Section.module.css";
 
 type AppWorkExpProps = {
-  text: Dictionary;
+  text: AppTranslations;
   language: Language;
   setModalContentCompany: Dispatch<SetStateAction<CompanyId | null>>;
   openModal: () => void;
@@ -16,13 +16,13 @@ type AppWorkExpProps = {
 // Отрисовывает секцию опыта работы со списком карточек компаний.
 function AppWorkExp({ text, language, setModalContentCompany, openModal }: AppWorkExpProps) {
   return (
-    <Section id="workExp" title={text.workExpBlockHeaderText}>
+    <Section id="workExp" title={text.sections.work}>
       <div className={sectionStyles.cardsGrid}>
         {getCompaniesBySection("work").map((company) => (
           <Card
             key={company.id}
             company={getLocalizedCompany(company.id, language)}
-            ctaLabel={text.cardButtonText}
+            ctaLabel={text.card.button}
             openModal={openModal}
             setModalContentCompany={setModalContentCompany}
           />

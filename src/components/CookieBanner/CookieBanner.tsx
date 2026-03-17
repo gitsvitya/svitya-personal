@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import type { Dictionary } from "../../utils/lng";
+import type { AppTranslations } from "../../utils/lng";
 import styles from "./CookieBanner.module.css";
 
 // Ключ флага, подтверждающего согласие пользователя на использование cookie.
 const COOKIE_KEY = "cookieAccepted";
 
 type CookieBannerProps = {
-  text: Dictionary;
+  text: AppTranslations;
 };
 
 // Отображает уведомление о cookie и скрывает его после подтверждения.
@@ -32,9 +32,9 @@ function CookieBanner({ text }: CookieBannerProps) {
 
   return (
     <div className={styles.banner}>
-      <p className={styles.paragraph}>{text.cookieBannerBlockParagraphText}</p>
+      <p className={styles.paragraph}>{text.cookieBanner.description}</p>
       <button type="button" className={styles.button} onClick={acceptCookies}>
-        {text.cookieBannerBlockButtonText}
+        {text.cookieBanner.button}
       </button>
     </div>
   );

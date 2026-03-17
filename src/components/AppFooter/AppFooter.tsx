@@ -1,8 +1,8 @@
-import type { Dictionary } from "../../utils/lng";
+import type { AppTranslations } from "../../utils/lng";
 import styles from "./AppFooter.module.css";
 
 type AppFooterProps = {
-  text: Dictionary;
+  text: AppTranslations;
   isLanguageSwitching: boolean;
 };
 
@@ -21,7 +21,7 @@ function AppFooter({ text, isLanguageSwitching }: AppFooterProps) {
       <div className={`layout-container ${styles.container}`}>
         <div className={styles.disclaimerBlock}>
           <div className={styles.contactsBlock}>
-            <span className={styles.text}>{text.appFooterContacts}:</span>
+            <span className={styles.text}>{text.footer.contacts}:</span>
             <div className={styles.navigation}>
               <ul className={styles.navigationList}>
                 <li className={styles.navigationListItem}>
@@ -60,7 +60,7 @@ function AppFooter({ text, isLanguageSwitching }: AppFooterProps) {
               </ul>
             </div>
           </div>
-          <span className={styles.metaDisclaimer}>{text.appFooterMetaDisclaimer}</span>
+          <span className={styles.metaDisclaimer}>{text.footer.metaDisclaimer}</span>
         </div>
         <span className={styles.year}>{currentYear}</span>
       </div>

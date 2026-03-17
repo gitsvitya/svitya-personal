@@ -1,10 +1,10 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import type { Language, SectionPath, Theme } from "../../types/domain";
-import type { Dictionary } from "../../utils/lng";
+import type { AppTranslations } from "../../utils/lng";
 import styles from "./AppHeader.module.css";
 
 type AppHeaderProps = {
-  text: Dictionary;
+  text: AppTranslations;
   onLanguageChange: (nextLanguage: Language) => void;
   language: Language;
   theme: Theme;
@@ -91,7 +91,7 @@ function AppHeader({
                 !isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
-              {text.themeLight}
+              {text.theme.light}
             </span>
             <div
               className={`${styles.controlSwitcher} ${
@@ -105,7 +105,7 @@ function AppHeader({
                 isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
-              {text.themeDark}
+              {text.theme.dark}
             </span>
           </button>
           <button
@@ -150,7 +150,7 @@ function AppHeader({
             aria-controls="app-nav-list"
             onClick={toggleMenu}
           >
-            <span className={styles.menuToggleLabel}>{text.navigationLowResMenu}</span>
+            <span className={styles.menuToggleLabel}>{text.navigation.menuLabel}</span>
             <span className={styles.menuIcon} aria-hidden="true">
               <span />
               <span />
@@ -172,7 +172,7 @@ function AppHeader({
                   closeMenu();
                 }}
               >
-                {text.aboutBlockHeaderText}
+                {text.sections.about}
               </button>
             </li>
             <li className={styles.listItem}>
@@ -186,7 +186,7 @@ function AppHeader({
                   closeMenu();
                 }}
               >
-                {text.workExpBlockHeaderText}
+                {text.sections.work}
               </button>
             </li>
             <li className={styles.listItem}>
@@ -200,7 +200,7 @@ function AppHeader({
                   closeMenu();
                 }}
               >
-                {text.projectExpBlockHeaderText}
+                {text.sections.projects}
               </button>
             </li>
             <li className={styles.listItem}>
@@ -214,7 +214,7 @@ function AppHeader({
                   closeMenu();
                 }}
               >
-                {text.otherExpBlockHeaderText}
+                {text.sections.activities}
               </button>
             </li>
           </ul>
