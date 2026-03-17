@@ -33,9 +33,26 @@ export function resolveLanguageFromHeader(acceptLanguage?: string | null): Langu
     return DEFAULT_LANGUAGE;
   }
 
-  const normalized = acceptLanguage.toLowerCase();
-  for (const language of SUPPORTED_LANGUAGES) {
-    if (normalized.includes(language)) return language;
+  const candidates = acceptLanguage
+    .split(",")
+    .map((item) => {
+      const [rawTag, ...params] = item.trim().toLowerCase().split(";");
+      const qParam = params.find((param) => param.trim().startsWith("q="));
+      const qValue = qParam ? Number(qParam.split("=")[1]) : 1;
+
+      return {
+        tag: rawTag,
+        q: Number.isFinite(qValue) ? qValue : 0,
+      };
+    })
+    .filter((candidate): candidate is { tag: string; q: number } => Boolean(candidate.tag) && candidate.q > 0)
+    .sort((left, right) => right.q - left.q);
+
+  for (const { tag } of candidates) {
+    const [baseLanguage] = tag.split("-");
+    if (isSupportedLanguage(baseLanguage)) {
+      return baseLanguage;
+    }
   }
 
   return DEFAULT_LANGUAGE;

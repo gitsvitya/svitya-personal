@@ -127,7 +127,12 @@ function App({
         </div>
       </div>
       {modalOpened && (
-        <Modal closeModal={closeModal} showContent={showContent} setShowContent={setShowContent}>
+        <Modal
+          closeModal={closeModal}
+          showContent={showContent}
+          setShowContent={setShowContent}
+          closeLabel={currentText.modal.closeLabel}
+        >
           <ModalContent company={activeModalCompany} />
         </Modal>
       )}

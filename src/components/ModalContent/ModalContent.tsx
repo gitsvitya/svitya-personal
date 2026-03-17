@@ -3,10 +3,12 @@ import styles from "./ModalContent.module.css";
 
 type ModalContentProps = {
   company: LocalizedCompany | null;
+  titleId?: string;
+  descriptionId?: string;
 };
 
 // Отрисовывает содержимое модального окна для выбранной карточки компании.
-function ModalContent({ company }: ModalContentProps) {
+function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
   if (!company) return null;
   return (
     <div className={styles.modalContentRenderGeneralWindow}>
@@ -14,7 +16,9 @@ function ModalContent({ company }: ModalContentProps) {
         <div className={styles.modalContentRenderCompanyTextBox}>
           <span className={styles.modalContentRendercardYear}>{company.year}</span>
           <div className={styles.modalContentRenderCompanyLinkBox}>
-            <span className={styles.modalContentRendercardCompanyName}>{company.name}</span>
+            <h2 id={titleId} className={styles.modalContentRendercardCompanyName}>
+              {company.name}
+            </h2>
             {company.url && (
               <a
                 className={styles.modalContentRenderlink}
@@ -35,7 +39,7 @@ function ModalContent({ company }: ModalContentProps) {
           loading="lazy"
         />
       </div>
-      <div className={styles.modalContentRenderParagraphBlock}>
+      <div id={descriptionId} className={styles.modalContentRenderParagraphBlock}>
         <p className={styles.modalContentRenderParagraph}>{company.about}</p>
         <p className={styles.modalContentRenderParagraph}>{company.results}</p>
       </div>

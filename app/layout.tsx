@@ -6,6 +6,7 @@ import "../src/index.css";
 import App from "../src/components/App/App";
 import { getServerTheme } from "./theme.server";
 import { getServerLanguage } from "./language.server";
+import { isSupportedLanguage } from "./sections";
 
 // Базовые метаданные сайта для SEO и превью.
 export const metadata: Metadata = {
@@ -59,6 +60,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const initialLanguage = await getServerLanguage();
   const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
   const headersList = await headers();
+  const routeLanguage = headersList.get("x-route-language");
+  const documentLanguage = isSupportedLanguage(routeLanguage) ? routeLanguage : initialLanguage;
   const requestHost = headersList.get("host") || "";
   const [rawHostname = ""] = requestHost.split(":");
   const hostname = rawHostname.toLowerCase();
@@ -70,7 +73,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html
-      lang={initialLanguage}
+      lang={documentLanguage}
       data-theme={initialTheme}
       style={{ backgroundColor: initialBackground }}
       suppressHydrationWarning

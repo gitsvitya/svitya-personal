@@ -1,4 +1,14 @@
-import { useEffect, useRef, type Dispatch, type ReactNode, type SetStateAction } from "react";
+import {
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useId,
+  useRef,
+  type Dispatch,
+  type ReactElement,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import ReactDOM from "react-dom";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import styles from "./Modal.module.css";
@@ -8,14 +18,17 @@ type ModalProps = {
   closeModal: () => void;
   showContent: boolean;
   setShowContent: Dispatch<SetStateAction<boolean>>;
+  closeLabel: string;
 };
 
 // Рендерит модальное окно через портал и управляет клавиатурным взаимодействием.
-const Modal = ({ children, closeModal, showContent, setShowContent }: ModalProps) => {
+const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }: ModalProps) => {
   const container = document.getElementById("modal");
   const modalRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
   const prevFocusedRef = useRef<HTMLElement | null>(null);
+  const titleId = useId();
+  const descriptionId = useId();
 
   // Запускает анимацию появления после монтирования компонента.
   useEffect(() => {
@@ -83,22 +96,35 @@ const Modal = ({ children, closeModal, showContent, setShowContent }: ModalProps
         className={`${styles.modalWindow} ${showContent ? styles.showModalWindow : ""}`}
         role="dialog"
         aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
         tabIndex={-1}
         ref={modalRef}
-      >
+        >
         <button
           type="button"
           className={styles.closeIcon}
           onClick={closeModal}
-          aria-label="Закрыть модальное окно"
+          aria-label={closeLabel}
           ref={closeBtnRef}
         />
-        <div className={styles.modalBody}>{children}</div>
+        <div className={styles.modalBody}>{renderModalChildren(children, titleId, descriptionId)}</div>
       </div>
       <ModalOverlay onClick={closeModal} showContent={showContent} />
     </>,
     container
   );
-};
+}
+
+function renderModalChildren(children: ReactNode, titleId: string, descriptionId: string) {
+  if (!isValidElement(children)) {
+    return children;
+  }
+
+  return cloneElement(children as ReactElement<Record<string, unknown>>, {
+    titleId,
+    descriptionId,
+  });
+}
 
 export default Modal;

@@ -8,12 +8,19 @@ const SUPPORTED_LANGUAGES = new Set<Language>(LANGUAGES);
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const [firstSegment] = pathname.split("/").filter(Boolean) as Language[];
+  const requestHeaders = new Headers(request.headers);
 
   if (!firstSegment || !SUPPORTED_LANGUAGES.has(firstSegment)) {
     return NextResponse.next();
   }
 
-  const response = NextResponse.next();
+  requestHeaders.set("x-route-language", firstSegment);
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
   const currentCookie = request.cookies.get("lang")?.value;
 
   if (currentCookie !== firstSegment) {

@@ -29,6 +29,9 @@ export const uiText = {
         "Для корректной работы сайта я использую технические и аналитические cookie-файлы. Продолжая работать с сайтом, Вы принимаете это.",
       button: "Закрыть",
     },
+    modal: {
+      closeLabel: "Закрыть модальное окно",
+    },
     footer: {
       contacts: "Соцсети",
       metaDisclaimer:
@@ -65,6 +68,9 @@ export const uiText = {
       description:
         "This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.",
       button: "Close",
+    },
+    modal: {
+      closeLabel: "Close modal window",
     },
     footer: {
       contacts: "Socials",
