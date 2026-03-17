@@ -1,7 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import type { Language, Theme } from "../../types/domain";
+import type { Language, SectionPath, Theme } from "../../types/domain";
 import { DEFAULT_LANGUAGE } from "../../types/domain";
 import { getTranslations, type AppTranslations } from "../../utils/lng";
 import { normalizeSectionPath, parseLocalizedPath } from "../../utils/routing";
@@ -68,6 +69,33 @@ function App({
 
   // Объединяет флаги анимации языка и маршрута для управления прозрачностью контента.
   const isFading = isLanguageSwitching || isRouteSwitching;
+  const sectionContentByPath: Record<SectionPath, ReactNode> = {
+    "/about": <AppAboutMe text={currentText} />,
+    "/work": (
+      <AppWorkExp
+        text={currentText}
+        language={language}
+        setModalContentCompany={setModalContentCompany}
+        openModal={openModal}
+      />
+    ),
+    "/projects": (
+      <AppProjectsExp
+        text={currentText}
+        language={language}
+        setModalContentCompany={setModalContentCompany}
+        openModal={openModal}
+      />
+    ),
+    "/activities": (
+      <AppActivitiesExp
+        text={currentText}
+        language={language}
+        setModalContentCompany={setModalContentCompany}
+        openModal={openModal}
+      />
+    ),
+  };
 
   return (
     <>
@@ -87,31 +115,7 @@ function App({
             isFading ? styles.pageFading : styles.pageVisible
           }`}
         >
-          {activePath === "/about" && <AppAboutMe text={currentText} />}
-          {activePath === "/work" && (
-            <AppWorkExp
-              text={currentText}
-              language={language}
-              setModalContentCompany={setModalContentCompany}
-              openModal={openModal}
-            />
-          )}
-          {activePath === "/projects" && (
-            <AppProjectsExp
-              text={currentText}
-              language={language}
-              setModalContentCompany={setModalContentCompany}
-              openModal={openModal}
-            />
-          )}
-          {activePath === "/activities" && (
-            <AppActivitiesExp
-              text={currentText}
-              language={language}
-              setModalContentCompany={setModalContentCompany}
-              openModal={openModal}
-            />
-          )}
+          {sectionContentByPath[activePath]}
         </main>
         <AppFooter text={currentText} isLanguageSwitching={isLanguageSwitching} />
         <div
