@@ -1,19 +1,16 @@
-import { redirect } from "next/navigation";
-import { DEFAULT_LANGUAGE, resolveLanguage } from "../sections";
-
-type LanguageHomePageProps = {
-  params?: Promise<{
-    lang?: string;
-  }>;
-};
+import { DEFAULT_LANGUAGE } from "../sections";
+import {
+  redirectToLocalizedSection,
+  resolveLanguageParams,
+  type LanguageHomePageProps,
+} from "../route-helpers";
 
 // Редиректит с корня языка на раздел "about" с учетом fallback-языка.
 export default async function LanguageHomePage({ params }: LanguageHomePageProps) {
-  const resolvedParams = await params;
-  const language = resolveLanguage(resolvedParams?.lang);
-  if (!resolvedParams?.lang) {
-    redirect(`/${DEFAULT_LANGUAGE}/about`);
+  const { rawLanguage, language } = await resolveLanguageParams(params);
+  if (!rawLanguage) {
+    redirectToLocalizedSection(DEFAULT_LANGUAGE, "about");
   }
 
-  redirect(`/${language}/about`);
+  redirectToLocalizedSection(language, "about");
 }

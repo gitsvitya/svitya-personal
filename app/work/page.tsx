@@ -1,8 +1,6 @@
-import { redirect } from "next/navigation";
-import { getPreferredLanguage } from "../redirectByLocale";
+import { redirectToPreferredSection } from "../route-helpers";
 
 // Поддерживает legacy-адрес "/work" через редирект на локализованный путь.
 export default async function LegacyWorkPage() {
-  const language = await getPreferredLanguage();
-  redirect(`/${language}/work`);
+  await redirectToPreferredSection("work");
 }
