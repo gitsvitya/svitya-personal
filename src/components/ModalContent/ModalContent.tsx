@@ -7,11 +7,14 @@ type ModalContentProps = {
   descriptionId?: string;
 };
 
-// Отрисовывает содержимое модального окна для выбранной карточки компании.
+// Компонент получает уже локализованную запись и раскладывает ее
+// на структуру, подходящую для чтения внутри модального окна.
 function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
   if (!company) return null;
   return (
     <div className={styles.modalContentRenderGeneralWindow}>
+      {/* В верхнем блоке собраны идентифицирующие данные записи:
+          период, название, роль и логотип. */}
       <div className={styles.modalContentRenderTextLogoWindow}>
         <div className={styles.modalContentRenderCompanyTextBox}>
           <span className={styles.modalContentRendercardYear}>{company.year}</span>
@@ -39,6 +42,9 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
           loading="lazy"
         />
       </div>
+
+      {/* Оба текстовых абзаца объединены общим description id,
+          чтобы screen readers воспринимали их как описание диалога. */}
       <div id={descriptionId} className={styles.modalContentRenderParagraphBlock}>
         <p className={styles.modalContentRenderParagraph}>{company.about}</p>
         <p className={styles.modalContentRenderParagraph}>{company.results}</p>

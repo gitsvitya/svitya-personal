@@ -14,7 +14,8 @@ type AppHeaderProps = {
   onNavigate: (path: SectionPath) => void;
 };
 
-// Рендерит верхнюю панель с переключением темы/языка и навигацией по разделам.
+// Header отвечает только за UI-переключатели и отправляет наверх события
+// смены темы, языка и раздела без собственной роутинг-логики.
 function AppHeader({
   text,
   onLanguageChange,
@@ -25,25 +26,28 @@ function AppHeader({
   activePath,
   onNavigate,
 }: AppHeaderProps) {
-  // Хранит состояние мобильного меню.
+  // Состояние мобильного меню локально для шапки и не нужно остальным частям приложения.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // Вычисляет целевые значения для переключателей языка и темы.
+
+  // Вычисляем следующие состояния заранее, чтобы JSX был проще и без inline-тернарников.
   const nextLng: Language = language === "ru" ? "en" : "ru";
   const nextTheme: Theme = theme === "light" ? "dark" : "light";
   const isDarkTheme = theme === "dark";
   const isRussian = language === "ru";
 
-  // Переключает тему между светлой и темной.
+  // Здесь только сообщаем новое значение наверх; синхронизация темы с DOM
+  // и хранилищами остается внутри профильного hook.
   function toggleTheme() {
     setTheme(nextTheme);
   }
 
-  // Передает в родитель запрос на смену языка.
+  // Смена языка инициирует переход на ту же секцию в другой локали.
   function toggleLanguage() {
     onLanguageChange(nextLng);
   }
 
-  // Закрывает мобильное меню по Escape и при выходе за мобильный брейкпоинт.
+  // Эффект поддерживает предсказуемое поведение мобильного меню:
+  // оно закрывается по Escape и не остается открытым после выхода из mobile breakpoint.
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setIsMenuOpen(false);
@@ -64,12 +68,12 @@ function AppHeader({
     };
   }, [isMenuOpen]);
 
-  // Переключает видимость мобильного меню.
+  // Простое переключение открытия меню по кнопке-бургеру.
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);
   }
 
-  // Явно закрывает мобильное меню после перехода по разделу.
+  // После выбора раздела меню закрывается сразу, не дожидаясь смены маршрута.
   function closeMenu() {
     setIsMenuOpen(false);
   }
@@ -77,6 +81,7 @@ function AppHeader({
   return (
     <header className={styles.header}>
       <div className={`layout-container ${styles.container}`}>
+        {/* Блок глобальных переключателей темы и языка. */}
         <div className={styles.controls}>
           <button
             type="button"
@@ -138,6 +143,9 @@ function AppHeader({
             </span>
           </button>
         </div>
+
+        {/* Навигация по разделам построена на кнопках, потому что переход
+            выполняется через клиентский router с промежуточной анимацией. */}
         <nav
           className={`${styles.navigationBlock} fade-transition ${
             isLanguageSwitching ? "fade-hidden" : "fade-visible"

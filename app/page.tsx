@@ -1,6 +1,7 @@
 import { redirectToPreferredSection } from "./route-helpers";
 
-// Редиректит с корня сайта на локализованный раздел "about".
+// Корневой URL не показывает отдельную страницу и сразу переводит
+// пользователя на локализованный раздел "about".
 export default async function HomePage() {
   await redirectToPreferredSection("about");
 }

@@ -11,6 +11,7 @@ import svityaComLabel from "../images/svitya_com_label.png";
 import veniviLogo from "../images/veniviLogo.png";
 import type { CompanyId, CompanySection, Language } from "../types/domain";
 
+// Локализуемая часть карточки и модального окна для одной записи.
 type CompanyCopy = {
   year: string;
   name: string;
@@ -19,6 +20,7 @@ type CompanyCopy = {
   results: string;
 };
 
+// Общая запись компании хранит технические поля и набор переводов.
 type CompanyRecord = {
   id: CompanyId;
   section: CompanySection;
@@ -28,12 +30,16 @@ type CompanyRecord = {
   translations: Record<Language, CompanyCopy>;
 };
 
+// Для UI удобнее работать с уже распакованной локализованной сущностью.
 export type LocalizedCompany = Omit<CompanyRecord, "translations"> & CompanyCopy;
 
+// Импортированные через Next изображения приводим к строковому src,
+// чтобы без лишней логики использовать их в обычных img-тегах.
 function resolveImageSrc(image: string | StaticImageData): string {
   return typeof image === "string" ? image : image.src;
 }
 
+// Единый реестр контента для опыта, проектов и активностей.
 export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   CI: {
     id: "CI",
@@ -304,14 +310,20 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
 };
 
+// Фильтрация по section позволяет одной структуре данных обслуживать
+// сразу несколько разделов сайта без дублирования контента.
 export function getCompaniesBySection(section: CompanySection): CompanyRecord[] {
   return Object.values(COMPANIES).filter((company) => company.section === section);
 }
 
+// На входе берем id и язык, а на выходе отдаем плоский объект,
+// который можно напрямую передавать в карточку или модалку.
 export function getLocalizedCompany(companyId: CompanyId, language: Language): LocalizedCompany {
   const company = COMPANIES[companyId];
   const translation = company.translations[language];
 
+  // Явная ошибка здесь помогает быстро заметить пропущенный перевод
+  // при ручном редактировании контентного реестра.
   if (!translation) {
     throw new Error(`Missing translation for company "${companyId}" and language "${language}"`);
   }

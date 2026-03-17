@@ -10,12 +10,14 @@ type CardProps = {
   ctaLabel: string;
 };
 
-// Рендерит интерактивную карточку компании и передает выбранный ключ в модальное окно.
+// Карточка знает только о своей записи и сообщает родителю,
+// какую компанию нужно показать в модальном окне.
 function Card({ company, openModal, setModalContentCompany, ctaLabel }: CardProps) {
-  // Открывает модалку и сохраняет идентификатор выбранной карточки.
+  // Сначала фиксируем id активной записи, затем открываем окно,
+  // чтобы к моменту показа контент уже был готов.
   function handleActivate() {
-    openModal();
     setModalContentCompany(company.id);
+    openModal();
   }
 
   return (

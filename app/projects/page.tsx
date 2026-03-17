@@ -1,6 +1,7 @@
 import { redirectToPreferredSection } from "../route-helpers";
 
-// Поддерживает legacy-адрес "/projects" через редирект на локализованный путь.
+// Legacy-маршрут сохраняется для обратной совместимости со старыми ссылками
+// и сразу переводит пользователя на актуальный локализованный URL.
 export default async function LegacyProjectsPage() {
   await redirectToPreferredSection("projects");
 }

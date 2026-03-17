@@ -2,25 +2,26 @@ import { useEffect, useState } from "react";
 import type { AppTranslations } from "../../content/ui-text";
 import styles from "./CookieBanner.module.css";
 
-// Ключ флага, подтверждающего согласие пользователя на использование cookie.
+// В localStorage храним только факт закрытия баннера,
+// чтобы не показывать его повторно при следующих визитах.
 const COOKIE_KEY = "cookieAccepted";
 
 type CookieBannerProps = {
   text: AppTranslations;
 };
 
-// Отображает уведомление о cookie и скрывает его после подтверждения.
+// Компонент работает только на клиенте, потому что зависит от localStorage.
 function CookieBanner({ text }: CookieBannerProps) {
   const [visible, setVisible] = useState(false);
 
-  // Показывает баннер только при отсутствии ранее сохраненного согласия.
+  // Если пользователь раньше уже закрыл баннер, повторно не рендерим его.
   useEffect(() => {
     if (!localStorage.getItem(COOKIE_KEY)) {
       setVisible(true);
     }
   }, []);
 
-  // Сохраняет согласие в localStorage и скрывает баннер.
+  // После подтверждения запоминаем выбор и сразу убираем баннер из DOM.
   function acceptCookies() {
     localStorage.setItem(COOKIE_KEY, "true");
     setVisible(false);

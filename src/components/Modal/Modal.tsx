@@ -21,7 +21,8 @@ type ModalProps = {
   closeLabel: string;
 };
 
-// Рендерит модальное окно через портал и управляет клавиатурным взаимодействием.
+// Модалка рендерится через портал, чтобы не зависеть от вложенности layout
+// и всегда располагаться поверх остального интерфейса.
 const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }: ModalProps) => {
   const container = document.getElementById("modal");
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -30,12 +31,14 @@ const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }
   const titleId = useId();
   const descriptionId = useId();
 
-  // Запускает анимацию появления после монтирования компонента.
+  // После монтирования переводим содержимое в видимое состояние,
+  // чтобы CSS-анимация появления начиналась уже внутри портала.
   useEffect(() => {
     setShowContent(true);
   }, [setShowContent]);
 
-  // Закрывает модалку по Escape и удерживает фокус внутри окна по Tab.
+  // Эффект добавляет базовую keyboard-accessibility:
+  // закрытие по Escape и циклический tab-trap внутри диалога.
   useEffect(() => {
     function closeModalByEsc(evt: KeyboardEvent) {
       if (evt.key === "Escape") closeModal();
@@ -69,7 +72,8 @@ const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }
     };
   }, [closeModal]);
 
-  // Переносит фокус в модалку при открытии и возвращает его при закрытии.
+  // При открытии фокус уходит внутрь диалога, а при закрытии возвращается
+  // на исходный элемент, чтобы навигация с клавиатуры оставалась непрерывной.
   useEffect(() => {
     prevFocusedRef.current =
       document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -92,6 +96,8 @@ const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }
 
   return ReactDOM.createPortal(
     <>
+      {/* Dialog хранит aria-связи с заголовком и описанием,
+          которые ниже прокидываются в содержимое окна. */}
       <div
         className={`${styles.modalWindow} ${showContent ? styles.showModalWindow : ""}`}
         role="dialog"
@@ -100,7 +106,7 @@ const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }
         aria-describedby={descriptionId}
         tabIndex={-1}
         ref={modalRef}
-        >
+      >
         <button
           type="button"
           className={styles.closeIcon}
@@ -108,16 +114,21 @@ const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }
           aria-label={closeLabel}
           ref={closeBtnRef}
         />
+
+        {/* В тело модалки прокидываем служебные id только тем React-компонентам,
+            которые реально умеют их принять. */}
         <div className={styles.modalBody}>{renderModalChildren(children, titleId, descriptionId)}</div>
       </div>
       <ModalOverlay onClick={closeModal} showContent={showContent} />
     </>,
     container
   );
-}
+};
 
+// Пропсы с aria-id не должны попадать на обычные DOM-элементы,
+// поэтому клонируем только пользовательские React-компоненты.
 function renderModalChildren(children: ReactNode, titleId: string, descriptionId: string) {
-  if (!isValidElement(children)) {
+  if (!isValidElement(children) || typeof children.type === "string") {
     return children;
   }
 

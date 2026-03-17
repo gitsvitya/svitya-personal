@@ -6,9 +6,10 @@ type AppFooterProps = {
   isLanguageSwitching: boolean;
 };
 
-// Рендерит футер с внешними ссылками на соцсети и текущим годом.
+// Footer показывает внешний контактный блок и служебную подпись,
+// а также участвует в общей анимации смены языка.
 function AppFooter({ text, isLanguageSwitching }: AppFooterProps) {
-  // Вычисляет текущий календарный год для отображения в подписи.
+  // Год берется от клиентского времени и не требует отдельного пропса с сервера.
   const currentYear = new Date().getFullYear();
 
   return (
@@ -19,6 +20,8 @@ function AppFooter({ text, isLanguageSwitching }: AppFooterProps) {
       id="footer"
     >
       <div className={`layout-container ${styles.container}`}>
+        {/* Контакты и дисклеймер сгруппированы вместе,
+            потому что в адаптивной верстке они работают как единый блок. */}
         <div className={styles.disclaimerBlock}>
           <div className={styles.contactsBlock}>
             <span className={styles.text}>{text.footer.contacts}:</span>

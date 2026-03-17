@@ -9,6 +9,8 @@ import {
 export const SUPPORTED_LANGUAGES = LANGUAGES;
 export const SUPPORTED_SECTIONS = SECTIONS;
 
+// Для каждой комбинации языка и раздела храним отдельные SEO-заголовки
+// и описания, чтобы маршруты были самодостаточны для индексации.
 type PageCopy = {
   title: string;
   description: string;
@@ -16,18 +18,21 @@ type PageCopy = {
 
 type PageCopyMap = Record<Language, Record<Section, PageCopy>>;
 
-// Нормализует язык к поддерживаемому значению.
+// Любое входное значение языка приводим к допустимому набору,
+// чтобы дальше в коде работать только с валидным union-типом.
 export function resolveLanguage(value?: string | null): Language {
   if (SUPPORTED_LANGUAGES.includes(value as Language)) return value as Language;
   return DEFAULT_LANGUAGE;
 }
 
-// Проверяет, поддерживается ли язык.
+// Type guard нужен в тех местах, где язык приходит как строка из URL,
+// cookie или заголовков и его нужно безопасно сузить до Language.
 export function isSupportedLanguage(value?: string | null): value is Language {
   return value !== null && value !== undefined && SUPPORTED_LANGUAGES.includes(value as Language);
 }
 
-// Определяет язык по заголовку Accept-Language.
+// Разбор Accept-Language учитывает q-приоритеты браузера и региональные
+// варианты вроде en-US, сводя их к базовому языку приложения.
 export function resolveLanguageFromHeader(acceptLanguage?: string | null): Language {
   if (!acceptLanguage || typeof acceptLanguage !== "string") {
     return DEFAULT_LANGUAGE;
@@ -58,18 +63,20 @@ export function resolveLanguageFromHeader(acceptLanguage?: string | null): Langu
   return DEFAULT_LANGUAGE;
 }
 
-// Нормализует раздел к поддерживаемому значению.
+// Разделы маршрута тоже нормализуются к поддерживаемому набору,
+// чтобы все fallback-редиректы были предсказуемыми.
 export function resolveSection(value?: string | null): Section {
   if (SUPPORTED_SECTIONS.includes(value as Section)) return value as Section;
   return "about";
 }
 
-// Проверяет, поддерживается ли раздел.
+// Type guard для сегмента раздела используется при валидации URL-параметров.
 export function isSupportedSection(value?: string | null): value is Section {
   return value !== null && value !== undefined && SUPPORTED_SECTIONS.includes(value as Section);
 }
 
-// Тексты title/description для каждой языковой версии и раздела.
+// Карта SEO-копирайта разделена по языкам и разделам, чтобы metadata
+// собиралась без ручных условных веток в страницах.
 const PAGE_COPY: PageCopyMap = {
   ru: {
     about: {
@@ -114,7 +121,8 @@ const PAGE_COPY: PageCopyMap = {
   },
 };
 
-// Возвращает SEO-тексты по языку и разделу с учетом fallback-логики.
+// Helper прячет всю fallback-логику и отдает готовую пару title/description
+// для построения canonical-страниц и alternate-ссылок.
 export function getPageCopy(language?: string | null, section?: string | null): PageCopy {
   const lang = resolveLanguage(language);
   const page = resolveSection(section);

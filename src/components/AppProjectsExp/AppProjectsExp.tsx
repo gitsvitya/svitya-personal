@@ -13,7 +13,8 @@ type AppProjectsExpProps = {
   openModal: () => void;
 };
 
-// Отрисовывает секцию проектов со списком карточек и открытием деталей в модалке.
+// Секция проектов переиспользует тот же шаблон, что и опыт работы,
+// но фильтрует данные по разделу "projects".
 function AppProjectsExp({
   text,
   language,
@@ -22,6 +23,7 @@ function AppProjectsExp({
 }: AppProjectsExpProps) {
   return (
     <Section id="projectsExp" title={text.sections.projects}>
+      {/* Единый подход к рендеру карточек упрощает поддержку и визуальную консистентность. */}
       <div className={sectionStyles.cardsGrid}>
         {getCompaniesBySection("projects").map((company) => (
           <Card

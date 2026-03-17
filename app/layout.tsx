@@ -8,7 +8,8 @@ import { getServerTheme } from "./theme.server";
 import { getServerLanguage } from "./language.server";
 import { isSupportedLanguage } from "./sections";
 
-// Базовые метаданные сайта для SEO и превью.
+// Корневые metadata задают общие SEO-значения для всего сайта.
+// Более точные title/description для разделов переопределяются ниже по дереву.
 export const metadata: Metadata = {
   metadataBase: new URL("https://svitya.com"),
   manifest: "/manifest.json",
@@ -40,7 +41,8 @@ export const metadata: Metadata = {
   },
 };
 
-// Глобальные параметры viewport и системного цвета браузерного UI.
+// Viewport экспортируется отдельно, чтобы браузер сразу получил базовые
+// настройки масштаба и системный цвет под светлую/темную тему.
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -54,12 +56,16 @@ type RootLayoutProps = {
   children: ReactNode;
 };
 
-// Корневой layout: инициализирует тему/язык и подключает глобальные скрипты.
+// Root layout собирает серверные значения темы и языка, подключает
+// глобальные стили и один раз монтирует клиентское приложение.
 export default async function RootLayout({ children }: RootLayoutProps) {
   const initialTheme = await getServerTheme();
   const initialLanguage = await getServerLanguage();
   const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
   const headersList = await headers();
+
+  // Язык документа должен совпадать с локализованным URL, если он есть.
+  // Это важнее cookie, потому что влияет на SEO и screen readers.
   const routeLanguage = headersList.get("x-route-language");
   const documentLanguage = isSupportedLanguage(routeLanguage) ? routeLanguage : initialLanguage;
   const requestHost = headersList.get("host") || "";
@@ -79,7 +85,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <body>
-        {/* Инициализирует тему до гидрации, чтобы избежать мерцания интерфейса. */}
+        {/* Скрипт выставляет тему до гидрации React, чтобы первая отрисовка
+            сразу совпадала с сохраненными настройками пользователя. */}
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function setInitialTheme(){
             try {
@@ -101,7 +108,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
         {!isLocalhost && (
           <>
-            {/* Подключает и инициализирует Яндекс.Метрику после интерактивности страницы. */}
+            {/* Метрика не подключается на localhost, чтобы локальная разработка
+                не засоряла боевую аналитику тестовыми заходами. */}
             <Script id="yandex-metrika" strategy="afterInteractive">
               {`(function(m,e,t,r,i,k,a){
                 m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -116,7 +124,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               });`}
             </Script>
 
-            {/* Fallback-пиксель метрики для пользователей с отключенным JavaScript. */}
+            {/* noscript-блок нужен для случаев, когда у пользователя отключен JS,
+                но визит все равно должен попасть в счетчик аналитики. */}
             <noscript>
               <div>
                 <img
@@ -129,8 +138,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </>
         )}
 
+        {/* Клиентский App отвечает за весь интерактивный интерфейс, а children
+            оставлены для страниц App Router, которые занимаются редиректами и SEO. */}
         <App initialLanguage={initialLanguage} initialTheme={initialTheme} />
         {children}
+
+        {/* Отдельный DOM-узел используется как стабильная точка монтирования портала модалки. */}
         <div id="modal" />
       </body>
     </html>

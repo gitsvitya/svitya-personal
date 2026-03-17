@@ -13,7 +13,8 @@ type AppActivitiesExpProps = {
   openModal: () => void;
 };
 
-// Отрисовывает секцию активностей со списком карточек и модальным просмотром.
+// Секция активностей строится из общего реестра контента
+// и показывает записи категории "activities".
 function AppActivitiesExp({
   text,
   language,
@@ -22,6 +23,7 @@ function AppActivitiesExp({
 }: AppActivitiesExpProps) {
   return (
     <Section id="otherExp" title={text.sections.activities}>
+      {/* Карточки используют ту же механику открытия модалки, что и другие секции. */}
       <div className={sectionStyles.cardsGrid}>
         {getCompaniesBySection("activities").map((company) => (
           <Card

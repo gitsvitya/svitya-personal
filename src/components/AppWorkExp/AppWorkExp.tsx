@@ -13,10 +13,13 @@ type AppWorkExpProps = {
   openModal: () => void;
 };
 
-// Отрисовывает секцию опыта работы со списком карточек компаний.
+// Секция опыта работы берет записи из общего контентного реестра
+// и отображает их в универсальной сетке карточек.
 function AppWorkExp({ text, language, setModalContentCompany, openModal }: AppWorkExpProps) {
   return (
     <Section id="workExp" title={text.sections.work}>
+      {/* Локализация карточек берется из того же источника, что и контент модалки,
+          поэтому при смене языка UI остается консистентным. */}
       <div className={sectionStyles.cardsGrid}>
         {getCompaniesBySection("work").map((company) => (
           <Card

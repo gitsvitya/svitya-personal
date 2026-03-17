@@ -1,3 +1,5 @@
+// Доменные константы служат единым источником truth для маршрутов,
+// локалей, тем и идентификаторов контента во всем приложении.
 export const LANGUAGES = ["ru", "en"] as const;
 export const DEFAULT_LANGUAGE = "en" as const;
 export const SECTIONS = ["about", "work", "projects", "activities"] as const;
@@ -17,6 +19,8 @@ export const COMPANY_IDS = [
   "SDC",
 ] as const;
 
+// Union-типы выводятся напрямую из константных массивов, чтобы runtime-
+// и compile-time наборы значений никогда не расходились между собой.
 export type Language = (typeof LANGUAGES)[number];
 export type Section = (typeof SECTIONS)[number];
 export type CompanySection = (typeof COMPANY_SECTIONS)[number];

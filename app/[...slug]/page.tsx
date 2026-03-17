@@ -1,6 +1,7 @@
 import { redirectToPreferredSection } from "../route-helpers";
 
-// Перехватывает неизвестные маршруты и отправляет пользователя в локализованный раздел "about".
+// Catch-all страница не рендерит контент сама, а отправляет пользователя
+// на базовый раздел сайта в подходящей локали.
 export default async function UnknownPage() {
   await redirectToPreferredSection("about");
 }

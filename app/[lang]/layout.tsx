@@ -4,7 +4,8 @@ type LanguageLayoutProps = {
   children: ReactNode;
 };
 
-// Возвращает дочерний контент для языкового сегмента маршрутов.
+// Отдельный layout для [lang] оставлен как расширяемая точка:
+// сюда удобно выносить будущие настройки, завязанные на локаль.
 export default function LanguageLayout({ children }: LanguageLayoutProps) {
   return <>{children}</>;
 }

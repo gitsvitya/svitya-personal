@@ -1,5 +1,7 @@
 import type { Language } from "../types/domain";
 
+// В словаре собраны все короткие текстовые подписи интерфейса,
+// чтобы локализация UI не была размазана по компонентам.
 export const uiText = {
   ru: {
     page: {
@@ -83,8 +85,11 @@ export const uiText = {
   },
 } as const;
 
+// Тип переводов выводится из реального объекта, поэтому структура
+// текстов и их использование в компонентах не расходятся.
 export type AppTranslations = (typeof uiText)[Language];
 
+// Helper возвращает словарь для выбранной локали в готовом типизированном виде.
 export function getTranslations(language: Language): AppTranslations {
   return uiText[language];
 }

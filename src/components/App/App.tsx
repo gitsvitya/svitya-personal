@@ -26,7 +26,8 @@ type AppProps = {
   initialTheme?: Theme;
 };
 
-// Корневой компонент: собирает секции страницы, управляет языком, темой и модальными окнами.
+// App связывает роутинг, тему, переводы и модальное состояние
+// в один клиентский контейнер для всего интерфейса сайта.
 function App({
   initialPath = "/en/about",
   initialLanguage = DEFAULT_LANGUAGE,
@@ -64,11 +65,14 @@ function App({
     activeModalCompany,
   } = useAppModal(language);
 
-  // Выбирает словарь интерфейса по активному языку.
+  // Все текстовые подписи интерфейса читаются из общего словаря
+  // по текущей локали, чтобы компоненты не знали о структуре переводов.
   const currentText: AppTranslations = getTranslations(language);
 
-  // Объединяет флаги анимации языка и маршрута для управления прозрачностью контента.
+  // Одна переменная управляет общей fade-анимацией основного контента.
   const isFading = isLanguageSwitching || isRouteSwitching;
+
+  // Карта секций связывает нормализованный путь и нужный JSX-блок.
   const sectionContentByPath: Record<SectionPath, ReactNode> = {
     "/about": <AppAboutMe text={currentText} />,
     "/work": (
@@ -100,6 +104,8 @@ function App({
   return (
     <>
       <div className={styles.page}>
+        {/* Шапка получает только текущие состояния и callbacks,
+            а сама логика навигации скрыта в хуках родителя. */}
         <AppHeader
           text={currentText}
           onLanguageChange={changeLanguageWithFade}
@@ -117,6 +123,9 @@ function App({
         >
           {sectionContentByPath[activePath]}
         </main>
+
+        {/* Нижняя часть страницы также реагирует на смену языка,
+            чтобы анимация переключения оставалась согласованной. */}
         <AppFooter text={currentText} isLanguageSwitching={isLanguageSwitching} />
         <div
           className={`${styles.fade} ${
@@ -126,6 +135,9 @@ function App({
           <CookieBanner text={currentText} />
         </div>
       </div>
+
+      {/* Портальная модалка монтируется только когда действительно нужна,
+          чтобы не держать лишние обработчики и aria-разметку в DOM. */}
       {modalOpened && (
         <Modal
           closeModal={closeModal}

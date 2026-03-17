@@ -5,9 +5,13 @@ import {
   type LanguageHomePageProps,
 } from "../route-helpers";
 
-// Редиректит с корня языка на раздел "about" с учетом fallback-языка.
+// Адрес вида /ru или /en не хранит отдельную страницу и всегда
+// разворачивается в конкретный раздел "about".
 export default async function LanguageHomePage({ params }: LanguageHomePageProps) {
   const { rawLanguage, language } = await resolveLanguageParams(params);
+
+  // Если сегмент языка пропал или пришел в неожиданном виде,
+  // отправляем пользователя на дефолтную локаль.
   if (!rawLanguage) {
     redirectToLocalizedSection(DEFAULT_LANGUAGE, "about");
   }
