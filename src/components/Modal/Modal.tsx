@@ -34,8 +34,9 @@ const Modal = ({ children, closeModal, showContent, setShowContent }: ModalProps
         'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
       );
       if (!focusable || focusable.length === 0) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      const first = focusable.item(0);
+      const last = focusable.item(focusable.length - 1);
+      if (!first || !last) return;
       const active = document.activeElement;
 
       if (evt.shiftKey && active === first) {

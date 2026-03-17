@@ -36,12 +36,13 @@ export function normalizeSectionPath(path?: string | null): SectionPath {
 export function parseLocalizedPath(path?: string | null): ParsedLocalizedPath {
   const trimmed = trimPath(path);
   const chunks = trimmed.split("/").filter(Boolean);
+  const [firstChunk, secondChunk] = chunks;
 
-  if (chunks.length > 0 && isSupportedLanguage(chunks[0])) {
-    const sectionPath = chunks[1] ? `/${chunks[1]}` : "/about";
+  if (firstChunk && isSupportedLanguage(firstChunk)) {
+    const sectionPath = secondChunk ? `/${secondChunk}` : "/about";
     return {
       hasLocale: true,
-      language: chunks[0],
+      language: firstChunk,
       sectionPath,
       isSectionValid: isAllowedSectionPath(sectionPath),
     };

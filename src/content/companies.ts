@@ -310,12 +310,18 @@ export function getCompaniesBySection(section: CompanySection): CompanyRecord[] 
 
 export function getLocalizedCompany(companyId: CompanyId, language: Language): LocalizedCompany {
   const company = COMPANIES[companyId];
+  const translation = company.translations[language];
+
+  if (!translation) {
+    throw new Error(`Missing translation for company "${companyId}" and language "${language}"`);
+  }
+
   return {
     id: company.id,
     section: company.section,
     logo: company.logo,
     url: company.url,
     linkLabel: company.linkLabel,
-    ...company.translations[language],
+    ...translation,
   };
 }

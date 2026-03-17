@@ -7,7 +7,7 @@ const SUPPORTED_LANGUAGES = new Set<Language>(LANGUAGES);
 // Синхронизирует cookie языка с первым сегментом локализованного маршрута.
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const firstSegment = pathname.split("/").filter(Boolean)[0] as Language | undefined;
+  const [firstSegment] = pathname.split("/").filter(Boolean) as Language[];
 
   if (!firstSegment || !SUPPORTED_LANGUAGES.has(firstSegment)) {
     return NextResponse.next();

@@ -60,7 +60,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
   const headersList = await headers();
   const requestHost = headersList.get("host") || "";
-  const hostname = requestHost.split(":")[0].toLowerCase();
+  const [rawHostname = ""] = requestHost.split(":");
+  const hostname = rawHostname.toLowerCase();
   const isLocalhost =
     hostname === "localhost" ||
     hostname === "127.0.0.1" ||
