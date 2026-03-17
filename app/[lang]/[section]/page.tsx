@@ -14,10 +14,10 @@ import {
 import type { Language, Section } from "../../../src/types/domain";
 
 type LocalizedSectionPageProps = {
-  params?: {
+  params?: Promise<{
     lang?: string;
     section?: string;
-  };
+  }>;
 };
 
 // Генерирует статические параметры для всех комбинаций языков и разделов.
@@ -28,9 +28,12 @@ export function generateStaticParams(): Array<{ lang: Language; section: Section
 }
 
 // Формирует SEO-метаданные на основе языка и раздела из маршрута.
-export function generateMetadata({ params }: LocalizedSectionPageProps): Metadata {
-  const language = resolveLanguage(params?.lang);
-  const section = resolveSection(params?.section);
+export async function generateMetadata({
+  params,
+}: LocalizedSectionPageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const language = resolveLanguage(resolvedParams?.lang);
+  const section = resolveSection(resolvedParams?.section);
   const copy = getPageCopy(language, section);
 
   return buildPageMetadata({
@@ -42,15 +45,16 @@ export function generateMetadata({ params }: LocalizedSectionPageProps): Metadat
 }
 
 // Валидирует параметры маршрута и делает редиректы на корректные локализованные URL.
-export default function LocalizedSectionPage({ params }: LocalizedSectionPageProps) {
-  const language = resolveLanguage(params?.lang);
-  const section = resolveSection(params?.section);
+export default async function LocalizedSectionPage({ params }: LocalizedSectionPageProps) {
+  const resolvedParams = await params;
+  const language = resolveLanguage(resolvedParams?.lang);
+  const section = resolveSection(resolvedParams?.section);
 
-  if (!isSupportedLanguage(params?.lang)) {
+  if (!isSupportedLanguage(resolvedParams?.lang)) {
     redirect(`/${DEFAULT_LANGUAGE}/${section}`);
   }
 
-  if (!isSupportedSection(params?.section)) {
+  if (!isSupportedSection(resolvedParams?.section)) {
     redirect(`/${language}/about`);
   }
 
