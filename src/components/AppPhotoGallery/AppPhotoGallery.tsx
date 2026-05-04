@@ -91,23 +91,25 @@ function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
   return (
     <section className={styles.gallery} aria-labelledby="company-photos-title">
       <h3 id="company-photos-title" className={styles.title}>
-        {text.detail.photosTitle}
+        {text.detail.materialsTitle}
       </h3>
       <div className={styles.previewGrid}>
         {photos.map((photo, index) => (
-          <button
-            key={photo.src}
-            type="button"
-            className={styles.previewButton}
-            onClick={() => openModal(index)}
-          >
-            <img
-              className={styles.previewImage}
-              src={photo.src}
-              alt={`${companyName}: ${photo.description}`}
-              loading="lazy"
-            />
-          </button>
+          <div key={photo.src} className={styles.previewItem}>
+            <button
+              type="button"
+              className={styles.previewButton}
+              onClick={() => openModal(index)}
+            >
+              <img
+                className={styles.previewImage}
+                src={photo.src}
+                alt={`${companyName}: ${photo.description}`}
+                loading="lazy"
+              />
+            </button>
+            <p className={styles.previewDescription}>{photo.description}</p>
+          </div>
         ))}
       </div>
 
@@ -145,7 +147,7 @@ function PhotoModalContent({
   return (
     <div className={styles.modalContent}>
       <h2 id={titleId} className={styles.modalTitle}>
-        {text.detail.photosTitle}
+        {text.detail.materialsTitle}
       </h2>
       <div className={styles.imageFrame}>
         {hasNavigation && (
@@ -178,12 +180,11 @@ function PhotoModalContent({
         {photo.description}
       </p>
       <a
-        className={styles.openLink}
-        href={photo.src}
-        target="_blank"
-        rel="noreferrer noopener"
+        className={styles.downloadLink}
+        href={photo.downloadSrc}
+        download
       >
-        {text.detail.openImageInNewWindow}
+        {text.detail.download}
       </a>
     </div>
   );

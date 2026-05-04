@@ -34,8 +34,8 @@ export const uiText = {
     detail: {
       back: "Назад",
       backToSection: "Вернуться к разделу",
-      photosTitle: "Фотографии",
-      openImageInNewWindow: "Открыть в новом окне",
+      materialsTitle: "Материалы",
+      download: "Скачать",
       previousPhoto: "Предыдущее фото",
       nextPhoto: "Следующее фото",
     },
@@ -82,8 +82,8 @@ export const uiText = {
     detail: {
       back: "Back",
       backToSection: "Back to section",
-      photosTitle: "Photos",
-      openImageInNewWindow: "Open in a new window",
+      materialsTitle: "Materials",
+      download: "Download",
       previousPhoto: "Previous photo",
       nextPhoto: "Next photo",
     },

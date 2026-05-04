@@ -24,6 +24,7 @@ type CompanyCopy = {
 
 export type CompanyPhoto = {
   src: string;
+  downloadSrc: string;
   description: Record<Language, string>;
 };
 
@@ -44,6 +45,7 @@ export type LocalizedCompany = Omit<CompanyRecord, "translations" | "photos"> &
   CompanyCopy & {
     photos?: Array<{
       src: string;
+      downloadSrc: string;
       description: string;
     }>;
   };
@@ -66,6 +68,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     photos: [
       {
         src: resolveImageSrc(testPhoto1),
+        downloadSrc: resolveImageSrc(testPhoto1),
         description: {
           ru: "Тестовое описание первой фотографии ChemInsight.",
           en: "Test description for the first ChemInsight photo.",
@@ -73,6 +76,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
       },
       {
         src: resolveImageSrc(testPhoto2),
+        downloadSrc: resolveImageSrc(testPhoto2),
         description: {
           ru: "Тестовое описание второй фотографии ChemInsight.",
           en: "Test description for the second ChemInsight photo.",
@@ -390,6 +394,7 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
     linkLabel: company.linkLabel,
     photos: company.photos?.map((photo) => ({
       src: photo.src,
+      downloadSrc: photo.downloadSrc,
       description: photo.description[language],
     })),
     ...translation,
