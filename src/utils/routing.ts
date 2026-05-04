@@ -3,6 +3,7 @@ import {
   LANGUAGES,
   SECTION_PATHS,
   type Language,
+  type LocalizedDetailPath,
   type LocalizedPath,
   type SectionPath,
 } from "../types/domain";
@@ -13,6 +14,7 @@ type ParsedLocalizedPath = {
   hasLocale: boolean;
   language: Language | null;
   sectionPath: string;
+  detailSlug: string | null;
   isSectionValid: boolean;
 };
 
@@ -46,7 +48,7 @@ export function normalizeSectionPath(path?: string | null): SectionPath {
 export function parseLocalizedPath(path?: string | null): ParsedLocalizedPath {
   const trimmed = trimPath(path);
   const chunks = trimmed.split("/").filter(Boolean);
-  const [firstChunk, secondChunk] = chunks;
+  const [firstChunk, secondChunk, thirdChunk] = chunks;
 
   if (firstChunk && isSupportedLanguage(firstChunk)) {
     const sectionPath = secondChunk ? `/${secondChunk}` : "/about";
@@ -54,6 +56,7 @@ export function parseLocalizedPath(path?: string | null): ParsedLocalizedPath {
       hasLocale: true,
       language: firstChunk,
       sectionPath,
+      detailSlug: thirdChunk || null,
       isSectionValid: isAllowedSectionPath(sectionPath),
     };
   }
@@ -62,6 +65,7 @@ export function parseLocalizedPath(path?: string | null): ParsedLocalizedPath {
     hasLocale: false,
     language: null,
     sectionPath: trimmed,
+    detailSlug: null,
     isSectionValid: isAllowedSectionPath(trimmed),
   };
 }
@@ -75,6 +79,17 @@ export function buildLocalizedPath(
   const normalizedLanguage = isSupportedLanguage(language) ? language : DEFAULT_LANGUAGE;
   const normalizedSectionPath = normalizeSectionPath(sectionPath);
   return `/${normalizedLanguage}${normalizedSectionPath}` as LocalizedPath;
+}
+
+export function buildLocalizedDetailPath(
+  language?: string | null,
+  sectionPath?: string | null,
+  slug?: string | null
+): LocalizedDetailPath {
+  const normalizedLanguage = isSupportedLanguage(language) ? language : DEFAULT_LANGUAGE;
+  const normalizedSectionPath = normalizeSectionPath(sectionPath);
+  const normalizedSlug = slug || "";
+  return `/${normalizedLanguage}${normalizedSectionPath}/${normalizedSlug}` as LocalizedDetailPath;
 }
 
 // Поддержка legacy hash-навигации нужна для старых внешних ссылок

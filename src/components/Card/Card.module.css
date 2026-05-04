@@ -13,6 +13,7 @@
   color: var(--text-primary);
   font-family: 'VremenaGrotesk', sans-serif;
   text-rendering: optimizeLegibility;
+  text-decoration: none;
   outline: none;
   text-align: left;
   appearance: none;

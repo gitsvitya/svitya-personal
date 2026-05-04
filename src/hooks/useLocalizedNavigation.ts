@@ -3,7 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import type { Language, SectionPath } from "../types/domain";
-import { buildLocalizedPath, getLegacyHashPath, normalizeSectionPath } from "../utils/routing";
+import {
+  buildLocalizedDetailPath,
+  buildLocalizedPath,
+  getLegacyHashPath,
+  normalizeSectionPath,
+} from "../utils/routing";
 
 // Длительность анимации переходов держим в одном месте, чтобы fade-out
 // и момент реальной навигации всегда оставались синхронными.
@@ -16,6 +21,7 @@ type UseLocalizedNavigationParams = {
   pathname: string | null;
   router: AppRouterInstance;
   activePath: SectionPath;
+  detailSlug?: string | null;
   currentRouteLanguage: Language;
   hasLocale: boolean;
   isSectionValid: boolean;
@@ -35,6 +41,7 @@ export function useLocalizedNavigation({
   pathname,
   router,
   activePath,
+  detailSlug,
   currentRouteLanguage,
   hasLocale,
   isSectionValid,
@@ -125,7 +132,9 @@ export function useLocalizedNavigation({
       setIsLanguageSwitching(true);
 
       const fadeOutTimer = setTimeout(() => {
-        const nextPath = buildLocalizedPath(nextLanguage, activePath);
+        const nextPath = detailSlug
+          ? buildLocalizedDetailPath(nextLanguage, activePath, detailSlug)
+          : buildLocalizedPath(nextLanguage, activePath);
         setLanguage(nextLanguage);
 
         const navigateTimer = setTimeout(() => {
@@ -141,7 +150,7 @@ export function useLocalizedNavigation({
 
       languageTimeouts.current.push(fadeOutTimer);
     },
-    [activePath, language, router]
+    [activePath, detailSlug, language, router]
   );
 
   // Переход между разделами использует ту же идею с отложенным push,
@@ -149,7 +158,7 @@ export function useLocalizedNavigation({
   const navigateTo = useCallback(
     (path: SectionPath) => {
       const normalized = normalizeSectionPath(path);
-      if (normalized === activePath) return;
+      if (normalized === activePath && !detailSlug) return;
       if (routeTimeoutRef.current) clearTimeout(routeTimeoutRef.current);
       if (routeFadeInTimeoutRef.current) clearTimeout(routeFadeInTimeoutRef.current);
 
@@ -159,7 +168,7 @@ export function useLocalizedNavigation({
         router.push(buildLocalizedPath(currentRouteLanguage, normalized));
       }, FADE_DURATION);
     },
-    [activePath, currentRouteLanguage, router]
+    [activePath, currentRouteLanguage, detailSlug, router]
   );
 
   return {

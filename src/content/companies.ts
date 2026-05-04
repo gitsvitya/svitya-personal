@@ -30,6 +30,7 @@ export type CompanyPhoto = {
 // Общая запись компании хранит технические поля и набор переводов.
 type CompanyRecord = {
   id: CompanyId;
+  slug: string;
   section: CompanySection;
   logo: string;
   url?: string;
@@ -57,6 +58,7 @@ function resolveImageSrc(image: string | StaticImageData): string {
 export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   CI: {
     id: "CI",
+    slug: "cheminsight",
     section: "work",
     logo: resolveImageSrc(ciLogo),
     url: "https://cheminsight.ru/",
@@ -100,6 +102,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   NTB: {
     id: "NTB",
+    slug: "national-mercantile-exchange",
     section: "work",
     logo: resolveImageSrc(moexLogo),
     url: "https://namex.org/",
@@ -126,6 +129,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   LRNPT: {
     id: "LRNPT",
+    slug: "lukoil-rnp-trading",
     section: "work",
     logo: resolveImageSrc(lukoilLogo),
     url: "https://trading.lukoil.ru/",
@@ -153,6 +157,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   KG: {
     id: "KG",
+    slug: "kalashnikov-group",
     section: "work",
     logo: resolveImageSrc(kalashnikovLogo),
     url: "https://kalashnikovgroup.ru/",
@@ -180,6 +185,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   TR: {
     id: "TR",
+    slug: "thomson-reuters",
     section: "work",
     logo: resolveImageSrc(reutersLogo),
     url: "https://www.thomsonreuters.com/",
@@ -207,6 +213,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   MBC: {
     id: "MBC",
+    slug: "mad-burglar-cat",
     section: "projects",
     logo: resolveImageSrc(mbcLogo),
     url: "https://madburglarcat.ru/",
@@ -234,6 +241,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   MNG: {
     id: "MNG",
+    slug: "mappngo",
     section: "projects",
     logo: resolveImageSrc(mappngoLogo),
     url: "https://www.mappngo.com/",
@@ -261,6 +269,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   VNV: {
     id: "VNV",
+    slug: "venivi",
     section: "projects",
     logo: resolveImageSrc(veniviLogo),
     url: "https://venivi.ru/",
@@ -288,6 +297,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   SKO: {
     id: "SKO",
+    slug: "stroke-off",
     section: "activities",
     logo: resolveImageSrc(strokeOffLabel),
     translations: {
@@ -313,6 +323,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   SDC: {
     id: "SDC",
+    slug: "svitya-website",
     section: "activities",
     logo: resolveImageSrc(svityaComLabel),
     url: "https://github.com/gitsvitya",
@@ -346,6 +357,18 @@ export function getCompaniesBySection(section: CompanySection): CompanyRecord[] 
   return Object.values(COMPANIES).filter((company) => company.section === section);
 }
 
+export function getCompanyBySlug(
+  section: CompanySection,
+  slug?: string | null
+): CompanyRecord | null {
+  if (!slug) return null;
+  return (
+    Object.values(COMPANIES).find(
+      (company) => company.section === section && company.slug === slug
+    ) || null
+  );
+}
+
 // На входе берем id и язык, а на выходе отдаем плоский объект,
 // который можно напрямую передавать в карточку или модалку.
 export function getLocalizedCompany(companyId: CompanyId, language: Language): LocalizedCompany {
@@ -360,6 +383,7 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
 
   return {
     id: company.id,
+    slug: company.slug,
     section: company.section,
     logo: company.logo,
     url: company.url,
@@ -370,4 +394,13 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
     })),
     ...translation,
   };
+}
+
+export function getLocalizedCompanyBySlug(
+  section: CompanySection,
+  slug: string | null,
+  language: Language
+): LocalizedCompany | null {
+  const company = getCompanyBySlug(section, slug);
+  return company ? getLocalizedCompany(company.id, language) : null;
 }

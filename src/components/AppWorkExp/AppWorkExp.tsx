@@ -1,6 +1,7 @@
 import type { CompanyId, Language } from "../../types/domain";
 import { getCompaniesBySection, getLocalizedCompany } from "../../content/companies";
 import type { AppTranslations } from "../../content/ui-text";
+import { buildLocalizedDetailPath } from "../../utils/routing";
 import Card from "../Card/Card";
 import Section from "../Section/Section";
 import sectionStyles from "../Section/Section.module.css";
@@ -23,6 +24,7 @@ function AppWorkExp({ text, language, onCardActivate }: AppWorkExpProps) {
           <Card
             key={company.id}
             company={getLocalizedCompany(company.id, language)}
+            href={buildLocalizedDetailPath(language, "/work", company.slug)}
             ctaLabel={text.card.button}
             onActivate={onCardActivate}
           />
