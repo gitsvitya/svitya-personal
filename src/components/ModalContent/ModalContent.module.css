@@ -1,31 +1,25 @@
-/* Стили контента модалки: шапка с логотипом, ссылка и описательные абзацы. */
+/* Стили подробного контента: шапка с логотипом, ссылка и описательные абзацы. */
 .modalContentRenderGeneralWindow {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 34px;
   width: 100%;
   position: relative;
-  overflow: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.modalContentRenderGeneralWindow::-webkit-scrollbar  {
-  width: 0;
-  height: 0;
 }
 
 .modalContentRenderTextLogoWindow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  gap: 40px;
 }
 
 .modalContentRenderCompanyTextBox {
   display: flex;
   flex-direction: column;
-  padding-right: 10px;
-  gap: 10px;
+  gap: 14px;
+  min-width: 0;
 }
 
 .modalContentRendercardYear {
@@ -46,10 +40,10 @@
 .modalContentRendercardCompanyName {
   padding: 0;
   margin: 0;
-  font-size: 32px;
+  font-size: 46px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.15;
 }
 
 .modalContentRenderlink {
@@ -68,7 +62,7 @@
 .modalContentRendercardTitle {
   padding: 0;
   margin: 0;
-  font-size: 22px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.375;
@@ -76,13 +70,15 @@
 
 .modalContentRenderlogoPic {
   align-self: center;
-  width: 25%;
+  width: min(26%, 260px);
+  max-height: 220px;
+  object-fit: contain;
 }
 
 .modalContentRenderParagraphBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
 
 .modalContentRenderParagraph {
@@ -108,6 +104,14 @@
   .modalContentRenderCompanyTextBox {
     gap: 20px;
   }
+
+  .modalContentRendercardCompanyName {
+    font-size: 38px;
+  }
+
+  .modalContentRendercardTitle {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 650px) {
@@ -131,13 +135,18 @@
 @media (max-width: 768px) {
   .modalContentRenderTextLogoWindow {
     flex-direction: column-reverse;
+    align-items: flex-start;
     gap: 20px;
   }
   .modalContentRenderlogoPic {
-    width: 40%;
+    width: min(48%, 220px);
   }
   .modalContentRenderCompanyTextBox {
-    padding-right: 0px;
+    gap: 20px;
+  }
+
+  .modalContentRenderParagraphBlock {
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 }

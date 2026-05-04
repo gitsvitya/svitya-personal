@@ -1,23 +1,18 @@
-import type { Dispatch, SetStateAction } from "react";
 import type { CompanyId } from "../../types/domain";
 import type { LocalizedCompany } from "../../content/companies";
 import styles from "./Card.module.css";
 
 type CardProps = {
   company: LocalizedCompany;
-  openModal: () => void;
-  setModalContentCompany: Dispatch<SetStateAction<CompanyId | null>>;
+  onActivate: (companyId: CompanyId) => void;
   ctaLabel: string;
 };
 
 // Карточка знает только о своей записи и сообщает родителю,
-// какую компанию нужно показать в модальном окне.
-function Card({ company, openModal, setModalContentCompany, ctaLabel }: CardProps) {
-  // Сначала фиксируем id активной записи, затем открываем окно,
-  // чтобы к моменту показа контент уже был готов.
+// какую запись нужно показать на странице подробностей.
+function Card({ company, onActivate, ctaLabel }: CardProps) {
   function handleActivate() {
-    setModalContentCompany(company.id);
-    openModal();
+    onActivate(company.id);
   }
 
   return (

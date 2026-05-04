@@ -1,12 +1,13 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import type { Language, SectionPath, Theme } from "../../types/domain";
+import type { CompanyId, CompanySection, Language, SectionPath, Theme } from "../../types/domain";
 import { DEFAULT_LANGUAGE } from "../../types/domain";
+import { getLocalizedCompany } from "../../content/companies";
 import { getTranslations, type AppTranslations } from "../../content/ui-text";
 import { normalizeSectionPath, parseLocalizedPath } from "../../utils/routing";
-import { useAppModal } from "../../hooks/useAppModal";
 import { useLocalizedNavigation } from "../../hooks/useLocalizedNavigation";
 import { useThemePreference } from "../../hooks/useThemePreference";
 import styles from "./App.module.css";
@@ -14,11 +15,10 @@ import AppHeader from "../AppHeader/AppHeader";
 import AppProjectsExp from "../AppProjectsExp/AppProjectsExp";
 import AppFooter from "../AppFooter/AppFooter";
 import AppWorkExp from "../AppWorkExp/AppWorkExp";
-import Modal from "../Modal/Modal";
-import ModalContent from "../ModalContent/ModalContent";
 import AppAboutMe from "../AppAboutMe/AppAboutMe";
 import AppActivitiesExp from "../AppActivities/AppActivitiesExp";
 import CookieBanner from "../CookieBanner/CookieBanner";
+import AppDetailPage from "../AppDetailPage/AppDetailPage";
 
 type AppProps = {
   initialPath?: string;
@@ -26,7 +26,13 @@ type AppProps = {
   initialTheme?: Theme;
 };
 
-// App связывает роутинг, тему, переводы и модальное состояние
+const SECTION_PATH_BY_COMPANY_SECTION: Record<CompanySection, SectionPath> = {
+  work: "/work",
+  projects: "/projects",
+  activities: "/activities",
+};
+
+// App связывает роутинг, тему, переводы и состояние подробного просмотра
 // в один клиентский контейнер для всего интерфейса сайта.
 function App({
   initialPath = "/en/about",
@@ -55,15 +61,7 @@ function App({
     hasLocale: parsedPath.hasLocale,
     isSectionValid: parsedPath.isSectionValid,
   });
-  const {
-    modalOpened,
-    showContent,
-    setShowContent,
-    setModalContentCompany,
-    openModal,
-    closeModal,
-    activeModalCompany,
-  } = useAppModal(language);
+  const [activeCompanyId, setActiveCompanyId] = useState<CompanyId | null>(null);
 
   // Все текстовые подписи интерфейса читаются из общего словаря
   // по текущей локали, чтобы компоненты не знали о структуре переводов.
@@ -71,6 +69,37 @@ function App({
 
   // Одна переменная управляет общей fade-анимацией основного контента.
   const isFading = isLanguageSwitching || isRouteSwitching;
+  const activeDetailCompany = useMemo(() => {
+    if (activeCompanyId === null) return null;
+    return getLocalizedCompany(activeCompanyId, language);
+  }, [activeCompanyId, language]);
+
+  const activeDetailSectionPath = activeDetailCompany
+    ? SECTION_PATH_BY_COMPANY_SECTION[activeDetailCompany.section]
+    : null;
+  const shouldShowDetailPage =
+    activeDetailCompany !== null && activeDetailSectionPath === activePath;
+
+  const detailSectionTitle = activeDetailCompany
+    ? currentText.sections[activeDetailCompany.section]
+    : "";
+
+  function handleNavigate(path: SectionPath) {
+    setActiveCompanyId(null);
+    navigateTo(path);
+  }
+
+  function handleBackToCards() {
+    setActiveCompanyId(null);
+  }
+
+  // Если пользователь ушел на другой раздел браузерной навигацией,
+  // выбранная запись больше не должна подменять сетку карточек.
+  useEffect(() => {
+    if (activeDetailCompany && activeDetailSectionPath !== activePath) {
+      setActiveCompanyId(null);
+    }
+  }, [activeDetailCompany, activeDetailSectionPath, activePath]);
 
   // Карта секций связывает нормализованный путь и нужный JSX-блок.
   const sectionContentByPath: Record<SectionPath, ReactNode> = {
@@ -79,24 +108,21 @@ function App({
       <AppWorkExp
         text={currentText}
         language={language}
-        setModalContentCompany={setModalContentCompany}
-        openModal={openModal}
+        onCardActivate={setActiveCompanyId}
       />
     ),
     "/projects": (
       <AppProjectsExp
         text={currentText}
         language={language}
-        setModalContentCompany={setModalContentCompany}
-        openModal={openModal}
+        onCardActivate={setActiveCompanyId}
       />
     ),
     "/activities": (
       <AppActivitiesExp
         text={currentText}
         language={language}
-        setModalContentCompany={setModalContentCompany}
-        openModal={openModal}
+        onCardActivate={setActiveCompanyId}
       />
     ),
   };
@@ -114,14 +140,23 @@ function App({
           setTheme={setTheme}
           isLanguageSwitching={isLanguageSwitching}
           activePath={activePath}
-          onNavigate={navigateTo}
+          onNavigate={handleNavigate}
         />
         <main
           className={`${styles.main} ${styles.fade} ${
             isFading ? styles.pageFading : styles.pageVisible
           }`}
         >
-          {sectionContentByPath[activePath]}
+          {shouldShowDetailPage ? (
+            <AppDetailPage
+              company={activeDetailCompany}
+              text={currentText}
+              sectionTitle={detailSectionTitle}
+              onBack={handleBackToCards}
+            />
+          ) : (
+            sectionContentByPath[activePath]
+          )}
         </main>
 
         {/* Нижняя часть страницы также реагирует на смену языка,
@@ -135,19 +170,6 @@ function App({
           <CookieBanner text={currentText} />
         </div>
       </div>
-
-      {/* Портальная модалка монтируется только когда действительно нужна,
-          чтобы не держать лишние обработчики и aria-разметку в DOM. */}
-      {modalOpened && (
-        <Modal
-          closeModal={closeModal}
-          showContent={showContent}
-          setShowContent={setShowContent}
-          closeLabel={currentText.modal.closeLabel}
-        >
-          <ModalContent company={activeModalCompany} />
-        </Modal>
-      )}
     </>
   );
 }

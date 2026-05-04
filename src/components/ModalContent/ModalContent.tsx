@@ -8,7 +8,7 @@ type ModalContentProps = {
 };
 
 // Компонент получает уже локализованную запись и раскладывает ее
-// на структуру, подходящую для чтения внутри модального окна.
+// на структуру, подходящую для чтения в подробном представлении.
 function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
   if (!company) return null;
   return (
@@ -44,7 +44,7 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
       </div>
 
       {/* Оба текстовых абзаца объединены общим description id,
-          чтобы screen readers воспринимали их как описание диалога. */}
+          чтобы screen readers воспринимали их как единое описание записи. */}
       <div id={descriptionId} className={styles.modalContentRenderParagraphBlock}>
         <p className={styles.modalContentRenderParagraph}>{company.about}</p>
         <p className={styles.modalContentRenderParagraph}>{company.results}</p>

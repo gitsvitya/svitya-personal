@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
 import type { CompanyId, Language } from "../../types/domain";
 import { getCompaniesBySection, getLocalizedCompany } from "../../content/companies";
 import type { AppTranslations } from "../../content/ui-text";
@@ -9,8 +8,7 @@ import sectionStyles from "../Section/Section.module.css";
 type AppActivitiesExpProps = {
   text: AppTranslations;
   language: Language;
-  setModalContentCompany: Dispatch<SetStateAction<CompanyId | null>>;
-  openModal: () => void;
+  onCardActivate: (companyId: CompanyId) => void;
 };
 
 // Секция активностей строится из общего реестра контента
@@ -18,20 +16,18 @@ type AppActivitiesExpProps = {
 function AppActivitiesExp({
   text,
   language,
-  setModalContentCompany,
-  openModal,
+  onCardActivate,
 }: AppActivitiesExpProps) {
   return (
     <Section id="otherExp" title={text.sections.activities}>
-      {/* Карточки используют ту же механику открытия модалки, что и другие секции. */}
+      {/* Карточки используют ту же механику открытия подробностей, что и другие секции. */}
       <div className={sectionStyles.cardsGrid}>
         {getCompaniesBySection("activities").map((company) => (
           <Card
             key={company.id}
             company={getLocalizedCompany(company.id, language)}
             ctaLabel={text.card.button}
-            openModal={openModal}
-            setModalContentCompany={setModalContentCompany}
+            onActivate={onCardActivate}
           />
         ))}
       </div>

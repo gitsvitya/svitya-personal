@@ -1,0 +1,60 @@
+/* Полноэкранный вариант контента карточки: кнопка возврата и читаемая ширина текста. */
+.detailPage {
+  width: 100%;
+}
+
+.container {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  width: 100%;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: 'VremenaGrotesk', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-slow),
+    border-color var(--transition-slow),
+    color var(--transition-slow);
+}
+
+.backButton:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--button-text);
+}
+
+.backButton:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.backIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+@media (max-width: 501px) {
+  .container {
+    gap: 20px;
+  }
+
+  .backButton {
+    padding: 8px 14px;
+    font-size: 16px;
+  }
+}

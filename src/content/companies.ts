@@ -8,6 +8,8 @@ import moexLogo from "../images/moex_logo.png";
 import reutersLogo from "../images/reuters_logo.png";
 import strokeOffLabel from "../images/stroke_off_label.png";
 import svityaComLabel from "../images/svitya_com_label.png";
+import testPhoto1 from "../images/test1.png";
+import testPhoto2 from "../images/test2.png";
 import veniviLogo from "../images/veniviLogo.png";
 import type { CompanyId, CompanySection, Language } from "../types/domain";
 
@@ -20,6 +22,11 @@ type CompanyCopy = {
   results: string;
 };
 
+export type CompanyPhoto = {
+  src: string;
+  description: Record<Language, string>;
+};
+
 // Общая запись компании хранит технические поля и набор переводов.
 type CompanyRecord = {
   id: CompanyId;
@@ -27,11 +34,18 @@ type CompanyRecord = {
   logo: string;
   url?: string;
   linkLabel?: string;
+  photos?: CompanyPhoto[];
   translations: Record<Language, CompanyCopy>;
 };
 
 // Для UI удобнее работать с уже распакованной локализованной сущностью.
-export type LocalizedCompany = Omit<CompanyRecord, "translations"> & CompanyCopy;
+export type LocalizedCompany = Omit<CompanyRecord, "translations" | "photos"> &
+  CompanyCopy & {
+    photos?: Array<{
+      src: string;
+      description: string;
+    }>;
+  };
 
 // Импортированные через Next изображения приводим к строковому src,
 // чтобы без лишней логики использовать их в обычных img-тегах.
@@ -47,6 +61,22 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     logo: resolveImageSrc(ciLogo),
     url: "https://cheminsight.ru/",
     linkLabel: "cheminsight.ru",
+    photos: [
+      {
+        src: resolveImageSrc(testPhoto1),
+        description: {
+          ru: "Тестовое описание первой фотографии ChemInsight.",
+          en: "Test description for the first ChemInsight photo.",
+        },
+      },
+      {
+        src: resolveImageSrc(testPhoto2),
+        description: {
+          ru: "Тестовое описание второй фотографии ChemInsight.",
+          en: "Test description for the second ChemInsight photo.",
+        },
+      },
+    ],
     translations: {
       ru: {
         year: "2025-н.в.",
@@ -334,6 +364,10 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
     logo: company.logo,
     url: company.url,
     linkLabel: company.linkLabel,
+    photos: company.photos?.map((photo) => ({
+      src: photo.src,
+      description: photo.description[language],
+    })),
     ...translation,
   };
 }

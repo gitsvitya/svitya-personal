@@ -31,6 +31,14 @@ export const uiText = {
         "Для корректной работы сайта я использую технические и аналитические cookie-файлы. Продолжая работать с сайтом, Вы принимаете это.",
       button: "Закрыть",
     },
+    detail: {
+      back: "Назад",
+      backToSection: "Вернуться к разделу",
+      photosTitle: "Фотографии",
+      openImageInNewWindow: "Открыть в новом окне",
+      previousPhoto: "Предыдущее фото",
+      nextPhoto: "Следующее фото",
+    },
     modal: {
       closeLabel: "Закрыть модальное окно",
     },
@@ -70,6 +78,14 @@ export const uiText = {
       description:
         "This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.",
       button: "Close",
+    },
+    detail: {
+      back: "Back",
+      backToSection: "Back to section",
+      photosTitle: "Photos",
+      openImageInNewWindow: "Open in a new window",
+      previousPhoto: "Previous photo",
+      nextPhoto: "Next photo",
     },
     modal: {
       closeLabel: "Close modal window",
