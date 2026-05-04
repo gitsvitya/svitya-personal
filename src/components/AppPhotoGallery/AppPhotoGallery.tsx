@@ -6,7 +6,7 @@ import type { AppTranslations } from "../../content/ui-text";
 import Modal from "../Modal/Modal";
 import styles from "./AppPhotoGallery.module.css";
 
-type GalleryPhoto = NonNullable<LocalizedCompany["photos"]>[number];
+type GalleryPhoto = NonNullable<LocalizedCompany["materials"]>["photos"][number];
 
 type AppPhotoGalleryProps = {
   photos: GalleryPhoto[];
@@ -179,13 +179,11 @@ function PhotoModalContent({
       <p id={descriptionId} className={styles.description}>
         {photo.description}
       </p>
-      <a
-        className={styles.downloadLink}
-        href={photo.downloadSrc}
-        download
-      >
-        {text.detail.download}
-      </a>
+      {photo.downloadSrc && (
+        <a className={styles.downloadLink} href={photo.downloadSrc} download>
+          {text.detail.download}
+        </a>
+      )}
     </div>
   );
 }

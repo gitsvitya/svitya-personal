@@ -24,8 +24,13 @@ type CompanyCopy = {
 
 export type CompanyPhoto = {
   src: string;
-  downloadSrc: string;
+  downloadSrc?: string;
   description: Record<Language, string>;
+};
+
+type CompanyMaterials = {
+  enabled: boolean;
+  photos: CompanyPhoto[];
 };
 
 // Общая запись компании хранит технические поля и набор переводов.
@@ -36,18 +41,21 @@ type CompanyRecord = {
   logo: string;
   url?: string;
   linkLabel?: string;
-  photos?: CompanyPhoto[];
+  materials?: CompanyMaterials;
   translations: Record<Language, CompanyCopy>;
 };
 
 // Для UI удобнее работать с уже распакованной локализованной сущностью.
-export type LocalizedCompany = Omit<CompanyRecord, "translations" | "photos"> &
+export type LocalizedCompany = Omit<CompanyRecord, "translations" | "materials"> &
   CompanyCopy & {
-    photos?: Array<{
-      src: string;
-      downloadSrc: string;
-      description: string;
-    }>;
+    materials?: {
+      enabled: boolean;
+      photos: Array<{
+        src: string;
+        downloadSrc?: string;
+        description: string;
+      }>;
+    };
   };
 
 // Импортированные через Next изображения приводим к строковому src,
@@ -65,24 +73,26 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     logo: resolveImageSrc(ciLogo),
     url: "https://cheminsight.ru/",
     linkLabel: "cheminsight.ru",
-    photos: [
-      {
-        src: resolveImageSrc(testPhoto1),
-        downloadSrc: resolveImageSrc(testPhoto1),
-        description: {
-          ru: "Тестовое описание первой фотографии ChemInsight.",
-          en: "Test description for the first ChemInsight photo.",
+    materials: {
+      enabled: true,
+      photos: [
+        {
+          src: resolveImageSrc(testPhoto1),
+          downloadSrc: resolveImageSrc(testPhoto1),
+          description: {
+            ru: "Тестовое описание первой фотографии ChemInsight.",
+            en: "Test description for the first ChemInsight photo.",
+          },
         },
-      },
-      {
-        src: resolveImageSrc(testPhoto2),
-        downloadSrc: resolveImageSrc(testPhoto2),
-        description: {
-          ru: "Тестовое описание второй фотографии ChemInsight.",
-          en: "Test description for the second ChemInsight photo.",
+        {
+          src: resolveImageSrc(testPhoto2),
+          description: {
+            ru: "Тестовое описание второй фотографии ChemInsight.",
+            en: "Test description for the second ChemInsight photo.",
+          },
         },
-      },
-    ],
+      ],
+    },
     translations: {
       ru: {
         year: "2025-н.в.",
@@ -392,11 +402,16 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
     logo: company.logo,
     url: company.url,
     linkLabel: company.linkLabel,
-    photos: company.photos?.map((photo) => ({
-      src: photo.src,
-      downloadSrc: photo.downloadSrc,
-      description: photo.description[language],
-    })),
+    materials: company.materials
+      ? {
+          enabled: company.materials.enabled,
+          photos: company.materials.photos.map((photo) => ({
+            src: photo.src,
+            downloadSrc: photo.downloadSrc,
+            description: photo.description[language],
+          })),
+        }
+      : undefined,
     ...translation,
   };
 }

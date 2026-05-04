@@ -16,6 +16,10 @@ type AppDetailPageProps = {
 function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPageProps) {
   const titleId = `detail-title-${company.id}`;
   const descriptionId = `detail-description-${company.id}`;
+  const materials =
+    company.materials?.enabled === true && company.materials.photos.length > 0
+      ? company.materials
+      : null;
 
   return (
     <section className={styles.detailPage} aria-labelledby={titleId}>
@@ -32,8 +36,12 @@ function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPagePro
           {text.detail.back}
         </button>
         <ModalContent company={company} titleId={titleId} descriptionId={descriptionId} />
-        {company.photos && (
-          <AppPhotoGallery photos={company.photos} text={text} companyName={company.name} />
+        {materials && (
+          <AppPhotoGallery
+            photos={materials.photos}
+            text={text}
+            companyName={company.name}
+          />
         )}
       </div>
     </section>
