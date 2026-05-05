@@ -43,8 +43,8 @@
 }
 
 .backIcon {
-  font-size: 20px;
-  line-height: 1;
+  font-size: 22px;
+  line-height: 1.375;
 }
 
 @media (max-width: 501px) {
