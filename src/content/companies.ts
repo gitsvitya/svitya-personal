@@ -95,7 +95,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     },
     translations: {
       ru: {
-        year: "2025-н.в.",
+        year: "2025 → настоящее время",
         name: "ХимИнсайт",
         title: "Внештатный консультант",
         about:
@@ -104,7 +104,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Запускаю и развиваю платные B2B-информационные продукты. Моделирую и визуализирую бизнес-процессы с предложениями по их оптимизации. Организую и координирую взаимодействие между экспертами, редакторами и дизайнерами для достижения эффективных результатов.",
       },
       en: {
-        year: "2025-present",
+        year: "2025 → present",
         name: "ChemInsight",
         title: "Freelance consultant",
         about:
@@ -123,7 +123,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "namex.org",
     translations: {
       ru: {
-        year: "2021-2024",
+        year: "2021 → 2024",
         name: "Национальная товарная биржа",
         title: "Руководитель направления методологии / развития бизнеса",
         about:
@@ -132,7 +132,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Запускал ценовые индикаторы и B2B-информационные продукты. Развивал торги на товарных аукционах. Координировал разработку и внедрение frontend-системы автоматизации обработки заявок для биржевых торгов.",
       },
       en: {
-        year: "2021-2024",
+        year: "2021 → 2024",
         name: "National Mercantile Exchange",
         title: "Head of Methology / Business Development",
         about: "A subsidiary of the Moscow Exchange specializing in commodity markets.",
@@ -150,7 +150,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "trading.lukoil.ru",
     translations: {
       ru: {
-        year: "2020-2021",
+        year: "2020 → 2021",
         name: "Лукойл-РНП-Трейдинг",
         title: "Ведущий специалист отдела развития бизнеса и анализа рынков",
         about:
@@ -159,7 +159,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Координировал маркетинговые проекты, готовил аналитические материалы. Участвовал в формировании стратегии развития новых направлений сбыта компании. Обеспечивал сопровождение коммерческой деятельности, выявлял потенциальные риски.",
       },
       en: {
-        year: "2020-2021",
+        year: "2020 → 2021",
         name: "Lukoil-RNP-Trading",
         title: "Leading Specialist, Business Development and Market Analysis",
         about:
@@ -178,7 +178,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "kalashnikovgroup.ru",
     translations: {
       ru: {
-        year: "2018-2019",
+        year: "2018 → 2019",
         name: "Концерн Калашников",
         title: "Менеджер по маркетинговым исследованиям",
         about:
@@ -187,7 +187,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Работал с гражданскими рынками. Сформировал и развивал систему маркетинговых исследований для отдела продуктового маркетинга. Интегрировал систему бизнес-аналитики. Принимал участие в создании B2B-продуктов.",
       },
       en: {
-        year: "2018-2019",
+        year: "2018 → 2019",
         name: "Kalashnikov Group",
         title: "Marketing Research Manager",
         about:
@@ -206,7 +206,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "thomsonreuters.com",
     translations: {
       ru: {
-        year: "2014-2018",
+        year: "2014 → 2018",
         name: "Thomson Reuters",
         title: "Аналитик рынков",
         about:
@@ -215,7 +215,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Прошёл путь от стажёра до аналитика товарно-сырьевых рынков (нефть и газ, металлургия), написав более тысячи материалов - новостей, разборов и аналитических статей, - которые прочитали более двадцати тысяч человек. Также занимался разработкой информационных продуктов и аналитических дашбордов. Проводил мастер-классы для клиентов.",
       },
       en: {
-        year: "2014-2018",
+        year: "2014 → 2018",
         name: "Thomson Reuters",
         title: "Market Analyst",
         about:
@@ -234,7 +234,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "madburglarcat.ru",
     translations: {
       ru: {
-        year: "2024-н.в.",
+        year: "2024 → настоящее время",
         name: "Mad Burglar Cat",
         title: "Основатель",
         about:
@@ -243,7 +243,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Запустил проект с нуля и выстроил полный цикл обработки заказов. Формирую видение дальнейшего стратегического развития и вывожу на рынок продукты авторской разработки и изготовления. Координирую работу небольшой команды на аутсорсе, которая помогает с производством контента, разработкой дизайна и обработкой заказов.",
       },
       en: {
-        year: "2024-present",
+        year: "2024 → present",
         name: "Mad Burglar Cat",
         title: "Founder",
         about:
@@ -262,7 +262,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "mappngo.com",
     translations: {
       ru: {
-        year: "2019-2020",
+        year: "2019 → 2020",
         name: "MappNgo",
         title: "Основатель",
         about:
@@ -271,7 +271,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Был автором проекта: разработал концепцию, сформировал дизайн и организовал разработку. Довёл проект до стадии минимально жизнеспособного продукта (MVP), но из-за пандемии COVID-19 его пришлось закрыть.",
       },
       en: {
-        year: "2019-2020",
+        year: "2019 → 2020",
         name: "MappNgo",
         title: "Founder",
         about:
@@ -290,8 +290,8 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "venivi.ru",
     translations: {
       ru: {
-        year: "2013-2014",
-        name: "Venivi.ru",
+        year: "2013 → 2014",
+        name: "Venivi",
         title: "Сооснователь",
         about:
           "Конкурсная площадка, где рекламодатели проводили конкурсы и розыгрыши для привлечения аудитории.",
@@ -299,8 +299,8 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "Отвечал за разработку продукта и привлечение клиентов. Проект просуществовал чуть меньше года, но за это время на площадке было проведено не менее десятка розыгрышей и локальных киберспортивных турниров, а MAU достигал 7 000 пользователей. Проект закрылся на фоне ужесточения правил проведения конкурсов в социальной сети VK.com, из группы которой поступал основной трафик.",
       },
       en: {
-        year: "2013-2014",
-        name: "Venivi.ru",
+        year: "2013 → 2014",
+        name: "Venivi",
         title: "Co-founder",
         about:
           "A promotional platform where advertisers ran contests and giveaways to attract audiences.",
@@ -316,7 +316,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     logo: resolveImageSrc(strokeOffLabel),
     translations: {
       ru: {
-        year: "2021-н.в.",
+        year: "2021 → настоящее время",
         name: "Продукция Stroke Off",
         title: "Из перцев чили Каролина рипер",
         about:
@@ -325,7 +325,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая одного из лидеров по жгучести - Каролину рипер. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом Stroke Off. Особенно удачными получились перцовка и тайский сладкий соус чили.",
       },
       en: {
-        year: "2021-present",
+        year: "2021 → present",
         name: "Stroke Off Products",
         title: "Made from Carolina Reaper Chili Peppers",
         about:
@@ -344,7 +344,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     linkLabel: "github.com/gitsvitya",
     translations: {
       ru: {
-        year: "2019-н.в.",
+        year: "2019 → настоящее время",
         name: "Сайт Svitya.com",
         title: "А также другие разработки",
         about:
@@ -353,7 +353,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           "В 2019-2020 годах прошёл обучение веб-разработке и обработке данных на Python на курсах Мичиганского университета, после чего закрепил знания в Яндекс.Практикуме. В результате на свет появился этот сайт, а также несколько других учебных и авторских проектов, с которыми можно ознакомиться по ссылке на мой GitHub, указанной выше. По мере освоения новых технологий и при наличии свободного времени сайт продолжает обрастать новыми функциями и возможностями.",
       },
       en: {
-        year: "2019-present",
+        year: "2019 → present",
         name: "Svitya.com Website",
         title: "And Other Projects",
         about:

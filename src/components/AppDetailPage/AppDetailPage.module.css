@@ -28,7 +28,6 @@
   line-height: 1.375;
   text-rendering: optimizeLegibility;
   transition: opacity var(--transition-slow), color var(--transition-slow), text-decoration var(--transition-slow);
-  margin-bottom: 10px;
 }
 
 .backButton:hover {

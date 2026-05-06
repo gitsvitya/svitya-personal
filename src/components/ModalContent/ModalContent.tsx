@@ -21,11 +21,11 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
         id={descriptionId}
         className={styles.modalContentRenderParagraphBlock}
       >
-        <div className={styles.modalContentRenderCompanyTextBox}>
+        <div className={styles.modalContentRenderCompanyBox}>
           <h2 id={titleId} className={styles.modalContentRendercardCompanyName}>
             {company.name}
           </h2>
-          <div className={styles.modalContentRenderCompanyLinkBox}>
+          <div className={styles.modalContentRenderCompanyDescriptionLinkBox}>
             <p className={styles.modalContentRenderParagraph}>
               {company.about}
             </p>
@@ -40,12 +40,14 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
               </a>
             )}
           </div>
-          <span className={styles.modalContentRendercardTitle}>
-            {company.title}
-          </span>
-          <span className={styles.modalContentRendercardYear}>
-            {company.year}
-          </span>
+          <div className={styles.modalContentRenderCompanyTitleYearBox}>
+            <span className={styles.modalContentRendercardTitle}>
+              {company.title}
+            </span>
+            <span className={styles.modalContentRendercardYear}>
+              {company.year}
+            </span>
+          </div>
         </div>
         <img
           className={styles.modalContentRenderlogoPic}
@@ -54,8 +56,6 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
           loading="lazy"
         />
       </div>
-
-      <div className={styles.modalContentRenderTextLogoWindow}></div>
       <p className={styles.modalContentRenderParagraph}>{company.results}</p>
     </div>
   );
