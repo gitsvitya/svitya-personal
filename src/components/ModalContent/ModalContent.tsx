@@ -15,13 +15,20 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
     <div className={styles.modalContentRenderGeneralWindow}>
       {/* В верхнем блоке собраны идентифицирующие данные записи:
           период, название, роль и логотип. */}
-      <div className={styles.modalContentRenderTextLogoWindow}>
+      {/* Оба текстовых абзаца объединены общим description id,
+          чтобы screen readers воспринимали их как единое описание записи. */}
+      <div
+        id={descriptionId}
+        className={styles.modalContentRenderParagraphBlock}
+      >
         <div className={styles.modalContentRenderCompanyTextBox}>
-          <span className={styles.modalContentRendercardYear}>{company.year}</span>
+          <h2 id={titleId} className={styles.modalContentRendercardCompanyName}>
+            {company.name}
+          </h2>
           <div className={styles.modalContentRenderCompanyLinkBox}>
-            <h2 id={titleId} className={styles.modalContentRendercardCompanyName}>
-              {company.name}
-            </h2>
+            <p className={styles.modalContentRenderParagraph}>
+              {company.about}
+            </p>
             {company.url && (
               <a
                 className={styles.modalContentRenderlink}
@@ -33,7 +40,12 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
               </a>
             )}
           </div>
-          <span className={styles.modalContentRendercardTitle}>{company.title}</span>
+          <span className={styles.modalContentRendercardTitle}>
+            {company.title}
+          </span>
+          <span className={styles.modalContentRendercardYear}>
+            {company.year}
+          </span>
         </div>
         <img
           className={styles.modalContentRenderlogoPic}
@@ -43,12 +55,8 @@ function ModalContent({ company, titleId, descriptionId }: ModalContentProps) {
         />
       </div>
 
-      {/* Оба текстовых абзаца объединены общим description id,
-          чтобы screen readers воспринимали их как единое описание записи. */}
-      <div id={descriptionId} className={styles.modalContentRenderParagraphBlock}>
-        <p className={styles.modalContentRenderParagraph}>{company.about}</p>
-        <p className={styles.modalContentRenderParagraph}>{company.results}</p>
-      </div>
+      <div className={styles.modalContentRenderTextLogoWindow}></div>
+      <p className={styles.modalContentRenderParagraph}>{company.results}</p>
     </div>
   );
 }
