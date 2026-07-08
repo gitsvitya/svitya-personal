@@ -116,7 +116,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   NTB: {
     id: "NTB",
-    slug: "national-mercantile-exchange",
+    slug: "namex",
     section: "work",
     logo: resolveImageSrc(moexLogo),
     url: "https://namex.org/",
@@ -143,7 +143,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   LRNPT: {
     id: "LRNPT",
-    slug: "lukoil-rnp-trading",
+    slug: "lukoilrnpt",
     section: "work",
     logo: resolveImageSrc(lukoilLogo),
     url: "https://trading.lukoil.ru/",
@@ -171,7 +171,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   KG: {
     id: "KG",
-    slug: "kalashnikov-group",
+    slug: "kalashnikov",
     section: "work",
     logo: resolveImageSrc(kalashnikovLogo),
     url: "https://kalashnikovgroup.ru/",
@@ -199,7 +199,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   TR: {
     id: "TR",
-    slug: "thomson-reuters",
+    slug: "thomsonreuters",
     section: "work",
     logo: resolveImageSrc(reutersLogo),
     url: "https://www.thomsonreuters.com/",
@@ -227,7 +227,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   MBC: {
     id: "MBC",
-    slug: "mad-burglar-cat",
+    slug: "madburglarcat",
     section: "projects",
     logo: resolveImageSrc(mbcLogo),
     url: "https://madburglarcat.ru/",
@@ -311,7 +311,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   SKO: {
     id: "SKO",
-    slug: "stroke-off",
+    slug: "strokeoff",
     section: "activities",
     logo: resolveImageSrc(strokeOffLabel),
     translations: {
@@ -337,7 +337,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   },
   SDC: {
     id: "SDC",
-    slug: "svitya-website",
+    slug: "svityacom",
     section: "activities",
     logo: resolveImageSrc(svityaComLabel),
     url: "https://github.com/gitsvitya",
