@@ -220,7 +220,7 @@ function PhotoModalContent({
           href={photo.downloadSrc}
           download
         >
-          {text.detail.download}
+          <span className={styles.downloadText}>{text.detail.download}</span>
         </a>
       )}
     </div>

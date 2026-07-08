@@ -33,7 +33,7 @@ function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPagePro
           <span aria-hidden="true" className={styles.backIcon}>
             ←
           </span>
-          {text.detail.back}
+          <span className={styles.backText}>{text.detail.back}</span>
         </button>
         <DetailContent company={company} titleId={titleId} descriptionId={descriptionId} />
         {materials && (

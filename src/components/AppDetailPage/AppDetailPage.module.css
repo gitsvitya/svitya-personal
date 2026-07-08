@@ -14,8 +14,9 @@
   gap: 8px;
   align-items: center;
   align-self: flex-start;
+  min-height: 40px;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 0 10px;
   margin: 0;
   border: 1px solid var(--border-color);
   border-radius: 999px;
@@ -26,7 +27,7 @@
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.375;
+  line-height: 1;
   text-rendering: optimizeLegibility;
   transition:
     opacity var(--transition-fast),
@@ -46,8 +47,21 @@
 }
 
 .backIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1em;
   font-size: 22px;
-  line-height: 1.375;
+  line-height: 1;
+  transform: translateY(2px);
+}
+
+.backText {
+  display: inline-flex;
+  align-items: center;
+  height: 1em;
+  line-height: 1;
+  transform: translateY(2px);
 }
 
 @media (max-width: 501px) {
@@ -56,7 +70,13 @@
   }
 
   .backButton {
-    padding: 8px 14px;
+    min-height: 34px;
+    padding: 0 14px;
     font-size: 16px;
+  }
+
+  .backIcon,
+  .backText {
+    transform: translateY(1px);
   }
 }
