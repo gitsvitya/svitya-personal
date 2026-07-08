@@ -37,14 +37,11 @@
   background-color: var(--bg-surface);
   overflow: hidden;
   cursor: pointer;
-  transition:
-    border-color var(--transition-slow),
-    transform var(--transition-slow);
+  transition: border-color var(--transition-slow);
 }
 
 .previewButton:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
 }
 
 .previewButton:focus-visible {
