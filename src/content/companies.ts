@@ -8,8 +8,8 @@ import moexLogo from "../images/moex_logo.png";
 import reutersLogo from "../images/reuters_logo.png";
 import strokeOffLabel from "../images/stroke_off_label.png";
 import svityaComLabel from "../images/svitya_com_label.png";
-import testPhoto1 from "../images/test1.png";
-import testPhoto2 from "../images/test2.png";
+import chemInsightMaterial1 from "../images/cheminsight-material-1.png";
+import chemInsightMaterial2 from "../images/cheminsight-material-2.png";
 import veniviLogo from "../images/veniviLogo.png";
 import type { CompanyId, CompanySection, Language } from "../types/domain";
 
@@ -77,15 +77,15 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
       enabled: true,
       photos: [
         {
-          src: resolveImageSrc(testPhoto1),
-          downloadSrc: resolveImageSrc(testPhoto1),
+          src: resolveImageSrc(chemInsightMaterial1),
+          downloadSrc: resolveImageSrc(chemInsightMaterial1),
           description: {
             ru: "Тестовое описание первой фотографии ChemInsight.",
             en: "Test description for the first ChemInsight photo.",
           },
         },
         {
-          src: resolveImageSrc(testPhoto2),
+          src: resolveImageSrc(chemInsightMaterial2),
           description: {
             ru: "Тестовое описание второй фотографии ChemInsight.",
             en: "Test description for the second ChemInsight photo.",
@@ -134,7 +134,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
       en: {
         year: "2021 → 2024",
         name: "National Mercantile Exchange",
-        title: "Head of Methology / Business Development",
+        title: "Head of Methodology / Business Development",
         about: "A subsidiary of the Moscow Exchange specializing in commodity markets.",
         results:
           "Launched price indicators and B2B information products. Developed trading activities on commodity auctions. Coordinated the development and implementation of a frontend system for automating bid processing for exchange trading.",

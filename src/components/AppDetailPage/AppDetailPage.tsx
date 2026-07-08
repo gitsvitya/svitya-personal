@@ -1,7 +1,7 @@
 import type { LocalizedCompany } from "../../content/companies";
 import type { AppTranslations } from "../../content/ui-text";
 import AppPhotoGallery from "../AppPhotoGallery/AppPhotoGallery";
-import ModalContent from "../ModalContent/ModalContent";
+import DetailContent from "../DetailContent/DetailContent";
 import styles from "./AppDetailPage.module.css";
 
 type AppDetailPageProps = {
@@ -35,7 +35,7 @@ function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPagePro
           </span>
           {text.detail.back}
         </button>
-        <ModalContent company={company} titleId={titleId} descriptionId={descriptionId} />
+        <DetailContent company={company} titleId={titleId} descriptionId={descriptionId} />
         {materials && (
           <AppPhotoGallery
             photos={materials.photos}

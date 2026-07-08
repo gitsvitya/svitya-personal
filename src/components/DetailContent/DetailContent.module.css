@@ -1,5 +1,5 @@
-/* Стили подробного контента: шапка с логотипом, ссылка и описательные абзацы. */
-.modalContentRenderGeneralWindow {
+/* Стили подробного контента карточки: заголовок, логотип, ссылка и описательные абзацы. */
+.detailContent {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -7,22 +7,20 @@
   position: relative;
 }
 
-.modalContentRenderTextLogoWindow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
+.headerGrid {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 20px;
 }
 
-.modalContentRenderCompanyBox {
+.companyBox {
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-width: 0;
 }
 
-.modalContentRendercardYear {
+.year {
   padding: 0;
   margin: 0;
   font-size: 20px;
@@ -31,13 +29,13 @@
   line-height: 1.375;
 }
 
-.modalContentRenderCompanyDescriptionLinkBox {
+.descriptionLinkBox {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.modalContentRendercardCompanyName {
+.companyName {
   padding: 0;
   margin: 0;
   font-size: 48px;
@@ -46,7 +44,7 @@
   line-height: 1.1;
 }
 
-.modalContentRenderlink {
+.link {
   display: inline-block;
   width: max-content;
   padding: 0;
@@ -61,13 +59,13 @@
   transition: color var(--transition-slow);
 }
 
-.modalContentRenderCompanyTitleYearBox {
+.metaBox {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.modalContentRendercardTitle {
+.title {
   padding: 0;
   margin: 0;
   font-size: 28px;
@@ -76,23 +74,14 @@
   line-height: 1.375;
 }
 
-.modalContentRenderlogoPic {
+.logo {
   display: flex;
   align-self: flex-start;
-  /* width: min(26%, 260px); */
   max-width: 250px;
-  /* max-height: 220px; */
   object-fit: contain;
 }
 
-.modalContentRenderParagraphBlock {
-  display: grid;
-  /* flex-direction: row; */
-  grid-template-columns: 4fr 1fr;
-  gap: 20px;
-}
-
-.modalContentRenderParagraph {
+.paragraph {
   padding: 0;
   margin: 0;
   font-size: 22px;
@@ -101,91 +90,85 @@
   line-height: 1.375;
 }
 
-.modalContentRenderlink:hover {
+.link:hover {
   color: var(--accent);
   cursor: pointer;
 }
 
-.modalContentRenderlink:focus-visible {
+.link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 
 @media (max-width: 867px) {
-  .modalContentRenderCompanyBox {
+  .companyBox {
     gap: 20px;
   }
 
-  .modalContentRendercardCompanyName {
+  .companyName {
     font-size: 38px;
   }
 
-  .modalContentRendercardTitle {
+  .title {
     font-size: 24px;
   }
 }
 
 @media (max-width: 650px) {
-  .modalContentRendercardYear {
+  .year {
     font-size: 16px;
   }
 
-  .modalContentRendercardCompanyName {
+  .companyName {
     font-size: 30px;
   }
 
-  .modalContentRenderlink {
+  .link {
     font-size: 14px;
   }
 
-  .modalContentRendercardTitle {
+  .title {
     font-size: 20px;
   }
 
-  .modalContentRenderParagraph {
+  .paragraph {
     font-size: 16px;
   }
 }
 
 @media (max-width: 768px) {
-  .modalContentRenderTextLogoWindow {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .modalContentRenderlogoPic {
+  .logo {
     width: min(48%, 220px);
   }
 
-  .modalContentRenderCompanyBox {
+  .companyBox {
     gap: 20px;
   }
 
-  .modalContentRenderParagraphBlock {
+  .headerGrid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 }
 
 @media (max-width: 501px) {
-  .modalContentRendercardYear {
+  .year {
     font-size: 16px;
   }
 
-  .modalContentRendercardCompanyName {
+  .companyName {
     font-size: 26px;
   }
 
-  .modalContentRenderlink {
+  .link {
     font-size: 14px;
   }
 
-  .modalContentRendercardTitle {
+  .title {
     font-size: 18px;
   }
 
-  .modalContentRenderParagraph {
+  .paragraph {
     font-size: 16px;
   }
 }

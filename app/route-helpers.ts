@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import type { Language, Section } from "../src/types/domain";
+import type { LocalizedCompany } from "../src/content/companies";
 import { buildPageMetadata } from "./seo";
 import {
   getPageCopy,
@@ -103,6 +104,20 @@ export function buildLocalizedSectionMetadata(language: Language, section: Secti
     description: copy.description,
     section,
     language,
+  });
+}
+
+export function buildLocalizedCompanyMetadata(
+  language: Language,
+  section: Section,
+  company: LocalizedCompany
+): Metadata {
+  return buildPageMetadata({
+    title: `${company.name} | Виктор Строков`,
+    description: `${company.title}. ${company.about}`,
+    section,
+    language,
+    slug: company.slug,
   });
 }
 

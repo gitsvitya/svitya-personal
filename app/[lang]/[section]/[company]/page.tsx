@@ -7,10 +7,15 @@ import {
   SUPPORTED_LANGUAGES,
 } from "../../../sections";
 import {
+  buildLocalizedCompanyMetadata,
   buildLocalizedSectionMetadata,
   redirectToLocalizedSection,
 } from "../../../route-helpers";
-import { COMPANIES, getCompanyBySlug } from "../../../../src/content/companies";
+import {
+  COMPANIES,
+  getCompanyBySlug,
+  getLocalizedCompany,
+} from "../../../../src/content/companies";
 import type { CompanySection } from "../../../../src/types/domain";
 
 type LocalizedCompanyPageProps = {
@@ -35,6 +40,16 @@ export async function generateMetadata({ params }: LocalizedCompanyPageProps) {
   const resolvedParams = await params;
   const language = resolveLanguage(resolvedParams?.lang);
   const section = resolveSection(resolvedParams?.section);
+  const company = getCompanyBySlug(section as CompanySection, resolvedParams?.company);
+
+  if (company) {
+    return buildLocalizedCompanyMetadata(
+      language,
+      section,
+      getLocalizedCompany(company.id, language)
+    );
+  }
+
   return buildLocalizedSectionMetadata(language, section);
 }
 

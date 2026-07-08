@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { COMPANIES } from "../src/content/companies";
+import { LANGUAGES, SECTION_PATHS } from "../src/types/domain";
 import { BASE_URL } from "./site";
 
 // Sitemap отдает только конечные локализованные URL, которые должны
@@ -6,18 +8,17 @@ import { BASE_URL } from "./site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  // Маршруты описаны явно, потому что набор разделов небольшой и стабилен,
-  // а такой список проще контролировать при изменении SEO-структуры.
-  const routes = [
-    "/en/about",
-    "/en/work",
-    "/en/projects",
-    "/en/activities",
-    "/ru/about",
-    "/ru/work",
-    "/ru/projects",
-    "/ru/activities",
-  ] as const;
+  const sectionRoutes = LANGUAGES.flatMap((language) =>
+    SECTION_PATHS.map((sectionPath) => `/${language}${sectionPath}`)
+  );
+
+  const companyRoutes = LANGUAGES.flatMap((language) =>
+    Object.values(COMPANIES).map(
+      (company) => `/${language}/${company.section}/${company.slug}`
+    )
+  );
+
+  const routes = [...sectionRoutes, ...companyRoutes];
 
   // Для всех ссылок используем единый timestamp генерации,
   // чтобы поисковики видели карту как одну актуальную выборку.

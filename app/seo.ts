@@ -25,6 +25,7 @@ type BuildPageMetadataInput = {
   description: string;
   section?: string | null;
   language?: string | null;
+  slug?: string | null;
 };
 
 // Функция собирает полный набор metadata для локализованной страницы:
@@ -34,17 +35,19 @@ export function buildPageMetadata({
   description,
   section,
   language,
+  slug,
 }: BuildPageMetadataInput): Metadata {
   const resolvedLanguage: Language = resolveLanguage(language);
   const sectionPath = ensureSectionPath(section);
-  const canonicalPath = `/${resolvedLanguage}${sectionPath}`;
+  const detailPath = slug ? `/${slug}` : "";
+  const canonicalPath = `/${resolvedLanguage}${sectionPath}${detailPath}`;
   const canonicalUrl = `${BASE_URL}${canonicalPath}`;
   const languageAlternates: Record<string, string> = {
-    "x-default": `/${DEFAULT_LANGUAGE}${sectionPath}`,
+    "x-default": `/${DEFAULT_LANGUAGE}${sectionPath}${detailPath}`,
   };
 
   for (const lang of SUPPORTED_LANGUAGES) {
-    languageAlternates[lang] = `/${lang}${sectionPath}`;
+    languageAlternates[lang] = `/${lang}${sectionPath}${detailPath}`;
   }
 
   return {
