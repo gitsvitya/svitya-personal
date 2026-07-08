@@ -182,7 +182,7 @@ function PhotoModalContent({
             disabled={!showPhotoContent}
             aria-label={text.detail.previousPhoto}
           >
-            ←
+            <span className={styles.arrowIcon}>←</span>
           </button>
         )}
         <img
@@ -200,7 +200,7 @@ function PhotoModalContent({
             disabled={!showPhotoContent}
             aria-label={text.detail.nextPhoto}
           >
-            →
+            <span className={styles.arrowIcon}>→</span>
           </button>
         )}
       </div>

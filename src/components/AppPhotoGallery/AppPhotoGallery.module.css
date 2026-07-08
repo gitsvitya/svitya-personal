@@ -132,9 +132,8 @@
 }
 
 .arrowButton:hover {
-  background-color: var(--accent);
   border-color: var(--accent);
-  color: var(--button-text);
+  color: var(--accent);
 }
 
 .arrowButton:disabled {
@@ -159,6 +158,15 @@
 
 .arrowButtonRight {
   right: 12px;
+}
+
+.arrowIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1em;
+  line-height: 1;
+  transform: translateY(2px);
 }
 
 .description {
