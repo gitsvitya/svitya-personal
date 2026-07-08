@@ -24,6 +24,7 @@
 .card:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 6px;
+  border-color: var(--accent);
 }
 
 .cardText {
@@ -102,6 +103,10 @@
 }
 
 @media (min-width: 640px) {
+  .card:hover {
+    border-color: var(--accent);
+  }
+
   .card:hover .cardText {
     justify-content: space-between;
   }

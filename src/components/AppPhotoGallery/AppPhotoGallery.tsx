@@ -19,6 +19,7 @@ type PhotoModalContentProps = {
   text: AppTranslations;
   companyName: string;
   hasNavigation: boolean;
+  showPhotoContent: boolean;
   onPrevious: () => void;
   onNext: () => void;
   titleId?: string;
@@ -26,16 +27,41 @@ type PhotoModalContentProps = {
 };
 
 const MODAL_CLOSE_DURATION = 500;
+const PHOTO_SWITCH_DURATION = 350;
 
 function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
   const [showContent, setShowContent] = useState(false);
+  const [showPhotoContent, setShowPhotoContent] = useState(true);
   const closeTimeoutRef = useRef<number | null>(null);
+  const switchTimeoutRef = useRef<number | null>(null);
   const hasNavigation = photos.length > 1;
   const activePhoto = activePhotoIndex === null ? null : photos[activePhotoIndex];
 
+  const switchPhoto = useCallback(
+    (getNextIndex: (currentIndex: number) => number) => {
+      if (switchTimeoutRef.current || activePhotoIndex === null) return;
+
+      setShowPhotoContent(false);
+      switchTimeoutRef.current = window.setTimeout(() => {
+        setActivePhotoIndex((currentIndex) => {
+          if (currentIndex === null) return currentIndex;
+          return getNextIndex(currentIndex);
+        });
+        setShowPhotoContent(true);
+        switchTimeoutRef.current = null;
+      }, PHOTO_SWITCH_DURATION);
+    },
+    [activePhotoIndex]
+  );
+
   const closeModal = useCallback(() => {
     setShowContent(false);
+    setShowPhotoContent(false);
+    if (switchTimeoutRef.current) {
+      window.clearTimeout(switchTimeoutRef.current);
+      switchTimeoutRef.current = null;
+    }
     closeTimeoutRef.current = window.setTimeout(() => {
       setActivePhotoIndex(null);
       document.body.style.overflow = "";
@@ -49,22 +75,17 @@ function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
       closeTimeoutRef.current = null;
     }
     setActivePhotoIndex(index);
+    setShowPhotoContent(true);
     document.body.style.overflow = "hidden";
   }, []);
 
   const showPreviousPhoto = useCallback(() => {
-    setActivePhotoIndex((currentIndex) => {
-      if (currentIndex === null) return currentIndex;
-      return currentIndex === 0 ? photos.length - 1 : currentIndex - 1;
-    });
-  }, [photos.length]);
+    switchPhoto((currentIndex) => (currentIndex === 0 ? photos.length - 1 : currentIndex - 1));
+  }, [photos.length, switchPhoto]);
 
   const showNextPhoto = useCallback(() => {
-    setActivePhotoIndex((currentIndex) => {
-      if (currentIndex === null) return currentIndex;
-      return currentIndex === photos.length - 1 ? 0 : currentIndex + 1;
-    });
-  }, [photos.length]);
+    switchPhoto((currentIndex) => (currentIndex === photos.length - 1 ? 0 : currentIndex + 1));
+  }, [photos.length, switchPhoto]);
 
   useEffect(() => {
     function handleArrowNavigation(event: KeyboardEvent) {
@@ -81,6 +102,7 @@ function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
 
   useEffect(() => {
     return () => {
+      if (switchTimeoutRef.current) window.clearTimeout(switchTimeoutRef.current);
       if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current);
       document.body.style.overflow = "";
     };
@@ -125,6 +147,7 @@ function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
             text={text}
             companyName={companyName}
             hasNavigation={hasNavigation}
+            showPhotoContent={showPhotoContent}
             onPrevious={showPreviousPhoto}
             onNext={showNextPhoto}
           />
@@ -139,6 +162,7 @@ function PhotoModalContent({
   text,
   companyName,
   hasNavigation,
+  showPhotoContent,
   onPrevious,
   onNext,
   titleId,
@@ -155,13 +179,16 @@ function PhotoModalContent({
             type="button"
             className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
             onClick={onPrevious}
+            disabled={!showPhotoContent}
             aria-label={text.detail.previousPhoto}
           >
             ←
           </button>
         )}
         <img
-          className={styles.modalImage}
+          className={`${styles.modalImage} ${
+            showPhotoContent ? styles.photoVisible : styles.photoHidden
+          }`}
           src={photo.src}
           alt={`${companyName}: ${photo.description}`}
         />
@@ -170,17 +197,29 @@ function PhotoModalContent({
             type="button"
             className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
             onClick={onNext}
+            disabled={!showPhotoContent}
             aria-label={text.detail.nextPhoto}
           >
             →
           </button>
         )}
       </div>
-      <p id={descriptionId} className={styles.description}>
+      <p
+        id={descriptionId}
+        className={`${styles.description} ${
+          showPhotoContent ? styles.photoVisible : styles.photoHidden
+        }`}
+      >
         {photo.description}
       </p>
       {photo.downloadSrc && (
-        <a className={styles.downloadLink} href={photo.downloadSrc} download>
+        <a
+          className={`${styles.downloadLink} ${
+            showPhotoContent ? styles.photoVisible : styles.photoHidden
+          }`}
+          href={photo.downloadSrc}
+          download
+        >
           {text.detail.download}
         </a>
       )}
