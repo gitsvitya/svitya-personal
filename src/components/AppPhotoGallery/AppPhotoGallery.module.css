@@ -184,19 +184,14 @@
   align-items: center;
   justify-content: center;
   align-self: flex-start;
-  min-height: 40px;
-  padding: 0 10px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border: 1px solid var(--border-color);
   border-radius: 999px;
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
   text-decoration: none;
-  text-rendering: optimizeLegibility;
   transition:
     opacity var(--transition-fast),
     background-color var(--transition-slow),
@@ -209,17 +204,25 @@
   color: var(--accent);
 }
 
+.downloadLink::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-color: currentColor;
+  -webkit-mask-image: url("../../images/download-icon.png");
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url("../../images/download-icon.png");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
 .downloadLink:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
-}
-
-.downloadText {
-  display: inline-flex;
-  align-items: center;
-  height: 1em;
-  line-height: 1;
-  transform: translateY(2px);
 }
 
 @media (max-width: 650px) {
@@ -232,17 +235,12 @@
   }
 
   .previewDescription,
-  .description,
-  .downloadLink {
+  .description {
     font-size: 16px;
   }
 
   .downloadLink {
-    min-height: 34px;
-    padding: 0 14px;
-  }
-
-  .downloadText {
-    transform: translateY(1px);
+    width: 34px;
+    height: 34px;
   }
 }

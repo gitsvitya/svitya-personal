@@ -24,7 +24,7 @@ type CompanyCopy = {
 
 export type CompanyPhoto = {
   src: string;
-  downloadSrc?: string;
+  downloadSrc: string;
   description: Record<Language, string>;
 };
 
@@ -52,7 +52,7 @@ export type LocalizedCompany = Omit<CompanyRecord, "translations" | "materials">
       enabled: boolean;
       photos: Array<{
         src: string;
-        downloadSrc?: string;
+        downloadSrc: string;
         description: string;
       }>;
     };
@@ -86,6 +86,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
         },
         {
           src: resolveImageSrc(chemInsightMaterial2),
+          downloadSrc: resolveImageSrc(chemInsightMaterial2),
           description: {
             ru: "Тестовое описание второй фотографии ChemInsight.",
             en: "Test description for the second ChemInsight photo.",

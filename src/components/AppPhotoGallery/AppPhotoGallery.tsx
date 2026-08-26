@@ -212,17 +212,14 @@ function PhotoModalContent({
       >
         {photo.description}
       </p>
-      {photo.downloadSrc && (
-        <a
-          className={`${styles.downloadLink} ${
-            showPhotoContent ? styles.photoVisible : styles.photoHidden
-          }`}
-          href={photo.downloadSrc}
-          download
-        >
-          <span className={styles.downloadText}>{text.detail.download}</span>
-        </a>
-      )}
+      <a
+        className={`${styles.downloadLink} ${
+          showPhotoContent ? styles.photoVisible : styles.photoHidden
+        }`}
+        href={photo.downloadSrc}
+        download
+        aria-label={text.detail.download}
+      />
     </div>
   );
 }
