@@ -33,6 +33,7 @@ export type CompanyMaterial = {
   type: "document" | "image";
   src: string;
   resourceSrc: string;
+  title: Record<Language, string>;
   description: Record<Language, string>;
 };
 
@@ -62,6 +63,7 @@ export type LocalizedCompany = Omit<CompanyRecord, "translations" | "materials">
         type: "document" | "image";
         src: string;
         resourceSrc: string;
+        title: string;
         description: string;
       }>;
     };
@@ -89,63 +91,91 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           type: "document",
           src: resolveImageSrc(chemInsightPolyethylenePreview),
           resourceSrc: "/materials/work/cheminsight/polyethylene.pdf",
-          description: {
+          title: {
             ru: "Полиэтилен",
             en: "Polyethylene",
+          },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке полиэтилена.",
+            en: "A sample ChemInsight analytical report on the polyethylene market.",
           },
         },
         {
           type: "document",
           src: resolveImageSrc(chemInsightPolypropylenePreview),
           resourceSrc: "/materials/work/cheminsight/polypropylene.pdf",
-          description: {
+          title: {
             ru: "Полипропилен",
             en: "Polypropylene",
+          },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке полипропилена.",
+            en: "A sample ChemInsight analytical report on the polypropylene market.",
           },
         },
         {
           type: "document",
           src: resolveImageSrc(chemInsightButylAlcoholsAnd2EHPreview),
           resourceSrc: "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf",
-          description: {
+          title: {
             ru: "Бутиловые спирты и 2-ЭГ",
             en: "Butyl alcohols and 2-EH",
+          },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке бутиловых спиртов и 2-ЭГ.",
+            en: "A sample ChemInsight analytical report on the butyl alcohols and 2-EH market.",
           },
         },
         {
           type: "document",
           src: resolveImageSrc(chemInsightFeedGradeMethioninePreview),
           resourceSrc: "/materials/work/cheminsight/feed-grade-methionine.pdf",
-          description: {
+          title: {
             ru: "Метионин кормовой",
             en: "Feed grade methionine",
+          },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке кормового метионина.",
+            en: "A sample ChemInsight analytical report on the feed grade methionine market.",
           },
         },
         {
           type: "document",
           src: resolveImageSrc(chemInsightCausticSodaPreview),
           resourceSrc: "/materials/work/cheminsight/caustic-soda.pdf",
-          description: {
+          title: {
             ru: "Каустическая сода",
             en: "Caustic soda",
           },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке каустической соды.",
+            en: "A sample ChemInsight analytical report on the caustic soda market.",
+          },
         },
-                {
+        {
           type: "document",
           src: resolveImageSrc(chemInsightCausticPotashPreview),
           resourceSrc: "/materials/work/cheminsight/caustic-potash.pdf",
-          description: {
+          title: {
             ru: "Калий едкий",
             en: "Caustic potash",
+          },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке едкого калия.",
+            en: "A sample ChemInsight analytical report on the caustic potash market.",
           },
         },
         {
           type: "document",
           src: resolveImageSrc(chemInsightBoricAcidPreview),
           resourceSrc: "/materials/work/cheminsight/boric-acid.pdf",
-          description: {
+          title: {
             ru: "Кислота борная",
             en: "Boric acid",
+          },
+          description: {
+            ru: "Образец аналитического материала ХимИнсайт о рынке борной кислоты.",
+            en: "A sample ChemInsight analytical report on the boric acid market.",
           },
         },
       ],
@@ -378,9 +408,13 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
           type: "image",
           src: resolveImageSrc(strokeOffFirstBanchPreview),
           resourceSrc: "/materials/activities/strokeoff/first-banch.png",
-          description: {
+          title: {
             ru: "Первая партия перцовки Stroke Off",
             en: "The first batch of Stroke Off pepper vodka",
+          },
+          description: {
+            ru: "Фотография первой партии перцовки, приготовленной из перцев чили под брендом Stroke Off.",
+            en: "A photo of the first batch of chili-infused vodka made under the Stroke Off brand.",
           },
         },
       ],
@@ -419,7 +453,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
         name: "Сайт Svitya.com",
         title: "А также другие разработки",
         about:
-          "С 2019 года в качестве хобби разрабатываю веб-решения на React и внедряю автоматизацию в свою рабочую среду с помощью SQL, Python, Power BI и ИИ-решения.",
+          "С 2019 года в качестве хобби разрабатываю веб-решения на React и внедряю автоматизацию в свою рабочую среду с помощью SQL, Python, Power BI и ИИ-решений.",
         results:
           "В 2019-2020 годах прошёл обучение веб-разработке и обработке данных на Python на курсах Мичиганского университета, после чего закрепил знания в Яндекс.Практикуме. В результате на свет появился этот сайт, а также несколько других учебных и авторских проектов, с которыми можно ознакомиться по ссылке на мой GitHub, указанной выше. По мере освоения новых технологий и при наличии свободного времени сайт продолжает обрастать новыми функциями и возможностями.",
       },
@@ -480,6 +514,7 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
             type: photo.type,
             src: photo.src,
             resourceSrc: photo.resourceSrc,
+            title: photo.title[language],
             description: photo.description[language],
           })),
         }

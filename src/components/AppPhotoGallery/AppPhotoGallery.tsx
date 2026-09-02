@@ -126,11 +126,11 @@ function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
               <img
                 className={styles.previewImage}
                 src={photo.src}
-                alt={`${companyName}: ${photo.description}`}
+                alt={`${companyName}: ${photo.title}`}
                 loading="lazy"
               />
             </button>
-            <p className={styles.previewDescription}>{photo.description}</p>
+            <h4 className={styles.previewTitle}>{photo.title}</h4>
           </div>
         ))}
       </div>
@@ -174,7 +174,7 @@ function PhotoModalContent({
   return (
     <div className={styles.modalContent}>
       <h2 id={titleId} className={styles.modalTitle}>
-        {text.detail.materialsTitle}
+        {photo.title}
       </h2>
       <div className={styles.imageFrame}>
         {hasNavigation && (
@@ -193,7 +193,7 @@ function PhotoModalContent({
             showPhotoContent ? styles.photoVisible : styles.photoHidden
           }`}
           src={photo.src}
-          alt={`${companyName}: ${photo.description}`}
+          alt={`${companyName}: ${photo.title}`}
         />
         {hasNavigation && (
           <button
