@@ -168,6 +168,9 @@ function PhotoModalContent({
   titleId,
   descriptionId,
 }: PhotoModalContentProps) {
+  const isImage = photo.type === "image";
+  const actionLabel = isImage ? text.detail.openImage : text.detail.download;
+
   return (
     <div className={styles.modalContent}>
       <h2 id={titleId} className={styles.modalTitle}>
@@ -213,12 +216,17 @@ function PhotoModalContent({
         {photo.description}
       </p>
       <a
-        className={`${styles.downloadLink} ${
+        className={`${styles.materialAction} ${
+          isImage ? styles.openImageAction : styles.downloadAction
+        } ${
           showPhotoContent ? styles.photoVisible : styles.photoHidden
         }`}
-        href={photo.downloadSrc}
-        download
-        aria-label={text.detail.download}
+        href={photo.resourceSrc}
+        download={isImage ? undefined : true}
+        target={isImage ? "_blank" : undefined}
+        rel={isImage ? "noopener noreferrer" : undefined}
+        aria-label={actionLabel}
+        title={actionLabel}
       />
     </div>
   );

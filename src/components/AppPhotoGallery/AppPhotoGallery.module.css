@@ -179,7 +179,7 @@
   transition: opacity var(--transition-fast);
 }
 
-.downloadLink {
+.materialAction {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -199,28 +199,36 @@
     color var(--transition-slow);
 }
 
-.downloadLink:hover {
+.materialAction:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
 
-.downloadLink::before {
+.materialAction::before {
   content: "";
   display: block;
   width: 22px;
   height: 22px;
   background-color: currentColor;
-  -webkit-mask-image: url("../../images/download-icon.png");
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: contain;
-  mask-image: url("../../images/download-icon.png");
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: contain;
 }
 
-.downloadLink:focus-visible {
+.downloadAction::before {
+  -webkit-mask-image: url("../../images/download-icon.png");
+  mask-image: url("../../images/download-icon.png");
+}
+
+.openImageAction::before {
+  -webkit-mask-image: url("../../images/open-in-new-icon.png");
+  mask-image: url("../../images/open-in-new-icon.png");
+}
+
+.materialAction:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
 }
@@ -245,7 +253,7 @@
     font-size: 16px;
   }
 
-  .downloadLink {
+  .materialAction {
     width: 34px;
     height: 34px;
   }
