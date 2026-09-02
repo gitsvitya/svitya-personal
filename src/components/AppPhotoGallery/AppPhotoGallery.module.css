@@ -226,6 +226,11 @@
 }
 
 .openImageAction::before {
+  -webkit-mask-image: url("../../images/ui/actions/open-image.png");
+  mask-image: url("../../images/ui/actions/open-image.png");
+}
+
+.openLinkAction::before {
   -webkit-mask-image: url("../../images/ui/actions/open-in-new.png");
   mask-image: url("../../images/ui/actions/open-in-new.png");
 }

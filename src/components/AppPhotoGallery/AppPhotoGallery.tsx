@@ -168,8 +168,23 @@ function PhotoModalContent({
   titleId,
   descriptionId,
 }: PhotoModalContentProps) {
-  const isImage = photo.type === "image";
-  const actionLabel = isImage ? text.detail.openImage : text.detail.download;
+  const action = {
+    document: {
+      label: text.detail.download,
+      className: styles.downloadAction,
+      opensInNewWindow: false,
+    },
+    image: {
+      label: text.detail.openImage,
+      className: styles.openImageAction,
+      opensInNewWindow: true,
+    },
+    link: {
+      label: text.detail.openLink,
+      className: styles.openLinkAction,
+      opensInNewWindow: true,
+    },
+  }[photo.type];
 
   return (
     <div className={styles.modalContent}>
@@ -216,17 +231,15 @@ function PhotoModalContent({
         {photo.description}
       </p>
       <a
-        className={`${styles.materialAction} ${
-          isImage ? styles.openImageAction : styles.downloadAction
-        } ${
+        className={`${styles.materialAction} ${action.className} ${
           showPhotoContent ? styles.photoVisible : styles.photoHidden
         }`}
         href={photo.resourceSrc}
-        download={isImage ? undefined : true}
-        target={isImage ? "_blank" : undefined}
-        rel={isImage ? "noopener noreferrer" : undefined}
-        aria-label={actionLabel}
-        title={actionLabel}
+        download={action.opensInNewWindow ? undefined : true}
+        target={action.opensInNewWindow ? "_blank" : undefined}
+        rel={action.opensInNewWindow ? "noopener noreferrer" : undefined}
+        aria-label={action.label}
+        title={action.label}
       />
     </div>
   );

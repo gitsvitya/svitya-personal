@@ -30,7 +30,7 @@ type CompanyCopy = {
 };
 
 export type CompanyMaterial = {
-  type: "document" | "image";
+  type: "document" | "image" | "link";
   src: string;
   resourceSrc: string;
   title: Record<Language, string>;
@@ -60,7 +60,7 @@ export type LocalizedCompany = Omit<CompanyRecord, "translations" | "materials">
     materials?: {
       enabled: boolean;
       photos: Array<{
-        type: "document" | "image";
+        type: "document" | "image" | "link";
         src: string;
         resourceSrc: string;
         title: string;
