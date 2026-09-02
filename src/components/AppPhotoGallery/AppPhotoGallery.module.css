@@ -37,7 +37,9 @@
   background-color: var(--bg-surface);
   overflow: hidden;
   cursor: pointer;
-  transition: border-color var(--transition-slow);
+  transition:
+    background-color var(--transition-slow),
+    border-color var(--transition-slow);
 }
 
 .previewButton:hover {
