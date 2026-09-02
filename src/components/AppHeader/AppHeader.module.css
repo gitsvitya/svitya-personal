@@ -24,7 +24,7 @@
   padding: 0 10px;
   margin: 0;
   max-height: 40px;
-  border: 1px solid var(--border-color);
+  border: var(--control-border-width) solid var(--border-color);
   background-color: var(--bg-surface);
   border-radius: 999px;
   outline: none;
@@ -56,7 +56,7 @@
   height: 24px;
   border-radius: 12px;
   background-color: var(--control-track);
-  border: 1px solid var(--border-color);
+  border: var(--control-border-width) solid var(--border-color);
   display: flex;
   align-items: center;
   padding: 2px;
