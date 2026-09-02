@@ -219,13 +219,13 @@
 }
 
 .downloadAction::before {
-  -webkit-mask-image: url("../../images/download-icon.png");
-  mask-image: url("../../images/download-icon.png");
+  -webkit-mask-image: url("../../images/ui/actions/download.png");
+  mask-image: url("../../images/ui/actions/download.png");
 }
 
 .openImageAction::before {
-  -webkit-mask-image: url("../../images/open-in-new-icon.png");
-  mask-image: url("../../images/open-in-new-icon.png");
+  -webkit-mask-image: url("../../images/ui/actions/open-in-new.png");
+  mask-image: url("../../images/ui/actions/open-in-new.png");
 }
 
 .materialAction:focus-visible {

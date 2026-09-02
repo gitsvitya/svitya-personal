@@ -83,27 +83,27 @@
 }
 
 .linkPicTelegram {
-  background-image: url('../../images/telegram_logo.svg');
+  background-image: url('../../images/ui/social/telegram.svg');
 }
 
 .link:hover .linkPicTelegram {
-  background-image: url('../../images/telegram_logo_active.svg');
+  background-image: url('../../images/ui/social/telegram-active.svg');
 }
 
 .linkPicInstagram {
-  background-image: url('../../images/instagram_logo.svg');
+  background-image: url('../../images/ui/social/instagram.svg');
 }
 
 .link:hover .linkPicInstagram {
-  background-image: url('../../images/instagram_logo_active.svg');
+  background-image: url('../../images/ui/social/instagram-active.svg');
 }
 
 .linkPicLinkedin {
-  background-image: url('../../images/linkedin_logo.svg');
+  background-image: url('../../images/ui/social/linkedin.svg');
 }
 
 .link:hover .linkPicLinkedin {
-  background-image: url('../../images/linkedin_logo_active.svg');
+  background-image: url('../../images/ui/social/linkedin-active.svg');
 }
 
 .year {

@@ -1,17 +1,16 @@
 import type { StaticImageData } from "next/image";
-import ciLogo from "../images/ci_logo.png";
-import kalashnikovLogo from "../images/kalashnikov_logo.png";
-import lukoilLogo from "../images/lukoil_logo.png";
-import mappngoLogo from "../images/mappngoLogo_black.png";
-import mbcLogo from "../images/mbc_logo.png";
-import moexLogo from "../images/moex_logo.png";
-import reutersLogo from "../images/reuters_logo.png";
-import strokeOffLabel from "../images/stroke_off_label.png";
-import svityaComLabel from "../images/svitya_com_label.png";
-import chemInsightMaterial1 from "../images/cheminsight-material-1.png";
-import chemInsightMaterial2 from "../images/cheminsight-material-2.png";
-import chemInsightMaterial2Full from "../images/cheminsight-material-2-full.png";
-import veniviLogo from "../images/veniviLogo.png";
+import strokeOffLogo from "../images/portfolio/activities/strokeoff/logo.png";
+import svityaComLogo from "../images/portfolio/activities/svityacom/logo.png";
+import madBurglarCatLogo from "../images/portfolio/projects/madburglarcat/logo.png";
+import mappngoLogo from "../images/portfolio/projects/mappngo/logo.png";
+import veniviLogo from "../images/portfolio/projects/venivi/logo.png";
+import chemInsightLogo from "../images/portfolio/work/cheminsight/logo.png";
+import chemInsightDocumentPreview from "../images/portfolio/work/cheminsight/materials/document-preview.png";
+import chemInsightImagePreview from "../images/portfolio/work/cheminsight/materials/image-preview.png";
+import kalashnikovLogo from "../images/portfolio/work/kalashnikov/logo.png";
+import lukoilRnptLogo from "../images/portfolio/work/lukoilrnpt/logo.png";
+import namexLogo from "../images/portfolio/work/namex/logo.png";
+import thomsonReutersLogo from "../images/portfolio/work/thomsonreuters/logo.png";
 import type { CompanyId, CompanySection, Language } from "../types/domain";
 
 // Локализуемая часть карточки и модального окна для одной записи.
@@ -73,7 +72,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "CI",
     slug: "cheminsight",
     section: "work",
-    logo: resolveImageSrc(ciLogo),
+    logo: resolveImageSrc(chemInsightLogo),
     url: "https://cheminsight.ru/",
     linkLabel: "cheminsight.ru",
     materials: {
@@ -81,8 +80,8 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
       photos: [
         {
           type: "document",
-          src: resolveImageSrc(chemInsightMaterial1),
-          resourceSrc: resolveImageSrc(chemInsightMaterial1),
+          src: resolveImageSrc(chemInsightDocumentPreview),
+          resourceSrc: "/materials/work/cheminsight/document.png",
           description: {
             ru: "Тестовое описание первой фотографии ChemInsight.",
             en: "Test description for the first ChemInsight photo.",
@@ -90,8 +89,8 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
         },
         {
           type: "image",
-          src: resolveImageSrc(chemInsightMaterial2),
-          resourceSrc: resolveImageSrc(chemInsightMaterial2Full),
+          src: resolveImageSrc(chemInsightImagePreview),
+          resourceSrc: "/materials/work/cheminsight/image-full.png",
           description: {
             ru: "Тестовое описание второй фотографии ChemInsight.",
             en: "Test description for the second ChemInsight photo.",
@@ -124,7 +123,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "NTB",
     slug: "namex",
     section: "work",
-    logo: resolveImageSrc(moexLogo),
+    logo: resolveImageSrc(namexLogo),
     url: "https://namex.org/",
     linkLabel: "namex.org",
     translations: {
@@ -151,7 +150,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "LRNPT",
     slug: "lukoilrnpt",
     section: "work",
-    logo: resolveImageSrc(lukoilLogo),
+    logo: resolveImageSrc(lukoilRnptLogo),
     url: "https://trading.lukoil.ru/",
     linkLabel: "trading.lukoil.ru",
     translations: {
@@ -207,7 +206,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "TR",
     slug: "thomsonreuters",
     section: "work",
-    logo: resolveImageSrc(reutersLogo),
+    logo: resolveImageSrc(thomsonReutersLogo),
     url: "https://www.thomsonreuters.com/",
     linkLabel: "thomsonreuters.com",
     translations: {
@@ -235,7 +234,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "MBC",
     slug: "madburglarcat",
     section: "projects",
-    logo: resolveImageSrc(mbcLogo),
+    logo: resolveImageSrc(madBurglarCatLogo),
     url: "https://madburglarcat.ru/",
     linkLabel: "madburglarcat.ru",
     translations: {
@@ -319,7 +318,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "SKO",
     slug: "strokeoff",
     section: "activities",
-    logo: resolveImageSrc(strokeOffLabel),
+    logo: resolveImageSrc(strokeOffLogo),
     translations: {
       ru: {
         year: "2021 → настоящее время",
@@ -345,7 +344,7 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     id: "SDC",
     slug: "svityacom",
     section: "activities",
-    logo: resolveImageSrc(svityaComLabel),
+    logo: resolveImageSrc(svityaComLogo),
     url: "https://github.com/gitsvitya",
     linkLabel: "github.com/gitsvitya",
     translations: {
