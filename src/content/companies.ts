@@ -16,7 +16,8 @@ import chemInsightFeedGradeMethioninePreview from "../images/portfolio/work/chem
 import chemInsightCausticSodaPreview from "../images/portfolio/work/cheminsight/materials/caustic-soda-preview.png";
 import chemInsightCausticPotashPreview from "../images/portfolio/work/cheminsight/materials/caustic-potash-preview.png";
 import chemInsightBoricAcidPreview from "../images/portfolio/work/cheminsight/materials/boric-acid-preview.png";
-import strokeOffFirstBanchPreview from "../images/portfolio/activities/strokeoff/materials/first-banch-prewiew.png"
+import strokeOffFirstBanchPreview from "../images/portfolio/activities/strokeoff/materials/first-banch-prewiew.png";
+import thomsinReutersArticle1Preview from "../images/portfolio/work/thomsonreuters/materials/article-1-preview.png";
 
 import type { CompanyId, CompanySection, Language } from "../types/domain";
 
@@ -291,6 +292,24 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     logo: resolveImageSrc(thomsonReutersLogo),
     url: "https://www.thomsonreuters.com/",
     linkLabel: "thomsonreuters.com",
+    materials: {
+      enabled: true,
+      photos: [
+        {
+          type: "link",
+          src: resolveImageSrc(thomsinReutersArticle1Preview),
+          resourceSrc: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
+          title: {
+            ru: "АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
+            en: "ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
+          },
+          description: {
+            ru: "Статья: АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
+            en: "Article: ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2014 → 2018",
