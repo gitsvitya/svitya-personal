@@ -18,10 +18,7 @@ type PhotoModalContentProps = {
   photo: GalleryPhoto;
   text: AppTranslations;
   companyName: string;
-  hasNavigation: boolean;
   showPhotoContent: boolean;
-  onPrevious: () => void;
-  onNext: () => void;
   titleId?: string;
   descriptionId?: string;
 };
@@ -141,15 +138,32 @@ function AppPhotoGallery({ photos, text, companyName }: AppPhotoGalleryProps) {
           showContent={showContent}
           setShowContent={setShowContent}
           closeLabel={text.modal.closeLabel}
+          overlayControls={
+            hasNavigation ? (
+              <>
+                <button
+                  type="button"
+                  className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
+                  onClick={showPreviousPhoto}
+                  disabled={!showPhotoContent}
+                  aria-label={text.detail.previousPhoto}
+                />
+                <button
+                  type="button"
+                  className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
+                  onClick={showNextPhoto}
+                  disabled={!showPhotoContent}
+                  aria-label={text.detail.nextPhoto}
+                />
+              </>
+            ) : undefined
+          }
         >
           <PhotoModalContent
             photo={activePhoto}
             text={text}
             companyName={companyName}
-            hasNavigation={hasNavigation}
             showPhotoContent={showPhotoContent}
-            onPrevious={showPreviousPhoto}
-            onNext={showNextPhoto}
           />
         </Modal>
       )}
@@ -161,10 +175,7 @@ function PhotoModalContent({
   photo,
   text,
   companyName,
-  hasNavigation,
   showPhotoContent,
-  onPrevious,
-  onNext,
   titleId,
   descriptionId,
 }: PhotoModalContentProps) {
@@ -192,17 +203,6 @@ function PhotoModalContent({
         {photo.title}
       </h2>
       <div className={styles.imageFrame}>
-        {hasNavigation && (
-          <button
-            type="button"
-            className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
-            onClick={onPrevious}
-            disabled={!showPhotoContent}
-            aria-label={text.detail.previousPhoto}
-          >
-            <span className={styles.arrowIcon}>←</span>
-          </button>
-        )}
         <img
           className={`${styles.modalImage} ${
             showPhotoContent ? styles.photoVisible : styles.photoHidden
@@ -210,17 +210,6 @@ function PhotoModalContent({
           src={photo.src}
           alt={`${companyName}: ${photo.title}`}
         />
-        {hasNavigation && (
-          <button
-            type="button"
-            className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
-            onClick={onNext}
-            disabled={!showPhotoContent}
-            aria-label={text.detail.nextPhoto}
-          >
-            <span className={styles.arrowIcon}>→</span>
-          </button>
-        )}
       </div>
       <p
         id={descriptionId}

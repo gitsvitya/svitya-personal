@@ -86,7 +86,6 @@
 }
 
 .imageFrame {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,6 +111,7 @@
 .arrowButton {
   position: absolute;
   top: 50%;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -122,15 +122,26 @@
   border-radius: 50%;
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  font-family: 'VremenaGrotesk', sans-serif;
-  font-size: 26px;
-  line-height: 1;
   transform: translateY(-50%);
   cursor: pointer;
   transition:
     background-color var(--transition-slow),
     border-color var(--transition-slow),
     color var(--transition-slow);
+}
+
+.arrowButton::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
 }
 
 .arrowButton:hover {
@@ -158,17 +169,18 @@
   left: 12px;
 }
 
+.arrowButtonLeft::before {
+  -webkit-mask-image: url("../../images/ui/carousel/previous.png");
+  mask-image: url("../../images/ui/carousel/previous.png");
+}
+
 .arrowButtonRight {
   right: 12px;
 }
 
-.arrowIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 1em;
-  line-height: 1;
-  transform: translateY(2px);
+.arrowButtonRight::before {
+  -webkit-mask-image: url("../../images/ui/carousel/next.png");
+  mask-image: url("../../images/ui/carousel/next.png");
 }
 
 .description {

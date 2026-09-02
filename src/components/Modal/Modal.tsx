@@ -15,6 +15,7 @@ import styles from "./Modal.module.css";
 
 type ModalProps = {
   children: ReactNode;
+  overlayControls?: ReactNode;
   closeModal: () => void;
   showContent: boolean;
   setShowContent: Dispatch<SetStateAction<boolean>>;
@@ -23,7 +24,14 @@ type ModalProps = {
 
 // Модалка рендерится через портал, чтобы не зависеть от вложенности layout
 // и всегда располагаться поверх остального интерфейса.
-const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }: ModalProps) => {
+const Modal = ({
+  children,
+  overlayControls,
+  closeModal,
+  showContent,
+  setShowContent,
+  closeLabel,
+}: ModalProps) => {
   const container = document.getElementById("modal");
   const modalRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
@@ -114,6 +122,7 @@ const Modal = ({ children, closeModal, showContent, setShowContent, closeLabel }
           aria-label={closeLabel}
           ref={closeBtnRef}
         />
+        {overlayControls}
 
         {/* В тело модалки прокидываем служебные id только тем React-компонентам,
             которые реально умеют их принять. */}
