@@ -5,12 +5,19 @@ import madBurglarCatLogo from "../images/portfolio/projects/madburglarcat/logo.p
 import mappngoLogo from "../images/portfolio/projects/mappngo/logo.png";
 import veniviLogo from "../images/portfolio/projects/venivi/logo.png";
 import chemInsightLogo from "../images/portfolio/work/cheminsight/logo.png";
-import chemInsightDocumentPreview from "../images/portfolio/work/cheminsight/materials/document-preview.png";
-import chemInsightImagePreview from "../images/portfolio/work/cheminsight/materials/image-preview.png";
 import kalashnikovLogo from "../images/portfolio/work/kalashnikov/logo.png";
 import lukoilRnptLogo from "../images/portfolio/work/lukoilrnpt/logo.png";
 import namexLogo from "../images/portfolio/work/namex/logo.png";
 import thomsonReutersLogo from "../images/portfolio/work/thomsonreuters/logo.png";
+import chemInsightPolyethylenePreview from "../images/portfolio/work/cheminsight/materials/polyethylene-preview.png";
+import chemInsightPolypropylenePreview from "../images/portfolio/work/cheminsight/materials/polypropylene-preview.png";
+import chemInsightButylAlcoholsAnd2EHPreview from "../images/portfolio/work/cheminsight/materials/butyl-alcohols-and-2-EH-preview.png";
+import chemInsightFeedGradeMethioninePreview from "../images/portfolio/work/cheminsight/materials/feed-grade-methionine-preview.png";
+import chemInsightCausticSodaPreview from "../images/portfolio/work/cheminsight/materials/caustic-soda-preview.png";
+import chemInsightCausticPotashPreview from "../images/portfolio/work/cheminsight/materials/caustic-potash-preview.png";
+import chemInsightBoricAcidPreview from "../images/portfolio/work/cheminsight/materials/boric-acid-preview.png";
+import strokeOffFirstBanchPreview from "../images/portfolio/activities/strokeoff/materials/first-banch-prewiew.png"
+
 import type { CompanyId, CompanySection, Language } from "../types/domain";
 
 // Локализуемая часть карточки и модального окна для одной записи.
@@ -80,20 +87,65 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
       photos: [
         {
           type: "document",
-          src: resolveImageSrc(chemInsightDocumentPreview),
-          resourceSrc: "/materials/work/cheminsight/document.png",
+          src: resolveImageSrc(chemInsightPolyethylenePreview),
+          resourceSrc: "/materials/work/cheminsight/polyethylene.pdf",
           description: {
-            ru: "Тестовое описание первой фотографии ChemInsight.",
-            en: "Test description for the first ChemInsight photo.",
+            ru: "Полиэтилен",
+            en: "Polyethylene",
           },
         },
         {
-          type: "image",
-          src: resolveImageSrc(chemInsightImagePreview),
-          resourceSrc: "/materials/work/cheminsight/image-full.png",
+          type: "document",
+          src: resolveImageSrc(chemInsightPolypropylenePreview),
+          resourceSrc: "/materials/work/cheminsight/polypropylene.pdf",
           description: {
-            ru: "Тестовое описание второй фотографии ChemInsight.",
-            en: "Test description for the second ChemInsight photo.",
+            ru: "Полипропилен",
+            en: "Polypropylene",
+          },
+        },
+        {
+          type: "document",
+          src: resolveImageSrc(chemInsightButylAlcoholsAnd2EHPreview),
+          resourceSrc: "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf",
+          description: {
+            ru: "Бутиловые спирты и 2-ЭГ",
+            en: "Butyl alcohols and 2-EH",
+          },
+        },
+        {
+          type: "document",
+          src: resolveImageSrc(chemInsightFeedGradeMethioninePreview),
+          resourceSrc: "/materials/work/cheminsight/feed-grade-methionine.pdf",
+          description: {
+            ru: "Метионин кормовой",
+            en: "Feed grade methionine",
+          },
+        },
+        {
+          type: "document",
+          src: resolveImageSrc(chemInsightCausticSodaPreview),
+          resourceSrc: "/materials/work/cheminsight/caustic-soda.pdf",
+          description: {
+            ru: "Каустическая сода",
+            en: "Caustic soda",
+          },
+        },
+                {
+          type: "document",
+          src: resolveImageSrc(chemInsightCausticPotashPreview),
+          resourceSrc: "/materials/work/cheminsight/caustic-potash.pdf",
+          description: {
+            ru: "Калий едкий",
+            en: "Caustic potash",
+          },
+        },
+        {
+          type: "document",
+          src: resolveImageSrc(chemInsightBoricAcidPreview),
+          resourceSrc: "/materials/work/cheminsight/boric-acid.pdf",
+          description: {
+            ru: "Кислота борная",
+            en: "Boric acid",
           },
         },
       ],
@@ -319,6 +371,20 @@ export const COMPANIES: Record<CompanyId, CompanyRecord> = {
     slug: "strokeoff",
     section: "activities",
     logo: resolveImageSrc(strokeOffLogo),
+    materials: {
+      enabled: true,
+      photos: [
+        {
+          type: "image",
+          src: resolveImageSrc(strokeOffFirstBanchPreview),
+          resourceSrc: "/materials/activities/strokeoff/first-banch.png",
+          description: {
+            ru: "Первая партия перцовки Stroke Off",
+            en: "The first batch of Stroke Off pepper vodka",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2021 → настоящее время",
