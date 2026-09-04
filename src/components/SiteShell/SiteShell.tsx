@@ -12,6 +12,7 @@ import {
   normalizeSectionPath,
   parseLocalizedPath,
 } from "../../utils/routing";
+import { getTransitionDuration } from "../../utils/motion";
 import AppFooter from "../AppFooter/AppFooter";
 import AppHeader from "../AppHeader/AppHeader";
 import CookieBanner from "../CookieBanner/CookieBanner";
@@ -23,8 +24,6 @@ type SiteShellProps = {
   initialLanguage?: Language;
   initialTheme?: Theme;
 };
-
-const ROUTE_TRANSITION_DURATION = 350;
 
 function SiteShell({
   children,
@@ -49,7 +48,7 @@ function SiteShell({
       if (navigationTimeoutRef.current) clearTimeout(navigationTimeoutRef.current);
       if (fadeInTimeoutRef.current) clearTimeout(fadeInTimeoutRef.current);
 
-      const duration = getTransitionDuration();
+      const duration = getTransitionDuration("fast");
       pendingNavigationRef.current = true;
       setTransitionKind(options.kind || "route");
       navigationTimeoutRef.current = setTimeout(() => {
@@ -106,7 +105,7 @@ function SiteShell({
     pendingNavigationRef.current = false;
     fadeInTimeoutRef.current = setTimeout(() => {
       setTransitionKind(null);
-    }, getTransitionDuration());
+    }, getTransitionDuration("fast"));
   }, [pathname]);
 
   useEffect(() => {
@@ -157,12 +156,6 @@ function SiteShell({
       </div>
     </RouteTransitionContext.Provider>
   );
-}
-
-function getTransitionDuration(): number {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? 0
-    : ROUTE_TRANSITION_DURATION;
 }
 
 export default SiteShell;

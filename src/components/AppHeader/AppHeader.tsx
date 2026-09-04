@@ -1,6 +1,9 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import Link from "next/link";
+import { useEffect, useState, type Dispatch, type MouseEvent, type SetStateAction } from "react";
 import type { Language, SectionPath, Theme } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
+import { shouldHandleClientNavigation } from "../../utils/navigation";
+import { buildLocalizedPath } from "../../utils/routing";
 import styles from "./AppHeader.module.css";
 
 type AppHeaderProps = {
@@ -30,6 +33,12 @@ function AppHeader({
   const nextTheme: Theme = theme === "light" ? "dark" : "light";
   const isDarkTheme = theme === "dark";
   const isRussian = language === "ru";
+  const navigationItems: Array<{ path: SectionPath; label: string }> = [
+    { path: "/about", label: text.sections.about },
+    { path: "/work", label: text.sections.work },
+    { path: "/projects", label: text.sections.projects },
+    { path: "/activities", label: text.sections.activities },
+  ];
 
   function toggleTheme() {
     setTheme(nextTheme);
@@ -65,6 +74,14 @@ function AppHeader({
 
   function closeMenu() {
     setIsMenuOpen(false);
+  }
+
+  function handleNavigation(event: MouseEvent<HTMLAnchorElement>, path: SectionPath) {
+    if (!shouldHandleClientNavigation(event)) return;
+
+    event.preventDefault();
+    onNavigate(path);
+    closeMenu();
   }
 
   return (
@@ -155,62 +172,24 @@ function AppHeader({
             id="app-nav-list"
             className={`${styles.listItems} ${isMenuOpen ? styles.menuOpen : ""}`}
           >
-            <li className={styles.listItem}>
-              <button
-                type="button"
-                className={`${styles.listItemLink} ${
-                  activePath === "/about" ? styles.listItemLinkActive : ""
-                }`}
-                onClick={() => {
-                  onNavigate("/about");
-                  closeMenu();
-                }}
-              >
-                {text.sections.about}
-              </button>
-            </li>
-            <li className={styles.listItem}>
-              <button
-                type="button"
-                className={`${styles.listItemLink} ${
-                  activePath === "/work" ? styles.listItemLinkActive : ""
-                }`}
-                onClick={() => {
-                  onNavigate("/work");
-                  closeMenu();
-                }}
-              >
-                {text.sections.work}
-              </button>
-            </li>
-            <li className={styles.listItem}>
-              <button
-                type="button"
-                className={`${styles.listItemLink} ${
-                  activePath === "/projects" ? styles.listItemLinkActive : ""
-                }`}
-                onClick={() => {
-                  onNavigate("/projects");
-                  closeMenu();
-                }}
-              >
-                {text.sections.projects}
-              </button>
-            </li>
-            <li className={styles.listItem}>
-              <button
-                type="button"
-                className={`${styles.listItemLink} ${
-                  activePath === "/activities" ? styles.listItemLinkActive : ""
-                }`}
-                onClick={() => {
-                  onNavigate("/activities");
-                  closeMenu();
-                }}
-              >
-                {text.sections.activities}
-              </button>
-            </li>
+            {navigationItems.map(({ path, label }) => {
+              const isActive = activePath === path;
+
+              return (
+                <li key={path} className={styles.listItem}>
+                  <Link
+                    className={`${styles.listItemLink} ${
+                      isActive ? styles.listItemLinkActive : ""
+                    }`}
+                    href={buildLocalizedPath(language, path)}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={(event) => handleNavigation(event, path)}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

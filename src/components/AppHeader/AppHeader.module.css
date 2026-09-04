@@ -50,7 +50,7 @@
   color: var(--text-primary);
   text-align: start;
   transform: translateY(2px);
-  transition: color 0.5s ease-in-out;
+  transition: color var(--transition-slow);
 }
 
 .controlSwitcher {
@@ -231,7 +231,6 @@
   .listItemLink:hover {
     cursor: pointer;
     color: var(--accent);
-    transition: color 0.5s ease-in-out;
   }
 
   .controlChanger:hover {

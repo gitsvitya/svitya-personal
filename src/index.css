@@ -12,8 +12,10 @@
   --button-text: #ffffff;
   --control-track: #dfe3eb;
   --control-thumb: #ffffff;
-  --transition-fast: 0.35s ease-in-out;
-  --transition-slow: 0.5s ease-in-out;
+  --transition-fast-duration: 350ms;
+  --transition-slow-duration: 500ms;
+  --transition-fast: var(--transition-fast-duration) ease-in-out;
+  --transition-slow: var(--transition-slow-duration) ease-in-out;
   --overlay-opacity: 0.6;
   --layout-max-width: 1280px;
   --layout-padding-desktop: 30px;
@@ -54,8 +56,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition:
-    color 0.5s ease-in-out,
-    background-color 0.5s ease-in-out;
+    color var(--transition-slow),
+    background-color var(--transition-slow);
 }
 
 *,

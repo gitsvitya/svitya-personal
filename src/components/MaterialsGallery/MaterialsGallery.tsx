@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
+import { getTransitionDuration } from "../../utils/motion";
 import Modal from "../Modal/Modal";
 import styles from "./MaterialsGallery.module.css";
 
@@ -21,9 +22,6 @@ type MaterialModalContentProps = {
   titleId?: string;
   descriptionId?: string;
 };
-
-const MODAL_CLOSE_DURATION = 500;
-const MATERIAL_SWITCH_DURATION = 350;
 
 function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -46,7 +44,7 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
         );
         setIsMaterialVisible(true);
         switchTimeoutRef.current = null;
-      }, MATERIAL_SWITCH_DURATION);
+      }, getTransitionDuration("fast"));
     },
     [activeIndex]
   );
@@ -72,7 +70,7 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
       setActiveIndex(null);
       document.body.style.overflow = previousBodyOverflowRef.current;
       closeTimeoutRef.current = null;
-    }, MODAL_CLOSE_DURATION);
+    }, getTransitionDuration("slow"));
   }, []);
 
   const openModal = useCallback((index: number) => {

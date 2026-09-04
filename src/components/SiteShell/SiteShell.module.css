@@ -15,7 +15,7 @@
 }
 
 .fade {
-  transition: opacity 0.35s ease-in-out;
+  transition: opacity var(--transition-fast);
 }
 
 .pageFading {
