@@ -20,10 +20,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 10px;
   margin: 0;
-  max-height: 40px;
+  max-height: 44px;
   border: var(--control-border-width) solid var(--border-color);
   background-color: var(--bg-surface);
   border-radius: 999px;
@@ -88,6 +88,7 @@
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
+  min-height: 44px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   background: var(--bg-surface);
@@ -157,6 +158,9 @@
 }
 
 .listItemLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: 'VremenaGrotesk', sans-serif;
   text-rendering: optimizeLegibility;
   position: relative;
@@ -206,7 +210,7 @@
   outline-offset: 4px;
 }
 
-@media (min-height: 780px) {
+@media (hover: hover) and (pointer: fine) {
   .listItemLink:hover {
     cursor: pointer;
     color: var(--accent);
@@ -227,7 +231,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .listItems {
     column-gap: 24px;
   }
@@ -239,7 +243,7 @@
   }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
   .container {
     gap: 20px;
   }
@@ -290,29 +294,44 @@
   }
 
   .listItemLink {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .container {
+    gap: 16px;
   }
 
   .controlChangerText {
     font-size: 14px;
   }
-}
 
-@media (max-width: 428px) {
-  .container {
-    gap: 16px;
+  .menuToggle {
+    font-size: 18px;
+  }
+
+  .listItemLink {
+    font-size: 18px;
   }
 }
-@media (max-width: 380px) {
+
+@media (max-width: 360px) {
   .controls {
-    align-items: flex-end;
-    gap: 10px;
-    flex-direction: column;
+    gap: 6px;
   }
-}
 
-@media (max-width: 325px) {
+  .controlChanger {
+    gap: 6px;
+    padding: 0 7px;
+  }
+
+  .controlChangerText {
+    font-size: 13px;
+  }
+
   .listItems {
-    gap: 5px;
+    min-width: 180px;
   }
 }

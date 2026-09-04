@@ -45,7 +45,9 @@
 }
 
 .link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   width: max-content;
   padding: 0;
   margin: 0;
@@ -90,49 +92,41 @@
   line-height: 1.375;
 }
 
-.link:hover {
-  color: var(--accent);
-  cursor: pointer;
-}
-
 .link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 
-@media (max-width: 867px) {
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--accent);
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1024px) {
   .companyBox {
-    gap: 20px;
+    gap: 24px;
   }
 
   .companyName {
-    font-size: 38px;
+    font-size: 40px;
   }
 
   .title {
     font-size: 24px;
   }
-}
 
-@media (max-width: 650px) {
   .year {
-    font-size: 16px;
-  }
-
-  .companyName {
-    font-size: 30px;
+    font-size: 18px;
   }
 
   .link {
-    font-size: 14px;
-  }
-
-  .title {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .paragraph {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -151,24 +145,28 @@
   }
 }
 
-@media (max-width: 501px) {
+@media (max-width: 640px) {
   .year {
     font-size: 16px;
   }
 
   .companyName {
-    font-size: 26px;
+    font-size: 32px;
   }
 
   .link {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .title {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .paragraph {
     font-size: 16px;
+  }
+
+  .logo {
+    width: min(56%, 200px);
   }
 }

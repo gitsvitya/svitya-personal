@@ -37,19 +37,19 @@
   width: 100%;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1280px) {
   .cardsGrid {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .title {
     font-size: 32px;
   }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
   .title {
     position: static;
     width: auto;
@@ -62,22 +62,17 @@
 }
 
 @media (max-width: 640px) {
-  .cardsGrid {
-    width: 100%;
-  }
-}
-
-@media (max-width: 501px) {
   .container {
-    gap: 10px;
+    gap: 16px;
   }
+
   .title {
     font-size: 28px;
   }
 }
 
-@media (max-width: 372px) {
+@media (max-width: 360px) {
   .title {
-    font-size: 24px;
+    font-size: 26px;
   }
 }

@@ -102,7 +102,7 @@
     height var(--transition-slow);
 }
 
-@media (min-width: 640px) {
+@media (hover: hover) and (pointer: fine) and (min-width: 641px) {
   .card:hover {
     border-color: var(--accent);
   }
@@ -119,8 +119,8 @@
   .card:focus-visible .cardCta,
   .card:active .cardCta {
     opacity: 1;
-    max-height: 40px;
-    padding: 8px 12px;
+    max-height: 44px;
+    padding: 10px 12px;
     transform: translateY(0);
   }
 
@@ -129,9 +129,28 @@
   }
 }
 
-@media (max-width: 639px) {
+@media (hover: none) {
+  .cardCta {
+    opacity: 1;
+    max-height: 44px;
+    padding: 10px 12px;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .cardCompanyName {
+    font-size: 24px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 640px) {
   .card {
-    min-height: 230px;
+    min-height: 210px;
   }
 
   .cardText {
@@ -143,52 +162,31 @@
   }
 
   .cardCompanyName {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .cardTitle {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .cardCta {
     font-size: 14px;
     opacity: 1;
-    max-height: 40px;
-    padding: 8px 12px;
+    max-height: 44px;
+    min-height: 44px;
+    padding: 10px 12px;
     transform: translateY(0);
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 360px) {
   .card {
+    padding: 14px;
+    grid-template-columns: 72% 28%;
     min-height: 200px;
   }
 
   .cardCompanyName {
     font-size: 18px;
-  }
-
-  .cardTitle {
-    font-size: 16px;
-  }
-
-  .cardCta {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 440px) {
-  .card {
-    padding: 10px;
-    grid-template-columns: 75% 25%;
-    min-height: 180px;
-  }
-
-  .cardCompanyName {
-    font-size: 16px;
-  }
-
-  .cardTitle {
-    font-size: 14px;
   }
 }

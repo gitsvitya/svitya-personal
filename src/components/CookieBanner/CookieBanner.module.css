@@ -34,13 +34,13 @@
   color: var(--button-text);
   border: none;
   padding: 8px 16px;
+  min-height: 44px;
   border-radius: 4px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.375;
   max-width: 102px;
-  max-height: 38.5px;
   align-self: center;
   outline: none;
 }
@@ -54,7 +54,7 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 640px) {
   .banner {
     flex-direction: column;
     gap: 10px;

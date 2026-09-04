@@ -42,10 +42,6 @@
     border-color var(--transition-slow);
 }
 
-.previewButton:hover {
-  border-color: var(--accent);
-}
-
 .previewButton:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
@@ -94,7 +90,7 @@
 
 .modalImage {
   display: block;
-  width: min(100%, 45vh, 466px);
+  width: min(100%, 45dvh, 466px);
   aspect-ratio: 5 / 6;
   object-fit: contain;
   transition: opacity var(--transition-fast);
@@ -144,20 +140,9 @@
   mask-size: contain;
 }
 
-.arrowButton:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 .arrowButton:disabled {
   cursor: default;
   opacity: 0.6;
-}
-
-.arrowButton:disabled:hover {
-  background-color: var(--bg-surface);
-  border-color: var(--border-color);
-  color: var(--text-primary);
 }
 
 .arrowButton:focus-visible {
@@ -198,8 +183,8 @@
   align-items: center;
   justify-content: center;
   align-self: flex-start;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: var(--control-border-width) solid var(--border-color);
   border-radius: 999px;
@@ -211,11 +196,6 @@
     background-color var(--transition-slow),
     border-color var(--transition-slow),
     color var(--transition-slow);
-}
-
-.materialAction:hover {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 .materialAction::before {
@@ -252,19 +232,47 @@
   outline-offset: 5px;
 }
 
-@media (max-width: 769px) {
+@media (hover: hover) and (pointer: fine) {
+  .previewButton:hover {
+    border-color: var(--accent);
+  }
+
+  .arrowButton:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .arrowButton:disabled:hover {
+    background-color: var(--bg-surface);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .materialAction:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+@media (max-width: 1024px) {
+  .previewGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
   .previewGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 650px) {
-  .previewGrid {
-    grid-template-columns: 1fr;
-  }
-
+@media (max-width: 640px) {
   .title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .description {
@@ -275,8 +283,10 @@
     font-size: 14px;
   }
 
-  .materialAction {
-    width: 34px;
-    height: 34px;
+}
+
+@media (max-width: 360px) {
+  .previewGrid {
+    grid-template-columns: 1fr;
   }
 }

@@ -44,6 +44,7 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -87,16 +88,17 @@ body {
   margin-right: auto;
 }
 
-@media (max-width: 769px) {
+/* Shared responsive scale: 1280 / 1024 / 768 / 640 / 360. */
+@media (max-width: 1024px) {
   .layout-container {
     padding: var(--layout-padding-tablet);
   }
 }
 
-@media (max-width: 501px) {
+@media (max-width: 640px) {
   .layout-container {
     padding: var(--layout-padding-mobile);
-    gap: 28px;
+    gap: 20px;
   }
 }
 

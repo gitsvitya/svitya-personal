@@ -53,7 +53,9 @@
 
 .link {
   display: flex;
+  align-items: center;
   gap: 3px;
+  min-height: 44px;
   text-decoration: none;
   outline: none;
   transition: color var(--transition-slow);
@@ -127,7 +129,7 @@
   outline-offset: 4px;
 }
 
-@media (min-width: 780px) {
+@media (hover: hover) and (pointer: fine) {
   .link:hover {
     cursor: pointer;
     color: var(--accent);
@@ -138,7 +140,15 @@
   }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 1024px) {
+  .text,
+  .linkText,
+  .year {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
   .container {
     gap: 16px;
   }
@@ -146,16 +156,13 @@
     gap: 10px;
   }
 }
-@media (max-width: 660px) {
+@media (max-width: 640px) {
   .container {
     flex-direction: column;
   }
   .year {
     align-self: center;
   }
-}
-
-@media (max-width: 640px) {
   .contactsBlock {
     flex-direction: column;
     gap: 10px;
@@ -163,17 +170,20 @@
 
   .navigationList {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .text,
+  .linkText,
+  .year {
+    font-size: 16px;
   }
 }
 
-@media (max-width: 501px) {
-
+@media (max-width: 360px) {
   .navigationList {
     gap: 10px;
     flex-direction: column;
-  }
-
-  .contactsBlock {
-    gap: 10px;
   }
 }
