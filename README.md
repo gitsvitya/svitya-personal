@@ -1,58 +1,55 @@
 # Svitya's Personal Website
 
-This project serves as an interactive resume, showcasing my professional experience, personal projects, and areas of expertise. The website is designed to be clean, responsive, and informative, providing visitors with a clear overview of my career path and ongoing work.
+A bilingual portfolio built with Next.js App Router, React, TypeScript, and CSS Modules.
 
-## Project Overview
+## Features
 
-A personal portfolio website built with **Next.js** and **React**. It includes interactive cards, modal windows with details, language/theme switching, and a responsive layout for desktop and mobile.
+- Localized routes for Russian and English
+- Separate detail page for every work, project, and activity
+- Document, image, and external-link materials with a shared preview gallery
+- Light and dark themes
+- Responsive desktop, tablet, and mobile layouts
+- Localized SEO metadata, sitemap, and language redirects
 
-## Key Functionalities
+## Project Structure
 
-- Interactive experience cards with modal details
-- Multi-section navigation with localized routes (`/ru/about`, `/ru/work`, `/en/about`, etc.)
-- Responsive layout for desktop and mobile
-- Cookie consent banner
-- Dark/light theme mode
-- RU/EN content switch
-- TypeScript-based architecture with typed routing, shared UI translations, and centralized company content data
+```text
+app/                         App Router pages, layouts, redirects, and SEO
+src/components/              Reusable UI and page sections
+src/content/portfolio/       Typed work, project, and activity content
+src/content/ui-text.ts       Shared localized interface text
+src/hooks/                   Reusable client hooks
+src/images/portfolio/        Imported logos and material previews
+src/types/                   Shared domain and asset declarations
+src/utils/                   Pure routing helpers
+public/materials/            Files and full-size images opened from materials
+```
 
-## Tech Stack
+`src/content/portfolio/registry.ts` combines the section-specific data files and exposes
+selectors used by pages, cards, metadata, and the sitemap. Material types are a discriminated
+union, so each type requires only its valid target field:
 
-- Next.js (App Router)
-- React
-- TypeScript
-- CSS Modules
-- LocalStorage
+- `document` requires `fileSrc`
+- `image` requires `fullImageSrc`
+- `link` requires `url`
 
-## Content Structure
-
-- `src/content/companies.ts` stores structured company/project/activity content and localized card/modal data
-- `src/content/ui-text.ts` stores shared UI translations for navigation, about section, footer, cookie banner, and controls
-- `src/hooks/*` contains extracted client logic for theme, modal state, and localized navigation
-
-## Available Commands
+## Commands
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Run production server
-npm run start
+npm install                 # install dependencies
+npm run dev                 # start the development server
+npm run build               # validate content and create a production build
+npm run check               # run content, lint, types, tests, and formatting checks
+npm run validate:content    # validate localized content and material targets
+npm run lint                # run ESLint
+npm run typecheck           # run Next.js route generation and TypeScript
+npm test                    # run Vitest
+npm run format              # format source files
 ```
 
 ## Author
 
 Victor Strokov
 
-## Links
-
-- [My GitHub](https://github.com/gitsvitya)
-- [Live Website](https://svitya.com)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [React Documentation](https://react.dev)
+- [GitHub](https://github.com/gitsvitya)
+- [Website](https://svitya.com)

@@ -1,4 +1,3 @@
-/* Полноэкранный вариант контента карточки: кнопка возврата и читаемая ширина текста. */
 .detailPage {
   width: 100%;
 }
@@ -24,7 +23,7 @@
   outline: none;
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  font-family: 'VremenaGrotesk', sans-serif;
+  font-family: "VremenaGrotesk", sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;

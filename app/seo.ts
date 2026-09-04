@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
 import { BASE_URL } from "./site";
-import {
-  DEFAULT_LANGUAGE,
-  SUPPORTED_LANGUAGES,
-  resolveLanguage,
-  resolveSection,
-} from "./sections";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, resolveLanguage, resolveSection } from "./sections";
 import type { Language, Section } from "../src/types/domain";
 
-// Дефолтные social-значения используются на всех страницах, если для
-// отдельного раздела не требуется собственная картинка или site name.
 const DEFAULT_OG_IMAGE = "/logo512.png";
 const SITE_NAME = "Виктор Строков";
 
-// Внутри SEO-хелперов section всегда приводится к виду "/about",
-// чтобы не дублировать нормализацию пути в каждом вызывающем месте.
 function ensureSectionPath(section?: string | null): `/${Section}` {
   const resolvedSection = resolveSection(section);
   return `/${resolvedSection}`;
@@ -28,8 +19,6 @@ type BuildPageMetadataInput = {
   slug?: string | null;
 };
 
-// Функция собирает полный набор metadata для локализованной страницы:
-// canonical, hreflang-ссылки и данные для Open Graph / Twitter.
 export function buildPageMetadata({
   title,
   description,

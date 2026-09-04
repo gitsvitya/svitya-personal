@@ -1,30 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import type { AppTranslations } from "../../content/ui-text";
 import styles from "./CookieBanner.module.css";
 
-// В localStorage храним только факт закрытия баннера,
-// чтобы не показывать его повторно при следующих визитах.
 const COOKIE_KEY = "cookieAccepted";
 
 type CookieBannerProps = {
   text: AppTranslations;
 };
 
-// Компонент работает только на клиенте, потому что зависит от localStorage.
 function CookieBanner({ text }: CookieBannerProps) {
-  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const accepted = useSyncExternalStore(
+    () => () => undefined,
+    () => localStorage.getItem(COOKIE_KEY) === "true",
+    () => true
+  );
+  const visible = !accepted && !dismissed;
 
-  // Если пользователь раньше уже закрыл баннер, повторно не рендерим его.
-  useEffect(() => {
-    if (!localStorage.getItem(COOKIE_KEY)) {
-      setVisible(true);
-    }
-  }, []);
-
-  // После подтверждения запоминаем выбор и сразу убираем баннер из DOM.
   function acceptCookies() {
     localStorage.setItem(COOKIE_KEY, "true");
-    setVisible(false);
+    setDismissed(true);
   }
 
   if (!visible) {

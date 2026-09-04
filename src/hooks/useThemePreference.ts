@@ -1,55 +1,60 @@
 "use client";
 
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useSyncExternalStore, type Dispatch, type SetStateAction } from "react";
 import type { Theme } from "../types/domain";
 
-// Тема хранится под стабильным ключом и синхронизируется между
-// localStorage, cookie и атрибутом data-theme на documentElement.
-const THEME_KEY = "theme";
+const THEME_EVENT = "svitya:theme-change";
 
 type UseThemePreferenceResult = {
   theme: Theme;
   setTheme: Dispatch<SetStateAction<Theme>>;
 };
 
-// Хук инкапсулирует всю работу с темой, чтобы компонентам оставалось
-// только читать текущее значение и вызывать setTheme.
+function isTheme(value: string | null): value is Theme {
+  return value === "light" || value === "dark";
+}
+
+function readTheme(fallback: Theme): Theme {
+  const domTheme = document.documentElement.getAttribute("data-theme");
+  if (isTheme(domTheme)) return domTheme;
+
+  const cookieTheme = document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith("theme="))
+    ?.slice("theme=".length);
+  if (cookieTheme && isTheme(cookieTheme)) return cookieTheme;
+  return fallback;
+}
+
+function applyTheme(theme: Theme): void {
+  const root = document.documentElement;
+  root.setAttribute("data-theme", theme);
+  root.style.backgroundColor = getComputedStyle(root).getPropertyValue("--bg-page");
+}
+
+function subscribe(onStoreChange: () => void): () => void {
+  window.addEventListener(THEME_EVENT, onStoreChange);
+  return () => window.removeEventListener(THEME_EVENT, onStoreChange);
+}
+
 export function useThemePreference(initialTheme: Theme): UseThemePreferenceResult {
-  const [theme, setTheme] = useState<Theme>(initialTheme);
-  const [isThemeSynced, setIsThemeSynced] = useState(false);
+  const theme = useSyncExternalStore(
+    subscribe,
+    () => readTheme(initialTheme),
+    () => initialTheme
+  );
+  const setTheme = useCallback<Dispatch<SetStateAction<Theme>>>(
+    (nextTheme) => {
+      const currentTheme = readTheme(initialTheme);
+      const resolvedTheme = typeof nextTheme === "function" ? nextTheme(currentTheme) : nextTheme;
 
-  // После монтирования приоритет источников такой:
-  // localStorage -> уже выставленный DOM-атрибут -> серверное значение.
-  useEffect(() => {
-    const savedTheme = localStorage.getItem(THEME_KEY);
-    const domTheme = document.documentElement.getAttribute("data-theme");
-    const hasSavedTheme = savedTheme === "light" || savedTheme === "dark";
-    const hasDomTheme = domTheme === "light" || domTheme === "dark";
-
-    if (hasSavedTheme) setTheme(savedTheme);
-    else if (hasDomTheme) setTheme(domTheme);
-    else if (initialTheme === "light" || initialTheme === "dark") setTheme(initialTheme);
-    else setTheme("light");
-    setIsThemeSynced(true);
-  }, [initialTheme]);
-
-  // После первичной синхронизации сохраняем тему в durable-хранилищах,
-  // чтобы сервер и клиент на следующих визитах стартовали одинаково.
-  useEffect(() => {
-    if (!isThemeSynced) return;
-    localStorage.setItem(THEME_KEY, theme);
-    document.cookie = `theme=${theme}; path=/; max-age=31536000; samesite=lax`;
-  }, [isThemeSynced, theme]);
-
-  // DOM-атрибут и backgroundColor обновляются отдельно, потому что они
-  // напрямую влияют на CSS-переменные и цвет фона еще до полной перерисовки UI.
-  useEffect(() => {
-    if (!isThemeSynced) return;
-    const root = document.documentElement;
-    root.setAttribute("data-theme", theme);
-    const bgPage = getComputedStyle(root).getPropertyValue("--bg-page");
-    root.style.backgroundColor = bgPage;
-  }, [isThemeSynced, theme]);
+      applyTheme(resolvedTheme);
+      document.cookie = `theme=${resolvedTheme}; path=/; max-age=31536000; samesite=lax`;
+      window.dispatchEvent(new Event(THEME_EVENT));
+    },
+    [initialTheme]
+  );
 
   return {
     theme,

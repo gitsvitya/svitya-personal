@@ -1,7 +1,5 @@
 import type { Language } from "../types/domain";
 
-// В словаре собраны все короткие текстовые подписи интерфейса,
-// чтобы локализация UI не была размазана по компонентам.
 export const uiText = {
   ru: {
     page: {
@@ -38,16 +36,15 @@ export const uiText = {
       download: "Скачать",
       openImage: "Открыть изображение в новом окне",
       openLink: "Открыть ссылку в новом окне",
-      previousPhoto: "Предыдущее фото",
-      nextPhoto: "Следующее фото",
+      previousMaterial: "Предыдущий материал",
+      nextMaterial: "Следующий материал",
     },
     modal: {
       closeLabel: "Закрыть модальное окно",
     },
     footer: {
       contacts: "Соцсети",
-      metaDisclaimer:
-        "*принадлежит компании Meta, признанной экстремистской и запрещённой в РФ",
+      metaDisclaimer: "*принадлежит компании Meta, признанной экстремистской и запрещённой в РФ",
     },
     card: {
       button: "Подробнее",
@@ -88,8 +85,8 @@ export const uiText = {
       download: "Download",
       openImage: "Open image in a new window",
       openLink: "Open link in a new window",
-      previousPhoto: "Previous photo",
-      nextPhoto: "Next photo",
+      previousMaterial: "Previous material",
+      nextMaterial: "Next material",
     },
     modal: {
       closeLabel: "Close modal window",
@@ -105,11 +102,8 @@ export const uiText = {
   },
 } as const;
 
-// Тип переводов выводится из реального объекта, поэтому структура
-// текстов и их использование в компонентах не расходятся.
 export type AppTranslations = (typeof uiText)[Language];
 
-// Helper возвращает словарь для выбранной локали в готовом типизированном виде.
 export function getTranslations(language: Language): AppTranslations {
   return uiText[language];
 }

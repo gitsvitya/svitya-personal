@@ -1,21 +1,34 @@
+"use client";
+
+import Image from "next/image";
 import type { MouseEvent } from "react";
-import type { CompanyId } from "../../types/domain";
-import type { LocalizedCompany } from "../../content/companies";
+import type { LocalizedCompany } from "../../content/portfolio";
+import { useRouteTransition } from "../SiteShell/RouteTransitionContext";
 import styles from "./Card.module.css";
 
 type CardProps = {
   company: LocalizedCompany;
-  onActivate: (companyId: CompanyId) => void;
   href: string;
   ctaLabel: string;
 };
 
-// Карточка знает только о своей записи и сообщает родителю,
-// какую запись нужно показать на странице подробностей.
-function Card({ company, onActivate, href, ctaLabel }: CardProps) {
+function Card({ company, href, ctaLabel }: CardProps) {
+  const { navigate } = useRouteTransition();
+
   function handleActivate(event: MouseEvent<HTMLAnchorElement>) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
     event.preventDefault();
-    onActivate(company.id);
+    navigate(href);
   }
 
   return (
@@ -26,7 +39,7 @@ function Card({ company, onActivate, href, ctaLabel }: CardProps) {
         <span className={styles.cardTitle}>{company.title}</span>
         <span className={styles.cardCta}>{ctaLabel}</span>
       </div>
-      <img className={styles.logoPic} src={company.logo} alt={company.name} loading="lazy" />
+      <Image className={styles.logoPic} src={company.logo} alt={company.name} />
     </a>
   );
 }

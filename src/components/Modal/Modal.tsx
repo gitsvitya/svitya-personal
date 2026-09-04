@@ -22,8 +22,6 @@ type ModalProps = {
   closeLabel: string;
 };
 
-// Модалка рендерится через портал, чтобы не зависеть от вложенности layout
-// и всегда располагаться поверх остального интерфейса.
 const Modal = ({
   children,
   overlayControls,
@@ -39,14 +37,10 @@ const Modal = ({
   const titleId = useId();
   const descriptionId = useId();
 
-  // После монтирования переводим содержимое в видимое состояние,
-  // чтобы CSS-анимация появления начиналась уже внутри портала.
   useEffect(() => {
     setShowContent(true);
   }, [setShowContent]);
 
-  // Эффект добавляет базовую keyboard-accessibility:
-  // закрытие по Escape и циклический tab-trap внутри диалога.
   useEffect(() => {
     function closeModalByEsc(evt: KeyboardEvent) {
       if (evt.key === "Escape") closeModal();
@@ -80,8 +74,6 @@ const Modal = ({
     };
   }, [closeModal]);
 
-  // При открытии фокус уходит внутрь диалога, а при закрытии возвращается
-  // на исходный элемент, чтобы навигация с клавиатуры оставалась непрерывной.
   useEffect(() => {
     prevFocusedRef.current =
       document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -104,8 +96,6 @@ const Modal = ({
 
   return ReactDOM.createPortal(
     <>
-      {/* Dialog хранит aria-связи с заголовком и описанием,
-          которые ниже прокидываются в содержимое окна. */}
       <div
         className={`${styles.modalWindow} ${showContent ? styles.showModalWindow : ""}`}
         role="dialog"
@@ -124,9 +114,9 @@ const Modal = ({
         />
         {overlayControls}
 
-        {/* В тело модалки прокидываем служебные id только тем React-компонентам,
-            которые реально умеют их принять. */}
-        <div className={styles.modalBody}>{renderModalChildren(children, titleId, descriptionId)}</div>
+        <div className={styles.modalBody}>
+          {renderModalChildren(children, titleId, descriptionId)}
+        </div>
       </div>
       <ModalOverlay onClick={closeModal} showContent={showContent} />
     </>,
@@ -134,8 +124,6 @@ const Modal = ({
   );
 };
 
-// Пропсы с aria-id не должны попадать на обычные DOM-элементы,
-// поэтому клонируем только пользовательские React-компоненты.
 function renderModalChildren(children: ReactNode, titleId: string, descriptionId: string) {
   if (!isValidElement(children) || typeof children.type === "string") {
     return children;

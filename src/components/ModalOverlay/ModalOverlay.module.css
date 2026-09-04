@@ -1,4 +1,3 @@
-/* Стили затемняющей подложки модального окна. */
 .modalOverlay {
   display: flex;
   background-color: var(--overlay-base);

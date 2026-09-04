@@ -14,8 +14,6 @@ type AppHeaderProps = {
   onNavigate: (path: SectionPath) => void;
 };
 
-// Header отвечает только за UI-переключатели и отправляет наверх события
-// смены темы, языка и раздела без собственной роутинг-логики.
 function AppHeader({
   text,
   onLanguageChange,
@@ -26,28 +24,21 @@ function AppHeader({
   activePath,
   onNavigate,
 }: AppHeaderProps) {
-  // Состояние мобильного меню локально для шапки и не нужно остальным частям приложения.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Вычисляем следующие состояния заранее, чтобы JSX был проще и без inline-тернарников.
   const nextLng: Language = language === "ru" ? "en" : "ru";
   const nextTheme: Theme = theme === "light" ? "dark" : "light";
   const isDarkTheme = theme === "dark";
   const isRussian = language === "ru";
 
-  // Здесь только сообщаем новое значение наверх; синхронизация темы с DOM
-  // и хранилищами остается внутри профильного hook.
   function toggleTheme() {
     setTheme(nextTheme);
   }
 
-  // Смена языка инициирует переход на ту же секцию в другой локали.
   function toggleLanguage() {
     onLanguageChange(nextLng);
   }
 
-  // Эффект поддерживает предсказуемое поведение мобильного меню:
-  // оно закрывается по Escape и не остается открытым после выхода из mobile breakpoint.
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setIsMenuOpen(false);
@@ -68,12 +59,10 @@ function AppHeader({
     };
   }, [isMenuOpen]);
 
-  // Простое переключение открытия меню по кнопке-бургеру.
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);
   }
 
-  // После выбора раздела меню закрывается сразу, не дожидаясь смены маршрута.
   function closeMenu() {
     setIsMenuOpen(false);
   }
@@ -81,7 +70,6 @@ function AppHeader({
   return (
     <header className={styles.header}>
       <div className={`layout-container ${styles.container}`}>
-        {/* Блок глобальных переключателей темы и языка. */}
         <div className={styles.controls}>
           <button
             type="button"
@@ -144,8 +132,6 @@ function AppHeader({
           </button>
         </div>
 
-        {/* Навигация по разделам построена на кнопках, потому что переход
-            выполняется через клиентский router с промежуточной анимацией. */}
         <nav
           className={`${styles.navigationBlock} fade-transition ${
             isLanguageSwitching ? "fade-hidden" : "fade-visible"

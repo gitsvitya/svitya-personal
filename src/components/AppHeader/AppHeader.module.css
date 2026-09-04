@@ -1,4 +1,3 @@
-/* Стили хедера: переключатели темы/языка, меню и мобильная навигация. */
 .header {
   width: 100%;
 }
@@ -29,14 +28,18 @@
   border-radius: 999px;
   outline: none;
   color: var(--text-primary);
-  transition: opacity var(--transition-fast), color var(--transition-slow), border-color var(--transition-slow), background-color var(--transition-slow);
+  transition:
+    opacity var(--transition-fast),
+    color var(--transition-slow),
+    border-color var(--transition-slow),
+    background-color var(--transition-slow);
 }
 
 .controlChangerText {
   display: inline-flex;
   align-items: center;
   height: 1em;
-  font-family: 'VremenaGrotesk', sans-serif;
+  font-family: "VremenaGrotesk", sans-serif;
   text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
@@ -61,7 +64,10 @@
   align-items: center;
   padding: 2px;
   box-sizing: border-box;
-  transition: color var(--transition-slow), border var(--transition-slow), background-color var(--transition-slow);
+  transition:
+    color var(--transition-slow),
+    border var(--transition-slow),
+    background-color var(--transition-slow);
 }
 
 .switcherThumb {
@@ -70,7 +76,9 @@
   border-radius: 50%;
   background-color: var(--control-thumb);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  transition: transform var(--transition-slow), background-color var(--transition-slow);
+  transition:
+    transform var(--transition-slow),
+    background-color var(--transition-slow);
 }
 
 .controlSwitcherActive .switcherThumb {
@@ -96,7 +104,11 @@
   font-size: 20px;
   line-height: 1.2;
   cursor: pointer;
-  transition: border-color var(--transition-slow), background-color var(--transition-slow), color var(--transition-slow), opacity var(--transition-slow);
+  transition:
+    border-color var(--transition-slow),
+    background-color var(--transition-slow),
+    color var(--transition-slow),
+    opacity var(--transition-slow);
 }
 
 .menuToggle:focus-visible {
@@ -110,7 +122,7 @@
 }
 
 .menuToggleLabel {
-  font-family: 'VremenaGrotesk', sans-serif;
+  font-family: "VremenaGrotesk", sans-serif;
 }
 
 .menuIcon {
@@ -126,7 +138,9 @@
   height: 2px;
   width: 100%;
   background-color: currentColor;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
 .menuToggleActive .menuIcon span:nth-child(1) {
@@ -161,7 +175,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-family: 'VremenaGrotesk', sans-serif;
+  font-family: "VremenaGrotesk", sans-serif;
   text-rendering: optimizeLegibility;
   position: relative;
   padding: 0;
@@ -172,7 +186,10 @@
   line-height: 1.375;
   text-decoration: none;
   color: var(--text-primary);
-  transition: opacity var(--transition-slow), color var(--transition-slow), text-decoration var(--transition-slow);
+  transition:
+    opacity var(--transition-slow),
+    color var(--transition-slow),
+    text-decoration var(--transition-slow);
   outline: none;
   background: transparent;
   border: none;
@@ -296,7 +313,6 @@
   .listItemLink {
     font-size: 20px;
   }
-
 }
 
 @media (max-width: 640px) {

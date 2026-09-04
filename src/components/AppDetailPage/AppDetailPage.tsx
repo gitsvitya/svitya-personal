@@ -1,6 +1,9 @@
-import type { LocalizedCompany } from "../../content/companies";
+"use client";
+
+import type { LocalizedCompany } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
-import AppPhotoGallery from "../AppPhotoGallery/AppPhotoGallery";
+import MaterialsGallery from "../MaterialsGallery/MaterialsGallery";
+import { useRouteTransition } from "../SiteShell/RouteTransitionContext";
 import DetailContent from "../DetailContent/DetailContent";
 import styles from "./AppDetailPage.module.css";
 
@@ -8,16 +11,15 @@ type AppDetailPageProps = {
   company: LocalizedCompany;
   text: AppTranslations;
   sectionTitle: string;
-  onBack: () => void;
+  backHref: string;
 };
 
-// Страница подробностей использует тот же контент, что раньше был в модалке,
-// но размещает его как полноценный блок между шапкой и футером.
-function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPageProps) {
+function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageProps) {
+  const { navigate } = useRouteTransition();
   const titleId = `detail-title-${company.id}`;
   const descriptionId = `detail-description-${company.id}`;
   const materials =
-    company.materials?.enabled === true && company.materials.photos.length > 0
+    company.materials?.enabled === true && company.materials.items.length > 0
       ? company.materials
       : null;
 
@@ -27,7 +29,7 @@ function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPagePro
         <button
           type="button"
           className={styles.backButton}
-          onClick={onBack}
+          onClick={() => navigate(backHref, { replace: true })}
           aria-label={`${text.detail.backToSection}: ${sectionTitle}`}
         >
           <span aria-hidden="true" className={styles.backIcon}>
@@ -37,11 +39,7 @@ function AppDetailPage({ company, text, sectionTitle, onBack }: AppDetailPagePro
         </button>
         <DetailContent company={company} titleId={titleId} descriptionId={descriptionId} />
         {materials && (
-          <AppPhotoGallery
-            photos={materials.photos}
-            text={text}
-            companyName={company.name}
-          />
+          <MaterialsGallery items={materials.items} text={text} companyName={company.name} />
         )}
       </div>
     </section>
