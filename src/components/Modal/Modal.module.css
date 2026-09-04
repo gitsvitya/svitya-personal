@@ -13,7 +13,7 @@
   z-index: 10001;
   background-color: var(--bg-surface);
   border-radius: 12px;
-  padding: 56px 24px 24px;
+  padding: 24px;
   opacity: 0;
   overflow: visible;
   height: auto;
@@ -31,6 +31,14 @@
   overscroll-behavior: contain;
 }
 
+.modalHeader {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
 .closeIcon {
   display: inline-flex;
   align-items: center;
@@ -38,11 +46,9 @@
   background-color: transparent;
   color: var(--text-primary);
   border: 0;
+  flex: 0 0 44px;
   height: 44px;
   width: 44px;
-  position: absolute;
-  right: 12px;
-  top: 12px;
   padding: 0;
   outline: none;
   transition: color var(--transition-slow);
@@ -72,7 +78,7 @@
 
 @media (max-width: 768px) {
   .modalWindow {
-    padding: 56px 24px 24px;
+    padding: 24px;
   }
 }
 
@@ -88,6 +94,6 @@
     width: calc(100vw - 32px);
     max-height: calc(100vh - 32px);
     max-height: calc(100dvh - 32px);
-    padding: 52px 16px 16px;
+    padding: 16px;
   }
 }

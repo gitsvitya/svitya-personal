@@ -105,13 +105,15 @@ const Modal = ({
         tabIndex={-1}
         ref={modalRef}
       >
-        <button
-          type="button"
-          className={styles.closeIcon}
-          onClick={closeModal}
-          aria-label={closeLabel}
-          ref={closeBtnRef}
-        />
+        <div className={styles.modalHeader}>
+          <button
+            type="button"
+            className={styles.closeIcon}
+            onClick={closeModal}
+            aria-label={closeLabel}
+            ref={closeBtnRef}
+          />
+        </div>
         {overlayControls}
 
         <div className={styles.modalBody}>

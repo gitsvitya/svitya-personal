@@ -133,7 +133,13 @@
 
 @media (max-width: 768px) {
   .logo {
+    order: -1;
+    justify-self: center;
     width: min(48%, 220px);
+  }
+
+  .companyName {
+    text-align: center;
   }
 
   .companyBox {
