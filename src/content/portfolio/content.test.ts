@@ -55,7 +55,7 @@ describe("portfolio content", () => {
     }
   });
 
-  it("validates every material according to its type", () => {
+  it("validates every material type and exact public asset filename casing", () => {
     for (const company of Object.values(COMPANIES)) {
       if (!company.materials) continue;
       if (company.materials.enabled) expect(company.materials.items.length).toBeGreaterThan(0);
