@@ -20,14 +20,17 @@ export const uiText = {
     },
     about: {
       title: "Виктор Строков",
+      portraitAlt: "Портрет Виктора Строкова",
       subtitle: "Управление проектами, разработка продуктов, исследования и аналитика",
       description:
         "Привет! Меня зовут Виктор. Я руководитель проектов с более чем 10-летним опытом работы в международных и российских компаниях, а также в собственных проектах. Занимаюсь развитием информационных и цифровых продуктов, выстраиваю бизнес-процессы и работаю на стыке аналитики, продукта и бизнеса. Всегда открыт к новым знакомствам и профессиональному сотрудничеству.",
     },
     cookieBanner: {
+      label: "Настройки аналитических cookie",
       description:
-        "Для корректной работы сайта я использую технические и аналитические cookie-файлы. Продолжая работать с сайтом, Вы принимаете это.",
-      button: "Закрыть",
+        "Сайт использует обязательные cookie-файлы. Аналитические cookie Яндекс Метрики загружаются только с вашего согласия.",
+      accept: "Разрешить аналитику",
+      reject: "Только необходимые",
     },
     detail: {
       back: "Назад",
@@ -69,14 +72,17 @@ export const uiText = {
     },
     about: {
       title: "Victor Strokov",
+      portraitAlt: "Portrait of Victor Strokov",
       subtitle: "Project Management, Product Development, Research & Analytics",
       description:
         "Hi! My name is Victor. I am a project manager with over 10 years of experience working in international and Russian companies, as well as on my own projects. I focus on developing information and digital products, building business processes, and working at the intersection of analytics, product, and business. I am always open to new connections and professional collaboration.",
     },
     cookieBanner: {
+      label: "Analytics cookie settings",
       description:
-        "This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.",
-      button: "Close",
+        "This website uses essential cookies. Yandex Metrica analytics cookies are loaded only with your consent.",
+      accept: "Allow analytics",
+      reject: "Essential only",
     },
     detail: {
       back: "Back",

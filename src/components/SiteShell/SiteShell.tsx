@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { useThemePreference } from "../../hooks/useThemePreference";
 import { DEFAULT_LANGUAGE, type Language, type SectionPath, type Theme } from "../../types/domain";
+import type { AnalyticsConsent } from "../../utils/analyticsConsent";
 import {
   buildLocalizedDetailPath,
   buildLocalizedPath,
@@ -23,12 +24,14 @@ type SiteShellProps = {
   children: ReactNode;
   initialLanguage?: Language;
   initialTheme?: Theme;
+  initialAnalyticsConsent?: AnalyticsConsent;
 };
 
 function SiteShell({
   children,
   initialLanguage = DEFAULT_LANGUAGE,
   initialTheme = "light",
+  initialAnalyticsConsent = null,
 }: SiteShellProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -151,7 +154,7 @@ function SiteShell({
             isLanguageSwitching ? styles.pageFading : styles.pageVisible
           }`}
         >
-          <CookieBanner text={text} />
+          <CookieBanner text={text} initialConsent={initialAnalyticsConsent} />
         </div>
       </div>
     </RouteTransitionContext.Provider>

@@ -3,7 +3,9 @@ import { headers } from "next/headers";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import SiteShell from "@/src/components/SiteShell/SiteShell";
+import YandexAnalytics from "@/src/components/YandexAnalytics/YandexAnalytics";
 import "@/src/index.css";
+import { getServerAnalyticsConsent } from "./analytics-consent.server";
 import { getServerLanguage } from "./language.server";
 import { getServerTheme } from "./theme.server";
 
@@ -48,6 +50,7 @@ type RootLayoutProps = {
 export default async function RootLayout({ children }: RootLayoutProps) {
   const initialTheme = await getServerTheme();
   const initialLanguage = await getServerLanguage();
+  const initialAnalyticsConsent = await getServerAnalyticsConsent();
   const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
   const headersList = await headers();
   const requestHost = headersList.get("host") || "";
@@ -85,36 +88,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           })();`}
         </Script>
 
-        {!isLocalhost && (
-          <>
-            <Script id="yandex-metrika" strategy="afterInteractive">
-              {`(function(m,e,t,r,i,k,a){
-                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                m[i].l=1*new Date();
-                for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
-              })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-              ym(55102324, "init", {
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true
-              });`}
-            </Script>
+        {!isLocalhost && <YandexAnalytics initialConsent={initialAnalyticsConsent} />}
 
-            <noscript>
-              <div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://mc.yandex.ru/watch/55102324"
-                  style={{ position: "absolute", left: "-9999px" }}
-                  alt=""
-                />
-              </div>
-            </noscript>
-          </>
-        )}
-
-        <SiteShell initialLanguage={initialLanguage} initialTheme={initialTheme}>
+        <SiteShell
+          initialLanguage={initialLanguage}
+          initialTheme={initialTheme}
+          initialAnalyticsConsent={initialAnalyticsConsent}
+        >
           {children}
         </SiteShell>
         <div id="modal" />

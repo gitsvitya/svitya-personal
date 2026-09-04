@@ -3,7 +3,8 @@
   --bg-surface: #ffffff;
   --text-primary: #111217;
   --text-subtle: #2b303a;
-  --accent: #f74843;
+  --accent: #d53430;
+  --accent-fill: #d53430;
   --border-color: #111217;
   --control-border-width: 1px;
   --overlay-base: #000000;
@@ -29,6 +30,7 @@
   --text-primary: #edf1f7;
   --text-subtle: #c7d0df;
   --accent: #f74843;
+  --accent-fill: #d53430;
   --border-color: #edf1f7;
   --overlay-base: #000000;
   --banner-bg: #1c2433;

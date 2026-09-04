@@ -108,9 +108,9 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
 
   return (
     <section className={styles.gallery} aria-labelledby="company-materials-title">
-      <h3 id="company-materials-title" className={styles.title}>
+      <h2 id="company-materials-title" className={styles.title}>
         {text.detail.materialsTitle}
-      </h3>
+      </h2>
       <div className={styles.previewGrid}>
         {items.map((material, index) => (
           <div key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
@@ -119,9 +119,10 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
                 className={styles.previewImage}
                 src={material.previewSrc}
                 alt={`${companyName}: ${material.title}`}
+                sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
               />
             </button>
-            <h4 className={styles.previewTitle}>{material.title}</h4>
+            <h3 className={styles.previewTitle}>{material.title}</h3>
           </div>
         ))}
       </div>
@@ -186,6 +187,7 @@ function MaterialModalContent({
           className={`${styles.modalImage} ${visibilityClass}`}
           src={material.previewSrc}
           alt={`${companyName}: ${material.title}`}
+          sizes="(max-width: 640px) calc(100vw - 64px), 400px"
         />
       </div>
       <p id={descriptionId} className={`${styles.description} ${visibilityClass}`}>

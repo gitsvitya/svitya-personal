@@ -14,9 +14,9 @@ function DetailContent({ company, titleId, descriptionId }: DetailContentProps) 
     <div className={styles.detailContent}>
       <div id={descriptionId} className={styles.headerGrid}>
         <div className={styles.companyBox}>
-          <h2 id={titleId} className={styles.companyName}>
+          <h1 id={titleId} className={styles.companyName}>
             {company.name}
-          </h2>
+          </h1>
           <div className={styles.descriptionLinkBox}>
             <p className={styles.paragraph}>{company.about}</p>
             {company.url && (
@@ -35,7 +35,13 @@ function DetailContent({ company, titleId, descriptionId }: DetailContentProps) 
             <span className={styles.year}>{company.year}</span>
           </div>
         </div>
-        <Image className={styles.logo} src={company.logo} alt={company.name} />
+        <Image
+          className={styles.logo}
+          src={company.logo}
+          alt={company.name}
+          sizes="(max-width: 640px) 200px, (max-width: 768px) 220px, 250px"
+          preload
+        />
       </div>
       <p className={styles.paragraph}>{company.results}</p>
     </div>

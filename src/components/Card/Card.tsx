@@ -12,9 +12,10 @@ type CardProps = {
   company: LocalizedCompany;
   href: string;
   ctaLabel: string;
+  preloadLogo?: boolean;
 };
 
-function Card({ company, href, ctaLabel }: CardProps) {
+function Card({ company, href, ctaLabel, preloadLogo = false }: CardProps) {
   const { navigate } = useRouteTransition();
 
   function handleActivate(event: MouseEvent<HTMLAnchorElement>) {
@@ -32,7 +33,13 @@ function Card({ company, href, ctaLabel }: CardProps) {
         <span className={styles.cardTitle}>{company.title}</span>
         <span className={styles.cardCta}>{ctaLabel}</span>
       </div>
-      <Image className={styles.logoPic} src={company.logo} alt={company.name} />
+      <Image
+        className={styles.logoPic}
+        src={company.logo}
+        alt={company.name}
+        sizes="(max-width: 640px) 28vw, 180px"
+        preload={preloadLogo}
+      />
     </Link>
   );
 }

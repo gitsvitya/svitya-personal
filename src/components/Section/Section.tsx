@@ -18,7 +18,7 @@ function Section({ id, title, children, className = "", contentClassName = "" }:
   return (
     <section className={sectionClassName} id={id}>
       <div className={containerClassName}>
-        {title && <h3 className={styles.title}>{title}</h3>}
+        {title && <h1 className={styles.title}>{title}</h1>}
         {children}
       </div>
     </section>

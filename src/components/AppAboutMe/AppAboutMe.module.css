@@ -9,10 +9,8 @@
 }
 
 .photo {
-  background-image: url("../../images/pages/about/portrait.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  display: block;
+  object-fit: cover;
   border-radius: 50%;
   width: 250px;
   height: 250px;

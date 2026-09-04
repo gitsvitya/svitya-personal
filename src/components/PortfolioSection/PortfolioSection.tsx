@@ -18,12 +18,13 @@ function PortfolioSection({ section, language, text }: PortfolioSectionProps) {
   return (
     <Section id={section} title={text.sections[section]}>
       <div className={sectionStyles.cardsGrid}>
-        {getCompaniesBySection(section).map((company) => (
+        {getCompaniesBySection(section).map((company, index) => (
           <Card
             key={company.id}
             company={getLocalizedCompany(company.id, language)}
             href={buildLocalizedDetailPath(language, sectionPath, company.slug)}
             ctaLabel={text.card.button}
+            preloadLogo={index === 0}
           />
         ))}
       </div>
