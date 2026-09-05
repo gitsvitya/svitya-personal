@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import Script from "next/script";
 import type { ReactNode } from "react";
+import { DEFAULT_LANGUAGE } from "@/app/sections";
 import SiteShell from "@/src/components/SiteShell/SiteShell";
 import YandexAnalytics from "@/src/components/YandexAnalytics/YandexAnalytics";
 import "@/src/index.css";
-import { getServerAnalyticsConsent } from "./analytics-consent.server";
-import { getServerLanguage } from "./language.server";
-import { getServerTheme } from "./theme.server";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://svitya.com"),
@@ -43,36 +40,12 @@ export const viewport: Viewport = {
   ],
 };
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
-export default async function RootLayout({ children }: RootLayoutProps) {
-  const initialTheme = await getServerTheme();
-  const initialLanguage = await getServerLanguage();
-  const initialAnalyticsConsent = await getServerAnalyticsConsent();
-  const initialBackground = initialTheme === "dark" ? "#0c111a" : "#ffffff";
-  const headersList = await headers();
-  const requestHost = headersList.get("host") || "";
-  const [rawHostname = ""] = requestHost.split(":");
-  const hostname = rawHostname.toLowerCase();
-  const isLocalhost =
-    hostname === "localhost" ||
-    hostname === "127.0.0.1" ||
-    hostname === "::1" ||
-    hostname === "[::1]";
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang={initialLanguage}
-      data-theme={initialTheme}
-      data-scroll-behavior="smooth"
-      style={{ backgroundColor: initialBackground }}
-      suppressHydrationWarning
-    >
+    <html lang={DEFAULT_LANGUAGE} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function setInitialTheme(){
+          {`(function setInitialPreferences(){
             try {
               var cookieMatch = document.cookie.match(/(?:^|;\\s*)theme=(light|dark)(?:;|$)/);
               var cookieTheme = cookieMatch ? cookieMatch[1] : null;
@@ -81,6 +54,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 ? cookieTheme
                 : (prefersDark ? "dark" : "light");
               var doc = document.documentElement;
+              var routeLanguage = window.location.pathname.split("/")[1];
+              if (routeLanguage === "ru" || routeLanguage === "en") doc.lang = routeLanguage;
               doc.setAttribute("data-theme", theme);
               doc.style.backgroundColor = theme === "dark" ? "#0c111a" : "#ffffff";
               document.cookie = "theme=" + theme + "; path=/; max-age=31536000; samesite=lax";
@@ -88,15 +63,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           })();`}
         </Script>
 
-        {!isLocalhost && <YandexAnalytics initialConsent={initialAnalyticsConsent} />}
-
-        <SiteShell
-          initialLanguage={initialLanguage}
-          initialTheme={initialTheme}
-          initialAnalyticsConsent={initialAnalyticsConsent}
-        >
-          {children}
-        </SiteShell>
+        <YandexAnalytics />
+        <SiteShell initialLanguage={DEFAULT_LANGUAGE}>{children}</SiteShell>
         <div id="modal" />
       </body>
     </html>

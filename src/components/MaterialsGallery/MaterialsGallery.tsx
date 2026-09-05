@@ -35,7 +35,14 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
 
   const switchMaterial = useCallback(
     (getNextIndex: (currentIndex: number) => number) => {
-      if (switchTimeoutRef.current || activeIndex === null) return;
+      if (
+        switchTimeoutRef.current ||
+        activeIndex === null ||
+        !isModalVisible ||
+        !isMaterialVisible
+      ) {
+        return;
+      }
 
       setIsMaterialVisible(false);
       switchTimeoutRef.current = window.setTimeout(() => {
@@ -46,7 +53,7 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
         switchTimeoutRef.current = null;
       }, getTransitionDuration("fast"));
     },
-    [activeIndex]
+    [activeIndex, isMaterialVisible, isModalVisible]
   );
 
   const showPreviousMaterial = useCallback(() => {
@@ -58,6 +65,8 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
   }, [items.length, switchMaterial]);
 
   const closeModal = useCallback(() => {
+    if (closeTimeoutRef.current) return;
+
     setIsModalVisible(false);
     setIsMaterialVisible(false);
 
@@ -87,14 +96,27 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
 
   useEffect(() => {
     function handleArrowNavigation(event: KeyboardEvent) {
-      if (!activeMaterial || !hasNavigation) return;
-      if (event.key === "ArrowLeft") showPreviousMaterial();
-      if (event.key === "ArrowRight") showNextMaterial();
+      if (!activeMaterial || !hasNavigation || !isModalVisible || !isMaterialVisible) return;
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showPreviousMaterial();
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showNextMaterial();
+      }
     }
 
     document.addEventListener("keydown", handleArrowNavigation);
     return () => document.removeEventListener("keydown", handleArrowNavigation);
-  }, [activeMaterial, hasNavigation, showNextMaterial, showPreviousMaterial]);
+  }, [
+    activeMaterial,
+    hasNavigation,
+    isMaterialVisible,
+    isModalVisible,
+    showNextMaterial,
+    showPreviousMaterial,
+  ]);
 
   useEffect(() => {
     return () => {

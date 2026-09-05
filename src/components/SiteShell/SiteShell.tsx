@@ -4,8 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { usePathname, useRouter } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { useThemePreference } from "../../hooks/useThemePreference";
-import { DEFAULT_LANGUAGE, type Language, type SectionPath, type Theme } from "../../types/domain";
-import type { AnalyticsConsent } from "../../utils/analyticsConsent";
+import { DEFAULT_LANGUAGE, type Language, type SectionPath } from "../../types/domain";
 import {
   buildLocalizedDetailPath,
   buildLocalizedPath,
@@ -23,24 +22,18 @@ import styles from "./SiteShell.module.css";
 type SiteShellProps = {
   children: ReactNode;
   initialLanguage?: Language;
-  initialTheme?: Theme;
-  initialAnalyticsConsent?: AnalyticsConsent;
 };
 
-function SiteShell({
-  children,
-  initialLanguage = DEFAULT_LANGUAGE,
-  initialTheme = "light",
-  initialAnalyticsConsent = null,
-}: SiteShellProps) {
+function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellProps) {
   const pathname = usePathname();
   const router = useRouter();
   const parsedPath = parseLocalizedPath(pathname);
   const language = parsedPath.language || initialLanguage;
   const activePath = normalizeSectionPath(parsedPath.sectionPath);
   const text = getTranslations(language);
-  const { theme, setTheme } = useThemePreference(initialTheme);
+  const { theme, setTheme } = useThemePreference("light");
   const [transitionKind, setTransitionKind] = useState<"route" | "language" | null>(null);
+  const [areCookieSettingsOpen, setAreCookieSettingsOpen] = useState(false);
   const navigationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fadeInTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingNavigationRef = useRef(false);
@@ -148,13 +141,21 @@ function SiteShell({
         >
           {children}
         </main>
-        <AppFooter text={text} isLanguageSwitching={isLanguageSwitching} />
+        <AppFooter
+          text={text}
+          isLanguageSwitching={isLanguageSwitching}
+          onOpenCookieSettings={() => setAreCookieSettingsOpen(true)}
+        />
         <div
           className={`${styles.fade} ${
             isLanguageSwitching ? styles.pageFading : styles.pageVisible
           }`}
         >
-          <CookieBanner text={text} initialConsent={initialAnalyticsConsent} />
+          <CookieBanner
+            text={text}
+            forceOpen={areCookieSettingsOpen}
+            onClose={() => setAreCookieSettingsOpen(false)}
+          />
         </div>
       </div>
     </RouteTransitionContext.Provider>

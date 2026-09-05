@@ -6,6 +6,8 @@ import { shouldHandleClientNavigation } from "../../utils/navigation";
 import { buildLocalizedPath } from "../../utils/routing";
 import styles from "./AppHeader.module.css";
 
+const DESKTOP_MEDIA_QUERY = "(min-width: 769px)";
+
 type AppHeaderProps = {
   text: AppTranslations;
   onLanguageChange: (nextLanguage: Language) => void;
@@ -53,20 +55,20 @@ function AppHeader({
       if (event.key === "Escape") setIsMenuOpen(false);
     }
 
-    function handleResize() {
-      if (window.innerWidth > 780 && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+    const desktopMedia = window.matchMedia(DESKTOP_MEDIA_QUERY);
+
+    function handleDesktopChange(event: MediaQueryListEvent) {
+      if (event.matches) setIsMenuOpen(false);
     }
 
     document.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("resize", handleResize);
+    desktopMedia.addEventListener("change", handleDesktopChange);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("resize", handleResize);
+      desktopMedia.removeEventListener("change", handleDesktopChange);
     };
-  }, [isMenuOpen]);
+  }, []);
 
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);

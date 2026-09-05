@@ -1,4 +1,5 @@
 import { readdirSync, statSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { COMPANY_IDS, LANGUAGES } from "../../types/domain";
@@ -6,8 +7,31 @@ import { COMPANIES } from "./registry";
 
 const PUBLIC_DIRECTORY = join(process.cwd(), "public");
 
+function getTrackedFiles(): Set<string> | null {
+  try {
+    return new Set(
+      execFileSync("git", ["ls-files", "-z"], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      })
+        .split("\0")
+        .filter(Boolean)
+    );
+  } catch {
+    return null;
+  }
+}
+
+const TRACKED_FILES = getTrackedFiles();
+
 function resolvePublicAsset(publicPath: string): string {
   expect(publicPath.startsWith("/"), `${publicPath} must be an absolute public path`).toBe(true);
+  if (TRACKED_FILES) {
+    expect(
+      TRACKED_FILES.has(`public${publicPath}`),
+      `${publicPath} must match the exact filename casing stored in Git`
+    ).toBe(true);
+  }
 
   let currentPath = PUBLIC_DIRECTORY;
   for (const segment of publicPath.split("/").filter(Boolean)) {
@@ -28,6 +52,23 @@ function expectExternalUrl(value: string): void {
 }
 
 describe("portfolio content", () => {
+  it("keeps tracked asset casing identical to the working tree", () => {
+    if (!TRACKED_FILES) return;
+
+    for (const trackedPath of TRACKED_FILES) {
+      if (!trackedPath.startsWith("public/") && !trackedPath.startsWith("src/images/")) continue;
+
+      let currentPath = process.cwd();
+      for (const segment of trackedPath.split("/")) {
+        const exactEntry = readdirSync(currentPath).find((entry) => entry === segment);
+        expect(exactEntry, `Git casing differs from the working tree: ${trackedPath}`).toBe(
+          segment
+        );
+        currentPath = join(currentPath, segment);
+      }
+    }
+  });
+
   it("contains every declared company exactly once", () => {
     expect(Object.keys(COMPANIES).sort()).toEqual([...COMPANY_IDS].sort());
 

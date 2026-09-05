@@ -81,7 +81,7 @@
 
   .actions {
     align-items: stretch;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .button {

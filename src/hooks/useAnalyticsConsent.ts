@@ -5,10 +5,6 @@ import {
   type AnalyticsConsent,
 } from "../utils/analyticsConsent";
 
-export function useAnalyticsConsent(initialConsent: AnalyticsConsent): AnalyticsConsent {
-  return useSyncExternalStore(
-    subscribeToAnalyticsConsent,
-    getBrowserAnalyticsConsent,
-    () => initialConsent
-  );
+export function useAnalyticsConsent(): AnalyticsConsent {
+  return useSyncExternalStore(subscribeToAnalyticsConsent, getBrowserAnalyticsConsent, () => null);
 }

@@ -1,3 +1,4 @@
+import { useSyncExternalStore } from "react";
 import type { AppTranslations } from "../../content/ui-text";
 import { useAnalyticsConsent } from "../../hooks/useAnalyticsConsent";
 import { setBrowserAnalyticsConsent, type AnalyticsConsent } from "../../utils/analyticsConsent";
@@ -5,12 +6,25 @@ import styles from "./CookieBanner.module.css";
 
 type CookieBannerProps = {
   text: AppTranslations;
-  initialConsent: AnalyticsConsent;
+  forceOpen: boolean;
+  onClose: () => void;
 };
 
-function CookieBanner({ text, initialConsent }: CookieBannerProps) {
-  const consent = useAnalyticsConsent(initialConsent);
-  if (consent !== null) return null;
+const subscribeToHydration = () => () => undefined;
+
+function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
+  const consent = useAnalyticsConsent();
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false
+  );
+  if (!isHydrated || (consent !== null && !forceOpen)) return null;
+
+  function saveConsent(nextConsent: Exclude<AnalyticsConsent, null>) {
+    setBrowserAnalyticsConsent(nextConsent);
+    onClose();
+  }
 
   return (
     <div
@@ -26,14 +40,14 @@ function CookieBanner({ text, initialConsent }: CookieBannerProps) {
         <button
           type="button"
           className={`${styles.button} ${styles.secondaryButton}`}
-          onClick={() => setBrowserAnalyticsConsent("denied")}
+          onClick={() => saveConsent("denied")}
         >
           {text.cookieBanner.reject}
         </button>
         <button
           type="button"
           className={`${styles.button} ${styles.primaryButton}`}
-          onClick={() => setBrowserAnalyticsConsent("granted")}
+          onClick={() => saveConsent("granted")}
         >
           {text.cookieBanner.accept}
         </button>

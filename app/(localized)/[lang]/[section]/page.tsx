@@ -1,11 +1,10 @@
-import { DEFAULT_LANGUAGE } from "@/app/sections";
+import { notFound } from "next/navigation";
 import AppAboutMe from "@/src/components/AppAboutMe/AppAboutMe";
 import PortfolioSection from "@/src/components/PortfolioSection/PortfolioSection";
 import { getTranslations } from "@/src/content/ui-text";
 import {
   buildLocalizedSectionMetadata,
   getLocalizedSectionStaticParams,
-  redirectToLocalizedSection,
   resolveLocalizedSectionParams,
   type LocalizedSectionPageProps,
 } from "@/app/route-helpers";
@@ -23,12 +22,8 @@ export default async function LocalizedSectionPage({ params }: LocalizedSectionP
   const { language, section, isLanguageValid, isSectionValid } =
     await resolveLocalizedSectionParams(params);
 
-  if (!isLanguageValid) {
-    redirectToLocalizedSection(DEFAULT_LANGUAGE, section);
-  }
-
-  if (!isSectionValid) {
-    redirectToLocalizedSection(language, "about");
+  if (!isLanguageValid || !isSectionValid) {
+    notFound();
   }
 
   const text = getTranslations(language);

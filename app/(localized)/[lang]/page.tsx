@@ -1,4 +1,5 @@
-import { DEFAULT_LANGUAGE } from "@/app/sections";
+import { isSupportedLanguage } from "@/app/sections";
+import { notFound } from "next/navigation";
 import {
   redirectToLocalizedSection,
   resolveLanguageParams,
@@ -8,8 +9,8 @@ import {
 export default async function LanguageHomePage({ params }: LanguageHomePageProps) {
   const { rawLanguage, language } = await resolveLanguageParams(params);
 
-  if (!rawLanguage) {
-    redirectToLocalizedSection(DEFAULT_LANGUAGE, "about");
+  if (!isSupportedLanguage(rawLanguage)) {
+    notFound();
   }
 
   redirectToLocalizedSection(language, "about");

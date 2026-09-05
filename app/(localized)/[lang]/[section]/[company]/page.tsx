@@ -1,16 +1,12 @@
 import {
-  DEFAULT_LANGUAGE,
   isSupportedLanguage,
   isSupportedSection,
   resolveLanguage,
   resolveSection,
   SUPPORTED_LANGUAGES,
 } from "@/app/sections";
-import {
-  buildLocalizedCompanyMetadata,
-  buildLocalizedSectionMetadata,
-  redirectToLocalizedSection,
-} from "@/app/route-helpers";
+import { notFound } from "next/navigation";
+import { buildLocalizedCompanyMetadata } from "@/app/route-helpers";
 import { COMPANIES, getCompanyBySlug, getLocalizedCompany } from "@/src/content/portfolio";
 import AppDetailPage from "@/src/components/AppDetailPage/AppDetailPage";
 import { getTranslations } from "@/src/content/ui-text";
@@ -36,19 +32,21 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: LocalizedCompanyPageProps) {
   const resolvedParams = await params;
+  if (!isSupportedLanguage(resolvedParams?.lang) || !isSupportedSection(resolvedParams?.section)) {
+    return {};
+  }
+
   const language = resolveLanguage(resolvedParams?.lang);
   const section = resolveSection(resolvedParams?.section);
   const company = getCompanyBySlug(section as CompanySection, resolvedParams?.company);
 
-  if (company) {
-    return buildLocalizedCompanyMetadata(
-      language,
-      section,
-      getLocalizedCompany(company.id, language)
-    );
-  }
+  if (!company) return {};
 
-  return buildLocalizedSectionMetadata(language, section);
+  return buildLocalizedCompanyMetadata(
+    language,
+    section,
+    getLocalizedCompany(company.id, language)
+  );
 }
 
 export default async function LocalizedCompanyPage({ params }: LocalizedCompanyPageProps) {
@@ -59,17 +57,13 @@ export default async function LocalizedCompanyPage({ params }: LocalizedCompanyP
   const language = resolveLanguage(rawLanguage);
   const section = resolveSection(rawSection);
 
-  if (!isSupportedLanguage(rawLanguage)) {
-    redirectToLocalizedSection(DEFAULT_LANGUAGE, section);
-  }
-
-  if (!isSupportedSection(rawSection)) {
-    redirectToLocalizedSection(language, "about");
+  if (!isSupportedLanguage(rawLanguage) || !isSupportedSection(rawSection)) {
+    notFound();
   }
 
   const company = getCompanyBySlug(section as CompanySection, rawCompany);
   if (!company) {
-    redirectToLocalizedSection(language, section);
+    notFound();
   }
 
   const text = getTranslations(language);

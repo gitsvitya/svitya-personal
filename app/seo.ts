@@ -4,7 +4,14 @@ import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, resolveLanguage, resolveSection 
 import type { Language, Section } from "../src/types/domain";
 
 const DEFAULT_OG_IMAGE = "/logo512.png";
-const SITE_NAME = "Виктор Строков";
+const SITE_NAMES: Record<Language, string> = {
+  ru: "Виктор Строков",
+  en: "Victor Strokov",
+};
+
+export function getSiteName(language: Language): string {
+  return SITE_NAMES[language];
+}
 
 function ensureSectionPath(section?: string | null): `/${Section}` {
   const resolvedSection = resolveSection(section);
@@ -50,7 +57,7 @@ export function buildPageMetadata({
       title,
       description,
       url: canonicalUrl,
-      siteName: SITE_NAME,
+      siteName: getSiteName(resolvedLanguage),
       type: "website",
       images: [DEFAULT_OG_IMAGE],
     },

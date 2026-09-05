@@ -4,9 +4,10 @@ import styles from "./AppFooter.module.css";
 type AppFooterProps = {
   text: AppTranslations;
   isLanguageSwitching: boolean;
+  onOpenCookieSettings: () => void;
 };
 
-function AppFooter({ text, isLanguageSwitching }: AppFooterProps) {
+function AppFooter({ text, isLanguageSwitching, onOpenCookieSettings }: AppFooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -59,6 +60,9 @@ function AppFooter({ text, isLanguageSwitching }: AppFooterProps) {
             </div>
           </div>
           <span className={styles.metaDisclaimer}>{text.footer.metaDisclaimer}</span>
+          <button type="button" className={styles.cookieSettings} onClick={onOpenCookieSettings}>
+            {text.footer.cookieSettings}
+          </button>
         </div>
         <span className={styles.year}>{currentYear}</span>
       </div>

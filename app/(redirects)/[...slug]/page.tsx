@@ -1,5 +1,5 @@
-import { redirectToPreferredSection } from "@/app/route-helpers";
+import { notFound } from "next/navigation";
 
-export default async function UnknownPage() {
-  await redirectToPreferredSection("about");
+export default function UnknownPage() {
+  notFound();
 }

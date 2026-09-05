@@ -47,6 +47,7 @@ export const uiText = {
     },
     footer: {
       contacts: "Соцсети",
+      cookieSettings: "Настройки cookie",
       metaDisclaimer: "*принадлежит компании Meta, признанной экстремистской и запрещённой в РФ",
     },
     card: {
@@ -99,6 +100,7 @@ export const uiText = {
     },
     footer: {
       contacts: "Socials",
+      cookieSettings: "Cookie settings",
       metaDisclaimer:
         "*is owned by Meta Platforms, which is recognized as extremist and banned in the Russian Federation",
     },

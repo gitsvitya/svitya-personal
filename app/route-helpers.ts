@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import type { Language, Section } from "../src/types/domain";
 import type { LocalizedCompany } from "../src/content/portfolio";
-import { buildPageMetadata } from "./seo";
+import { buildPageMetadata, getSiteName } from "./seo";
 import {
   getPageCopy,
   isSupportedLanguage,
@@ -97,7 +97,7 @@ export function buildLocalizedCompanyMetadata(
   company: LocalizedCompany
 ): Metadata {
   return buildPageMetadata({
-    title: `${company.name} | Виктор Строков`,
+    title: `${company.name} | ${getSiteName(language)}`,
     description: `${company.title}. ${company.about}`,
     section,
     language,
