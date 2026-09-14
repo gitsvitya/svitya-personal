@@ -3,12 +3,12 @@ import { expect, test, type Page } from "@playwright/test";
 // Compare actual colors on animation frames: matching CSS durations alone misses
 // instant changes and a second transition on an inherited/currentColor value.
 async function measureThemeSwitch(page: Page) {
-  // Opening the menu/modal has its own animation; measure the theme from rest.
+  // Opening the menu has its own animation; measure the theme from rest.
   await page.evaluate(async () => {
     let running;
     do {
       running = document.getAnimations().filter((animation) => animation.playState === "running");
-      // Focus/hover changes can cancel a transition while a menu or modal opens.
+      // Focus/hover changes can cancel a transition while the menu opens.
       await Promise.allSettled(running.map((animation) => animation.finished));
     } while (running.length);
   });
@@ -57,7 +57,7 @@ async function measureThemeSwitch(page: Page) {
         color(getComputedStyle(element, pseudo).getPropertyValue(property))!
       );
     const before = snapshot();
-    (document.querySelector("header button") as HTMLButtonElement).click();
+    (document.querySelector("#theme-toggle") as HTMLButtonElement).click();
     const frames: { time: number; colors: number[][] }[] = [];
     const start = performance.now();
     await new Promise<void>((resolve) => {
@@ -109,21 +109,14 @@ async function measureThemeSwitch(page: Page) {
   });
 }
 
-test("synchronizes theme colors across pages, icons, menu, banner and modal", async ({
-  context,
-  page,
-}) => {
+test("synchronizes theme colors in settings, icons, menu and banner", async ({ context, page }) => {
   await context.addCookies([{ name: "theme", value: "light", url: "http://127.0.0.1:3100" }]);
-  for (const path of ["/ru/about", "/en/work", "/ru/work/cheminsight", "/ru/missing"]) {
-    await page.setViewportSize({ width: path === "/ru/about" ? 390 : 1280, height: 900 });
+  for (const path of ["/ru/settings", "/en/settings"]) {
+    await page.setViewportSize({ width: path === "/ru/settings" ? 390 : 1280, height: 900 });
     await page.goto(path);
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
-    if (path === "/ru/about") await page.getByRole("button", { name: "Разделы" }).click();
-    if (path === "/ru/work/cheminsight") {
-      await page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true }).click();
-      await expect(page.getByRole("dialog")).toHaveCSS("opacity", "1");
-    }
+    if (path === "/ru/settings") await page.getByRole("button", { name: "Разделы" }).click();
     for (const direction of ["dark", "light"]) {
       const result = await measureThemeSwitch(page);
       expect(result.sampledFrames, `${path} → ${direction}`).toBeGreaterThan(0);
@@ -141,10 +134,10 @@ test("finishes rapid theme toggles and honors reduced motion", async ({ context,
       { name: "analytics_consent", value: "denied", url: "http://127.0.0.1:3100" },
     ]);
     await page.emulateMedia({ reducedMotion });
-    await page.goto("/en/work/cheminsight");
+    await page.goto("/en/settings");
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
     await page.evaluate(async () => {
-      const toggle = document.querySelector("header button") as HTMLButtonElement;
+      const toggle = document.querySelector("#theme-toggle") as HTMLButtonElement;
       for (let click = 0; click < 3; click++) {
         toggle.click();
         await new Promise(requestAnimationFrame);
@@ -161,7 +154,7 @@ test("finishes rapid theme toggles and honors reduced motion", async ({ context,
     if (reducedMotion === "reduce") {
       const durations = await page.evaluate(() => [
         ...getComputedStyle(document.documentElement).transitionDuration.split(","),
-        getComputedStyle(document.querySelector("main li")!, "::marker").transitionDuration,
+        getComputedStyle(document.querySelector("#theme-toggle")!).transitionDuration,
       ]);
       expect(durations.every((duration) => parseFloat(duration) < 0.001)).toBe(true);
     }

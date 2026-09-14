@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import AppSettings from "@/src/components/AppSettings/AppSettings";
 import AppAboutMe from "@/src/components/AppAboutMe/AppAboutMe";
 import PortfolioSection from "@/src/components/PortfolioSection/PortfolioSection";
 import YandexAnalytics from "@/src/components/YandexAnalytics/YandexAnalytics";
@@ -37,6 +38,8 @@ export default async function LocalizedSectionPage({ params }: LocalizedSectionP
       <YandexAnalytics title={getPageCopy(language, section).title} />
       {section === "about" ? (
         <AppAboutMe text={text} language={language} />
+      ) : section === "settings" ? (
+        <AppSettings />
       ) : (
         <PortfolioSection section={section} language={language} text={text} />
       )}

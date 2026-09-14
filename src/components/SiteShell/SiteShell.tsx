@@ -17,6 +17,7 @@ import AppHeader from "../AppHeader/AppHeader";
 import CookieBanner from "../CookieBanner/CookieBanner";
 import { RouteTransitionContext, type RouteTransitionOptions } from "./RouteTransitionContext";
 import styles from "./SiteShell.module.css";
+import { SitePreferencesContext } from "./SitePreferencesContext";
 
 type SiteShellProps = {
   children: ReactNode;
@@ -83,34 +84,37 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
 
   return (
     <RouteTransitionContext.Provider value={routeTransitionValue}>
-      <div className={styles.page}>
-        <AppHeader
-          text={text}
-          onLanguageChange={changeLanguage}
-          language={language}
-          theme={theme}
-          setTheme={setTheme}
-          activePath={activePath}
-          onNavigate={navigateToSection}
-        />
-        <main id="main-content" className={styles.main} aria-busy={isPending}>
-          <div key={pathname} className={`${styles.content} route-reveal`}>
-            {children}
-          </div>
-        </main>
-        <AppFooter
-          text={text}
-          language={language}
-          onOpenCookieSettings={() => setAreCookieSettingsOpen(true)}
-        />
-        <div key={language} className="route-reveal">
-          <CookieBanner
+      <SitePreferencesContext.Provider
+        value={{
+          theme,
+          setTheme,
+          language,
+          changeLanguage,
+          openCookieSettings: () => setAreCookieSettingsOpen(true),
+        }}
+      >
+        <div className={styles.page}>
+          <AppHeader
             text={text}
-            forceOpen={areCookieSettingsOpen}
-            onClose={() => setAreCookieSettingsOpen(false)}
+            language={language}
+            activePath={activePath}
+            onNavigate={navigateToSection}
           />
+          <main id="main-content" className={styles.main} aria-busy={isPending}>
+            <div key={pathname} className={`${styles.content} route-reveal`}>
+              {children}
+            </div>
+          </main>
+          <AppFooter text={text} language={language} />
+          <div key={language} className="route-reveal">
+            <CookieBanner
+              text={text}
+              forceOpen={areCookieSettingsOpen}
+              onClose={() => setAreCookieSettingsOpen(false)}
+            />
+          </div>
         </div>
-      </div>
+      </SitePreferencesContext.Provider>
     </RouteTransitionContext.Provider>
   );
 }

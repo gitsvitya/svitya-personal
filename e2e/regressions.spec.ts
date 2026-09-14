@@ -9,7 +9,7 @@ test("serves the correct document language before hydration on every portfolio r
   const paths = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
     (match) => new URL(match[1]!).pathname
   );
-  expect(paths).toHaveLength(28);
+  expect(paths).toHaveLength(30);
   for (const path of paths) {
     const response = await request.get(path);
     expect(response.status(), path).toBe(200);
@@ -49,7 +49,7 @@ test("changes locale without reloading the document or losing a saved theme", as
     { name: "analytics_consent", value: "denied", url: origin },
   ]);
   await page.emulateMedia({ colorScheme: "light" });
-  await page.goto("/en/work/cheminsight");
+  await page.goto("/en/settings");
   await page.evaluate(() => {
     (window as Window & { localeSentinel?: boolean }).localeSentinel = true;
   });
@@ -58,7 +58,7 @@ test("changes locale without reloading the document or losing a saved theme", as
       .getByRole("button")
       .filter({ hasText: /^EnRu$/ })
       .click();
-    await expect(page).toHaveURL(new RegExp(`/${language}/work/cheminsight$`));
+    await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
     await expect(page.locator("html")).toHaveAttribute("lang", language);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     expect(
@@ -218,18 +218,21 @@ test("records each SPA page once and stops analytics after consent is withdrawn"
     title: "ChemInsight | Victor Strokov",
     referer: `${testOrigin}/en/work`,
   });
+  await page.locator('nav a[href="/en/settings"]').click();
+  await expect(page).toHaveURL(/\/en\/settings$/);
+  await expect.poll(async () => (await hits()).length).toBe(4);
   for (const [language, count] of [
-    ["ru", 4],
-    ["en", 5],
+    ["ru", 5],
+    ["en", 6],
   ] as const) {
     await page
       .getByRole("button")
       .filter({ hasText: /^EnRu$/ })
       .click();
-    await expect(page).toHaveURL(new RegExp(`/${language}/work/cheminsight$`));
+    await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
     await expect.poll(async () => (await hits()).length).toBe(count);
     expect((await hits())[count - 1]![3]).toMatchObject({
-      title: language === "ru" ? "ХимИнсайт | Виктор Строков" : "ChemInsight | Victor Strokov",
+      title: language === "ru" ? "Настройки | Виктор Строков" : "Settings | Victor Strokov",
     });
   }
   expect((await commands()).filter((command) => command[1] === "init")).toHaveLength(1);
@@ -240,9 +243,11 @@ test("records each SPA page once and stops analytics after consent is withdrawn"
     .toBe(1);
   await page.locator('nav a[href="/en/projects"]').click();
   await expect(page).toHaveURL(/\/en\/projects$/);
-  expect(await hits()).toHaveLength(5);
+  expect(await hits()).toHaveLength(6);
+  await page.locator('nav a[href="/en/settings"]').click();
+  await expect(page).toHaveURL(/\/en\/settings$/);
   await page.getByRole("button", { name: "Cookie settings" }).click();
   await page.getByRole("button", { name: "Allow analytics" }).click();
-  await expect.poll(async () => (await hits()).length).toBe(6);
-  expect((await hits())[5]![2]).toBe(`${testOrigin}/en/projects`);
+  await expect.poll(async () => (await hits()).length).toBe(7);
+  expect((await hits())[6]![2]).toBe(`${testOrigin}/en/settings`);
 });

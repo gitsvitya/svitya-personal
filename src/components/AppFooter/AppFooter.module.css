@@ -104,27 +104,7 @@
   line-height: 1.5;
 }
 
-.cookieSettings {
-  align-self: flex-start;
-  min-height: 44px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--text-primary);
-  font: inherit;
-  font-size: 14px;
-  line-height: 1.375;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-  transition:
-    outline-color var(--transition-theme),
-    color var(--transition-theme);
-}
-
-.link:focus-visible,
-.cookieSettings:focus-visible {
+.link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
@@ -136,10 +116,6 @@
   }
 
   .link:hover .linkText {
-    color: var(--accent);
-  }
-
-  .cookieSettings:hover {
     color: var(--accent);
   }
 }

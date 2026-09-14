@@ -13,6 +13,9 @@ test("keeps responsive layouts usable and captures visual review images", async 
     { name: "about-ru-mobile", path: "/ru/about", width: 390, theme: "light" },
     { name: "case-en-mobile", path: "/en/work/cheminsight", width: 390, theme: "dark" },
     { name: "about-en-tablet", path: "/en/about", width: 768, theme: "light" },
+    { name: "settings-ru-desktop", path: "/ru/settings", width: 1440, theme: "light" },
+    { name: "settings-en-small", path: "/en/settings", width: 320, theme: "dark" },
+    { name: "settings-ru-tablet", path: "/ru/settings", width: 769, theme: "light" },
   ];
   for (const { name, path, width, theme } of scenarios) {
     await context.addCookies([{ name: "theme", value: theme, url: origin }]);

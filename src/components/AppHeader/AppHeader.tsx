@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState, type Dispatch, type MouseEvent, type SetStateAction } from "react";
-import type { Language, SectionPath, Theme } from "../../types/domain";
+import { useEffect, useState, type MouseEvent } from "react";
+import type { Language, SectionPath } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
 import { shouldHandleClientNavigation } from "../../utils/navigation";
 import { buildLocalizedPath } from "../../utils/routing";
@@ -10,46 +10,24 @@ const DESKTOP_MEDIA_QUERY = "(min-width: 769px)";
 
 type AppHeaderProps = {
   text: AppTranslations;
-  onLanguageChange: (nextLanguage: Language) => void;
   language: Language;
-  theme: Theme;
-  setTheme: Dispatch<SetStateAction<Theme>>;
   activePath: SectionPath;
   onNavigate: (path: SectionPath) => void;
 };
 
-function AppHeader({
-  text,
-  onLanguageChange,
-  language,
-  theme,
-  setTheme,
-  activePath,
-  onNavigate,
-}: AppHeaderProps) {
+function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
   const menuRoute = `${language}${activePath}`;
   const [menuState, setMenuState] = useState({ route: menuRoute, open: false });
   const isMenuOpen = menuState.route === menuRoute && menuState.open;
   if (menuState.route !== menuRoute) setMenuState({ route: menuRoute, open: false });
 
-  const nextLng: Language = language === "ru" ? "en" : "ru";
-  const nextTheme: Theme = theme === "light" ? "dark" : "light";
-  const isDarkTheme = theme === "dark";
-  const isRussian = language === "ru";
   const navigationItems: Array<{ path: SectionPath; label: string }> = [
     { path: "/about", label: text.sections.about },
     { path: "/work", label: text.sections.work },
     { path: "/projects", label: text.sections.projects },
     { path: "/activities", label: text.sections.activities },
+    { path: "/settings", label: text.sections.settings },
   ];
-
-  function toggleTheme() {
-    setTheme(nextTheme);
-  }
-
-  function toggleLanguage() {
-    onLanguageChange(nextLng);
-  }
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -90,70 +68,6 @@ function AppHeader({
         {text.navigation.skipToContent}
       </a>
       <div className={`layout-container ${styles.container}`}>
-        <div className={styles.controls}>
-          <button
-            type="button"
-            className={styles.controlChanger}
-            onClick={toggleTheme}
-            aria-pressed={isDarkTheme}
-          >
-            <span
-              className={`${styles.controlChangerText} ${
-                !isDarkTheme ? styles.controlSwitcherActive : ""
-              }`}
-            >
-              <span key={language} className="route-reveal">
-                {text.theme.light}
-              </span>
-            </span>
-            <div
-              className={`${styles.controlSwitcher} ${
-                isDarkTheme ? styles.controlSwitcherActive : ""
-              }`}
-            >
-              <div className={styles.switcherThumb} />
-            </div>
-            <span
-              className={`${styles.controlChangerText} ${
-                isDarkTheme ? styles.controlSwitcherActive : ""
-              }`}
-            >
-              <span key={language} className="route-reveal">
-                {text.theme.dark}
-              </span>
-            </span>
-          </button>
-          <button
-            type="button"
-            className={styles.controlChanger}
-            onClick={toggleLanguage}
-            aria-pressed={isRussian}
-          >
-            <span
-              className={`${styles.controlChangerText} ${
-                !isRussian ? styles.controlSwitcherActive : ""
-              }`}
-            >
-              En
-            </span>
-            <div
-              className={`${styles.controlSwitcher} ${
-                isRussian ? styles.controlSwitcherActive : ""
-              }`}
-            >
-              <div className={styles.switcherThumb} />
-            </div>
-
-            <span
-              className={`${styles.controlChangerText} ${
-                isRussian ? styles.controlSwitcherActive : ""
-              }`}
-            >
-              Ru
-            </span>
-          </button>
-        </div>
-
         <nav className={styles.navigationBlock}>
           <button
             type="button"

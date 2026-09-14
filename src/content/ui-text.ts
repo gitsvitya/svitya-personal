@@ -18,6 +18,18 @@ export const uiText = {
       work: "Опыт работы",
       projects: "Проекты",
       activities: "Активности",
+      settings: "Настройки",
+    },
+    settings: {
+      theme: "Тема оформления",
+      themeDescription: "Выберите светлую или тёмную тему сайта.",
+      darkTheme: "Тёмная тема",
+      language: "Язык",
+      languageDescription: "Русская или английская версия сайта.",
+      russianLanguage: "Русский язык",
+      cookies: "Cookie",
+      cookiesDescription: "Управляйте согласием на использование аналитических cookie.",
+      cookieSettings: "Настройки cookie",
     },
     about: {
       title: "Виктор Строков",
@@ -61,7 +73,6 @@ export const uiText = {
     },
     footer: {
       contacts: "Соцсети",
-      cookieSettings: "Настройки cookie",
       metaDisclaimer: "*принадлежит компании Meta, признанной экстремистской и запрещённой в РФ",
     },
     card: {
@@ -85,6 +96,18 @@ export const uiText = {
       work: "Work experience",
       projects: "Projects",
       activities: "Activities",
+      settings: "Settings",
+    },
+    settings: {
+      theme: "Appearance",
+      themeDescription: "Choose a light or dark theme for the site.",
+      darkTheme: "Dark theme",
+      language: "Language",
+      languageDescription: "Browse the site in English or Russian.",
+      russianLanguage: "Russian language",
+      cookies: "Cookies",
+      cookiesDescription: "Manage your consent to analytics cookies.",
+      cookieSettings: "Cookie settings",
     },
     about: {
       title: "Victor Strokov",
@@ -128,7 +151,6 @@ export const uiText = {
     },
     footer: {
       contacts: "Socials",
-      cookieSettings: "Cookie settings",
       metaDisclaimer:
         "*is owned by Meta Platforms, which is recognized as extremist and banned in the Russian Federation",
     },

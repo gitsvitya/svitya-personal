@@ -69,6 +69,10 @@ export function isSupportedSection(value?: string | null): value is Section {
 
 const PAGE_COPY: PageCopyMap = {
   ru: {
+    settings: {
+      title: "Настройки | Виктор Строков",
+      description: "Настройки темы, языка и cookie сайта.",
+    },
     about: {
       title: "Обо мне | Виктор Строков",
       description:
@@ -89,6 +93,10 @@ const PAGE_COPY: PageCopyMap = {
     },
   },
   en: {
+    settings: {
+      title: "Settings | Victor Strokov",
+      description: "Site appearance, language and cookie preferences.",
+    },
     about: {
       title: "About | Victor Strokov",
       description:

@@ -1,8 +1,8 @@
 export const LANGUAGES = ["ru", "en"] as const;
 export const DEFAULT_LANGUAGE = "en" as const;
-export const SECTIONS = ["about", "work", "projects", "activities"] as const;
+export const SECTIONS = ["about", "work", "projects", "activities", "settings"] as const;
 export const COMPANY_SECTIONS = ["work", "projects", "activities"] as const;
-export const SECTION_PATHS = ["/about", "/work", "/projects", "/activities"] as const;
+export const SECTION_PATHS = ["/about", "/work", "/projects", "/activities", "/settings"] as const;
 export const THEMES = ["light", "dark"] as const;
 export const COMPANY_IDS = [
   "CI",

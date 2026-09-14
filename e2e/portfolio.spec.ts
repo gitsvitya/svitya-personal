@@ -28,14 +28,14 @@ test("localizes company metadata", async ({ page }) => {
 test("keeps the preferred theme when changing language", async ({ context, page }) => {
   await context.clearCookies();
   await page.emulateMedia({ colorScheme: "dark" });
-  await page.goto("/en/about");
+  await page.goto("/en/settings");
 
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page
     .getByRole("button")
     .filter({ hasText: /^EnRu$/ })
     .click();
-  await expect(page).toHaveURL(/\/ru\/about$/);
+  await expect(page).toHaveURL(/\/ru\/settings$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
@@ -72,7 +72,7 @@ test("lets the user reopen and update cookie settings", async ({ context, page }
     },
   ]);
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/en/about");
+  await page.goto("/en/settings");
 
   await expect(page.getByRole("region", { name: "Analytics cookie settings" })).toHaveCount(0);
   await page.getByRole("button", { name: "Cookie settings" }).click();
