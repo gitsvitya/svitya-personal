@@ -7,6 +7,7 @@ const nextConfig = {
   agentRules: false,
   output: "standalone",
   outputFileTracingRoot: projectRoot,
+  experimental: { globalNotFound: true },
 };
 
 export default nextConfig;

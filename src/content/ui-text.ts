@@ -11,6 +11,7 @@ export const uiText = {
     },
     navigation: {
       menuLabel: "Разделы",
+      skipToContent: "Перейти к содержимому",
     },
     sections: {
       about: "Обо мне",
@@ -21,14 +22,23 @@ export const uiText = {
     about: {
       title: "Виктор Строков",
       portraitAlt: "Портрет Виктора Строкова",
+      contact: "Обсудить проект",
+      explore: "Посмотреть кейсы",
+      experience: "Более 10 лет в продукте, проектах и аналитике",
       subtitle: "Управление проектами, разработка продуктов, исследования и аналитика",
       description:
-        "Привет! Меня зовут Виктор. Я руководитель проектов с более чем 10-летним опытом работы в международных и российских компаниях, а также в собственных проектах. Занимаюсь развитием информационных и цифровых продуктов, выстраиваю бизнес-процессы и работаю на стыке аналитики, продукта и бизнеса. Всегда открыт к новым знакомствам и профессиональному сотрудничеству.",
+        "Развиваю информационные и цифровые продукты, выстраиваю бизнес-процессы и объединяю работу аналитиков, дизайнеров и разработчиков. Мой опыт — международные и российские компании, а также собственные проекты. Открыт к новым задачам и профессиональному сотрудничеству.",
+    },
+    notFound: {
+      title: "Страница не найдена",
+      description:
+        "Возможно, ссылка устарела или в адресе опечатка. Вернитесь на главную, чтобы продолжить знакомство.",
+      home: "На главную",
     },
     cookieBanner: {
       label: "Настройки аналитических cookie",
       description:
-        "Сайт использует обязательные cookie-файлы. Аналитические cookie Яндекс Метрики загружаются только с вашего согласия.",
+        "Обязательные cookie сохраняют настройки сайта. Яндекс Метрика подключается только с вашего согласия.",
       accept: "Разрешить аналитику",
       reject: "Только необходимые",
     },
@@ -36,7 +46,11 @@ export const uiText = {
       back: "Назад",
       backToSection: "Вернуться к разделу",
       materialsTitle: "Материалы",
-      download: "Скачать",
+      download: "Скачать PDF",
+      contribution: "Мой вклад",
+      challenge: "Задача",
+      outcome: "Результат",
+      materialOf: "из",
       openImage: "Открыть изображение в новом окне",
       openLink: "Открыть ссылку в новом окне",
       previousMaterial: "Предыдущий материал",
@@ -64,6 +78,7 @@ export const uiText = {
     },
     navigation: {
       menuLabel: "Sections",
+      skipToContent: "Skip to content",
     },
     sections: {
       about: "About me",
@@ -74,14 +89,23 @@ export const uiText = {
     about: {
       title: "Victor Strokov",
       portraitAlt: "Portrait of Victor Strokov",
+      contact: "Let’s talk",
+      explore: "Explore my work",
+      experience: "10+ years in products, projects and analytics",
       subtitle: "Project Management, Product Development, Research & Analytics",
       description:
-        "Hi! My name is Victor. I am a project manager with over 10 years of experience working in international and Russian companies, as well as on my own projects. I focus on developing information and digital products, building business processes, and working at the intersection of analytics, product, and business. I am always open to new connections and professional collaboration.",
+        "I develop information and digital products, build business processes, and bring together analysts, designers and developers. My experience spans international and Russian companies, as well as my own projects. I am open to new challenges and professional collaboration.",
+    },
+    notFound: {
+      title: "Page not found",
+      description:
+        "The link may be out of date or the address may contain a typo. Head back to the homepage to keep exploring.",
+      home: "Back to home",
     },
     cookieBanner: {
       label: "Analytics cookie settings",
       description:
-        "This website uses essential cookies. Yandex Metrica analytics cookies are loaded only with your consent.",
+        "Essential cookies remember your preferences. Yandex Metrica is enabled only with your consent.",
       accept: "Allow analytics",
       reject: "Essential only",
     },
@@ -89,7 +113,11 @@ export const uiText = {
       back: "Back",
       backToSection: "Back to section",
       materialsTitle: "Materials",
-      download: "Download",
+      download: "Download PDF",
+      contribution: "My contribution",
+      challenge: "The challenge",
+      outcome: "The outcome",
+      materialOf: "of",
       openImage: "Open image in a new window",
       openLink: "Open link in a new window",
       previousMaterial: "Previous material",

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
 import { getTransitionDuration } from "../../utils/motion";
@@ -19,6 +19,7 @@ type MaterialModalContentProps = {
   text: AppTranslations;
   companyName: string;
   isVisible: boolean;
+  navigation?: ReactNode;
   titleId?: string;
   descriptionId?: string;
 };
@@ -136,7 +137,15 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
       <div className={styles.previewGrid}>
         {items.map((material, index) => (
           <div key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
-            <button type="button" className={styles.previewButton} onClick={() => openModal(index)}>
+            <button
+              type="button"
+              className={styles.previewButton}
+              onClick={(event) => {
+                // Safari does not focus buttons on pointer clicks; keep a reliable return target.
+                event.currentTarget.focus({ preventScroll: true });
+                openModal(index);
+              }}
+            >
               <Image
                 className={styles.previewImage}
                 src={material.previewSrc}
@@ -155,32 +164,35 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
           showContent={isModalVisible}
           setShowContent={setIsModalVisible}
           closeLabel={text.modal.closeLabel}
-          overlayControls={
-            hasNavigation ? (
-              <>
-                <button
-                  type="button"
-                  className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
-                  onClick={showPreviousMaterial}
-                  disabled={!isMaterialVisible}
-                  aria-label={text.detail.previousMaterial}
-                />
-                <button
-                  type="button"
-                  className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
-                  onClick={showNextMaterial}
-                  disabled={!isMaterialVisible}
-                  aria-label={text.detail.nextMaterial}
-                />
-              </>
-            ) : undefined
-          }
         >
           <MaterialModalContent
             material={activeMaterial}
             text={text}
             companyName={companyName}
             isVisible={isMaterialVisible}
+            navigation={
+              hasNavigation ? (
+                <div className={styles.materialNavigation}>
+                  <button
+                    type="button"
+                    className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
+                    onClick={showPreviousMaterial}
+                    disabled={!isMaterialVisible}
+                    aria-label={text.detail.previousMaterial}
+                  />
+                  <span className={styles.materialCount} aria-live="polite" aria-atomic="true">
+                    {(activeIndex ?? 0) + 1} {text.detail.materialOf} {items.length}
+                  </span>
+                  <button
+                    type="button"
+                    className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
+                    onClick={showNextMaterial}
+                    disabled={!isMaterialVisible}
+                    aria-label={text.detail.nextMaterial}
+                  />
+                </div>
+              ) : undefined
+            }
           />
         </Modal>
       )}
@@ -195,6 +207,7 @@ function MaterialModalContent({
   isVisible,
   titleId,
   descriptionId,
+  navigation,
 }: MaterialModalContentProps) {
   const action = getMaterialAction(material, text);
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
@@ -212,6 +225,7 @@ function MaterialModalContent({
           sizes="(max-width: 640px) calc(100vw - 64px), 400px"
         />
       </div>
+      {navigation}
       <p id={descriptionId} className={`${styles.description} ${visibilityClass}`}>
         {material.description}
       </p>
@@ -223,7 +237,9 @@ function MaterialModalContent({
         rel={action.target ? "noopener noreferrer" : undefined}
         aria-label={action.label}
         title={action.label}
-      />
+      >
+        {action.label}
+      </a>
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { BASE_URL } from "./site";
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, resolveLanguage, resolveSection } from "./sections";
 import type { Language, Section } from "../src/types/domain";
 
-const DEFAULT_OG_IMAGE = "/logo512.png";
 const SITE_NAMES: Record<Language, string> = {
   ru: "Виктор Строков",
   en: "Victor Strokov",
@@ -38,6 +37,7 @@ export function buildPageMetadata({
   const detailPath = slug ? `/${slug}` : "";
   const canonicalPath = `/${resolvedLanguage}${sectionPath}${detailPath}`;
   const canonicalUrl = `${BASE_URL}${canonicalPath}`;
+  const image = { url: `/og${canonicalPath}`, width: 1200, height: 630, alt: title };
   const languageAlternates: Record<string, string> = {
     "x-default": `/${DEFAULT_LANGUAGE}${sectionPath}${detailPath}`,
   };
@@ -59,13 +59,14 @@ export function buildPageMetadata({
       url: canonicalUrl,
       siteName: getSiteName(resolvedLanguage),
       type: "website",
-      images: [DEFAULT_OG_IMAGE],
+      locale: resolvedLanguage === "ru" ? "ru_RU" : "en_US",
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [DEFAULT_OG_IMAGE],
+      images: [image],
     },
   };
 }

@@ -3,6 +3,7 @@ import { ACTIVITY_COMPANIES } from "./activities";
 import { PROJECT_COMPANIES } from "./projects";
 import type { CompanyMaterial, CompanyRecord, LocalizedCompany, LocalizedMaterial } from "./types";
 import { WORK_COMPANIES } from "./work";
+import { CASE_STUDIES } from "./case-studies";
 
 export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   ...WORK_COMPANIES,
@@ -41,6 +42,7 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
     logo: company.logo,
     url: company.url,
     linkLabel: company.linkLabel,
+    caseStudy: CASE_STUDIES[companyId]?.[language],
     materials: company.materials
       ? {
           enabled: company.materials.enabled,

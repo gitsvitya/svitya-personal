@@ -14,7 +14,6 @@ type AppHeaderProps = {
   language: Language;
   theme: Theme;
   setTheme: Dispatch<SetStateAction<Theme>>;
-  isLanguageSwitching: boolean;
   activePath: SectionPath;
   onNavigate: (path: SectionPath) => void;
 };
@@ -25,11 +24,13 @@ function AppHeader({
   language,
   theme,
   setTheme,
-  isLanguageSwitching,
   activePath,
   onNavigate,
 }: AppHeaderProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRoute = `${language}${activePath}`;
+  const [menuState, setMenuState] = useState({ route: menuRoute, open: false });
+  const isMenuOpen = menuState.route === menuRoute && menuState.open;
+  if (menuState.route !== menuRoute) setMenuState({ route: menuRoute, open: false });
 
   const nextLng: Language = language === "ru" ? "en" : "ru";
   const nextTheme: Theme = theme === "light" ? "dark" : "light";
@@ -52,13 +53,13 @@ function AppHeader({
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsMenuOpen(false);
+      if (event.key === "Escape") setMenuState((previous) => ({ ...previous, open: false }));
     }
 
     const desktopMedia = window.matchMedia(DESKTOP_MEDIA_QUERY);
 
     function handleDesktopChange(event: MediaQueryListEvent) {
-      if (event.matches) setIsMenuOpen(false);
+      if (event.matches) setMenuState((previous) => ({ ...previous, open: false }));
     }
 
     document.addEventListener("keydown", handleKeyDown);
@@ -71,11 +72,7 @@ function AppHeader({
   }, []);
 
   function toggleMenu() {
-    setIsMenuOpen((prev) => !prev);
-  }
-
-  function closeMenu() {
-    setIsMenuOpen(false);
+    setMenuState({ route: menuRoute, open: !isMenuOpen });
   }
 
   function handleNavigation(event: MouseEvent<HTMLAnchorElement>, path: SectionPath) {
@@ -83,18 +80,20 @@ function AppHeader({
 
     event.preventDefault();
     onNavigate(path);
-    closeMenu();
+    // On a new route, the menu closes in the same render as the content changes.
+    if (path === activePath) setMenuState({ route: menuRoute, open: false });
   }
 
   return (
     <header className={styles.header}>
+      <a className="skip-link" href="#main-content">
+        {text.navigation.skipToContent}
+      </a>
       <div className={`layout-container ${styles.container}`}>
         <div className={styles.controls}>
           <button
             type="button"
-            className={`${styles.controlChanger} fade-transition ${
-              isLanguageSwitching ? "fade-hidden" : "fade-visible"
-            }`}
+            className={styles.controlChanger}
             onClick={toggleTheme}
             aria-pressed={isDarkTheme}
           >
@@ -103,7 +102,9 @@ function AppHeader({
                 !isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
-              {text.theme.light}
+              <span key={language} className="route-reveal">
+                {text.theme.light}
+              </span>
             </span>
             <div
               className={`${styles.controlSwitcher} ${
@@ -117,7 +118,9 @@ function AppHeader({
                 isDarkTheme ? styles.controlSwitcherActive : ""
               }`}
             >
-              {text.theme.dark}
+              <span key={language} className="route-reveal">
+                {text.theme.dark}
+              </span>
             </span>
           </button>
           <button
@@ -151,11 +154,7 @@ function AppHeader({
           </button>
         </div>
 
-        <nav
-          className={`${styles.navigationBlock} fade-transition ${
-            isLanguageSwitching ? "fade-hidden" : "fade-visible"
-          }`}
-        >
+        <nav className={styles.navigationBlock}>
           <button
             type="button"
             className={`${styles.menuToggle} ${isMenuOpen ? styles.menuToggleActive : ""}`}
@@ -187,7 +186,9 @@ function AppHeader({
                     aria-current={isActive ? "page" : undefined}
                     onClick={(event) => handleNavigation(event, path)}
                   >
-                    {label}
+                    <span key={language} className="route-reveal">
+                      {label}
+                    </span>
                   </Link>
                 </li>
               );

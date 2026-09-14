@@ -1,0 +1,29 @@
+.container {
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 45dvh;
+}
+
+.container h1 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+}
+
+.container p {
+  margin: 0;
+  max-width: 50ch;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-subtle);
+  transition: color var(--transition-theme);
+}
+
+.container .code {
+  color: var(--accent);
+  font-size: 18px;
+  letter-spacing: 0.12em;
+}

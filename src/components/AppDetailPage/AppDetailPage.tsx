@@ -37,7 +37,12 @@ function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageP
           </span>
           <span className={styles.backText}>{text.detail.back}</span>
         </button>
-        <DetailContent company={company} titleId={titleId} descriptionId={descriptionId} />
+        <DetailContent
+          company={company}
+          titleId={titleId}
+          descriptionId={descriptionId}
+          text={text}
+        />
         {materials && (
           <MaterialsGallery items={materials.items} text={text} companyName={company.name} />
         )}

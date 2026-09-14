@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import AppAboutMe from "@/src/components/AppAboutMe/AppAboutMe";
 import PortfolioSection from "@/src/components/PortfolioSection/PortfolioSection";
+import YandexAnalytics from "@/src/components/YandexAnalytics/YandexAnalytics";
+import { getPageCopy } from "@/app/sections";
 import { getTranslations } from "@/src/content/ui-text";
 import {
   buildLocalizedSectionMetadata,
@@ -12,6 +14,8 @@ import {
 export function generateStaticParams() {
   return getLocalizedSectionStaticParams();
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: LocalizedSectionPageProps) {
   const { language, section } = await resolveLocalizedSectionParams(params);
@@ -28,9 +32,14 @@ export default async function LocalizedSectionPage({ params }: LocalizedSectionP
 
   const text = getTranslations(language);
 
-  if (section === "about") {
-    return <AppAboutMe text={text} />;
-  }
-
-  return <PortfolioSection section={section} language={language} text={text} />;
+  return (
+    <>
+      <YandexAnalytics title={getPageCopy(language, section).title} />
+      {section === "about" ? (
+        <AppAboutMe text={text} language={language} />
+      ) : (
+        <PortfolioSection section={section} language={language} text={text} />
+      )}
+    </>
+  );
 }

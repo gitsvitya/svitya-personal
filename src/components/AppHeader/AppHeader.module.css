@@ -5,7 +5,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -29,17 +29,18 @@
   outline: none;
   color: var(--text-primary);
   transition:
+    outline-color var(--transition-theme),
     opacity var(--transition-fast),
-    color var(--transition-slow),
-    border-color var(--transition-slow),
-    background-color var(--transition-slow);
+    color var(--transition-theme),
+    border-color var(--transition-theme),
+    background-color var(--transition-theme);
 }
 
 .controlChangerText {
   display: inline-flex;
   align-items: center;
   height: 1em;
-  font-family: "VremenaGrotesk", sans-serif;
+  font-family: var(--font-body), sans-serif;
   text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
@@ -50,7 +51,7 @@
   color: var(--text-primary);
   text-align: start;
   transform: translateY(2px);
-  transition: color var(--transition-slow);
+  transition: color var(--transition-theme);
 }
 
 .controlSwitcher {
@@ -65,9 +66,8 @@
   padding: 2px;
   box-sizing: border-box;
   transition:
-    color var(--transition-slow),
-    border var(--transition-slow),
-    background-color var(--transition-slow);
+    border-color var(--transition-theme),
+    background-color var(--transition-theme);
 }
 
 .switcherThumb {
@@ -77,8 +77,8 @@
   background-color: var(--control-thumb);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
   transition:
-    transform var(--transition-slow),
-    background-color var(--transition-slow);
+    transform var(--transition-fast),
+    background-color var(--transition-theme);
 }
 
 .controlSwitcherActive .switcherThumb {
@@ -105,10 +105,11 @@
   line-height: 1.2;
   cursor: pointer;
   transition:
-    border-color var(--transition-slow),
-    background-color var(--transition-slow),
-    color var(--transition-slow),
-    opacity var(--transition-slow);
+    outline-color var(--transition-theme),
+    border-color var(--transition-theme),
+    background-color var(--transition-theme),
+    color var(--transition-theme),
+    opacity var(--transition-fast);
 }
 
 .menuToggle:focus-visible {
@@ -122,7 +123,7 @@
 }
 
 .menuToggleLabel {
-  font-family: "VremenaGrotesk", sans-serif;
+  font-family: var(--font-body), sans-serif;
 }
 
 .menuIcon {
@@ -175,7 +176,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-family: "VremenaGrotesk", sans-serif;
+  font-family: var(--font-body), sans-serif;
   text-rendering: optimizeLegibility;
   position: relative;
   padding: 0;
@@ -187,9 +188,10 @@
   text-decoration: none;
   color: var(--text-primary);
   transition:
-    opacity var(--transition-slow),
-    color var(--transition-slow),
-    text-decoration var(--transition-slow);
+    outline-color var(--transition-theme),
+    opacity var(--transition-fast),
+    color var(--transition-theme),
+    text-decoration-color var(--transition-theme);
   outline: none;
   background: transparent;
   border: none;
@@ -208,6 +210,7 @@
   transform-origin: left;
   opacity: 0;
   transition:
+    background-color var(--transition-theme),
     transform var(--transition-fast),
     opacity var(--transition-fast);
 }
@@ -238,10 +241,6 @@
     border-color: var(--accent);
   }
 
-  .controlChanger:hover .controlSwitcherActive {
-    color: var(--accent);
-  }
-
   .controlChanger:hover .switcherThumb {
     background-color: var(--accent);
   }
@@ -261,16 +260,25 @@
 
 @media (max-width: 768px) {
   .container {
-    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .controls {
+    align-self: center;
+    gap: 8px;
   }
 
   .navigationBlock {
-    width: 100%;
+    width: auto;
     justify-content: flex-end;
   }
 
   .menuToggle {
     display: inline-flex;
+    font-size: 16px;
+    padding: 10px;
   }
 
   .listItems {
@@ -294,12 +302,11 @@
     transform: translateY(-8px) scale(0.98);
     transform-origin: top right;
     transition:
-      opacity var(--transition-slow),
-      transform var(--transition-slow),
-      visibility var(--transition-slow),
-      color var(--transition-slow),
-      border var(--transition-slow),
-      background-color var(--transition-slow);
+      opacity var(--transition-fast),
+      transform var(--transition-fast),
+      visibility var(--transition-fast),
+      border-color var(--transition-theme),
+      background-color var(--transition-theme);
   }
 
   .menuOpen {
@@ -315,38 +322,50 @@
 }
 
 @media (max-width: 640px) {
-  .container {
-    gap: 16px;
-  }
-
-  .controlChangerText {
-    font-size: 14px;
-  }
-
-  .menuToggle {
-    font-size: 18px;
-  }
-
   .listItemLink {
     font-size: 18px;
+  }
+  .controlChanger {
+    gap: 5px;
+    padding: 0 8px;
+  }
+  .controlChangerText {
+    font-size: 12px;
+  }
+  .controlSwitcher {
+    width: 34px;
+    height: 20px;
+    padding: 2px;
+  }
+  .switcherThumb {
+    width: 14px;
+    height: 14px;
+  }
+  .controlSwitcherActive .switcherThumb {
+    transform: translateX(14px);
+  }
+  .menuToggleLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 360px) {
+  .container {
+    gap: 8px;
+  }
+  .listItems {
+    min-width: 180px;
+  }
   .controls {
     gap: 6px;
   }
-
   .controlChanger {
-    gap: 6px;
-    padding: 0 7px;
-  }
-
-  .controlChangerText {
-    font-size: 13px;
-  }
-
-  .listItems {
-    min-width: 180px;
+    padding: 0 6px;
+    gap: 4px;
   }
 }

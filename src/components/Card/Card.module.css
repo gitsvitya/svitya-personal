@@ -1,194 +1,116 @@
 .card {
   display: grid;
-  grid-template-columns: 70% 30%;
-  padding: 20px;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 24px;
+  padding: 24px;
   width: 100%;
-  max-width: 600px;
-  min-height: 260px;
-  border: 3px solid var(--border-color);
-  border-radius: 20px;
-  box-sizing: border-box;
-  background-color: var(--bg-surface);
+  min-height: 244px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-surface);
   color: var(--text-primary);
-  font-family: "VremenaGrotesk", sans-serif;
-  text-rendering: optimizeLegibility;
   text-decoration: none;
-  outline: none;
-  text-align: left;
-  appearance: none;
   cursor: pointer;
   transition:
-    background-color var(--transition-slow),
-    border-color var(--transition-slow);
+    color var(--transition-theme),
+    outline-color var(--transition-theme),
+    border-color var(--transition-theme),
+    background-color var(--transition-theme);
 }
 
 .card:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 6px;
-  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
-
 .cardText {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-right: 20px;
-  transition: color var(--transition-slow);
+  gap: 12px;
+  min-width: 0;
 }
-
 .cardYear {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 300;
   line-height: 1.5;
+  color: var(--text-subtle);
+  transition: color var(--transition-theme);
 }
-
 .cardCompanyName {
-  margin: 0;
-  padding: 0;
-  font-size: 28px;
-  font-style: normal;
+  font-size: 26px;
   font-weight: 400;
-  line-height: 1.375;
-  transition: color var(--transition-slow);
-  color: var(--text-primary);
+  line-height: 1.25;
+  overflow-wrap: break-word;
 }
-
 .cardTitle {
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--text-subtle);
+  transition: color var(--transition-theme);
 }
-
 .cardCta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 12px;
-  width: 50%;
-  align-self: center;
-  background-color: var(--accent-fill);
-  color: var(--button-text);
-  border: none;
-  border-radius: 20px;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transform: translateY(8px);
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
-  transition:
-    opacity var(--transition-slow),
-    max-height var(--transition-fast),
-    padding var(--transition-fast),
-    transform var(--transition-slow),
-    background-color var(--transition-slow),
-    color var(--transition-slow);
+  color: var(--accent);
+  transition: color var(--transition-theme);
 }
-
+.cardCta span {
+  transition: transform var(--transition-fast);
+}
 .logoPic {
-  width: 100%;
-  height: auto;
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
   align-self: center;
-  justify-self: end;
-  overflow: visible;
-  transition:
-    width var(--transition-slow),
-    height var(--transition-slow);
 }
 
-@media (hover: hover) and (pointer: fine) and (min-width: 641px) {
+@media (hover: hover) and (pointer: fine) {
   .card:hover {
     border-color: var(--accent);
   }
-
-  .card:hover .cardText {
-    justify-content: space-between;
-  }
-
-  .card:hover .cardCompanyName {
-    color: var(--accent);
-  }
-
-  .card:hover .cardCta,
-  .card:focus-visible .cardCta,
-  .card:active .cardCta {
-    opacity: 1;
-    max-height: 44px;
-    padding: 10px 12px;
-    transform: translateY(0);
-  }
-
-  .card:hover .logoPic {
-    width: 105%;
-  }
-}
-
-@media (hover: none) {
-  .cardCta {
-    opacity: 1;
-    max-height: 44px;
-    padding: 10px 12px;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 1024px) {
-  .cardCompanyName {
-    font-size: 24px;
-  }
-
-  .cardTitle {
-    font-size: 18px;
+  .card:hover .cardCta span {
+    transform: translateX(4px);
   }
 }
 
 @media (max-width: 640px) {
   .card {
-    min-height: 210px;
+    grid-template-columns: minmax(0, 1fr) 80px;
+    padding: 20px;
+    gap: 16px;
+    min-height: 220px;
   }
-
-  .cardText {
-    padding-right: 10px;
-  }
-
-  .cardYear {
-    font-size: 14px;
-  }
-
   .cardCompanyName {
-    font-size: 20px;
+    font-size: 22px;
   }
-
   .cardTitle {
     font-size: 16px;
   }
-
   .cardCta {
-    font-size: 14px;
-    opacity: 1;
-    max-height: 44px;
-    min-height: 44px;
-    padding: 10px 12px;
-    transform: translateY(0);
+    font-size: 15px;
+  }
+  .logoPic {
+    width: 80px;
+    height: 80px;
   }
 }
 
 @media (max-width: 360px) {
   .card {
-    padding: 14px;
-    grid-template-columns: 72% 28%;
-    min-height: 200px;
+    padding: 16px;
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) 64px;
   }
-
   .cardCompanyName {
-    font-size: 18px;
+    font-size: 20px;
+  }
+  .logoPic {
+    width: 64px;
+    height: 64px;
   }
 }

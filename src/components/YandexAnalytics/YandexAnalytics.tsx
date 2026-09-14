@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useAnalyticsConsent } from "../../hooks/useAnalyticsConsent";
 import type { AnalyticsConsent } from "../../utils/analyticsConsent";
 
@@ -16,6 +17,7 @@ type YandexCommand = ((...args: unknown[]) => void) & {
 type YandexWindow = Window & {
   ym?: YandexCommand;
   __svityaYandexInitialized?: boolean;
+  __svityaYandexLastUrl?: string;
 };
 
 export function shouldEnableYandexAnalytics(consent: AnalyticsConsent, hostname: string): boolean {
@@ -46,6 +48,7 @@ function initializeYandexAnalytics(target: YandexWindow, documentNode: Document)
   }
 
   ym(COUNTER_ID, "init", {
+    defer: true,
     clickmap: true,
     trackLinks: true,
     accurateTrackBounce: true,
@@ -57,19 +60,30 @@ function stopYandexAnalytics(target: YandexWindow): void {
   if (!target.__svityaYandexInitialized) return;
   target.ym?.(COUNTER_ID, "destruct");
   target.__svityaYandexInitialized = false;
+  delete target.__svityaYandexLastUrl;
 }
 
-function YandexAnalytics() {
+function YandexAnalytics({ title }: { title: string }) {
   const consent = useAnalyticsConsent();
+  const pathname = usePathname();
 
   useEffect(() => {
     const target = window as YandexWindow;
     if (shouldEnableYandexAnalytics(consent, window.location.hostname)) {
       initializeYandexAnalytics(target, document);
+      const url = window.location.href;
+      if (target.__svityaYandexLastUrl !== url) {
+        target.ym?.(COUNTER_ID, "hit", url, {
+          // Receive the committed page title directly; Next may still be updating <head>.
+          title,
+          referer: target.__svityaYandexLastUrl || document.referrer,
+        });
+        target.__svityaYandexLastUrl = url;
+      }
     } else {
       stopYandexAnalytics(target);
     }
-  }, [consent]);
+  }, [consent, pathname, title]);
 
   return null;
 }

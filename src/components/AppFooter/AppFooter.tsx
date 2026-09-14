@@ -1,23 +1,20 @@
+import type { Language } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
+import SocialIcon from "./SocialIcon";
 import styles from "./AppFooter.module.css";
 
 type AppFooterProps = {
   text: AppTranslations;
-  isLanguageSwitching: boolean;
+  language: Language;
   onOpenCookieSettings: () => void;
 };
 
-function AppFooter({ text, isLanguageSwitching, onOpenCookieSettings }: AppFooterProps) {
+function AppFooter({ text, language, onOpenCookieSettings }: AppFooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      className={`${styles.footer} fade-transition ${
-        isLanguageSwitching ? "fade-hidden" : "fade-visible"
-      }`}
-      id="footer"
-    >
-      <div className={`layout-container ${styles.container}`}>
+    <footer className={styles.footer} id="footer">
+      <div key={language} className={`layout-container ${styles.container} route-reveal`}>
         <div className={styles.disclaimerBlock}>
           <div className={styles.contactsBlock}>
             <span className={styles.text}>{text.footer.contacts}:</span>
@@ -30,7 +27,7 @@ function AppFooter({ text, isLanguageSwitching, onOpenCookieSettings }: AppFoote
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <span className={`${styles.linkPic} ${styles.linkPicTelegram}`} />
+                    <SocialIcon name="telegram" className={styles.linkPic} />
                     <span className={styles.linkText}>Telegram</span>
                   </a>
                 </li>
@@ -41,7 +38,7 @@ function AppFooter({ text, isLanguageSwitching, onOpenCookieSettings }: AppFoote
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <span className={`${styles.linkPic} ${styles.linkPicInstagram}`} />
+                    <SocialIcon name="instagram" className={styles.linkPic} />
                     <span className={styles.linkText}>Instagram*</span>
                   </a>
                 </li>
@@ -52,7 +49,7 @@ function AppFooter({ text, isLanguageSwitching, onOpenCookieSettings }: AppFoote
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <span className={`${styles.linkPic} ${styles.linkPicLinkedin}`} />
+                    <SocialIcon name="linkedin" className={styles.linkPic} />
                     <span className={styles.linkText}>LinkedIn</span>
                   </a>
                 </li>

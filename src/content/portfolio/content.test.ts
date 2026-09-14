@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { COMPANY_IDS, LANGUAGES } from "../../types/domain";
 import { COMPANIES } from "./registry";
+import { CASE_STUDIES } from "./case-studies";
 
 const PUBLIC_DIRECTORY = join(process.cwd(), "public");
 
@@ -52,6 +53,19 @@ function expectExternalUrl(value: string): void {
 }
 
 describe("portfolio content", () => {
+  it("provides complete case studies in both languages for existing companies", () => {
+    for (const [id, translations] of Object.entries(CASE_STUDIES)) {
+      expect(COMPANY_IDS).toContain(id);
+      for (const language of LANGUAGES) {
+        const study = translations[language];
+        expect(study.challenge.trim()).not.toBe("");
+        expect(study.outcome.trim()).not.toBe("");
+        expect(study.contribution.length).toBeGreaterThan(0);
+        for (const item of study.contribution) expect(item.trim()).not.toBe("");
+      }
+    }
+  });
+
   it("keeps tracked asset casing identical to the working tree", () => {
     if (!TRACKED_FILES) return;
 

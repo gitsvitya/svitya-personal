@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, useTransition, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { useThemePreference } from "../../hooks/useThemePreference";
@@ -12,7 +12,6 @@ import {
   normalizeSectionPath,
   parseLocalizedPath,
 } from "../../utils/routing";
-import { getTransitionDuration } from "../../utils/motion";
 import AppFooter from "../AppFooter/AppFooter";
 import AppHeader from "../AppHeader/AppHeader";
 import CookieBanner from "../CookieBanner/CookieBanner";
@@ -32,32 +31,24 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
   const activePath = normalizeSectionPath(parsedPath.sectionPath);
   const text = getTranslations(language);
   const { theme, setTheme } = useThemePreference("light");
-  const [transitionKind, setTransitionKind] = useState<"route" | "language" | null>(null);
+  const [isPending, startTransition] = useTransition();
   const [areCookieSettingsOpen, setAreCookieSettingsOpen] = useState(false);
-  const navigationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fadeInTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pendingNavigationRef = useRef(false);
 
   const navigate = useCallback(
     (href: string, options: RouteTransitionOptions = {}) => {
       if (href === pathname) return;
-      if (navigationTimeoutRef.current) clearTimeout(navigationTimeoutRef.current);
-      if (fadeInTimeoutRef.current) clearTimeout(fadeInTimeoutRef.current);
-
-      const duration = getTransitionDuration("fast");
-      pendingNavigationRef.current = true;
-      setTransitionKind(options.kind || "route");
-      navigationTimeoutRef.current = setTimeout(() => {
+      // Keep the current screen readable until Next commits the destination.
+      startTransition(() => {
         if (options.replace) router.replace(href);
         else router.push(href);
-      }, duration);
+      });
     },
     [pathname, router]
   );
 
   const routeTransitionValue = useMemo(
-    () => ({ navigate, isTransitioning: transitionKind !== null }),
-    [navigate, transitionKind]
+    () => ({ navigate, isTransitioning: isPending }),
+    [navigate, isPending]
   );
 
   const changeLanguage = useCallback(
@@ -84,42 +75,11 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
   }, [language]);
 
   useEffect(() => {
-    if (navigationTimeoutRef.current) {
-      clearTimeout(navigationTimeoutRef.current);
-      navigationTimeoutRef.current = null;
-    }
-    if (fadeInTimeoutRef.current) {
-      clearTimeout(fadeInTimeoutRef.current);
-      fadeInTimeoutRef.current = null;
-    }
-
-    if (!pendingNavigationRef.current) {
-      setTransitionKind(null);
-      return;
-    }
-
-    pendingNavigationRef.current = false;
-    fadeInTimeoutRef.current = setTimeout(() => {
-      setTransitionKind(null);
-    }, getTransitionDuration("fast"));
-  }, [pathname]);
-
-  useEffect(() => {
     const legacyPath = getLegacyHashPath();
     if (legacyPath && legacyPath !== activePath) {
       router.replace(buildLocalizedPath(language, legacyPath));
     }
   }, [activePath, language, router]);
-
-  useEffect(() => {
-    return () => {
-      if (navigationTimeoutRef.current) clearTimeout(navigationTimeoutRef.current);
-      if (fadeInTimeoutRef.current) clearTimeout(fadeInTimeoutRef.current);
-    };
-  }, []);
-
-  const isTransitioning = transitionKind !== null;
-  const isLanguageSwitching = transitionKind === "language";
 
   return (
     <RouteTransitionContext.Provider value={routeTransitionValue}>
@@ -130,27 +90,20 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
           language={language}
           theme={theme}
           setTheme={setTheme}
-          isLanguageSwitching={isLanguageSwitching}
           activePath={activePath}
           onNavigate={navigateToSection}
         />
-        <main
-          className={`${styles.main} ${styles.fade} ${
-            isTransitioning ? styles.pageFading : styles.pageVisible
-          }`}
-        >
-          {children}
+        <main id="main-content" className={styles.main} aria-busy={isPending}>
+          <div key={pathname} className={`${styles.content} route-reveal`}>
+            {children}
+          </div>
         </main>
         <AppFooter
           text={text}
-          isLanguageSwitching={isLanguageSwitching}
+          language={language}
           onOpenCookieSettings={() => setAreCookieSettingsOpen(true)}
         />
-        <div
-          className={`${styles.fade} ${
-            isLanguageSwitching ? styles.pageFading : styles.pageVisible
-          }`}
-        >
+        <div key={language} className="route-reveal">
           <CookieBanner
             text={text}
             forceOpen={areCookieSettingsOpen}

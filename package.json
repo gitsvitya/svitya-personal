@@ -20,8 +20,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run validate:content && next build",
-    "start": "next start",
+    "build": "npm run validate:content && next build && node scripts/prepare-standalone.mjs",
+    "start": "node .next/standalone/server.js",
     "typecheck": "next typegen && tsc --noEmit",
     "validate:content": "vitest run src/content/portfolio/content.test.ts",
     "lint": "eslint .",
@@ -30,5 +30,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check": "npm run validate:content && npm run lint && npm run typecheck && npm run test && npm run format:check"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

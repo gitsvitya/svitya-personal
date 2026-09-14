@@ -9,6 +9,12 @@ export type CompanyCopy = {
   results: string;
 };
 
+export type CaseStudy = {
+  challenge: string;
+  contribution: string[];
+  outcome: string;
+};
+
 type MaterialCopy = {
   title: Record<Language, string>;
   description: Record<Language, string>;
@@ -59,6 +65,7 @@ export type LocalizedMaterial = LocalizeMaterial<CompanyMaterial>;
 
 export type LocalizedCompany = Omit<CompanyRecord, "translations" | "materials"> &
   CompanyCopy & {
+    caseStudy?: CaseStudy;
     materials?: {
       enabled: boolean;
       items: LocalizedMaterial[];

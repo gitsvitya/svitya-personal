@@ -17,7 +17,9 @@
   opacity: 0;
   overflow: visible;
   height: auto;
-  transition: opacity var(--transition-slow);
+  transition:
+    opacity var(--transition-slow),
+    background-color var(--transition-theme);
 }
 
 .showModalWindow {
@@ -51,7 +53,9 @@
   width: 44px;
   padding: 0;
   outline: none;
-  transition: color var(--transition-slow);
+  transition:
+    outline-color var(--transition-theme),
+    color var(--transition-theme);
 }
 
 .closeIcon::before {

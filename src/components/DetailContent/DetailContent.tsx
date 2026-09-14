@@ -1,14 +1,16 @@
 import Image from "next/image";
 import type { LocalizedCompany } from "../../content/portfolio";
+import type { AppTranslations } from "../../content/ui-text";
 import styles from "./DetailContent.module.css";
 
 type DetailContentProps = {
   company: LocalizedCompany | null;
   titleId?: string;
   descriptionId?: string;
+  text: AppTranslations;
 };
 
-function DetailContent({ company, titleId, descriptionId }: DetailContentProps) {
+function DetailContent({ company, titleId, descriptionId, text }: DetailContentProps) {
   if (!company) return null;
   return (
     <div className={styles.detailContent}>
@@ -27,6 +29,7 @@ function DetailContent({ company, titleId, descriptionId }: DetailContentProps) 
                 rel="noreferrer noopener"
               >
                 {company.linkLabel}
+                <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>
@@ -39,11 +42,37 @@ function DetailContent({ company, titleId, descriptionId }: DetailContentProps) 
           className={styles.logo}
           src={company.logo}
           alt={company.name}
-          sizes="(max-width: 640px) 200px, (max-width: 768px) 220px, 250px"
+          sizes="(max-width: 768px) 112px, 160px"
           preload
         />
       </div>
-      <p className={styles.paragraph}>{company.results}</p>
+      <div className={styles.caseStudy}>
+        {company.caseStudy ? (
+          <>
+            <section>
+              <h2>{text.detail.challenge}</h2>
+              <p className={styles.paragraph}>{company.caseStudy.challenge}</p>
+            </section>
+            <section>
+              <h2>{text.detail.contribution}</h2>
+              <ul className={styles.contributions}>
+                {company.caseStudy.contribution.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+            <section className={styles.outcome}>
+              <h2>{text.detail.outcome}</h2>
+              <p className={styles.paragraph}>{company.caseStudy.outcome}</p>
+            </section>
+          </>
+        ) : (
+          <section>
+            <h2>{text.detail.contribution}</h2>
+            <p className={styles.paragraph}>{company.results}</p>
+          </section>
+        )}
+      </div>
     </div>
   );
 }

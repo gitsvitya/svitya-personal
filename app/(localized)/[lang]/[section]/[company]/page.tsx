@@ -6,7 +6,8 @@ import {
   SUPPORTED_LANGUAGES,
 } from "@/app/sections";
 import { notFound } from "next/navigation";
-import { buildLocalizedCompanyMetadata } from "@/app/route-helpers";
+import { buildLocalizedCompanyMetadata, getCompanyPageTitle } from "@/app/route-helpers";
+import YandexAnalytics from "@/src/components/YandexAnalytics/YandexAnalytics";
 import { COMPANIES, getCompanyBySlug, getLocalizedCompany } from "@/src/content/portfolio";
 import AppDetailPage from "@/src/components/AppDetailPage/AppDetailPage";
 import { getTranslations } from "@/src/content/ui-text";
@@ -19,6 +20,8 @@ type LocalizedCompanyPageProps = {
     company?: string;
   }>;
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return SUPPORTED_LANGUAGES.flatMap((lang) =>
@@ -67,13 +70,17 @@ export default async function LocalizedCompanyPage({ params }: LocalizedCompanyP
   }
 
   const text = getTranslations(language);
+  const localizedCompany = getLocalizedCompany(company.id, language);
 
   return (
-    <AppDetailPage
-      company={getLocalizedCompany(company.id, language)}
-      text={text}
-      sectionTitle={text.sections[company.section]}
-      backHref={`/${language}/${company.section}`}
-    />
+    <>
+      <YandexAnalytics title={getCompanyPageTitle(language, localizedCompany)} />
+      <AppDetailPage
+        company={localizedCompany}
+        text={text}
+        sectionTitle={text.sections[company.section]}
+        backHref={`/${language}/${company.section}`}
+      />
+    </>
   );
 }

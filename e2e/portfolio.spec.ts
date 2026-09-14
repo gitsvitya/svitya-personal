@@ -1,9 +1,17 @@
 import { expect, test } from "@playwright/test";
 
 test("returns 404 for unknown localized and catch-all routes", async ({ request }) => {
-  for (const path of ["/ru/work/not-a-company", "/ru/not-a-section", "/not-a-real-page"]) {
+  for (const [path, heading] of [
+    ["/en/work/not-a-company", "Page not found"],
+    ["/ru/work/not-a-company", "Страница не найдена"],
+    ["/ru/not-a-section", "Страница не найдена"],
+    // The previous requests set the Russian language preference cookie.
+    ["/not-a-real-page", "Страница не найдена"],
+  ] as const) {
     const response = await request.get(path, { maxRedirects: 0 });
     expect(response.status(), path).toBe(404);
+    const html = await response.text();
+    expect(html.match(/<h1[^>]*>(.*?)<\/h1>/)?.[1], path).toBe(heading);
   }
 });
 
@@ -37,18 +45,20 @@ test("closes the mobile menu at the CSS desktop breakpoint", async ({ context, p
     {
       name: "analytics_consent",
       value: "denied",
-      url: "http://127.0.0.1:3000",
+      url: "http://127.0.0.1:3100",
     },
   ]);
   await page.setViewportSize({ width: 768, height: 900 });
   await page.goto("/en/about");
 
-  const menuButton = page.getByRole("button", { name: "Sections" });
+  const menuButton = page.locator('button[aria-controls="app-nav-list"]');
   await menuButton.click();
   await expect(menuButton).toHaveAttribute("aria-expanded", "true");
 
   await page.setViewportSize({ width: 769, height: 900 });
   await expect(menuButton).toBeHidden();
+  // Wait for the media-query event before resizing back; CSS updates first.
+  await expect(menuButton).toHaveAttribute("aria-expanded", "false");
   await page.setViewportSize({ width: 768, height: 900 });
   await expect(menuButton).toHaveAttribute("aria-expanded", "false");
 });
@@ -58,7 +68,7 @@ test("lets the user reopen and update cookie settings", async ({ context, page }
     {
       name: "analytics_consent",
       value: "denied",
-      url: "http://127.0.0.1:3000",
+      url: "http://127.0.0.1:3100",
     },
   ]);
   await page.setViewportSize({ width: 390, height: 844 });
@@ -73,7 +83,8 @@ test("lets the user reopen and update cookie settings", async ({ context, page }
   const acceptButton = banner.getByRole("button", { name: "Allow analytics" });
   const rejectBox = await rejectButton.boundingBox();
   const acceptBox = await acceptButton.boundingBox();
-  expect(rejectBox?.y).toBeLessThan(acceptBox?.y ?? 0);
+  expect(rejectBox?.y).toBe(acceptBox?.y);
+  expect(rejectBox?.x).toBeLessThan(acceptBox?.x ?? 0);
 
   await acceptButton.click();
   await expect(banner).toHaveCount(0);
@@ -106,8 +117,6 @@ test("navigates materials by keyboard only while the modal is open", async ({ pa
 
   await page.keyboard.press("Escape");
   await page.keyboard.press("ArrowRight");
-  await page.waitForTimeout(400);
-  await expect(dialog).toHaveAccessibleName("Полиэтилен");
   await expect(dialog).toHaveCount(0);
 
   await firstMaterial.click();

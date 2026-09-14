@@ -23,17 +23,18 @@
   outline: none;
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  font-family: "VremenaGrotesk", sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: 1;
   text-rendering: optimizeLegibility;
   transition:
+    outline-color var(--transition-theme),
     opacity var(--transition-fast),
-    color var(--transition-slow),
-    border-color var(--transition-slow),
-    background-color var(--transition-slow);
+    color var(--transition-theme),
+    border-color var(--transition-theme),
+    background-color var(--transition-theme);
 }
 
 .backButton:focus-visible {

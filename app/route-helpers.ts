@@ -97,12 +97,16 @@ export function buildLocalizedCompanyMetadata(
   company: LocalizedCompany
 ): Metadata {
   return buildPageMetadata({
-    title: `${company.name} | ${getSiteName(language)}`,
+    title: getCompanyPageTitle(language, company),
     description: `${company.title}. ${company.about}`,
     section,
     language,
     slug: company.slug,
   });
+}
+
+export function getCompanyPageTitle(language: Language, company: LocalizedCompany): string {
+  return `${company.name} | ${getSiteName(language)}`;
 }
 
 export function redirectToLocalizedSection(language: Language, section: Section): never {
