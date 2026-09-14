@@ -123,6 +123,10 @@
   .controlChanger:hover .switcherThumb {
     background-color: var(--accent);
   }
+  .controlChanger[aria-pressed="false"]:hover > .controlChangerText:first-child,
+  .controlChanger[aria-pressed="true"]:hover > .controlChangerText:last-child {
+    color: var(--accent);
+  }
 }
 @media (max-width: 640px) {
   .row {
