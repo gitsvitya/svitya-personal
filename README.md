@@ -40,7 +40,7 @@ for selected companies. Keep both translations complete and only add verified re
 
 Navigation starts immediately and keeps the previous page visible while the destination
 loads. Content, the active menu item, and the mobile menu update on the same route commit
-using the shared 220 ms transition. Language changes also animate header and footer copy.
+using the shared 300 ms transition. Language changes also animate header and footer copy.
 The system's reduced-motion preference disables these animations.
 
 ## Commands

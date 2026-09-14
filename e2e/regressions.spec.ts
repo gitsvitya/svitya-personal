@@ -98,11 +98,11 @@ for (const width of [1280, 390]) {
       await expect(page).toHaveURL(/\/en\/work$/);
       await expect(page.locator('nav a[href="/en/work"]')).toHaveAttribute("aria-current", "page");
       await expect(page.locator("main h1")).not.toHaveText(originalHeading!);
-      await expect(page.locator("main > div")).toHaveCSS("animation-duration", "0.22s");
+      await expect(page.locator("main > div")).toHaveCSS("animation-duration", "0.3s");
       const underlineDuration = await page
         .locator('nav a[aria-current="page"]')
         .evaluate((element) => getComputedStyle(element, "::after").transitionDuration);
-      expect(underlineDuration.split(",").every((value) => value.trim() === "0.22s")).toBe(true);
+      expect(underlineDuration.split(",").every((value) => value.trim() === "0.3s")).toBe(true);
       if (width < 769) {
         await expect(menu).toHaveAttribute("aria-expanded", "false");
         await page.goBack();
