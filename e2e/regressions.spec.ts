@@ -44,6 +44,11 @@ test("changes locale without reloading the document or losing a saved theme", as
   context,
   page,
 }) => {
+  const errors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  page.on("pageerror", (error) => errors.push(error.message));
   await context.addCookies([
     { name: "theme", value: "dark", url: origin },
     { name: "analytics_consent", value: "denied", url: origin },
@@ -51,7 +56,26 @@ test("changes locale without reloading the document or losing a saved theme", as
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/en/settings");
   await page.evaluate(() => {
-    (window as Window & { localeSentinel?: boolean }).localeSentinel = true;
+    const browserWindow = window as Window & {
+      localeSentinel?: boolean;
+      themeScriptInsertions?: number;
+    };
+    browserWindow.localeSentinel = true;
+    browserWindow.themeScriptInsertions = 0;
+    // React only warns in development. Observe script insertions as well so
+    // the same regression is caught against the production build in CI.
+    new MutationObserver((records) => {
+      for (const record of records) {
+        for (const node of record.addedNodes) {
+          if (
+            node instanceof Element &&
+            (node.matches("#theme-init") || node.querySelector("#theme-init"))
+          ) {
+            browserWindow.themeScriptInsertions! += 1;
+          }
+        }
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
   });
   for (const language of ["ru", "en"]) {
     await page
@@ -65,6 +89,12 @@ test("changes locale without reloading the document or losing a saved theme", as
       await page.evaluate(() => (window as Window & { localeSentinel?: boolean }).localeSentinel)
     ).toBe(true);
   }
+  expect(
+    await page.evaluate(
+      () => (window as Window & { themeScriptInsertions?: number }).themeScriptInsertions
+    )
+  ).toBe(0);
+  expect(errors).toEqual([]);
 });
 
 for (const width of [1280, 390]) {
