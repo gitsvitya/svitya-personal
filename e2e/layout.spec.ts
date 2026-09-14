@@ -42,3 +42,58 @@ test("keeps responsive layouts usable and captures visual review images", async 
     await page.screenshot({ path: testInfo.outputPath(`${name}.png`), fullPage: true });
   }
 });
+
+for (const width of [320, 375, 641, 961, 1101, 1280]) {
+  test(`keeps card sizes equal across sections and languages at ${width}px`, async ({
+    context,
+    page,
+    baseURL,
+  }) => {
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await page.setViewportSize({ width, height: 900 });
+    let reference: { width: number; height: number } | undefined;
+    for (const language of ["ru", "en"]) {
+      await context.addCookies([
+        { name: "theme", value: language === "ru" ? "light" : "dark", url: baseURL! },
+      ]);
+      for (const section of ["work", "projects", "activities"]) {
+        const path = `/${language}/${section}`;
+        if (section === "work") await page.goto(path);
+        else {
+          const menu = page.locator('button[aria-controls="app-nav-list"]');
+          if (await menu.isVisible()) await menu.click();
+          await page.locator(`nav a[href="${path}"]`).click();
+        }
+        await expect(page).toHaveURL(path);
+        await page.evaluate(() => document.fonts.ready);
+        await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+        const cards = await page.locator(`main a[href^="${path}/"]`).evaluateAll((elements) =>
+          elements.map((card) => {
+            const rect = card.getBoundingClientRect();
+            return {
+              width: rect.width,
+              height: rect.height,
+              contentFits: [...card.querySelectorAll("span, img")].every((element) => {
+                const content = element.getBoundingClientRect();
+                return (
+                  content.left >= rect.left - 1 &&
+                  content.right <= rect.right + 1 &&
+                  content.top >= rect.top - 1 &&
+                  content.bottom <= rect.bottom + 1
+                );
+              }),
+            };
+          })
+        );
+        expect(cards.length).toBeGreaterThan(1);
+        reference ??= cards[0]!;
+        for (const card of cards) {
+          expect(card.contentFits, `${path}: full card content`).toBe(true);
+          // Keep the same reference when changing sections and languages.
+          expect(Math.abs(card.width - reference.width), `${path}: card width`).toBeLessThan(1);
+          expect(Math.abs(card.height - reference.height), `${path}: card height`).toBeLessThan(1);
+        }
+      }
+    }
+  });
+}
