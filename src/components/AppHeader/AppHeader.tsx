@@ -91,7 +91,10 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
               const isActive = activePath === path;
 
               return (
-                <li key={path} className={styles.listItem}>
+                <li
+                  key={path}
+                  className={`${styles.listItem} ${isActive ? styles.listItemActive : ""}`}
+                >
                   <Link
                     className={`${styles.listItemLink} ${
                       isActive ? styles.listItemLinkActive : ""

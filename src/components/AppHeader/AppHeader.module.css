@@ -91,9 +91,19 @@
 }
 
 .listItem {
+  --nav-emphasis: 0;
   display: block;
   padding: 0;
   margin: 0;
+  /* Resolve animated colors outside the visited link. Chrome can paint its
+     inherited text color instead when custom properties animate inside a link.
+     Selection animates independently of the palette already changing at root. */
+  color: color-mix(in srgb, var(--accent) calc(var(--nav-emphasis) * 100%), var(--text-primary));
+  transition: --nav-emphasis var(--transition-fast);
+}
+
+.listItemActive {
+  --nav-emphasis: 1;
 }
 
 .listItemLink {
@@ -110,12 +120,10 @@
   font-weight: 400;
   line-height: 1.375;
   text-decoration: none;
-  color: var(--text-primary);
+  color: inherit;
   transition:
     outline-color var(--transition-theme),
-    opacity var(--transition-fast),
-    color var(--transition-theme),
-    text-decoration-color var(--transition-theme);
+    opacity var(--transition-fast);
   outline: none;
   background: transparent;
   border: none;
@@ -134,13 +142,8 @@
   transform-origin: left;
   opacity: 0;
   transition:
-    background-color var(--transition-theme),
     transform var(--transition-fast),
     opacity var(--transition-fast);
-}
-
-.listItemLinkActive {
-  color: var(--accent);
 }
 
 .listItemLinkActive::after {
@@ -154,9 +157,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .listItemLink:hover {
-    cursor: pointer;
-    color: var(--accent);
+  .listItem:hover {
+    --nav-emphasis: 1;
   }
 }
 

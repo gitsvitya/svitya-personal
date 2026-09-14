@@ -47,7 +47,7 @@ The system's reduced-motion preference disables these animations.
 
 ```bash
 npm ci                      # install locked dependencies (Node.js 22 or newer)
-npx playwright install chromium firefox webkit # install E2E browsers once
+npx playwright install chromium chrome firefox webkit # install E2E browsers once
 npm run dev                 # start the development server
 npm run build               # validate content and create a complete standalone build
 npm start                   # serve the standalone production build
@@ -62,7 +62,9 @@ npm run format              # format source files
 
 The build copies `public/` and `.next/static/` into `.next/standalone/`. Deploy that directory
 as a unit and run `node server.js` inside it, with `PORT` and `HOSTNAME` set for your host.
-The CI workflow checks the code, builds production, and runs all three browser projects.
+The CI workflow checks the code, builds production, and tests Chromium, Firefox, and WebKit.
+Theme checks also run in Google Chrome, including a pixel comparison in a temporary profile
+with visited-link history, since computed styles hide visited-link paint differences.
 Responsive checks also save page screenshots in `test-results/`, uploaded by CI as the
 `browser-checks` artifact for visual review. These are review images, not pixel-diff assertions.
 
