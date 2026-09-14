@@ -58,7 +58,7 @@
   padding-top: 8px;
   font-size: 16px;
   font-weight: 400;
-  color: var(--accent);
+  color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 .cardCta span {
@@ -74,6 +74,9 @@
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     border-color: var(--accent);
+  }
+  .card:hover .cardCta {
+    color: var(--accent);
   }
   .card:hover .cardCta span {
     transform: translateX(4px);
