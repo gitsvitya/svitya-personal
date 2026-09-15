@@ -291,7 +291,8 @@ test("records each SPA page once and stops analytics after consent is withdrawn"
     await expect.poll(async () => (await hits()).length).toBe(7);
     expect((await hits())[6]![2]).toBe(`${testOrigin}/en/settings`);
   } finally {
-    // Complete proxied image requests before Playwright disposes the context.
-    await context.unrouteAll({ behavior: "wait" });
+    // Assertions are complete. Let context disposal cancel background fetches;
+    // waiting here can hang on an image response until the whole test times out.
+    await context.unrouteAll({ behavior: "ignoreErrors" });
   }
 });
