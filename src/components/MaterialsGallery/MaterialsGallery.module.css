@@ -52,6 +52,10 @@
   outline-offset: 5px;
 }
 
+.previewButton:focus-visible + .previewTitle {
+  color: var(--accent);
+}
+
 .previewImage {
   display: block;
   width: 100%;
@@ -66,6 +70,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
+  color: var(--text-primary);
+  transition: color var(--transition-theme);
 }
 
 .modalContent {
@@ -236,8 +242,12 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .previewButton:hover {
+  .previewItem:hover .previewButton {
     border-color: var(--accent);
+  }
+
+  .previewItem:hover .previewTitle {
+    color: var(--accent);
   }
 
   .arrowButton:hover {
