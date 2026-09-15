@@ -152,11 +152,20 @@ test("keeps gallery controls below the document and serves its PDF", async ({
 }) => {
   await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/ru/work/cheminsight");
+  await page.goto("/ru/work/cheminsight", { waitUntil: "domcontentloaded" });
   const trigger = page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true });
   await trigger.click();
   const dialog = page.getByRole("dialog");
-  const image = await dialog.getByRole("img").boundingBox();
+  await expect(dialog).toBeVisible();
+  const materialImage = dialog.getByRole("img");
+  await expect
+    .poll(() =>
+      materialImage.evaluate(
+        (image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0
+      )
+    )
+    .toBe(true);
+  const image = await materialImage.boundingBox();
   const next = dialog.getByRole("button", { name: "Следующий материал" });
   const control = await next.boundingBox();
   expect(control!.y).toBeGreaterThanOrEqual(image!.y + image!.height);
@@ -226,58 +235,63 @@ test("records each SPA page once and stops analytics after consent is withdrawn"
       });
     } else await route.abort();
   });
-  const commands = () =>
-    page.evaluate(() => (window as Window & { ym?: { a?: unknown[][] } }).ym?.a || []);
-  const hits = async () => (await commands()).filter((command) => command[1] === "hit");
-  await page.goto(`${testOrigin}/en/about`);
-  await expect.poll(async () => (await hits()).length).toBe(1);
-  expect((await commands()).find((command) => command[1] === "init")?.[2]).toMatchObject({
-    defer: true,
-  });
-  await page.locator('nav a[href="/en/work"]').click();
-  await expect(page).toHaveURL(/\/en\/work$/);
-  await page.locator('main a[href="/en/work/cheminsight"]').click();
-  await expect(page).toHaveURL(/\/en\/work\/cheminsight$/);
-  await expect.poll(async () => (await hits()).length).toBe(3);
-  expect((await hits()).map((hit) => hit[2])).toEqual([
-    `${testOrigin}/en/about`,
-    `${testOrigin}/en/work`,
-    `${testOrigin}/en/work/cheminsight`,
-  ]);
-  expect((await hits())[2]![3]).toMatchObject({
-    title: "ChemInsight | Victor Strokov",
-    referer: `${testOrigin}/en/work`,
-  });
-  await page.locator('nav a[href="/en/settings"]').click();
-  await expect(page).toHaveURL(/\/en\/settings$/);
-  await expect.poll(async () => (await hits()).length).toBe(4);
-  for (const [language, count] of [
-    ["ru", 5],
-    ["en", 6],
-  ] as const) {
-    await page
-      .getByRole("button")
-      .filter({ hasText: /^EnRu$/ })
-      .click();
-    await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
-    await expect.poll(async () => (await hits()).length).toBe(count);
-    expect((await hits())[count - 1]![3]).toMatchObject({
-      title: language === "ru" ? "Настройки | Виктор Строков" : "Settings | Victor Strokov",
+  try {
+    const commands = () =>
+      page.evaluate(() => (window as Window & { ym?: { a?: unknown[][] } }).ym?.a || []);
+    const hits = async () => (await commands()).filter((command) => command[1] === "hit");
+    await page.goto(`${testOrigin}/en/about`);
+    await expect.poll(async () => (await hits()).length).toBe(1);
+    expect((await commands()).find((command) => command[1] === "init")?.[2]).toMatchObject({
+      defer: true,
     });
+    await page.locator('nav a[href="/en/work"]').click();
+    await expect(page).toHaveURL(/\/en\/work$/);
+    await page.locator('main a[href="/en/work/cheminsight"]').click();
+    await expect(page).toHaveURL(/\/en\/work\/cheminsight$/);
+    await expect.poll(async () => (await hits()).length).toBe(3);
+    expect((await hits()).map((hit) => hit[2])).toEqual([
+      `${testOrigin}/en/about`,
+      `${testOrigin}/en/work`,
+      `${testOrigin}/en/work/cheminsight`,
+    ]);
+    expect((await hits())[2]![3]).toMatchObject({
+      title: "ChemInsight | Victor Strokov",
+      referer: `${testOrigin}/en/work`,
+    });
+    await page.locator('nav a[href="/en/settings"]').click();
+    await expect(page).toHaveURL(/\/en\/settings$/);
+    await expect.poll(async () => (await hits()).length).toBe(4);
+    for (const [language, count] of [
+      ["ru", 5],
+      ["en", 6],
+    ] as const) {
+      await page
+        .getByRole("button")
+        .filter({ hasText: /^EnRu$/ })
+        .click();
+      await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
+      await expect.poll(async () => (await hits()).length).toBe(count);
+      expect((await hits())[count - 1]![3]).toMatchObject({
+        title: language === "ru" ? "Настройки | Виктор Строков" : "Settings | Victor Strokov",
+      });
+    }
+    expect((await commands()).filter((command) => command[1] === "init")).toHaveLength(1);
+    await page.getByRole("button", { name: "Cookie settings" }).click();
+    await page.getByRole("button", { name: "Essential only" }).click();
+    await expect
+      .poll(async () => (await commands()).filter((command) => command[1] === "destruct").length)
+      .toBe(1);
+    await page.locator('nav a[href="/en/projects"]').click();
+    await expect(page).toHaveURL(/\/en\/projects$/);
+    expect(await hits()).toHaveLength(6);
+    await page.locator('nav a[href="/en/settings"]').click();
+    await expect(page).toHaveURL(/\/en\/settings$/);
+    await page.getByRole("button", { name: "Cookie settings" }).click();
+    await page.getByRole("button", { name: "Allow analytics" }).click();
+    await expect.poll(async () => (await hits()).length).toBe(7);
+    expect((await hits())[6]![2]).toBe(`${testOrigin}/en/settings`);
+  } finally {
+    // Complete proxied image requests before Playwright disposes the context.
+    await context.unrouteAll({ behavior: "wait" });
   }
-  expect((await commands()).filter((command) => command[1] === "init")).toHaveLength(1);
-  await page.getByRole("button", { name: "Cookie settings" }).click();
-  await page.getByRole("button", { name: "Essential only" }).click();
-  await expect
-    .poll(async () => (await commands()).filter((command) => command[1] === "destruct").length)
-    .toBe(1);
-  await page.locator('nav a[href="/en/projects"]').click();
-  await expect(page).toHaveURL(/\/en\/projects$/);
-  expect(await hits()).toHaveLength(6);
-  await page.locator('nav a[href="/en/settings"]').click();
-  await expect(page).toHaveURL(/\/en\/settings$/);
-  await page.getByRole("button", { name: "Cookie settings" }).click();
-  await page.getByRole("button", { name: "Allow analytics" }).click();
-  await expect.poll(async () => (await hits()).length).toBe(7);
-  expect((await hits())[6]![2]).toBe(`${testOrigin}/en/settings`);
 });

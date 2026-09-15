@@ -20,9 +20,27 @@ test("keeps responsive layouts usable and captures visual review images", async 
   for (const { name, path, width, theme } of scenarios) {
     await context.addCookies([{ name: "theme", value: theme, url: origin }]);
     await page.setViewportSize({ width, height: 900 });
-    await page.goto(path);
+    // Lazy gallery previews must not hold up checks of the visible page.
+    await page.goto(path, { waitUntil: "domcontentloaded" });
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+    await expect
+      .poll(() =>
+        page.locator("main").evaluate((main) =>
+          [...main.querySelectorAll("img")]
+            .filter((image) => {
+              const rect = image.getBoundingClientRect();
+              return (
+                rect.bottom > 0 &&
+                rect.top < innerHeight &&
+                rect.right > 0 &&
+                rect.left < innerWidth
+              );
+            })
+            .every((image) => image.complete && image.naturalWidth > 0)
+        )
+      )
+      .toBe(true);
     const overflowing = await page.locator("main *").evaluateAll((elements) =>
       elements
         .filter((element) => {
