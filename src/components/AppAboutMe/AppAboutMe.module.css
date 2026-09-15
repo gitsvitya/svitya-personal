@@ -55,6 +55,36 @@
   margin-top: 4px;
 }
 
+.action {
+  white-space: nowrap;
+}
+
+.contactAction {
+  background: var(--bg-surface);
+}
+
+.actionArrow {
+  transition: transform var(--transition-fast);
+}
+
+.action:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.action:focus-visible .actionArrow {
+  transform: translateX(4px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .action:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .action:hover .actionArrow {
+    transform: translateX(4px);
+  }
+}
+
 @media (max-width: 1024px) {
   .container {
     column-gap: 32px;

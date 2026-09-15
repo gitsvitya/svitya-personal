@@ -35,7 +35,7 @@ export const uiText = {
       title: "Виктор Строков",
       portraitAlt: "Портрет Виктора Строкова",
       contact: "Обсудить проект",
-      explore: "Посмотреть кейсы",
+      cv: "Мое CV",
       experience: "Более 10 лет в продукте, проектах и аналитике",
       subtitle: "Управление проектами, разработка продуктов, исследования и аналитика",
       description:
@@ -113,7 +113,7 @@ export const uiText = {
       title: "Victor Strokov",
       portraitAlt: "Portrait of Victor Strokov",
       contact: "Let’s talk",
-      explore: "Explore my work",
+      cv: "My CV",
       experience: "10+ years in products, projects and analytics",
       subtitle: "Project Management, Product Development, Research & Analytics",
       description:
