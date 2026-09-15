@@ -1,46 +1,50 @@
 import { expect, test } from "@playwright/test";
 
-test("keeps responsive layouts usable and captures visual review images", async ({
-  context,
-  page,
-}, testInfo) => {
-  const origin = "http://127.0.0.1:3100";
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
-  const scenarios = [
-    { name: "about-ru-desktop", path: "/ru/about", width: 1440, theme: "light" },
-    { name: "work-ru-laptop", path: "/ru/work", width: 1280, theme: "light" },
-    { name: "work-en-small", path: "/en/work", width: 320, theme: "dark" },
-    { name: "about-ru-mobile", path: "/ru/about", width: 390, theme: "light" },
-    { name: "case-en-mobile", path: "/en/work/cheminsight", width: 390, theme: "dark" },
-    { name: "about-en-tablet", path: "/en/about", width: 768, theme: "light" },
-    { name: "settings-ru-desktop", path: "/ru/settings", width: 1440, theme: "light" },
-    { name: "settings-en-small", path: "/en/settings", width: 320, theme: "dark" },
-    { name: "settings-ru-tablet", path: "/ru/settings", width: 769, theme: "light" },
-  ];
-  for (const { name, path, width, theme } of scenarios) {
-    await context.addCookies([{ name: "theme", value: theme, url: origin }]);
+const scenarios = [
+  { name: "about-ru-desktop", path: "/ru/about", width: 1440, theme: "light" },
+  { name: "work-ru-laptop", path: "/ru/work", width: 1280, theme: "light" },
+  { name: "work-en-small", path: "/en/work", width: 320, theme: "dark" },
+  { name: "about-ru-mobile", path: "/ru/about", width: 390, theme: "light" },
+  { name: "case-en-mobile", path: "/en/work/cheminsight", width: 390, theme: "dark" },
+  { name: "about-en-tablet", path: "/en/about", width: 768, theme: "light" },
+  { name: "settings-ru-desktop", path: "/ru/settings", width: 1440, theme: "light" },
+  { name: "settings-en-small", path: "/en/settings", width: 320, theme: "dark" },
+  { name: "settings-ru-tablet", path: "/ru/settings", width: 769, theme: "light" },
+];
+
+for (const { name, path, width, theme } of scenarios) {
+  test(`keeps ${name} usable and captures a visual review image`, async ({
+    context,
+    page,
+    baseURL,
+  }, testInfo) => {
+    await context.addCookies([
+      { name: "analytics_consent", value: "denied", url: baseURL! },
+      { name: "theme", value: theme, url: baseURL! },
+    ]);
     await page.setViewportSize({ width, height: 900 });
-    // Lazy gallery previews must not hold up checks of the visible page.
     await page.goto(path, { waitUntil: "domcontentloaded" });
-    await page.evaluate(() => document.fonts.ready);
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+
+    // A full-page screenshot needs offscreen previews too. Start their loads before
+    // fonts.ready: in WebKit that promise can also wait for the document load event.
+    await page.locator("main img").evaluateAll((images) => {
+      for (const image of images) {
+        if (image instanceof HTMLImageElement) image.loading = "eager";
+      }
+    });
     await expect
       .poll(() =>
-        page.locator("main").evaluate((main) =>
-          [...main.querySelectorAll("img")]
-            .filter((image) => {
-              const rect = image.getBoundingClientRect();
-              return (
-                rect.bottom > 0 &&
-                rect.top < innerHeight &&
-                rect.right > 0 &&
-                rect.left < innerWidth
-              );
-            })
-            .every((image) => image.complete && image.naturalWidth > 0)
-        )
+        page
+          .locator("main")
+          .evaluate((main) =>
+            [...main.querySelectorAll("img")]
+              .filter((image) => !image.complete || image.naturalWidth === 0)
+              .map((image) => image.currentSrc || image.src)
+          )
       )
-      .toBe(true);
+      .toEqual([]);
+    await page.evaluate(() => document.fonts.ready);
     const overflowing = await page.locator("main *").evaluateAll((elements) =>
       elements
         .filter((element) => {
@@ -58,8 +62,8 @@ test("keeps responsive layouts usable and captures visual review images", async 
       expect(second!.x).toBeGreaterThan(first!.x);
     }
     await page.screenshot({ path: testInfo.outputPath(`${name}.png`), fullPage: true });
-  }
-});
+  });
+}
 
 for (const width of [320, 375, 641, 961, 1101, 1280]) {
   test(`keeps card sizes equal across sections and languages at ${width}px`, async ({
