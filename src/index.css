@@ -212,6 +212,38 @@ body {
   outline-offset: 4px;
 }
 
+/* Shared sizing for the main actions, settings controls and back button. */
+.button-control {
+  min-height: 44px;
+  padding: 0 20px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+}
+
+.button-label {
+  display: inline-flex;
+  align-items: center;
+  height: 1em;
+  line-height: 1;
+  white-space: nowrap;
+  /* Vremena's visible glyphs sit slightly above the center of its line box. */
+  position: relative;
+  top: 2px;
+}
+
+@media (max-width: 640px) {
+  .button-control {
+    font-size: 17px;
+  }
+  .button-label {
+    top: 1px;
+  }
+}
+
 .skip-link {
   position: absolute;
   top: 8px;

@@ -25,19 +25,22 @@ function AppAboutMe({ text, language }: AppAboutMeProps) {
       <p className={styles.paragraph}>{text.about.description}</p>
       <div className={styles.actions}>
         <a
-          className={`button-secondary ${styles.action} ${styles.contactAction}`}
+          className={`button-secondary button-control ${styles.action} ${styles.contactAction}`}
           href="https://t.me/vstrokov"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {text.about.contact}
-          <span className={styles.actionArrow} aria-hidden="true">
+          <span className="button-label">{text.about.contact}</span>
+          <span className={`button-label ${styles.actionArrow}`} aria-hidden="true">
             →
           </span>
         </a>
-        <TransitionLink className={`button-secondary ${styles.action}`} href={`/${language}/work`}>
-          {text.about.cv}
-          <span className={styles.actionArrow} aria-hidden="true">
+        <TransitionLink
+          className={`button-secondary button-control ${styles.action}`}
+          href={`/${language}/work`}
+        >
+          <span className="button-label">{text.about.cv}</span>
+          <span className={`button-label ${styles.actionArrow}`} aria-hidden="true">
             →
           </span>
         </TransitionLink>

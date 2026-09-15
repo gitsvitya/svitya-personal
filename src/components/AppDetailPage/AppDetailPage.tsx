@@ -28,14 +28,14 @@ function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageP
       <div className={`layout-container ${styles.container}`}>
         <button
           type="button"
-          className={styles.backButton}
+          className={`button-control ${styles.backButton}`}
           onClick={() => navigate(backHref, { replace: true })}
           aria-label={`${text.detail.backToSection}: ${sectionTitle}`}
         >
-          <span aria-hidden="true" className={styles.backIcon}>
+          <span aria-hidden="true" className={`button-label ${styles.backIcon}`}>
             ←
           </span>
-          <span className={styles.backText}>{text.detail.back}</span>
+          <span className="button-label">{text.detail.back}</span>
         </button>
         <DetailContent
           company={company}

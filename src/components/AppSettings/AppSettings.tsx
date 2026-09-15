@@ -22,19 +22,19 @@ export default function AppSettings() {
           <button
             id="theme-toggle"
             type="button"
-            className={styles.controlChanger}
+            className={`button-control ${styles.controlChanger}`}
             aria-label={text.settings.darkTheme}
             aria-pressed={isDark}
             onClick={() => setTheme(isDark ? "light" : "dark")}
           >
-            <span className={styles.controlChangerText}>{text.theme.light}</span>
+            <span className={`button-label ${styles.controlChangerText}`}>{text.theme.light}</span>
             <span
               aria-hidden="true"
               className={`${styles.controlSwitcher} ${isDark ? styles.controlSwitcherActive : ""}`}
             >
               <span className={styles.switcherThumb} />
             </span>
-            <span className={styles.controlChangerText}>{text.theme.dark}</span>
+            <span className={`button-label ${styles.controlChangerText}`}>{text.theme.dark}</span>
           </button>
         </section>
         <section className={styles.row} aria-labelledby="language-heading">
@@ -45,12 +45,12 @@ export default function AppSettings() {
           <button
             id="language-toggle"
             type="button"
-            className={styles.controlChanger}
+            className={`button-control ${styles.controlChanger}`}
             aria-label={text.settings.russianLanguage}
             aria-pressed={isRussian}
             onClick={() => changeLanguage(isRussian ? "en" : "ru")}
           >
-            <span className={styles.controlChangerText} lang="en">
+            <span className={`button-label ${styles.controlChangerText}`} lang="en">
               En
             </span>
             <span
@@ -59,7 +59,7 @@ export default function AppSettings() {
             >
               <span className={styles.switcherThumb} />
             </span>
-            <span className={styles.controlChangerText} lang="en">
+            <span className={`button-label ${styles.controlChangerText}`} lang="en">
               Ru
             </span>
           </button>
@@ -71,10 +71,10 @@ export default function AppSettings() {
           </div>
           <button
             type="button"
-            className={`button-secondary ${styles.cookieSettings}`}
+            className={`button-secondary button-control ${styles.cookieSettings}`}
             onClick={openCookieSettings}
           >
-            {text.settings.cookieSettings}
+            <span className="button-label">{text.settings.cookieSettings}</span>
           </button>
         </section>
       </div>
