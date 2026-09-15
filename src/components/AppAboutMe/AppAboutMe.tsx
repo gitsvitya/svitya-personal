@@ -19,25 +19,24 @@ function AppAboutMe({ text, language }: AppAboutMeProps) {
         preload
       />
       <div className={styles.textBlock}>
-        <p className={styles.eyebrow}>{text.about.experience}</p>
         <h1 className={styles.header}>{text.about.title}</h1>
         <p className={styles.subheader}>{text.about.subtitle}</p>
-        <p className={styles.paragraph}>{text.about.description}</p>
-        <div className={styles.actions}>
-          <a
-            className="button-primary"
-            href="https://t.me/vstrokov"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {text.about.contact}
-            <span aria-hidden="true">↗</span>
-          </a>
-          <TransitionLink className="button-secondary" href={`/${language}/work`}>
-            {text.about.explore}
-            <span aria-hidden="true">→</span>
-          </TransitionLink>
-        </div>
+      </div>
+      <p className={styles.paragraph}>{text.about.description}</p>
+      <div className={styles.actions}>
+        <a
+          className="button-primary"
+          href="https://t.me/vstrokov"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {text.about.contact}
+          <span aria-hidden="true">↗</span>
+        </a>
+        <TransitionLink className="button-secondary" href={`/${language}/work`}>
+          {text.about.explore}
+          <span aria-hidden="true">→</span>
+        </TransitionLink>
       </div>
     </Section>
   );
