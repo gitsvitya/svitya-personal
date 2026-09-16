@@ -4,6 +4,7 @@ import type { Language, SectionPath } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
 import { shouldHandleClientNavigation } from "../../utils/navigation";
 import { buildLocalizedPath } from "../../utils/routing";
+import AppIcon from "../AppIcon/AppIcon";
 import styles from "./AppHeader.module.css";
 
 const DESKTOP_MEDIA_QUERY = "(min-width: 769px)";
@@ -96,15 +97,21 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
                   className={`${styles.listItem} ${isActive ? styles.listItemActive : ""}`}
                 >
                   <Link
-                    className={`${styles.listItemLink} ${
+                    className={`${styles.listItemLink} ${path === "/settings" ? styles.iconLink : ""} ${
                       isActive ? styles.listItemLinkActive : ""
                     }`}
                     href={buildLocalizedPath(language, path)}
                     aria-current={isActive ? "page" : undefined}
+                    aria-label={path === "/settings" ? label : undefined}
+                    title={path === "/settings" ? label : undefined}
                     onClick={(event) => handleNavigation(event, path)}
                   >
                     <span key={language} className="route-reveal">
-                      {label}
+                      {path === "/settings" ? (
+                        <AppIcon name="settings" className={styles.settingsIcon} />
+                      ) : (
+                        label
+                      )}
                     </span>
                   </Link>
                 </li>

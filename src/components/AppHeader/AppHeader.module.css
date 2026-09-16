@@ -130,6 +130,17 @@
   cursor: pointer;
 }
 
+.iconLink {
+  min-width: 44px;
+  justify-content: center;
+}
+
+.settingsIcon {
+  display: block;
+  width: 1.15em;
+  height: 1.15em;
+}
+
 .listItemLink::after {
   content: "";
   position: absolute;

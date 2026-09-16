@@ -73,7 +73,7 @@ export const uiText = {
       closeLabel: "Закрыть модальное окно",
     },
     footer: {
-      contacts: "Соцсети",
+      contacts: "Контакты",
       metaDisclaimer: "*принадлежит компании Meta, признанной экстремистской и запрещённой в РФ",
     },
     card: {
@@ -152,7 +152,7 @@ export const uiText = {
       closeLabel: "Close modal window",
     },
     footer: {
-      contacts: "Socials",
+      contacts: "Contacts",
       metaDisclaimer:
         "*is owned by Meta Platforms, which is recognized as extremist and banned in the Russian Federation",
     },

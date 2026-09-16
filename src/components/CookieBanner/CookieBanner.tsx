@@ -42,14 +42,17 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
           className={`${styles.button} ${styles.secondaryButton}`}
           onClick={() => saveConsent("denied")}
         >
-          {text.cookieBanner.reject}
+          <span className={`button-label ${styles.buttonText}`}>{text.cookieBanner.reject}</span>
         </button>
         <button
           type="button"
-          className={`${styles.button} ${styles.primaryButton}`}
+          className={`${styles.button} ${styles.acceptButton}`}
           onClick={() => saveConsent("granted")}
         >
-          {text.cookieBanner.accept}
+          <span className={`button-label ${styles.buttonText}`}>{text.cookieBanner.accept}</span>
+          <span className={`button-label ${styles.buttonArrow}`} aria-hidden="true">
+            →
+          </span>
         </button>
       </div>
     </div>

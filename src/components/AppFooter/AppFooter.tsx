@@ -1,6 +1,6 @@
 import type { Language } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
-import SocialIcon from "./SocialIcon";
+import AppIcon from "../AppIcon/AppIcon";
 import styles from "./AppFooter.module.css";
 
 type AppFooterProps = {
@@ -26,10 +26,11 @@ function AppFooter({ text, language }: AppFooterProps) {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <SocialIcon name="telegram" className={styles.linkPic} />
+                    <AppIcon name="telegram" className={styles.linkPic} />
                     <span className={styles.linkText}>Telegram</span>
                   </a>
                 </li>
+                {/* Instagram is temporarily hidden. Restore together with the Meta disclaimer.
                 <li className={styles.navigationListItem}>
                   <a
                     className={styles.link}
@@ -37,8 +38,15 @@ function AppFooter({ text, language }: AppFooterProps) {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <SocialIcon name="instagram" className={styles.linkPic} />
+                    <AppIcon name="instagram" className={styles.linkPic} />
                     <span className={styles.linkText}>Instagram*</span>
+                  </a>
+                </li>
+                */}
+                <li className={styles.navigationListItem}>
+                  <a className={styles.link} href="mailto:strokov.victor@gmail.com">
+                    <AppIcon name="email" className={styles.linkPic} />
+                    <span className={styles.linkText}>E-mail</span>
                   </a>
                 </li>
                 <li className={styles.navigationListItem}>
@@ -48,14 +56,16 @@ function AppFooter({ text, language }: AppFooterProps) {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <SocialIcon name="linkedin" className={styles.linkPic} />
+                    <AppIcon name="linkedin" className={styles.linkPic} />
                     <span className={styles.linkText}>LinkedIn</span>
                   </a>
                 </li>
               </ul>
             </div>
           </div>
+          {/* Restore together with the Instagram link.
           <span className={styles.metaDisclaimer}>{text.footer.metaDisclaimer}</span>
+          */}
         </div>
         <span className={styles.year}>{currentYear}</span>
       </div>

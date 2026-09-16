@@ -2,6 +2,7 @@
 
 import { getTranslations } from "../../content/ui-text";
 import Section from "../Section/Section";
+import AppIcon from "../AppIcon/AppIcon";
 import { useSitePreferences } from "../SiteShell/SitePreferencesContext";
 import styles from "./AppSettings.module.css";
 
@@ -59,7 +60,14 @@ export default function AppSettings() {
           </button>
         </section>
         <section className={styles.row} aria-labelledby="cookies-heading">
-          <h2 id="cookies-heading">{text.settings.cookies}</h2>
+          <h2
+            id="cookies-heading"
+            className={styles.cookieHeading}
+            aria-label={text.settings.cookies}
+            title={text.settings.cookies}
+          >
+            <AppIcon name="cookie" className={styles.cookieIcon} />
+          </h2>
           <button
             type="button"
             className={`button-secondary button-control ${styles.cookieSettings}`}

@@ -40,6 +40,10 @@
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 8px 16px;
   min-height: 44px;
   border-radius: 4px;
@@ -56,10 +60,22 @@
     border-color var(--transition-theme);
 }
 
-.primaryButton {
-  background-color: var(--accent-fill);
-  color: var(--button-text);
-  border: var(--control-border-width) solid var(--accent-fill);
+.button .buttonText {
+  min-width: 0;
+  height: auto;
+  line-height: inherit;
+  white-space: inherit;
+}
+
+.buttonArrow {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.acceptButton {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: var(--control-border-width) solid var(--border-color);
 }
 
 .secondaryButton {
@@ -75,6 +91,26 @@
 .button:focus-visible {
   outline: 2px solid var(--banner-text);
   outline-offset: 3px;
+}
+
+.acceptButton:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.acceptButton:focus-visible .buttonArrow {
+  transform: translateX(4px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .acceptButton:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .acceptButton:hover .buttonArrow {
+    transform: translateX(4px);
+  }
 }
 
 @media (max-width: 640px) {

@@ -130,7 +130,7 @@
   line-height: 1.6;
 }
 .contributions li::marker {
-  color: var(--accent);
+  color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 .outcome {
