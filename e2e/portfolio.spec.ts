@@ -31,10 +31,7 @@ test("keeps the preferred theme when changing language", async ({ context, page 
   await page.goto("/en/settings");
 
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await page
-    .getByRole("button")
-    .filter({ hasText: /^EnRu$/ })
-    .click();
+  await page.locator("#language-toggle").click();
   await expect(page).toHaveURL(/\/ru\/settings$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");

@@ -15,10 +15,7 @@ export default function AppSettings() {
     <Section id="settings" title={text.sections.settings}>
       <div className={styles.settings}>
         <section className={styles.row} aria-labelledby="theme-heading">
-          <div className={styles.copy}>
-            <h2 id="theme-heading">{text.settings.theme}</h2>
-            <p>{text.settings.themeDescription}</p>
-          </div>
+          <h2 id="theme-heading">{text.settings.theme}</h2>
           <button
             id="theme-toggle"
             type="button"
@@ -38,10 +35,7 @@ export default function AppSettings() {
           </button>
         </section>
         <section className={styles.row} aria-labelledby="language-heading">
-          <div className={styles.copy}>
-            <h2 id="language-heading">{text.settings.language}</h2>
-            <p>{text.settings.languageDescription}</p>
-          </div>
+          <h2 id="language-heading">{text.settings.language}</h2>
           <button
             id="language-toggle"
             type="button"
@@ -50,8 +44,8 @@ export default function AppSettings() {
             aria-pressed={isRussian}
             onClick={() => changeLanguage(isRussian ? "en" : "ru")}
           >
-            <span className={`button-label ${styles.controlChangerText}`} lang="en">
-              En
+            <span className={`button-label ${styles.controlChangerText}`}>
+              {text.languages.english}
             </span>
             <span
               aria-hidden="true"
@@ -59,16 +53,13 @@ export default function AppSettings() {
             >
               <span className={styles.switcherThumb} />
             </span>
-            <span className={`button-label ${styles.controlChangerText}`} lang="en">
-              Ru
+            <span className={`button-label ${styles.controlChangerText}`}>
+              {text.languages.russian}
             </span>
           </button>
         </section>
         <section className={styles.row} aria-labelledby="cookies-heading">
-          <div className={styles.copy}>
-            <h2 id="cookies-heading">{text.settings.cookies}</h2>
-            <p>{text.settings.cookiesDescription}</p>
-          </div>
+          <h2 id="cookies-heading">{text.settings.cookies}</h2>
           <button
             type="button"
             className={`button-secondary button-control ${styles.cookieSettings}`}

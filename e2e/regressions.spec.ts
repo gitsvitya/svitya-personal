@@ -78,10 +78,7 @@ test("changes locale without reloading the document or losing a saved theme", as
     }).observe(document.documentElement, { childList: true, subtree: true });
   });
   for (const language of ["ru", "en"]) {
-    await page
-      .getByRole("button")
-      .filter({ hasText: /^EnRu$/ })
-      .click();
+    await page.locator("#language-toggle").click();
     await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
     await expect(page.locator("html")).toHaveAttribute("lang", language);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -265,10 +262,7 @@ test("records each SPA page once and stops analytics after consent is withdrawn"
       ["ru", 5],
       ["en", 6],
     ] as const) {
-      await page
-        .getByRole("button")
-        .filter({ hasText: /^EnRu$/ })
-        .click();
+      await page.locator("#language-toggle").click();
       await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
       await expect.poll(async () => (await hits()).length).toBe(count);
       expect((await hits())[count - 1]![3]).toMatchObject({

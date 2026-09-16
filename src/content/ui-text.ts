@@ -7,7 +7,11 @@ export const uiText = {
     },
     theme: {
       light: "Светлая",
-      dark: "Темная",
+      dark: "Тёмная",
+    },
+    languages: {
+      english: "Английский",
+      russian: "Русский",
     },
     navigation: {
       menuLabel: "Разделы",
@@ -22,20 +26,17 @@ export const uiText = {
     },
     settings: {
       theme: "Тема оформления",
-      themeDescription: "Выберите светлую или тёмную тему сайта.",
       darkTheme: "Тёмная тема",
       language: "Язык",
-      languageDescription: "Русская или английская версия сайта.",
       russianLanguage: "Русский язык",
       cookies: "Cookie",
-      cookiesDescription: "Управляйте согласием на использование аналитических cookie.",
       cookieSettings: "Настройки cookie",
     },
     about: {
       title: "Виктор Строков",
       portraitAlt: "Портрет Виктора Строкова",
       contact: "Обсудить проект",
-      cv: "Мое CV",
+      cv: "Моё CV",
       experience: "Более 10 лет в продукте, проектах и аналитике",
       subtitle: "Управление проектами, разработка продуктов, исследования и аналитика",
       description:
@@ -87,6 +88,10 @@ export const uiText = {
       light: "Light",
       dark: "Dark",
     },
+    languages: {
+      english: "English",
+      russian: "Russian",
+    },
     navigation: {
       menuLabel: "Sections",
       skipToContent: "Skip to content",
@@ -100,13 +105,10 @@ export const uiText = {
     },
     settings: {
       theme: "Appearance",
-      themeDescription: "Choose a light or dark theme for the site.",
       darkTheme: "Dark theme",
       language: "Language",
-      languageDescription: "Browse the site in English or Russian.",
       russianLanguage: "Russian language",
       cookies: "Cookies",
-      cookiesDescription: "Manage your consent to analytics cookies.",
       cookieSettings: "Cookie settings",
     },
     about: {
