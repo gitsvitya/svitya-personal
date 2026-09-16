@@ -3,12 +3,13 @@ import type { AppTranslations } from "../../content/ui-text";
 import type { Language } from "../../types/domain";
 import portrait from "../../images/pages/about/portrait.png";
 import Section from "../Section/Section";
-import TransitionLink from "../SiteShell/TransitionLink";
 import styles from "./AppAboutMe.module.css";
 
 type AppAboutMeProps = { text: AppTranslations; language: Language };
 
 function AppAboutMe({ text, language }: AppAboutMeProps) {
+  const cvFileName = language === "ru" ? "CV_Строков_Виктор.pdf" : "CV_Strokov_Victor.pdf";
+
   return (
     <Section id="about" contentClassName={styles.container}>
       <Image
@@ -35,15 +36,16 @@ function AppAboutMe({ text, language }: AppAboutMeProps) {
             →
           </span>
         </a>
-        <TransitionLink
+        <a
           className={`button-secondary button-control ${styles.action}`}
-          href={`/${language}/work`}
+          href={`/cv/${language}/${encodeURIComponent(cvFileName)}`}
+          download={cvFileName}
         >
           <span className="button-label">{text.about.cv}</span>
           <span className={`button-label ${styles.actionArrow}`} aria-hidden="true">
             →
           </span>
-        </TransitionLink>
+        </a>
       </div>
     </Section>
   );

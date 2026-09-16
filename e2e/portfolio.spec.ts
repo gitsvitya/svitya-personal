@@ -1,4 +1,54 @@
 import { expect, test } from "@playwright/test";
+import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
+for (const { language, initialLanguage, label, filename } of [
+  {
+    language: "ru",
+    initialLanguage: "en",
+    label: "Моё CV",
+    filename: "CV_Строков_Виктор.pdf",
+  },
+  {
+    language: "en",
+    initialLanguage: "ru",
+    label: "My CV",
+    filename: "CV_Strokov_Victor.pdf",
+  },
+]) {
+  test(`downloads the ${language} CV after changing language without leaving the about page`, async ({
+    context,
+    page,
+    baseURL,
+  }) => {
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await page.goto(`/${initialLanguage}/settings`);
+    await page.locator("#language-toggle").click();
+    await expect(page).toHaveURL(`/${language}/settings`);
+    await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+    await page.locator(`nav a[href="/${language}/about"]`).click();
+    await expect(page).toHaveURL(`/${language}/about`);
+
+    const downloadPromise = page.waitForEvent("download");
+    await page.getByRole("link", { name: label, exact: true }).click();
+    const download = await downloadPromise;
+
+    expect(download.suggestedFilename()).toBe(filename);
+    expect(decodeURIComponent(new URL(download.url()).pathname)).toBe(
+      `/cv/${language}/${filename}`
+    );
+    const downloaded = await readFile((await download.path())!);
+    const source = await readFile(join(process.cwd(), "public", "cv", language, filename));
+    expect(downloaded.subarray(0, 5).toString()).toBe("%PDF-");
+    expect(createHash("sha256").update(downloaded).digest("hex")).toBe(
+      createHash("sha256").update(source).digest("hex")
+    );
+    await expect(page).toHaveURL(`/${language}/about`);
+    await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+    await download.delete();
+  });
+}
 
 test("returns 404 for unknown localized and catch-all routes", async ({ request }) => {
   for (const [path, heading] of [
