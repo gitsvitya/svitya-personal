@@ -19,14 +19,12 @@
   display: none;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
-  min-height: 44px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
+  margin: 0;
+  border-radius: 999px;
+  border: var(--control-border-width) solid var(--border-color);
+  outline: none;
   background: var(--bg-surface);
   color: var(--text-primary);
-  font-size: 20px;
-  line-height: 1.2;
   cursor: pointer;
   transition:
     outline-color var(--transition-theme),
@@ -39,6 +37,8 @@
 .menuToggle:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .menuToggleActive {
@@ -46,13 +46,10 @@
   color: var(--accent);
 }
 
-.menuToggleLabel {
-  font-family: var(--font-body), sans-serif;
-}
-
 .menuIcon {
   width: 22px;
   height: 16px;
+  flex-shrink: 0;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
@@ -168,6 +165,11 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .menuToggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .listItem:hover {
     --nav-emphasis: 1;
   }
@@ -199,8 +201,6 @@
 
   .menuToggle {
     display: inline-flex;
-    font-size: 16px;
-    padding: 10px;
   }
 
   .listItems {

@@ -91,9 +91,6 @@
 .button:focus-visible {
   outline: 2px solid var(--banner-text);
   outline-offset: 3px;
-}
-
-.acceptButton:focus-visible {
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -103,7 +100,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .acceptButton:hover {
+  .button:hover {
     border-color: var(--accent);
     color: var(--accent);
   }

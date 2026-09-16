@@ -72,12 +72,12 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
         <nav className={styles.navigationBlock}>
           <button
             type="button"
-            className={`${styles.menuToggle} ${isMenuOpen ? styles.menuToggleActive : ""}`}
+            className={`button-control ${styles.menuToggle} ${isMenuOpen ? styles.menuToggleActive : ""}`}
             aria-expanded={isMenuOpen}
             aria-controls="app-nav-list"
             onClick={toggleMenu}
           >
-            <span className={styles.menuToggleLabel}>{text.navigation.menuLabel}</span>
+            <span className="button-label">{text.navigation.menuLabel}</span>
             <span className={styles.menuIcon} aria-hidden="true">
               <span />
               <span />

@@ -153,7 +153,12 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
                 sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
               />
             </button>
-            <h3 className={styles.previewTitle}>{material.title}</h3>
+            <h3 className={styles.previewTitle}>
+              <span className={styles.previewTitleText}>{material.title}</span>
+              <span className={styles.previewArrow} aria-hidden="true">
+                →
+              </span>
+            </h3>
           </div>
         ))}
       </div>
