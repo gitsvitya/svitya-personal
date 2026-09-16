@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useTransition, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useTransition, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { useThemePreference } from "../../hooks/useThemePreference";
+import { useCookieSettings } from "../../hooks/useCookieSettings";
 import { DEFAULT_LANGUAGE, type Language, type SectionPath } from "../../types/domain";
 import {
   buildLocalizedDetailPath,
@@ -33,7 +34,7 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
   const text = getTranslations(language);
   const { theme, setTheme } = useThemePreference("light");
   const [isPending, startTransition] = useTransition();
-  const [areCookieSettingsOpen, setAreCookieSettingsOpen] = useState(false);
+  const { areCookieSettingsOpen, openCookieSettings, closeCookieSettings } = useCookieSettings();
 
   const navigate = useCallback(
     (href: string, options: RouteTransitionOptions = {}) => {
@@ -90,7 +91,7 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
           setTheme,
           language,
           changeLanguage,
-          openCookieSettings: () => setAreCookieSettingsOpen(true),
+          openCookieSettings,
         }}
       >
         <div className={styles.page}>
@@ -106,13 +107,11 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
             </div>
           </main>
           <AppFooter text={text} language={language} />
-          <div key={language} className="route-reveal">
-            <CookieBanner
-              text={text}
-              forceOpen={areCookieSettingsOpen}
-              onClose={() => setAreCookieSettingsOpen(false)}
-            />
-          </div>
+          <CookieBanner
+            text={text}
+            forceOpen={areCookieSettingsOpen}
+            onClose={closeCookieSettings}
+          />
         </div>
       </SitePreferencesContext.Provider>
     </RouteTransitionContext.Provider>

@@ -179,7 +179,7 @@ body {
   gap: 10px;
   min-height: 48px;
   padding: 12px 20px;
-  border: 1px solid transparent;
+  border: var(--control-border-width) solid currentColor;
   border-radius: 999px;
   font-weight: 400;
   font-size: 17px;
@@ -197,14 +197,13 @@ body {
   color: var(--button-text);
 }
 .button-secondary {
-  border-color: var(--border-color);
   color: var(--text-primary);
 }
 .button-primary:hover {
   background: #b62522;
 }
 .button-secondary:hover {
-  border-color: var(--accent);
+  color: var(--accent);
 }
 .button-primary:focus-visible,
 .button-secondary:focus-visible {

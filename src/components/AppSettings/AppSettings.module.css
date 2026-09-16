@@ -42,7 +42,7 @@
   gap: 8px;
   margin: 0;
   max-height: 44px;
-  border: var(--control-border-width) solid var(--border-color);
+  border: var(--control-border-width) solid currentColor;
   background-color: var(--bg-surface);
   border-radius: 999px;
   outline: none;

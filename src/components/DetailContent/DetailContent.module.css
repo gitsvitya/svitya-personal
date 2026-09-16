@@ -13,12 +13,13 @@
   transition: border-color var(--transition-theme);
 }
 .companyIdentity {
-  display: grid;
-  grid-template-columns: 112px minmax(0, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 24px;
 }
 .companyBox {
+  flex: 1 1 260px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -89,9 +90,12 @@
   transition: color var(--transition-theme);
 }
 .logo {
-  width: 112px;
+  flex-shrink: 0;
+  width: auto;
   height: 112px;
+  max-width: 100%;
   object-fit: contain;
+  object-position: left center;
 }
 .paragraph {
   margin: 0;
@@ -145,12 +149,7 @@
     padding-bottom: 24px;
   }
   .companyIdentity {
-    grid-template-columns: 80px minmax(0, 1fr);
     gap: 20px;
-  }
-  .logo {
-    width: 80px;
-    height: 80px;
   }
   .detailContent {
     gap: 28px;
@@ -159,12 +158,7 @@
 
 @media (max-width: 640px) {
   .companyIdentity {
-    grid-template-columns: 64px minmax(0, 1fr);
     gap: 16px;
-  }
-  .logo {
-    width: 64px;
-    height: 64px;
   }
   .paragraph,
   .contributions {

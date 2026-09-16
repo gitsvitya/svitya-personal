@@ -20,7 +20,7 @@ function DetailContent({ company, titleId, descriptionId, text }: DetailContentP
             className={styles.logo}
             src={company.logo}
             alt=""
-            sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 112px"
+            sizes={`${Math.ceil((112 * company.logo.width) / company.logo.height)}px`}
             preload
           />
           <div className={styles.companyBox}>

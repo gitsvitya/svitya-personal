@@ -1,5 +1,47 @@
 import { expect, test } from "@playwright/test";
 
+for (const consent of [null, "denied", "granted"] as const) {
+  test(`keeps the cookie banner open across locale changes with ${consent ?? "no"} consent`, async ({
+    context,
+    page,
+    baseURL,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 900 });
+    if (consent) {
+      await context.addCookies([{ name: "analytics_consent", value: consent, url: baseURL! }]);
+    }
+    await page.goto("/ru/settings");
+    if (consent) {
+      await page.getByRole("button", { name: "Настройки cookie", exact: true }).click();
+    }
+    const banner = page.locator('[aria-describedby="cookie-consent-description"]');
+    await expect(banner).toBeVisible();
+
+    await page.getByRole("button", { name: "Русский язык" }).click();
+    await expect(page).toHaveURL(/\/en\/settings$/);
+    await expect(banner).toBeVisible();
+    await expect(banner).toHaveAccessibleName("Analytics cookie settings");
+    await expect(banner.getByRole("button", { name: "Allow analytics" })).toBeVisible();
+
+    await page.getByRole("button", { name: "Russian language" }).click();
+    await expect(page).toHaveURL(/\/ru\/settings$/);
+    await expect(banner).toBeVisible();
+    await expect(banner).toHaveAccessibleName("Настройки аналитических cookie");
+    expect((await context.cookies()).find(({ name }) => name === "analytics_consent")?.value).toBe(
+      consent ?? undefined
+    );
+
+    await banner.getByRole("button", { name: "Только необходимые" }).click();
+    await expect(banner).toHaveCount(0);
+    await page.getByRole("button", { name: "Русский язык" }).click();
+    await expect(page).toHaveURL(/\/en\/settings$/);
+    await expect(banner).toHaveCount(0);
+    expect((await context.cookies()).find(({ name }) => name === "analytics_consent")?.value).toBe(
+      "denied"
+    );
+  });
+}
+
 for (const width of [1280, 390]) {
   test(`moves preferences into the settings tab at ${width}px`, async ({ context, page }) => {
     await context.addCookies([

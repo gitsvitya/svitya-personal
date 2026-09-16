@@ -46,6 +46,7 @@
   gap: 8px;
   padding: 8px 16px;
   min-height: 44px;
+  border: var(--control-border-width) solid currentColor;
   border-radius: 4px;
   font: inherit;
   font-size: 14px;
@@ -73,15 +74,13 @@
 }
 
 .acceptButton {
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  border: var(--control-border-width) solid var(--border-color);
+  background-color: transparent;
+  color: var(--banner-text);
 }
 
 .secondaryButton {
   background-color: transparent;
-  color: var(--banner-text);
-  border: var(--control-border-width) solid var(--banner-text);
+  color: color-mix(in srgb, var(--banner-text) 70%, var(--banner-bg));
 }
 
 .button:hover {
