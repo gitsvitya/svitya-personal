@@ -90,6 +90,25 @@
   transition: transform var(--transition-fast);
 }
 
+.materialModal {
+  --material-preview-width: min(38vh, 400px);
+  --material-preview-width: min(38dvh, 400px);
+  --material-control-size: 44px;
+  /* Centre each control in the gap between the modal edge and the preview. */
+  --material-control-inset: max(
+    calc(var(--modal-padding) / 2),
+    calc((100% - var(--material-preview-width)) / 4 - var(--material-control-size) / 2)
+  );
+  /* Reserve the same space in the scrollable body, plus an 8px text clearance. */
+  --modal-controls-gutter: max(
+    var(--material-control-size),
+    calc(
+      (100% - var(--material-preview-width)) / 4 - var(--modal-padding) / 2 +
+        var(--material-control-size) / 2 + 8px
+    )
+  );
+}
+
 .modalContent {
   display: flex;
   flex-direction: column;
@@ -117,8 +136,7 @@
 
 .modalImage {
   display: block;
-  width: min(100%, 38vh, 400px);
-  width: min(100%, 38dvh, 400px);
+  width: min(100%, var(--material-preview-width));
   height: auto;
   aspect-ratio: 5 / 6;
   object-fit: contain;
@@ -134,12 +152,15 @@
 }
 
 .arrowButton {
-  position: static;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: var(--material-control-size);
+  height: var(--material-control-size);
   padding: 0;
   border: var(--control-border-width) solid currentColor;
   border-radius: 50%;
@@ -176,6 +197,14 @@
 .arrowButton:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 4px;
+}
+
+.arrowButtonLeft {
+  left: var(--material-control-inset);
+}
+
+.arrowButtonRight {
+  right: var(--material-control-inset);
 }
 
 .arrowButtonLeft::before {
@@ -327,14 +356,6 @@
   }
 }
 
-.materialNavigation {
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
-  align-items: center;
-  gap: 20px;
-  align-self: center;
-  width: min(100%, 240px);
-}
 .materialCount {
   text-align: center;
   font-size: 15px;

@@ -15,6 +15,7 @@ import styles from "./Modal.module.css";
 
 type ModalProps = {
   children: ReactNode;
+  className?: string;
   overlayControls?: ReactNode;
   closeModal: () => void;
   showContent: boolean;
@@ -24,6 +25,7 @@ type ModalProps = {
 
 const Modal = ({
   children,
+  className = "",
   overlayControls,
   closeModal,
   showContent,
@@ -97,7 +99,7 @@ const Modal = ({
   return ReactDOM.createPortal(
     <>
       <div
-        className={`${styles.modalWindow} ${showContent ? styles.showModalWindow : ""}`}
+        className={`${styles.modalWindow} ${className} ${overlayControls ? styles.withSideControls : ""} ${showContent ? styles.showModalWindow : ""}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}

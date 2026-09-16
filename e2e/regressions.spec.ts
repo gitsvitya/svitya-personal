@@ -142,42 +142,81 @@ for (const width of [1280, 390]) {
   });
 }
 
-test("keeps gallery controls below the document and serves its PDF", async ({
-  context,
-  page,
-  request,
-}) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/ru/work/cheminsight", { waitUntil: "domcontentloaded" });
-  const trigger = page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true });
-  await trigger.click();
-  const dialog = page.getByRole("dialog");
-  await expect(dialog).toBeVisible();
-  const materialImage = dialog.getByRole("img");
-  await expect
-    .poll(() =>
-      materialImage.evaluate(
-        (image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0
+for (const width of [320, 1280]) {
+  test(`keeps gallery arrows fixed beside the modal as text grows at ${width}px`, async ({
+    context,
+    page,
+    request,
+  }) => {
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/ru/work/cheminsight", { waitUntil: "domcontentloaded" });
+    const trigger = page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true });
+    await trigger.click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
+    await page.evaluate(() => document.fonts.ready);
+    const materialImage = dialog.getByRole("img");
+    await expect
+      .poll(() =>
+        materialImage.evaluate(
+          (image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0
+        )
       )
-    )
-    .toBe(true);
-  const image = await materialImage.boundingBox();
-  const next = dialog.getByRole("button", { name: "Следующий материал" });
-  const control = await next.boundingBox();
-  expect(control!.y).toBeGreaterThanOrEqual(image!.y + image!.height);
-  await expect(dialog.getByText("1 из 7", { exact: true })).toBeVisible();
-  const download = dialog.getByRole("link", { name: "Скачать PDF" });
-  const pdf = await request.get((await download.getAttribute("href"))!);
-  expect(pdf.status()).toBe(200);
-  expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
-  await next.click();
-  await expect(dialog).toHaveAccessibleName("Полипропилен");
-  await expect(dialog.getByText("2 из 7", { exact: true })).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(dialog).toHaveCount(0);
-  await expect(trigger).toBeFocused();
-});
+      .toBe(true);
+    const image = await materialImage.boundingBox();
+    const next = dialog.getByRole("button", { name: "Следующий материал" });
+    const previous = dialog.getByRole("button", { name: "Предыдущий материал" });
+    const modal = (await dialog.boundingBox())!;
+    const controls = [(await previous.boundingBox())!, (await next.boundingBox())!] as const;
+    for (const control of controls) {
+      expect(Math.abs(control.y + control.height / 2 - (modal.y + modal.height / 2))).toBeLessThan(
+        1
+      );
+      expect(control.x).toBeGreaterThanOrEqual(modal.x);
+      expect(control.x + control.width).toBeLessThanOrEqual(modal.x + modal.width);
+    }
+    expect(controls[0].x + controls[0].width).toBeLessThanOrEqual(image!.x);
+    expect(controls[1].x).toBeGreaterThanOrEqual(image!.x + image!.width);
+    expect(Math.abs(controls[0].x + controls[0].width / 2 - (modal.x + image!.x) / 2)).toBeLessThan(
+      1
+    );
+    expect(
+      Math.abs(
+        controls[1].x +
+          controls[1].width / 2 -
+          (modal.x + modal.width + image!.x + image!.width) / 2
+      )
+    ).toBeLessThan(1);
+    const counter = dialog.getByText("1 из 7", { exact: true });
+    await expect(counter).toBeVisible();
+    expect((await counter.boundingBox())!.y).toBeGreaterThanOrEqual(image!.y + image!.height);
+    const download = dialog.getByRole("link", { name: "Скачать PDF" });
+    const pdf = await request.get((await download.getAttribute("href"))!);
+    expect(pdf.status()).toBe(200);
+    expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
+    await dialog.locator("p").evaluate((description) => {
+      description.textContent = `${description.textContent} `.repeat(20);
+    });
+    expect((await dialog.boundingBox())!.height).toBeGreaterThan(modal.height);
+    for (const [button, before] of [
+      [previous, controls[0]],
+      [next, controls[1]],
+    ] as const) {
+      const after = (await button.boundingBox())!;
+      expect(Math.abs(after.x - before.x)).toBeLessThan(1);
+      expect(Math.abs(after.y - before.y)).toBeLessThan(1);
+      await expect(button).toBeVisible();
+    }
+    await next.click();
+    await expect(dialog).toHaveAccessibleName("Полипропилен");
+    await expect(dialog.getByText("2 из 7", { exact: true })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(dialog).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+  });
+}
 
 test("renders a localized themed 404 and a landscape social preview", async ({
   context,

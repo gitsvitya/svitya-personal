@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
 import { getTransitionDuration } from "../../utils/motion";
@@ -19,7 +19,7 @@ type MaterialModalContentProps = {
   text: AppTranslations;
   companyName: string;
   isVisible: boolean;
-  navigation?: ReactNode;
+  materialCount?: string;
   titleId?: string;
   descriptionId?: string;
 };
@@ -165,38 +165,41 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
 
       {activeMaterial && (
         <Modal
+          className={styles.materialModal}
           closeModal={closeModal}
           showContent={isModalVisible}
           setShowContent={setIsModalVisible}
           closeLabel={text.modal.closeLabel}
+          overlayControls={
+            hasNavigation ? (
+              <>
+                <button
+                  type="button"
+                  className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
+                  onClick={showPreviousMaterial}
+                  disabled={!isMaterialVisible}
+                  aria-label={text.detail.previousMaterial}
+                />
+                <button
+                  type="button"
+                  className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
+                  onClick={showNextMaterial}
+                  disabled={!isMaterialVisible}
+                  aria-label={text.detail.nextMaterial}
+                />
+              </>
+            ) : undefined
+          }
         >
           <MaterialModalContent
             material={activeMaterial}
             text={text}
             companyName={companyName}
             isVisible={isMaterialVisible}
-            navigation={
-              hasNavigation ? (
-                <div className={styles.materialNavigation}>
-                  <button
-                    type="button"
-                    className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
-                    onClick={showPreviousMaterial}
-                    disabled={!isMaterialVisible}
-                    aria-label={text.detail.previousMaterial}
-                  />
-                  <span className={styles.materialCount} aria-live="polite" aria-atomic="true">
-                    {(activeIndex ?? 0) + 1} {text.detail.materialOf} {items.length}
-                  </span>
-                  <button
-                    type="button"
-                    className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
-                    onClick={showNextMaterial}
-                    disabled={!isMaterialVisible}
-                    aria-label={text.detail.nextMaterial}
-                  />
-                </div>
-              ) : undefined
+            materialCount={
+              hasNavigation
+                ? `${(activeIndex ?? 0) + 1} ${text.detail.materialOf} ${items.length}`
+                : undefined
             }
           />
         </Modal>
@@ -212,7 +215,7 @@ function MaterialModalContent({
   isVisible,
   titleId,
   descriptionId,
-  navigation,
+  materialCount,
 }: MaterialModalContentProps) {
   const action = getMaterialAction(material, text);
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
@@ -227,10 +230,18 @@ function MaterialModalContent({
           className={`${styles.modalImage} ${visibilityClass}`}
           src={material.previewSrc}
           alt={`${companyName}: ${material.title}`}
-          sizes="(max-width: 640px) calc(100vw - 64px), 400px"
+          sizes={
+            materialCount
+              ? "(max-width: 640px) calc(100vw - 136px), 400px"
+              : "(max-width: 640px) calc(100vw - 64px), 400px"
+          }
         />
       </div>
-      {navigation}
+      {materialCount && (
+        <span className={styles.materialCount} aria-live="polite" aria-atomic="true">
+          {materialCount}
+        </span>
+      )}
       <p id={descriptionId} className={`${styles.description} ${visibilityClass}`}>
         {material.description}
       </p>
