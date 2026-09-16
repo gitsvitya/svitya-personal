@@ -73,14 +73,10 @@
   transition: transform var(--transition-fast);
 }
 
-.acceptButton {
-  background-color: transparent;
-  color: var(--banner-text);
-}
-
+.acceptButton,
 .secondaryButton {
   background-color: transparent;
-  color: color-mix(in srgb, var(--banner-text) 70%, var(--banner-bg));
+  color: var(--banner-text);
 }
 
 .button:hover {

@@ -7,7 +7,7 @@
   padding: 24px;
   width: 100%;
   height: var(--card-height);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--text-primary);
   border-radius: 16px;
   background: var(--bg-surface);
   color: var(--text-primary);
@@ -34,7 +34,7 @@
   font-size: 14px;
   font-weight: 300;
   line-height: 1.5;
-  color: var(--text-subtle);
+  color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 .cardCompanyName {
@@ -47,7 +47,7 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 1.45;
-  color: var(--text-subtle);
+  color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 .cardCta {

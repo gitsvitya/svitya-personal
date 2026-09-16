@@ -235,7 +235,7 @@ function MaterialModalContent({
         {material.description}
       </p>
       <a
-        className={`${styles.materialAction} ${action.className} ${visibilityClass}`}
+        className={`button-control ${styles.materialAction} ${action.className} ${visibilityClass}`}
         href={action.href}
         download={action.download}
         target={action.target}
@@ -243,7 +243,7 @@ function MaterialModalContent({
         aria-label={action.label}
         title={action.label}
       >
-        {action.label}
+        <span className={`button-label ${styles.actionText}`}>{action.label}</span>
       </a>
     </div>
   );

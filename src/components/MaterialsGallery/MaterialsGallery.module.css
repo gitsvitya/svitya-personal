@@ -123,10 +123,7 @@
   height: auto;
   aspect-ratio: 5 / 6;
   object-fit: contain;
-  border: var(--control-border-width) solid var(--text-primary);
-  transition:
-    opacity var(--transition-fast),
-    border-color var(--transition-theme);
+  transition: opacity var(--transition-fast);
 }
 
 .materialVisible {
@@ -204,15 +201,12 @@
 }
 
 .materialAction {
-  font-size: 16px;
-  line-height: 1.4;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   align-self: flex-start;
-  min-height: 44px;
+  max-width: 100%;
   gap: 10px;
-  padding: 8px 14px;
   border: var(--control-border-width) solid currentColor;
   border-radius: 999px;
   background-color: var(--bg-surface);
@@ -224,6 +218,13 @@
     background-color var(--transition-theme),
     border-color var(--transition-theme),
     color var(--transition-theme);
+}
+
+.materialAction .actionText {
+  min-width: 0;
+  height: auto;
+  line-height: 1.375;
+  white-space: normal;
 }
 
 .materialAction::before {

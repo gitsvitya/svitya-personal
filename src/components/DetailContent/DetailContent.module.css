@@ -86,7 +86,7 @@
 .year {
   font-size: 16px;
   line-height: 1.5;
-  color: var(--text-subtle);
+  color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 .logo {
@@ -104,7 +104,7 @@
   line-height: 1.6;
 }
 .description {
-  color: var(--text-subtle);
+  color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 .caseStudy {

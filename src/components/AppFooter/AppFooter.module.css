@@ -22,13 +22,18 @@
   align-items: center;
 }
 
-.text {
+.text,
+.linkText {
+  display: inline-flex;
+  align-items: center;
+  height: 1em;
   margin: 0;
   padding: 0;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.375;
+  line-height: 1;
+  transform: translateY(2px);
   color: var(--text-primary);
   transition: color var(--transition-theme);
 }
@@ -62,21 +67,6 @@
   transition:
     outline-color var(--transition-theme),
     color var(--transition-theme);
-}
-
-.linkText {
-  display: inline-flex;
-  align-items: center;
-  height: 1em;
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
-  transform: translateY(2px);
-  color: var(--text-primary);
-  transition: color var(--transition-theme);
 }
 
 .linkPic {
@@ -156,6 +146,7 @@
     font-size: 16px;
   }
 
+  .text,
   .linkText {
     transform: translateY(1px);
   }
