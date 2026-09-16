@@ -59,13 +59,11 @@
   --text-primary: #111217;
   --text-subtle: #59616d;
   --accent: #d53430;
-  --accent-fill: #d53430;
   --border-color: #cbd0d7;
   --control-border-width: 1px;
   --overlay-base: #000000;
   --banner-bg: #333333;
   --banner-text: #ffffff;
-  --button-text: #ffffff;
   --control-track: #dfe3eb;
   --control-thumb: #ffffff;
   --transition-fast-duration: 300ms;
@@ -100,12 +98,10 @@
   --text-primary: #edf1f7;
   --text-subtle: #abb7c9;
   --accent: #f74843;
-  --accent-fill: #d53430;
   --border-color: #414c5e;
   --overlay-base: #000000;
   --banner-bg: #1c2433;
   --banner-text: #e6ebf5;
-  --button-text: #ffffff;
   --control-track: #1f2a3b;
   --control-thumb: #ffffff;
 }
@@ -118,12 +114,10 @@
     --text-primary: #edf1f7;
     --text-subtle: #abb7c9;
     --accent: #f74843;
-    --accent-fill: #d53430;
     --border-color: #414c5e;
     --overlay-base: #000000;
     --banner-bg: #1c2433;
     --banner-text: #e6ebf5;
-    --button-text: #ffffff;
     --control-track: #1f2a3b;
     --control-thumb: #ffffff;
   }
@@ -172,6 +166,12 @@ body {
 }
 
 .button-primary,
+.button-secondary,
+.button-control {
+  background: transparent;
+}
+
+.button-primary,
 .button-secondary {
   display: inline-flex;
   align-items: center;
@@ -185,23 +185,14 @@ body {
   font-size: 17px;
   line-height: 1.3;
   text-decoration: none;
+  color: var(--text-primary);
   transition:
-    background-color var(--transition-theme),
     border-color var(--transition-theme),
     color var(--transition-theme),
     outline-color var(--transition-theme);
 }
 
-.button-primary {
-  background: var(--accent-fill);
-  color: var(--button-text);
-}
-.button-secondary {
-  color: var(--text-primary);
-}
-.button-primary:hover {
-  background: #b62522;
-}
+.button-primary:hover,
 .button-secondary:hover {
   color: var(--accent);
 }

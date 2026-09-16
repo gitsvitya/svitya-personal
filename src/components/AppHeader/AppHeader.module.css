@@ -23,13 +23,11 @@
   border-radius: 999px;
   border: var(--control-border-width) solid currentColor;
   outline: none;
-  background: var(--bg-surface);
   color: var(--text-primary);
   cursor: pointer;
   transition:
     outline-color var(--transition-theme),
     border-color var(--transition-theme),
-    background-color var(--transition-theme),
     color var(--transition-theme),
     opacity var(--transition-fast);
 }

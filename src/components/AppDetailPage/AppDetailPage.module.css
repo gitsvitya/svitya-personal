@@ -19,14 +19,12 @@
   border: var(--control-border-width) solid currentColor;
   border-radius: 999px;
   outline: none;
-  background-color: var(--bg-surface);
   color: var(--text-primary);
   transition:
     outline-color var(--transition-theme),
     opacity var(--transition-fast),
     color var(--transition-theme),
-    border-color var(--transition-theme),
-    background-color var(--transition-theme);
+    border-color var(--transition-theme);
 }
 
 .backButton:focus-visible {

@@ -29,7 +29,6 @@
   height: 1.3em;
 }
 .cookieSettings {
-  background: var(--bg-surface);
   cursor: pointer;
 }
 .controlChanger,
@@ -43,7 +42,6 @@
   margin: 0;
   max-height: 44px;
   border: var(--control-border-width) solid currentColor;
-  background-color: var(--bg-surface);
   border-radius: 999px;
   outline: none;
   color: var(--text-primary);
@@ -51,8 +49,7 @@
     outline-color var(--transition-theme),
     opacity var(--transition-fast),
     color var(--transition-theme),
-    border-color var(--transition-theme),
-    background-color var(--transition-theme);
+    border-color var(--transition-theme);
 }
 
 .controlChangerText {
