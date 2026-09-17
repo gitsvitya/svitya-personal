@@ -43,6 +43,9 @@ loads. Content, the active menu item, and the mobile menu update on the same rou
 using the shared 300 ms transition. Language changes also animate header and footer copy.
 The system's reduced-motion preference disables these animations.
 
+Shared colors, typography, controls and interaction rules are documented in
+[Style conventions](docs/styles.md).
+
 ## Commands
 
 ```bash

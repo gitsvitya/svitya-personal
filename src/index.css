@@ -61,14 +61,26 @@
   --accent: #d53430;
   --border-color: #cbd0d7;
   --control-border-width: 1px;
+  --control-height: 44px;
+  --control-font-size: 18px;
+  --control-radius: 999px;
+  --icon-size: 22px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 4px;
+  --arrow-offset: 4px;
+  --body-font-size: 20px;
+  --body-line-height: 1.6;
   --overlay-base: #000000;
   --banner-bg: #333333;
   --banner-text: #ffffff;
+  /* The banner stays dark in both themes and needs a lighter red for text. */
+  --banner-accent: #ff746e;
   --control-track: #dfe3eb;
   --control-thumb: #ffffff;
-  --transition-fast-duration: 300ms;
+  --transition-duration: 300ms;
+  --transition-fast-duration: var(--transition-duration);
   --transition-easing: cubic-bezier(0.22, 1, 0.36, 1);
-  --transition-slow-duration: 300ms;
+  --transition-slow-duration: var(--transition-duration);
   --transition-fast: var(--transition-fast-duration) var(--transition-easing);
   /* Used for hover/focus and as a fallback without registered custom properties.
      During a theme change, descendants follow the root palette without reanimating. */
@@ -165,53 +177,47 @@ body {
   }
 }
 
-.button-primary,
-.button-secondary,
-.button-control {
-  background: transparent;
-}
-
-.button-primary,
-.button-secondary {
+/* Low specificity lets component layout rules win regardless of CSS chunk order. */
+:where(.button-control) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 48px;
-  padding: 12px 20px;
+  min-height: var(--control-height);
+  margin: 0;
+  padding: 8px 20px;
   border: var(--control-border-width) solid currentColor;
-  border-radius: 999px;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 1.3;
-  text-decoration: none;
-  color: var(--text-primary);
-  transition:
-    border-color var(--transition-theme),
-    color var(--transition-theme),
-    outline-color var(--transition-theme);
-}
-
-.button-primary:hover,
-.button-secondary:hover {
-  color: var(--accent);
-}
-.button-primary:focus-visible,
-.button-secondary:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-
-/* Shared sizing for the main actions, settings controls and back button. */
-.button-control {
-  min-height: 44px;
-  padding: 0 20px;
+  border-radius: var(--control-radius);
+  background: transparent;
   font-family: var(--font-body), sans-serif;
-  font-size: 18px;
+  font-size: var(--control-font-size);
   font-style: normal;
   font-weight: 400;
   line-height: 1;
   text-rendering: optimizeLegibility;
+  text-decoration: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color var(--transition-theme),
+    color var(--transition-theme),
+    outline-color var(--transition-theme),
+    opacity var(--transition-fast);
+}
+
+.button-control:focus-visible {
+  outline: var(--focus-ring-width) solid var(--accent);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-control:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 }
 
 .button-label {
@@ -225,9 +231,17 @@ body {
   top: 2px;
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --body-font-size: 18px;
+  }
+}
+
 @media (max-width: 640px) {
-  .button-control {
-    font-size: 17px;
+  :root {
+    --control-font-size: 17px;
+    --body-font-size: 17px;
+    --body-line-height: 1.55;
   }
   .button-label {
     top: 1px;

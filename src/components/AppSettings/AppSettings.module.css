@@ -28,28 +28,12 @@
   width: 1.3em;
   height: 1.3em;
 }
-.cookieSettings {
-  cursor: pointer;
-}
 .controlChanger,
 .cookieSettings {
   flex-shrink: 0;
 }
 .controlChanger {
-  display: flex;
-  align-items: center;
   gap: 8px;
-  margin: 0;
-  max-height: 44px;
-  border: var(--control-border-width) solid currentColor;
-  border-radius: 999px;
-  outline: none;
-  color: var(--text-primary);
-  transition:
-    outline-color var(--transition-theme),
-    opacity var(--transition-fast),
-    color var(--transition-theme),
-    border-color var(--transition-theme);
 }
 
 .controlChangerText {
@@ -91,22 +75,15 @@
   transform: translateX(22px);
 }
 
-.controlChanger:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+.controlChanger:focus-visible .switcherThumb {
+  background-color: var(--accent);
 }
-.cookieSettings:focus-visible {
-  border-color: var(--accent);
+
+.controlChanger[aria-pressed="false"]:focus-visible > .controlChangerText:first-child,
+.controlChanger[aria-pressed="true"]:focus-visible > .controlChangerText:last-child {
   color: var(--accent);
 }
 @media (hover: hover) and (pointer: fine) {
-  .cookieSettings:hover {
-    color: var(--accent);
-  }
-  .controlChanger:hover {
-    cursor: pointer;
-    border-color: var(--accent);
-  }
   .controlChanger:hover .switcherThumb {
     background-color: var(--accent);
   }

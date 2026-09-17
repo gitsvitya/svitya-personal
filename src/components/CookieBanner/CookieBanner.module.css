@@ -45,7 +45,7 @@
   justify-content: center;
   gap: 8px;
   padding: 8px 16px;
-  min-height: 44px;
+  min-height: var(--control-height);
   border: var(--control-border-width) solid currentColor;
   border-radius: 4px;
   font: inherit;
@@ -93,24 +93,24 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--banner-text);
-  outline-offset: 3px;
-  border-color: var(--accent);
-  color: var(--accent);
+  outline: var(--focus-ring-width) solid var(--banner-text);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--banner-accent);
+  color: var(--banner-accent);
 }
 
 .acceptButton:focus-visible .buttonArrow {
-  transform: translateX(4px);
+  transform: translateX(var(--arrow-offset));
 }
 
 @media (hover: hover) and (pointer: fine) {
   .button:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--banner-accent);
+    color: var(--banner-accent);
   }
 
   .acceptButton:hover .buttonArrow {
-    transform: translateX(4px);
+    transform: translateX(var(--arrow-offset));
   }
 }
 

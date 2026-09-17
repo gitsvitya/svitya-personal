@@ -70,7 +70,7 @@ export default function AppSettings() {
           </h2>
           <button
             type="button"
-            className={`button-secondary button-control ${styles.cookieSettings}`}
+            className={`button-control ${styles.cookieSettings}`}
             onClick={openCookieSettings}
           >
             <span className="button-label">{text.settings.cookieSettings}</span>

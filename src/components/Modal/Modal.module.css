@@ -28,7 +28,11 @@
 }
 
 .modalBody {
+  --focus-clearance: calc(var(--focus-ring-width) + var(--focus-ring-offset));
   min-height: 0;
+  /* Keep focus outlines inside the scrollport without moving the content. */
+  margin: calc(-1 * var(--focus-clearance));
+  padding: var(--focus-clearance);
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -36,7 +40,9 @@
 
 .withSideControls .modalBody {
   /* Keep the fixed side controls clear of images and scrolling descriptions. */
-  padding-inline: var(--modal-controls-gutter, 44px);
+  padding-inline: calc(
+    var(--modal-controls-gutter, var(--control-height)) + var(--focus-clearance)
+  );
 }
 
 .modalHeader {
@@ -54,11 +60,12 @@
   background-color: transparent;
   color: var(--text-primary);
   border: 0;
-  flex: 0 0 44px;
-  height: 44px;
-  width: 44px;
+  flex: 0 0 var(--control-height);
+  height: var(--control-height);
+  width: var(--control-height);
   padding: 0;
   outline: none;
+  cursor: pointer;
   transition:
     outline-color var(--transition-theme),
     color var(--transition-theme);
@@ -67,8 +74,8 @@
 .closeIcon::before {
   content: "";
   display: block;
-  width: 22px;
-  height: 22px;
+  width: var(--icon-size);
+  height: var(--icon-size);
   background-color: currentColor;
   -webkit-mask-image: url("../../images/ui/modal/close.png");
   -webkit-mask-position: center;
@@ -81,14 +88,14 @@
 }
 
 .closeIcon:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid var(--accent);
+  outline-offset: var(--focus-ring-offset);
   border-radius: 50%;
+  color: var(--accent);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .closeIcon:hover {
-    cursor: pointer;
     color: var(--accent);
   }
 }

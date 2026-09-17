@@ -39,7 +39,7 @@
   align-self: flex-start;
   gap: 10px;
   max-width: 100%;
-  min-height: 44px;
+  min-height: var(--control-height);
   font-size: 17px;
   font-weight: 400;
   color: var(--text-primary);
@@ -58,11 +58,11 @@
 }
 .link:focus-visible {
   color: var(--accent);
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid var(--accent);
+  outline-offset: var(--focus-ring-offset);
 }
 .link:focus-visible .linkArrow {
-  transform: translateX(4px);
+  transform: translateX(var(--arrow-offset));
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -70,7 +70,7 @@
     color: var(--accent);
   }
   .link:hover .linkArrow {
-    transform: translateX(4px);
+    transform: translateX(var(--arrow-offset));
   }
 }
 .metaBox {
@@ -99,9 +99,9 @@
 }
 .paragraph {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--body-font-size);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: var(--body-line-height);
 }
 .description {
   color: var(--text-primary);
@@ -129,9 +129,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 20px;
+  font-size: var(--body-font-size);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: var(--body-line-height);
 }
 .contributions li::marker {
   color: var(--text-primary);
@@ -159,11 +159,6 @@
 @media (max-width: 640px) {
   .companyIdentity {
     gap: 16px;
-  }
-  .paragraph,
-  .contributions {
-    font-size: 17px;
-    line-height: 1.55;
   }
   .title {
     font-size: 20px;

@@ -21,8 +21,8 @@ export default function NotFoundPage({
       <p className={styles.code}>404</p>
       <h1>{text.title}</h1>
       <p>{text.description}</p>
-      <TransitionLink href={`/${language}/about`} className="button-primary">
-        {text.home}
+      <TransitionLink href={`/${language}/about`} className="button-control">
+        <span className="button-label">{text.home}</span>
       </TransitionLink>
     </section>
   );

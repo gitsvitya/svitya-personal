@@ -7,7 +7,7 @@
   padding: 24px;
   width: 100%;
   height: var(--card-height);
-  border: 1px solid var(--text-primary);
+  border: var(--control-border-width) solid var(--text-primary);
   border-radius: 16px;
   background: var(--bg-surface);
   color: var(--text-primary);
@@ -21,8 +21,15 @@
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid var(--accent);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--accent);
+}
+.card:focus-visible .cardCta {
+  color: var(--accent);
+}
+.card:focus-visible .cardCta span {
+  transform: translateX(var(--arrow-offset));
 }
 .cardText {
   display: flex;
@@ -79,7 +86,7 @@
     color: var(--accent);
   }
   .card:hover .cardCta span {
-    transform: translateX(4px);
+    transform: translateX(var(--arrow-offset));
   }
 }
 

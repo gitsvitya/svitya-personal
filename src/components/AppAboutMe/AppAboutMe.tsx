@@ -26,7 +26,7 @@ function AppAboutMe({ text, language }: AppAboutMeProps) {
       <p className={styles.paragraph}>{text.about.description}</p>
       <div className={styles.actions}>
         <a
-          className={`button-secondary button-control ${styles.action}`}
+          className={`button-control ${styles.action}`}
           href="https://t.me/vstrokov"
           target="_blank"
           rel="noopener noreferrer"
@@ -37,7 +37,7 @@ function AppAboutMe({ text, language }: AppAboutMeProps) {
           </span>
         </a>
         <a
-          className={`button-secondary button-control ${styles.action}`}
+          className={`button-control ${styles.action}`}
           href={`/cv/${language}/${encodeURIComponent(cvFileName)}`}
           download={cvFileName}
         >

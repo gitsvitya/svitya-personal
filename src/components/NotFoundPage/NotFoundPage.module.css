@@ -16,8 +16,8 @@
 .container p {
   margin: 0;
   max-width: 50ch;
-  font-size: 20px;
-  line-height: 1.5;
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
   color: var(--text-subtle);
   transition: color var(--transition-theme);
 }

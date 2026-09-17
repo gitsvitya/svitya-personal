@@ -41,9 +41,9 @@
   grid-column: 1 / -1;
   margin: 0;
   width: 100%;
-  font-size: 20px;
+  font-size: var(--body-font-size);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: var(--body-line-height);
   color: var(--text-primary);
   transition: color var(--transition-theme);
 }
@@ -63,30 +63,19 @@
   transition: transform var(--transition-fast);
 }
 
-.action:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent);
-}
 .action:focus-visible .actionArrow {
-  transform: translateX(4px);
+  transform: translateX(var(--arrow-offset));
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .action:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
   .action:hover .actionArrow {
-    transform: translateX(4px);
+    transform: translateX(var(--arrow-offset));
   }
 }
 
 @media (max-width: 1024px) {
   .container {
     column-gap: 32px;
-  }
-  .paragraph {
-    font-size: 18px;
   }
 }
 
@@ -122,10 +111,6 @@
   .container {
     padding-top: 16px;
     padding-bottom: 32px;
-  }
-  .paragraph {
-    font-size: 17px;
-    line-height: 1.55;
   }
   .actions {
     width: 100%;

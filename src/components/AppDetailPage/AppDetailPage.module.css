@@ -10,26 +10,7 @@
 }
 
 .backButton {
-  display: flex;
-  gap: 10px;
-  align-items: center;
   align-self: flex-start;
-  cursor: pointer;
-  margin: 0;
-  border: var(--control-border-width) solid currentColor;
-  border-radius: 999px;
-  outline: none;
-  color: var(--text-primary);
-  transition:
-    outline-color var(--transition-theme),
-    opacity var(--transition-fast),
-    color var(--transition-theme),
-    border-color var(--transition-theme);
-}
-
-.backButton:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 5px;
 }
 
 .backIcon {
@@ -37,16 +18,12 @@
 }
 
 .backButton:focus-visible .backIcon {
-  transform: translateX(-4px);
+  transform: translateX(calc(-1 * var(--arrow-offset)));
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .backButton:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
   .backButton:hover .backIcon {
-    transform: translateX(-4px);
+    transform: translateX(calc(-1 * var(--arrow-offset)));
   }
 }
 

@@ -35,6 +35,10 @@
   font-weight: 400;
   line-height: 1;
   transform: translateY(2px);
+}
+
+.text,
+.year {
   color: var(--text-primary);
   transition: color var(--transition-theme);
 }
@@ -61,7 +65,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  min-height: 44px;
+  min-height: var(--control-height);
   text-decoration: none;
   outline: none;
   color: var(--text-primary);
@@ -71,9 +75,9 @@
 }
 
 .linkPic {
-  flex: 0 0 22px;
-  width: 22px;
-  height: 22px;
+  flex: 0 0 var(--icon-size);
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .year {
@@ -88,17 +92,14 @@
 }
 
 .link:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid var(--accent);
+  outline-offset: var(--focus-ring-offset);
+  color: var(--accent);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
     cursor: pointer;
-    color: var(--accent);
-  }
-
-  .link:hover .linkText {
     color: var(--accent);
   }
 }
@@ -115,9 +116,6 @@
   .container {
     flex-direction: column;
   }
-  .cookieSettings {
-    align-self: center;
-  }
   .contactsBlock {
     flex-direction: column;
     gap: 10px;
@@ -133,11 +131,6 @@
   .linkText,
   .year {
     font-size: 16px;
-  }
-
-  .text,
-  .linkText,
-  .year {
     transform: translateY(1px);
   }
 }
