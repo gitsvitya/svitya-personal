@@ -68,8 +68,17 @@
   white-space: inherit;
 }
 
+.acceptButton .buttonText {
+  display: block;
+}
+
+.buttonEnding {
+  white-space: nowrap;
+}
+
 .buttonArrow {
-  flex-shrink: 0;
+  display: inline-block;
+  margin-left: 4px;
   transition: transform var(--transition-fast);
 }
 
@@ -121,5 +130,9 @@
     width: 100%;
     padding: 8px;
     white-space: normal;
+  }
+
+  .buttonArrow {
+    margin-left: 0;
   }
 }

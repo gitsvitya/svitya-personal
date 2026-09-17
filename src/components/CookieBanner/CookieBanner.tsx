@@ -20,6 +20,7 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
     () => false
   );
   if (!isHydrated || (consent !== null && !forceOpen)) return null;
+  const acceptLastWordStart = text.cookieBanner.accept.lastIndexOf(" ") + 1;
 
   function saveConsent(nextConsent: Exclude<AnalyticsConsent, null>) {
     setBrowserAnalyticsConsent(nextConsent);
@@ -49,9 +50,15 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
           className={`${styles.button} ${styles.acceptButton}`}
           onClick={() => saveConsent("granted")}
         >
-          <span className={`button-label ${styles.buttonText}`}>{text.cookieBanner.accept}</span>
-          <span className={`button-label ${styles.buttonArrow}`} aria-hidden="true">
-            →
+          <span className={`button-label ${styles.buttonText}`}>
+            {text.cookieBanner.accept.slice(0, acceptLastWordStart)}
+            <span className={styles.buttonEnding}>
+              {text.cookieBanner.accept.slice(acceptLastWordStart)}
+              {"\u00a0"}
+              <span className={styles.buttonArrow} aria-hidden="true">
+                →
+              </span>
+            </span>
           </span>
         </button>
       </div>
