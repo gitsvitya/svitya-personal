@@ -172,15 +172,26 @@
   }
 
   .navigationBlock {
+    width: 100%;
+  }
+
+  .navigationBlock.enhanced {
     width: auto;
     justify-content: flex-end;
   }
 
-  .menuToggle {
+  .enhanced .menuToggle {
     display: inline-flex;
   }
 
   .listItems {
+    /* Keep native links usable while application scripts are loading or unavailable. */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+
+  .enhanced .listItems {
     display: grid;
     position: absolute;
     top: calc(100% + 12px);
@@ -208,7 +219,7 @@
       background-color var(--transition-theme);
   }
 
-  .menuOpen {
+  .enhanced .menuOpen {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

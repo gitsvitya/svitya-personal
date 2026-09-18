@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useState, useSyncExternalStore, type MouseEvent } from "react";
 import type { Language, SectionPath } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
 import { shouldHandleClientNavigation } from "../../utils/navigation";
@@ -8,6 +8,7 @@ import AppIcon from "../AppIcon/AppIcon";
 import styles from "./AppHeader.module.css";
 
 const DESKTOP_MEDIA_QUERY = "(min-width: 769px)";
+const subscribeToHydration = () => () => undefined;
 
 type AppHeaderProps = {
   text: AppTranslations;
@@ -17,6 +18,11 @@ type AppHeaderProps = {
 };
 
 function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false
+  );
   const menuRoute = `${language}${activePath}`;
   const [menuState, setMenuState] = useState({ route: menuRoute, open: false });
   const isMenuOpen = menuState.route === menuRoute && menuState.open;
@@ -69,7 +75,7 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
         {text.navigation.skipToContent}
       </a>
       <div className={`layout-container ${styles.container}`}>
-        <nav className={styles.navigationBlock}>
+        <nav className={`${styles.navigationBlock} ${isHydrated ? styles.enhanced : ""}`}>
           <button
             type="button"
             className={`button-control ${styles.menuToggle} ${isMenuOpen ? styles.menuToggleActive : ""}`}

@@ -24,12 +24,26 @@
 }
 
 .previewItem {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  font: inherit;
 }
 
 .previewButton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.previewFrame {
   display: block;
   width: 100%;
   aspect-ratio: 5 / 6;
@@ -47,16 +61,20 @@
 }
 
 .previewButton:focus-visible {
+  outline: none;
+}
+
+.previewButton:focus-visible .previewFrame {
   outline: var(--focus-ring-width) solid var(--accent);
   outline-offset: var(--focus-ring-offset);
   border-color: var(--accent);
 }
 
-.previewButton:focus-visible + .previewTitle {
+.previewButton:focus-visible .previewTitle {
   color: var(--accent);
 }
 
-.previewButton:focus-visible + .previewTitle .previewArrow {
+.previewButton:focus-visible .previewArrow {
   transform: translateX(var(--arrow-offset));
 }
 
@@ -189,7 +207,7 @@
   mask-size: contain;
 }
 
-.arrowButton:disabled {
+.arrowButton[aria-disabled="true"] {
   cursor: default;
   opacity: 0.6;
 }
@@ -271,15 +289,15 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .previewItem:hover .previewButton {
+  .previewButton:hover .previewFrame {
     border-color: var(--accent);
   }
 
-  .previewItem:hover .previewTitle {
+  .previewButton:hover .previewTitle {
     color: var(--accent);
   }
 
-  .previewItem:hover .previewArrow {
+  .previewButton:hover .previewArrow {
     transform: translateX(var(--arrow-offset));
   }
 
@@ -288,7 +306,7 @@
     color: var(--accent);
   }
 
-  .arrowButton:disabled:hover {
+  .arrowButton[aria-disabled="true"]:hover {
     border-color: currentColor;
     color: var(--text-primary);
   }

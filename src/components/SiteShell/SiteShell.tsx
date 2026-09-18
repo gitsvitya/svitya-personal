@@ -38,14 +38,16 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
 
   const navigate = useCallback(
     (href: string, options: RouteTransitionOptions = {}) => {
-      if (href === pathname) return;
+      if (href === pathname && !isPending) return;
       // Keep the current screen readable until Next commits the destination.
+      // Reselecting this page must also supersede a pending navigation, without
+      // adding another copy of the current URL to browser history.
       startTransition(() => {
-        if (options.replace) router.replace(href);
+        if (options.replace || href === pathname) router.replace(href);
         else router.push(href);
       });
     },
-    [pathname, router]
+    [isPending, pathname, router]
   );
 
   const routeTransitionValue = useMemo(

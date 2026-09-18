@@ -136,30 +136,33 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
       </h2>
       <div className={styles.previewGrid}>
         {items.map((material, index) => (
-          <div key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
+          <h3 key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
             <button
               type="button"
               className={styles.previewButton}
+              aria-label={`${companyName}: ${material.title}`}
               onClick={(event) => {
                 // Safari does not focus buttons on pointer clicks; keep a reliable return target.
                 event.currentTarget.focus({ preventScroll: true });
                 openModal(index);
               }}
             >
-              <Image
-                className={styles.previewImage}
-                src={material.previewSrc}
-                alt={`${companyName}: ${material.title}`}
-                sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
-              />
-            </button>
-            <h3 className={styles.previewTitle}>
-              <span className={styles.previewTitleText}>{material.title}</span>
-              <span className={styles.previewArrow} aria-hidden="true">
-                →
+              <span className={styles.previewFrame}>
+                <Image
+                  className={styles.previewImage}
+                  src={material.previewSrc}
+                  alt={`${companyName}: ${material.title}`}
+                  sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
+                />
               </span>
-            </h3>
-          </div>
+              <span className={styles.previewTitle}>
+                <span className={styles.previewTitleText}>{material.title}</span>
+                <span className={styles.previewArrow} aria-hidden="true">
+                  →
+                </span>
+              </span>
+            </button>
+          </h3>
         ))}
       </div>
 
@@ -177,14 +180,14 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
                   type="button"
                   className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
                   onClick={showPreviousMaterial}
-                  disabled={!isMaterialVisible}
+                  aria-disabled={!isMaterialVisible}
                   aria-label={text.detail.previousMaterial}
                 />
                 <button
                   type="button"
                   className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
                   onClick={showNextMaterial}
-                  disabled={!isMaterialVisible}
+                  aria-disabled={!isMaterialVisible}
                   aria-label={text.detail.nextMaterial}
                 />
               </>
