@@ -87,7 +87,8 @@ const Modal = ({
     return () => {
       window.clearTimeout(timer);
       if (prevFocusedRef.current instanceof HTMLElement) {
-        prevFocusedRef.current.focus();
+        prevFocusedRef.current.focus({ preventScroll: true });
+        prevFocusedRef.current.scrollIntoView({ block: "nearest", behavior: "instant" });
       }
     };
   }, []);

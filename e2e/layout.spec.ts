@@ -83,10 +83,17 @@ for (const width of [320, 375, 641, 961, 1101, 1280]) {
         if (section === "work") await page.goto(path);
         else {
           const menu = page.locator('button[aria-controls="app-nav-list"]');
-          if (await menu.isVisible()) await menu.click();
+          if (await menu.isVisible()) {
+            await expect(menu).toHaveAttribute("aria-expanded", "false");
+            await menu.click();
+            await expect(menu).toHaveAttribute("aria-expanded", "true");
+            await expect(page.locator("#app-nav-list")).toHaveCSS("opacity", "1");
+          }
           await page.locator(`nav a[href="${path}"]`).click();
         }
         await expect(page).toHaveURL(path);
+        await expect(page.locator(`nav a[href="${path}"]`)).toHaveAttribute("aria-current", "page");
+        await expect(page.locator("main")).toHaveAttribute("aria-busy", "false");
         await page.evaluate(() => document.fonts.ready);
         await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
         const cards = await page.locator(`main a[href^="${path}/"]`).evaluateAll((elements) =>

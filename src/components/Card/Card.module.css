@@ -1,6 +1,6 @@
 .card {
   /* Shared by all sections, with room for the longest localized card text. */
-  --card-height: 216px;
+  --card-height: 224px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 112px;
   gap: 24px;
@@ -65,6 +65,7 @@
   padding-top: 8px;
   font-size: 16px;
   font-weight: 400;
+  line-height: 1.5;
   color: var(--text-primary);
   transition: color var(--transition-theme);
 }
@@ -92,25 +93,25 @@
 
 @media (max-width: 1240px) {
   .card {
-    --card-height: 252px;
+    --card-height: 260px;
   }
 }
 
 @media (max-width: 1100px) {
   .card {
-    --card-height: 280px;
+    --card-height: 288px;
   }
 }
 
 @media (max-width: 960px) {
   .card {
-    --card-height: 216px;
+    --card-height: 224px;
   }
 }
 
 @media (max-width: 640px) {
   .card {
-    --card-height: 232px;
+    --card-height: 240px;
     grid-template-columns: minmax(0, 1fr) 80px;
     grid-template-rows: min-content min-content 1fr min-content;
     padding: 20px;

@@ -68,12 +68,14 @@ shapes and typography are intentional; they share colors, target sizes and inter
   These breakpoints solve different layout needs and need not match.
 - All portfolio cards share their dimensions across sections and languages. Keep the
   responsive minimum heights and content-fit checks when changing card typography or spacing.
+  Card actions use an explicit line height so their size does not depend on system font metrics.
   Cards must grow when user text spacing or larger fonts need more room.
 - The cookie banner reserves its measured height plus bottom/focus clearance in the page
   and document scroll padding. Keep this space in sync with resizing and locale changes.
   Focused page controls must stay above the banner, including after a resize.
 - Carousel controls stay vertically centered on the modal and horizontally centered
   between its edge and the preview. Descriptions scroll inside the reserved side space.
+  Restore focus without animated page scrolling when closing a modal; keep its trigger visible.
 
 Run `npm run check`, `npm run build` and `npm run test:e2e` after changing shared rules.
 Review the layout screenshots as well as the test results.
