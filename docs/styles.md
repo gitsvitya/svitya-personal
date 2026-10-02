@@ -40,6 +40,10 @@ color transition on the link.
   Focused actions scroll fully into view, including clearance for their focus outline.
 - Material dialogs show the preview, description and actions. Keep their title and
   carousel position available to screen readers without visible headings or counters.
+  All material types share a 900px maximum modal width, the same preview sizing and
+  the same side space, including single-item galleries. On narrow screens, leave
+  8px on each side of the modal. Desktop actions stay in one row when space allows;
+  keep wrapping available for smaller windows and enlarged text.
 - Use `.button-label` for Vremena's optical vertical adjustment. Wrapping labels override
   its height, line height and white space, as material and cookie actions do.
 - Icon-only controls use the same 44px target and a 22px icon. Inline icons may use `em`.

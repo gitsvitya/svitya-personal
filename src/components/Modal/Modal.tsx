@@ -99,7 +99,7 @@ const Modal = ({
   return ReactDOM.createPortal(
     <>
       <div
-        className={`${styles.modalWindow} ${className} ${overlayControls ? styles.withSideControls : ""} ${showContent ? styles.showModalWindow : ""}`}
+        className={`${styles.modalWindow} ${className} ${showContent ? styles.showModalWindow : ""}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}

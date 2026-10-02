@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -37,6 +37,25 @@ const labels = {
   ru: ["Скачать", "Открыть в новом окне", "Перейти по ссылке"],
   en: ["Download", "Open in new window", "Visit link"],
 } as const;
+
+async function measureModalLayout(dialog: Locator) {
+  return dialog.evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    const preview = element.querySelector("img")!.getBoundingClientRect();
+    const description = element.querySelector("p")!.getBoundingClientRect();
+    const actions = element
+      .querySelector(".button-control")!
+      .parentElement!.getBoundingClientRect();
+    return {
+      modalWidth: bounds.width,
+      previewWidth: preview.width,
+      contentInset: description.left - bounds.left,
+      contentWidth: description.width,
+      actionsInset: actions.left - bounds.left,
+      actionsWidth: actions.width,
+    };
+  });
+}
 
 for (const language of ["ru", "en"] as const) {
   for (const material of materials) {
@@ -136,6 +155,46 @@ for (const language of ["ru", "en"] as const) {
     });
   }
 
+  test(`uses consistent modal dimensions and one desktop action row for all ${language} materials`, async ({
+    context,
+    page,
+    baseURL,
+  }) => {
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    for (const [width, height] of [
+      [1024, 600],
+      [1280, 720],
+      [1440, 900],
+    ] as const) {
+      await page.setViewportSize({ width, height });
+      let reference: Awaited<ReturnType<typeof measureModalLayout>> | undefined;
+      for (const material of materials) {
+        await page.goto(`/${language}/${material.path}`);
+        await page.evaluate(() => document.fonts.ready);
+        await page.locator(`main a[href="${material.href}"]`).click();
+        const dialog = page.getByRole("dialog");
+        await expect(dialog).toHaveCSS("opacity", "1");
+        const layout = await measureModalLayout(dialog);
+        if (reference) expect(layout, `${material.type} at ${width}×${height}`).toEqual(reference);
+        else reference = layout;
+
+        const buttons = await dialog.locator(".button-control").evaluateAll((actions) =>
+          actions.map((action) => {
+            const bounds = action.getBoundingClientRect();
+            return { left: bounds.left, right: bounds.right, top: bounds.top };
+          })
+        );
+        for (const button of buttons) {
+          expect(button.top).toBeCloseTo(buttons[0]!.top, 0);
+          expect(button.left).toBeGreaterThanOrEqual(0);
+          expect(button.right).toBeLessThanOrEqual(width);
+        }
+        expect(buttons[1]!.left).toBeGreaterThan(buttons[0]!.right);
+        expect(buttons[2]!.left).toBeGreaterThan(buttons[1]!.right);
+      }
+    }
+  });
+
   test(`fits all ${language} material actions on narrow screens`, async ({
     context,
     page,
@@ -144,12 +203,16 @@ for (const language of ["ru", "en"] as const) {
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
     for (const width of [320, 390]) {
       await page.setViewportSize({ width, height: 568 });
+      let reference: Awaited<ReturnType<typeof measureModalLayout>> | undefined;
       for (const material of materials) {
         await page.goto(`/${language}/${material.path}`);
         await page.locator(`main a[href="${material.href}"]`).click();
         const dialog = page.getByRole("dialog");
         await expect(dialog).toHaveCSS("opacity", "1");
         await page.evaluate(() => document.fonts.ready);
+        const layout = await measureModalLayout(dialog);
+        if (reference) expect(layout, `${material.type} at ${width}px`).toEqual(reference);
+        else reference = layout;
         const overflowingActions = await dialog.locator(".button-control").evaluateAll((actions) =>
           actions.flatMap((action) => {
             const bounds = action.getBoundingClientRect();

@@ -2,7 +2,7 @@
   --modal-padding: 24px;
   display: flex;
   flex-direction: column;
-  width: min(700px, calc(100vw - 48px));
+  width: min(900px, calc(100vw - 48px));
   max-height: calc(100vh - 48px);
   max-height: calc(100dvh - 48px);
   box-sizing: border-box;
@@ -33,16 +33,11 @@
   /* Keep focus outlines inside the scrollport without moving the content. */
   margin: calc(-1 * var(--focus-clearance));
   padding: var(--focus-clearance);
+  /* Reserve the same side space whether or not carousel controls are present. */
+  padding-inline: calc(var(--modal-controls-gutter, 0px) + var(--focus-clearance));
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-}
-
-.withSideControls .modalBody {
-  /* Keep the fixed side controls clear of images and scrolling descriptions. */
-  padding-inline: calc(
-    var(--modal-controls-gutter, var(--control-height)) + var(--focus-clearance)
-  );
 }
 
 .modalHeader {
@@ -103,11 +98,8 @@
 @media (max-width: 640px) {
   .modalWindow {
     --modal-padding: 16px;
-    width: calc(100vw - 32px);
+    width: calc(100vw - 16px);
     max-height: calc(100vh - 32px);
     max-height: calc(100dvh - 32px);
-  }
-  .withSideControls {
-    width: calc(100vw - 16px);
   }
 }
