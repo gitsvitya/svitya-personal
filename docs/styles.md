@@ -9,7 +9,7 @@ chunk order; keep hover and focus rules explicit.
 ## Colors and surfaces
 
 - Use `--text-primary` for main copy, years, card borders and control borders.
-- Use `--text-subtle` for secondary information such as the material counter and 404 copy.
+- Use `--text-subtle` for secondary information such as disabled material actions and 404 copy.
 - `--bg-page` is the page background; `--bg-surface` distinguishes cards, menus and modals.
 - `--border-color` is for quiet dividers and switch tracks. Interactive borders follow
   the text with `currentColor` and become accented on hover and keyboard focus.
@@ -29,9 +29,17 @@ color transition on the link.
 - Vremena uses weight 300 for body copy and 400 for headings and controls.
 - Main prose uses `--body-font-size` (20 / 18 / 17px) and `--body-line-height`.
   About, company descriptions, case-study paragraphs/lists and 404 copy share this scale.
-- Main actions, Back, Settings, the mobile menu and material actions use `.button-control`:
+- Main actions, Back, Settings and the mobile menu use `.button-control`:
   minimum height 44px, type 18px (17px on mobile), padding 8px 20px, 1px border and pill shape.
   Multiline labels may increase the height; do not clamp them to 44px.
+- Material actions use a compact `.button-control` variant: minimum height 36px,
+  type 14px, padding 6px 12px and 18px icons. Always show Download, Open in new window
+  and Visit link in that order. A file enables downloading and opening; a URL enables
+  visiting the source. Unavailable actions are native disabled buttons with muted
+  text and no hover accent. On mobile, the three actions fill the available width.
+  Focused actions scroll fully into view, including clearance for their focus outline.
+- Material dialogs show the preview, description and actions. Keep their title and
+  carousel position available to screen readers without visible headings or counters.
 - Use `.button-label` for Vremena's optical vertical adjustment. Wrapping labels override
   its height, line height and white space, as material and cookie actions do.
 - Icon-only controls use the same 44px target and a 22px icon. Inline icons may use `em`.

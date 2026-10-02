@@ -236,7 +236,11 @@ test("does not intercept modified material link clicks", async ({ page }) => {
   await expect(page).toHaveURL("/en/work/thomsonreuters");
 });
 
-test("shows the current material title in the narrow modal", async ({ context, page, baseURL }) => {
+test("keeps the narrow modal named without a visible material heading", async ({
+  context,
+  page,
+  baseURL,
+}) => {
   await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
   await page.setViewportSize({ width: 320, height: 568 });
   await page.goto("/en/work/cheminsight");
@@ -245,10 +249,10 @@ test("shows the current material title in the narrow modal", async ({ context, p
   for (const title of ["Polyethylene", "Polypropylene"]) {
     const heading = dialog.getByRole("heading", { name: title, exact: true });
     await expect(dialog).toHaveAccessibleName(title);
-    await expect(heading).toHaveCSS("opacity", "1");
     const bounds = (await heading.boundingBox())!;
-    expect(bounds.height).toBeGreaterThan(18);
-    expect(bounds.width).toBeGreaterThan(100);
+    expect(bounds.height).toBe(1);
+    expect(bounds.width).toBe(1);
+    await expect(heading).toHaveCSS("clip-path", "inset(50%)");
     if (title === "Polyethylene") {
       await dialog.getByRole("button", { name: "Next material" }).click();
     }

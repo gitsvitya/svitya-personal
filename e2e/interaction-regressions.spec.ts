@@ -109,18 +109,18 @@ test("preserves carousel button focus across repeated keyboard activation", asyn
   await next.focus();
   await page.keyboard.press("Enter");
   await expect(next).toBeFocused();
-  await expect(dialog.getByText("2 из 7", { exact: true })).toBeVisible();
+  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 из 7");
   await expect(next).toBeEnabled();
   await expect(next).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(dialog.getByText("3 из 7", { exact: true })).toBeVisible();
+  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("3 из 7");
   await expect(next).toBeEnabled();
   await expect(next).toBeFocused();
 
   const previous = dialog.getByRole("button", { name: "Предыдущий материал" });
   await previous.focus();
   await page.keyboard.press("Space");
-  await expect(dialog.getByText("2 из 7", { exact: true })).toBeVisible();
+  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 из 7");
   await expect(previous).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);

@@ -229,12 +229,12 @@ function MaterialModalContent({
   descriptionId,
   materialCount,
 }: MaterialModalContentProps) {
-  const action = getMaterialAction(material, text);
+  const actions = getMaterialActions(material, text);
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
 
   return (
     <div className={styles.modalContent}>
-      <h2 id={titleId} className={`${styles.modalTitle} ${visibilityClass}`}>
+      <h2 id={titleId} className={styles.modalTitle}>
         {material.title}
       </h2>
       <div className={styles.imageFrame}>
@@ -257,48 +257,83 @@ function MaterialModalContent({
       <p id={descriptionId} className={`${styles.description} ${visibilityClass}`}>
         {material.description}
       </p>
-      <a
-        className={`button-control ${styles.materialAction} ${action.className} ${visibilityClass}`}
-        href={action.href}
-        download={action.download}
-        target={action.target}
-        rel={action.target ? "noopener noreferrer" : undefined}
-        aria-label={action.label}
-        title={action.label}
-      >
-        <span className={`button-label ${styles.actionText}`}>{action.label}</span>
-      </a>
+      <div className={`${styles.materialActions} ${visibilityClass}`}>
+        {Object.entries(actions).map(([key, action]) => {
+          const className = `button-control ${styles.materialAction} ${action.className}`;
+          const label = <span className={`button-label ${styles.actionText}`}>{action.label}</span>;
+
+          return action.href ? (
+            <a
+              key={key}
+              className={className}
+              href={action.href}
+              download={action.download}
+              target={action.target}
+              rel={action.target ? "noopener noreferrer" : undefined}
+              onFocus={(event) => {
+                event.currentTarget.scrollIntoView({
+                  block: "nearest",
+                  inline: "nearest",
+                  behavior: "instant",
+                });
+              }}
+            >
+              {label}
+            </a>
+          ) : (
+            <button key={key} type="button" className={className} disabled>
+              {label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 function getMaterialAction(material: LocalizedMaterial, text: AppTranslations) {
+  const actions = getMaterialActions(material, text);
   switch (material.type) {
     case "document":
-      return {
-        href: material.fileSrc,
-        label: text.detail.download,
-        className: styles.downloadAction,
-        download: true,
-        target: undefined,
-      } as const;
+      return actions.download;
     case "image":
-      return {
-        href: material.fullImageSrc,
-        label: text.detail.openImage,
-        className: styles.openImageAction,
-        download: undefined,
-        target: "_blank",
-      } as const;
+      return actions.openWindow;
     case "link":
-      return {
-        href: material.url,
-        label: text.detail.openLink,
-        className: styles.openLinkAction,
-        download: undefined,
-        target: "_blank",
-      } as const;
+      return actions.openLink;
   }
+}
+
+function getMaterialActions(material: LocalizedMaterial, text: AppTranslations) {
+  const fileHref =
+    material.type === "document"
+      ? material.fileSrc
+      : material.type === "image"
+        ? material.fullImageSrc
+        : undefined;
+
+  return {
+    download: {
+      href: fileHref,
+      label: text.detail.download,
+      className: styles.downloadAction,
+      download: true,
+      target: undefined,
+    },
+    openWindow: {
+      href: fileHref,
+      label: text.detail.openWindow,
+      className: styles.openWindowAction,
+      download: undefined,
+      target: "_blank",
+    },
+    openLink: {
+      href: material.type === "link" ? material.url : undefined,
+      label: text.detail.openLink,
+      className: styles.openLinkAction,
+      download: undefined,
+      target: "_blank",
+    },
+  } as const;
 }
 
 export default MaterialsGallery;

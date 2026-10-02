@@ -189,10 +189,8 @@ for (const width of [320, 1280]) {
           (modal.x + modal.width + image!.x + image!.width) / 2
       )
     ).toBeLessThan(1);
-    const counter = dialog.getByText("1 из 7", { exact: true });
-    await expect(counter).toBeVisible();
-    expect((await counter.boundingBox())!.y).toBeGreaterThanOrEqual(image!.y + image!.height);
-    const download = dialog.getByRole("link", { name: "Скачать PDF" });
+    await expect(dialog.locator('[aria-live="polite"]')).toHaveText("1 из 7");
+    const download = dialog.getByRole("link", { name: "Скачать", exact: true });
     const pdf = await request.get((await download.getAttribute("href"))!);
     expect(pdf.status()).toBe(200);
     expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
@@ -211,7 +209,7 @@ for (const width of [320, 1280]) {
     }
     await next.click();
     await expect(dialog).toHaveAccessibleName("Полипропилен");
-    await expect(dialog.getByText("2 из 7", { exact: true })).toBeVisible();
+    await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 из 7");
     await page.keyboard.press("Escape");
     await expect(dialog).toHaveCount(0);
     await expect(trigger).toBeFocused();

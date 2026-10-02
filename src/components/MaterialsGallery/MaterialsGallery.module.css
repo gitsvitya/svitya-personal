@@ -134,14 +134,17 @@
   gap: 12px;
 }
 
-.modalTitle {
+.modalTitle,
+.materialCount {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   padding: 0;
-  margin: 0;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
-  transition: opacity var(--transition-fast);
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .imageFrame {
@@ -245,9 +248,32 @@
   transition: opacity var(--transition-fast);
 }
 
+.materialActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+  transition: opacity var(--transition-fast);
+}
+
 .materialAction {
+  --icon-size: 18px;
   align-self: flex-start;
   max-width: 100%;
+  min-height: 36px;
+  padding: 6px 12px;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.375;
+  scroll-margin-block: calc(var(--focus-ring-width) + var(--focus-ring-offset));
+}
+
+.materialAction:disabled,
+.materialAction:disabled:hover {
+  color: var(--text-subtle);
+  border-color: currentColor;
+  opacity: 0.5;
+  cursor: default;
 }
 
 .materialAction .actionText {
@@ -277,7 +303,7 @@
   mask-image: url("../../images/ui/actions/download.png");
 }
 
-.openImageAction::before {
+.openWindowAction::before {
   -webkit-mask-image: url("../../images/ui/actions/open-image.png");
   mask-image: url("../../images/ui/actions/open-image.png");
 }
@@ -340,8 +366,13 @@
     font-size: 16px;
   }
 
-  .modalTitle {
-    font-size: 18px;
+  .materialActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .materialAction {
+    width: 100%;
   }
 
   .previewTitle {
@@ -353,11 +384,4 @@
   .previewGrid {
     grid-template-columns: 1fr;
   }
-}
-
-.materialCount {
-  text-align: center;
-  font-size: 15px;
-  color: var(--text-subtle);
-  transition: color var(--transition-theme);
 }
