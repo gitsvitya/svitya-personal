@@ -53,7 +53,7 @@ export async function GET(
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28 }}>
-        <span style={{ color: "#d53430" }}>svitya.com</span>
+        <span style={{ color: "#cc302c" }}>svitya.com</span>
         <span style={{ color: "#59616d" }}>{text.sections[section]}</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -75,7 +75,7 @@ export async function GET(
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 26 }}>
-        <div style={{ width: 64, height: 4, background: "#d53430" }} />
+        <div style={{ width: 64, height: 4, background: "#cc302c" }} />
         <span>{company ? text.about.title : text.about.experience}</span>
       </div>
     </div>,

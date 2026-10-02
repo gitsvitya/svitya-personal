@@ -14,6 +14,7 @@ chunk order; keep hover and focus rules explicit.
 - `--border-color` is for quiet dividers and switch tracks. Interactive borders follow
   the text with `currentColor` and become accented on hover and keyboard focus.
 - Buttons have transparent backgrounds in both themes.
+- The light accent is `#cc302c`, with at least 4.5:1 text contrast on both light surfaces.
 - The cookie banner stays dark. Its text uses `--banner-text`, and its hover/focus text
   uses the lighter `--banner-accent` to remain readable against that background.
 
@@ -52,7 +53,11 @@ shapes and typography are intentional; they share colors, target sizes and inter
 - Layout padding is 30 / 24 / 16px. The menu switches at 768/769px; card columns at 960px.
   These breakpoints solve different layout needs and need not match.
 - All portfolio cards share their dimensions across sections and languages. Keep the
-  responsive heights and content-fit checks when changing card typography or spacing.
+  responsive minimum heights and content-fit checks when changing card typography or spacing.
+  Cards must grow when user text spacing or larger fonts need more room.
+- The cookie banner reserves its measured height plus bottom/focus clearance in the page
+  and document scroll padding. Keep this space in sync with resizing and locale changes.
+  Focused page controls must stay above the banner, including after a resize.
 - Carousel controls stay vertically centered on the modal and horizontally centered
   between its edge and the preview. Descriptions scroll inside the reserved side space.
 

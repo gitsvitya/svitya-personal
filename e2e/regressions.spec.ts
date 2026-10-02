@@ -151,7 +151,7 @@ for (const width of [320, 1280]) {
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
     await page.setViewportSize({ width, height: 844 });
     await page.goto("/ru/work/cheminsight", { waitUntil: "domcontentloaded" });
-    const trigger = page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true });
+    const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
     await trigger.click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();

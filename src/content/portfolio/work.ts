@@ -252,7 +252,7 @@ export const WORK_COMPANIES = {
         name: "Thomson Reuters",
         title: "Аналитик рынков",
         about:
-          "Международная медиагруппа, включающая в себя информационное агентство Reuters и IT-платформу Refinitiv Eikon для мониторинга и анализа товарных и финансовых рынков",
+          "Международная медиагруппа, в период моей работы включавшая информационное агентство Reuters и платформу Thomson Reuters Eikon для мониторинга и анализа товарных и финансовых рынков.",
         results:
           "Прошёл путь от стажёра до аналитика товарно-сырьевых рынков (нефть и газ, металлургия), написав более тысячи материалов - новостей, разборов и аналитических статей, - которые прочитали более двадцати тысяч человек. Также занимался разработкой информационных продуктов и аналитических дашбордов. Проводил мастер-классы для клиентов.",
       },
@@ -261,7 +261,7 @@ export const WORK_COMPANIES = {
         name: "Thomson Reuters",
         title: "Market Analyst",
         about:
-          "An international media group that includes the Reuters news agency and the Refinitiv Eikon IT platform for monitoring and analyzing commodity and financial markets.",
+          "An international media group that, during my time there, included the Reuters news agency and the Thomson Reuters Eikon platform for monitoring and analyzing commodity and financial markets.",
         results:
           "Progressed from intern to commodity markets analyst (oil and gas, metallurgy), authoring over one thousand pieces - including news articles, market overviews, and analytical reports - read by more than twenty thousand people. Also involved in the development of information products and analytical dashboards. Conducted client workshops.",
       },

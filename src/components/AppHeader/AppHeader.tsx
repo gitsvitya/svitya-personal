@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState, useSyncExternalStore, type MouseEvent } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import type { Language, SectionPath } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
 import { shouldHandleClientNavigation } from "../../utils/navigation";
@@ -18,6 +18,8 @@ type AppHeaderProps = {
 };
 
 function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuListRef = useRef<HTMLUListElement>(null);
   const isHydrated = useSyncExternalStore(
     subscribeToHydration,
     () => true,
@@ -38,7 +40,14 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setMenuState((previous) => ({ ...previous, open: false }));
+      if (event.key !== "Escape" || !isMenuOpen) return;
+
+      const isFocusInsideMenu = menuListRef.current?.contains(document.activeElement);
+      setMenuState((previous) => ({ ...previous, open: false }));
+      if (isFocusInsideMenu) {
+        event.preventDefault();
+        menuButtonRef.current?.focus();
+      }
     }
 
     const desktopMedia = window.matchMedia(DESKTOP_MEDIA_QUERY);
@@ -54,7 +63,7 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
       document.removeEventListener("keydown", handleKeyDown);
       desktopMedia.removeEventListener("change", handleDesktopChange);
     };
-  }, []);
+  }, [isMenuOpen]);
 
   function toggleMenu() {
     setMenuState({ route: menuRoute, open: !isMenuOpen });
@@ -77,6 +86,7 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
       <div className={`layout-container ${styles.container}`}>
         <nav className={`${styles.navigationBlock} ${isHydrated ? styles.enhanced : ""}`}>
           <button
+            ref={menuButtonRef}
             type="button"
             className={`button-control ${styles.menuToggle} ${isMenuOpen ? styles.menuToggleActive : ""}`}
             aria-expanded={isMenuOpen}
@@ -91,6 +101,7 @@ function AppHeader({ text, language, activePath, onNavigate }: AppHeaderProps) {
             </span>
           </button>
           <ul
+            ref={menuListRef}
             id="app-nav-list"
             className={`${styles.listItems} ${isMenuOpen ? styles.menuOpen : ""}`}
           >

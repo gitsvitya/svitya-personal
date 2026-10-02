@@ -29,7 +29,7 @@
 @property --accent {
   syntax: "<color>";
   inherits: true;
-  initial-value: #d53430;
+  initial-value: #cc302c;
 }
 @property --border-color {
   syntax: "<color>";
@@ -58,7 +58,7 @@
   --bg-surface: #f1f3f7;
   --text-primary: #111217;
   --text-subtle: #59616d;
-  --accent: #d53430;
+  --accent: #cc302c;
   --border-color: #cbd0d7;
   --control-border-width: 1px;
   --control-height: 44px;
@@ -137,6 +137,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-bottom: var(--cookie-banner-space, 0px);
   min-height: 100%;
 }
 

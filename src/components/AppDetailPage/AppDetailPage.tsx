@@ -3,7 +3,7 @@
 import type { LocalizedCompany } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
 import MaterialsGallery from "../MaterialsGallery/MaterialsGallery";
-import { useRouteTransition } from "../SiteShell/RouteTransitionContext";
+import TransitionLink from "../SiteShell/TransitionLink";
 import DetailContent from "../DetailContent/DetailContent";
 import styles from "./AppDetailPage.module.css";
 
@@ -15,7 +15,6 @@ type AppDetailPageProps = {
 };
 
 function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageProps) {
-  const { navigate } = useRouteTransition();
   const titleId = `detail-title-${company.id}`;
   const descriptionId = `detail-description-${company.id}`;
   const materials =
@@ -26,17 +25,17 @@ function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageP
   return (
     <section className={styles.detailPage} aria-labelledby={titleId}>
       <div className={`layout-container ${styles.container}`}>
-        <button
-          type="button"
+        <TransitionLink
+          href={backHref}
+          replace
           className={`button-control ${styles.backButton}`}
-          onClick={() => navigate(backHref, { replace: true })}
           aria-label={`${text.detail.backToSection}: ${sectionTitle}`}
         >
           <span aria-hidden="true" className={`button-label ${styles.backIcon}`}>
             ←
           </span>
           <span className="button-label">{text.detail.back}</span>
-        </button>
+        </TransitionLink>
         <DetailContent
           company={company}
           titleId={titleId}

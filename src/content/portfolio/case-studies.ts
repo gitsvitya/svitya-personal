@@ -13,7 +13,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Координирую взаимодействие экспертов, редакторов и дизайнеров.",
       ],
       outcome:
-        "Продолжаю работу над продуктами и процессами агентства. Ниже представлены образцы аналитических материалов ХимИнсайт.",
+        "Ниже представлены образцы аналитических материалов ХимИнсайт о рынках полиэтилена, полипропилена, бутиловых спиртов и других продуктов. Работа над продуктами и процессами агентства продолжается.",
     },
     en: {
       challenge:
@@ -24,7 +24,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Coordinate collaboration between experts, editors and designers.",
       ],
       outcome:
-        "My work on the agency’s products and processes is ongoing. Sample ChemInsight analytical reports are available below.",
+        "The samples below include ChemInsight analytical reports on the polyethylene, polypropylene, butyl alcohols and other product markets. My work on the agency’s products and processes is ongoing.",
     },
   },
   NTB: {
@@ -37,7 +37,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Координировал разработку и внедрение frontend-системы обработки заявок.",
       ],
       outcome:
-        "Работа охватывала запуск информационных продуктов и автоматизацию обработки заявок для биржевых торгов.",
+        "Запущены ценовые индикаторы и B2B-информационные продукты, внедрена frontend-система автоматизации обработки заявок для биржевых торгов.",
     },
     en: {
       challenge:
@@ -48,7 +48,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Coordinated the development and implementation of a frontend bid-processing system.",
       ],
       outcome:
-        "The work covered information product launches and the automation of bid processing for exchange trading.",
+        "The outcomes included price indicators, B2B information products and a frontend system for automating bid processing for exchange trading.",
     },
   },
   MBC: {

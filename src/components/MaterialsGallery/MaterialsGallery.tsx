@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
 import { getTransitionDuration } from "../../utils/motion";
+import { shouldHandleClientNavigation } from "../../utils/navigation";
 import Modal from "../Modal/Modal";
 import styles from "./MaterialsGallery.module.css";
 
@@ -135,35 +136,43 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
         {text.detail.materialsTitle}
       </h2>
       <div className={styles.previewGrid}>
-        {items.map((material, index) => (
-          <h3 key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
-            <button
-              type="button"
-              className={styles.previewButton}
-              aria-label={`${companyName}: ${material.title}`}
-              onClick={(event) => {
-                // Safari does not focus buttons on pointer clicks; keep a reliable return target.
-                event.currentTarget.focus({ preventScroll: true });
-                openModal(index);
-              }}
-            >
-              <span className={styles.previewFrame}>
-                <Image
-                  className={styles.previewImage}
-                  src={material.previewSrc}
-                  alt={`${companyName}: ${material.title}`}
-                  sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
-                />
-              </span>
-              <span className={styles.previewTitle}>
-                <span className={styles.previewTitleText}>{material.title}</span>
-                <span className={styles.previewArrow} aria-hidden="true">
-                  →
+        {items.map((material, index) => {
+          const action = getMaterialAction(material, text);
+          return (
+            <h3 key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
+              <a
+                className={styles.previewLink}
+                href={action.href}
+                download={action.download}
+                target={action.target}
+                rel={action.target ? "noopener noreferrer" : undefined}
+                aria-label={`${companyName}: ${material.title}`}
+                onClick={(event) => {
+                  if (!shouldHandleClientNavigation(event)) return;
+                  event.preventDefault();
+                  // Keep a reliable return target in Safari as well as keyboard navigation.
+                  event.currentTarget.focus({ preventScroll: true });
+                  openModal(index);
+                }}
+              >
+                <span className={styles.previewFrame}>
+                  <Image
+                    className={styles.previewImage}
+                    src={material.previewSrc}
+                    alt={`${companyName}: ${material.title}`}
+                    sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
+                  />
                 </span>
-              </span>
-            </button>
-          </h3>
-        ))}
+                <span className={styles.previewTitle}>
+                  <span className={styles.previewTitleText}>{material.title}</span>
+                  <span className={styles.previewArrow} aria-hidden="true">
+                    →
+                  </span>
+                </span>
+              </a>
+            </h3>
+          );
+        })}
       </div>
 
       {activeMaterial && (
@@ -225,7 +234,7 @@ function MaterialModalContent({
 
   return (
     <div className={styles.modalContent}>
-      <h2 id={titleId} className={styles.modalTitle}>
+      <h2 id={titleId} className={`${styles.modalTitle} ${visibilityClass}`}>
         {material.title}
       </h2>
       <div className={styles.imageFrame}>

@@ -101,7 +101,7 @@ test("preserves carousel button focus across repeated keyboard activation", asyn
 }) => {
   await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
   await page.goto("/ru/work/cheminsight");
-  const trigger = page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true });
+  const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
   await trigger.click();
   const dialog = page.getByRole("dialog");
   await expect(dialog.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
@@ -135,7 +135,7 @@ for (const width of [1280, 390]) {
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/ru/work/cheminsight");
-    const trigger = page.getByRole("button", { name: "ХимИнсайт: Полиэтилен", exact: true });
+    const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
     const dialog = page.getByRole("dialog");
     for (const target of [
       trigger.getByText("Полиэтилен", { exact: true }),

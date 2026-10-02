@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import type { AppTranslations } from "../../content/ui-text";
 import { useAnalyticsConsent } from "../../hooks/useAnalyticsConsent";
 import { setBrowserAnalyticsConsent, type AnalyticsConsent } from "../../utils/analyticsConsent";
@@ -13,13 +13,61 @@ type CookieBannerProps = {
 const subscribeToHydration = () => () => undefined;
 
 function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
+  const bannerRef = useRef<HTMLDivElement>(null);
   const consent = useAnalyticsConsent();
   const isHydrated = useSyncExternalStore(
     subscribeToHydration,
     () => true,
     () => false
   );
-  if (!isHydrated || (consent !== null && !forceOpen)) return null;
+  const isVisible = isHydrated && (consent === null || forceOpen);
+
+  useEffect(() => {
+    const banner = bannerRef.current;
+    if (!isVisible || !banner) return;
+
+    function keepFocusedControlVisible() {
+      const focused = document.activeElement;
+      if (
+        !banner ||
+        !(focused instanceof HTMLElement) ||
+        focused === document.body ||
+        focused === document.documentElement ||
+        banner.contains(focused) ||
+        focused.closest('[aria-modal="true"]')
+      ) {
+        return;
+      }
+
+      // Native focus scrolling can ignore fixed overlays, even with scroll padding.
+      const visibleBottom = banner.getBoundingClientRect().top - 12;
+      const focusedBottom = focused.getBoundingClientRect().bottom;
+      if (focusedBottom > visibleBottom) {
+        window.scrollBy({ top: focusedBottom - visibleBottom, behavior: "instant" });
+      }
+    }
+
+    function reserveBannerSpace() {
+      if (!banner) return;
+      const bottomGap = parseFloat(getComputedStyle(banner).bottom);
+      const space = Math.ceil(banner.getBoundingClientRect().height + bottomGap + 12);
+      document.documentElement.style.setProperty("--cookie-banner-space", `${space}px`);
+      keepFocusedControlVisible();
+    }
+
+    reserveBannerSpace();
+    const observer = new ResizeObserver(reserveBannerSpace);
+    observer.observe(banner);
+    document.addEventListener("focusin", keepFocusedControlVisible);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("focusin", keepFocusedControlVisible);
+      document.documentElement.style.removeProperty("--cookie-banner-space");
+    };
+  }, [isVisible]);
+
+  if (!isVisible) return null;
   const acceptLastWordStart = text.cookieBanner.accept.lastIndexOf(" ") + 1;
 
   function saveConsent(nextConsent: Exclude<AnalyticsConsent, null>) {
@@ -29,6 +77,7 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
 
   return (
     <div
+      ref={bannerRef}
       className={styles.banner}
       role="region"
       aria-label={text.cookieBanner.label}

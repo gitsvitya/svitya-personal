@@ -1,7 +1,15 @@
-import { Children, isValidElement, type ReactElement, type ReactNode } from "react";
+import {
+  Children,
+  isValidElement,
+  type ComponentProps,
+  type MouseEvent,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { getLocalizedCompany } from "../../content/portfolio";
 import { getTranslations } from "../../content/ui-text";
+import TransitionLink from "../SiteShell/TransitionLink";
 import AppDetailPage from "./AppDetailPage";
 
 const { navigate } = vi.hoisted(() => ({
@@ -31,14 +39,29 @@ describe("AppDetailPage", () => {
       backHref: "/ru/work",
     });
     const container = page.props.children as ReactElement<{ children: ReactNode }>;
-    const backButton = Children.toArray(container.props.children)[0];
+    const backLink = Children.toArray(container.props.children)[0];
 
-    if (!isValidElement<{ onClick: () => void }>(backButton)) {
-      throw new Error("Back button is missing");
+    if (
+      !isValidElement<ComponentProps<typeof TransitionLink>>(backLink) ||
+      backLink.type !== TransitionLink
+    ) {
+      throw new Error("Back link is missing");
     }
 
-    backButton.props.onClick();
+    const link = TransitionLink(backLink.props);
+    const event = {
+      button: 0,
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+      defaultPrevented: false,
+      preventDefault: vi.fn(),
+    };
+    expect(link.props.href).toBe("/ru/work");
+    link.props.onClick(event as unknown as MouseEvent<HTMLAnchorElement>);
 
+    expect(event.preventDefault).toHaveBeenCalledOnce();
     expect(navigate).toHaveBeenCalledOnce();
     expect(navigate).toHaveBeenCalledWith("/ru/work", { replace: true });
   });

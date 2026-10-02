@@ -154,7 +154,7 @@ test("lets the user reopen and update cookie settings", async ({ context, page }
 test("navigates materials by keyboard only while the modal is open", async ({ page }) => {
   await page.goto("/ru/work/cheminsight");
   const firstMaterial = page
-    .getByRole("button")
+    .getByRole("link")
     .filter({ has: page.getByAltText("ХимИнсайт: Полиэтилен") });
 
   await firstMaterial.click();

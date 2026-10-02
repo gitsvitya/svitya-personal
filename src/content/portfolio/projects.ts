@@ -85,7 +85,7 @@ export const PROJECT_COMPANIES = {
         about:
           "A promotional platform where advertisers ran contests and giveaways to attract audiences.",
         results:
-          "Was responsible for product development and client acquisition. The project existed for just under a year, during which at least a dozen giveaways and local esports tournaments were held, and MAU reached 7,000 users. The project was closed following stricter contest regulations on the VK.com social network, which was the main traffic source.",
+          "Was responsible for product development and client acquisition. The project existed for just under a year, during which at least ten giveaways and local esports tournaments were held, and MAU reached 7,000 users. The project was closed following stricter contest regulations on the VK.com social network, which was the main traffic source.",
       },
     },
   },
