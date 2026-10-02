@@ -29,6 +29,8 @@ color transition on the link.
 - Vremena uses weight 300 for body copy and 400 for headings and controls.
 - Main prose uses `--body-font-size` (20 / 18 / 17px) and `--body-line-height`.
   About, company descriptions, case-study paragraphs/lists and 404 copy share this scale.
+  On the About landing page, the subtitle fills its text column and the introduction
+  fills the section width. Do not limit these two blocks by character count.
 - Main actions, Back, Settings and the mobile menu use `.button-control`:
   minimum height 44px, type 18px (17px on mobile), padding 8px 20px, 1px border and pill shape.
   Multiline labels may increase the height; do not clamp them to 44px.
