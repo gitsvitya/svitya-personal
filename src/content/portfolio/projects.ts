@@ -2,6 +2,7 @@ import madBurglarCatLogo from "../../images/portfolio/projects/madburglarcat/log
 import madBurglarCatCatalogPreview from "../../images/portfolio/projects/madburglarcat/materials/catalog-preview.png";
 import madBurglarCatProductPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-preview.png";
 import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-checkout-preview.png";
+import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburglarcat/materials/soldout-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
 import type { CompanyId } from "../../types/domain";
@@ -58,6 +59,20 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "Форма заказа «MBC TS x Всё Хорошо» с доставкой СДЭК в Москву и картой пунктов выдачи. На сайте форма открывается через кнопку «Купить» в карточке товара.",
             en: "The MBC TS x Everything Is Fine checkout form with CDEK delivery to Moscow and a pickup point map. On the website, use the Buy button on the product page to open the form.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: madBurglarCatSoldoutPreview,
+          fileSrc: "/materials/projects/madburglarcat/soldout.pdf",
+          url: "https://madburglarcat.ru/soldout",
+          title: {
+            ru: "Солдаут Mad Burglar Cat",
+            en: "Mad Burglar Cat Soldout",
+          },
+          description: {
+            ru: "Раздел «Солдаут» Mad Burglar Cat: полотенца из прошлых коллекций с отметками SOLD и «Нет в наличии».",
+            en: "The Mad Burglar Cat Soldout archive: towels from past collections marked SOLD and out of stock.",
           },
         },
       ],

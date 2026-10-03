@@ -231,7 +231,7 @@ for (const language of ["ru", "en"] as const) {
     });
   });
 
-  test(`provides all three ${language} Mad Burglar Cat pages with PDFs and source links`, async ({
+  test(`provides all four ${language} Mad Burglar Cat pages with PDFs and source links`, async ({
     context,
     page,
     request,
@@ -242,6 +242,7 @@ for (const language of ["ru", "en"] as const) {
       ["catalog", "https://madburglarcat.ru/catalog"],
       ["everything-is-fine", productUrl],
       ["everything-is-fine-checkout", `${productUrl}#order`],
+      ["soldout", "https://madburglarcat.ru/soldout"],
     ] as const;
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
     await page.goto(`/${language}/projects/madburglarcat`);
@@ -260,7 +261,7 @@ for (const language of ["ru", "en"] as const) {
       await expect(dialog.locator(".button-control")).toHaveCount(3);
       await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
       await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
-        `${index + 1} ${language === "ru" ? "из" : "of"} 3`
+        `${index + 1} ${language === "ru" ? "из" : "of"} ${pages.length}`
       );
       await expect
         .poll(() =>
@@ -273,10 +274,19 @@ for (const language of ["ru", "en"] as const) {
       expect(pdf.status()).toBe(200);
       expect(pdf.headers()["content-type"]).toContain("application/pdf");
       expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
+      if (slug === "everything-is-fine-checkout") {
+        await expect(dialog.locator("p")).toContainText(language === "ru" ? "Москву" : "Moscow");
+        await dialog.screenshot({
+          path: testInfo.outputPath("madburglarcat-checkout-material.png"),
+        });
+      }
       if (index < pages.length - 1) await page.keyboard.press("ArrowRight");
     }
-    await expect(dialog.locator("p")).toContainText(language === "ru" ? "Москву" : "Moscow");
-    await dialog.screenshot({ path: testInfo.outputPath("madburglarcat-checkout-material.png") });
+    await expect(dialog).toHaveAccessibleName(
+      language === "ru" ? "Солдаут Mad Burglar Cat" : "Mad Burglar Cat Soldout"
+    );
+    await expect(dialog.locator("p")).toContainText(language === "ru" ? "полотенца" : "towels");
+    await dialog.screenshot({ path: testInfo.outputPath("madburglarcat-soldout-material.png") });
     await page.keyboard.press("Escape");
     await expect(dialog).not.toBeVisible();
     await expect(previews.first()).toBeFocused();
