@@ -1,4 +1,7 @@
 import madBurglarCatLogo from "../../images/portfolio/projects/madburglarcat/logo.png";
+import madBurglarCatCatalogPreview from "../../images/portfolio/projects/madburglarcat/materials/catalog-preview.png";
+import madBurglarCatProductPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-preview.png";
+import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-checkout-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
 import type { CompanyId } from "../../types/domain";
@@ -12,6 +15,53 @@ export const PROJECT_COMPANIES = {
     logo: madBurglarCatLogo,
     url: "https://madburglarcat.ru/",
     linkLabel: "madburglarcat.ru",
+    materials: {
+      enabled: true,
+      items: [
+        {
+          type: "document",
+          previewSrc: madBurglarCatCatalogPreview,
+          fileSrc: "/materials/projects/madburglarcat/catalog.pdf",
+          url: "https://madburglarcat.ru/catalog",
+          title: {
+            ru: "Каталог Mad Burglar Cat",
+            en: "Mad Burglar Cat catalog",
+          },
+          description: {
+            ru: "Каталог Mad Burglar Cat: авторские футболки, патчи и стикерпаки, изготовление по индивидуальному заказу и фотографии покупателей.",
+            en: "The Mad Burglar Cat catalog: original T-shirts, patches and sticker packs, custom production and customer photos.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: madBurglarCatProductPreview,
+          fileSrc: "/materials/projects/madburglarcat/everything-is-fine.pdf",
+          url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho",
+          title: {
+            ru: "MBC TS x Всё Хорошо — карточка товара",
+            en: "MBC TS x Everything Is Fine — product page",
+          },
+          description: {
+            ru: "Карточка футболки «MBC TS x Всё Хорошо»: фотографии, цена, выбор размера, характеристики, сроки изготовления и рекомендации по уходу.",
+            en: "The MBC TS x Everything Is Fine T-shirt product page: photos, price, size selection, specifications, production time and care instructions.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: madBurglarCatCheckoutPreview,
+          fileSrc: "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf",
+          url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho#order",
+          title: {
+            ru: "MBC TS x Всё Хорошо — оформление заказа",
+            en: "MBC TS x Everything Is Fine — checkout",
+          },
+          description: {
+            ru: "Форма заказа «MBC TS x Всё Хорошо» с доставкой СДЭК в Москву и картой пунктов выдачи. На сайте форма открывается через кнопку «Купить» в карточке товара.",
+            en: "The MBC TS x Everything Is Fine checkout form with CDEK delivery to Moscow and a pickup point map. On the website, use the Buy button on the product page to open the form.",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2024 → настоящее время",

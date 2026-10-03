@@ -32,6 +32,14 @@ const materials = [
     },
     active: [true, true, true],
   },
+  {
+    type: "website",
+    path: "projects/madburglarcat",
+    href: "/materials/projects/madburglarcat/catalog.pdf",
+    sourceUrl: "https://madburglarcat.ru/catalog",
+    title: { ru: "Каталог Mad Burglar Cat", en: "Mad Burglar Cat catalog" },
+    active: [true, true, true],
+  },
 ] as const;
 
 const labels = {
@@ -220,6 +228,60 @@ for (const language of ["ru", "en"] as const) {
     await expect(previews.first()).toBeFocused();
     await page.locator('section[aria-labelledby="company-materials-title"]').screenshot({
       path: testInfo.outputPath("reuters-materials-gallery.png"),
+    });
+  });
+
+  test(`provides all three ${language} Mad Burglar Cat pages with PDFs and source links`, async ({
+    context,
+    page,
+    request,
+    baseURL,
+  }, testInfo) => {
+    const productUrl = "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho";
+    const pages = [
+      ["catalog", "https://madburglarcat.ru/catalog"],
+      ["everything-is-fine", productUrl],
+      ["everything-is-fine-checkout", `${productUrl}#order`],
+    ] as const;
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await page.goto(`/${language}/projects/madburglarcat`);
+    const previews = page.locator('main a[href^="/materials/projects/madburglarcat/"]');
+    await expect(previews).toHaveCount(pages.length);
+    await previews.first().click();
+    const dialog = page.getByRole("dialog");
+    for (const [index, [slug, sourceUrl]] of pages.entries()) {
+      const href = `/materials/projects/madburglarcat/${slug}.pdf`;
+      for (const [actionIndex, label] of labels[language].entries()) {
+        await expect(dialog.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+          "href",
+          actionIndex === 2 ? sourceUrl : href
+        );
+      }
+      await expect(dialog.locator(".button-control")).toHaveCount(3);
+      await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
+      await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
+        `${index + 1} ${language === "ru" ? "из" : "of"} 3`
+      );
+      await expect
+        .poll(() =>
+          dialog
+            .locator("img")
+            .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)
+        )
+        .toBe(true);
+      const pdf = await request.get(href);
+      expect(pdf.status()).toBe(200);
+      expect(pdf.headers()["content-type"]).toContain("application/pdf");
+      expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
+      if (index < pages.length - 1) await page.keyboard.press("ArrowRight");
+    }
+    await expect(dialog.locator("p")).toContainText(language === "ru" ? "Москву" : "Moscow");
+    await dialog.screenshot({ path: testInfo.outputPath("madburglarcat-checkout-material.png") });
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
+    await expect(previews.first()).toBeFocused();
+    await page.locator('section[aria-labelledby="company-materials-title"]').screenshot({
+      path: testInfo.outputPath("madburglarcat-materials-gallery.png"),
     });
   });
 
