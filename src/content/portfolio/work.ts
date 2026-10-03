@@ -10,7 +10,11 @@ import chemInsightFeedGradeMethioninePreview from "../../images/portfolio/work/c
 import chemInsightCausticSodaPreview from "../../images/portfolio/work/cheminsight/materials/caustic-soda-preview.png";
 import chemInsightCausticPotashPreview from "../../images/portfolio/work/cheminsight/materials/caustic-potash-preview.png";
 import chemInsightBoricAcidPreview from "../../images/portfolio/work/cheminsight/materials/boric-acid-preview.png";
-import thomsonReutersArticle1Preview from "../../images/portfolio/work/thomsonreuters/materials/article-1-preview.png";
+import thomsonReutersSteelDemandPreview from "../../images/portfolio/work/thomsonreuters/materials/russian-steel-demand-2017-preview.png";
+import thomsonReutersSteelDiscountsPreview from "../../images/portfolio/work/thomsonreuters/materials/russian-steel-discounts-preview.png";
+import thomsonReutersPortHedlandPreview from "../../images/portfolio/work/thomsonreuters/materials/port-hedland-cyclone-joyce-preview.png";
+import thomsonReutersRenovationPreview from "../../images/portfolio/work/thomsonreuters/materials/moscow-renovation-steel-preview.png";
+import thomsonReutersIronOrePreview from "../../images/portfolio/work/thomsonreuters/materials/iron-ore-price-forecast-2017-preview.png";
 import type { CompanyId } from "../../types/domain";
 import type { CompanyRecord } from "./types";
 
@@ -232,16 +236,73 @@ export const WORK_COMPANIES = {
       enabled: true,
       items: [
         {
-          type: "link",
-          previewSrc: thomsonReutersArticle1Preview,
+          type: "document",
+          previewSrc: thomsonReutersSteelDemandPreview,
+          fileSrc: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
           url: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
           title: {
             ru: "АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
             en: "ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
           },
           description: {
-            ru: "Статья: АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
-            en: "Article: ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
+            ru: "Аналитическая статья о спросе на сталь в России, избытке мощностей и ценовых войнах. Reuters, 22 февраля 2017 года.",
+            en: "An analysis of Russian steel demand, excess capacity, and price wars. Reuters, February 22, 2017.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: thomsonReutersSteelDiscountsPreview,
+          fileSrc: "/materials/work/thomsonreuters/russian-steel-discounts.pdf",
+          url: "https://forbes.kz/news/newsid_139809",
+          title: {
+            ru: "АНАЛИЗ-Российские металлурги раздают скидки, но не снижают цены",
+            en: "ANALYSIS — Russian steelmakers offer discounts without cutting prices",
+          },
+          description: {
+            ru: "Аналитическая статья о скидках, ценовой политике металлургов и конкуренции с трейдерами. Forbes Kazakhstan, 31 марта 2017 года.",
+            en: "An analysis of steelmakers' discounts, pricing, and competition with traders. Forbes Kazakhstan, March 31, 2017.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: thomsonReutersPortHedlandPreview,
+          fileSrc: "/materials/work/thomsonreuters/port-hedland-cyclone-joyce.pdf",
+          url: "https://jp.reuters.com/article/markets/--idUSL8N1P63ZK/",
+          title: {
+            ru: "Рудовозы уходят из австралийского Порт-Хедленда из-за урагана Джойс",
+            en: "Iron ore ships leave Australia's Port Hedland as Cyclone Joyce approaches",
+          },
+          description: {
+            ru: "Новость о закрытии Порт-Хедленда и рисках для поставок железной руды. Перевод Виктора Строкова. Reuters, 11 января 2018 года.",
+            en: "A report on Port Hedland's closure and risks to iron ore supplies. Translated into Russian by Viktor Strokov. Reuters, January 11, 2018.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: thomsonReutersRenovationPreview,
+          fileSrc: "/materials/work/thomsonreuters/moscow-renovation-steel.pdf",
+          url: "https://forbes.kz/news/newsid_146758",
+          title: {
+            ru: "Вызвавший протесты план реновации в Москве сулит выгодные контракты металлургам",
+            en: "Moscow's controversial renovation plan promises lucrative contracts for steelmakers",
+          },
+          description: {
+            ru: "Материал о спросе на сталь в рамках московской реновации, подготовленный при моём участии. Forbes Kazakhstan, 9 июня 2017 года.",
+            en: "A report on steel demand from Moscow's housing renovation programme, with my reporting contribution. Forbes Kazakhstan, June 9, 2017.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: thomsonReutersIronOrePreview,
+          fileSrc: "/materials/work/thomsonreuters/iron-ore-price-forecast-2017.pdf",
+          url: "https://www.reuters.com/article/markets/currencies/iron-ore-price-to-average-55t-in-2017-idUSKBN1441B7/",
+          title: {
+            ru: "Средняя цена железной руды в 2017 году составит $55 за тонну",
+            en: "Iron ore price to average $55/t in 2017",
+          },
+          description: {
+            ru: "Прогноз цены железной руды на 2017 год по результатам опроса Reuters. Англоязычная публикация, 15 декабря 2016 года.",
+            en: "An iron ore price forecast for 2017 based on a Reuters poll. Published in English on December 15, 2016.",
           },
         },
       ],

@@ -214,12 +214,14 @@ test("returns from a detail page without reloading or adding browser history", a
 test("does not intercept modified material link clicks", async ({ page }) => {
   await page.goto("/en/work/thomsonreuters");
   await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
-  const material = page.locator('main a[href^="https://www.reuters.com/"]');
-  await expect(material).toHaveAttribute("target", "_blank");
+  const material = page.locator(
+    'main a[href="/materials/work/thomsonreuters/russian-steel-demand-2017.pdf"]'
+  );
+  await expect(material).toHaveAttribute("download", "");
   for (const modifier of ["ctrlKey", "metaKey", "shiftKey", "altKey"]) {
     await material.evaluate((link) => {
       link.removeAttribute("data-click-canceled");
-      // Observe the event after React, then suppress the external request in the test.
+      // Observe the event after React, then suppress the native download in the test.
       document.addEventListener(
         "click",
         (event) => {

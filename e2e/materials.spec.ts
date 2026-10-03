@@ -22,14 +22,15 @@ const materials = [
     active: [true, true, false],
   },
   {
-    type: "link",
+    type: "article",
     path: "work/thomsonreuters",
-    href: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
+    href: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
+    sourceUrl: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
     title: {
       ru: "АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
       en: "ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
     },
-    active: [false, false, true],
+    active: [true, true, true],
   },
 ] as const;
 
@@ -78,7 +79,7 @@ for (const language of ["ru", "en"] as const) {
         if (material.active[index]) {
           await expect(dialog.getByRole("link", { name: label, exact: true })).toHaveAttribute(
             "href",
-            material.href
+            index === 2 && "sourceUrl" in material ? material.sourceUrl : material.href
           );
         } else {
           const disabled = dialog.getByRole("button", { name: label, exact: true });
@@ -116,7 +117,7 @@ for (const language of ["ru", "en"] as const) {
       await page.keyboard.press("Shift+Tab");
       await expect(lastAction).toBeFocused();
 
-      if (material.type !== "link") {
+      if (material.active[0]) {
         const downloadLink = dialog.getByRole("link", { name: labels[language][0], exact: true });
         const downloadPromise = page.waitForEvent("download");
         await downloadLink.click();
@@ -140,20 +141,87 @@ for (const language of ["ru", "en"] as const) {
           await expect(popup).toHaveURL(material.href);
           await popup.close();
         }
-      } else {
-        await context.route(material.href, (route) =>
+      }
+      if ("sourceUrl" in material) {
+        await context.route(material.sourceUrl, (route) =>
           route.fulfill({ contentType: "text/html", body: "<h1>External material</h1>" })
         );
         const popupPromise = context.waitForEvent("page");
         await dialog.getByRole("link", { name: labels[language][2], exact: true }).click();
         const popup = await popupPromise;
-        await expect(popup).toHaveURL(material.href);
+        await expect(popup).toHaveURL(material.sourceUrl);
         await expect(popup.getByRole("heading", { name: "External material" })).toBeVisible();
         await popup.close();
       }
       await expect(dialog).toHaveAccessibleName(material.title[language]);
     });
   }
+
+  test(`provides all five ${language} Reuters articles with matching PDFs and original links`, async ({
+    context,
+    page,
+    request,
+    baseURL,
+  }, testInfo) => {
+    const articles = [
+      ["russian-steel-demand-2017", "https://www.reuters.com/article/business/-17--idUSKBN1611FE/"],
+      ["russian-steel-discounts", "https://forbes.kz/news/newsid_139809"],
+      ["port-hedland-cyclone-joyce", "https://jp.reuters.com/article/markets/--idUSL8N1P63ZK/"],
+      ["moscow-renovation-steel", "https://forbes.kz/news/newsid_146758"],
+      [
+        "iron-ore-price-forecast-2017",
+        "https://www.reuters.com/article/markets/currencies/iron-ore-price-to-average-55t-in-2017-idUSKBN1441B7/",
+      ],
+    ] as const;
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await page.goto(`/${language}/work/thomsonreuters`);
+    const previews = page.locator('main a[href^="/materials/work/thomsonreuters/"]');
+    await expect(previews).toHaveCount(articles.length);
+    await previews.first().click();
+    const dialog = page.getByRole("dialog");
+    const next = dialog.getByRole("button", {
+      name: language === "ru" ? "Следующий материал" : "Next material",
+      exact: true,
+    });
+    for (const [index, [slug, sourceUrl]] of articles.entries()) {
+      await expect(next).toHaveAttribute("aria-disabled", "false");
+      const href = `/materials/work/thomsonreuters/${slug}.pdf`;
+      await expect(
+        dialog.getByRole("link", { name: labels[language][0], exact: true })
+      ).toHaveAttribute("href", href);
+      await expect(
+        dialog.getByRole("link", { name: labels[language][1], exact: true })
+      ).toHaveAttribute("href", href);
+      await expect(
+        dialog.getByRole("link", { name: labels[language][2], exact: true })
+      ).toHaveAttribute("href", sourceUrl);
+      await expect(dialog.locator(".button-control")).toHaveCount(3);
+      await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
+      await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
+        `${index + 1} ${language === "ru" ? "из" : "of"} 5`
+      );
+      await expect
+        .poll(() =>
+          dialog
+            .locator("img")
+            .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)
+        )
+        .toBe(true);
+      const pdf = await request.get(href);
+      expect(pdf.status()).toBe(200);
+      expect(pdf.headers()["content-type"]).toContain("application/pdf");
+      expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
+      if (index < articles.length - 1) {
+        await page.keyboard.press("ArrowRight");
+      }
+    }
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
+    await expect(previews.first()).toBeFocused();
+    await page.locator('section[aria-labelledby="company-materials-title"]').screenshot({
+      path: testInfo.outputPath("reuters-materials-gallery.png"),
+    });
+  });
 
   test(`uses consistent modal dimensions and one desktop action row for all ${language} materials`, async ({
     context,

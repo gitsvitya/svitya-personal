@@ -327,7 +327,7 @@ function getMaterialActions(material: LocalizedMaterial, text: AppTranslations) 
       target: "_blank",
     },
     openLink: {
-      href: material.type === "link" ? material.url : undefined,
+      href: material.type === "image" ? undefined : material.url,
       label: text.detail.openLink,
       className: styles.openLinkAction,
       download: undefined,

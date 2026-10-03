@@ -74,6 +74,7 @@ function localizeMaterial(material: CompanyMaterial, language: Language): Locali
         type: material.type,
         previewSrc: material.previewSrc,
         fileSrc: material.fileSrc,
+        url: material.url,
         ...copy,
       };
     case "image":

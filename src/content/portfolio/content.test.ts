@@ -126,6 +126,7 @@ describe("portfolio content", () => {
         switch (material.type) {
           case "document":
             resolvePublicAsset(material.fileSrc);
+            if (material.url) expectExternalUrl(material.url);
             break;
           case "image":
             resolvePublicAsset(material.fullImageSrc);

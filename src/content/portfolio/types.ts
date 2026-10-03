@@ -28,6 +28,7 @@ export type CompanyMaterial =
   | (MaterialBase & {
       type: "document";
       fileSrc: string;
+      url?: string;
     })
   | (MaterialBase & {
       type: "image";
