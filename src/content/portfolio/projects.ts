@@ -4,6 +4,7 @@ import madBurglarCatProductPreview from "../../images/portfolio/projects/madburg
 import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-checkout-preview.png";
 import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburglarcat/materials/soldout-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
+import mappngoScreensPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-preview.png";
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
 import veniviHomepagePreview from "../../images/portfolio/projects/venivi/materials/retro-homepage-preview.png";
 import veniviContestPreview from "../../images/portfolio/projects/venivi/materials/contest-xbox-one-preview.png";
@@ -107,6 +108,24 @@ export const PROJECT_COMPANIES = {
     logo: mappngoLogo,
     url: "https://www.mappngo.com/",
     linkLabel: "mappngo.com",
+    materials: {
+      enabled: true,
+      items: [
+        {
+          type: "document",
+          previewSrc: mappngoScreensPreview,
+          fileSrc: "/materials/projects/mappngo/final-test-screens.pdf",
+          title: {
+            ru: "Итоговые тестовые экраны MappNgo",
+            en: "MappNgo final test screens",
+          },
+          description: {
+            ru: "29 тестовых экранов MappNgo: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
+            en: "29 MappNgo test screens covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2019 → 2020",
