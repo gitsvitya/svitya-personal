@@ -1,6 +1,7 @@
 import strokeOffLogo from "../../images/portfolio/activities/strokeoff/logo.png";
 import svityaComLogo from "../../images/portfolio/activities/svityacom/logo.png";
 import strokeOffFirstBatchPreview from "../../images/portfolio/activities/strokeoff/materials/first-batch-preview.png";
+import strokeOffLabelPreview from "../../images/portfolio/activities/strokeoff/materials/pepper-vodka-label-preview.png";
 import type { CompanyId } from "../../types/domain";
 import type { CompanyRecord } from "./types";
 
@@ -14,16 +15,29 @@ export const ACTIVITY_COMPANIES = {
       enabled: true,
       items: [
         {
-          type: "image",
+          type: "document",
           previewSrc: strokeOffFirstBatchPreview,
-          fullImageSrc: "/materials/activities/strokeoff/first-batch.png",
+          fileSrc: "/materials/activities/strokeoff/first-batch.pdf",
           title: {
             ru: "Первая партия перцовки Stroke Off",
             en: "The first batch of Stroke Off pepper vodka",
           },
           description: {
-            ru: "Фотография первой партии перцовки, приготовленной из перцев чили под брендом Stroke Off.",
-            en: "A photo of the first batch of chili-infused vodka made under the Stroke Off brand.",
+            ru: "Фотография первой партии перцовки Stroke Off на нейтральном фоне.",
+            en: "A photo of the first batch of Stroke Off chili-infused vodka against a neutral background.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: strokeOffLabelPreview,
+          fileSrc: "/materials/activities/strokeoff/pepper-vodka-label.pdf",
+          title: {
+            ru: "Этикетка перцовки Stroke Off",
+            en: "Stroke Off pepper vodka label",
+          },
+          description: {
+            ru: "Макет этикетки перцовки Stroke Off: фирменная иллюстрация, название и декоративный орнамент. Размер макета — 110 × 135 мм.",
+            en: "The Stroke Off pepper vodka label artwork with an illustration, brand lettering and decorative pattern. Artwork size: 110 × 135 mm.",
           },
         },
       ],

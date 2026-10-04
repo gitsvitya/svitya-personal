@@ -10,6 +10,11 @@ import chemInsightFeedGradeMethioninePreview from "../../images/portfolio/work/c
 import chemInsightCausticSodaPreview from "../../images/portfolio/work/cheminsight/materials/caustic-soda-preview.png";
 import chemInsightCausticPotashPreview from "../../images/portfolio/work/cheminsight/materials/caustic-potash-preview.png";
 import chemInsightBoricAcidPreview from "../../images/portfolio/work/cheminsight/materials/boric-acid-preview.png";
+import namexRegionalOtcIndicesPreview from "../../images/portfolio/work/namex/materials/otc-regional-agricultural-indices-preview.png";
+import namexWheatCptIndexPreview from "../../images/portfolio/work/namex/materials/wheat-cpt-novorossiysk-index-preview.png";
+import namexExchangeSugarIndexPreview from "../../images/portfolio/work/namex/materials/exchange-sugar-cfd-index-preview.png";
+import namexDailyOtcSugarIndexPreview from "../../images/portfolio/work/namex/materials/daily-otc-sugar-cfd-index-preview.png";
+import namexAgriculturalIndicesPreview from "../../images/portfolio/work/namex/materials/agricultural-indices-2024-07-15-preview.png";
 import thomsonReutersSteelDemandPreview from "../../images/portfolio/work/thomsonreuters/materials/russian-steel-demand-2017-preview.png";
 import thomsonReutersSteelDiscountsPreview from "../../images/portfolio/work/thomsonreuters/materials/russian-steel-discounts-preview.png";
 import thomsonReutersPortHedlandPreview from "../../images/portfolio/work/thomsonreuters/materials/port-hedland-cyclone-joyce-preview.png";
@@ -150,6 +155,76 @@ export const WORK_COMPANIES = {
     logo: namexLogo,
     url: "https://namex.org/",
     linkLabel: "namex.org",
+    materials: {
+      enabled: true,
+      items: [
+        {
+          type: "document",
+          previewSrc: namexRegionalOtcIndicesPreview,
+          fileSrc: "/materials/work/namex/otc-regional-agricultural-indices.pdf",
+          title: {
+            ru: "Методика региональных внебиржевых индексов агропродукции",
+            en: "Regional OTC agricultural indices methodology",
+          },
+          description: {
+            ru: "Методика расчета региональных индексов пшеницы, кукурузы, ячменя и сахара на условиях EXW и FCA. Утверждена АО НТБ 30 июня 2022 года. 4 страницы.",
+            en: "Methodology for regional wheat, corn, barley and sugar indices on EXW and FCA terms. Approved by the National Mercantile Exchange on June 30, 2022. 4 pages.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: namexWheatCptIndexPreview,
+          fileSrc: "/materials/work/namex/wheat-cpt-novorossiysk-index.pdf",
+          title: {
+            ru: "Методика индекса пшеницы CPT Новороссийск",
+            en: "CPT Novorossiysk wheat index methodology",
+          },
+          description: {
+            ru: "Методика расчета ценового индекса пшеницы на условиях CPT Новороссийск по итогам товарных аукционов. Утверждена АО НТБ 24 июля 2023 года. 4 страницы.",
+            en: "Methodology for the CPT Novorossiysk wheat price index based on commodity auctions. Approved by the National Mercantile Exchange on July 24, 2023. 4 pages.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: namexExchangeSugarIndexPreview,
+          fileSrc: "/materials/work/namex/exchange-sugar-cfd-index.pdf",
+          title: {
+            ru: "Методика биржевого индекса сахара в ЦФО",
+            en: "Central Federal District exchange-traded sugar index methodology",
+          },
+          description: {
+            ru: "Методика расчета биржевого индекса сахара в Центральном федеральном округе по данным спот-рынка. Утверждена АО НТБ 12 ноября 2024 года. 6 страниц.",
+            en: "Methodology for the exchange-traded sugar index in the Central Federal District using spot market data. Approved by the National Mercantile Exchange on November 12, 2024. 6 pages.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: namexDailyOtcSugarIndexPreview,
+          fileSrc: "/materials/work/namex/daily-otc-sugar-cfd-index.pdf",
+          title: {
+            ru: "Методика ежедневного внебиржевого индекса сахара в ЦФО",
+            en: "Central Federal District daily OTC sugar index methodology",
+          },
+          description: {
+            ru: "Методика расчета ежедневного внебиржевого индекса сахара в Центральном федеральном округе на условиях EXW и FCA. Утверждена АО НТБ 24 июля 2023 года. 4 страницы.",
+            en: "Methodology for the daily OTC sugar index in the Central Federal District on EXW and FCA terms. Approved by the National Mercantile Exchange on July 24, 2023. 4 pages.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: namexAgriculturalIndicesPreview,
+          fileSrc: "/materials/work/namex/agricultural-indices-2024-07-15.pdf",
+          title: {
+            ru: "Ценовые индексы агропродукции — 15 июля 2024",
+            en: "Agricultural price indices — July 15, 2024",
+          },
+          description: {
+            ru: "Инфографика НТБ от 15 июля 2024 года: экспортные, биржевые и внебиржевые индексы агропродукции. Значения на 12 июля и изменения за 5–12 июля 2024 года.",
+            en: "An NME infographic dated July 15, 2024 showing export, exchange-traded and OTC agricultural price indices. Values as of July 12 and changes from July 5 to July 12, 2024.",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2021 → 2024",

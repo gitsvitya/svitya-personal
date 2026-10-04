@@ -12,9 +12,9 @@ const materials = [
     active: [true, true, false],
   },
   {
-    type: "image",
+    type: "photo",
     path: "activities/strokeoff",
-    href: "/materials/activities/strokeoff/first-batch.png",
+    href: "/materials/activities/strokeoff/first-batch.pdf",
     title: {
       ru: "Первая партия перцовки Stroke Off",
       en: "The first batch of Stroke Off pepper vodka",
@@ -142,7 +142,7 @@ for (const language of ["ru", "en"] as const) {
         await expect(openWindow).toHaveAttribute("target", "_blank");
         await expect(openWindow).toHaveAttribute("rel", "noopener noreferrer");
         await expect(openWindow).not.toHaveAttribute("download");
-        if (material.type === "image") {
+        if (material.href.endsWith(".png")) {
           const popupPromise = context.waitForEvent("page");
           await openWindow.click();
           const popup = await popupPromise;
