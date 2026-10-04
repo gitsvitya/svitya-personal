@@ -1,4 +1,4 @@
-import strokeOffLogo from "../../images/portfolio/activities/strokeoff/logo.png";
+import strokeOffLogo from "../../images/portfolio/activities/strokeoff/logo-v2.png";
 import svityaComLogo from "../../images/portfolio/activities/svityacom/logo.png";
 import strokeOffFirstBatchPreview from "../../images/portfolio/activities/strokeoff/materials/first-batch-preview.png";
 import strokeOffLabelPreview from "../../images/portfolio/activities/strokeoff/materials/pepper-vodka-label-preview.png";
