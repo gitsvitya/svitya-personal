@@ -5,6 +5,8 @@ import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madbur
 import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburglarcat/materials/soldout-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
+import veniviHomepagePreview from "../../images/portfolio/projects/venivi/materials/retro-homepage-preview.png";
+import veniviContestPreview from "../../images/portfolio/projects/venivi/materials/contest-xbox-one-preview.png";
 import type { CompanyId } from "../../types/domain";
 import type { CompanyRecord } from "./types";
 
@@ -133,6 +135,37 @@ export const PROJECT_COMPANIES = {
     logo: veniviLogo,
     url: "https://venivi.ru/",
     linkLabel: "venivi.ru",
+    materials: {
+      enabled: true,
+      items: [
+        {
+          type: "document",
+          previewSrc: veniviHomepagePreview,
+          fileSrc: "/materials/projects/venivi/retro-homepage.pdf",
+          title: {
+            ru: "Ретро-главная страница Venivi",
+            en: "Venivi retro homepage",
+          },
+          description: {
+            ru: "Архивная главная страница Venivi: конкурсы с Xbox One, iPhone 5s и Beats Studio, таймер розыгрыша и вход через социальные сети.",
+            en: "The Venivi retro homepage: Xbox One, iPhone 5s and Beats Studio contests, a giveaway countdown and social sign-in.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: veniviContestPreview,
+          fileSrc: "/materials/projects/venivi/contest-xbox-one.pdf",
+          title: {
+            ru: "Venivi — конкурс Xbox One",
+            en: "Venivi — Xbox One contest",
+          },
+          description: {
+            ru: "Архивная страница розыгрыша Xbox One: описание приза, условия участия, таймер, пошаговая инструкция и форма комментариев.",
+            en: "The Venivi Xbox One contest page: prize details, entry rules, a countdown, participation steps and a comment form.",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2013 → 2014",
