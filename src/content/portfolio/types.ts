@@ -20,23 +20,23 @@ type MaterialCopy = {
   description: Record<Language, string>;
 };
 
-type MaterialBase = MaterialCopy & {
+type MaterialImages = {
   previewSrc: StaticImageData;
+  fullImageSrc: StaticImageData | string;
 };
 
 export type CompanyMaterial =
-  | (MaterialBase & {
+  | (MaterialCopy & {
       type: "document";
-      fileSrc: string;
-      url?: string;
+      assets: Record<Language, MaterialImages & { fileSrc: string; url?: string }>;
     })
-  | (MaterialBase & {
+  | (MaterialCopy & {
       type: "image";
-      fullImageSrc: string;
+      assets: Record<Language, MaterialImages>;
     })
-  | (MaterialBase & {
+  | (MaterialCopy & {
       type: "link";
-      url: string;
+      assets: Record<Language, MaterialImages & { url: string }>;
     });
 
 export type CompanyMaterials = {
@@ -56,7 +56,8 @@ export type CompanyRecord = {
 };
 
 type LocalizeMaterial<T> = T extends CompanyMaterial
-  ? Omit<T, "title" | "description"> & {
+  ? T["assets"][Language] & {
+      type: T["type"];
       title: string;
       description: string;
     }

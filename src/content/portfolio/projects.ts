@@ -30,9 +30,20 @@ export const PROJECT_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: madBurglarCatCatalogPreview,
-          fileSrc: "/materials/projects/madburglarcat/catalog.pdf",
-          url: "https://madburglarcat.ru/catalog",
+          assets: {
+            ru: {
+              previewSrc: madBurglarCatCatalogPreview,
+              fullImageSrc: madBurglarCatCatalogPreview,
+              fileSrc: "/materials/projects/madburglarcat/catalog.pdf",
+              url: "https://madburglarcat.ru/catalog",
+            },
+            en: {
+              previewSrc: madBurglarCatCatalogPreview,
+              fullImageSrc: madBurglarCatCatalogPreview,
+              fileSrc: "/materials/projects/madburglarcat/catalog.pdf",
+              url: "https://madburglarcat.ru/catalog",
+            },
+          },
           title: {
             ru: "Каталог Mad Burglar Cat",
             en: "Mad Burglar Cat catalog",
@@ -44,9 +55,20 @@ export const PROJECT_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: madBurglarCatProductPreview,
-          fileSrc: "/materials/projects/madburglarcat/everything-is-fine.pdf",
-          url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho",
+          assets: {
+            ru: {
+              previewSrc: madBurglarCatProductPreview,
+              fullImageSrc: madBurglarCatProductPreview,
+              fileSrc: "/materials/projects/madburglarcat/everything-is-fine.pdf",
+              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho",
+            },
+            en: {
+              previewSrc: madBurglarCatProductPreview,
+              fullImageSrc: madBurglarCatProductPreview,
+              fileSrc: "/materials/projects/madburglarcat/everything-is-fine.pdf",
+              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho",
+            },
+          },
           title: {
             ru: "MBC TS x Всё Хорошо — карточка товара",
             en: "MBC TS x Everything Is Fine — product page",
@@ -58,9 +80,20 @@ export const PROJECT_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: madBurglarCatCheckoutPreview,
-          fileSrc: "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf",
-          url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho#order",
+          assets: {
+            ru: {
+              previewSrc: madBurglarCatCheckoutPreview,
+              fullImageSrc: madBurglarCatCheckoutPreview,
+              fileSrc: "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf",
+              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho#order",
+            },
+            en: {
+              previewSrc: madBurglarCatCheckoutPreview,
+              fullImageSrc: madBurglarCatCheckoutPreview,
+              fileSrc: "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf",
+              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho#order",
+            },
+          },
           title: {
             ru: "MBC TS x Всё Хорошо — оформление заказа",
             en: "MBC TS x Everything Is Fine — checkout",
@@ -72,9 +105,20 @@ export const PROJECT_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: madBurglarCatSoldoutPreview,
-          fileSrc: "/materials/projects/madburglarcat/soldout.pdf",
-          url: "https://madburglarcat.ru/soldout",
+          assets: {
+            ru: {
+              previewSrc: madBurglarCatSoldoutPreview,
+              fullImageSrc: madBurglarCatSoldoutPreview,
+              fileSrc: "/materials/projects/madburglarcat/soldout.pdf",
+              url: "https://madburglarcat.ru/soldout",
+            },
+            en: {
+              previewSrc: madBurglarCatSoldoutPreview,
+              fullImageSrc: madBurglarCatSoldoutPreview,
+              fileSrc: "/materials/projects/madburglarcat/soldout.pdf",
+              url: "https://madburglarcat.ru/soldout",
+            },
+          },
           title: {
             ru: "Солдаут Mad Burglar Cat",
             en: "Mad Burglar Cat Soldout",
@@ -119,34 +163,38 @@ export const PROJECT_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: mappngoScreensPreview,
-          fileSrc: "/materials/projects/mappngo/final-test-screens.pdf",
-          title: {
-            ru: "Итоговые тестовые экраны MappNgo на русском языке",
-            en: "MappNgo final test screens in Russian",
+          assets: {
+            ru: {
+              previewSrc: mappngoScreensPreview,
+              fullImageSrc: mappngoScreensPreview,
+              fileSrc: "/materials/projects/mappngo/final-test-screens.pdf",
+            },
+            en: {
+              previewSrc: mappngoScreensEnPreview,
+              fullImageSrc: mappngoScreensEnPreview,
+              fileSrc: "/materials/projects/mappngo/final-test-screens-en.pdf",
+            },
           },
+          title: { ru: "Итоговые тестовые экраны MappNgo", en: "MappNgo final test screens" },
           description: {
             ru: "29 тестовых экранов MappNgo на русском языке: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
-            en: "29 MappNgo test screens in Russian covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
-          },
-        },
-        {
-          type: "document",
-          previewSrc: mappngoScreensEnPreview,
-          fileSrc: "/materials/projects/mappngo/final-test-screens-en.pdf",
-          title: {
-            ru: "Итоговые тестовые экраны MappNgo на английском языке",
-            en: "MappNgo final test screens in English",
-          },
-          description: {
-            ru: "29 тестовых экранов MappNgo на английском языке: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
             en: "29 MappNgo test screens in English covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
           },
         },
         {
           type: "document",
-          previewSrc: mappngoStickerPreview,
-          fileSrc: "/materials/projects/mappngo/souvenir-sticker.pdf",
+          assets: {
+            ru: {
+              previewSrc: mappngoStickerPreview,
+              fullImageSrc: mappngoStickerPreview,
+              fileSrc: "/materials/projects/mappngo/souvenir-sticker.pdf",
+            },
+            en: {
+              previewSrc: mappngoStickerPreview,
+              fullImageSrc: mappngoStickerPreview,
+              fileSrc: "/materials/projects/mappngo/souvenir-sticker.pdf",
+            },
+          },
           title: {
             ru: "Шаблон сувенирной наклейки MappNgo",
             en: "MappNgo souvenir sticker template",
@@ -158,57 +206,45 @@ export const PROJECT_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: mappngoHomepageRuPreview,
-          fileSrc: "/materials/projects/mappngo/homepage-ru.pdf",
-          url: "https://www.mappngo.com/",
-          title: {
-            ru: "Главная страница MappNgo на русском языке",
-            en: "MappNgo homepage in Russian",
+          assets: {
+            ru: {
+              previewSrc: mappngoHomepageRuPreview,
+              fullImageSrc: mappngoHomepageRuPreview,
+              fileSrc: "/materials/projects/mappngo/homepage-ru.pdf",
+              url: "https://www.mappngo.com/",
+            },
+            en: {
+              previewSrc: mappngoHomepageEnPreview,
+              fullImageSrc: mappngoHomepageEnPreview,
+              fileSrc: "/materials/projects/mappngo/homepage-en.pdf",
+              url: "https://www.mappngo.com/en/",
+            },
           },
+          title: { ru: "Главная страница MappNgo", en: "MappNgo homepage" },
           description: {
             ru: "Русская версия главной страницы MappNgo: описание проекта, команда, история закрытия приложения и обзор его функций.",
-            en: "The Russian MappNgo homepage: project overview, team, app closure and features.",
-          },
-        },
-        {
-          type: "document",
-          previewSrc: mappngoHomepageEnPreview,
-          fileSrc: "/materials/projects/mappngo/homepage-en.pdf",
-          url: "https://www.mappngo.com/en/",
-          title: {
-            ru: "Главная страница MappNgo на английском языке",
-            en: "MappNgo homepage in English",
-          },
-          description: {
-            ru: "Английская версия главной страницы MappNgo: описание проекта, команда, история закрытия приложения и обзор его функций.",
             en: "The English MappNgo homepage: project overview, team, app closure and features.",
           },
         },
         {
           type: "document",
-          previewSrc: mappngoFaqRuPreview,
-          fileSrc: "/materials/projects/mappngo/faq-ru.pdf",
-          url: "https://www.mappngo.com/faq/",
-          title: {
-            ru: "FAQ MappNgo на русском языке",
-            en: "MappNgo FAQ in Russian",
+          assets: {
+            ru: {
+              previewSrc: mappngoFaqRuPreview,
+              fullImageSrc: mappngoFaqRuPreview,
+              fileSrc: "/materials/projects/mappngo/faq-ru.pdf",
+              url: "https://www.mappngo.com/faq/",
+            },
+            en: {
+              previewSrc: mappngoFaqEnPreview,
+              fullImageSrc: mappngoFaqEnPreview,
+              fileSrc: "/materials/projects/mappngo/faq-en.pdf",
+              url: "https://www.mappngo.com/en/faq/",
+            },
           },
+          title: { ru: "FAQ MappNgo", en: "MappNgo FAQ" },
           description: {
             ru: "Русская версия FAQ MappNgo: использование приложения, категории мест, поиск и создание маршрутов, избранное и навигация.",
-            en: "The Russian MappNgo FAQ: using the app, place categories, finding and creating route guides, favorites and navigation.",
-          },
-        },
-        {
-          type: "document",
-          previewSrc: mappngoFaqEnPreview,
-          fileSrc: "/materials/projects/mappngo/faq-en.pdf",
-          url: "https://www.mappngo.com/en/faq/",
-          title: {
-            ru: "FAQ MappNgo на английском языке",
-            en: "MappNgo FAQ in English",
-          },
-          description: {
-            ru: "Английская версия FAQ MappNgo: использование приложения, категории мест, поиск и создание маршрутов, избранное и навигация.",
             en: "The English MappNgo FAQ: using the app, place categories, finding and creating route guides, favorites and navigation.",
           },
         },
@@ -247,8 +283,18 @@ export const PROJECT_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: veniviHomepagePreview,
-          fileSrc: "/materials/projects/venivi/retro-homepage.pdf",
+          assets: {
+            ru: {
+              previewSrc: veniviHomepagePreview,
+              fullImageSrc: veniviHomepagePreview,
+              fileSrc: "/materials/projects/venivi/retro-homepage.pdf",
+            },
+            en: {
+              previewSrc: veniviHomepagePreview,
+              fullImageSrc: veniviHomepagePreview,
+              fileSrc: "/materials/projects/venivi/retro-homepage.pdf",
+            },
+          },
           title: {
             ru: "Ретро-главная страница Venivi",
             en: "Venivi retro homepage",
@@ -260,8 +306,18 @@ export const PROJECT_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: veniviContestPreview,
-          fileSrc: "/materials/projects/venivi/contest-xbox-one.pdf",
+          assets: {
+            ru: {
+              previewSrc: veniviContestPreview,
+              fullImageSrc: veniviContestPreview,
+              fileSrc: "/materials/projects/venivi/contest-xbox-one.pdf",
+            },
+            en: {
+              previewSrc: veniviContestPreview,
+              fullImageSrc: veniviContestPreview,
+              fileSrc: "/materials/projects/venivi/contest-xbox-one.pdf",
+            },
+          },
           title: {
             ru: "Venivi — конкурс Xbox One",
             en: "Venivi — Xbox One contest",

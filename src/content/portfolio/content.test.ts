@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { COMPANY_IDS, LANGUAGES } from "../../types/domain";
-import { COMPANIES } from "./registry";
+import { COMPANIES, getLocalizedCompany } from "./registry";
 import { CASE_STUDIES } from "./case-studies";
 
 const PUBLIC_DIRECTORY = join(process.cwd(), "public");
@@ -110,32 +110,90 @@ describe("portfolio content", () => {
     }
   });
 
-  it("validates every material type and exact public asset filename casing", () => {
+  it("validates every material type in both languages and exact public asset filename casing", () => {
     for (const company of Object.values(COMPANIES)) {
       if (!company.materials) continue;
       if (company.materials.enabled) expect(company.materials.items.length).toBeGreaterThan(0);
 
       for (const material of company.materials.items) {
-        expect(material.previewSrc).toBeTruthy();
-
         for (const language of LANGUAGES) {
           expect(material.title[language].trim()).not.toBe("");
           expect(material.description[language].trim()).not.toBe("");
-        }
+          const assets = material.assets[language];
+          expect(assets.previewSrc).toBeTruthy();
+          expect(assets.fullImageSrc).toBeTruthy();
+          // Vite exposes imported images as /src/images URLs instead of StaticImageData.
+          if (
+            typeof assets.fullImageSrc === "string" &&
+            !assets.fullImageSrc.startsWith("/src/images/")
+          ) {
+            resolvePublicAsset(assets.fullImageSrc);
+          }
 
-        switch (material.type) {
-          case "document":
-            resolvePublicAsset(material.fileSrc);
-            if (material.url) expectExternalUrl(material.url);
-            break;
-          case "image":
-            resolvePublicAsset(material.fullImageSrc);
-            break;
-          case "link":
-            expectExternalUrl(material.url);
-            break;
+          switch (material.type) {
+            case "document": {
+              const document = material.assets[language];
+              resolvePublicAsset(document.fileSrc);
+              if (document.url) expectExternalUrl(document.url);
+              break;
+            }
+            case "link":
+              expectExternalUrl(material.assets[language].url);
+              break;
+          }
         }
       }
     }
+  });
+
+  it("selects the matching language for the four consolidated MappNgo materials", () => {
+    const russian = getLocalizedCompany("MNG", "ru").materials!.items;
+    const english = getLocalizedCompany("MNG", "en").materials!.items;
+    const expected = [
+      ["final-test-screens.pdf", "final-test-screens-en.pdf", undefined, undefined],
+      ["souvenir-sticker.pdf", "souvenir-sticker.pdf", undefined, undefined],
+      [
+        "homepage-ru.pdf",
+        "homepage-en.pdf",
+        "https://www.mappngo.com/",
+        "https://www.mappngo.com/en/",
+      ],
+      [
+        "faq-ru.pdf",
+        "faq-en.pdf",
+        "https://www.mappngo.com/faq/",
+        "https://www.mappngo.com/en/faq/",
+      ],
+    ] as const;
+    expect(russian).toHaveLength(4);
+    expect(english).toHaveLength(4);
+
+    for (const [index, [ruFile, enFile, ruUrl, enUrl]] of expected.entries()) {
+      const ru = russian[index]!;
+      const en = english[index]!;
+      if (ru.type !== "document" || en.type !== "document") {
+        throw new Error("MappNgo materials must remain downloadable documents");
+      }
+      expect(ru.fileSrc).toBe(`/materials/projects/mappngo/${ruFile}`);
+      expect(en.fileSrc).toBe(`/materials/projects/mappngo/${enFile}`);
+      expect(ru.url).toBe(ruUrl);
+      expect(en.url).toBe(enUrl);
+      if (index !== 1) {
+        expect(ru.previewSrc).not.toEqual(en.previewSrc);
+        expect(ru.fullImageSrc).not.toEqual(en.fullImageSrc);
+      }
+    }
+    expect(russian.map((material) => material.title)).toEqual([
+      "Итоговые тестовые экраны MappNgo",
+      "Шаблон сувенирной наклейки MappNgo",
+      "Главная страница MappNgo",
+      "FAQ MappNgo",
+    ]);
+    expect(english.map((material) => material.title)).toEqual([
+      "MappNgo final test screens",
+      "MappNgo souvenir sticker template",
+      "MappNgo homepage",
+      "MappNgo FAQ",
+    ]);
   });
 });

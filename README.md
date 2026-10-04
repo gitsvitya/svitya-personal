@@ -29,11 +29,18 @@ e2e/                         Browser-level Playwright tests
 
 `src/content/portfolio/registry.ts` combines the section-specific data files and exposes
 selectors used by pages, cards, metadata, and the sitemap. Material types are a discriminated
-union, so each type requires only its valid target field:
+union. Each material has an `assets.ru` and `assets.en` version with its own `previewSrc`
+for gallery cards and `fullImageSrc` for the enlarged modal image. Each type also requires
+its valid target field inside both language versions:
 
 - `document` requires `fileSrc`
 - `image` requires `fullImageSrc`
 - `link` requires `url`
+
+`getLocalizedCompany` selects the images, document and optional source link for the requested
+language. Both versions may reference the same assets when there is no translated material.
+MappNgo's test screens, homepage and FAQ each use one card with distinct Russian and English
+assets and source links where available.
 
 `case-studies.ts` structures the existing facts into a challenge, contribution, and outcome
 for selected companies. Keep both translations complete and only add verified results.

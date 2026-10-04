@@ -240,7 +240,7 @@ function MaterialModalContent({
       <div className={styles.imageFrame}>
         <Image
           className={`${styles.modalImage} ${visibilityClass}`}
-          src={material.previewSrc}
+          src={material.fullImageSrc}
           alt={`${companyName}: ${material.title}`}
           sizes={
             materialCount
@@ -308,7 +308,9 @@ function getMaterialActions(material: LocalizedMaterial, text: AppTranslations) 
     material.type === "document"
       ? material.fileSrc
       : material.type === "image"
-        ? material.fullImageSrc
+        ? typeof material.fullImageSrc === "string"
+          ? material.fullImageSrc
+          : material.fullImageSrc.src
         : undefined;
 
   return {

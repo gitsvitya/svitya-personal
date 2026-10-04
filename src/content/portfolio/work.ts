@@ -36,8 +36,18 @@ export const WORK_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: chemInsightPolyethylenePreview,
-          fileSrc: "/materials/work/cheminsight/polyethylene.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightPolyethylenePreview,
+              fullImageSrc: chemInsightPolyethylenePreview,
+              fileSrc: "/materials/work/cheminsight/polyethylene.pdf",
+            },
+            en: {
+              previewSrc: chemInsightPolyethylenePreview,
+              fullImageSrc: chemInsightPolyethylenePreview,
+              fileSrc: "/materials/work/cheminsight/polyethylene.pdf",
+            },
+          },
           title: {
             ru: "Полиэтилен",
             en: "Polyethylene",
@@ -49,8 +59,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: chemInsightPolypropylenePreview,
-          fileSrc: "/materials/work/cheminsight/polypropylene.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightPolypropylenePreview,
+              fullImageSrc: chemInsightPolypropylenePreview,
+              fileSrc: "/materials/work/cheminsight/polypropylene.pdf",
+            },
+            en: {
+              previewSrc: chemInsightPolypropylenePreview,
+              fullImageSrc: chemInsightPolypropylenePreview,
+              fileSrc: "/materials/work/cheminsight/polypropylene.pdf",
+            },
+          },
           title: {
             ru: "Полипропилен",
             en: "Polypropylene",
@@ -62,8 +82,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: chemInsightButylAlcoholsAnd2EHPreview,
-          fileSrc: "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightButylAlcoholsAnd2EHPreview,
+              fullImageSrc: chemInsightButylAlcoholsAnd2EHPreview,
+              fileSrc: "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf",
+            },
+            en: {
+              previewSrc: chemInsightButylAlcoholsAnd2EHPreview,
+              fullImageSrc: chemInsightButylAlcoholsAnd2EHPreview,
+              fileSrc: "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf",
+            },
+          },
           title: {
             ru: "Бутиловые спирты и 2-ЭГ",
             en: "Butyl alcohols and 2-EH",
@@ -75,8 +105,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: chemInsightFeedGradeMethioninePreview,
-          fileSrc: "/materials/work/cheminsight/feed-grade-methionine.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightFeedGradeMethioninePreview,
+              fullImageSrc: chemInsightFeedGradeMethioninePreview,
+              fileSrc: "/materials/work/cheminsight/feed-grade-methionine.pdf",
+            },
+            en: {
+              previewSrc: chemInsightFeedGradeMethioninePreview,
+              fullImageSrc: chemInsightFeedGradeMethioninePreview,
+              fileSrc: "/materials/work/cheminsight/feed-grade-methionine.pdf",
+            },
+          },
           title: {
             ru: "Метионин кормовой",
             en: "Feed grade methionine",
@@ -88,8 +128,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: chemInsightCausticSodaPreview,
-          fileSrc: "/materials/work/cheminsight/caustic-soda.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightCausticSodaPreview,
+              fullImageSrc: chemInsightCausticSodaPreview,
+              fileSrc: "/materials/work/cheminsight/caustic-soda.pdf",
+            },
+            en: {
+              previewSrc: chemInsightCausticSodaPreview,
+              fullImageSrc: chemInsightCausticSodaPreview,
+              fileSrc: "/materials/work/cheminsight/caustic-soda.pdf",
+            },
+          },
           title: {
             ru: "Каустическая сода",
             en: "Caustic soda",
@@ -101,8 +151,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: chemInsightCausticPotashPreview,
-          fileSrc: "/materials/work/cheminsight/caustic-potash.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightCausticPotashPreview,
+              fullImageSrc: chemInsightCausticPotashPreview,
+              fileSrc: "/materials/work/cheminsight/caustic-potash.pdf",
+            },
+            en: {
+              previewSrc: chemInsightCausticPotashPreview,
+              fullImageSrc: chemInsightCausticPotashPreview,
+              fileSrc: "/materials/work/cheminsight/caustic-potash.pdf",
+            },
+          },
           title: {
             ru: "Калий едкий",
             en: "Caustic potash",
@@ -114,8 +174,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: chemInsightBoricAcidPreview,
-          fileSrc: "/materials/work/cheminsight/boric-acid.pdf",
+          assets: {
+            ru: {
+              previewSrc: chemInsightBoricAcidPreview,
+              fullImageSrc: chemInsightBoricAcidPreview,
+              fileSrc: "/materials/work/cheminsight/boric-acid.pdf",
+            },
+            en: {
+              previewSrc: chemInsightBoricAcidPreview,
+              fullImageSrc: chemInsightBoricAcidPreview,
+              fileSrc: "/materials/work/cheminsight/boric-acid.pdf",
+            },
+          },
           title: {
             ru: "Кислота борная",
             en: "Boric acid",
@@ -160,8 +230,18 @@ export const WORK_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: namexRegionalOtcIndicesPreview,
-          fileSrc: "/materials/work/namex/otc-regional-agricultural-indices.pdf",
+          assets: {
+            ru: {
+              previewSrc: namexRegionalOtcIndicesPreview,
+              fullImageSrc: namexRegionalOtcIndicesPreview,
+              fileSrc: "/materials/work/namex/otc-regional-agricultural-indices.pdf",
+            },
+            en: {
+              previewSrc: namexRegionalOtcIndicesPreview,
+              fullImageSrc: namexRegionalOtcIndicesPreview,
+              fileSrc: "/materials/work/namex/otc-regional-agricultural-indices.pdf",
+            },
+          },
           title: {
             ru: "Методика региональных внебиржевых индексов агропродукции",
             en: "Regional OTC agricultural indices methodology",
@@ -173,8 +253,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: namexWheatCptIndexPreview,
-          fileSrc: "/materials/work/namex/wheat-cpt-novorossiysk-index.pdf",
+          assets: {
+            ru: {
+              previewSrc: namexWheatCptIndexPreview,
+              fullImageSrc: namexWheatCptIndexPreview,
+              fileSrc: "/materials/work/namex/wheat-cpt-novorossiysk-index.pdf",
+            },
+            en: {
+              previewSrc: namexWheatCptIndexPreview,
+              fullImageSrc: namexWheatCptIndexPreview,
+              fileSrc: "/materials/work/namex/wheat-cpt-novorossiysk-index.pdf",
+            },
+          },
           title: {
             ru: "Методика индекса пшеницы CPT Новороссийск",
             en: "CPT Novorossiysk wheat index methodology",
@@ -186,8 +276,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: namexExchangeSugarIndexPreview,
-          fileSrc: "/materials/work/namex/exchange-sugar-cfd-index.pdf",
+          assets: {
+            ru: {
+              previewSrc: namexExchangeSugarIndexPreview,
+              fullImageSrc: namexExchangeSugarIndexPreview,
+              fileSrc: "/materials/work/namex/exchange-sugar-cfd-index.pdf",
+            },
+            en: {
+              previewSrc: namexExchangeSugarIndexPreview,
+              fullImageSrc: namexExchangeSugarIndexPreview,
+              fileSrc: "/materials/work/namex/exchange-sugar-cfd-index.pdf",
+            },
+          },
           title: {
             ru: "Методика биржевого индекса сахара в ЦФО",
             en: "Central Federal District exchange-traded sugar index methodology",
@@ -199,8 +299,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: namexDailyOtcSugarIndexPreview,
-          fileSrc: "/materials/work/namex/daily-otc-sugar-cfd-index.pdf",
+          assets: {
+            ru: {
+              previewSrc: namexDailyOtcSugarIndexPreview,
+              fullImageSrc: namexDailyOtcSugarIndexPreview,
+              fileSrc: "/materials/work/namex/daily-otc-sugar-cfd-index.pdf",
+            },
+            en: {
+              previewSrc: namexDailyOtcSugarIndexPreview,
+              fullImageSrc: namexDailyOtcSugarIndexPreview,
+              fileSrc: "/materials/work/namex/daily-otc-sugar-cfd-index.pdf",
+            },
+          },
           title: {
             ru: "Методика ежедневного внебиржевого индекса сахара в ЦФО",
             en: "Central Federal District daily OTC sugar index methodology",
@@ -212,8 +322,18 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: namexAgriculturalIndicesPreview,
-          fileSrc: "/materials/work/namex/agricultural-indices-2024-07-15.pdf",
+          assets: {
+            ru: {
+              previewSrc: namexAgriculturalIndicesPreview,
+              fullImageSrc: namexAgriculturalIndicesPreview,
+              fileSrc: "/materials/work/namex/agricultural-indices-2024-07-15.pdf",
+            },
+            en: {
+              previewSrc: namexAgriculturalIndicesPreview,
+              fullImageSrc: namexAgriculturalIndicesPreview,
+              fileSrc: "/materials/work/namex/agricultural-indices-2024-07-15.pdf",
+            },
+          },
           title: {
             ru: "Ценовые индексы агропродукции — 15 июля 2024",
             en: "Agricultural price indices — July 15, 2024",
@@ -312,9 +432,20 @@ export const WORK_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: thomsonReutersSteelDemandPreview,
-          fileSrc: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
-          url: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
+          assets: {
+            ru: {
+              previewSrc: thomsonReutersSteelDemandPreview,
+              fullImageSrc: thomsonReutersSteelDemandPreview,
+              fileSrc: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
+              url: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
+            },
+            en: {
+              previewSrc: thomsonReutersSteelDemandPreview,
+              fullImageSrc: thomsonReutersSteelDemandPreview,
+              fileSrc: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
+              url: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
+            },
+          },
           title: {
             ru: "АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
             en: "ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
@@ -326,9 +457,20 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: thomsonReutersSteelDiscountsPreview,
-          fileSrc: "/materials/work/thomsonreuters/russian-steel-discounts.pdf",
-          url: "https://forbes.kz/news/newsid_139809",
+          assets: {
+            ru: {
+              previewSrc: thomsonReutersSteelDiscountsPreview,
+              fullImageSrc: thomsonReutersSteelDiscountsPreview,
+              fileSrc: "/materials/work/thomsonreuters/russian-steel-discounts.pdf",
+              url: "https://forbes.kz/news/newsid_139809",
+            },
+            en: {
+              previewSrc: thomsonReutersSteelDiscountsPreview,
+              fullImageSrc: thomsonReutersSteelDiscountsPreview,
+              fileSrc: "/materials/work/thomsonreuters/russian-steel-discounts.pdf",
+              url: "https://forbes.kz/news/newsid_139809",
+            },
+          },
           title: {
             ru: "АНАЛИЗ-Российские металлурги раздают скидки, но не снижают цены",
             en: "ANALYSIS — Russian steelmakers offer discounts without cutting prices",
@@ -340,9 +482,20 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: thomsonReutersPortHedlandPreview,
-          fileSrc: "/materials/work/thomsonreuters/port-hedland-cyclone-joyce.pdf",
-          url: "https://jp.reuters.com/article/markets/--idUSL8N1P63ZK/",
+          assets: {
+            ru: {
+              previewSrc: thomsonReutersPortHedlandPreview,
+              fullImageSrc: thomsonReutersPortHedlandPreview,
+              fileSrc: "/materials/work/thomsonreuters/port-hedland-cyclone-joyce.pdf",
+              url: "https://jp.reuters.com/article/markets/--idUSL8N1P63ZK/",
+            },
+            en: {
+              previewSrc: thomsonReutersPortHedlandPreview,
+              fullImageSrc: thomsonReutersPortHedlandPreview,
+              fileSrc: "/materials/work/thomsonreuters/port-hedland-cyclone-joyce.pdf",
+              url: "https://jp.reuters.com/article/markets/--idUSL8N1P63ZK/",
+            },
+          },
           title: {
             ru: "Рудовозы уходят из австралийского Порт-Хедленда из-за урагана Джойс",
             en: "Iron ore ships leave Australia's Port Hedland as Cyclone Joyce approaches",
@@ -354,9 +507,20 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: thomsonReutersRenovationPreview,
-          fileSrc: "/materials/work/thomsonreuters/moscow-renovation-steel.pdf",
-          url: "https://forbes.kz/news/newsid_146758",
+          assets: {
+            ru: {
+              previewSrc: thomsonReutersRenovationPreview,
+              fullImageSrc: thomsonReutersRenovationPreview,
+              fileSrc: "/materials/work/thomsonreuters/moscow-renovation-steel.pdf",
+              url: "https://forbes.kz/news/newsid_146758",
+            },
+            en: {
+              previewSrc: thomsonReutersRenovationPreview,
+              fullImageSrc: thomsonReutersRenovationPreview,
+              fileSrc: "/materials/work/thomsonreuters/moscow-renovation-steel.pdf",
+              url: "https://forbes.kz/news/newsid_146758",
+            },
+          },
           title: {
             ru: "Вызвавший протесты план реновации в Москве сулит выгодные контракты металлургам",
             en: "Moscow's controversial renovation plan promises lucrative contracts for steelmakers",
@@ -368,9 +532,20 @@ export const WORK_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: thomsonReutersIronOrePreview,
-          fileSrc: "/materials/work/thomsonreuters/iron-ore-price-forecast-2017.pdf",
-          url: "https://www.reuters.com/article/markets/currencies/iron-ore-price-to-average-55t-in-2017-idUSKBN1441B7/",
+          assets: {
+            ru: {
+              previewSrc: thomsonReutersIronOrePreview,
+              fullImageSrc: thomsonReutersIronOrePreview,
+              fileSrc: "/materials/work/thomsonreuters/iron-ore-price-forecast-2017.pdf",
+              url: "https://www.reuters.com/article/markets/currencies/iron-ore-price-to-average-55t-in-2017-idUSKBN1441B7/",
+            },
+            en: {
+              previewSrc: thomsonReutersIronOrePreview,
+              fullImageSrc: thomsonReutersIronOrePreview,
+              fileSrc: "/materials/work/thomsonreuters/iron-ore-price-forecast-2017.pdf",
+              url: "https://www.reuters.com/article/markets/currencies/iron-ore-price-to-average-55t-in-2017-idUSKBN1441B7/",
+            },
+          },
           title: {
             ru: "Средняя цена железной руды в 2017 году составит $55 за тонну",
             en: "Iron ore price to average $55/t in 2017",

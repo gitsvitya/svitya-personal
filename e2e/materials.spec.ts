@@ -47,6 +47,61 @@ const labels = {
   en: ["Download", "Open in new window", "Visit link"],
 } as const;
 
+const mappngoMaterials = {
+  ru: [
+    {
+      title: "Итоговые тестовые экраны MappNgo",
+      file: "final-test-screens.pdf",
+      image: "final-test-screens-preview",
+      url: undefined,
+    },
+    {
+      title: "Шаблон сувенирной наклейки MappNgo",
+      file: "souvenir-sticker.pdf",
+      image: "souvenir-sticker-preview",
+      url: undefined,
+    },
+    {
+      title: "Главная страница MappNgo",
+      file: "homepage-ru.pdf",
+      image: "homepage-ru-preview",
+      url: "https://www.mappngo.com/",
+    },
+    {
+      title: "FAQ MappNgo",
+      file: "faq-ru.pdf",
+      image: "faq-ru-preview",
+      url: "https://www.mappngo.com/faq/",
+    },
+  ],
+  en: [
+    {
+      title: "MappNgo final test screens",
+      file: "final-test-screens-en.pdf",
+      image: "final-test-screens-en-preview",
+      url: undefined,
+    },
+    {
+      title: "MappNgo souvenir sticker template",
+      file: "souvenir-sticker.pdf",
+      image: "souvenir-sticker-preview",
+      url: undefined,
+    },
+    {
+      title: "MappNgo homepage",
+      file: "homepage-en.pdf",
+      image: "homepage-en-preview",
+      url: "https://www.mappngo.com/en/",
+    },
+    {
+      title: "MappNgo FAQ",
+      file: "faq-en.pdf",
+      image: "faq-en-preview",
+      url: "https://www.mappngo.com/en/faq/",
+    },
+  ],
+} as const;
+
 async function measureModalLayout(dialog: Locator) {
   return dialog.evaluate((element) => {
     const bounds = element.getBoundingClientRect();
@@ -67,6 +122,83 @@ async function measureModalLayout(dialog: Locator) {
 }
 
 for (const language of ["ru", "en"] as const) {
+  test(`provides four ${language} MappNgo materials with matching images, PDFs and source links`, async ({
+    context,
+    page,
+    baseURL,
+  }, testInfo) => {
+    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await page.goto(`/${language}/projects/mappngo`);
+    const previews = page.locator('main a[href^="/materials/projects/mappngo/"]');
+    await expect(previews).toHaveCount(4);
+    for (const [index, material] of mappngoMaterials[language].entries()) {
+      const preview = previews.nth(index);
+      const href = `/materials/projects/mappngo/${material.file}`;
+      await expect(preview).toHaveAttribute("href", href);
+      await expect(preview.locator("img")).toHaveAttribute("src", new RegExp(material.image));
+      await preview.click();
+      const dialog = page.getByRole("dialog");
+      await expect(dialog).toHaveAccessibleName(material.title);
+      await expect(dialog.locator("img")).toHaveAttribute("src", new RegExp(material.image));
+      await expect
+        .poll(() =>
+          dialog
+            .locator("img")
+            .evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)
+        )
+        .toBe(true);
+      await expect(dialog.locator(".button-control")).toHaveText([...labels[language]]);
+      await expect(
+        dialog.getByRole("link", { name: labels[language][1], exact: true })
+      ).toHaveAttribute("href", href);
+      if (material.url) {
+        await expect(
+          dialog.getByRole("link", { name: labels[language][2], exact: true })
+        ).toHaveAttribute("href", material.url);
+      } else {
+        await expect(
+          dialog.getByRole("button", { name: labels[language][2], exact: true })
+        ).toBeDisabled();
+      }
+      const downloadPromise = page.waitForEvent("download");
+      await dialog.getByRole("link", { name: labels[language][0], exact: true }).click();
+      const download = await downloadPromise;
+      expect(download.suggestedFilename()).toBe(material.file);
+      const downloaded = await readFile((await download.path())!);
+      const source = await readFile(join(process.cwd(), "public", href));
+      expect(downloaded.subarray(0, 5).toString()).toBe("%PDF-");
+      expect(createHash("sha256").update(downloaded).digest("hex")).toBe(
+        createHash("sha256").update(source).digest("hex")
+      );
+      await download.delete();
+      if (index === 0)
+        await dialog.screenshot({
+          path: testInfo.outputPath(`mappngo-${language}-test-screens.png`),
+        });
+      await page.keyboard.press("Escape");
+      await expect(dialog).not.toBeVisible();
+      await expect(preview).toBeFocused();
+    }
+    await page.setViewportSize({ width: 390, height: 844 });
+    await previews.first().click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toHaveCSS("opacity", "1");
+    await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
+      `1 ${language === "ru" ? "из" : "of"} 4`
+    );
+    await page.keyboard.press("ArrowRight");
+    await expect(dialog).toHaveAccessibleName(mappngoMaterials[language][1].title);
+    await page.keyboard.press("ArrowLeft");
+    await expect(dialog).toHaveAccessibleName(mappngoMaterials[language][0].title);
+    await expect(dialog.locator("img")).toHaveAttribute(
+      "src",
+      new RegExp(mappngoMaterials[language][0].image)
+    );
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
+      false
+    );
+  });
+
   for (const material of materials) {
     test(`provides usable and inert actions for the ${language} ${material.type} material`, async ({
       context,
@@ -382,3 +514,71 @@ for (const language of ["ru", "en"] as const) {
     }
   });
 }
+
+test("selects matching MappNgo material assets after changing the site language", async ({
+  context,
+  page,
+  baseURL,
+}) => {
+  await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+  let currentLanguage = "ru";
+  await page.goto("/ru/projects/mappngo");
+  for (const language of ["en", "ru"] as const) {
+    await page.goto(`/${currentLanguage}/settings`);
+    await page.locator("#language-toggle").click();
+    await expect(page).toHaveURL(`/${language}/settings`);
+    await page.locator(`nav a[href="/${language}/projects"]`).click();
+    await page.locator(`main a[href="/${language}/projects/mappngo"]`).click();
+    await expect(page).toHaveURL(`/${language}/projects/mappngo`);
+    const previews = page.locator('main a[href^="/materials/projects/mappngo/"]');
+    await expect(previews).toHaveCount(4);
+    for (const [index, material] of mappngoMaterials[language].entries()) {
+      await expect(previews.nth(index)).toHaveAttribute(
+        "href",
+        `/materials/projects/mappngo/${material.file}`
+      );
+      await expect(previews.nth(index).locator("img")).toHaveAttribute(
+        "src",
+        new RegExp(material.image)
+      );
+    }
+    await previews.nth(2).click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toHaveAccessibleName(mappngoMaterials[language][2].title);
+    await expect(
+      dialog.getByRole("link", { name: labels[language][2], exact: true })
+    ).toHaveAttribute("href", mappngoMaterials[language][2].url);
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
+    currentLanguage = language;
+  }
+});
+
+test("downloads the matching MappNgo language version when application scripts fail", async ({
+  page,
+}) => {
+  await page.route(/\.js(?:\?|$)/, (route) => route.abort());
+  for (const language of ["ru", "en"] as const) {
+    await page.goto(`/${language}/projects/mappngo`);
+    const previews = page.locator('main a[download][href^="/materials/projects/mappngo/"]');
+    await expect(previews).toHaveCount(4);
+    for (const [index, material] of mappngoMaterials[language].entries())
+      await expect(previews.nth(index)).toHaveAttribute(
+        "href",
+        `/materials/projects/mappngo/${material.file}`
+      );
+    const downloadPromise = page.waitForEvent("download");
+    await previews.first().click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe(mappngoMaterials[language][0].file);
+    const downloaded = await readFile((await download.path())!);
+    const source = await readFile(
+      join(process.cwd(), "public/materials/projects/mappngo", mappngoMaterials[language][0].file)
+    );
+    expect(createHash("sha256").update(downloaded).digest("hex")).toBe(
+      createHash("sha256").update(source).digest("hex")
+    );
+    await download.delete();
+    await expect(page).toHaveURL(`/${language}/projects/mappngo`);
+  }
+});

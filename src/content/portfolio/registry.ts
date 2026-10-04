@@ -72,23 +72,19 @@ function localizeMaterial(material: CompanyMaterial, language: Language): Locali
     case "document":
       return {
         type: material.type,
-        previewSrc: material.previewSrc,
-        fileSrc: material.fileSrc,
-        url: material.url,
+        ...material.assets[language],
         ...copy,
       };
     case "image":
       return {
         type: material.type,
-        previewSrc: material.previewSrc,
-        fullImageSrc: material.fullImageSrc,
+        ...material.assets[language],
         ...copy,
       };
     case "link":
       return {
         type: material.type,
-        previewSrc: material.previewSrc,
-        url: material.url,
+        ...material.assets[language],
         ...copy,
       };
   }

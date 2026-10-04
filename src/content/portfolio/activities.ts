@@ -16,8 +16,18 @@ export const ACTIVITY_COMPANIES = {
       items: [
         {
           type: "document",
-          previewSrc: strokeOffFirstBatchPreview,
-          fileSrc: "/materials/activities/strokeoff/first-batch.pdf",
+          assets: {
+            ru: {
+              previewSrc: strokeOffFirstBatchPreview,
+              fullImageSrc: strokeOffFirstBatchPreview,
+              fileSrc: "/materials/activities/strokeoff/first-batch.pdf",
+            },
+            en: {
+              previewSrc: strokeOffFirstBatchPreview,
+              fullImageSrc: strokeOffFirstBatchPreview,
+              fileSrc: "/materials/activities/strokeoff/first-batch.pdf",
+            },
+          },
           title: {
             ru: "Первая партия перцовки Stroke Off",
             en: "The first batch of Stroke Off pepper vodka",
@@ -29,8 +39,18 @@ export const ACTIVITY_COMPANIES = {
         },
         {
           type: "document",
-          previewSrc: strokeOffLabelPreview,
-          fileSrc: "/materials/activities/strokeoff/pepper-vodka-label.pdf",
+          assets: {
+            ru: {
+              previewSrc: strokeOffLabelPreview,
+              fullImageSrc: strokeOffLabelPreview,
+              fileSrc: "/materials/activities/strokeoff/pepper-vodka-label.pdf",
+            },
+            en: {
+              previewSrc: strokeOffLabelPreview,
+              fullImageSrc: strokeOffLabelPreview,
+              fileSrc: "/materials/activities/strokeoff/pepper-vodka-label.pdf",
+            },
+          },
           title: {
             ru: "Этикетка перцовки Stroke Off",
             en: "Stroke Off pepper vodka label",
