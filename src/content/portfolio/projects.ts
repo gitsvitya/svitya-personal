@@ -5,6 +5,7 @@ import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madbur
 import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburglarcat/materials/soldout-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import mappngoScreensPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-preview.png";
+import mappngoScreensEnPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-en-preview.png";
 import mappngoStickerPreview from "../../images/portfolio/projects/mappngo/materials/souvenir-sticker-preview.png";
 import mappngoHomepageRuPreview from "../../images/portfolio/projects/mappngo/materials/homepage-ru-preview.png";
 import mappngoHomepageEnPreview from "../../images/portfolio/projects/mappngo/materials/homepage-en-preview.png";
@@ -121,12 +122,25 @@ export const PROJECT_COMPANIES = {
           previewSrc: mappngoScreensPreview,
           fileSrc: "/materials/projects/mappngo/final-test-screens.pdf",
           title: {
-            ru: "Итоговые тестовые экраны MappNgo",
-            en: "MappNgo final test screens",
+            ru: "Итоговые тестовые экраны MappNgo на русском языке",
+            en: "MappNgo final test screens in Russian",
           },
           description: {
-            ru: "29 тестовых экранов MappNgo: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
-            en: "29 MappNgo test screens covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
+            ru: "29 тестовых экранов MappNgo на русском языке: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
+            en: "29 MappNgo test screens in Russian covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: mappngoScreensEnPreview,
+          fileSrc: "/materials/projects/mappngo/final-test-screens-en.pdf",
+          title: {
+            ru: "Итоговые тестовые экраны MappNgo на английском языке",
+            en: "MappNgo final test screens in English",
+          },
+          description: {
+            ru: "29 тестовых экранов MappNgo на английском языке: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
+            en: "29 MappNgo test screens in English covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
           },
         },
         {
