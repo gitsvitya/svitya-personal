@@ -1,0 +1,32 @@
+Generation mode: built-in image_gen
+Transparent background requested: false
+Deliverable: svitya-com-tentacles-concept-v4.png
+Layout: portrait; svitya on the upper line, .com below
+
+Use case: precise-object-edit
+Asset type: compact vertical version of the svitya.com octopus logo.
+
+Input images:
+Image 1 is the current svitya.com logo to recompose. Preserve its coral-red octopus character and almond-shaped eyes, pale cream suction cups and underside strips, dark hand-inked contours and fine hatching, Japanese ukiyo-e-inspired flat color illustration, muted turquoise paper background, and small brush-dab punctuation.
+Image 2 is the oodle logo, a reference ONLY for physically continuous octopus-to-letter construction, not for color, style, exact glyphs, expression or any text.
+
+Primary request: REDESIGN THE LAYOUT INTO A COMPACT PORTRAIT TWO-LINE LOGO. The canvas must be portrait, about 4:5 width to height. Do not retain the original panoramic aspect ratio.
+Exact text:
+upper lettering line: "svitya"
+lower lettering line: ".com"
+These two lines together read as the domain "svitya.com". Only these six top-line letters and three bottom-line letters, all lowercase. The suffix is centered beneath svitya, with large readable letters. The octopus mantle sits above and slightly behind the middle-left of the upper line, balanced near the upper center of the whole artwork. Keep the octopus integrated into the lettering rather than becoming a separate icon above a typed title.
+
+MOST IMPORTANT: EVERY LETTER-FORMING TENTACLE BELONGS VISIBLY TO THIS SAME OCTOPUS. Rebuild their routes so a viewer can trace them from the base of the mantle, through the first-line letters and down into the second line. There must be no floating or disconnected letter-shaped tentacle pieces. Especially ".com" must NOT be a separate decorative word dropped underneath.
+
+Use a small number of long coherent arms originating at the mantle:
+- The leftward arm visibly leaves the mantle and loops through the readable s and v.
+- Central and rightward arms visibly emerge from the same mantle and form i, t, y, a through bends, loops and clean over-under crossings. The t crossbar is a crossing part of an arm with a traceable path back toward the body, not a detached tentacle fragment.
+- ONE CLEARLY VISIBLE LONG ARM leaves the left or lower base of the mantle, descends along the left side of the first-line lettering, curves smoothly into the lower line, forms the c, continues into the o loop, and then into the two arches of m before tapering into a single curled end. Draw this connecting descent boldly enough to see at a glance; make its coral upper side and cream sucker strip continuous along the full route. It can cross behind a first-line arm, but show the portions before and after the crossing. The second-line lettering must visibly be the continuation of this long arm.
+
+Maintain biologically plausible tube paths. Arms never split into artificial Y-shaped branches, never fuse at crossings and never end in cut-off stumps. Small crossing shadows use sparse dark hatching. Keep continuous contour lines on the upper arm and consistent suction-cup strips so the paths are easy to follow. Closed letter counters are loops in continuing limbs with clear entries/exits, not disconnected donuts. Avoid a general decorative rope surrounding detached letters: the continuous arms THEMSELVES are the letter strokes. Preserve accurate legibility, especially the i, the tall t, the looped y descender, the single-storey a, and the two humps of m.
+
+Punctuation: the i dot and the domain period before c stay small solid coral brush-dab marks, like the current illustration. They are the only intentionally separate marks; no ring-shaped sucker dots. Place the period at the lower-line baseline, clearly before c.
+
+Visual style unchanged: one flat vermilion-coral ink for the mantle and arm dorsal surfaces, one warm pale ivory ink for the suckers and selected undersides, crisp near-black aubergine contours, delicate Japanese woodcut hatching, subtle washi-paper grain and an opaque muted turquoise-blue backdrop. No gradients, blended hues, photographic highlights, wet skin, gloss or 3D.
+
+Composition: cohesive vertically balanced emblem with the head at the top, svitya across the middle and .com below. All body-to-arm transitions clearly readable; open blue negative space between letter loops; modest gap between the two lines with a deliberate visible arm connecting them. Keep all curled tips inside comfortable blue margins. No extra writing, no captions, no Japanese characters, no frame, no watermark, no mockup. Deliver one complete portrait artwork.

@@ -1,0 +1,15 @@
+Generation mode: built-in image_gen
+Transparent background requested: false
+Deliverable: svitya-com-tentacles-concept-v10.png
+Base image: svitya-com-tentacles-concept-v9.png
+
+Use case: precise-object-edit
+Asset type: final localized refinement of an approved octopus wordmark.
+Input image: the full approved logo to edit.
+
+Primary request: thicken ONLY the ROOT of the central tentacle which forms the upper-row i and then descends into the lower-row o. This is the narrow red neck emerging from the middle of the bottom of the octopus head, immediately LEFT of the t. On this 1254px square image, its narrow attachment is near x=575..623, y=515..565. Follow that arm down the central vertical stroke into the o to identify it. Do not confuse it with the t arm farther right.
+
+Make this neck visibly thicker and organically rooted in the mantle, similar in weight to the neighboring arm bases. Expand both sides of the existing neck so its base is roughly 1.6 to 1.8 times its current width. Let the coral head flow into a broad rounded shoulder and then smoothly taper back to the EXISTING i stroke within the upper 100px of the arm. The root must look like a solid natural continuous octopus limb, with no pinched waist or abrupt step. Adjust only the tiny adjacent blue spaces as needed for this widening. Blend the same red paint/paper grain and sparse thin engraving hatches across the root. No thick black seam cutting across the head-to-arm connection. Preserve the visible outside black contours where red meets blue. Do not add suckers at the root or create any new arm or branching junction.
+
+Constraints: this is one local shape correction. Keep the head shape, eyes and expression, all other arms, the t attachment, the seamless a ring, the existing i-to-o path below the neck, all other lettering and sucker rows unchanged as closely as possible. Preserve "svitya" above "com", no dots, the flat red/ivory/black palette, woodcut illustration style, turquoise textured background, square canvas, positions and equal margins. Do not redesign or thicken the whole i or o. Output the full logo only.
+

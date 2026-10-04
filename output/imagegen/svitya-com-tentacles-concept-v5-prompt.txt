@@ -1,0 +1,18 @@
+Generation mode: built-in image_gen
+Transparent background requested: false
+Deliverable: svitya-com-tentacles-concept-v5.png
+Layout: portrait; svitya above com; no punctuation
+
+Use case: precise-object-edit
+Asset type: fifth revision of the compact vertical svitya/com octopus logo.
+Input image: edit target. Keep its portrait composition, coral octopus character and eyes, the upper "svitya" lettering, cream suction-cup strips, dark contours, Japanese woodcut hatching, flat ink colors and muted turquoise paper background.
+
+Make THREE specific changes:
+
+1. REMOVE BOTH STANDALONE PUNCTUATION MARKS. Erase the small detached teardrop above the i beneath the octopus face, and erase the detached teardrop to the left of the lower c. Fill their old areas with the existing turquoise background. The upper line reads "svitya", with an intentionally undotted i. The lower line reads exactly "com" with no leading period. No detached dots, droplets, rings or punctuation anywhere. Retain the actual cream suckers along the arms and the character's eyes.
+
+2. RAISE THE LOWER "com" A LITTLE. Move the complete lower lettering line upward by about 7–8 percent of canvas height, roughly 100 pixels relative to this input. Maintain the clear readable c, o and two arches of m, similar lettering scale and horizontal alignment. Bring the two lines close enough to form one compact interwoven silhouette, with some deliberate tentacle overlaps and open blue counters. Shorten and reshape the existing long central connector accordingly. Keep the head and main upper-line layout essentially unchanged.
+
+3. EXTEND MORE OF THE OCTOPUS'S OWN TENTACLES DOWN TO AND UNDER THE LOWER "com". It must be supported by several visibly continuous arms, not hanging from just one central strand. Preserve the existing central body-to-lower-line path. Add a second long arm whose origin is visible at the lower left of the mantle: it descends behind the left first-line letters, visibly re-emerges between the lines, curves beneath the lower c and continues upward into its letter-forming curl. Add a third long arm from the lower right of the mantle: its path travels behind the upper right letters, visibly re-emerges, sweeps down around and underneath the lower m and continues upward into its letter-forming stroke. These two extra arms should gently wrap and cradle the bottom lettering from underneath, as well as linking it back to the same octopus. Show clearly traceable routes through any crossings, with the continuous coral surface and ivory sucker strip. All three lower letters must feel like bends and loops of this animal's long arms. Integrate the new segments into the existing strokes; do not just draw decorative strings behind disconnected lettering. No cut-off stumps, disconnected pieces or fused artificial Y-junctions. Distinguish over/under crossings with clean contour lines and sparse ink hatching.
+
+Keep the lettering legible and the result graceful rather than crowded. Leave small blue openings between tentacles so their paths can be followed. Preserve one flat vermilion-coral color for body and arms, pale ivory for undersides and suckers, near-black ink contours, subtle washi-paper texture, and the opaque turquoise backdrop. No gradients, no photographic shading, no additional colors, no extra text or symbols, no border or watermark. Same portrait aspect ratio, all curls fully visible inside comfortable margins.
