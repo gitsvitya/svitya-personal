@@ -3,6 +3,7 @@ import madBurglarCatCatalogPreview from "../../images/portfolio/projects/madburg
 import madBurglarCatProductPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-preview.png";
 import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-checkout-preview.png";
 import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburglarcat/materials/soldout-preview.png";
+import madBurglarCatTrademarkPreview from "../../images/portfolio/projects/madburglarcat/materials/trademark-certificate-1222341-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import mappngoScreensPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-preview.png";
 import mappngoScreensEnPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-en-preview.png";
@@ -126,6 +127,29 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "Раздел «Солдаут» Mad Burglar Cat: полотенца из прошлых коллекций с отметками SOLD и «Нет в наличии».",
             en: "The Mad Burglar Cat Soldout archive: towels from past collections marked SOLD and out of stock.",
+          },
+        },
+        {
+          type: "document",
+          assets: {
+            ru: {
+              previewSrc: madBurglarCatTrademarkPreview,
+              fullImageSrc: madBurglarCatTrademarkPreview,
+              fileSrc: "/materials/projects/madburglarcat/trademark-certificate-1222341.pdf",
+            },
+            en: {
+              previewSrc: madBurglarCatTrademarkPreview,
+              fullImageSrc: madBurglarCatTrademarkPreview,
+              fileSrc: "/materials/projects/madburglarcat/trademark-certificate-1222341.pdf",
+            },
+          },
+          title: {
+            ru: "Свидетельство на товарный знак Mad Burglar Cat",
+            en: "Mad Burglar Cat trademark certificate",
+          },
+          description: {
+            ru: "Свидетельство Роспатента № 1 222 341 на товарный знак Mad Burglar Cat. Дата регистрации — 19 мая 2026 года; срок действия регистрации — до 16 апреля 2035 года.",
+            en: "Rospatent trademark certificate No. 1,222,341 for Mad Burglar Cat. Registered on May 19, 2026; registration expires on April 16, 2035. Original document in Russian.",
           },
         },
       ],

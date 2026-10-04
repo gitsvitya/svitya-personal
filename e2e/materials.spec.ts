@@ -363,7 +363,7 @@ for (const language of ["ru", "en"] as const) {
     });
   });
 
-  test(`provides all four ${language} Mad Burglar Cat pages with PDFs and source links`, async ({
+  test(`provides all five ${language} Mad Burglar Cat materials with PDFs and available source links`, async ({
     context,
     page,
     request,
@@ -375,6 +375,7 @@ for (const language of ["ru", "en"] as const) {
       ["everything-is-fine", productUrl],
       ["everything-is-fine-checkout", `${productUrl}#order`],
       ["soldout", "https://madburglarcat.ru/soldout"],
+      ["trademark-certificate-1222341", undefined],
     ] as const;
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
     await page.goto(`/${language}/projects/madburglarcat`);
@@ -385,13 +386,18 @@ for (const language of ["ru", "en"] as const) {
     for (const [index, [slug, sourceUrl]] of pages.entries()) {
       const href = `/materials/projects/madburglarcat/${slug}.pdf`;
       for (const [actionIndex, label] of labels[language].entries()) {
-        await expect(dialog.getByRole("link", { name: label, exact: true })).toHaveAttribute(
-          "href",
-          actionIndex === 2 ? sourceUrl : href
-        );
+        const target = actionIndex === 2 ? sourceUrl : href;
+        if (target) {
+          await expect(dialog.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+            "href",
+            target
+          );
+        } else {
+          await expect(dialog.getByRole("button", { name: label, exact: true })).toBeDisabled();
+        }
       }
       await expect(dialog.locator(".button-control")).toHaveCount(3);
-      await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
+      await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(sourceUrl ? 0 : 1);
       await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
         `${index + 1} ${language === "ru" ? "из" : "of"} ${pages.length}`
       );
@@ -412,13 +418,57 @@ for (const language of ["ru", "en"] as const) {
           path: testInfo.outputPath("madburglarcat-checkout-material.png"),
         });
       }
+      if (slug === "soldout") {
+        await expect(dialog).toHaveAccessibleName(
+          language === "ru" ? "Солдаут Mad Burglar Cat" : "Mad Burglar Cat Soldout"
+        );
+        await expect(dialog.locator("p")).toContainText(language === "ru" ? "полотенца" : "towels");
+        await dialog.screenshot({
+          path: testInfo.outputPath("madburglarcat-soldout-material.png"),
+        });
+      }
+      if (slug === "trademark-certificate-1222341") {
+        await expect(dialog).toHaveAccessibleName(
+          language === "ru"
+            ? "Свидетельство на товарный знак Mad Burglar Cat"
+            : "Mad Burglar Cat trademark certificate"
+        );
+        await expect(dialog.locator("p")).toContainText(
+          language === "ru" ? "1 222 341" : "1,222,341"
+        );
+        const downloadPromise = page.waitForEvent("download");
+        await dialog.getByRole("link", { name: labels[language][0], exact: true }).click();
+        const download = await downloadPromise;
+        const downloaded = await readFile((await download.path())!);
+        const source = await readFile(join(process.cwd(), "public", href));
+        expect(createHash("sha256").update(downloaded).digest("hex")).toBe(
+          createHash("sha256").update(source).digest("hex")
+        );
+        await download.delete();
+        await dialog.screenshot({
+          path: testInfo.outputPath("madburglarcat-trademark-material.png"),
+        });
+        await page.setViewportSize({ width: 320, height: 568 });
+        expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
+          false
+        );
+        // Move focus off the download link before checking its mobile scroll behavior.
+        await dialog
+          .getByRole("button", {
+            name: language === "ru" ? "Закрыть модальное окно" : "Close modal window",
+          })
+          .focus();
+        await dialog.getByRole("link", { name: labels[language][0], exact: true }).focus();
+        await expect(
+          dialog.getByRole("link", { name: labels[language][0], exact: true })
+        ).toBeInViewport({ ratio: 1 });
+        await dialog.screenshot({
+          path: testInfo.outputPath("madburglarcat-trademark-mobile.png"),
+        });
+        await page.setViewportSize({ width: 1280, height: 720 });
+      }
       if (index < pages.length - 1) await page.keyboard.press("ArrowRight");
     }
-    await expect(dialog).toHaveAccessibleName(
-      language === "ru" ? "Солдаут Mad Burglar Cat" : "Mad Burglar Cat Soldout"
-    );
-    await expect(dialog.locator("p")).toContainText(language === "ru" ? "полотенца" : "towels");
-    await dialog.screenshot({ path: testInfo.outputPath("madburglarcat-soldout-material.png") });
     await page.keyboard.press("Escape");
     await expect(dialog).not.toBeVisible();
     await expect(previews.first()).toBeFocused();
