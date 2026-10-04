@@ -5,6 +5,7 @@ import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madbur
 import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburglarcat/materials/soldout-preview.png";
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import mappngoScreensPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-preview.png";
+import mappngoStickerPreview from "../../images/portfolio/projects/mappngo/materials/souvenir-sticker-preview.png";
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
 import veniviHomepagePreview from "../../images/portfolio/projects/venivi/materials/retro-homepage-preview.png";
 import veniviContestPreview from "../../images/portfolio/projects/venivi/materials/contest-xbox-one-preview.png";
@@ -122,6 +123,19 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "29 тестовых экранов MappNgo: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
             en: "29 MappNgo test screens covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: mappngoStickerPreview,
+          fileSrc: "/materials/projects/mappngo/souvenir-sticker.pdf",
+          title: {
+            ru: "Шаблон сувенирной наклейки MappNgo",
+            en: "MappNgo souvenir sticker template",
+          },
+          description: {
+            ru: "Макет сувенирной наклейки MappNgo с логотипом, стилизованным маршрутом и адресом mappngo.com.",
+            en: "A MappNgo souvenir sticker design featuring the logo, a stylized route and mappngo.com.",
           },
         },
       ],
