@@ -6,6 +6,10 @@ import madBurglarCatSoldoutPreview from "../../images/portfolio/projects/madburg
 import mappngoLogo from "../../images/portfolio/projects/mappngo/logo.png";
 import mappngoScreensPreview from "../../images/portfolio/projects/mappngo/materials/final-test-screens-preview.png";
 import mappngoStickerPreview from "../../images/portfolio/projects/mappngo/materials/souvenir-sticker-preview.png";
+import mappngoHomepageRuPreview from "../../images/portfolio/projects/mappngo/materials/homepage-ru-preview.png";
+import mappngoHomepageEnPreview from "../../images/portfolio/projects/mappngo/materials/homepage-en-preview.png";
+import mappngoFaqRuPreview from "../../images/portfolio/projects/mappngo/materials/faq-ru-preview.png";
+import mappngoFaqEnPreview from "../../images/portfolio/projects/mappngo/materials/faq-en-preview.png";
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
 import veniviHomepagePreview from "../../images/portfolio/projects/venivi/materials/retro-homepage-preview.png";
 import veniviContestPreview from "../../images/portfolio/projects/venivi/materials/contest-xbox-one-preview.png";
@@ -136,6 +140,62 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "Макет сувенирной наклейки MappNgo с логотипом, стилизованным маршрутом и адресом mappngo.com.",
             en: "A MappNgo souvenir sticker design featuring the logo, a stylized route and mappngo.com.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: mappngoHomepageRuPreview,
+          fileSrc: "/materials/projects/mappngo/homepage-ru.pdf",
+          url: "https://www.mappngo.com/",
+          title: {
+            ru: "Главная страница MappNgo на русском языке",
+            en: "MappNgo homepage in Russian",
+          },
+          description: {
+            ru: "Русская версия главной страницы MappNgo: описание проекта, команда, история закрытия приложения и обзор его функций.",
+            en: "The Russian MappNgo homepage: project overview, team, app closure and features.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: mappngoHomepageEnPreview,
+          fileSrc: "/materials/projects/mappngo/homepage-en.pdf",
+          url: "https://www.mappngo.com/en/",
+          title: {
+            ru: "Главная страница MappNgo на английском языке",
+            en: "MappNgo homepage in English",
+          },
+          description: {
+            ru: "Английская версия главной страницы MappNgo: описание проекта, команда, история закрытия приложения и обзор его функций.",
+            en: "The English MappNgo homepage: project overview, team, app closure and features.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: mappngoFaqRuPreview,
+          fileSrc: "/materials/projects/mappngo/faq-ru.pdf",
+          url: "https://www.mappngo.com/faq/",
+          title: {
+            ru: "FAQ MappNgo на русском языке",
+            en: "MappNgo FAQ in Russian",
+          },
+          description: {
+            ru: "Русская версия FAQ MappNgo: использование приложения, категории мест, поиск и создание маршрутов, избранное и навигация.",
+            en: "The Russian MappNgo FAQ: using the app, place categories, finding and creating route guides, favorites and navigation.",
+          },
+        },
+        {
+          type: "document",
+          previewSrc: mappngoFaqEnPreview,
+          fileSrc: "/materials/projects/mappngo/faq-en.pdf",
+          url: "https://www.mappngo.com/en/faq/",
+          title: {
+            ru: "FAQ MappNgo на английском языке",
+            en: "MappNgo FAQ in English",
+          },
+          description: {
+            ru: "Английская версия FAQ MappNgo: использование приложения, категории мест, поиск и создание маршрутов, избранное и навигация.",
+            en: "The English MappNgo FAQ: using the app, place categories, finding and creating route guides, favorites and navigation.",
           },
         },
       ],
