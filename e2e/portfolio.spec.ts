@@ -7,13 +7,13 @@ for (const { language, initialLanguage, label, filename } of [
   {
     language: "ru",
     initialLanguage: "en",
-    label: "Моё CV",
+    label: "Скачать CV",
     filename: "CV_Строков_Виктор.pdf",
   },
   {
     language: "en",
     initialLanguage: "ru",
-    label: "My CV",
+    label: "Download CV",
     filename: "CV_Strokov_Victor.pdf",
   },
 ]) {

@@ -35,12 +35,12 @@ export const uiText = {
     about: {
       title: "Виктор Строков",
       portraitAlt: "Портрет Виктора Строкова",
-      contact: "Обсудить проект",
-      cv: "Моё CV",
+      contact: "Связаться со мной",
+      cv: "Скачать CV",
       experience: "Более 10 лет в продукте, проектах и аналитике",
-      subtitle: "Управление проектами, разработка продуктов, исследования и аналитика",
+      subtitle: "Исследую рынки, запускаю продукты и развиваю проекты",
       description:
-        "Развиваю информационные и цифровые продукты, выстраиваю бизнес-процессы и объединяю работу аналитиков, дизайнеров и разработчиков. Мой опыт — международные и российские компании, а также собственные проекты. Открыт к новым задачам и профессиональному сотрудничеству.",
+        "Создаю информационные и цифровые продукты с опорой на потребности клиентов и понимание рынка. Выстраиваю процессы и объединяю команды, чтобы доводить идеи до запуска и развивать продукты дальше. Работал в международных и российских компаниях, развиваю собственные проекты. Открыт к новым задачам и сотрудничеству.",
     },
     notFound: {
       title: "Страница не найдена",
@@ -114,12 +114,12 @@ export const uiText = {
     about: {
       title: "Victor Strokov",
       portraitAlt: "Portrait of Victor Strokov",
-      contact: "Let’s talk",
-      cv: "My CV",
+      contact: "Contact me",
+      cv: "Download CV",
       experience: "10+ years in products, projects and analytics",
-      subtitle: "Project Management, Product Development, Research & Analytics",
+      subtitle: "I research markets, launch products and lead projects",
       description:
-        "I develop information and digital products, build business processes, and bring together analysts, designers and developers. My experience spans international and Russian companies, as well as my own projects. I am open to new challenges and professional collaboration.",
+        "I create information and digital products around client needs and market insights. I organise workflows and bring teams together to take ideas through launch and keep developing the products. I’ve worked in international and Russian companies and continue to develop my own projects. I’m open to new challenges and collaboration.",
     },
     notFound: {
       title: "Page not found",

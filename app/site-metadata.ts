@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from "next";
+import { getTranslations } from "../src/content/ui-text";
 import { BASE_URL } from "./site";
+
+const aboutCopy = getTranslations("ru").about;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   manifest: "/manifest.json",
   title: "Виктор Строков",
-  description:
-    "Виктор Строков - управление проектами, разработка продуктов, исследования и аналитика",
+  description: aboutCopy.subtitle,
   keywords: ["Виктор Строков", "Витя Строков", "Строков", "менеджер проектов", "менеджер продукта"],
   robots: {
     index: true,
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Виктор Строков",
-    description: "Управление проектами, разработка продуктов, исследования и аналитика",
+    description: aboutCopy.subtitle,
     url: BASE_URL,
     images: [{ url: "/og/ru/about", width: 1200, height: 630 }],
   },
