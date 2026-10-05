@@ -104,27 +104,23 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   TR: {
     ru: {
       challenge:
-        "Освещать рынки нефти, газа, металлов и удобрений для международной профессиональной аудитории, развивать информационные продукты и помогать клиентам работать с Thomson Reuters Eikon.",
+        "Работать в двух ключевых направлениях: готовить новости, аналитические статьи и обзоры о товарно-сырьевых рынках; развивать терминал Eikon с фокусом на сегменте «Горная добыча и металлургия» — информационные продукты, аналитические дашборды, рыночные котировки и новый технический функционал.",
       contribution: [
         "Готовил новости, обзоры и аналитические статьи о товарно-сырьевых рынках.",
-        "Разработал информационный продукт для B2B-клиентов.",
-        "Работал с большими массивами рыночных данных, участвовал в разработке аналитических дашбордов и инициировал улучшения платформы Eikon.",
-        "Продвигал Thomson Reuters Eikon на российском рынке и проводил мастер-классы для клиентов.",
+        "Разработал несколько B2B-информационных продуктов в терминале Eikon, участвовал в создании аналитических дашбордов и инициировал добавление рыночных котировок и нового технического функционала.",
       ],
       outcome:
-        "Более 1 000 опубликованных материалов с охватом свыше 20 000 читателей. Разработанный информационный продукт привлёк 3 B2B-клиентов. За время работы вырос от стажёра до аналитика рынков.",
+        "Более 1 000 опубликованных материалов с охватом свыше 20 000 читателей. Один из разработанных информационных продуктов привлёк 3 B2B-клиентов. За время работы вырос от стажёра до аналитика рынков. Часть публикаций, сохранившихся в открытом доступе, представлена в материалах ниже.",
     },
     en: {
       challenge:
-        "Cover oil, gas, metals and fertilizer markets for an international professional audience, develop information products and help clients use Thomson Reuters Eikon.",
+        "Work in two key areas: produce news reports, analysis and market overviews on commodity markets; develop the Eikon platform with a focus on the mining and metals sector — information products, analytical dashboards, market price quotes and new technical features.",
       contribution: [
         "Wrote news reports, market overviews and analytical articles on commodity markets.",
-        "Developed an information product for B2B clients.",
-        "Worked with large market datasets, contributed to analytical dashboards and initiated improvements to the Eikon platform.",
-        "Promoted Thomson Reuters Eikon in Russia and delivered client workshops.",
+        "Developed several B2B information products within Eikon, contributed to the creation of analytical dashboards and initiated the addition of market price quotes and new technical features.",
       ],
       outcome:
-        "Published over 1,000 pieces reaching more than 20,000 readers. The information product attracted 3 B2B clients. Progressed from intern to market analyst during my time at the company.",
+        "Published over 1,000 pieces reaching more than 20,000 readers. One of the information products attracted 3 B2B clients. Progressed from intern to market analyst during my time at the company. Some of my stories that remain publicly available are included in the materials below.",
     },
   },
   MBC: {
