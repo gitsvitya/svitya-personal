@@ -46,12 +46,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Каталог Mad Burglar Cat",
-            en: "Mad Burglar Cat catalog",
+            ru: "Каталог товаров",
+            en: "Product catalog",
           },
           description: {
-            ru: "Каталог Mad Burglar Cat: авторские футболки, патчи и стикерпаки, изготовление по индивидуальному заказу и фотографии покупателей.",
-            en: "The Mad Burglar Cat catalog: original T-shirts, patches and sticker packs, custom production and customer photos.",
+            ru: "Главная страница сайта, где можно выбрать изделие, перейти по ссылке для индивидуального заказа и ознакомиться с отзывами покупателей.",
+            en: "The website’s main page, where visitors can choose a product, follow a link to request a custom order and read customer reviews.",
           },
         },
         {
@@ -71,12 +71,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "MBC TS x Всё Хорошо — карточка товара",
-            en: "MBC TS x Everything Is Fine — product page",
+            ru: "Карточка товара",
+            en: "Product page",
           },
           description: {
-            ru: "Карточка футболки «MBC TS x Всё Хорошо»: фотографии, цена, выбор размера, характеристики, сроки изготовления и рекомендации по уходу.",
-            en: "The MBC TS x Everything Is Fine T-shirt product page: photos, price, size selection, specifications, production time and care instructions.",
+            ru: "Страница с основной информацией об изделии, характеристиками, размерной сеткой, сроками изготовления и рекомендациями по уходу. Можно выбрать размер и перейти к оформлению заказа.",
+            en: "A page with key product information, specifications, a size chart, production time and care instructions. Visitors can choose a size and proceed to checkout.",
           },
         },
         {
@@ -96,12 +96,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "MBC TS x Всё Хорошо — оформление заказа",
-            en: "MBC TS x Everything Is Fine — checkout",
+            ru: "Оформление заказа",
+            en: "Checkout",
           },
           description: {
-            ru: "Форма заказа «MBC TS x Всё Хорошо» с доставкой СДЭК в Москву и картой пунктов выдачи. На сайте форма открывается через кнопку «Купить» в карточке товара.",
-            en: "The MBC TS x Everything Is Fine checkout form with CDEK delivery to Moscow and a pickup point map. On the website, use the Buy button on the product page to open the form.",
+            ru: "Форма с параметрами заказа, данными получателя, комментарием и промокодом. Стоимость доставки автоматически рассчитывалась по тарифам СДЭК с учётом способа доставки, количества изделий и выбранного пункта выдачи или адреса. Для оплаты картой и через СБП использовался сервис ЮКасса.",
+            en: "A form with order options, recipient details, a comment field and a promo code. Delivery costs were calculated automatically using CDEK tariffs, based on the delivery method, item quantity and selected pickup point or address. Card and SBP payments were processed through YooKassa.",
           },
         },
         {
@@ -121,12 +121,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Солдаут Mad Burglar Cat",
-            en: "Mad Burglar Cat Soldout",
+            ru: "Солдаут",
+            en: "Soldout",
           },
           description: {
-            ru: "Раздел «Солдаут» Mad Burglar Cat: полотенца из прошлых коллекций с отметками SOLD и «Нет в наличии».",
-            en: "The Mad Burglar Cat Soldout archive: towels from past collections marked SOLD and out of stock.",
+            ru: "Архивная страница, куда переносятся модели прошлых выпусков. Изделия представлены с пометкой SOLD и больше недоступны для заказа.",
+            en: "An archive page for designs from previous releases. The items are marked SOLD and are no longer available to order.",
           },
         },
         {
@@ -144,12 +144,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Свидетельство на товарный знак Mad Burglar Cat",
-            en: "Mad Burglar Cat trademark certificate",
+            ru: "Свидетельство на товарный знак",
+            en: "Trademark certificate",
           },
           description: {
-            ru: "Свидетельство Роспатента № 1 222 341 на товарный знак Mad Burglar Cat. Дата регистрации — 19 мая 2026 года; срок действия регистрации — до 16 апреля 2035 года.",
-            en: "Rospatent trademark certificate No. 1,222,341 for Mad Burglar Cat. Registered on May 19, 2026; registration expires on April 16, 2035. Original document in Russian.",
+            ru: "Свидетельство Роспатента, подтверждающее регистрацию товарного знака Mad Burglar Cat.",
+            en: "A Rospatent certificate confirming registration of the Mad Burglar Cat trademark. Original document in Russian.",
           },
         },
       ],

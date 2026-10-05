@@ -37,7 +37,7 @@ const materials = [
     path: "projects/madburglarcat",
     href: "/materials/projects/madburglarcat/catalog.pdf",
     sourceUrl: "https://madburglarcat.ru/catalog",
-    title: { ru: "Каталог Mad Burglar Cat", en: "Mad Burglar Cat catalog" },
+    title: { ru: "Каталог товаров", en: "Product catalog" },
     active: [true, true, true],
   },
 ] as const;
@@ -413,28 +413,24 @@ for (const language of ["ru", "en"] as const) {
       expect(pdf.headers()["content-type"]).toContain("application/pdf");
       expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
       if (slug === "everything-is-fine-checkout") {
-        await expect(dialog.locator("p")).toContainText(language === "ru" ? "Москву" : "Moscow");
+        await expect(dialog.locator("p")).toContainText(language === "ru" ? "СДЭК" : "CDEK");
         await dialog.screenshot({
           path: testInfo.outputPath("madburglarcat-checkout-material.png"),
         });
       }
       if (slug === "soldout") {
-        await expect(dialog).toHaveAccessibleName(
-          language === "ru" ? "Солдаут Mad Burglar Cat" : "Mad Burglar Cat Soldout"
-        );
-        await expect(dialog.locator("p")).toContainText(language === "ru" ? "полотенца" : "towels");
+        await expect(dialog).toHaveAccessibleName(language === "ru" ? "Солдаут" : "Soldout");
+        await expect(dialog.locator("p")).toContainText("SOLD");
         await dialog.screenshot({
           path: testInfo.outputPath("madburglarcat-soldout-material.png"),
         });
       }
       if (slug === "trademark-certificate-1222341") {
         await expect(dialog).toHaveAccessibleName(
-          language === "ru"
-            ? "Свидетельство на товарный знак Mad Burglar Cat"
-            : "Mad Burglar Cat trademark certificate"
+          language === "ru" ? "Свидетельство на товарный знак" : "Trademark certificate"
         );
         await expect(dialog.locator("p")).toContainText(
-          language === "ru" ? "1 222 341" : "1,222,341"
+          language === "ru" ? "Роспатента" : "Rospatent"
         );
         const downloadPromise = page.waitForEvent("download");
         await dialog.getByRole("link", { name: labels[language][0], exact: true }).click();

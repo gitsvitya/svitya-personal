@@ -126,7 +126,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   MBC: {
     ru: {
       challenge:
-        "Создать с нуля интернет-магазин авторских изделий и организовать полный цикл работы: разработку продуктов, производство, продажи и доставку заказов.",
+        "Создать с нуля проект по производству и дистрибуции авторских изделий, выстроив полный цикл работы: от разработки продуктов до продаж через интернет-магазин и доставки заказов.",
       contribution: [
         "Сформировал инфраструктуру интернет-магазина на Tilda: CRM, приём платежей и логистику.",
         "Разрабатываю авторские изделия, вывожу их на рынок и определяю дальнейшее развитие проекта.",
@@ -134,11 +134,11 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Координирую небольшую команду на аутсорсе, которая помогает с контентом, дизайном и обработкой заказов.",
       ],
       outcome:
-        "Интернет-магазин запущен, на рынок выведены 10+ авторских товарных позиций. Обеспечен полный цикл обработки 100+ заказов. Проект продолжает работать и развиваться.",
+        "Проект запущен, на рынок выведены 10+ авторских товарных позиций. Обеспечен полный цикл обработки 100+ заказов. Сейчас концепция находится на стадии трансформации: материалы нужного качества для производства разработанных изделий больше не поставляются в Россию.",
     },
     en: {
       challenge:
-        "Build an online store for original products from scratch and organize the full cycle of product development, production, sales and delivery.",
+        "Build a venture for producing and distributing original products from scratch, covering the full cycle from product development to sales through an online store and order delivery.",
       contribution: [
         "Built the e-commerce infrastructure on Tilda, including CRM, payments and logistics.",
         "Develop original products, bring them to market and shape the direction of the project.",
@@ -146,7 +146,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Coordinate a small outsourced team supporting content, design and order processing.",
       ],
       outcome:
-        "Launched the online store and brought 10+ original SKUs to market. Managed the full processing cycle for 100+ orders. The project remains active and continues to develop.",
+        "Launched the project and brought 10+ original products to market. Managed the full processing cycle for 100+ orders. The concept is currently undergoing a transformation, as materials of the required quality for manufacturing these products are no longer supplied to Russia.",
     },
   },
   MNG: {
