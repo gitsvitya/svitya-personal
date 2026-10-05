@@ -37,7 +37,7 @@ test("keeps focused footer links above the cookie banner as its height changes",
 }) => {
   await context.clearCookies();
   await page.goto("/en/about");
-  const banner = page.getByRole("region", { name: "Analytics cookie settings" });
+  const banner = page.getByRole("region", { name: "Cookie settings" });
   await expect(banner).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
 

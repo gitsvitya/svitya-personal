@@ -49,11 +49,11 @@ export const uiText = {
       home: "На главную",
     },
     cookieBanner: {
-      label: "Настройки аналитических cookie",
+      label: "Настройки cookie",
       description:
-        "Обязательные cookie сохраняют настройки сайта. Яндекс Метрика подключается только с вашего согласия.",
-      accept: "Разрешить аналитику",
-      reject: "Только необходимые",
+        "Для корректной работы сайта я использую обязательные cookie. Дополнительная аналитика поможет мне развивать сайт и делать его лучше. Можно оставить только обязательные cookie или разрешить все, включая аналитические.",
+      accept: "Разрешить все",
+      reject: "Только обязательные",
     },
     detail: {
       back: "Назад",
@@ -128,10 +128,10 @@ export const uiText = {
       home: "Back to home",
     },
     cookieBanner: {
-      label: "Analytics cookie settings",
+      label: "Cookie settings",
       description:
-        "Essential cookies remember your preferences. Yandex Metrica is enabled only with your consent.",
-      accept: "Allow analytics",
+        "I use essential cookies to keep the site working properly. Additional analytics will help me keep improving it. Choose essential cookies only, or allow all cookies to include analytics.",
+      accept: "Allow all",
       reject: "Essential only",
     },
     detail: {

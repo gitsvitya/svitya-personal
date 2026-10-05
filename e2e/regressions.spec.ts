@@ -318,7 +318,7 @@ test("records each SPA page once and stops analytics after consent is withdrawn"
     await page.locator('nav a[href="/en/settings"]').click();
     await expect(page).toHaveURL(/\/en\/settings$/);
     await page.getByRole("button", { name: "Cookie settings" }).click();
-    await page.getByRole("button", { name: "Allow analytics" }).click();
+    await page.getByRole("button", { name: "Allow all" }).click();
     await expect.poll(async () => (await hits()).length).toBe(7);
     expect((await hits())[6]![2]).toBe(`${testOrigin}/en/settings`);
   } finally {

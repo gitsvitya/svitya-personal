@@ -121,13 +121,13 @@ test("lets the user reopen and update cookie settings", async ({ context, page }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en/settings");
 
-  await expect(page.getByRole("region", { name: "Analytics cookie settings" })).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "Cookie settings" })).toHaveCount(0);
   await page.getByRole("button", { name: "Cookie settings" }).click();
 
-  const banner = page.getByRole("region", { name: "Analytics cookie settings" });
+  const banner = page.getByRole("region", { name: "Cookie settings" });
   await expect(banner).toBeVisible();
   const rejectButton = banner.getByRole("button", { name: "Essential only" });
-  const acceptButton = banner.getByRole("button", { name: "Allow analytics" });
+  const acceptButton = banner.getByRole("button", { name: "Allow all" });
   const rejectBox = await rejectButton.boundingBox();
   const acceptBox = await acceptButton.boundingBox();
   expect(rejectBox?.y).toBe(acceptBox?.y);

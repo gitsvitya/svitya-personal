@@ -20,18 +20,18 @@ for (const consent of [null, "denied", "granted"] as const) {
     await page.getByRole("button", { name: "Русский язык" }).click();
     await expect(page).toHaveURL(/\/en\/settings$/);
     await expect(banner).toBeVisible();
-    await expect(banner).toHaveAccessibleName("Analytics cookie settings");
-    await expect(banner.getByRole("button", { name: "Allow analytics" })).toBeVisible();
+    await expect(banner).toHaveAccessibleName("Cookie settings");
+    await expect(banner.getByRole("button", { name: "Allow all" })).toBeVisible();
 
     await page.getByRole("button", { name: "Russian language" }).click();
     await expect(page).toHaveURL(/\/ru\/settings$/);
     await expect(banner).toBeVisible();
-    await expect(banner).toHaveAccessibleName("Настройки аналитических cookie");
+    await expect(banner).toHaveAccessibleName("Настройки cookie");
     expect((await context.cookies()).find(({ name }) => name === "analytics_consent")?.value).toBe(
       consent ?? undefined
     );
 
-    await banner.getByRole("button", { name: "Только необходимые" }).click();
+    await banner.getByRole("button", { name: "Только обязательные" }).click();
     await expect(banner).toHaveCount(0);
     await page.getByRole("button", { name: "Русский язык" }).click();
     await expect(page).toHaveURL(/\/en\/settings$/);
@@ -79,9 +79,9 @@ for (const width of [1280, 390]) {
       "true"
     );
     await page.getByRole("button", { name: "Настройки cookie", exact: true }).click();
-    const banner = page.getByRole("region", { name: "Настройки аналитических cookie" });
+    const banner = page.getByRole("region", { name: "Настройки cookie" });
     await expect(banner).toBeVisible();
-    await banner.getByRole("button", { name: "Только необходимые" }).click();
+    await banner.getByRole("button", { name: "Только обязательные" }).click();
     await expect(banner).toHaveCount(0);
 
     if (width < 769) await menu.click();

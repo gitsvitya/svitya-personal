@@ -86,7 +86,7 @@ test("synchronizes analytics consent between open tabs without focusing or navig
     ).toBe(false);
 
     await settings.getByRole("button", { name: "Cookie settings" }).click();
-    await settings.getByRole("button", { name: "Allow analytics" }).click();
+    await settings.getByRole("button", { name: "Allow all" }).click();
     await expect.poll(() => countCommands("init")).toBe(2);
     await expect.poll(() => countCommands("hit")).toBe(2);
     await expect(page).toHaveURL(`${testOrigin}/en/about`);
