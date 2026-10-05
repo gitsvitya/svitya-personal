@@ -6,27 +6,25 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   CI: {
     ru: {
       challenge:
-        "Запустить платные B2B-бюллетени о рынках нефтегазохимии и выстроить их регулярный выпуск совместно с экспертами, редакторами и дизайнерами.",
+        "Запускать платные B2B-бюллетени о рынках нефтегазохимии и налаживать их регулярный выпуск совместно с экспертами, редакторами и дизайнерами. Поддерживать общение с клиентами, чтобы выявлять их потребности в информационных бюллетенях.",
       contribution: [
         "Запускаю и развиваю информационные бюллетени с опорой на спрос и потребности клиентов: определяю позиционирование, структуру и подход к выводу на рынок.",
         "Разработал и описал процессы подготовки и выпуска в BPMN с учётом особенностей разных команд и технологий.",
         "Координирую работу экспертов, редакторов и дизайнеров и готовлю предложения по оптимизации процессов.",
-        "Сформировал единую рабочую среду в Miro с планом развития продуктов, календарём рассылок, бэклогом и базой клиентов.",
       ],
       outcome:
-        "На рынок выведены 6 платных информационных бюллетеней с суммарным охватом более 10 B2B-клиентов. Организован регулярный выпуск, описаны процессы подготовки материалов и создана общая рабочая среда. Продолжаю развивать продукты и процессы агентства.",
+        "В моей зоне ответственности на рынок выведены 6 платных информационных бюллетеней с суммарным охватом более 10 B2B-клиентов. Совместно с экспертами, редакторами и дизайнерами организован регулярный выпуск и описаны процессы подготовки материалов. Продолжаю развивать бюллетени и процессы с учётом потребностей, выявленных в общении с клиентами. С образцами бюллетеней можно ознакомиться в материалах ниже.",
     },
     en: {
       challenge:
-        "Launch paid B2B bulletins covering petrochemical markets and establish regular publication with experts, editors and designers.",
+        "Launch paid B2B bulletins covering petrochemical markets and establish regular publication with experts, editors and designers. Maintain contact with clients to understand their needs for information bulletins.",
       contribution: [
         "Launch and develop information bulletins based on market demand and client needs, defining their positioning, structure and go-to-market approach.",
         "Developed and documented preparation and publication workflows in BPMN, accounting for different teams and technologies.",
         "Coordinate experts, editors and designers and propose process improvements.",
-        "Built a shared workspace in Miro with a product roadmap, publication schedule, backlog and client database.",
       ],
       outcome:
-        "Launched 6 paid information bulletins serving more than 10 B2B clients in total. Established regular publication and a shared workspace, and documented production workflows. I continue to develop the agency’s products and processes.",
+        "I launched 6 paid information bulletins within my area of responsibility, serving more than 10 B2B clients in total. Working with experts, editors and designers, I established regular publication and documented production workflows. I continue to develop the bulletins and improve processes based on needs identified through conversations with clients. Samples of the bulletins are available in the materials below.",
     },
   },
   NTB: {

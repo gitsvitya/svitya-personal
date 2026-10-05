@@ -53,8 +53,8 @@ export const WORK_COMPANIES = {
             en: "Polyethylene",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке полиэтилена.",
-            en: "A sample ChemInsight analytical report on the polyethylene market.",
+            ru: "Образец еженедельного информационного бюллетеня ХимИнсайт о рынке полиэтилена.",
+            en: "A sample of ChemInsight’s weekly information bulletin on the polyethylene market.",
           },
         },
         {
@@ -76,8 +76,8 @@ export const WORK_COMPANIES = {
             en: "Polypropylene",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке полипропилена.",
-            en: "A sample ChemInsight analytical report on the polypropylene market.",
+            ru: "Образец еженедельного информационного бюллетеня ХимИнсайт о рынке полипропилена.",
+            en: "A sample of ChemInsight’s weekly information bulletin on the polypropylene market.",
           },
         },
         {
@@ -99,8 +99,8 @@ export const WORK_COMPANIES = {
             en: "Butyl alcohols and 2-EH",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке бутиловых спиртов и 2-ЭГ.",
-            en: "A sample ChemInsight analytical report on the butyl alcohols and 2-EH market.",
+            ru: "Образец еженедельного информационного бюллетеня ХимИнсайт о рынке бутиловых спиртов и 2-ЭГ.",
+            en: "A sample of ChemInsight’s weekly information bulletin on the butyl alcohols and 2-EH market.",
           },
         },
         {
@@ -122,8 +122,8 @@ export const WORK_COMPANIES = {
             en: "Feed grade methionine",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке кормового метионина.",
-            en: "A sample ChemInsight analytical report on the feed grade methionine market.",
+            ru: "Образец информационного бюллетеня ХимИнсайт о рынке кормового метионина. Выходит два раза в месяц.",
+            en: "A sample of ChemInsight’s information bulletin on the feed-grade methionine market. It is published twice a month.",
           },
         },
         {
@@ -145,8 +145,8 @@ export const WORK_COMPANIES = {
             en: "Caustic soda",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке каустической соды.",
-            en: "A sample ChemInsight analytical report on the caustic soda market.",
+            ru: "Образец ежемесячного информационного бюллетеня ХимИнсайт о рынке каустической соды.",
+            en: "A sample of ChemInsight’s monthly information bulletin on the caustic soda market.",
           },
         },
         {
@@ -168,8 +168,8 @@ export const WORK_COMPANIES = {
             en: "Caustic potash",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке едкого калия.",
-            en: "A sample ChemInsight analytical report on the caustic potash market.",
+            ru: "Образец ежемесячного информационного бюллетеня ХимИнсайт о рынке едкого калия.",
+            en: "A sample of ChemInsight’s monthly information bulletin on the caustic potash market.",
           },
         },
         {
@@ -191,8 +191,8 @@ export const WORK_COMPANIES = {
             en: "Boric acid",
           },
           description: {
-            ru: "Образец аналитического материала ХимИнсайт о рынке борной кислоты.",
-            en: "A sample ChemInsight analytical report on the boric acid market.",
+            ru: "Образец ежемесячного информационного бюллетеня ХимИнсайт о рынке борной кислоты.",
+            en: "A sample of ChemInsight’s monthly information bulletin on the boric acid market.",
           },
         },
       ],
