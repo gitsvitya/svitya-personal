@@ -280,18 +280,18 @@ export const PROJECT_COMPANIES = {
         name: "MappNgo",
         title: "Основатель",
         about:
-          "Приложение для iOS, которое помогало находить интересные городские маршруты для пеших прогулок в формате C2C.",
+          "Приложение для iOS, которое помогало находить интересные городские маршруты для пеших прогулок в форматах B2C и C2C.",
         results:
-          "Был автором проекта: разработал концепцию, сформировал дизайн и организовал разработку. Довёл проект до стадии минимально жизнеспособного продукта (MVP), но из-за пандемии COVID-19 его пришлось закрыть.",
+          "Придумал и разработал концепцию проекта, сформировал его стратегию и видение. Организовал команду на аутсорсе для полного цикла разработки и дизайна продукта. Провёл полноценное первичное тестирование на нескольких фокус-группах знакомых. Довёл проект до стадии MVP для iOS, но в 2020 году его пришлось закрыть из-за карантина, введённого во время пандемии COVID-19.",
       },
       en: {
         year: "2019 → 2020",
         name: "MappNgo",
         title: "Founder",
         about:
-          "An iOS application that helped users discover interesting urban walking routes in a C2C format.",
+          "An iOS application that helped users discover interesting urban walking routes in B2C and C2C formats.",
         results:
-          "Project creator: developed the concept, designed the interface, and organized development. Brought the project to the minimum viable product (MVP) stage, but it had to be shut down due to the COVID-19 pandemic.",
+          "Conceived and developed the project concept, strategy and vision. Assembled an outsourced team to support the full product development and design cycle. Conducted comprehensive initial product testing with several focus groups from my personal network. Brought the iOS project to the MVP stage, but it had to close in 2020 due to lockdown measures introduced during the COVID-19 pandemic.",
       },
     },
   },

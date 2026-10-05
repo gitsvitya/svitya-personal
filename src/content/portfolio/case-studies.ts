@@ -154,22 +154,22 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
       challenge:
         "Создать iOS-приложение для поиска и создания городских пеших маршрутов, которыми пользователи делятся друг с другом.",
       contribution: [
-        "Определил продуктовую стратегию и занимался проверкой гипотез.",
-        "Разработал концепцию приложения и сформировал дизайн интерфейсов.",
-        "Организовал полный цикл разработки продукта и координировал команду на аутсорсе.",
+        "Придумал и разработал концепцию проекта, сформировал его стратегию и видение.",
+        "Организовал команду на аутсорсе, которая помогла с полным циклом разработки и дизайном продукта.",
+        "Провёл полноценное первичное тестирование продукта на нескольких фокус-группах знакомых.",
       ],
       outcome:
-        "Проект доведён до стадии минимально жизнеспособного продукта (MVP) для iOS. В 2020 году его пришлось закрыть из-за пандемии COVID-19.",
+        "Проект доведён до стадии MVP для iOS. В 2020 году его пришлось закрыть из-за карантина, введённого во время пандемии COVID-19.",
     },
     en: {
       challenge: "Create an iOS app where users can find, create and share urban walking routes.",
       contribution: [
-        "Defined the product strategy and tested product hypotheses.",
-        "Developed the app concept and designed its interfaces.",
-        "Organized the full product development cycle and coordinated an outsourced team.",
+        "Conceived and developed the project concept, strategy and vision.",
+        "Assembled an outsourced team that supported the full product development and design cycle.",
+        "Conducted comprehensive initial product testing with several focus groups from my personal network.",
       ],
       outcome:
-        "Brought the iOS project to the minimum viable product (MVP) stage. It had to close in 2020 due to the COVID-19 pandemic.",
+        "Brought the iOS project to the MVP stage. It had to close in 2020 due to lockdown measures introduced during the COVID-19 pandemic.",
     },
   },
   VNV: {
