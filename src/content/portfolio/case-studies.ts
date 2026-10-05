@@ -175,25 +175,25 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   VNV: {
     ru: {
       challenge:
-        "Создать площадку, на которой рекламодатели привлекают аудиторию через конкурсы и розыгрыши.",
+        "Создать площадку, на которой рекламодатели могут привлекать аудиторию через конкурсы, розыгрыши и турниры.",
       contribution: [
+        "Придумал и разработал концепцию проекта, сформировал его стратегию и видение.",
+        "Подобрал дизайнеров и разработчиков и сформировал команду на аутсорсе.",
         "Отвечал за разработку продукта.",
-        "Привлекал рекламодателей и клиентов площадки.",
-        "Развивал площадку с опорой на группу VK.com, откуда поступал основной трафик.",
       ],
       outcome:
-        "За неполный год на площадке состоялись не менее 10 розыгрышей и локальных киберспортивных турниров. Аудитория достигала 7 000 активных пользователей в месяц. Проект закрыли после ужесточения правил конкурсов в VK.com.",
+        "Площадка запущена и за неполный год привлекла более 30 B2B-клиентов. Проведены не менее 10 мероприятий, включая розыгрыши и 3 киберспортивных турнира с участием более 300 игроков. Аудитория достигала около 1 000 активных пользователей в день и 7 000 в месяц, удержание на 30-й день — 16%. В 2014 году проект пришлось закрыть из-за ужесточения правил проведения конкурсов в VK.com.",
     },
     en: {
       challenge:
-        "Create a platform where advertisers can attract audiences through contests and giveaways.",
+        "Create a platform where advertisers can attract audiences through contests, giveaways and tournaments.",
       contribution: [
+        "Conceived and developed the project concept, strategy and vision.",
+        "Recruited designers and developers and assembled an outsourced team.",
         "Was responsible for product development.",
-        "Acquired advertisers and clients for the platform.",
-        "Developed the platform with its VK.com group as the main traffic source.",
       ],
       outcome:
-        "In under a year, the platform hosted at least 10 giveaways and local esports tournaments and reached 7,000 monthly active users. It closed following tighter contest rules on VK.com.",
+        "Launched the platform, which attracted over 30 B2B clients in under a year. Hosted at least 10 events, including giveaways and three esports tournaments involving more than 300 players. The audience reached approximately 1,000 daily and 7,000 monthly active users, with day-30 retention of 16%. The project closed in 2014 due to stricter rules governing contests on VK.com.",
     },
   },
 };

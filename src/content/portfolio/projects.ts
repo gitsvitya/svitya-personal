@@ -320,12 +320,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Ретро-главная страница Venivi",
-            en: "Venivi retro homepage",
+            ru: "Главная страница сайта",
+            en: "Website homepage",
           },
           description: {
-            ru: "Архивная главная страница Venivi: конкурсы с Xbox One, iPhone 5s и Beats Studio, таймер розыгрыша и вход через социальные сети.",
-            en: "The Venivi retro homepage: Xbox One, iPhone 5s and Beats Studio contests, a giveaway countdown and social sign-in.",
+            ru: "Главная страница сайта, на которой одновременно могли проходить несколько конкурсов с разным приоритетом. Площадка также предусматривала личный кабинет и внутреннюю валюту.",
+            en: "The website homepage, where multiple contests could run simultaneously with different priorities. The platform also offered user accounts and an internal currency.",
           },
         },
         {
@@ -343,12 +343,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Venivi — конкурс Xbox One",
-            en: "Venivi — Xbox One contest",
+            ru: "Страница конкурса",
+            en: "Contest page",
           },
           description: {
-            ru: "Архивная страница розыгрыша Xbox One: описание приза, условия участия, таймер, пошаговая инструкция и форма комментариев.",
-            en: "The Venivi Xbox One contest page: prize details, entry rules, a countdown, participation steps and a comment form.",
+            ru: "Страница с подробной инструкцией по участию, количеством участников, таймером до завершения конкурса и возможностью оставлять комментарии.",
+            en: "A page with detailed entry instructions, a participant count, a countdown to the end of the contest and the option to leave comments.",
           },
         },
       ],
