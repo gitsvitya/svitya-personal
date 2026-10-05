@@ -80,25 +80,25 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   KG: {
     ru: {
       challenge:
-        "Обеспечить продуктовый маркетинг данными о гражданских рынках и поддержать разработку новых B2B-продуктов.",
+        "В рамках стратегии диверсификации гражданских направлений компании обеспечить продуктовый маркетинг исследованиями и аналитикой для выбора перспективных ниш и разработки новых B2B-продуктов.",
       contribution: [
-        "Сформировал систему маркетинговых исследований и аналитики гражданских рынков и конкурентов для поиска новых продуктовых возможностей.",
+        "Сформировал систему маркетинговых исследований и аналитики гражданских рынков для поиска новых продуктовых возможностей.",
         "Интегрировал систему бизнес-аналитики (BI) для поддержки решений продуктового маркетинга.",
         "Участвовал в создании линейки B2B-продуктов в категории «умный дом».",
       ],
       outcome:
-        "Для продуктового маркетинга выстроена система исследований гражданских рынков и внедрена бизнес-аналитика. Принял участие в разработке линейки B2B-продуктов в категории «умный дом».",
+        "Выстроена система исследований гражданских рынков и внедрена бизнес-аналитика для оценки перспективных продуктовых ниш. Принял участие в разработке линейки B2B-продуктов в категории «умный дом».",
     },
     en: {
       challenge:
-        "Provide product marketing with civilian market intelligence and support the development of new B2B products.",
+        "As part of the company’s strategy to diversify its civilian business areas, provide product marketing with research and analysis to identify promising niches and support the development of new B2B products.",
       contribution: [
-        "Built a research and analytics system covering civilian markets and competitors to identify new product opportunities.",
+        "Built a research and analytics system covering civilian markets to identify new product opportunities.",
         "Integrated a business intelligence (BI) system to support product marketing decisions.",
         "Contributed to the creation of a B2B smart home product line.",
       ],
       outcome:
-        "Established a civilian market research system and implemented business intelligence for product marketing. Contributed to the development of a B2B smart home product line.",
+        "Established a civilian market research system and implemented business intelligence to assess promising product niches. Contributed to the development of a B2B smart home product line.",
     },
   },
   TR: {
