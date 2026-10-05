@@ -16,8 +16,8 @@ const materials = [
     path: "activities/strokeoff",
     href: "/materials/activities/strokeoff/first-batch.pdf",
     title: {
-      ru: "Первая партия перцовки Stroke Off",
-      en: "The first batch of Stroke Off pepper vodka",
+      ru: "Первая партия перцовки",
+      en: "First batch of chili-infused vodka",
     },
     active: [true, true, false],
   },

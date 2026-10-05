@@ -7,6 +7,10 @@ export type CompanyCopy = {
   title: string;
   about: string;
   results: string;
+  resultsList?: {
+    intro: string;
+    items: string[];
+  };
 };
 
 export type CaseStudy = {

@@ -69,10 +69,22 @@ function DetailContent({ company, titleId, descriptionId, text }: DetailContentP
             </section>
           </>
         ) : (
-          <section>
-            <h2>{text.detail.contribution}</h2>
-            <p className={styles.paragraph}>{company.results}</p>
-          </section>
+          <>
+            <section>
+              <h2>{text.detail.contribution}</h2>
+              <p className={styles.paragraph}>{company.results}</p>
+            </section>
+            {company.resultsList && (
+              <section className={styles.outcome}>
+                <h2>{company.resultsList.intro}</h2>
+                <ul className={`${styles.contributions} ${styles.highlights}`} role="list">
+                  {company.resultsList.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </>
         )}
       </div>
     </div>

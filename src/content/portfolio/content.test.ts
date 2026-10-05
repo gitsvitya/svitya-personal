@@ -97,9 +97,14 @@ describe("portfolio content", () => {
       expect(company.logo).toBeTruthy();
 
       for (const language of LANGUAGES) {
-        const copy = company.translations[language];
+        const { resultsList, ...copy } = company.translations[language];
         for (const value of Object.values(copy)) {
           expect(value.trim()).not.toBe("");
+        }
+        if (resultsList) {
+          expect(resultsList.intro.trim()).not.toBe("");
+          expect(resultsList.items.length).toBeGreaterThan(0);
+          for (const item of resultsList.items) expect(item.trim()).not.toBe("");
         }
       }
 

@@ -29,12 +29,12 @@ export const ACTIVITY_COMPANIES = {
             },
           },
           title: {
-            ru: "Первая партия перцовки Stroke Off",
-            en: "The first batch of Stroke Off pepper vodka",
+            ru: "Первая партия перцовки",
+            en: "First batch of chili-infused vodka",
           },
           description: {
-            ru: "Фотография первой партии перцовки Stroke Off на нейтральном фоне.",
-            en: "A photo of the first batch of Stroke Off chili-infused vodka against a neutral background.",
+            ru: "Здесь я позирую на фоне первой полноценной партии перцовки.",
+            en: "Here I’m posing with my first full batch of chili-infused vodka.",
           },
         },
         {
@@ -52,12 +52,12 @@ export const ACTIVITY_COMPANIES = {
             },
           },
           title: {
-            ru: "Этикетка перцовки Stroke Off",
-            en: "Stroke Off pepper vodka label",
+            ru: "Этикетка перцовки",
+            en: "Chili-infused vodka label",
           },
           description: {
-            ru: "Макет этикетки перцовки Stroke Off: фирменная иллюстрация, название и декоративный орнамент. Размер макета — 110 × 135 мм.",
-            en: "The Stroke Off pepper vodka label artwork with an illustration, brand lettering and decorative pattern. Artwork size: 110 × 135 mm.",
+            ru: "Этикетка перцовки со всем необходимым: котами и вайбами родины чили.",
+            en: "A chili-infused vodka label with all the essentials: cats and vibes from chili’s homeland.",
           },
         },
       ],
@@ -65,21 +65,29 @@ export const ACTIVITY_COMPANIES = {
     translations: {
       ru: {
         year: "2021 → настоящее время",
-        name: "Продукция Stroke Off",
-        title: "Из перцев чили Каролина рипер",
+        name: "Stroke Off",
+        title: "Главный чиливар",
         about:
-          "Бренд, под которым я объединяю свою домашнюю продукцию из перцев чили, которую делаю для себя и друзей (на некоммерческой основе).",
+          "Бренд, под которым я объединяю свою домашнюю продукцию из перцев чили, которую делаю для себя и друзей — на некоммерческой основе.",
         results:
-          "В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая одного из лидеров по жгучести - Каролину рипер. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом Stroke Off. Особенно удачными получились перцовка и тайский сладкий соус чили.",
+          "В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая одного из лидеров по жгучести — Каролину рипер. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом Stroke Off.",
+        resultsList: {
+          intro: "Особенно удачно получились:",
+          items: ["Перцовка", "Тайский сладкий чили", "Чили-масло"],
+        },
       },
       en: {
         year: "2021 → present",
-        name: "Stroke Off Products",
-        title: "Made from Carolina Reaper Chili Peppers",
+        name: "Stroke Off",
+        title: "Chief chili maker",
         about:
-          "A personal brand under which I group my homemade chili-based products, made for myself and friends on a non-commercial basis.",
+          "A personal brand for my homemade chili-based products, made for myself and friends — on a non-commercial basis.",
         results:
-          "In 2020, I planted several varieties of hot chili peppers at home, including one of the hottest varieties - the Carolina Reaper. The peppers grew successfully and began to bear fruit. As the harvest ripens, I produce various spicy products under the Stroke Off brand. The most successful ones have been chili-infused vodka and Thai sweet chili sauce.",
+          "In 2020, I planted several varieties of hot chili peppers at home, including one of the hottest varieties — the Carolina Reaper. The peppers grew successfully and began to bear fruit. As the harvest ripens, I produce various spicy products under the Stroke Off brand.",
+        resultsList: {
+          intro: "The highlights:",
+          items: ["Chili-infused vodka", "Thai sweet chili sauce", "Chili oil"],
+        },
       },
     },
   },

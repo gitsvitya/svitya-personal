@@ -133,6 +133,10 @@
   font-weight: 300;
   line-height: var(--body-line-height);
 }
+.highlights {
+  padding-left: 0;
+  list-style: none;
+}
 .contributions li::marker {
   color: var(--text-primary);
   transition: color var(--transition-theme);
