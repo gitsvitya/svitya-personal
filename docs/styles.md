@@ -40,8 +40,10 @@ color transition on the link.
   visiting the source. Unavailable actions are native disabled buttons with muted
   text and no hover accent. On mobile, the three actions fill the available width.
   Focused actions scroll fully into view, including clearance for their focus outline.
-- Material dialogs show the preview, description and actions. Keep their title and
-  carousel position available to screen readers without visible headings or counters.
+- Material dialogs show a centered title above the preview, followed by the description
+  and actions. Long titles wrap on narrow screens and fade with the material content
+  during carousel navigation. Keep the carousel position available to screen readers
+  without a visible counter.
   All material types share a 900px maximum modal width, the same preview sizing and
   the same side space, including single-item galleries. On narrow screens, leave
   8px on each side of the modal. Desktop actions stay in one row when space allows;

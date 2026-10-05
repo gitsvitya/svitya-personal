@@ -234,7 +234,7 @@ function MaterialModalContent({
 
   return (
     <div className={styles.modalContent}>
-      <h2 id={titleId} className={styles.modalTitle}>
+      <h2 id={titleId} className={`${styles.modalTitle} ${visibilityClass}`}>
         {material.title}
       </h2>
       <div className={styles.imageFrame}>
