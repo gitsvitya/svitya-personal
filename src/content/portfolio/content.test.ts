@@ -184,16 +184,16 @@ describe("portfolio content", () => {
       }
     }
     expect(russian.map((material) => material.title)).toEqual([
-      "Итоговые тестовые экраны MappNgo",
-      "Шаблон сувенирной наклейки MappNgo",
-      "Главная страница MappNgo",
-      "FAQ MappNgo",
+      "Тестовые экраны",
+      "Шаблон наклеек",
+      "Главная страница сайта",
+      "FAQ Сайта",
     ]);
     expect(english.map((material) => material.title)).toEqual([
-      "MappNgo final test screens",
-      "MappNgo souvenir sticker template",
-      "MappNgo homepage",
-      "MappNgo FAQ",
+      "Test screens",
+      "Sticker template",
+      "Website homepage",
+      "Website FAQ",
     ]);
   });
 });

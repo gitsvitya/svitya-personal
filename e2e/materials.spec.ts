@@ -50,25 +50,25 @@ const labels = {
 const mappngoMaterials = {
   ru: [
     {
-      title: "Итоговые тестовые экраны MappNgo",
+      title: "Тестовые экраны",
       file: "final-test-screens.pdf",
       image: "final-test-screens-preview",
       url: undefined,
     },
     {
-      title: "Шаблон сувенирной наклейки MappNgo",
+      title: "Шаблон наклеек",
       file: "souvenir-sticker.pdf",
       image: "souvenir-sticker-preview",
       url: undefined,
     },
     {
-      title: "Главная страница MappNgo",
+      title: "Главная страница сайта",
       file: "homepage-ru.pdf",
       image: "homepage-ru-preview",
       url: "https://www.mappngo.com/",
     },
     {
-      title: "FAQ MappNgo",
+      title: "FAQ Сайта",
       file: "faq-ru.pdf",
       image: "faq-ru-preview",
       url: "https://www.mappngo.com/faq/",
@@ -76,25 +76,25 @@ const mappngoMaterials = {
   ],
   en: [
     {
-      title: "MappNgo final test screens",
+      title: "Test screens",
       file: "final-test-screens-en.pdf",
       image: "final-test-screens-en-preview",
       url: undefined,
     },
     {
-      title: "MappNgo souvenir sticker template",
+      title: "Sticker template",
       file: "souvenir-sticker.pdf",
       image: "souvenir-sticker-preview",
       url: undefined,
     },
     {
-      title: "MappNgo homepage",
+      title: "Website homepage",
       file: "homepage-en.pdf",
       image: "homepage-en-preview",
       url: "https://www.mappngo.com/en/",
     },
     {
-      title: "MappNgo FAQ",
+      title: "Website FAQ",
       file: "faq-en.pdf",
       image: "faq-en-preview",
       url: "https://www.mappngo.com/en/faq/",

@@ -199,10 +199,10 @@ export const PROJECT_COMPANIES = {
               fileSrc: "/materials/projects/mappngo/final-test-screens-en.pdf",
             },
           },
-          title: { ru: "Итоговые тестовые экраны MappNgo", en: "MappNgo final test screens" },
+          title: { ru: "Тестовые экраны", en: "Test screens" },
           description: {
-            ru: "29 тестовых экранов MappNgo на русском языке: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
-            en: "29 MappNgo test screens in English covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
+            ru: "Полный набор тестовых экранов MappNgo: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
+            en: "A complete set of MappNgo test screens covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
           },
         },
         {
@@ -220,12 +220,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Шаблон сувенирной наклейки MappNgo",
-            en: "MappNgo souvenir sticker template",
+            ru: "Шаблон наклеек",
+            en: "Sticker template",
           },
           description: {
-            ru: "Макет сувенирной наклейки MappNgo с логотипом, стилизованным маршрутом и адресом mappngo.com.",
-            en: "A MappNgo souvenir sticker design featuring the logo, a stylized route and mappngo.com.",
+            ru: "Шаблон сувенирных наклеек, которые раздавались первым пользователям в благодарность за участие в тестировании.",
+            en: "A template for souvenir stickers handed out to early users to thank them for taking part in testing.",
           },
         },
         {
@@ -244,10 +244,10 @@ export const PROJECT_COMPANIES = {
               url: "https://www.mappngo.com/en/",
             },
           },
-          title: { ru: "Главная страница MappNgo", en: "MappNgo homepage" },
+          title: { ru: "Главная страница сайта", en: "Website homepage" },
           description: {
-            ru: "Русская версия главной страницы MappNgo: описание проекта, команда, история закрытия приложения и обзор его функций.",
-            en: "The English MappNgo homepage: project overview, team, app closure and features.",
+            ru: "Главная страница сайта с подробным описанием проекта и наглядным представлением приложения и его функций.",
+            en: "The website’s main page with a detailed project overview and visuals showing the app and its features.",
           },
         },
         {
@@ -266,10 +266,10 @@ export const PROJECT_COMPANIES = {
               url: "https://www.mappngo.com/en/faq/",
             },
           },
-          title: { ru: "FAQ MappNgo", en: "MappNgo FAQ" },
+          title: { ru: "FAQ Сайта", en: "Website FAQ" },
           description: {
-            ru: "Русская версия FAQ MappNgo: использование приложения, категории мест, поиск и создание маршрутов, избранное и навигация.",
-            en: "The English MappNgo FAQ: using the app, place categories, finding and creating route guides, favorites and navigation.",
+            ru: "Раздел сайта с ответами на самые частые вопросы о проекте и использовании приложения.",
+            en: "A website section with answers to common questions about the project and using the app.",
           },
         },
       ],
