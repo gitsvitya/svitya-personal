@@ -27,8 +27,8 @@ const materials = [
     href: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
     sourceUrl: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
     title: {
-      ru: "АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
-      en: "ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
+      ru: "Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
+      en: "Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
     },
     active: [true, true, true],
   },

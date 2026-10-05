@@ -447,12 +447,12 @@ export const WORK_COMPANIES = {
             },
           },
           title: {
-            ru: "АНАЛИЗ-Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
-            en: "ANALYSIS — Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
+            ru: "Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
+            en: "Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
           },
           description: {
-            ru: "Аналитическая статья о спросе на сталь в России, избытке мощностей и ценовых войнах. Reuters, 22 февраля 2017 года.",
-            en: "An analysis of Russian steel demand, excess capacity, and price wars. Reuters, February 22, 2017.",
+            ru: "Анализ спроса на сталь в России, избытка мощностей и ценовых войн. Написан мной без соавторов.",
+            en: "An analysis of Russian steel demand, excess capacity and price wars. I am the sole author.",
           },
         },
         {
@@ -472,12 +472,12 @@ export const WORK_COMPANIES = {
             },
           },
           title: {
-            ru: "АНАЛИЗ-Российские металлурги раздают скидки, но не снижают цены",
-            en: "ANALYSIS — Russian steelmakers offer discounts without cutting prices",
+            ru: "Российские металлурги раздают скидки, но не снижают цены",
+            en: "Russian steelmakers offer discounts without cutting prices",
           },
           description: {
-            ru: "Аналитическая статья о скидках, ценовой политике металлургов и конкуренции с трейдерами. Forbes Kazakhstan, 31 марта 2017 года.",
-            en: "An analysis of steelmakers' discounts, pricing, and competition with traders. Forbes Kazakhstan, March 31, 2017.",
+            ru: "Анализ скидок, ценовой политики металлургов и конкуренции с трейдерами. Написан мной без соавторов.",
+            en: "An analysis of steelmakers' discounts, pricing and competition with traders. I am the sole author.",
           },
         },
         {
@@ -501,8 +501,8 @@ export const WORK_COMPANIES = {
             en: "Iron ore ships leave Australia's Port Hedland as Cyclone Joyce approaches",
           },
           description: {
-            ru: "Новость о закрытии Порт-Хедленда и рисках для поставок железной руды. Перевод Виктора Строкова. Reuters, 11 января 2018 года.",
-            en: "A report on Port Hedland's closure and risks to iron ore supplies. Translated into Russian by Viktor Strokov. Reuters, January 11, 2018.",
+            ru: "Новость о закрытии Порт-Хедленда и рисках для поставок железной руды. Перевёл с английского на русский текст Джеймса Ригана.",
+            en: "A news report on Port Hedland's closure and risks to iron ore supplies. I translated James Regan's article from English into Russian.",
           },
         },
         {
@@ -526,8 +526,8 @@ export const WORK_COMPANIES = {
             en: "Moscow's controversial renovation plan promises lucrative contracts for steelmakers",
           },
           description: {
-            ru: "Материал о спросе на сталь в рамках московской реновации, подготовленный при моём участии. Forbes Kazakhstan, 9 июня 2017 года.",
-            en: "A report on steel demand from Moscow's housing renovation programme, with my reporting contribution. Forbes Kazakhstan, June 9, 2017.",
+            ru: "Обзор возможного влияния программы реновации Москвы на спрос на сталь. Участвовал в подготовке вместе с коллегами.",
+            en: "An overview of how Moscow's housing renovation programme could affect steel demand. I contributed to the report alongside colleagues.",
           },
         },
         {
@@ -551,8 +551,8 @@ export const WORK_COMPANIES = {
             en: "Iron ore price to average $55/t in 2017",
           },
           description: {
-            ru: "Прогноз цены железной руды на 2017 год по результатам опроса Reuters. Англоязычная публикация, 15 декабря 2016 года.",
-            en: "An iron ore price forecast for 2017 based on a Reuters poll. Published in English on December 15, 2016.",
+            ru: "Англоязычный обзор прогнозов цены железной руды по результатам опроса аналитиков. Подготовил вместе с коллегами.",
+            en: "An English-language overview of iron ore price forecasts based on a poll of analysts. I prepared it in collaboration with colleagues.",
           },
         },
       ],
