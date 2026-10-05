@@ -101,21 +101,41 @@ export const ACTIVITY_COMPANIES = {
     translations: {
       ru: {
         year: "2019 → настоящее время",
-        name: "Сайт Svitya.com",
-        title: "А также другие разработки",
+        name: "Svitya.com",
+        title: "На все руки мастер",
         about:
-          "С 2019 года в качестве хобби разрабатываю веб-решения на React и внедряю автоматизацию в свою рабочую среду с помощью SQL, Python, Power BI и ИИ-решений.",
+          "С 2019 года развиваю Svitya.com: делюсь опытом, рассказываю о проектах и увлечениях, пробую новые технологии. Начинал с простой страницы на HTML и CSS, позже добавил JavaScript, затем переписал сайт на React и перешёл на Next.js.",
         results:
-          "В 2019-2020 годах прошёл обучение веб-разработке и обработке данных на Python на курсах Мичиганского университета, после чего закрепил знания в Яндекс.Практикуме. В результате на свет появился этот сайт, а также несколько других учебных и авторских проектов, с которыми можно ознакомиться по ссылке на мой GitHub, указанной выше. По мере освоения новых технологий и при наличии свободного времени сайт продолжает обрастать новыми функциями и возможностями.",
+          "Сам продумываю, как сайт будет выглядеть и работать, пишу код и готовлю контент на русском и английском. Постепенно делаю его удобнее: улучшаю навигацию, адаптирую страницы под разные устройства и проверяю изменения автоматическими тестами.",
+        resultsList: {
+          intro: "Как развивался сайт",
+          items: [
+            "2019: собрал первую версию — одну страницу на HTML и CSS.",
+            "2021: добавил JavaScript, чтобы сделать сайт интерактивным.",
+            "2023: переписал сайт на React.",
+            "2024: добавил карточки и подробные рассказы об опыте, проектах и увлечениях.",
+            "2026: перешёл на Next.js и TypeScript, обновил дизайн, добавил отдельные страницы и галереи материалов.",
+          ],
+        },
       },
       en: {
         year: "2019 → present",
-        name: "Svitya.com Website",
-        title: "And Other Projects",
+        name: "Svitya.com",
+        title: "Jack of all trades",
         about:
-          "Since 2019, as a hobby, I have been developing web solutions using React and implementing automation in my work environment with SQL, Python, Power BI, and AI-based solutions.",
+          "Since 2019, I’ve been developing Svitya.com to share my experience, projects and interests, and try out new technologies. I started with a simple HTML and CSS page, later added JavaScript, then rebuilt the website with React and moved to Next.js.",
         results:
-          "In 2019-2020, I completed training in web development and data processing with Python through courses from the University of Michigan, and later reinforced this knowledge at Yandex.Practicum. As a result, this website was created, along with several other educational and personal projects, which can be found via the GitHub link above. As I continue to learn new technologies and when time allows, the site keeps evolving with new features and capabilities.",
+          "I shape how the website looks and works, write the code and create content in Russian and English. I keep making it easier to explore by improving navigation, adapting pages to different devices and checking changes with automated tests.",
+        resultsList: {
+          intro: "How the website evolved",
+          items: [
+            "2019: I built the first version — a single HTML and CSS page.",
+            "2021: I added JavaScript to make the website interactive.",
+            "2023: I rebuilt the website with React.",
+            "2024: I added cards and fuller stories about my experience, projects and interests.",
+            "2026: I moved to Next.js and TypeScript, refreshed the design and added dedicated pages and material galleries.",
+          ],
+        },
       },
     },
   },
