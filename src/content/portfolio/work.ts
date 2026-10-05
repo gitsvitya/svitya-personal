@@ -247,8 +247,8 @@ export const WORK_COMPANIES = {
             en: "Regional OTC agricultural indices methodology",
           },
           description: {
-            ru: "Методика расчета региональных индексов пшеницы, кукурузы, ячменя и сахара на условиях EXW и FCA. Утверждена АО НТБ 30 июня 2022 года. 4 страницы.",
-            en: "Methodology for regional wheat, corn, barley and sugar indices on EXW and FCA terms. Approved by the National Mercantile Exchange on June 30, 2022. 4 pages.",
+            ru: "Методика расчёта региональных индексов пшеницы, кукурузы, ячменя и сахара на условиях EXW и FCA.",
+            en: "Methodology for regional wheat, corn, barley and sugar indices on EXW and FCA terms.",
           },
         },
         {
@@ -270,8 +270,8 @@ export const WORK_COMPANIES = {
             en: "CPT Novorossiysk wheat index methodology",
           },
           description: {
-            ru: "Методика расчета ценового индекса пшеницы на условиях CPT Новороссийск по итогам товарных аукционов. Утверждена АО НТБ 24 июля 2023 года. 4 страницы.",
-            en: "Methodology for the CPT Novorossiysk wheat price index based on commodity auctions. Approved by the National Mercantile Exchange on July 24, 2023. 4 pages.",
+            ru: "Методика расчёта ценового индекса пшеницы на условиях CPT Новороссийск по итогам товарных аукционов.",
+            en: "Methodology for the CPT Novorossiysk wheat price index based on commodity auctions.",
           },
         },
         {
@@ -293,8 +293,8 @@ export const WORK_COMPANIES = {
             en: "Central Federal District exchange-traded sugar index methodology",
           },
           description: {
-            ru: "Методика расчета биржевого индекса сахара в Центральном федеральном округе по данным спот-рынка. Утверждена АО НТБ 12 ноября 2024 года. 6 страниц.",
-            en: "Methodology for the exchange-traded sugar index in the Central Federal District using spot market data. Approved by the National Mercantile Exchange on November 12, 2024. 6 pages.",
+            ru: "Методика расчёта биржевого индекса сахара в Центральном федеральном округе по данным спот-рынка.",
+            en: "Methodology for the exchange-traded sugar index in the Central Federal District using spot market data.",
           },
         },
         {
@@ -316,8 +316,8 @@ export const WORK_COMPANIES = {
             en: "Central Federal District daily OTC sugar index methodology",
           },
           description: {
-            ru: "Методика расчета ежедневного внебиржевого индекса сахара в Центральном федеральном округе на условиях EXW и FCA. Утверждена АО НТБ 24 июля 2023 года. 4 страницы.",
-            en: "Methodology for the daily OTC sugar index in the Central Federal District on EXW and FCA terms. Approved by the National Mercantile Exchange on July 24, 2023. 4 pages.",
+            ru: "Методика расчёта ежедневного внебиржевого индекса сахара в Центральном федеральном округе на условиях EXW и FCA.",
+            en: "Methodology for the daily OTC sugar index in the Central Federal District on EXW and FCA terms.",
           },
         },
         {
@@ -335,12 +335,12 @@ export const WORK_COMPANIES = {
             },
           },
           title: {
-            ru: "Ценовые индексы агропродукции — 15 июля 2024",
-            en: "Agricultural price indices — July 15, 2024",
+            ru: "Пример аналитического дашборда индексов НТБ",
+            en: "Sample analytics dashboard for NME indices",
           },
           description: {
-            ru: "Инфографика НТБ от 15 июля 2024 года: экспортные, биржевые и внебиржевые индексы агропродукции. Значения на 12 июля и изменения за 5–12 июля 2024 года.",
-            en: "An NME infographic dated July 15, 2024 showing export, exchange-traded and OTC agricultural price indices. Values as of July 12 and changes from July 5 to July 12, 2024.",
+            ru: "Пример аналитического дашборда НТБ с экспортными, биржевыми и внебиржевыми индексами агропродукции.",
+            en: "A sample NME analytics dashboard showing export, exchange-traded and OTC agricultural price indices.",
           },
         },
       ],
@@ -349,7 +349,7 @@ export const WORK_COMPANIES = {
       ru: {
         year: "2021 → 2024",
         name: "Национальная товарная биржа",
-        title: "Руководитель направления методологии / развития бизнеса",
+        title: "Руководитель направления методологии",
         about: "Дочерняя структура Московской биржи, специализирующаяся на товарных направлениях.",
         results:
           "Запускал ценовые индикаторы и B2B-информационные продукты. Развивал торги на товарных аукционах. Координировал разработку и внедрение frontend-системы автоматизации обработки заявок для биржевых торгов.",
@@ -357,7 +357,7 @@ export const WORK_COMPANIES = {
       en: {
         year: "2021 → 2024",
         name: "National Mercantile Exchange",
-        title: "Head of Methodology / Business Development",
+        title: "Head of Methodology",
         about: "A subsidiary of the Moscow Exchange specializing in commodity markets.",
         results:
           "Launched price indicators and B2B information products. Developed trading activities on commodity auctions. Coordinated the development and implementation of a frontend system for automating bid processing for exchange trading.",

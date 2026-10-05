@@ -30,27 +30,27 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   NTB: {
     ru: {
       challenge:
-        "Развивать ценовые индикаторы и платные информационные продукты для участников российского АПК, а также товарные аукционы Национальной товарной биржи.",
+        "Запускать ценовые индикаторы для российского АПК и платные информационные B2B-продукты. Развивать направление торгов на товарных аукционах.",
       contribution: [
-        "Исследовал рынок, конкурентную среду и потребности целевой аудитории для развития новых продуктов и торговых направлений.",
-        "Разрабатывал методики расчёта ценовых индикаторов и запускал новые индикаторы и платные B2B-информационные продукты.",
-        "Развивал торги на товарных аукционах и координировал работу продуктовых, торговых и клиентских команд.",
+        "Запускал ценовые индексы для АПК и разрабатывал методики их расчёта.",
+        "Запускал платные информационные B2B-продукты с опорой на потребности клиентов и результаты исследования рынка.",
+        "Развивал направление торгов на товарных аукционах и координировал работу продуктовых, торговых и клиентских команд.",
         "Координировал разработку и внедрение фронтенд-системы автоматизации обработки клиентских заявок.",
       ],
       outcome:
-        "Реализованы 10+ ценовых индикаторов для компаний российского АПК и запущены 2 платных информационных продукта с охватом 30+ B2B-клиентов. После внедрения системы автоматизации количество клиентских заявок на товарных аукционах выросло более чем в 2 раза.",
+        "Запущены 10+ ценовых индикаторов для российского АПК и 2 платных информационных продукта с охватом 30+ B2B-клиентов. Количество участников товарных аукционов выросло с 2 до 400+, количество товаров — до 200+, торговых базисов — до 50+. При моём участии запущена фронтенд-система автоматизации обработки клиентских заявок. После её внедрения количество заявок на товарных аукционах выросло более чем в 2 раза. В материалах ниже представлены последние версии методик, над которыми я работал.",
     },
     en: {
       challenge:
-        "Develop price indicators and paid information products for Russian agribusiness, alongside commodity auctions at the National Mercantile Exchange.",
+        "Launch price indicators for Russian agribusiness and paid B2B information products. Develop commodity auction trading.",
       contribution: [
-        "Researched markets, competitors and audience needs to develop new products and trading activities.",
-        "Developed price indicator calculation methodologies and launched new indicators and paid B2B information products.",
-        "Developed commodity auction trading activities and coordinated product, trading and client-facing teams.",
-        "Coordinated the development and implementation of a frontend system for automating client bid processing.",
+        "Launched price indices for agribusiness and developed their calculation methodologies.",
+        "Launched paid B2B information products based on client needs and market research.",
+        "Developed commodity auction trading and coordinated product, trading and client-facing teams.",
+        "Coordinated the development and implementation of a frontend system to automate client bid processing.",
       ],
       outcome:
-        "Delivered 10+ price indicators for Russian agribusiness companies and launched 2 paid information products serving 30+ B2B clients. Client bids at commodity auctions more than doubled after the automation system was implemented.",
+        "I launched 10+ price indicators for Russian agribusiness and 2 paid information products serving 30+ B2B clients. The number of commodity auction participants grew from 2 to 400+, with the range of products expanding to 200+ and the number of delivery locations to 50+. I contributed to the launch of a frontend system for automating client bid processing. Following its implementation, the number of commodity auction bids more than doubled. The materials below include the latest versions of the methodologies I worked on.",
     },
   },
   LRNPT: {
