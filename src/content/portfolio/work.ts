@@ -375,18 +375,18 @@ export const WORK_COMPANIES = {
       ru: {
         year: "2020 → 2021",
         name: "Лукойл-РНП-Трейдинг",
-        title: "Ведущий специалист отдела развития бизнеса и анализа рынков",
+        title: "Ведущий специалист",
         about:
-          "Дочерняя структура Лукойла, специализирующаяся на оптовой продаже нефтепродуктов через электронные торговые площадки.",
+          "Дочерняя структура Лукойла, специализирующаяся на оптовой и мелкооптовой продаже нефти, нефтепродуктов и нефтехимической продукции, в том числе через электронные торговые площадки.",
         results:
           "Координировал маркетинговые проекты, готовил аналитические материалы. Участвовал в формировании стратегии развития новых направлений сбыта компании. Обеспечивал сопровождение коммерческой деятельности, выявлял потенциальные риски.",
       },
       en: {
         year: "2020 → 2021",
         name: "Lukoil-RNP-Trading",
-        title: "Leading Specialist, Business Development and Market Analysis",
+        title: "Leading Specialist",
         about:
-          "A subsidiary of Lukoil specializing in wholesale petroleum product sales via electronic trading platforms.",
+          "A Lukoil subsidiary specializing in wholesale and small-lot sales of crude oil, petroleum products and petrochemicals, including through electronic trading platforms.",
         results:
           "Coordinated marketing projects and prepared analytical materials. Participated in shaping the strategy for developing new sales channels. Supported commercial operations and identified potential risks.",
       },

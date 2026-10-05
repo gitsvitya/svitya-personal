@@ -56,25 +56,25 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   LRNPT: {
     ru: {
       challenge:
-        "Повысить качество проверки цен на сырьё для нефтепереработки и развить мелкооптовые продажи сжиженных углеводородных газов на региональных рынках.",
+        "В составе отдела развития бизнеса и анализа рынков создать систему оценки сделок по разным каналам продаж. Она должна помогать сравнивать цены с предложениями конкурентов на разных торговых базисах и оценивать эффективность каждой сделки с учётом её условий и затрат.",
       contribution: [
-        "Реализовал проект создания системы дополнительной верификации цен на сырьё для нефтепереработки.",
-        "Разработал стратегию мелкооптовых продаж СУГ в Краснодарском крае, Московской и Ростовской областях.",
-        "Готовил аналитические материалы, координировал маркетинговые проекты и сопровождал коммерческую деятельность с учётом потенциальных рисков.",
+        "Выстроил систему оценки сделок по разным каналам продаж.",
+        "Анализировал рыночные цены и предложения конкурентов, сравнивая их на разных торговых базисах.",
+        "Оценивал условия, затраты и эффективность сделок и готовил аналитику для принятия коммерческих решений.",
       ],
       outcome:
-        "Внедрённая система дополнительной верификации цен на сырьё позволила сократить финансовые потери примерно на 5%. За год продажи СУГ на выбранных региональных рынках выросли примерно на 7%, а клиентская база — примерно на 5%.",
+        "Внедрённая система помогла лучше понимать рынок и сравнивать сделки на сопоставимых условиях. Это позволило принимать более обоснованные коммерческие решения, выбирать выгодные условия сделок и нарастить выручку примерно на 5% за первый год.",
     },
     en: {
       challenge:
-        "Improve feedstock price verification for oil refining and develop regional small-scale wholesale sales of liquefied petroleum gas (LPG).",
+        "As part of the Business Development and Market Analysis department, build a system for evaluating deals across sales channels. It should make it easy to compare prices with competitors’ offers across delivery locations and assess each deal’s performance, taking its terms and costs into account.",
       contribution: [
-        "Delivered a project to create an additional feedstock price verification system for oil refining.",
-        "Developed an LPG sales strategy for Krasnodar Krai and the Moscow and Rostov regions.",
-        "Prepared market analysis, coordinated marketing projects and supported commercial operations while assessing potential risks.",
+        "Built a system for evaluating deals across sales channels.",
+        "Analyzed market prices and competitors’ offers across delivery locations.",
+        "Evaluated deal terms, costs and performance, and prepared analysis to support commercial decisions.",
       ],
       outcome:
-        "Implemented an additional feedstock price verification system that reduced financial losses by approximately 5%. Over one year, LPG sales in the selected regional markets grew by approximately 7%, and the client base expanded by approximately 5%.",
+        "The system improved market understanding and made it easier to compare deals on a consistent basis. This helped make more informed commercial decisions, secure better deal terms and increase revenue by approximately 5% in the first year.",
     },
   },
   KG: {
