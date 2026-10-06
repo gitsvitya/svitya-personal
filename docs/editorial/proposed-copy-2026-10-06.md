@@ -709,11 +709,11 @@ English — **Chili-infused vodka label**: Cats, chili peppers and bright patter
 
 **Русский**
 
-Я использую обязательные cookie для работы сайта. Если разрешить аналитические cookie, я смогу лучше понимать, как пользуются сайтом, и улучшать его. Можно оставить только обязательные cookie или разрешить все, включая аналитические.
+Для работы сайта нужны обязательные cookie. Аналитические помогают мне его улучшать — их можно включить по желанию.
 
 **English**
 
-I use essential cookies to keep the site working. If you allow analytics cookies, I can better understand how people use the site and improve it. You can choose essential cookies only, or allow all cookies, including analytics.
+Essential cookies keep the site working. You can also enable analytics cookies to help me improve it.
 
 В обоих языках выбор сохраняет прежний смысл: обязательные cookie либо все, включая аналитические.
 

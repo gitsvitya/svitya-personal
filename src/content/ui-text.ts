@@ -51,7 +51,7 @@ export const uiText = {
     cookieBanner: {
       label: "Настройки cookie",
       description:
-        "Я использую обязательные cookie для работы сайта. Если разрешить аналитические cookie, я смогу лучше понимать, как пользуются сайтом, и улучшать его. Можно оставить только обязательные cookie или разрешить все, включая аналитические.",
+        "Для работы сайта нужны обязательные cookie. Аналитические помогают мне его улучшать — их можно включить по желанию.",
       accept: "Разрешить все",
       reject: "Только обязательные",
     },
@@ -130,7 +130,7 @@ export const uiText = {
     cookieBanner: {
       label: "Cookie settings",
       description:
-        "I use essential cookies to keep the site working. If you allow analytics cookies, I can better understand how people use the site and improve it. You can choose essential cookies only, or allow all cookies, including analytics.",
+        "Essential cookies keep the site working. You can also enable analytics cookies to help me improve it.",
       accept: "Allow all",
       reject: "Essential only",
     },
