@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
+import { getDownloadFilename } from "../../utils/downloads";
 import { getTransitionDuration } from "../../utils/motion";
 import { shouldHandleClientNavigation } from "../../utils/navigation";
 import Modal from "../Modal/Modal";
@@ -138,6 +139,7 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
       <div className={styles.previewGrid}>
         {items.map((material, index) => {
           const action = getMaterialAction(material, text);
+          const [, titleStart, titleEnd] = material.title.match(/^([\s\S]*\s)?(\S+)$/)!;
           return (
             <h3 key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
               <a
@@ -164,9 +166,13 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
                   />
                 </span>
                 <span className={styles.previewTitle}>
-                  <span className={styles.previewTitleText}>{material.title}</span>
-                  <span className={styles.previewArrow} aria-hidden="true">
-                    →
+                  {titleStart}
+                  <span className={styles.previewTitleEnd}>
+                    {titleEnd}
+                    {"\u00a0"}
+                    <span className={styles.previewArrow} aria-hidden="true">
+                      →
+                    </span>
                   </span>
                 </span>
               </a>
@@ -318,7 +324,7 @@ function getMaterialActions(material: LocalizedMaterial, text: AppTranslations) 
       href: fileHref,
       label: text.detail.download,
       className: styles.downloadAction,
-      download: true,
+      download: material.type === "document" ? getDownloadFilename(material.fileSrc) : true,
       target: undefined,
     },
     openWindow: {

@@ -217,7 +217,10 @@ test("does not intercept modified material link clicks", async ({ page }) => {
   const material = page.locator(
     'main a[href="/materials/work/thomsonreuters/russian-steel-demand-2017.pdf"]'
   );
-  await expect(material).toHaveAttribute("download", "");
+  await expect(material).toHaveAttribute(
+    "download",
+    "Рейтер - Спрос на сталь в России в 2017 году - Русский.pdf"
+  );
   for (const modifier of ["ctrlKey", "metaKey", "shiftKey", "altKey"]) {
     await material.evaluate((link) => {
       link.removeAttribute("data-click-canceled");

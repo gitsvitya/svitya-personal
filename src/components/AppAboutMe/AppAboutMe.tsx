@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { AppTranslations } from "../../content/ui-text";
 import type { Language } from "../../types/domain";
+import { getDownloadFilename } from "../../utils/downloads";
 import portrait from "../../images/pages/about/portrait.png";
 import Section from "../Section/Section";
 import styles from "./AppAboutMe.module.css";
@@ -9,6 +10,7 @@ type AppAboutMeProps = { text: AppTranslations; language: Language };
 
 function AppAboutMe({ text, language }: AppAboutMeProps) {
   const cvFileName = language === "ru" ? "CV_Строков_Виктор.pdf" : "CV_Strokov_Victor.pdf";
+  const cvPath = `/cv/${language}/${cvFileName}`;
 
   return (
     <Section id="about" contentClassName={styles.container}>
@@ -39,7 +41,7 @@ function AppAboutMe({ text, language }: AppAboutMeProps) {
         <a
           className={`button-control ${styles.action}`}
           href={`/cv/${language}/${encodeURIComponent(cvFileName)}`}
-          download={cvFileName}
+          download={getDownloadFilename(cvPath)}
         >
           <span className="button-label">{text.about.cv}</span>
           <span className={`button-label ${styles.actionArrow}`} aria-hidden="true">

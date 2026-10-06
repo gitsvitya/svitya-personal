@@ -2,6 +2,7 @@ import { expect, test, type Locator } from "@playwright/test";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { getDownloadFilename } from "../src/utils/downloads";
 
 const materials = [
   {
@@ -36,9 +37,8 @@ const materials = [
     type: "website",
     path: "projects/madburglarcat",
     href: "/materials/projects/madburglarcat/catalog.pdf",
-    sourceUrl: "https://madburglarcat.ru/catalog",
     title: { ru: "Каталог товаров", en: "Product catalog" },
-    active: [true, true, true],
+    active: [true, true, false],
   },
 ] as const;
 
@@ -65,13 +65,13 @@ const mappngoMaterials = {
       title: "Архивная главная страница",
       file: "homepage-ru.pdf",
       image: "homepage-ru-preview",
-      url: "https://www.mappngo.com/",
+      url: undefined,
     },
     {
       title: "Архивные вопросы и ответы",
       file: "faq-ru.pdf",
       image: "faq-ru-preview",
-      url: "https://www.mappngo.com/faq/",
+      url: undefined,
     },
   ],
   en: [
@@ -91,13 +91,13 @@ const mappngoMaterials = {
       title: "Archived website homepage",
       file: "homepage-en.pdf",
       image: "homepage-en-preview",
-      url: "https://www.mappngo.com/en/",
+      url: undefined,
     },
     {
       title: "Archived questions and answers",
       file: "faq-en.pdf",
       image: "faq-en-preview",
-      url: "https://www.mappngo.com/en/faq/",
+      url: undefined,
     },
   ],
 } as const;
@@ -122,13 +122,14 @@ async function measureModalLayout(dialog: Locator) {
 }
 
 for (const language of ["ru", "en"] as const) {
-  test(`provides four ${language} MappNgo materials with matching images, PDFs and source links`, async ({
+  test(`provides four ${language} MappNgo materials with matching images and PDFs without external links`, async ({
     context,
     page,
     baseURL,
   }, testInfo) => {
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
     await page.goto(`/${language}/projects/mappngo`);
+    await expect(page.locator('main a[href^="https://www.mappngo.com"]')).toHaveCount(0);
     const previews = page.locator('main a[href^="/materials/projects/mappngo/"]');
     await expect(previews).toHaveCount(4);
     for (const [index, material] of mappngoMaterials[language].entries()) {
@@ -163,7 +164,7 @@ for (const language of ["ru", "en"] as const) {
       const downloadPromise = page.waitForEvent("download");
       await dialog.getByRole("link", { name: labels[language][0], exact: true }).click();
       const download = await downloadPromise;
-      expect(download.suggestedFilename()).toBe(material.file);
+      expect(download.suggestedFilename().normalize("NFC")).toBe(getDownloadFilename(href));
       const downloaded = await readFile((await download.path())!);
       const source = await readFile(join(process.cwd(), "public", href));
       expect(downloaded.subarray(0, 5).toString()).toBe("%PDF-");
@@ -363,22 +364,22 @@ for (const language of ["ru", "en"] as const) {
     });
   });
 
-  test(`provides all five ${language} Mad Burglar Cat materials with PDFs and available source links`, async ({
+  test(`provides all five ${language} Mad Burglar Cat materials with PDFs without external links`, async ({
     context,
     page,
     request,
     baseURL,
   }, testInfo) => {
-    const productUrl = "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho";
     const pages = [
-      ["catalog", "https://madburglarcat.ru/catalog"],
-      ["everything-is-fine", productUrl],
-      ["everything-is-fine-checkout", `${productUrl}#order`],
-      ["soldout", "https://madburglarcat.ru/soldout"],
+      ["catalog", undefined],
+      ["everything-is-fine", undefined],
+      ["everything-is-fine-checkout", undefined],
+      ["soldout", undefined],
       ["trademark-certificate-1222341", undefined],
     ] as const;
     await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
     await page.goto(`/${language}/projects/madburglarcat`);
+    await expect(page.locator('main a[href^="https://madburglarcat.ru"]')).toHaveCount(0);
     const previews = page.locator('main a[href^="/materials/projects/madburglarcat/"]');
     await expect(previews).toHaveCount(pages.length);
     await previews.first().click();
@@ -594,8 +595,8 @@ test("selects matching MappNgo material assets after changing the site language"
     const dialog = page.getByRole("dialog");
     await expect(dialog).toHaveAccessibleName(mappngoMaterials[language][2].title);
     await expect(
-      dialog.getByRole("link", { name: labels[language][2], exact: true })
-    ).toHaveAttribute("href", mappngoMaterials[language][2].url);
+      dialog.getByRole("button", { name: labels[language][2], exact: true })
+    ).toBeDisabled();
     await page.keyboard.press("Escape");
     await expect(dialog).not.toBeVisible();
     currentLanguage = language;
@@ -608,6 +609,7 @@ test("downloads the matching MappNgo language version when application scripts f
   await page.route(/\.js(?:\?|$)/, (route) => route.abort());
   for (const language of ["ru", "en"] as const) {
     await page.goto(`/${language}/projects/mappngo`);
+    await expect(page.locator('main a[href^="https://www.mappngo.com"]')).toHaveCount(0);
     const previews = page.locator('main a[download][href^="/materials/projects/mappngo/"]');
     await expect(previews).toHaveCount(4);
     for (const [index, material] of mappngoMaterials[language].entries())
@@ -618,7 +620,9 @@ test("downloads the matching MappNgo language version when application scripts f
     const downloadPromise = page.waitForEvent("download");
     await previews.first().click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename()).toBe(mappngoMaterials[language][0].file);
+    expect(download.suggestedFilename().normalize("NFC")).toBe(
+      getDownloadFilename(`/materials/projects/mappngo/${mappngoMaterials[language][0].file}`)
+    );
     const downloaded = await readFile((await download.path())!);
     const source = await readFile(
       join(process.cwd(), "public/materials/projects/mappngo", mappngoMaterials[language][0].file)

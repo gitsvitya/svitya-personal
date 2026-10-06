@@ -5,6 +5,8 @@ import { describe, expect, it } from "vitest";
 import { COMPANY_IDS, LANGUAGES } from "../../types/domain";
 import { COMPANIES, getLocalizedCompany } from "./registry";
 import { CASE_STUDIES } from "./case-studies";
+import downloadNames from "../downloads.json";
+import { getDownloadFilename } from "../../utils/downloads";
 
 const PUBLIC_DIRECTORY = join(process.cwd(), "public");
 
@@ -139,6 +141,7 @@ describe("portfolio content", () => {
             case "document": {
               const document = material.assets[language];
               resolvePublicAsset(document.fileSrc);
+              expect(getDownloadFilename(document.fileSrc)).toBeTruthy();
               if (document.url) expectExternalUrl(document.url);
               break;
             }
@@ -151,24 +154,43 @@ describe("portfolio content", () => {
     }
   });
 
+  it("gives every downloadable file a unique Cyrillic name using the same convention", () => {
+    const publicDocuments = readdirSync(PUBLIC_DIRECTORY, { recursive: true, encoding: "utf8" })
+      .filter((path) => /\.(pdf|docx)$/.test(path))
+      .map((path) => `/${path}`);
+    expect(Object.keys(downloadNames).sort()).toEqual(publicDocuments.sort());
+    expect(new Set(Object.values(downloadNames)).size).toBe(publicDocuments.length);
+    for (const [path, filename] of Object.entries(downloadNames)) {
+      expect(filename).toMatch(
+        /^[А-Яа-яЁё0-9 .-]+ - [А-Яа-яЁё0-9 .-]+ - (Русский|Английский)\.(pdf|docx)$/
+      );
+      expect(filename.split(".").at(-1)).toBe(path.split(".").at(-1));
+      expect(Buffer.byteLength(filename, "utf8")).toBeLessThanOrEqual(255);
+    }
+  });
+
+  it("keeps Mad Burglar Cat and MappNgo materials available without external site links", () => {
+    for (const id of ["MBC", "MNG"] as const) {
+      for (const language of LANGUAGES) {
+        const company = getLocalizedCompany(id, language);
+        expect(company.url).toBeUndefined();
+        expect(company.linkLabel).toBeUndefined();
+        for (const material of company.materials!.items) {
+          expect(material.type).toBe("document");
+          if (material.type === "document") expect(material.url).toBeUndefined();
+        }
+      }
+    }
+  });
+
   it("selects the matching language for the four consolidated MappNgo materials", () => {
     const russian = getLocalizedCompany("MNG", "ru").materials!.items;
     const english = getLocalizedCompany("MNG", "en").materials!.items;
     const expected = [
       ["final-test-screens.pdf", "final-test-screens-en.pdf", undefined, undefined],
       ["souvenir-sticker.pdf", "souvenir-sticker.pdf", undefined, undefined],
-      [
-        "homepage-ru.pdf",
-        "homepage-en.pdf",
-        "https://www.mappngo.com/",
-        "https://www.mappngo.com/en/",
-      ],
-      [
-        "faq-ru.pdf",
-        "faq-en.pdf",
-        "https://www.mappngo.com/faq/",
-        "https://www.mappngo.com/en/faq/",
-      ],
+      ["homepage-ru.pdf", "homepage-en.pdf", undefined, undefined],
+      ["faq-ru.pdf", "faq-en.pdf", undefined, undefined],
     ] as const;
     expect(russian).toHaveLength(4);
     expect(english).toHaveLength(4);

@@ -3,18 +3,20 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-for (const { language, initialLanguage, label, filename } of [
+for (const { language, initialLanguage, label, filename, downloadName } of [
   {
     language: "ru",
     initialLanguage: "en",
     label: "Скачать резюме",
     filename: "CV_Строков_Виктор.pdf",
+    downloadName: "Строков Виктор - Резюме - Русский.pdf",
   },
   {
     language: "en",
     initialLanguage: "ru",
     label: "Download CV",
     filename: "CV_Strokov_Victor.pdf",
+    downloadName: "Строков Виктор - Резюме - Английский.pdf",
   },
 ]) {
   test(`downloads the ${language} CV after changing language without leaving the about page`, async ({
@@ -34,7 +36,7 @@ for (const { language, initialLanguage, label, filename } of [
     await page.getByRole("link", { name: label, exact: true }).click();
     const download = await downloadPromise;
 
-    expect(download.suggestedFilename()).toBe(filename);
+    expect(download.suggestedFilename().normalize("NFC")).toBe(downloadName);
     expect(decodeURIComponent(new URL(download.url()).pathname)).toBe(
       `/cv/${language}/${filename}`
     );

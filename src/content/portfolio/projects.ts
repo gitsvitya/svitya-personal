@@ -24,8 +24,6 @@ export const PROJECT_COMPANIES = {
     slug: "madburglarcat",
     section: "projects",
     logo: madBurglarCatLogo,
-    url: "https://madburglarcat.ru/",
-    linkLabel: "madburglarcat.ru",
     materials: {
       enabled: true,
       items: [
@@ -36,13 +34,11 @@ export const PROJECT_COMPANIES = {
               previewSrc: madBurglarCatCatalogPreview,
               fullImageSrc: madBurglarCatCatalogPreview,
               fileSrc: "/materials/projects/madburglarcat/catalog.pdf",
-              url: "https://madburglarcat.ru/catalog",
             },
             en: {
               previewSrc: madBurglarCatCatalogPreview,
               fullImageSrc: madBurglarCatCatalogPreview,
               fileSrc: "/materials/projects/madburglarcat/catalog.pdf",
-              url: "https://madburglarcat.ru/catalog",
             },
           },
           title: {
@@ -61,13 +57,11 @@ export const PROJECT_COMPANIES = {
               previewSrc: madBurglarCatProductPreview,
               fullImageSrc: madBurglarCatProductPreview,
               fileSrc: "/materials/projects/madburglarcat/everything-is-fine.pdf",
-              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho",
             },
             en: {
               previewSrc: madBurglarCatProductPreview,
               fullImageSrc: madBurglarCatProductPreview,
               fileSrc: "/materials/projects/madburglarcat/everything-is-fine.pdf",
-              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho",
             },
           },
           title: {
@@ -86,13 +80,11 @@ export const PROJECT_COMPANIES = {
               previewSrc: madBurglarCatCheckoutPreview,
               fullImageSrc: madBurglarCatCheckoutPreview,
               fileSrc: "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf",
-              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho#order",
             },
             en: {
               previewSrc: madBurglarCatCheckoutPreview,
               fullImageSrc: madBurglarCatCheckoutPreview,
               fileSrc: "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf",
-              url: "https://madburglarcat.ru/tproduct/384035579442-mbc-ts-x-vsyo-horosho#order",
             },
           },
           title: {
@@ -111,13 +103,11 @@ export const PROJECT_COMPANIES = {
               previewSrc: madBurglarCatSoldoutPreview,
               fullImageSrc: madBurglarCatSoldoutPreview,
               fileSrc: "/materials/projects/madburglarcat/soldout.pdf",
-              url: "https://madburglarcat.ru/soldout",
             },
             en: {
               previewSrc: madBurglarCatSoldoutPreview,
               fullImageSrc: madBurglarCatSoldoutPreview,
               fileSrc: "/materials/projects/madburglarcat/soldout.pdf",
-              url: "https://madburglarcat.ru/soldout",
             },
           },
           title: {
@@ -180,8 +170,6 @@ export const PROJECT_COMPANIES = {
     slug: "mappngo",
     section: "projects",
     logo: mappngoLogo,
-    url: "https://www.mappngo.com/",
-    linkLabel: "mappngo.com",
     materials: {
       enabled: true,
       items: [
@@ -235,13 +223,11 @@ export const PROJECT_COMPANIES = {
               previewSrc: mappngoHomepageRuPreview,
               fullImageSrc: mappngoHomepageRuPreview,
               fileSrc: "/materials/projects/mappngo/homepage-ru.pdf",
-              url: "https://www.mappngo.com/",
             },
             en: {
               previewSrc: mappngoHomepageEnPreview,
               fullImageSrc: mappngoHomepageEnPreview,
               fileSrc: "/materials/projects/mappngo/homepage-en.pdf",
-              url: "https://www.mappngo.com/en/",
             },
           },
           title: { ru: "Архивная главная страница", en: "Archived website homepage" },
@@ -257,19 +243,17 @@ export const PROJECT_COMPANIES = {
               previewSrc: mappngoFaqRuPreview,
               fullImageSrc: mappngoFaqRuPreview,
               fileSrc: "/materials/projects/mappngo/faq-ru.pdf",
-              url: "https://www.mappngo.com/faq/",
             },
             en: {
               previewSrc: mappngoFaqEnPreview,
               fullImageSrc: mappngoFaqEnPreview,
               fileSrc: "/materials/projects/mappngo/faq-en.pdf",
-              url: "https://www.mappngo.com/en/faq/",
             },
           },
           title: { ru: "Архивные вопросы и ответы", en: "Archived questions and answers" },
           description: {
-            ru: "Архивные вопросы и ответы о MappNgo. Утверждение о доступности приложения в App Store не отражает фактический статус проекта: MVP тестировали среди знакомых, до публичного запуска он не дошёл.",
-            en: "Archived questions and answers about MappNgo. The statement that the app was available in the App Store does not reflect the project’s actual status: the MVP was tested with people we knew and never reached a public launch.",
+            ru: "Архивные вопросы и ответы о MappNgo. Приложение планировалось выпустить только в App Store, но до публичного запуска проект не дошёл.",
+            en: "Archived questions and answers about MappNgo. The app was planned for release exclusively on the App Store, but the project closed before a public launch.",
           },
         },
       ],
@@ -300,8 +284,6 @@ export const PROJECT_COMPANIES = {
     slug: "venivi",
     section: "projects",
     logo: veniviLogo,
-    url: "https://venivi.ru/",
-    linkLabel: "venivi.ru",
     materials: {
       enabled: true,
       items: [
