@@ -6,200 +6,201 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
   CI: {
     ru: {
       challenge:
-        "Развивать линейку платных B2B-бюллетеней о рынках нефтегазохимии: определить востребованное содержание и наладить регулярный выпуск совместно с экспертами, редакторами и дизайнерами.",
+        "Запускать платные бюллетени о рынках нефтегазохимии, которые отвечают запросам клиентов, и вместе с экспертами, редакторами и дизайнерами наладить их регулярный выпуск.",
       contribution: [
-        "Запускаю и развиваю бюллетени с опорой на потребности клиентов: определяю тематику, структуру выпусков и подход к выводу на рынок.",
-        "Описал процессы подготовки и выпуска в BPMN для согласования этапов работы и зон ответственности команды.",
-        "Координирую экспертов, редакторов, дизайнеров и подрядчиков; предлагаю улучшения рабочих процессов.",
-        "Сформировал календарь выпусков, план развития бюллетеней и базу клиентов для регулярной публикации материалов и развития тематики на основе запросов B2B-клиентов.",
+        "Определяю темы бюллетеней, их структуру и подход к запуску, опираясь на потребности клиентов.",
+        "Описал подготовку и выпуск в схемах BPMN: какие этапы проходит материал и кто за них отвечает.",
+        "Координирую экспертов, редакторов, дизайнеров и подрядчиков; предлагаю, как улучшить рабочие процессы.",
+        "Составил календарь выпусков и план развития бюллетеней, собрал базу клиентов. Эти инструменты помогают планировать публикации и развивать тематику с учётом запросов клиентов.",
       ],
       outcome:
-        "Вывел на рынок 7 платных информационных бюллетеней с суммарным охватом 10+ B2B-клиентов. Совместно с коллегами организовал регулярный выпуск и описал процессы подготовки материалов. Продолжаю развивать продукты на основе обратной связи клиентов. Ниже представлены образцы всех 7 бюллетеней.",
+        "Запустил 7 платных бюллетеней для 10+ B2B-клиентов в общей сложности. Вместе с коллегами наладил регулярный выпуск. Продолжаю развивать бюллетени с учётом отзывов клиентов. Ниже — образцы всех 7 бюллетеней.",
     },
     en: {
       challenge:
-        "Develop a portfolio of paid B2B petrochemical market bulletins: identify the information clients need and establish regular publication with experts, editors and designers.",
+        "Launch paid petrochemical market bulletins that meet client needs, and work with experts, editors and designers to establish regular publication.",
       contribution: [
-        "Launch and develop bulletins around client needs, defining the topics, structure and approach to market launch.",
-        "Documented production and publication workflows in BPMN to align work stages and team responsibilities.",
-        "Coordinate experts, editors, designers and contractors, and propose workflow improvements.",
-        "Built a publication calendar, a bulletin development plan and a client database to plan releases and develop coverage around B2B client needs.",
+        "I choose the topics, structure and approach to launching each bulletin based on client needs.",
+        "I mapped the production and publication process in BPMN diagrams, showing each stage and who is responsible for it.",
+        "I coordinate experts, editors, designers and contractors, and suggest improvements to how we work.",
+        "I created a publication calendar, a development plan and a client database to help plan releases and develop coverage around client needs.",
       ],
       outcome:
-        "Launched 7 paid information bulletins serving 10+ B2B clients in total. Working with colleagues, established regular publication and documented production workflows. Continue to develop the products using client feedback. Samples of all 7 bulletins are available below.",
+        "I have launched 7 paid bulletins serving 10+ B2B clients in total. Together with colleagues, I established regular publication. I continue to develop the bulletins using client feedback. Samples of all 7 bulletins are below.",
     },
   },
   NTB: {
     ru: {
       challenge:
-        "Создать ценовые ориентиры для российского АПК и платные информационные продукты для корпоративных клиентов. Развивать товарные аукционы и автоматизировать обработку клиентских заявок.",
+        "Создать ценовые ориентиры для российского агропромышленного комплекса и запустить платные информационные продукты для компаний, а также развивать товарные аукционы и автоматизировать обработку заявок.",
       contribution: [
-        "Руководил направлением с 1 прямым подчинённым; координировал коллег и подрядчиков.",
-        "Запускал ценовые индикаторы для АПК и разрабатывал методики их расчёта.",
-        "Запустил платные информационные продукты на основе исследования рынка и потребностей B2B-клиентов.",
-        "Развивал товарные аукционы и координировал взаимодействие торговых и клиентских команд.",
-        "Координировал разработку и внедрение фронтенд-системы автоматизации обработки заявок на товарных аукционах.",
+        "Руководил направлением. В прямом подчинении был 1 человек; также координировал коллег и подрядчиков.",
+        "Запускал ценовые индикаторы — ориентиры рыночных цен — и разрабатывал методики их расчёта.",
+        "Изучал рынок и потребности клиентов, на этой основе запускал платные информационные продукты.",
+        "Развивал товарные аукционы и координировал работу торговых и клиентских команд.",
+        "Координировал разработку и внедрение системы обработки заявок на товарных аукционах.",
       ],
       outcome:
-        "Запустил 10+ ценовых индикаторов для российского АПК и 2 платных информационных продукта с охватом 30+ B2B-клиентов. В период работы число участников товарных аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов — до 50+. При моём участии внедрена фронтенд-система автоматизации обработки заявок на товарных аукционах; после её внедрения число заявок выросло более чем в 2 раза. Ниже представлены последние версии методик, над которыми я работал, и пример аналитического дашборда.",
+        "Запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов. За время моей работы число участников аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов (мест поставки) — до 50+. После внедрения системы обработки заявок их число выросло более чем в 2 раза. Ниже — версии методик, над которыми я работал, и пример дашборда с ценовыми индексами.",
     },
     en: {
       challenge:
-        "Create price benchmarks for Russian agribusiness and paid information products for business clients. Develop commodity auctions and automate client bid processing.",
+        "Create price benchmarks for Russian agribusiness and launch paid information products for companies, while also developing commodity auctions and automating bid processing.",
       contribution: [
-        "Led the function with 1 direct report and coordinated colleagues and contractors.",
-        "Launched agribusiness price indicators and developed their calculation methodologies.",
-        "Launched paid information products based on market research and B2B client needs.",
-        "Developed commodity auctions and coordinated trading and client-facing teams.",
-        "Coordinated the development and implementation of a frontend system to automate commodity auction bid processing.",
+        "I led methodology work with 1 direct report and coordinated colleagues and contractors.",
+        "I launched price indicators to provide market benchmarks and developed the methods used to calculate them.",
+        "I researched the market and client needs, then used that research to launch paid information products.",
+        "I developed commodity auctions and coordinated trading and client-facing teams.",
+        "I coordinated the development and implementation of a system to automate auction bid processing.",
       ],
       outcome:
-        "Launched 10+ agribusiness price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+ participants, the product range expanded to 200+ items and the number of delivery locations reached 50+. Contributed to the implementation of a frontend system for commodity auction bid processing; the number of bids increased more than 2-fold following its introduction. The materials below include the latest versions of methodologies I worked on and a sample analytics dashboard.",
+        "I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+, the product range reached 200+ items and delivery locations reached 50+. After the bid processing system was introduced, the number of bids increased more than 2-fold. Below are versions of the methodologies I worked on and a sample dashboard of price indices.",
     },
   },
   LRNPT: {
     ru: {
       challenge:
-        "Обеспечить коммерческие решения сопоставимой аналитикой: сравнивать сделки по разным каналам продаж, цены конкурентов и условия поставки с учётом затрат.",
+        "Разработать и внедрить систему, которая поможет сравнивать сделки по разным каналам продаж и условиям поставки с учётом цены, логистики и других затрат.",
       contribution: [
-        "Разработал и внедрил систему оценки сделок по разным каналам продаж.",
-        "Сопоставлял рыночные цены и предложения конкурентов на разных торговых базисах.",
-        "Анализировал условия и затраты по сделкам, готовил материалы для коммерческих решений.",
+        "Разработал и внедрил систему оценки сделок по разным каналам продаж и базисам поставки.",
+        "Сравнивал рыночные цены и предложения конкурентов с учётом места и условий поставки.",
+        "Анализировал условия сделок и затраты, готовил материалы для оценки сделок.",
       ],
       outcome:
-        "Внедрена система, позволяющая сравнивать сделки на сопоставимых условиях и учитывать цены, логистику и другие затраты при выборе коммерческих решений.",
+        "Внедрил систему, которая позволяет сравнивать сделки с учётом цены, логистики и других затрат. Она приводит разные условия продаж к сопоставимому виду и помогает принимать коммерческие решения.",
     },
     en: {
       challenge:
-        "Support commercial decisions with comparable market analysis: assess deals across sales channels, competitor prices and delivery terms while accounting for costs.",
+        "Develop and implement a system to compare deals across different sales channels and delivery terms, taking prices, logistics and other costs into account.",
       contribution: [
-        "Developed and implemented a system for evaluating deals across sales channels.",
-        "Compared market prices and competitor offers across delivery locations.",
-        "Analyzed deal terms and costs and prepared analysis for commercial decisions.",
+        "I developed and implemented a deal evaluation system covering different sales channels and delivery locations.",
+        "I compared market prices and competitor offers, taking delivery locations and terms into account.",
+        "I analyzed deal terms and costs and prepared information to support commercial decisions.",
       ],
       outcome:
-        "Implemented a system for comparing deals on a consistent basis, taking prices, logistics and other costs into account when making commercial decisions.",
+        "I implemented a system that makes deals comparable by accounting for prices, logistics and other costs. It provides a consistent basis for evaluating different sales terms and making commercial decisions.",
     },
   },
   KG: {
     ru: {
       challenge:
-        "Поддержать диверсификацию гражданских направлений: дать продуктовому маркетингу исследования и аналитику для оценки ниш и разработки новых B2B-продуктов.",
+        "Наладить исследования и аналитику для отдела продуктового маркетинга, чтобы оценивать перспективы гражданских рынков и участвовать в разработке новых продуктов для бизнеса.",
       contribution: [
-        "Сформировал систему исследований и аналитики для отдела продуктового маркетинга.",
-        "Интегрировал систему бизнес-аналитики (BI) для сопоставления рыночных данных и оценки коммерческих перспектив.",
+        "Выстроил систему исследований и аналитики для отдела продуктового маркетинга.",
+        "Внедрил систему бизнес-аналитики (BI) для сравнения рыночных данных и оценки коммерческих перспектив.",
         "Участвовал в разработке новых B2B-продуктов.",
       ],
       outcome:
-        "Сформировал систему исследований и аналитики для отдела продуктового маркетинга, внедрил BI для сопоставления рыночных данных и оценки коммерческих перспектив. Участвовал в разработке новых B2B-продуктов.",
+        "У отдела появилась система исследований и аналитики, включая BI для сравнения рыночных данных и оценки перспектив новых продуктов. Эту работу я совмещал с участием в разработке B2B-продуктов.",
     },
     en: {
       challenge:
-        "Support diversification into civilian markets by providing product marketing with research and analysis to assess opportunities and develop new B2B products.",
+        "Set up research and analysis for the product marketing team to assess opportunities in civilian markets and support the development of new products for business clients.",
       contribution: [
-        "Built a research and analytics system for the product marketing department.",
-        "Integrated a business intelligence (BI) system to compare market data and assess commercial opportunities.",
-        "Contributed to the development of new B2B products.",
+        "I built a research and analytics system for the product marketing team.",
+        "I introduced a business intelligence (BI) system to compare market data and assess commercial opportunities.",
+        "I contributed to the development of new B2B products.",
       ],
       outcome:
-        "Built a research and analytics system for the product marketing department and integrated BI to compare market data and assess commercial opportunities. Contributed to the development of new B2B products.",
+        "The team gained a research and analytics system, including BI for comparing market data and assessing product opportunities. Alongside this work, I contributed to developing new B2B products.",
     },
   },
   TR: {
     ru: {
       challenge:
-        "Развивать информационные продукты Eikon для горной добычи и металлургии и готовить новости, обзоры и аналитику товарно-сырьевых рынков.",
+        "Разрабатывать информационные продукты в Eikon для горнодобывающей отрасли и металлургии, а также готовить новости и аналитику товарно-сырьевых рынков.",
       contribution: [
-        "Разработал B2B-информационные продукты в Eikon; участвовал в создании аналитических дашбордов.",
-        "Инициировал добавление рыночных котировок и технического функционала.",
-        "Готовил новости, рыночные обзоры и аналитические статьи — самостоятельно, в соавторстве и в переводе с английского.",
-        "Проводил мастер-классы для клиентов Eikon и выступал на отраслевых конференциях в роли эксперта.",
+        "Разрабатывал информационные продукты в Eikon и участвовал в создании аналитических дашбордов — экранов с рыночными данными и графиками.",
+        "Инициировал добавление новых рыночных котировок и функций в Eikon.",
+        "Готовил новости, обзоры и аналитические статьи: писал сам, работал с соавторами и переводил материалы с английского на русский.",
+        "Проводил мастер-классы для клиентов Eikon и выступал на отраслевых конференциях как эксперт.",
       ],
       outcome:
-        "1 из разработанных информационных продуктов привлёк 3 B2B-клиентов. Подготовил 1 000+ публикаций с охватом 20 000+ читателей. Вырос от стажёра до аналитика рынков. Для каждого примера публикации ниже указан мой вклад в её подготовку.",
+        "Разработанные мной информационные продукты привлекли в общей сложности 3 B2B-клиентов. Подготовил 1 000+ публикаций с охватом 20 000+ читателей и вырос от стажёра до аналитика рынков. Под примерами ниже указано, где я был автором, где работал вместе с коллегами, а где переводил текст.",
     },
     en: {
       challenge:
-        "Develop Eikon information products for mining and metals clients while producing commodity market news, reviews and analysis.",
+        "Develop Eikon information products for mining and metals clients, and produce commodity market news and analysis.",
       contribution: [
-        "Developed B2B information products within Eikon and contributed to analytics dashboards.",
-        "Initiated the addition of market price quotes and technical features.",
-        "Produced market news, reviews and analytical articles as an author, co-author and translator from English into Russian.",
-        "Delivered workshops for Eikon clients and spoke as an industry expert at conferences.",
+        "I developed Eikon information products and helped create analytics dashboards showing market data and charts.",
+        "I initiated the addition of new market price quotes and features in Eikon.",
+        "I prepared news, market reviews and analysis as an author, co-author and translator from English into Russian.",
+        "I ran workshops for Eikon clients and spoke as an industry expert at conferences.",
       ],
       outcome:
-        "1 of the information products I developed attracted 3 B2B clients. Prepared 1,000+ publications reaching 20,000+ readers. Progressed from intern to market analyst. Each publication sample below specifies my contribution.",
+        "The information products I developed attracted 3 B2B clients in total. I prepared 1,000+ publications reaching 20,000+ readers and progressed from intern to market analyst. The examples below explain my role in each piece: author, contributor or translator.",
     },
   },
   MBC: {
     ru: {
       challenge:
-        "Запустить авторские изделия и организовать продажи через интернет-магазин — от разработки товара до оплаты, обработки и доставки заказа.",
+        "Создать собственные изделия и наладить продажи через интернет — от разработки товара до оплаты и доставки заказа.",
       contribution: [
-        "Разработал авторские изделия и вывел их на рынок.",
-        "Собрал инфраструктуру интернет-магазина на Tilda: CRM, приём платежей и логистику.",
-        "Организовал полный цикл обработки заказов и координировал подрядчиков по контенту и дизайну.",
+        "Разрабатывал авторские изделия и запускал их в продажу.",
+        "Собрал магазин на Tilda, подключил CRM для работы с клиентами, приём платежей и доставку.",
+        "Организовал обработку заказов от оформления до отправки и координировал подрядчиков по контенту и дизайну.",
       ],
       outcome:
-        "За время проекта вывел на рынок 10+ товарных позиций и обеспечил полный цикл обработки 100+ заказов. Проект трансформировался из формата с полноценной командой в небольшое хобби-производство.",
+        "За время проекта запустил 10+ товарных позиций и организовал обработку 100+ заказов — от оформления до отправки покупателям.",
     },
     en: {
       challenge:
-        "Launch original products and establish online sales, covering product development, payments, order processing and delivery.",
+        "Create original products and set up online sales, covering product development, payment and delivery.",
       contribution: [
-        "Designed original products and brought them to market.",
-        "Built an online store on Tilda with CRM, payments and logistics.",
-        "Established end-to-end order processing and coordinated content and design contractors.",
+        "I developed original products and brought them to market.",
+        "I built the store on Tilda, added a CRM for managing customer relationships and set up payments and delivery.",
+        "I organized order processing from checkout to dispatch and coordinated content and design contractors.",
       ],
       outcome:
-        "Brought 10+ products to market and managed the full processing cycle for 100+ orders over the course of the project. Previously run with a full team, the project has since transformed into small-scale hobby production.",
+        "Over the course of the project, I launched 10+ products and organized the processing of 100+ orders, from checkout to dispatch.",
     },
   },
   MNG: {
     ru: {
       challenge:
-        "Проверить концепцию приложения, в котором пользователи могут находить городские маршруты для прогулок и делиться собственными.",
+        "Проверить идею приложения для городских прогулок, в котором можно находить интересные маршруты, создавать свои и делиться ими.",
       contribution: [
-        "Сформировал концепцию продукта и основные пользовательские сценарии.",
-        "Подобрал и координировал команду дизайнеров и разработчиков на аутсорсе.",
-        "Организовал первичное тестирование MVP среди знакомых.",
+        "Разработал концепцию приложения и основные сценарии его использования.",
+        "Подобрал дизайнеров и разработчиков на аутсорсе и координировал их работу.",
+        "Организовал тестирование MVP среди знакомых.",
       ],
       outcome:
-        "Разработан и протестирован MVP для iOS. До публичного запуска проект не дошёл: в 2020 году его закрыли на фоне ограничений во время пандемии COVID-19. Ниже представлены тестовые экраны и архивные материалы проекта.",
+        "Команда разработала MVP для iOS, и мы протестировали его среди знакомых. До публичного запуска проект не дошёл: в 2020 году он закрылся на фоне ограничений COVID-19. Ниже — тестовые экраны и архивные материалы.",
     },
     en: {
       challenge:
-        "Test an app concept that lets users discover urban walking routes and share their own.",
+        "Test an app idea for finding interesting city walks, creating routes and sharing them with others.",
       contribution: [
-        "Defined the product concept and core user journeys.",
-        "Recruited and coordinated outsourced designers and developers.",
-        "Organized initial MVP testing with people from my personal network.",
+        "I defined the app concept and the main ways people would use it.",
+        "I brought in outsourced designers and developers and coordinated their work.",
+        "I organized MVP testing with people I knew.",
       ],
       outcome:
-        "Developed and tested an iOS MVP. The project closed in 2020 amid COVID-19 restrictions before a public launch. Test screens and archived project materials are available below.",
+        "The team developed an iOS MVP, which we tested with people we knew. The project closed in 2020 amid COVID-19 restrictions, before a public launch. Test screens and archived materials are below.",
     },
   },
   VNV: {
     ru: {
       challenge:
-        "Создать сервис для проведения конкурсов и привлечь рекламодателей, заинтересованных в новой аудитории.",
+        "Создать площадку для конкурсов и развивать её, привлекая рекламодателей, которым интересно выходить на новую аудиторию.",
       contribution: [
-        "Сформировал концепцию сервиса и отвечал за развитие продукта.",
-        "Подобрал дизайнеров и разработчиков и координировал команду на аутсорсе.",
-        "Занимался привлечением клиентов и организацией мероприятий на площадке.",
+        "Разработал концепцию сервиса и занимался развитием продукта.",
+        "Подобрал дизайнеров и разработчиков на аутсорсе и координировал их работу.",
+        "Привлекал клиентов и организовывал мероприятия на площадке.",
       ],
       outcome:
-        "За неполный год площадка привлекла 30+ B2B-клиентов. Проведено 10+ мероприятий, включая 3 киберспортивных турнира с 300+ участниками. Аудитория достигала около 1 000 DAU и 7 000 MAU; удержание на 30-й день составляло 16%. В 2014 году проект закрыли после ужесточения правил проведения конкурсов в VK.com, откуда поступал основной трафик.",
+        "За неполный год площадка привлекла 30+ B2B-клиентов. Мы провели 10+ мероприятий, включая 3 киберспортивных турнира, на которых суммарно было 300+ участников. Число активных пользователей достигало примерно 1 000 в день и 7 000 в месяц; удержание на 30-й день составляло 16%. В 2014 году проект закрылся после ужесточения правил конкурсов в VK.com, откуда приходил основной трафик.",
     },
     en: {
-      challenge: "Build a contest platform and attract advertisers looking to reach new audiences.",
+      challenge:
+        "Build and develop a contest platform while attracting advertisers looking to reach new audiences.",
       contribution: [
-        "Defined the service concept and led product development.",
-        "Recruited designers and developers and coordinated an outsourced team.",
-        "Worked on client acquisition and organized events on the platform.",
+        "I developed the service concept and worked on product development.",
+        "I brought in outsourced designers and developers and coordinated their work.",
+        "I attracted clients and organized events on the platform.",
       ],
       outcome:
-        "Attracted 30+ B2B clients in under a year. Hosted 10+ events, including 3 esports tournaments with 300+ participants. The audience reached approximately 1,000 daily and 7,000 monthly active users, with 16% day-30 retention. The project closed in 2014 after VK.com tightened contest rules, affecting its main source of traffic.",
+        "In under a year, the platform attracted 30+ B2B clients. We ran 10+ events, including 3 esports tournaments with 300+ participants combined. The audience reached around 1,000 daily and 7,000 monthly active users, with 16% day-30 retention. The project closed in 2014 after VK.com tightened contest rules, affecting our main source of traffic.",
     },
   },
 };

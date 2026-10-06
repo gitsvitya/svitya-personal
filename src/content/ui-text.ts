@@ -21,7 +21,7 @@ export const uiText = {
       about: "Обо мне",
       work: "Опыт работы",
       projects: "Проекты",
-      activities: "Активности",
+      activities: "Увлечения",
       settings: "Настройки",
     },
     settings: {
@@ -36,11 +36,11 @@ export const uiText = {
       title: "Виктор Строков",
       portraitAlt: "Портрет Виктора Строкова",
       contact: "Связаться со мной",
-      cv: "Скачать CV",
-      experience: "Развитие B2B-направлений и отраслевых сервисов",
-      subtitle: "B2B-направления, данные и аналитика",
+      cv: "Скачать резюме",
+      experience: "Продукты и сервисы для бизнеса",
+      subtitle: "Данные, аналитика и продукты для бизнеса",
       description:
-        "Развиваю B2B-направления с опорой на отраслевые данные и потребности корпоративных клиентов. Сейчас запускаю и развиваю платные отраслевые бюллетени — уже вывел на рынок 7. Ранее запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов, координировал внедрение фронтенд-системы для аукционов и разработал систему оценки сделок для коммерческих решений. Рассматриваю роли руководителя B2B-направления.",
+        "Я занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Иногда запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили. Здесь рассказываю о своём опыте, идеях и творческих порывах.",
     },
     notFound: {
       title: "Страница не найдена",
@@ -51,7 +51,7 @@ export const uiText = {
     cookieBanner: {
       label: "Настройки cookie",
       description:
-        "Для корректной работы сайта я использую обязательные cookie. Дополнительная аналитика поможет мне развивать сайт и делать его лучше. Можно оставить только обязательные cookie или разрешить все, включая аналитические.",
+        "Я использую обязательные cookie для работы сайта. Если разрешить аналитические cookie, я смогу лучше понимать, как пользуются сайтом, и улучшать его. Можно оставить только обязательные cookie или разрешить все, включая аналитические.",
       accept: "Разрешить все",
       reject: "Только обязательные",
     },
@@ -70,7 +70,7 @@ export const uiText = {
       nextMaterial: "Следующий материал",
     },
     modal: {
-      closeLabel: "Закрыть модальное окно",
+      closeLabel: "Закрыть окно",
     },
     footer: {
       contacts: "Контакты",
@@ -100,7 +100,7 @@ export const uiText = {
       about: "About me",
       work: "Work experience",
       projects: "Projects",
-      activities: "Activities",
+      activities: "Interests",
       settings: "Settings",
     },
     settings: {
@@ -116,10 +116,10 @@ export const uiText = {
       portraitAlt: "Portrait of Victor Strokov",
       contact: "Contact me",
       cv: "Download CV",
-      experience: "B2B business development and industry services",
-      subtitle: "B2B business development, data and market analytics",
+      experience: "Products and services for businesses",
+      subtitle: "Data, market analysis and products for businesses",
       description:
-        "I work in B2B business development, combining industry data with corporate client research. I currently launch and develop paid market bulletins, with 7 brought to market so far. Previously, I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients, coordinated a frontend system for auction bid processing and developed a deal evaluation system to support commercial decisions. I am seeking B2B business leadership roles.",
+        "I work in market analysis and develop products for businesses. Sometimes I start projects of my own, work on this website and grow chili peppers. Here I share stories about my experience, ideas and creative impulses.",
     },
     notFound: {
       title: "Page not found",
@@ -130,7 +130,7 @@ export const uiText = {
     cookieBanner: {
       label: "Cookie settings",
       description:
-        "I use essential cookies to keep the site working properly. Additional analytics will help me keep improving it. Choose essential cookies only, or allow all cookies to include analytics.",
+        "I use essential cookies to keep the site working. If you allow analytics cookies, I can better understand how people use the site and improve it. You can choose essential cookies only, or allow all cookies, including analytics.",
       accept: "Allow all",
       reject: "Essential only",
     },
@@ -149,7 +149,7 @@ export const uiText = {
       nextMaterial: "Next material",
     },
     modal: {
-      closeLabel: "Close modal window",
+      closeLabel: "Close window",
     },
     footer: {
       contacts: "Contacts",
@@ -157,7 +157,7 @@ export const uiText = {
         "*is owned by Meta Platforms, which is recognized as extremist and banned in the Russian Federation",
     },
     card: {
-      button: "Details",
+      button: "Read more",
     },
   },
 } as const;

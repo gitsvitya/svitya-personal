@@ -27,7 +27,7 @@ const materials = [
     href: "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf",
     sourceUrl: "https://www.reuters.com/article/business/-17--idUSKBN1611FE/",
     title: {
-      ru: "Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
+      ru: "Металлурги ждут подъёма спроса на сталь в РФ в 2017 году на фоне роста экономики",
       en: "Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
     },
     active: [true, true, true],
@@ -68,7 +68,7 @@ const mappngoMaterials = {
       url: "https://www.mappngo.com/",
     },
     {
-      title: "Архивный FAQ сайта",
+      title: "Архивные вопросы и ответы",
       file: "faq-ru.pdf",
       image: "faq-ru-preview",
       url: "https://www.mappngo.com/faq/",
@@ -94,7 +94,7 @@ const mappngoMaterials = {
       url: "https://www.mappngo.com/en/",
     },
     {
-      title: "Archived website FAQ",
+      title: "Archived questions and answers",
       file: "faq-en.pdf",
       image: "faq-en-preview",
       url: "https://www.mappngo.com/en/faq/",
@@ -251,7 +251,7 @@ for (const language of ["ru", "en"] as const) {
       await lastAction.focus();
       await page.keyboard.press("Tab");
       const close = dialog.getByRole("button", {
-        name: language === "ru" ? "Закрыть модальное окно" : "Close modal window",
+        name: language === "ru" ? "Закрыть окно" : "Close window",
       });
       await expect(close).toBeFocused();
       await page.keyboard.press("Shift+Tab");
@@ -419,7 +419,9 @@ for (const language of ["ru", "en"] as const) {
         });
       }
       if (slug === "soldout") {
-        await expect(dialog).toHaveAccessibleName(language === "ru" ? "Солдаут" : "Soldout");
+        await expect(dialog).toHaveAccessibleName(
+          language === "ru" ? "Прошлые выпуски" : "Past releases"
+        );
         await expect(dialog.locator("p")).toContainText("SOLD");
         await dialog.screenshot({
           path: testInfo.outputPath("madburglarcat-soldout-material.png"),
@@ -451,7 +453,7 @@ for (const language of ["ru", "en"] as const) {
         // Move focus off the download link before checking its mobile scroll behavior.
         await dialog
           .getByRole("button", {
-            name: language === "ru" ? "Закрыть модальное окно" : "Close modal window",
+            name: language === "ru" ? "Закрыть окно" : "Close window",
           })
           .focus();
         await dialog.getByRole("link", { name: labels[language][0], exact: true }).focus();

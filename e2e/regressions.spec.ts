@@ -155,7 +155,7 @@ for (const width of [320, 1280]) {
     await trigger.click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();
-    await expect(dialog.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
+    await expect(dialog.getByRole("button", { name: "Закрыть окно" })).toBeFocused();
     await page.evaluate(() => document.fonts.ready);
     const materialImage = dialog.getByRole("img");
     await expect

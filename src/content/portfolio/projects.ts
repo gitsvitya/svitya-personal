@@ -50,8 +50,8 @@ export const PROJECT_COMPANIES = {
             en: "Product catalog",
           },
           description: {
-            ru: "Главная страница сайта, где можно выбрать изделие, перейти по ссылке для индивидуального заказа и ознакомиться с отзывами покупателей.",
-            en: "The website’s main page, where visitors can choose a product, follow a link to request a custom order and read customer reviews.",
+            ru: "Каталог изделий, ссылка для индивидуального заказа и отзывы покупателей.",
+            en: "A product catalog, a link for custom orders and customer reviews. PDF in Russian.",
           },
         },
         {
@@ -75,8 +75,8 @@ export const PROJECT_COMPANIES = {
             en: "Product page",
           },
           description: {
-            ru: "Страница с основной информацией об изделии, характеристиками, размерной сеткой, сроками изготовления и рекомендациями по уходу. Можно выбрать размер и перейти к оформлению заказа.",
-            en: "A page with key product information, specifications, a size chart, production time and care instructions. Visitors can choose a size and proceed to checkout.",
+            ru: "Страница изделия с описанием, размерной сеткой, сроком изготовления и рекомендациями по уходу. Здесь можно выбрать размер и перейти к заказу.",
+            en: "A product page with a description, size chart, production time and care instructions, plus size selection and a link to checkout. PDF in Russian.",
           },
         },
         {
@@ -100,8 +100,8 @@ export const PROJECT_COMPANIES = {
             en: "Checkout",
           },
           description: {
-            ru: "Форма с параметрами заказа, данными получателя, комментарием и промокодом. Стоимость доставки автоматически рассчитывалась по тарифам СДЭК с учётом способа доставки, количества изделий и выбранного пункта выдачи или адреса. Для оплаты картой и через СБП использовался сервис ЮКасса.",
-            en: "A form with order options, recipient details, a comment field and a promo code. Delivery costs were calculated automatically using CDEK tariffs, based on the delivery method, item quantity and selected pickup point or address. Card and SBP payments were processed through YooKassa.",
+            ru: "Пример оформления заказа: параметры изделия, данные получателя, комментарий и промокод. Доставка рассчитывалась по тарифам СДЭК с учётом способа доставки, количества изделий и адреса или пункта выдачи. Оплата картой и через Систему быстрых платежей (СБП) проходила через ЮКассу.",
+            en: "A checkout example with product options, recipient details, a comment field and a promo code. Delivery costs were calculated using CDEK rates, based on the delivery method, number of items and address or pickup point. YooKassa handled card payments and payments through Russia’s Faster Payments System (SBP). PDF in Russian.",
           },
         },
         {
@@ -121,12 +121,12 @@ export const PROJECT_COMPANIES = {
             },
           },
           title: {
-            ru: "Солдаут",
-            en: "Soldout",
+            ru: "Прошлые выпуски",
+            en: "Past releases",
           },
           description: {
-            ru: "Архивная страница, куда переносятся модели прошлых выпусков. Изделия представлены с пометкой SOLD и больше недоступны для заказа.",
-            en: "An archive page for designs from previous releases. The items are marked SOLD and are no longer available to order.",
+            ru: "Архив моделей прошлых выпусков. Изделия с пометкой SOLD больше недоступны для заказа.",
+            en: "An archive of designs from past releases. Items marked SOLD are no longer available to order. PDF in Russian.",
           },
         },
         {
@@ -148,8 +148,8 @@ export const PROJECT_COMPANIES = {
             en: "Trademark certificate",
           },
           description: {
-            ru: "Свидетельство Роспатента, подтверждающее регистрацию товарного знака Mad Burglar Cat.",
-            en: "A Rospatent certificate confirming registration of the Mad Burglar Cat trademark. Original document in Russian.",
+            ru: "Свидетельство Роспатента о регистрации товарного знака Mad Burglar Cat.",
+            en: "The Rospatent certificate for the Mad Burglar Cat trademark registration. PDF in Russian.",
           },
         },
       ],
@@ -160,18 +160,18 @@ export const PROJECT_COMPANIES = {
         name: "Mad Burglar Cat",
         title: "Основатель",
         about:
-          "Авторский проект одежды и текстиля для дома с интернет-магазином. Трансформировался из формата с полноценной командой в небольшое хобби-производство.",
+          "Мой проект одежды и текстиля для дома с интернет-магазином. Сначала над ним работала полноценная команда, а сейчас это небольшое хобби-производство.",
         results:
-          "За время проекта вывел на рынок 10+ товарных позиций и обеспечил полный цикл обработки 100+ заказов. Проект трансформировался из формата с полноценной командой в небольшое хобби-производство.",
+          "За время проекта запустил 10+ товарных позиций и организовал обработку 100+ заказов — от оформления до отправки покупателям.",
       },
       en: {
         year: "2024 → present",
         name: "Mad Burglar Cat",
         title: "Founder",
         about:
-          "A personal apparel and home textiles project with an online store. Previously run with a full team, it has since transformed into small-scale hobby production.",
+          "My clothing and home textiles project, with an online store. We initially worked with a full team. The project now continues on a small scale as a hobby.",
         results:
-          "Brought 10+ products to market and managed the full processing cycle for 100+ orders over the course of the project. Previously run with a full team, the project has since transformed into small-scale hobby production.",
+          "Over the course of the project, I launched 10+ products and organized the processing of 100+ orders, from checkout to dispatch.",
       },
     },
   },
@@ -201,8 +201,8 @@ export const PROJECT_COMPANIES = {
           },
           title: { ru: "Тестовые экраны", en: "Test screens" },
           description: {
-            ru: "Полный набор тестовых экранов MappNgo: регистрация и вход, поиск и создание маршрутов, профиль пользователя, карта прогулки и завершение маршрута.",
-            en: "A complete set of MappNgo test screens covering sign-up and sign-in, route search and creation, user profiles, walking maps and route completion.",
+            ru: "Экраны MappNgo: от регистрации и поиска маршрута до создания собственной прогулки и её завершения.",
+            en: "MappNgo screens, from signing up and finding a route to creating a walk and completing it.",
           },
         },
         {
@@ -224,8 +224,8 @@ export const PROJECT_COMPANIES = {
             en: "Sticker template",
           },
           description: {
-            ru: "Шаблон сувенирных наклеек, которые раздавались первым пользователям в благодарность за участие в тестировании.",
-            en: "A template for souvenir stickers handed out to early users to thank them for taking part in testing.",
+            ru: "Сувенирные наклейки для знакомых, которые участвовали в тестировании MVP.",
+            en: "Souvenir stickers for people I knew who took part in MVP testing.",
           },
         },
         {
@@ -246,8 +246,8 @@ export const PROJECT_COMPANIES = {
           },
           title: { ru: "Архивная главная страница", en: "Archived website homepage" },
           description: {
-            ru: "Архивная промостраница тестового MVP. Описание приложения и его функций отражает концепцию проекта до закрытия в 2020 году.",
-            en: "An archived promotional page for the tested MVP, showing the app concept and features before the project closed in 2020.",
+            ru: "Архивная страница с описанием идеи и функций MappNgo. В ней есть формулировка о доступности приложения в App Store, которая расходится с фактической историей проекта: MVP тестировали среди знакомых, публичного запуска не было.",
+            en: "An archived page describing the MappNgo concept and features. Its wording about App Store availability differs from the project’s actual history: the MVP was tested with people we knew and never launched publicly.",
           },
         },
         {
@@ -266,10 +266,10 @@ export const PROJECT_COMPANIES = {
               url: "https://www.mappngo.com/en/faq/",
             },
           },
-          title: { ru: "Архивный FAQ сайта", en: "Archived website FAQ" },
+          title: { ru: "Архивные вопросы и ответы", en: "Archived questions and answers" },
           description: {
-            ru: "Архивный FAQ, подготовленный для проекта. Упоминания запуска и App Store в архивных материалах относятся к планам: приложение осталось на стадии тестирования MVP.",
-            en: "An archived FAQ prepared for the project. References to launch and the App Store in archived materials describe plans; the app remained a tested MVP.",
+            ru: "Архивные вопросы и ответы о MappNgo. Утверждение о доступности приложения в App Store не отражает фактический статус проекта: MVP тестировали среди знакомых, до публичного запуска он не дошёл.",
+            en: "Archived questions and answers about MappNgo. The statement that the app was available in the App Store does not reflect the project’s actual status: the MVP was tested with people we knew and never reached a public launch.",
           },
         },
       ],
@@ -280,18 +280,18 @@ export const PROJECT_COMPANIES = {
         name: "MappNgo",
         title: "Основатель",
         about:
-          "Проект iOS-приложения для поиска, создания и обмена городскими пешими маршрутами. Доведён до тестового MVP.",
+          "Проект приложения для iOS, в котором можно находить городские маршруты для прогулок, создавать свои и делиться ими.",
         results:
-          "Разработан и протестирован MVP для iOS. До публичного запуска проект не дошёл: в 2020 году его закрыли на фоне ограничений во время пандемии COVID-19. Ниже представлены тестовые экраны и архивные материалы проекта.",
+          "Команда разработала MVP для iOS, и мы протестировали его среди знакомых. До публичного запуска проект не дошёл: в 2020 году он закрылся на фоне ограничений COVID-19. Ниже — тестовые экраны и архивные материалы.",
       },
       en: {
         year: "2019 → 2020",
         name: "MappNgo",
         title: "Founder",
         about:
-          "An iOS app project for finding, creating and sharing urban walking routes, developed to a tested MVP.",
+          "An iOS app project for discovering city walks, creating routes and sharing them with others.",
         results:
-          "Developed and tested an iOS MVP. The project closed in 2020 amid COVID-19 restrictions before a public launch. Test screens and archived project materials are available below.",
+          "The team developed an iOS MVP, which we tested with people we knew. The project closed in 2020 amid COVID-19 restrictions, before a public launch. Test screens and archived materials are below.",
       },
     },
   },
@@ -324,8 +324,8 @@ export const PROJECT_COMPANIES = {
             en: "Website homepage",
           },
           description: {
-            ru: "Главная страница сайта, на которой одновременно могли проходить несколько конкурсов с разным приоритетом. Площадка также предусматривала личный кабинет и внутреннюю валюту.",
-            en: "The website homepage, where multiple contests could run simultaneously with different priorities. The platform also offered user accounts and an internal currency.",
+            ru: "Архивный экран главной страницы с несколькими конкурсами. Здесь также видны вход в личный кабинет и баланс внутренних монет.",
+            en: "An archived homepage showing several contests, account sign-in and an internal coin balance. PDF in Russian.",
           },
         },
         {
@@ -347,8 +347,8 @@ export const PROJECT_COMPANIES = {
             en: "Contest page",
           },
           description: {
-            ru: "Страница с подробной инструкцией по участию, количеством участников, таймером до завершения конкурса и возможностью оставлять комментарии.",
-            en: "A page with detailed entry instructions, a participant count, a countdown to the end of the contest and the option to leave comments.",
+            ru: "Архивный экран конкурса: правила участия, число участников, время до завершения и комментарии.",
+            en: "An archived contest page with entry instructions, a participant count, a countdown and comments. PDF in Russian.",
           },
         },
       ],
@@ -359,18 +359,18 @@ export const PROJECT_COMPANIES = {
         name: "Venivi",
         title: "Сооснователь",
         about:
-          "Площадка, на которой рекламодатели привлекали аудиторию через конкурсы, розыгрыши и киберспортивные турниры.",
+          "Площадка, где рекламодатели привлекали аудиторию с помощью конкурсов, розыгрышей и киберспортивных турниров.",
         results:
-          "За неполный год площадка привлекла 30+ B2B-клиентов. Проведено 10+ мероприятий, включая 3 киберспортивных турнира с 300+ участниками. Аудитория достигала около 1 000 DAU и 7 000 MAU; удержание на 30-й день составляло 16%. В 2014 году проект закрыли после ужесточения правил проведения конкурсов в VK.com, откуда поступал основной трафик.",
+          "За неполный год площадка привлекла 30+ B2B-клиентов. Мы провели 10+ мероприятий, включая 3 киберспортивных турнира, на которых суммарно было 300+ участников. Число активных пользователей достигало примерно 1 000 в день и 7 000 в месяц; удержание на 30-й день составляло 16%. В 2014 году проект закрылся после ужесточения правил конкурсов в VK.com, откуда приходил основной трафик.",
       },
       en: {
         year: "2013 → 2014",
         name: "Venivi",
         title: "Co-founder",
         about:
-          "A platform where advertisers attracted audiences through contests, giveaways and esports tournaments.",
+          "A platform where advertisers reached new audiences through contests, giveaways and esports tournaments.",
         results:
-          "Attracted 30+ B2B clients in under a year. Hosted 10+ events, including 3 esports tournaments with 300+ participants. The audience reached approximately 1,000 daily and 7,000 monthly active users, with 16% day-30 retention. The project closed in 2014 after VK.com tightened contest rules, affecting its main source of traffic.",
+          "In under a year, the platform attracted 30+ B2B clients. We ran 10+ events, including 3 esports tournaments with 300+ participants combined. The audience reached around 1,000 daily and 7,000 monthly active users, with 16% day-30 retention. The project closed in 2014 after VK.com tightened contest rules, affecting our main source of traffic.",
       },
     },
   },

@@ -104,7 +104,7 @@ test("preserves carousel button focus across repeated keyboard activation", asyn
   const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
   await trigger.click();
   const dialog = page.getByRole("dialog");
-  await expect(dialog.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
+  await expect(dialog.getByRole("button", { name: "Закрыть окно" })).toBeFocused();
   const next = dialog.getByRole("button", { name: "Следующий материал" });
   await next.focus();
   await page.keyboard.press("Enter");
@@ -143,7 +143,7 @@ for (const width of [1280, 390]) {
     ]) {
       await target.click();
       await expect(dialog).toHaveAccessibleName("Полиэтилен");
-      await expect(dialog.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
+      await expect(dialog.getByRole("button", { name: "Закрыть окно" })).toBeFocused();
       await page.keyboard.press("Escape");
       await expect(dialog).toHaveCount(0);
       await expect(trigger).toBeFocused();

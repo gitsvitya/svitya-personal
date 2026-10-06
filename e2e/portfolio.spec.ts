@@ -7,7 +7,7 @@ for (const { language, initialLanguage, label, filename } of [
   {
     language: "ru",
     initialLanguage: "en",
-    label: "Скачать CV",
+    label: "Скачать резюме",
     filename: "CV_Строков_Виктор.pdf",
   },
   {
@@ -160,14 +160,14 @@ test("navigates materials by keyboard only while the modal is open", async ({ pa
   await firstMaterial.click();
   const dialog = page.locator('[role="dialog"]');
   await expect(dialog).toHaveAccessibleName("Полиэтилен");
-  await expect(page.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
+  await expect(page.getByRole("button", { name: "Закрыть окно" })).toBeFocused();
 
   await page.keyboard.press("Escape");
   await page.keyboard.press("ArrowRight");
   await expect(dialog).toHaveCount(0);
 
   await firstMaterial.click();
-  await expect(page.getByRole("button", { name: "Закрыть модальное окно" })).toBeFocused();
+  await expect(page.getByRole("button", { name: "Закрыть окно" })).toBeFocused();
   await page.keyboard.press("ArrowRight");
   await expect(dialog).toHaveAccessibleName("Полипропилен");
   await page.keyboard.press("Escape");

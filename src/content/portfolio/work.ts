@@ -53,8 +53,8 @@ export const WORK_COMPANIES = {
             en: "Polyethylene",
           },
           description: {
-            ru: "Образец еженедельного информационного бюллетеня ХимИнсайт о рынке полиэтилена.",
-            en: "A sample of ChemInsight’s weekly information bulletin on the polyethylene market.",
+            ru: "Образец еженедельного бюллетеня ХимИнсайт о рынке полиэтилена.",
+            en: "A sample of ChemInsight’s weekly polyethylene market bulletin. PDF in Russian.",
           },
         },
         {
@@ -76,8 +76,8 @@ export const WORK_COMPANIES = {
             en: "Polypropylene",
           },
           description: {
-            ru: "Образец еженедельного информационного бюллетеня ХимИнсайт о рынке полипропилена.",
-            en: "A sample of ChemInsight’s weekly information bulletin on the polypropylene market.",
+            ru: "Образец еженедельного бюллетеня ХимИнсайт о рынке полипропилена.",
+            en: "A sample of ChemInsight’s weekly polypropylene market bulletin. PDF in Russian.",
           },
         },
         {
@@ -99,8 +99,8 @@ export const WORK_COMPANIES = {
             en: "Butyl alcohols and 2-EH",
           },
           description: {
-            ru: "Образец еженедельного информационного бюллетеня ХимИнсайт о рынке бутиловых спиртов и 2-ЭГ.",
-            en: "A sample of ChemInsight’s weekly information bulletin on the butyl alcohols and 2-EH market.",
+            ru: "Образец еженедельного бюллетеня ХимИнсайт о рынке бутиловых спиртов и 2-этилгексанола (2-ЭГ).",
+            en: "A sample of ChemInsight’s weekly market bulletin on butyl alcohols and 2-ethylhexanol (2-EH). PDF in Russian.",
           },
         },
         {
@@ -119,11 +119,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Метионин кормовой",
-            en: "Feed grade methionine",
+            en: "Feed-grade methionine",
           },
           description: {
-            ru: "Образец информационного бюллетеня ХимИнсайт о рынке кормового метионина. Выходит 2 раза в месяц.",
-            en: "A sample of ChemInsight’s information bulletin on the feed-grade methionine market. It is published 2 times a month.",
+            ru: "Образец бюллетеня ХимИнсайт о рынке кормового метионина. Выходит 2 раза в месяц.",
+            en: "A sample of ChemInsight’s feed-grade methionine market bulletin, published 2 times a month. PDF in Russian.",
           },
         },
         {
@@ -145,8 +145,8 @@ export const WORK_COMPANIES = {
             en: "Caustic soda",
           },
           description: {
-            ru: "Образец ежемесячного информационного бюллетеня ХимИнсайт о рынке каустической соды.",
-            en: "A sample of ChemInsight’s monthly information bulletin on the caustic soda market.",
+            ru: "Образец ежемесячного бюллетеня ХимИнсайт о рынке каустической соды.",
+            en: "A sample of ChemInsight’s monthly caustic soda market bulletin. PDF in Russian.",
           },
         },
         {
@@ -168,8 +168,8 @@ export const WORK_COMPANIES = {
             en: "Caustic potash",
           },
           description: {
-            ru: "Образец ежемесячного информационного бюллетеня ХимИнсайт о рынке едкого калия.",
-            en: "A sample of ChemInsight’s monthly information bulletin on the caustic potash market.",
+            ru: "Образец ежемесячного бюллетеня ХимИнсайт о рынке едкого калия.",
+            en: "A sample of ChemInsight’s monthly caustic potash market bulletin. PDF in Russian.",
           },
         },
         {
@@ -191,8 +191,8 @@ export const WORK_COMPANIES = {
             en: "Boric acid",
           },
           description: {
-            ru: "Образец ежемесячного информационного бюллетеня ХимИнсайт о рынке борной кислоты.",
-            en: "A sample of ChemInsight’s monthly information bulletin on the boric acid market.",
+            ru: "Образец ежемесячного бюллетеня ХимИнсайт о рынке борной кислоты.",
+            en: "A sample of ChemInsight’s monthly boric acid market bulletin. PDF in Russian.",
           },
         },
       ],
@@ -203,18 +203,18 @@ export const WORK_COMPANIES = {
         name: "ХимИнсайт",
         title: "Внештатный консультант",
         about:
-          "Независимое ценовое агентство, выпускающее данные и аналитику о рынках нефтегазохимии для корпоративных клиентов.",
+          "Независимое ценовое агентство. Публикует данные о ценах и аналитику рынков нефтегазохимии для компаний отрасли.",
         results:
-          "Вывел на рынок 7 платных информационных бюллетеней с суммарным охватом 10+ B2B-клиентов. Совместно с коллегами организовал регулярный выпуск и описал процессы подготовки материалов. Продолжаю развивать продукты на основе обратной связи клиентов. Ниже представлены образцы всех 7 бюллетеней.",
+          "Запустил 7 платных бюллетеней для 10+ B2B-клиентов в общей сложности. Вместе с коллегами наладил регулярный выпуск. Продолжаю развивать бюллетени с учётом отзывов клиентов. Ниже — образцы всех 7 бюллетеней.",
       },
       en: {
         year: "2025 → present",
         name: "ChemInsight",
         title: "Independent Consultant",
         about:
-          "An independent price reporting agency providing petrochemical market data and analysis to business clients.",
+          "An independent price reporting agency that publishes petrochemical market prices and analysis for businesses in the industry.",
         results:
-          "Launched 7 paid information bulletins serving 10+ B2B clients in total. Working with colleagues, established regular publication and documented production workflows. Continue to develop the products using client feedback. Samples of all 7 bulletins are available below.",
+          "I have launched 7 paid bulletins serving 10+ B2B clients in total. Together with colleagues, I established regular publication. I continue to develop the bulletins using client feedback. Samples of all 7 bulletins are below.",
       },
     },
   },
@@ -244,11 +244,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Методика региональных внебиржевых индексов агропродукции",
-            en: "Regional OTC agricultural indices methodology",
+            en: "Regional agricultural price indices",
           },
           description: {
-            ru: "Методика расчёта региональных индексов пшеницы, кукурузы, ячменя и сахара на условиях EXW и FCA.",
-            en: "Methodology for regional wheat, corn, barley and sugar indices on EXW and FCA terms.",
+            ru: "Как рассчитываются региональные внебиржевые ценовые индексы пшеницы, кукурузы, ячменя и сахара.",
+            en: "Calculation methods for regional wheat, corn, barley and sugar price indices outside exchange trading. PDF in Russian.",
           },
         },
         {
@@ -267,11 +267,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Методика индекса пшеницы CPT Новороссийск",
-            en: "CPT Novorossiysk wheat index methodology",
+            en: "CPT Novorossiysk wheat price index",
           },
           description: {
-            ru: "Методика расчёта ценового индекса пшеницы на условиях CPT Новороссийск по итогам товарных аукционов.",
-            en: "Methodology for the CPT Novorossiysk wheat price index based on commodity auctions.",
+            ru: "Методика расчёта индекса пшеницы с поставкой на условиях CPT Новороссийск по итогам товарных аукционов.",
+            en: "The calculation method for the wheat price index on CPT Novorossiysk delivery terms, using commodity auction data. PDF in Russian.",
           },
         },
         {
@@ -290,11 +290,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Методика биржевого индекса сахара в ЦФО",
-            en: "Central Federal District exchange-traded sugar index methodology",
+            en: "Exchange-traded sugar price index",
           },
           description: {
-            ru: "Методика расчёта биржевого индекса сахара в Центральном федеральном округе по данным спот-рынка.",
-            en: "Methodology for the exchange-traded sugar index in the Central Federal District using spot market data.",
+            ru: "Как рассчитывается биржевой индекс сахара в Центральном федеральном округе по данным спот-рынка.",
+            en: "The calculation method for the exchange-traded sugar price index in Russia’s Central Federal District, using spot market data. PDF in Russian.",
           },
         },
         {
@@ -313,11 +313,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Методика ежедневного внебиржевого индекса сахара в ЦФО",
-            en: "Central Federal District daily OTC sugar index methodology",
+            en: "Daily sugar price index outside exchange trading",
           },
           description: {
-            ru: "Методика расчёта ежедневного внебиржевого индекса сахара в Центральном федеральном округе на условиях EXW и FCA.",
-            en: "Methodology for the daily OTC sugar index in the Central Federal District on EXW and FCA terms.",
+            ru: "Методика расчёта ежедневного внебиржевого индекса сахара в Центральном федеральном округе.",
+            en: "The calculation method for the daily sugar price index outside exchange trading in Russia’s Central Federal District. PDF in Russian.",
           },
         },
         {
@@ -335,12 +335,12 @@ export const WORK_COMPANIES = {
             },
           },
           title: {
-            ru: "Пример аналитического дашборда индексов НТБ",
-            en: "Sample analytics dashboard for NME indices",
+            ru: "Пример дашборда индексов НТБ",
+            en: "Sample NME price index dashboard",
           },
           description: {
-            ru: "Пример аналитического дашборда НТБ с экспортными, биржевыми и внебиржевыми индексами агропродукции.",
-            en: "A sample NME analytics dashboard showing export, exchange-traded and OTC agricultural price indices.",
+            ru: "Пример экрана с экспортными, биржевыми и внебиржевыми ценовыми индексами агропродукции.",
+            en: "A sample dashboard showing export, exchange-traded and off-exchange agricultural price indices. PDF in Russian.",
           },
         },
       ],
@@ -351,18 +351,18 @@ export const WORK_COMPANIES = {
         name: "Национальная товарная биржа",
         title: "Руководитель направления методологии",
         about:
-          "Биржа в составе группы Московской биржи. Моя зона ответственности — ценовые индикаторы, информационные продукты и развитие товарных аукционов.",
+          "Товарная биржа в группе Московской биржи. Организует торги сельхозпродукцией и рассчитывает ценовые индексы.",
         results:
-          "Запустил 10+ ценовых индикаторов для российского АПК и 2 платных информационных продукта с охватом 30+ B2B-клиентов. В период работы число участников товарных аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов — до 50+. При моём участии внедрена фронтенд-система автоматизации обработки заявок на товарных аукционах; после её внедрения число заявок выросло более чем в 2 раза. Ниже представлены последние версии методик, над которыми я работал, и пример аналитического дашборда.",
+          "Запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов. За время моей работы число участников аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов (мест поставки) — до 50+. После внедрения системы обработки заявок их число выросло более чем в 2 раза. Ниже — версии методик, над которыми я работал, и пример дашборда с ценовыми индексами.",
       },
       en: {
         year: "2021 → 2024",
         name: "National Mercantile Exchange",
         title: "Head of Methodology",
         about:
-          "Part of Moscow Exchange Group. My remit covered price indicators, information products and the development of commodity auctions.",
+          "A commodity exchange within Moscow Exchange Group. It organizes agricultural commodity trading and calculates price indices.",
         results:
-          "Launched 10+ agribusiness price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+ participants, the product range expanded to 200+ items and the number of delivery locations reached 50+. Contributed to the implementation of a frontend system for commodity auction bid processing; the number of bids increased more than 2-fold following its introduction. The materials below include the latest versions of methodologies I worked on and a sample analytics dashboard.",
+          "I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+, the product range reached 200+ items and delivery locations reached 50+. After the bid processing system was introduced, the number of bids increased more than 2-fold. Below are versions of the methodologies I worked on and a sample dashboard of price indices.",
       },
     },
   },
@@ -379,18 +379,18 @@ export const WORK_COMPANIES = {
         name: "Лукойл-РНП-Трейдинг",
         title: "Ведущий специалист отдела развития бизнеса",
         about:
-          "Торговая компания группы Лукойл: оптовая и мелкооптовая продажа нефти, нефтепродуктов и нефтехимической продукции, в том числе через электронные площадки.",
+          "Торговая компания группы Лукойл. Продаёт нефть, нефтепродукты и нефтехимическую продукцию оптом и мелкими партиями, в том числе через электронные площадки.",
         results:
-          "Внедрена система, позволяющая сравнивать сделки на сопоставимых условиях и учитывать цены, логистику и другие затраты при выборе коммерческих решений.",
+          "Внедрил систему, которая позволяет сравнивать сделки с учётом цены, логистики и других затрат. Она приводит разные условия продаж к сопоставимому виду и помогает принимать коммерческие решения.",
       },
       en: {
         year: "2020 → 2021",
         name: "Lukoil-RNP-Trading",
         title: "Leading Specialist, Business Development",
         about:
-          "A Lukoil trading company handling wholesale and small-lot sales of crude oil, petroleum products and petrochemicals, including through electronic platforms.",
+          "A Lukoil trading company. It sells crude oil, petroleum products and petrochemicals wholesale and in smaller quantities, including through electronic platforms.",
         results:
-          "Implemented a system for comparing deals on a consistent basis, taking prices, logistics and other costs into account when making commercial decisions.",
+          "I implemented a system that makes deals comparable by accounting for prices, logistics and other costs. It provides a consistent basis for evaluating different sales terms and making commercial decisions.",
       },
     },
   },
@@ -407,18 +407,18 @@ export const WORK_COMPANIES = {
         name: "Концерн Калашников",
         title: "Менеджер по маркетинговым исследованиям",
         about:
-          "Промышленная группа. Работал с гражданскими рынками в составе отдела продуктового маркетинга.",
+          "Российская промышленная группа. Выпускает промышленное, медицинское и специализированное оборудование, а также охотничье и спортивное оружие.",
         results:
-          "Сформировал систему исследований и аналитики для отдела продуктового маркетинга, внедрил BI для сопоставления рыночных данных и оценки коммерческих перспектив. Участвовал в разработке новых B2B-продуктов.",
+          "У отдела появилась система исследований и аналитики, включая BI для сравнения рыночных данных и оценки перспектив новых продуктов. Эту работу я совмещал с участием в разработке B2B-продуктов.",
       },
       en: {
         year: "2018 → 2019",
         name: "Kalashnikov Group",
         title: "Marketing Research Manager",
         about:
-          "An industrial group. Worked on civilian markets within the product marketing department.",
+          "A Russian industrial group. It produces industrial, medical and specialized equipment, as well as hunting and sporting firearms.",
         results:
-          "Built a research and analytics system for the product marketing department and integrated BI to compare market data and assess commercial opportunities. Contributed to the development of new B2B products.",
+          "The team gained a research and analytics system, including BI for comparing market data and assessing product opportunities. Alongside this work, I contributed to developing new B2B products.",
       },
     },
   },
@@ -449,12 +449,12 @@ export const WORK_COMPANIES = {
             },
           },
           title: {
-            ru: "Металлурги ждут подъёма спроса на сталь в РФ в 17 году на фоне роста экономики",
+            ru: "Металлурги ждут подъёма спроса на сталь в РФ в 2017 году на фоне роста экономики",
             en: "Russian steelmakers expect steel demand to rebound in 2017 as economy grows",
           },
           description: {
-            ru: "Анализ спроса на сталь в России, избытка мощностей и ценовых войн. Написан мной без соавторов.",
-            en: "An analysis of Russian steel demand, excess capacity and price wars. I am the sole author.",
+            ru: "Статья о спросе на сталь в России, избытке мощностей и ценовых войнах. Написал её без соавторов.",
+            en: "An article on Russian steel demand, excess capacity and price wars. I wrote it without co-authors. PDF in Russian.",
           },
         },
         {
@@ -478,8 +478,8 @@ export const WORK_COMPANIES = {
             en: "Russian steelmakers offer discounts without cutting prices",
           },
           description: {
-            ru: "Анализ скидок, ценовой политики металлургов и конкуренции с трейдерами. Написан мной без соавторов.",
-            en: "An analysis of steelmakers' discounts, pricing and competition with traders. I am the sole author.",
+            ru: "Статья о скидках металлургов, их ценовой политике и конкуренции с трейдерами. Написал её без соавторов.",
+            en: "An article on steelmakers’ discounts, pricing and competition with traders. I wrote it without co-authors. PDF in Russian.",
           },
         },
         {
@@ -500,11 +500,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Рудовозы уходят из австралийского Порт-Хедленда из-за урагана Джойс",
-            en: "Iron ore ships leave Australia's Port Hedland as Cyclone Joyce approaches",
+            en: "Iron ore ships leave Australia’s Port Hedland as Cyclone Joyce approaches",
           },
           description: {
-            ru: "Новость о закрытии Порт-Хедленда и рисках для поставок железной руды. Перевёл с английского на русский текст Джеймса Ригана.",
-            en: "A news report on Port Hedland's closure and risks to iron ore supplies. I translated James Regan's article from English into Russian.",
+            ru: "Новость о закрытии порта Порт-Хедленд и рисках для поставок железной руды. Перевёл текст Джеймса Ригана с английского на русский.",
+            en: "A news report on the closure of Port Hedland and risks to iron ore supplies. I translated James Regan’s article from English into Russian. PDF in Russian.",
           },
         },
         {
@@ -525,11 +525,11 @@ export const WORK_COMPANIES = {
           },
           title: {
             ru: "Вызвавший протесты план реновации в Москве сулит выгодные контракты металлургам",
-            en: "Moscow's controversial renovation plan promises lucrative contracts for steelmakers",
+            en: "Moscow’s controversial renovation plan promises lucrative contracts for steelmakers",
           },
           description: {
-            ru: "Обзор возможного влияния программы реновации Москвы на спрос на сталь. Участвовал в подготовке вместе с коллегами.",
-            en: "An overview of how Moscow's housing renovation programme could affect steel demand. I contributed to the report alongside colleagues.",
+            ru: "Материал о том, как программа реновации Москвы могла повлиять на спрос на сталь. Участвовал в его подготовке вместе с коллегами.",
+            en: "A report on how Moscow’s housing renovation program could affect steel demand. I contributed alongside colleagues. PDF in Russian.",
           },
         },
         {
@@ -553,8 +553,8 @@ export const WORK_COMPANIES = {
             en: "Iron ore price to average $55/t in 2017",
           },
           description: {
-            ru: "Англоязычный обзор прогнозов цены железной руды по результатам опроса аналитиков. Подготовил вместе с коллегами.",
-            en: "An English-language overview of iron ore price forecasts based on a poll of analysts. I prepared it in collaboration with colleagues.",
+            ru: "Опубликованный в 2016 году прогноз цены железной руды на 2017 год по результатам опроса аналитиков. Подготовил материал вместе с коллегами. Текст на английском.",
+            en: "A forecast for 2017 iron ore prices, published in 2016 and based on a poll of analysts. I prepared it with colleagues. PDF in English.",
           },
         },
       ],
@@ -565,18 +565,18 @@ export const WORK_COMPANIES = {
         name: "Thomson Reuters",
         title: "Аналитик рынков",
         about:
-          "В период моей работы компания включала агентство Reuters и терминал Eikon для анализа товарных и финансовых рынков.",
+          "Международная информационная компания. В тот период в неё входили агентство Reuters и терминал Eikon для анализа товарных и финансовых рынков.",
         results:
-          "1 из разработанных информационных продуктов привлёк 3 B2B-клиентов. Подготовил 1 000+ публикаций с охватом 20 000+ читателей. Вырос от стажёра до аналитика рынков. Для каждого примера публикации ниже указан мой вклад в её подготовку.",
+          "Разработанные мной информационные продукты привлекли в общей сложности 3 B2B-клиентов. Подготовил 1 000+ публикаций с охватом 20 000+ читателей и вырос от стажёра до аналитика рынков. Под примерами ниже указано, где я был автором, где работал вместе с коллегами, а где переводил текст.",
       },
       en: {
         year: "2014 → 2018",
         name: "Thomson Reuters",
         title: "Market Analyst",
         about:
-          "During my time at the company, its businesses included Reuters and the Eikon platform for commodity and financial market analysis.",
+          "An international information company. At the time, its businesses included Reuters and Eikon, a platform for analyzing commodity and financial markets.",
         results:
-          "1 of the information products I developed attracted 3 B2B clients. Prepared 1,000+ publications reaching 20,000+ readers. Progressed from intern to market analyst. Each publication sample below specifies my contribution.",
+          "The information products I developed attracted 3 B2B clients in total. I prepared 1,000+ publications reaching 20,000+ readers and progressed from intern to market analyst. The examples below explain my role in each piece: author, contributor or translator.",
       },
     },
   },

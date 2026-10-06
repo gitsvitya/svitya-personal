@@ -76,20 +76,22 @@ const PAGE_COPY: PageCopyMap = {
     about: {
       title: "Обо мне | Виктор Строков",
       description:
-        "Профессиональный профиль Виктора Строкова: экспертиза, бэкграунд и ключевые компетенции.",
+        "Виктор Строков развивает продукты для бизнеса и занимается рыночной аналитикой. Здесь — опыт работы, собственные проекты и увлечения.",
     },
     work: {
       title: "Опыт работы | Виктор Строков",
-      description: "Опыт работы Виктора Строкова: роли, компании, задачи и результаты.",
+      description:
+        "Работа Виктора Строкова в ХимИнсайт, на Национальной товарной бирже, в Лукойле, Калашникове и Thomson Reuters: задачи, вклад и результаты.",
     },
     projects: {
       title: "Проекты | Виктор Строков",
-      description: "Личные и профессиональные проекты Виктора Строкова.",
+      description:
+        "Собственные проекты Виктора Строкова: одежда и текстиль Mad Burglar Cat, приложение для прогулок MappNgo и конкурсная площадка Venivi.",
     },
     activities: {
-      title: "Активности | Виктор Строков",
+      title: "Увлечения | Виктор Строков",
       description:
-        "Дополнительные активности, инициативы и профессиональные интересы Виктора Строкова.",
+        "Перцы чили и развитие Svitya.com — увлечения Виктора Строкова, о которых он рассказывает на своём сайте.",
     },
   },
   en: {
@@ -100,21 +102,22 @@ const PAGE_COPY: PageCopyMap = {
     about: {
       title: "About | Victor Strokov",
       description:
-        "Victor Strokov's professional profile: expertise, background, and core competencies.",
+        "Victor Strokov develops products for businesses and works in market analysis. Explore his work, personal projects and interests.",
     },
     work: {
       title: "Work Experience | Victor Strokov",
       description:
-        "Victor Strokov's work experience: roles, companies, responsibilities, and outcomes.",
+        "Victor Strokov’s work at ChemInsight, the National Mercantile Exchange, Lukoil, Kalashnikov and Thomson Reuters: the challenges, his contribution and the results.",
     },
     projects: {
       title: "Projects | Victor Strokov",
-      description: "Personal and professional projects by Victor Strokov.",
+      description:
+        "Victor Strokov’s projects: Mad Burglar Cat clothing and home textiles, the MappNgo city walks app project and the Venivi contest platform.",
     },
     activities: {
-      title: "Activities | Victor Strokov",
+      title: "Interests | Victor Strokov",
       description:
-        "Additional activities, initiatives, and professional interests of Victor Strokov.",
+        "Growing chili peppers and building Svitya.com: Victor Strokov’s interests beyond his professional work.",
     },
   },
 };
