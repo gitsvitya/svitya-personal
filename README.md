@@ -8,7 +8,7 @@ A bilingual portfolio built with Next.js App Router, React, TypeScript, and CSS 
 - Separate detail page for every work, project, and activity
 - Document, image, and external-link materials with a shared preview gallery
 - Light and dark themes
-- A Settings tab for theme, language, and reopening cookie preferences
+- A Settings tab for theme, language, and reopening the cookie notice
 - Responsive desktop, tablet, and mobile layouts
 - Localized SEO metadata, sitemap, and language redirects
 
@@ -22,7 +22,7 @@ src/content/ui-text.ts       Shared localized interface text
 src/hooks/                   Reusable client hooks
 src/images/portfolio/        Imported logos and material previews
 src/types/                   Shared domain and asset declarations
-src/utils/                   Shared routing, motion, and consent utilities
+src/utils/                   Shared routing, motion, and cookie notice utilities
 public/materials/            Files and full-size images opened from materials
 e2e/                         Browser-level Playwright tests
 ```

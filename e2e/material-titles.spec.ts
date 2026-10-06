@@ -19,7 +19,7 @@ for (const language of ["ru", "en"] as const) {
     page,
     baseURL,
   }, testInfo) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     for (const route of ["work/thomsonreuters", "work/namex", "projects/madburglarcat"]) {
       await page.goto(`/${language}/${route}`);
       await expect(page.locator("main > div")).toHaveCSS("opacity", "1");

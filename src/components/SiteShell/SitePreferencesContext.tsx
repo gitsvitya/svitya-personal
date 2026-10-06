@@ -8,7 +8,7 @@ type SitePreferences = {
   setTheme: Dispatch<SetStateAction<Theme>>;
   language: Language;
   changeLanguage: (language: Language) => void;
-  openCookieSettings: () => void;
+  showCookieBanner: () => void;
 };
 
 export const SitePreferencesContext = createContext<SitePreferences | null>(null);

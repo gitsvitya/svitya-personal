@@ -24,7 +24,7 @@ for (const { language, initialLanguage, label, filename, downloadName } of [
     page,
     baseURL,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${initialLanguage}/settings`);
     await page.locator("#language-toggle").click();
     await expect(page).toHaveURL(`/${language}/settings`);
@@ -92,8 +92,8 @@ test("keeps the preferred theme when changing language", async ({ context, page 
 test("closes the mobile menu at the CSS desktop breakpoint", async ({ context, page }) => {
   await context.addCookies([
     {
-      name: "analytics_consent",
-      value: "denied",
+      name: "cookie_notice_closed",
+      value: "1",
       url: "http://127.0.0.1:3100",
     },
   ]);
@@ -112,45 +112,82 @@ test("closes the mobile menu at the CSS desktop breakpoint", async ({ context, p
   await expect(menuButton).toHaveAttribute("aria-expanded", "false");
 });
 
-test("lets the user reopen and update cookie settings", async ({ context, page }) => {
-  await context.addCookies([
-    {
-      name: "analytics_consent",
-      value: "denied",
-      url: "http://127.0.0.1:3100",
-    },
-  ]);
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/en/settings");
+for (const language of ["ru", "en"] as const) {
+  for (const width of [320, 1280]) {
+    test(`shows the cookie notice once and reopens it manually in ${language} at ${width}px`, async ({
+      context,
+      page,
+    }, testInfo) => {
+      const copy =
+        language === "ru"
+          ? {
+              label: "Уведомление о cookie",
+              description:
+                "Я использую только технические cookie. Без аналитики и рекламных приколов.",
+              close: "Закрыть",
+              show: "Показать cookie баннер",
+            }
+          : {
+              label: "Cookie notice",
+              description: "I use only functional cookies. No analytics, no ad tricks.",
+              close: "Close",
+              show: "Show cookie banner",
+            };
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(`/${language}/settings`);
+      const banner = page.getByRole("region", { name: copy.label });
+      await expect(banner).toBeVisible();
+      await expect(banner).toHaveAccessibleDescription(copy.description);
+      await expect(banner.getByRole("button")).toHaveCount(1);
+      const closeButton = banner.getByRole("button", { name: copy.close, exact: true });
+      await expect(closeButton.locator('[aria-hidden="true"]')).toHaveText("→");
+      await page.evaluate(() => document.fonts.ready);
+      await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+      if (width === 320) await expect(page.locator("#app-nav-list")).toHaveCSS("opacity", "0");
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+        width
+      );
+      await page.screenshot({ path: testInfo.outputPath("cookie-notice.png") });
 
-  await expect(page.getByRole("region", { name: "Cookie settings" })).toHaveCount(0);
-  await page.getByRole("button", { name: "Cookie settings" }).click();
+      await closeButton.click();
+      await expect(banner).toHaveCount(0);
+      expect(
+        (await context.cookies()).find(({ name }) => name === "cookie_notice_closed")?.value
+      ).toBe("1");
+      await page.reload();
+      await expect(page.getByRole("button", { name: copy.show, exact: true })).toBeVisible();
+      await expect(banner).toHaveCount(0);
 
-  const banner = page.getByRole("region", { name: "Cookie settings" });
-  await expect(banner).toBeVisible();
-  const rejectButton = banner.getByRole("button", { name: "Essential only" });
-  const acceptButton = banner.getByRole("button", { name: "Allow all" });
-  const rejectBox = await rejectButton.boundingBox();
-  const acceptBox = await acceptButton.boundingBox();
-  expect(rejectBox?.y).toBe(acceptBox?.y);
-  expect(rejectBox?.x).toBeLessThan(acceptBox?.x ?? 0);
+      await page.getByRole("button", { name: copy.show, exact: true }).click();
+      await expect(banner).toBeVisible();
+      expect(
+        (await context.cookies()).find(({ name }) => name === "cookie_notice_closed")?.value
+      ).toBe("1");
+      await closeButton.click();
+      await expect(banner).toHaveCount(0);
+    });
+  }
+}
 
-  await acceptButton.click();
-  await expect(banner).toHaveCount(0);
-  await expect
-    .poll(
-      async () => (await context.cookies()).find(({ name }) => name === "analytics_consent")?.value
-    )
-    .toBe("granted");
-  await expect(page.locator('script[src*="mc.yandex.ru"]')).toHaveCount(0);
-
-  await page.getByRole("button", { name: "Cookie settings" }).click();
-  await rejectButton.click();
-  await expect
-    .poll(
-      async () => (await context.cookies()).find(({ name }) => name === "analytics_consent")?.value
-    )
-    .toBe("denied");
+test("animates the cookie close arrow on hover and keyboard focus and respects reduced motion", async ({
+  page,
+}) => {
+  await page.goto("/en/about");
+  const closeButton = page
+    .getByRole("region", { name: "Cookie notice" })
+    .getByRole("button", { name: "Close", exact: true });
+  const arrow = closeButton.locator('[aria-hidden="true"]');
+  await expect(arrow).toHaveCSS("transform", "none");
+  await closeButton.hover();
+  await expect(arrow).toHaveCSS("transform", "matrix(1, 0, 0, 1, 4, 0)");
+  await page.mouse.move(0, 0);
+  await page.keyboard.press("Tab");
+  await closeButton.focus();
+  await expect(arrow).toHaveCSS("transform", "matrix(1, 0, 0, 1, 4, 0)");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  expect(
+    await arrow.evaluate((element) => parseFloat(getComputedStyle(element).transitionDuration))
+  ).toBeLessThan(0.001);
 });
 
 test("navigates materials by keyboard only while the modal is open", async ({ page }) => {

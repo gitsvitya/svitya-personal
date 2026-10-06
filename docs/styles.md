@@ -56,7 +56,7 @@ color transition on the link.
 - Hover styling belongs inside `(hover: hover) and (pointer: fine)`. Keyboard focus gets
   the same accent/arrow treatment plus a visible focus ring.
 
-The cookie banner intentionally uses compact 14px text and rectangular buttons. Navigation
+The cookie banner intentionally uses compact 14px text and a rectangular close button with an animated arrow. Navigation
 links, card previews and round carousel controls are separate families. Their different
 shapes and typography are intentional; they share colors, target sizes and interaction rules.
 

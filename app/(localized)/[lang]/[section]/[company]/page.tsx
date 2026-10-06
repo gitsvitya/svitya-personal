@@ -6,8 +6,7 @@ import {
   SUPPORTED_LANGUAGES,
 } from "@/app/sections";
 import { notFound } from "next/navigation";
-import { buildLocalizedCompanyMetadata, getCompanyPageTitle } from "@/app/route-helpers";
-import YandexAnalytics from "@/src/components/YandexAnalytics/YandexAnalytics";
+import { buildLocalizedCompanyMetadata } from "@/app/route-helpers";
 import { COMPANIES, getCompanyBySlug, getLocalizedCompany } from "@/src/content/portfolio";
 import AppDetailPage from "@/src/components/AppDetailPage/AppDetailPage";
 import { getTranslations } from "@/src/content/ui-text";
@@ -73,14 +72,11 @@ export default async function LocalizedCompanyPage({ params }: LocalizedCompanyP
   const localizedCompany = getLocalizedCompany(company.id, language);
 
   return (
-    <>
-      <YandexAnalytics title={getCompanyPageTitle(language, localizedCompany)} />
-      <AppDetailPage
-        company={localizedCompany}
-        text={text}
-        sectionTitle={text.sections[company.section]}
-        backHref={`/${language}/${company.section}`}
-      />
-    </>
+    <AppDetailPage
+      company={localizedCompany}
+      text={text}
+      sectionTitle={text.sections[company.section]}
+      backHref={`/${language}/${company.section}`}
+    />
   );
 }

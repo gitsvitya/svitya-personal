@@ -37,7 +37,7 @@ test("keeps focused footer links above the cookie banner as its height changes",
 }) => {
   await context.clearCookies();
   await page.goto("/en/about");
-  const banner = page.getByRole("region", { name: "Cookie settings" });
+  const banner = page.getByRole("region", { name: "Cookie notice" });
   await expect(banner).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
 
@@ -60,7 +60,7 @@ test("keeps focused footer links above the cookie banner as its height changes",
       .poll(() =>
         email.evaluate((element) => {
           const link = element.getBoundingClientRect();
-          const region = document.querySelector('[aria-describedby="cookie-consent-description"]')!;
+          const region = document.querySelector('[aria-describedby="cookie-notice-description"]')!;
           const overlay = region.getBoundingClientRect();
           const hit = document.elementFromPoint(link.x + link.width / 2, link.y + link.height / 2);
           return (
@@ -71,7 +71,7 @@ test("keeps focused footer links above the cookie banner as its height changes",
       .toBe(true);
   }
 
-  await banner.getByRole("button", { name: "Essential only" }).click();
+  await banner.getByRole("button", { name: "Close", exact: true }).click();
   await expect(banner).toHaveCount(0);
   await expect(page.locator("html")).toHaveCSS("scroll-padding-bottom", "0px");
   expect(
@@ -86,7 +86,7 @@ test("returns menu focus on Escape without moving focus from the page", async ({
   page,
   baseURL,
 }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en/about");
   const menu = page.getByRole("button", { name: "Sections" });
@@ -111,7 +111,7 @@ for (const width of [320, 961, 1280]) {
     page,
     baseURL,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.setViewportSize({ width, height: 900 });
     for (const language of ["ru", "en"]) {
       for (const section of ["work", "projects", "activities"]) {
@@ -151,7 +151,7 @@ for (const theme of ["light", "dark"]) {
     baseURL,
   }) => {
     await context.addCookies([
-      { name: "analytics_consent", value: "denied", url: baseURL! },
+      { name: "cookie_notice_closed", value: "1", url: baseURL! },
       { name: "theme", value: theme, url: baseURL! },
     ]);
     await page.goto("/en/work");
@@ -196,7 +196,7 @@ test("returns from a detail page without reloading or adding browser history", a
   page,
   baseURL,
 }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
   await page.goto("/en/work");
   await page.locator('main a[href="/en/work/cheminsight"]').click();
   await expect(page).toHaveURL("/en/work/cheminsight");
@@ -246,7 +246,7 @@ test("shows centered material headings above previews in the narrow modal", asyn
   page,
   baseURL,
 }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
   await page.setViewportSize({ width: 320, height: 568 });
   await page.goto("/en/work/cheminsight");
   await page.getByRole("link", { name: "ChemInsight: Polyethylene", exact: true }).click();

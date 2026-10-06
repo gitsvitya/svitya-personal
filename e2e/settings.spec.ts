@@ -1,52 +1,58 @@
 import { expect, test } from "@playwright/test";
 
-for (const consent of [null, "denied", "granted"] as const) {
-  test(`keeps the cookie banner open across locale changes with ${consent ?? "no"} consent`, async ({
+for (const wasClosed of [false, true]) {
+  test(`keeps the cookie banner open across locale changes when previously closed: ${wasClosed}`, async ({
     context,
     page,
     baseURL,
   }) => {
     await page.setViewportSize({ width: 390, height: 900 });
-    if (consent) {
-      await context.addCookies([{ name: "analytics_consent", value: consent, url: baseURL! }]);
+    if (wasClosed) {
+      await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     }
     await page.goto("/ru/settings");
-    if (consent) {
-      await page.getByRole("button", { name: "Настройки cookie", exact: true }).click();
+    if (wasClosed) {
+      await page.getByRole("button", { name: "Показать cookie баннер", exact: true }).click();
     }
-    const banner = page.locator('[aria-describedby="cookie-consent-description"]');
+    const banner = page.locator('[aria-describedby="cookie-notice-description"]');
     await expect(banner).toBeVisible();
 
     await page.getByRole("button", { name: "Русский язык" }).click();
     await expect(page).toHaveURL(/\/en\/settings$/);
     await expect(banner).toBeVisible();
-    await expect(banner).toHaveAccessibleName("Cookie settings");
-    await expect(banner.getByRole("button", { name: "Allow all" })).toBeVisible();
+    await expect(banner).toHaveAccessibleName("Cookie notice");
+    await expect(banner.getByRole("button", { name: "Close", exact: true })).toBeVisible();
+    await expect(banner.getByRole("button")).toHaveCount(1);
 
     await page.getByRole("button", { name: "Russian language" }).click();
     await expect(page).toHaveURL(/\/ru\/settings$/);
     await expect(banner).toBeVisible();
-    await expect(banner).toHaveAccessibleName("Настройки cookie");
-    expect((await context.cookies()).find(({ name }) => name === "analytics_consent")?.value).toBe(
-      consent ?? undefined
-    );
+    await expect(banner).toHaveAccessibleName("Уведомление о cookie");
+    expect(
+      (await context.cookies()).find(({ name }) => name === "cookie_notice_closed")?.value
+    ).toBe(wasClosed ? "1" : undefined);
 
-    await banner.getByRole("button", { name: "Только обязательные" }).click();
+    await banner.getByRole("button", { name: "Закрыть", exact: true }).click();
     await expect(banner).toHaveCount(0);
     await page.getByRole("button", { name: "Русский язык" }).click();
     await expect(page).toHaveURL(/\/en\/settings$/);
     await expect(banner).toHaveCount(0);
-    expect((await context.cookies()).find(({ name }) => name === "analytics_consent")?.value).toBe(
-      "denied"
-    );
+    await page.reload();
+    await expect(banner).toHaveCount(0);
+    expect(
+      (await context.cookies()).find(({ name }) => name === "cookie_notice_closed")?.value
+    ).toBe("1");
   });
 }
 
 for (const width of [1280, 390]) {
-  test(`moves preferences into the settings tab at ${width}px`, async ({ context, page }) => {
+  test(`moves preferences into the settings tab at ${width}px`, async ({
+    context,
+    page,
+  }, testInfo) => {
     await context.addCookies([
       { name: "theme", value: "light", url: "http://127.0.0.1:3100" },
-      { name: "analytics_consent", value: "denied", url: "http://127.0.0.1:3100" },
+      { name: "cookie_notice_closed", value: "1", url: "http://127.0.0.1:3100" },
     ]);
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/en/about");
@@ -78,10 +84,14 @@ for (const width of [1280, 390]) {
       "aria-pressed",
       "true"
     );
-    await page.getByRole("button", { name: "Настройки cookie", exact: true }).click();
-    const banner = page.getByRole("region", { name: "Настройки cookie" });
+    await page.getByRole("button", { name: "Показать cookie баннер", exact: true }).click();
+    const banner = page.getByRole("region", { name: "Уведомление о cookie" });
     await expect(banner).toBeVisible();
-    await banner.getByRole("button", { name: "Только обязательные" }).click();
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+    if (width < 769) await expect(page.locator("#app-nav-list")).toHaveCSS("opacity", "0");
+    await page.screenshot({ path: testInfo.outputPath("cookie-notice-dark.png") });
+    await banner.getByRole("button", { name: "Закрыть", exact: true }).click();
     await expect(banner).toHaveCount(0);
 
     if (width < 769) await menu.click();

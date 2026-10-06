@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useTransition, type ReactNode } from "
 import { usePathname, useRouter } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { useThemePreference } from "../../hooks/useThemePreference";
-import { useCookieSettings } from "../../hooks/useCookieSettings";
+import { useCookieBanner } from "../../hooks/useCookieBanner";
 import { DEFAULT_LANGUAGE, type Language, type SectionPath } from "../../types/domain";
 import {
   buildLocalizedDetailPath,
@@ -34,7 +34,7 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
   const text = getTranslations(language);
   const { theme, setTheme } = useThemePreference("light");
   const [isPending, startTransition] = useTransition();
-  const { areCookieSettingsOpen, openCookieSettings, closeCookieSettings } = useCookieSettings();
+  const { isCookieBannerOpen, showCookieBanner, hideCookieBanner } = useCookieBanner();
 
   const navigate = useCallback(
     (href: string, options: RouteTransitionOptions = {}) => {
@@ -93,7 +93,7 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
           setTheme,
           language,
           changeLanguage,
-          openCookieSettings,
+          showCookieBanner,
         }}
       >
         <div className={styles.page}>
@@ -109,11 +109,7 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
             </div>
           </main>
           <AppFooter text={text} language={language} />
-          <CookieBanner
-            text={text}
-            forceOpen={areCookieSettingsOpen}
-            onClose={closeCookieSettings}
-          />
+          <CookieBanner text={text} forceOpen={isCookieBannerOpen} onClose={hideCookieBanner} />
         </div>
       </SitePreferencesContext.Provider>
     </RouteTransitionContext.Provider>

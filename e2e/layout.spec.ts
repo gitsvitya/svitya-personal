@@ -19,7 +19,7 @@ for (const { name, path, width, theme } of scenarios) {
     baseURL,
   }, testInfo) => {
     await context.addCookies([
-      { name: "analytics_consent", value: "denied", url: baseURL! },
+      { name: "cookie_notice_closed", value: "1", url: baseURL! },
       { name: "theme", value: theme, url: baseURL! },
     ]);
     await page.setViewportSize({ width, height: 900 });
@@ -71,7 +71,7 @@ for (const width of [320, 375, 641, 961, 1101, 1280]) {
     page,
     baseURL,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.setViewportSize({ width, height: 900 });
     let reference: { width: number; height: number } | undefined;
     for (const language of ["ru", "en"]) {

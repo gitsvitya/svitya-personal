@@ -29,7 +29,7 @@
   height: 1.3em;
 }
 .controlChanger,
-.cookieSettings {
+.cookieBannerButton {
   flex-shrink: 0;
 }
 .controlChanger {

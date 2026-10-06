@@ -7,7 +7,7 @@ import { useSitePreferences } from "../SiteShell/SitePreferencesContext";
 import styles from "./AppSettings.module.css";
 
 export default function AppSettings() {
-  const { theme, setTheme, language, changeLanguage, openCookieSettings } = useSitePreferences();
+  const { theme, setTheme, language, changeLanguage, showCookieBanner } = useSitePreferences();
   const text = getTranslations(language);
   const isDark = theme === "dark";
   const isRussian = language === "ru";
@@ -70,10 +70,10 @@ export default function AppSettings() {
           </h2>
           <button
             type="button"
-            className={`button-control ${styles.cookieSettings}`}
-            onClick={openCookieSettings}
+            className={`button-control ${styles.cookieBannerButton}`}
+            onClick={showCookieBanner}
           >
-            <span className="button-label">{text.settings.cookieSettings}</span>
+            <span className="button-label">{text.settings.showCookieBanner}</span>
           </button>
         </section>
       </div>

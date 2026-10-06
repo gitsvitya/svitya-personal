@@ -30,7 +30,7 @@ export const uiText = {
       language: "Язык",
       russianLanguage: "Русский язык",
       cookies: "Cookie",
-      cookieSettings: "Настройки cookie",
+      showCookieBanner: "Показать cookie баннер",
     },
     about: {
       title: "Виктор Строков",
@@ -40,7 +40,7 @@ export const uiText = {
       experience: "Продукты и сервисы для бизнеса",
       subtitle: "Данные, аналитика и продукты для бизнеса",
       description:
-        "Я занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Иногда запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили. Здесь рассказываю о своём опыте, идеях и творческих порывах.",
+        "Я занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Иногда запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили. Здесь рассказываю о своём опыте, идеях и творческих порывах — подробнее об этом в разделах сайта выше.",
     },
     notFound: {
       title: "Страница не найдена",
@@ -49,11 +49,9 @@ export const uiText = {
       home: "На главную",
     },
     cookieBanner: {
-      label: "Настройки cookie",
-      description:
-        "Для работы сайта нужны обязательные cookie. Аналитические помогают мне его улучшать — их можно включить по желанию.",
-      accept: "Разрешить все",
-      reject: "Только обязательные",
+      label: "Уведомление о cookie",
+      description: "Я использую только технические cookie. Без аналитики и рекламных приколов.",
+      close: "Закрыть",
     },
     detail: {
       back: "Назад",
@@ -109,7 +107,7 @@ export const uiText = {
       language: "Language",
       russianLanguage: "Russian language",
       cookies: "Cookies",
-      cookieSettings: "Cookie settings",
+      showCookieBanner: "Show cookie banner",
     },
     about: {
       title: "Victor Strokov",
@@ -119,7 +117,7 @@ export const uiText = {
       experience: "Products and services for businesses",
       subtitle: "Data, market analysis and products for businesses",
       description:
-        "I work in market analysis and develop products for businesses. Sometimes I start projects of my own, work on this website and grow chili peppers. Here I share stories about my experience, ideas and creative impulses.",
+        "I work in market analysis and develop products for businesses. Sometimes I start projects of my own, work on this website and grow chili peppers. Here I share stories about my experience, ideas and creative impulses — explore the site’s sections above to find out more.",
     },
     notFound: {
       title: "Page not found",
@@ -128,11 +126,9 @@ export const uiText = {
       home: "Back to home",
     },
     cookieBanner: {
-      label: "Cookie settings",
-      description:
-        "Essential cookies keep the site working. You can also enable analytics cookies to help me improve it.",
-      accept: "Allow all",
-      reject: "Essential only",
+      label: "Cookie notice",
+      description: "I use only functional cookies. No analytics, no ad tricks.",
+      close: "Close",
     },
     detail: {
       back: "Back",

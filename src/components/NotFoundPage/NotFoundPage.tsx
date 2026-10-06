@@ -5,7 +5,6 @@ import { getTranslations } from "../../content/ui-text";
 import { DEFAULT_LANGUAGE, type Language } from "../../types/domain";
 import { parseLocalizedPath } from "../../utils/routing";
 import TransitionLink from "../SiteShell/TransitionLink";
-import YandexAnalytics from "../YandexAnalytics/YandexAnalytics";
 import styles from "./NotFoundPage.module.css";
 
 export default function NotFoundPage({
@@ -17,7 +16,6 @@ export default function NotFoundPage({
   const text = getTranslations(language).notFound;
   return (
     <section className={`layout-container ${styles.container}`}>
-      <YandexAnalytics title={text.title} />
       <p className={styles.code}>404</p>
       <h1>{text.title}</h1>
       <p>{text.description}</p>

@@ -51,7 +51,7 @@ test("changes locale without reloading the document or losing a saved theme", as
   page.on("pageerror", (error) => errors.push(error.message));
   await context.addCookies([
     { name: "theme", value: "dark", url: origin },
-    { name: "analytics_consent", value: "denied", url: origin },
+    { name: "cookie_notice_closed", value: "1", url: origin },
   ]);
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/en/settings");
@@ -99,7 +99,7 @@ for (const width of [1280, 390]) {
     context,
     page,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
     await page.setViewportSize({ width, height: 900 });
     let release = () => {};
     const gate = new Promise<void>((resolve) => {
@@ -148,7 +148,7 @@ for (const width of [320, 1280]) {
     page,
     request,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
     await page.setViewportSize({ width, height: 844 });
     await page.goto("/ru/work/cheminsight", { waitUntil: "domcontentloaded" });
     const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
@@ -235,7 +235,7 @@ test("renders a localized themed 404 and a landscape social preview", async ({
 });
 
 test("honors reduced motion on routes and navigation", async ({ context, page }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/en/about");
   await page.locator('nav a[href="/en/work"]').click();
@@ -251,79 +251,76 @@ test("honors reduced motion on routes and navigation", async ({ context, page })
   expect(durations.menu).toBeLessThan(0.001);
 });
 
-test("records each SPA page once and stops analytics after consent is withdrawn", async ({
-  context,
-  page,
-}) => {
-  const testOrigin = "http://review.svitya.test";
-  await context.addCookies([{ name: "analytics_consent", value: "granted", url: testOrigin }]);
-  await context.route("**/*", async (route) => {
-    const url = route.request().url();
-    if (url.startsWith(`${testOrigin}/`)) {
-      const response = await route.fetch({ url: url.replace(testOrigin, origin) });
-      await route.fulfill({ response });
-    } else if (url === "https://mc.yandex.ru/metrika/tag.js") {
-      await route.fulfill({
-        contentType: "application/javascript",
-        body: "/* local analytics stub */",
-      });
-    } else await route.abort();
-  });
-  try {
-    const commands = () =>
-      page.evaluate(() => (window as Window & { ym?: { a?: unknown[][] } }).ym?.a || []);
-    const hits = async () => (await commands()).filter((command) => command[1] === "hit");
-    await page.goto(`${testOrigin}/en/about`);
-    await expect.poll(async () => (await hits()).length).toBe(1);
-    expect((await commands()).find((command) => command[1] === "init")?.[2]).toMatchObject({
-      defer: true,
-    });
-    await page.locator('nav a[href="/en/work"]').click();
-    await expect(page).toHaveURL(/\/en\/work$/);
-    await page.locator('main a[href="/en/work/cheminsight"]').click();
-    await expect(page).toHaveURL(/\/en\/work\/cheminsight$/);
-    await expect.poll(async () => (await hits()).length).toBe(3);
-    expect((await hits()).map((hit) => hit[2])).toEqual([
-      `${testOrigin}/en/about`,
-      `${testOrigin}/en/work`,
-      `${testOrigin}/en/work/cheminsight`,
+for (const legacyChoice of ["granted", "denied"]) {
+  test(`removes analytics and migrates the old ${legacyChoice} choice on a public hostname`, async ({
+    context,
+    page,
+  }) => {
+    const testOrigin = "http://review.svitya.test";
+    const externalRequests: string[] = [];
+    await context.addCookies([
+      { name: "analytics_consent", value: legacyChoice, url: testOrigin },
+      { name: "_ym_uid", value: "123456789", domain: ".svitya.test", path: "/" },
+      { name: "_ym_d", value: "123456789", url: testOrigin },
     ]);
-    expect((await hits())[2]![3]).toMatchObject({
-      title: "ChemInsight | Victor Strokov",
-      referer: `${testOrigin}/en/work`,
+    await context.route("**/*", async (route) => {
+      const url = route.request().url();
+      if (url.startsWith(`${testOrigin}/`)) {
+        const response = await route.fetch({ url: url.replace(testOrigin, origin) });
+        await route.fulfill({ response });
+      } else {
+        externalRequests.push(url);
+        await route.abort();
+      }
     });
-    await page.locator('nav a[href="/en/settings"]').click();
-    await expect(page).toHaveURL(/\/en\/settings$/);
-    await expect.poll(async () => (await hits()).length).toBe(4);
-    for (const [language, count] of [
-      ["ru", 5],
-      ["en", 6],
-    ] as const) {
-      await page.locator("#language-toggle").click();
-      await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
-      await expect.poll(async () => (await hits()).length).toBe(count);
-      expect((await hits())[count - 1]![3]).toMatchObject({
-        title: language === "ru" ? "Настройки | Виктор Строков" : "Settings | Victor Strokov",
-      });
+    async function expectNoAnalytics() {
+      await expect(page.locator('script[src*="mc.yandex"]')).toHaveCount(0);
+      expect(
+        await page.evaluate(() => "ym" in window || "__svityaYandexInitialized" in window)
+      ).toBe(false);
+      expect(externalRequests).toEqual([]);
     }
-    expect((await commands()).filter((command) => command[1] === "init")).toHaveLength(1);
-    await page.getByRole("button", { name: "Cookie settings" }).click();
-    await page.getByRole("button", { name: "Essential only" }).click();
-    await expect
-      .poll(async () => (await commands()).filter((command) => command[1] === "destruct").length)
-      .toBe(1);
-    await page.locator('nav a[href="/en/projects"]').click();
-    await expect(page).toHaveURL(/\/en\/projects$/);
-    expect(await hits()).toHaveLength(6);
-    await page.locator('nav a[href="/en/settings"]').click();
-    await expect(page).toHaveURL(/\/en\/settings$/);
-    await page.getByRole("button", { name: "Cookie settings" }).click();
-    await page.getByRole("button", { name: "Allow all" }).click();
-    await expect.poll(async () => (await hits()).length).toBe(7);
-    expect((await hits())[6]![2]).toBe(`${testOrigin}/en/settings`);
-  } finally {
-    // Assertions are complete. Let context disposal cancel background fetches;
-    // waiting here can hang on an image response until the whole test times out.
-    await context.unrouteAll({ behavior: "ignoreErrors" });
-  }
-});
+    try {
+      await page.goto(`${testOrigin}/en/about`);
+      await expect(page.getByRole("region", { name: "Cookie notice" })).toHaveCount(0);
+      await expect
+        .poll(
+          async () =>
+            (await context.cookies(testOrigin)).find(({ name }) => name === "cookie_notice_closed")
+              ?.value
+        )
+        .toBe("1");
+      expect(
+        (await context.cookies(testOrigin)).filter(
+          ({ name }) => name === "analytics_consent" || name.startsWith("_ym_")
+        )
+      ).toEqual([]);
+      await expectNoAnalytics();
+
+      await page.locator('nav a[href="/en/work"]').click();
+      await expect(page).toHaveURL(/\/en\/work$/);
+      await page.locator('main a[href="/en/work/cheminsight"]').click();
+      await expect(page).toHaveURL(/\/en\/work\/cheminsight$/);
+      await expectNoAnalytics();
+      await page.locator('nav a[href="/en/settings"]').click();
+      await expect(page).toHaveURL(/\/en\/settings$/);
+      await page.getByRole("button", { name: "Show cookie banner", exact: true }).click();
+      const banner = page.getByRole("region", { name: "Cookie notice" });
+      await expect(banner.getByRole("button")).toHaveCount(1);
+      await banner.getByRole("button", { name: "Close", exact: true }).click();
+      await expect(banner).toHaveCount(0);
+      await expectNoAnalytics();
+      for (const language of ["ru", "en"]) {
+        await page.locator("#language-toggle").click();
+        await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
+        await expectNoAnalytics();
+      }
+      await page.goto(`${testOrigin}/en/missing-page`);
+      await expect(page.locator("main h1")).toHaveText("Page not found");
+      await expectNoAnalytics();
+    } finally {
+      // Disposal cancels background fetches that may still be loading images.
+      await context.unrouteAll({ behavior: "ignoreErrors" });
+    }
+  });
+}

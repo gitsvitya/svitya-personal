@@ -1,7 +1,7 @@
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import type { AppTranslations } from "../../content/ui-text";
-import { useAnalyticsConsent } from "../../hooks/useAnalyticsConsent";
-import { setBrowserAnalyticsConsent, type AnalyticsConsent } from "../../utils/analyticsConsent";
+import { useCookieNotice } from "../../hooks/useCookieNotice";
+import { dismissCookieNotice } from "../../utils/cookieNotice";
 import styles from "./CookieBanner.module.css";
 
 type CookieBannerProps = {
@@ -14,13 +14,13 @@ const subscribeToHydration = () => () => undefined;
 
 function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
   const bannerRef = useRef<HTMLDivElement>(null);
-  const consent = useAnalyticsConsent();
+  const isClosed = useCookieNotice();
   const isHydrated = useSyncExternalStore(
     subscribeToHydration,
     () => true,
     () => false
   );
-  const isVisible = isHydrated && (consent === null || forceOpen);
+  const isVisible = isHydrated && (!isClosed || forceOpen);
 
   useEffect(() => {
     const banner = bannerRef.current;
@@ -68,10 +68,8 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
   }, [isVisible]);
 
   if (!isVisible) return null;
-  const acceptLastWordStart = text.cookieBanner.accept.lastIndexOf(" ") + 1;
-
-  function saveConsent(nextConsent: Exclude<AnalyticsConsent, null>) {
-    setBrowserAnalyticsConsent(nextConsent);
+  function closeBanner() {
+    dismissCookieNotice();
     onClose();
   }
 
@@ -81,36 +79,19 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
       className={styles.banner}
       role="region"
       aria-label={text.cookieBanner.label}
-      aria-describedby="cookie-consent-description"
+      aria-describedby="cookie-notice-description"
     >
-      <p id="cookie-consent-description" className={styles.paragraph}>
+      <p id="cookie-notice-description" className={styles.paragraph}>
         {text.cookieBanner.description}
       </p>
-      <div className={styles.actions}>
-        <button
-          type="button"
-          className={`${styles.button} ${styles.secondaryButton}`}
-          onClick={() => saveConsent("denied")}
-        >
-          <span className={`button-label ${styles.buttonText}`}>{text.cookieBanner.reject}</span>
-        </button>
-        <button
-          type="button"
-          className={`${styles.button} ${styles.acceptButton}`}
-          onClick={() => saveConsent("granted")}
-        >
-          <span className={`button-label ${styles.buttonText}`}>
-            {text.cookieBanner.accept.slice(0, acceptLastWordStart)}
-            <span className={styles.buttonEnding}>
-              {text.cookieBanner.accept.slice(acceptLastWordStart)}
-              {"\u00a0"}
-              <span className={styles.buttonArrow} aria-hidden="true">
-                →
-              </span>
-            </span>
+      <button type="button" className={styles.button} onClick={closeBanner}>
+        <span className={`button-label ${styles.buttonText}`}>
+          {text.cookieBanner.close}
+          <span className={styles.buttonArrow} aria-hidden="true">
+            →
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
   );
 }

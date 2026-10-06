@@ -7,7 +7,7 @@ for (const width of [1280, 390]) {
     context,
     page,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
     await page.setViewportSize({ width, height: 900 });
     let release = () => {};
     const gate = new Promise<void>((resolve) => {
@@ -48,58 +48,37 @@ for (const width of [1280, 390]) {
   });
 }
 
-test("synchronizes analytics consent between open tabs without focusing or navigating them", async ({
+test("synchronizes cookie notice dismissal between open tabs without focusing or navigating them", async ({
   context,
   page,
 }) => {
-  const testOrigin = "http://review.svitya.test";
-  await context.addCookies([{ name: "analytics_consent", value: "granted", url: testOrigin }]);
-  await context.route("**/*", async (route) => {
-    const url = route.request().url();
-    if (url.startsWith(`${testOrigin}/`)) {
-      const response = await route.fetch({ url: url.replace(testOrigin, origin) });
-      await route.fulfill({ response });
-    } else if (url === "https://mc.yandex.ru/metrika/tag.js") {
-      await route.fulfill({
-        contentType: "application/javascript",
-        body: "/* local analytics stub: no external requests */",
-      });
-    } else await route.abort();
-  });
-  try {
-    await page.goto(`${testOrigin}/en/about`);
-    const commands = () =>
-      page.evaluate(() => (window as Window & { ym?: { a?: unknown[][] } }).ym?.a || []);
-    const countCommands = async (name: string) =>
-      (await commands()).filter((command) => command[1] === name).length;
-    await expect.poll(() => countCommands("hit")).toBe(1);
+  await page.goto("/en/about");
+  const settings = await context.newPage();
+  await settings.goto("/en/settings");
+  const firstBanner = page.getByRole("region", { name: "Cookie notice" });
+  const secondBanner = settings.getByRole("region", { name: "Cookie notice" });
+  await expect(firstBanner).toBeVisible();
+  await expect(secondBanner).toBeVisible();
+  await secondBanner.getByRole("button", { name: "Close", exact: true }).click();
+  await expect(secondBanner).toHaveCount(0);
+  await expect(firstBanner).toHaveCount(0);
+  await expect(page).toHaveURL(`${origin}/en/about`);
 
-    const settings = await context.newPage();
-    await settings.goto(`${testOrigin}/en/settings`);
-    await settings.getByRole("button", { name: "Cookie settings" }).click();
-    await settings.getByRole("button", { name: "Essential only" }).click();
-    await expect.poll(() => countCommands("destruct")).toBe(1);
-    expect(
-      await page.evaluate(
-        () => (window as Window & { __svityaYandexInitialized?: boolean }).__svityaYandexInitialized
-      )
-    ).toBe(false);
-
-    await settings.getByRole("button", { name: "Cookie settings" }).click();
-    await settings.getByRole("button", { name: "Allow all" }).click();
-    await expect.poll(() => countCommands("init")).toBe(2);
-    await expect.poll(() => countCommands("hit")).toBe(2);
-    await expect(page).toHaveURL(`${testOrigin}/en/about`);
-  } finally {
-    await context.unrouteAll({ behavior: "ignoreErrors" });
-  }
+  await settings.getByRole("button", { name: "Show cookie banner", exact: true }).click();
+  await expect(secondBanner).toBeVisible();
+  await expect(firstBanner).toHaveCount(0);
+  await secondBanner.getByRole("button", { name: "Close", exact: true }).click();
+  await expect(secondBanner).toHaveCount(0);
+  await page.reload();
+  await expect(page.locator("main h1")).toBeVisible();
+  await expect(firstBanner).toHaveCount(0);
 });
 
 test("preserves carousel button focus across repeated keyboard activation", async ({
   context,
   page,
 }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
   await page.goto("/ru/work/cheminsight");
   const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
   await trigger.click();
@@ -132,7 +111,7 @@ for (const width of [1280, 390]) {
     context,
     page,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/ru/work/cheminsight");
     const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
@@ -168,7 +147,7 @@ test("enhances visible mobile links into a working menu after delayed hydration"
   context,
   page,
 }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: origin }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
   await page.setViewportSize({ width: 390, height: 844 });
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));

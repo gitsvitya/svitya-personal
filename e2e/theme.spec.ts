@@ -188,7 +188,7 @@ test("keeps visited navigation text accented throughout a theme change", async (
   try {
     await context.addCookies([
       { name: "theme", value: "light", url: baseURL! },
-      { name: "analytics_consent", value: "denied", url: baseURL! },
+      { name: "cookie_notice_closed", value: "1", url: baseURL! },
     ]);
     const page = await context.newPage();
     await page.goto("/ru/settings");
@@ -250,7 +250,7 @@ test("finishes rapid theme toggles and honors reduced motion", async ({ context,
   for (const reducedMotion of ["no-preference", "reduce"] as const) {
     await context.addCookies([
       { name: "theme", value: "light", url: "http://127.0.0.1:3100" },
-      { name: "analytics_consent", value: "denied", url: "http://127.0.0.1:3100" },
+      { name: "cookie_notice_closed", value: "1", url: "http://127.0.0.1:3100" },
     ]);
     await page.emulateMedia({ reducedMotion });
     await page.goto("/en/settings");

@@ -127,7 +127,7 @@ for (const language of ["ru", "en"] as const) {
     page,
     baseURL,
   }, testInfo) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${language}/projects/mappngo`);
     await expect(page.locator('main a[href^="https://www.mappngo.com"]')).toHaveCount(0);
     const previews = page.locator('main a[href^="/materials/projects/mappngo/"]');
@@ -206,7 +206,7 @@ for (const language of ["ru", "en"] as const) {
       page,
       baseURL,
     }) => {
-      await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+      await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
       await page.goto(`/${language}/${material.path}`);
       await page.locator(`main a[href="${material.href}"]`).click();
       const dialog = page.getByRole("dialog");
@@ -314,7 +314,7 @@ for (const language of ["ru", "en"] as const) {
         "https://www.reuters.com/article/markets/currencies/iron-ore-price-to-average-55t-in-2017-idUSKBN1441B7/",
       ],
     ] as const;
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${language}/work/thomsonreuters`);
     const previews = page.locator('main a[href^="/materials/work/thomsonreuters/"]');
     await expect(previews).toHaveCount(articles.length);
@@ -377,7 +377,7 @@ for (const language of ["ru", "en"] as const) {
       ["soldout", undefined],
       ["trademark-certificate-1222341", undefined],
     ] as const;
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${language}/projects/madburglarcat`);
     await expect(page.locator('main a[href^="https://madburglarcat.ru"]')).toHaveCount(0);
     const previews = page.locator('main a[href^="/materials/projects/madburglarcat/"]');
@@ -481,7 +481,7 @@ for (const language of ["ru", "en"] as const) {
     page,
     baseURL,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     for (const [width, height] of [
       [1024, 600],
       [1280, 720],
@@ -521,7 +521,7 @@ for (const language of ["ru", "en"] as const) {
     page,
     baseURL,
   }) => {
-    await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     for (const width of [320, 390]) {
       await page.setViewportSize({ width, height: 568 });
       let reference: Awaited<ReturnType<typeof measureModalLayout>> | undefined;
@@ -569,7 +569,7 @@ test("selects matching MappNgo material assets after changing the site language"
   page,
   baseURL,
 }) => {
-  await context.addCookies([{ name: "analytics_consent", value: "denied", url: baseURL! }]);
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
   let currentLanguage = "ru";
   await page.goto("/ru/projects/mappngo");
   for (const language of ["en", "ru"] as const) {

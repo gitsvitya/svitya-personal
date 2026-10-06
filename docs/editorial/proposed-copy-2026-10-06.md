@@ -14,7 +14,7 @@
 
 Данные, аналитика и продукты для бизнеса
 
-Я занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Иногда запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили. Здесь рассказываю о своём опыте, идеях и творческих порывах.
+Я занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Иногда запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили. Здесь рассказываю о своём опыте, идеях и творческих порывах — подробнее об этом в разделах сайта выше.
 
 Кнопки: **Связаться со мной** · **Скачать резюме**
 
@@ -26,7 +26,7 @@
 
 Data, market analysis and products for businesses
 
-I work in market analysis and develop products for businesses. Sometimes I start projects of my own, work on this website and grow chili peppers. Here I share stories about my experience, ideas and creative impulses.
+I work in market analysis and develop products for businesses. Sometimes I start projects of my own, work on this website and grow chili peppers. Here I share stories about my experience, ideas and creative impulses — explore the site’s sections above to find out more.
 
 Кнопки: **Contact me** · **Download CV**
 
@@ -675,7 +675,7 @@ English — **Chili-infused vodka label**: Cats, chili peppers and bright patter
 | Заголовок выбора языка       | Язык                                                                                                | Language                                                                                                    | Сохранить                                                          |
 | Переключатель русского языка | Русский язык                                                                                        | Russian language                                                                                            | Сохранить                                                          |
 | Раздел cookie                | Cookie                                                                                              | Cookies                                                                                                     | Сохранить                                                          |
-| Открытие настроек cookie     | Настройки cookie                                                                                    | Cookie settings                                                                                             | Сохранить                                                          |
+| Показ баннера cookie         | Показать cookie баннер                                                                              | Show cookie banner                                                                                          | Новая редакция                                                     |
 | Заголовок обо мне            | Виктор Строков                                                                                      | Victor Strokov                                                                                              | Сохранить                                                          |
 | Описание портрета            | Портрет Виктора Строкова                                                                            | Portrait of Victor Strokov                                                                                  | Сохранить                                                          |
 | Кнопка контакта              | Связаться со мной                                                                                   | Contact me                                                                                                  | Сохранить                                                          |
@@ -685,9 +685,8 @@ English — **Chili-infused vodka label**: Cats, chili peppers and bright patter
 | Заголовок страницы ошибки    | Страница не найдена                                                                                 | Page not found                                                                                              | Сохранить                                                          |
 | Описание страницы ошибки     | Возможно, ссылка устарела или в адресе опечатка. Вернитесь на главную, чтобы продолжить знакомство. | The link may be out of date or the address may contain a typo. Head back to the homepage to keep exploring. | Сохранить                                                          |
 | Кнопка на главную            | На главную                                                                                          | Back to home                                                                                                | Сохранить                                                          |
-| Название баннера cookie      | Настройки cookie                                                                                    | Cookie settings                                                                                             | Сохранить                                                          |
-| Разрешение всех cookie       | Разрешить все                                                                                       | Allow all                                                                                                   | Сохранить                                                          |
-| Выбор обязательных cookie    | Только обязательные                                                                                 | Essential only                                                                                              | Сохранить                                                          |
+| Название баннера cookie      | Уведомление о cookie                                                                                | Cookie notice                                                                                               | Новая редакция                                                     |
+| Закрытие баннера cookie      | Закрыть                                                                                             | Close                                                                                                       | Новая редакция                                                     |
 | Кнопка назад                 | Назад                                                                                               | Back                                                                                                        | Сохранить                                                          |
 | Переход к разделу            | Вернуться к разделу                                                                                 | Back to section                                                                                             | Сохранить                                                          |
 | Заголовок галереи            | Материалы                                                                                           | Materials                                                                                                   | Сохранить                                                          |
@@ -709,13 +708,13 @@ English — **Chili-infused vodka label**: Cats, chili peppers and bright patter
 
 **Русский**
 
-Для работы сайта нужны обязательные cookie. Аналитические помогают мне его улучшать — их можно включить по желанию.
+Я использую только технические cookie. Без аналитики и рекламных приколов.
 
 **English**
 
-Essential cookies keep the site working. You can also enable analytics cookies to help me improve it.
+I use only functional cookies. No analytics, no ad tricks.
 
-В обоих языках выбор сохраняет прежний смысл: обязательные cookie либо все, включая аналитические.
+Баннер сообщает только о технических cookie. Кнопка «Закрыть» / Close сохраняет закрытие, а «Показать cookie баннер» / Show cookie banner в настройках открывает его снова.
 
 ### Контакты и название сайта
 
@@ -773,7 +772,7 @@ Growing chili peppers and building Svitya.com: Victor Strokov’s interests beyo
 
 **English: Settings | Victor Strokov**
 
-Site appearance, language and cookie preferences.
+Site appearance, language and cookie notice.
 
 ## Что сохранено при внесении
 

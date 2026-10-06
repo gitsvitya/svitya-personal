@@ -97,7 +97,7 @@ const PAGE_COPY: PageCopyMap = {
   en: {
     settings: {
       title: "Settings | Victor Strokov",
-      description: "Site appearance, language and cookie preferences.",
+      description: "Site appearance, language and cookie notice.",
     },
     about: {
       title: "About | Victor Strokov",
