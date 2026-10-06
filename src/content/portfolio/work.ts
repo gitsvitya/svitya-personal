@@ -122,8 +122,8 @@ export const WORK_COMPANIES = {
             en: "Feed grade methionine",
           },
           description: {
-            ru: "Образец информационного бюллетеня ХимИнсайт о рынке кормового метионина. Выходит два раза в месяц.",
-            en: "A sample of ChemInsight’s information bulletin on the feed-grade methionine market. It is published twice a month.",
+            ru: "Образец информационного бюллетеня ХимИнсайт о рынке кормового метионина. Выходит 2 раза в месяц.",
+            en: "A sample of ChemInsight’s information bulletin on the feed-grade methionine market. It is published 2 times a month.",
           },
         },
         {
@@ -203,18 +203,18 @@ export const WORK_COMPANIES = {
         name: "ХимИнсайт",
         title: "Внештатный консультант",
         about:
-          "Независимое ценовое агентство, специализирующееся на экспертной оценке рынка нефтегазохимии.",
+          "Независимое ценовое агентство, выпускающее данные и аналитику о рынках нефтегазохимии для корпоративных клиентов.",
         results:
-          "Запускаю и развиваю платные B2B-информационные продукты. Моделирую и визуализирую бизнес-процессы с предложениями по их оптимизации. Организую и координирую взаимодействие между экспертами, редакторами и дизайнерами для достижения эффективных результатов.",
+          "Вывел на рынок 7 платных информационных бюллетеней с суммарным охватом 10+ B2B-клиентов. Совместно с коллегами организовал регулярный выпуск и описал процессы подготовки материалов. Продолжаю развивать продукты на основе обратной связи клиентов. Ниже представлены образцы всех 7 бюллетеней.",
       },
       en: {
         year: "2025 → present",
         name: "ChemInsight",
-        title: "Freelance consultant",
+        title: "Independent Consultant",
         about:
-          "An independent pricing agency specializing in expert assessment of the petrochemical market.",
+          "An independent price reporting agency providing petrochemical market data and analysis to business clients.",
         results:
-          "Launching and developing paid B2B information products. Modeling and visualizing business processes with optimization proposals. Organizing and coordinating collaboration between experts, editors, and designers to achieve efficient results.",
+          "Launched 7 paid information bulletins serving 10+ B2B clients in total. Working with colleagues, established regular publication and documented production workflows. Continue to develop the products using client feedback. Samples of all 7 bulletins are available below.",
       },
     },
   },
@@ -350,17 +350,19 @@ export const WORK_COMPANIES = {
         year: "2021 → 2024",
         name: "Национальная товарная биржа",
         title: "Руководитель направления методологии",
-        about: "Дочерняя структура Московской биржи, специализирующаяся на товарных направлениях.",
+        about:
+          "Биржа в составе группы Московской биржи. Моя зона ответственности — ценовые индикаторы, информационные продукты и развитие товарных аукционов.",
         results:
-          "Запускал ценовые индикаторы и B2B-информационные продукты. Развивал торги на товарных аукционах. Координировал разработку и внедрение frontend-системы автоматизации обработки заявок для биржевых торгов.",
+          "Запустил 10+ ценовых индикаторов для российского АПК и 2 платных информационных продукта с охватом 30+ B2B-клиентов. В период работы число участников товарных аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов — до 50+. При моём участии внедрена фронтенд-система автоматизации обработки заявок на товарных аукционах; после её внедрения число заявок выросло более чем в 2 раза. Ниже представлены последние версии методик, над которыми я работал, и пример аналитического дашборда.",
       },
       en: {
         year: "2021 → 2024",
         name: "National Mercantile Exchange",
         title: "Head of Methodology",
-        about: "A subsidiary of the Moscow Exchange specializing in commodity markets.",
+        about:
+          "Part of Moscow Exchange Group. My remit covered price indicators, information products and the development of commodity auctions.",
         results:
-          "Launched price indicators and B2B information products. Developed trading activities on commodity auctions. Coordinated the development and implementation of a frontend system for automating bid processing for exchange trading.",
+          "Launched 10+ agribusiness price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+ participants, the product range expanded to 200+ items and the number of delivery locations reached 50+. Contributed to the implementation of a frontend system for commodity auction bid processing; the number of bids increased more than 2-fold following its introduction. The materials below include the latest versions of methodologies I worked on and a sample analytics dashboard.",
       },
     },
   },
@@ -375,20 +377,20 @@ export const WORK_COMPANIES = {
       ru: {
         year: "2020 → 2021",
         name: "Лукойл-РНП-Трейдинг",
-        title: "Ведущий специалист",
+        title: "Ведущий специалист отдела развития бизнеса",
         about:
-          "Дочерняя структура Лукойла, специализирующаяся на оптовой и мелкооптовой продаже нефти, нефтепродуктов и нефтехимической продукции, в том числе через электронные торговые площадки.",
+          "Торговая компания группы Лукойл: оптовая и мелкооптовая продажа нефти, нефтепродуктов и нефтехимической продукции, в том числе через электронные площадки.",
         results:
-          "Координировал маркетинговые проекты, готовил аналитические материалы. Участвовал в формировании стратегии развития новых направлений сбыта компании. Обеспечивал сопровождение коммерческой деятельности, выявлял потенциальные риски.",
+          "Внедрена система, позволяющая сравнивать сделки на сопоставимых условиях и учитывать цены, логистику и другие затраты при выборе коммерческих решений.",
       },
       en: {
         year: "2020 → 2021",
         name: "Lukoil-RNP-Trading",
-        title: "Leading Specialist",
+        title: "Leading Specialist, Business Development",
         about:
-          "A Lukoil subsidiary specializing in wholesale and small-lot sales of crude oil, petroleum products and petrochemicals, including through electronic trading platforms.",
+          "A Lukoil trading company handling wholesale and small-lot sales of crude oil, petroleum products and petrochemicals, including through electronic platforms.",
         results:
-          "Coordinated marketing projects and prepared analytical materials. Participated in shaping the strategy for developing new sales channels. Supported commercial operations and identified potential risks.",
+          "Implemented a system for comparing deals on a consistent basis, taking prices, logistics and other costs into account when making commercial decisions.",
       },
     },
   },
@@ -405,18 +407,18 @@ export const WORK_COMPANIES = {
         name: "Концерн Калашников",
         title: "Менеджер по маркетинговым исследованиям",
         about:
-          "Флагман российской стрелковой отрасли, производитель промышленного, медицинского и специализированного оборудования.",
+          "Промышленная группа. Работал с гражданскими рынками в составе отдела продуктового маркетинга.",
         results:
-          "Работал с гражданскими рынками. Сформировал и развивал систему маркетинговых исследований для отдела продуктового маркетинга. Интегрировал систему бизнес-аналитики. Принимал участие в создании B2B-продуктов.",
+          "Сформировал систему исследований и аналитики для отдела продуктового маркетинга, внедрил BI для сопоставления рыночных данных и оценки коммерческих перспектив. Участвовал в разработке новых B2B-продуктов.",
       },
       en: {
         year: "2018 → 2019",
         name: "Kalashnikov Group",
         title: "Marketing Research Manager",
         about:
-          "A leading company of the Russian arms industry and a manufacturer of industrial, medical, and specialized equipment.",
+          "An industrial group. Worked on civilian markets within the product marketing department.",
         results:
-          "Worked with civilian markets. Built and developed a marketing research system for the product marketing department. Integrated a business analytics system. Participated in the creation of B2B products.",
+          "Built a research and analytics system for the product marketing department and integrated BI to compare market data and assess commercial opportunities. Contributed to the development of new B2B products.",
       },
     },
   },
@@ -563,18 +565,18 @@ export const WORK_COMPANIES = {
         name: "Thomson Reuters",
         title: "Аналитик рынков",
         about:
-          "Международная медиагруппа, в период моей работы включавшая информационное агентство Reuters и платформу Thomson Reuters Eikon для мониторинга и анализа товарных и финансовых рынков.",
+          "В период моей работы компания включала агентство Reuters и терминал Eikon для анализа товарных и финансовых рынков.",
         results:
-          "Прошёл путь от стажёра до аналитика товарно-сырьевых рынков (нефть и газ, металлургия), написав более тысячи материалов - новостей, разборов и аналитических статей, - которые прочитали более двадцати тысяч человек. Также занимался разработкой информационных продуктов и аналитических дашбордов. Проводил мастер-классы для клиентов.",
+          "1 из разработанных информационных продуктов привлёк 3 B2B-клиентов. Подготовил 1 000+ публикаций с охватом 20 000+ читателей. Вырос от стажёра до аналитика рынков. Для каждого примера публикации ниже указан мой вклад в её подготовку.",
       },
       en: {
         year: "2014 → 2018",
         name: "Thomson Reuters",
         title: "Market Analyst",
         about:
-          "An international media group that, during my time there, included the Reuters news agency and the Thomson Reuters Eikon platform for monitoring and analyzing commodity and financial markets.",
+          "During my time at the company, its businesses included Reuters and the Eikon platform for commodity and financial market analysis.",
         results:
-          "Progressed from intern to commodity markets analyst (oil and gas, metallurgy), authoring over one thousand pieces - including news articles, market overviews, and analytical reports - read by more than twenty thousand people. Also involved in the development of information products and analytical dashboards. Conducted client workshops.",
+          "1 of the information products I developed attracted 3 B2B clients. Prepared 1,000+ publications reaching 20,000+ readers. Progressed from intern to market analyst. Each publication sample below specifies my contribution.",
       },
     },
   },

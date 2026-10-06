@@ -68,24 +68,24 @@ export const ACTIVITY_COMPANIES = {
         name: "Stroke Off",
         title: "Главный чиливар",
         about:
-          "Бренд, под которым я объединяю свою домашнюю продукцию из перцев чили, которую делаю для себя и друзей — на некоммерческой основе.",
+          "Домашнее хобби: выращивание перцев чили и приготовление острой продукции для себя и друзей на некоммерческой основе.",
         results:
-          "В 2020 году я посадил у себя дома несколько различных сортов острого перца чили, включая одного из лидеров по жгучести — Каролину рипер. Перцы успешно выросли и начали плодоносить. По мере созревания урожая я готовлю из них различную острую продукцию под брендом Stroke Off.",
+          "В 2020 году посадил дома несколько сортов чили, включая Каролину рипер. Из выращенных перцев готовлю соусы, чили-масло и перцовку; с 2021 года объединяю их под названием Stroke Off.",
         resultsList: {
-          intro: "Особенно удачно получились:",
+          intro: "Что готовлю",
           items: ["Перцовка", "Тайский сладкий чили", "Чили-масло"],
         },
       },
       en: {
         year: "2021 → present",
         name: "Stroke Off",
-        title: "Chief chili maker",
+        title: "Chief Chili Maker",
         about:
-          "A personal brand for my homemade chili-based products, made for myself and friends — on a non-commercial basis.",
+          "A non-commercial hobby: growing chili peppers and making spicy products for myself and friends.",
         results:
-          "In 2020, I planted several varieties of hot chili peppers at home, including one of the hottest varieties — the Carolina Reaper. The peppers grew successfully and began to bear fruit. As the harvest ripens, I produce various spicy products under the Stroke Off brand.",
+          "Started growing several chili varieties at home in 2020, including Carolina Reaper. Use the harvest to make sauces, chili oil and chili-infused vodka, brought together under the Stroke Off name since 2021.",
         resultsList: {
-          intro: "The highlights:",
+          intro: "What I make",
           items: ["Chili-infused vodka", "Thai sweet chili sauce", "Chili oil"],
         },
       },
@@ -102,18 +102,18 @@ export const ACTIVITY_COMPANIES = {
       ru: {
         year: "2019 → настоящее время",
         name: "Svitya.com",
-        title: "На все руки мастер",
+        title: "Автор и разработчик сайта",
         about:
-          "С 2019 года развиваю Svitya.com: делюсь опытом, рассказываю о проектах и увлечениях, пробую новые технологии. Начинал с простой страницы на HTML и CSS, позже добавил JavaScript, затем переписал сайт на React и перешёл на Next.js.",
+          "Личный сайт-портфолио и практический проект по веб-разработке. С 2019 года развиваю его от простой страницы до двуязычного сайта на Next.js.",
         results:
-          "Сам продумываю, как сайт будет выглядеть и работать, пишу код и готовлю контент на русском и английском. Постепенно делаю его удобнее: улучшаю навигацию, адаптирую страницы под разные устройства и проверяю изменения автоматическими тестами.",
+          "Отвечаю за содержание, интерфейс и разработку сайта на русском и английском. Работаю с React, Next.js и TypeScript: развиваю навигацию, адаптирую страницы под разные устройства и проверяю изменения автоматическими тестами.",
         resultsList: {
           intro: "Как развивался сайт",
           items: [
-            "2019: собрал первую версию — одну страницу на HTML и CSS.",
-            "2021: добавил JavaScript, чтобы сделать сайт интерактивным.",
+            "2019: первая страница на HTML и CSS.",
+            "2021: добавил интерактивность на JavaScript.",
             "2023: переписал сайт на React.",
-            "2024: добавил карточки и подробные рассказы об опыте, проектах и увлечениях.",
+            "2024: добавил карточки и подробные описания опыта, проектов и увлечений.",
             "2026: перешёл на Next.js и TypeScript, обновил дизайн, добавил отдельные страницы и галереи материалов.",
           ],
         },
@@ -121,19 +121,19 @@ export const ACTIVITY_COMPANIES = {
       en: {
         year: "2019 → present",
         name: "Svitya.com",
-        title: "Jack of all trades",
+        title: "Website Creator and Developer",
         about:
-          "Since 2019, I’ve been developing Svitya.com to share my experience, projects and interests, and try out new technologies. I started with a simple HTML and CSS page, later added JavaScript, then rebuilt the website with React and moved to Next.js.",
+          "My personal portfolio and a practical web development project. Since 2019, it has evolved from a simple page into a bilingual Next.js website.",
         results:
-          "I shape how the website looks and works, write the code and create content in Russian and English. I keep making it easier to explore by improving navigation, adapting pages to different devices and checking changes with automated tests.",
+          "Responsible for content, interface design and development in Russian and English. Work with React, Next.js and TypeScript to improve navigation, adapt pages to different devices and check changes with automated tests.",
         resultsList: {
           intro: "How the website evolved",
           items: [
-            "2019: I built the first version — a single HTML and CSS page.",
-            "2021: I added JavaScript to make the website interactive.",
-            "2023: I rebuilt the website with React.",
-            "2024: I added cards and fuller stories about my experience, projects and interests.",
-            "2026: I moved to Next.js and TypeScript, refreshed the design and added dedicated pages and material galleries.",
+            "2019: built the first page with HTML and CSS.",
+            "2021: added JavaScript interactions.",
+            "2023: rebuilt the website with React.",
+            "2024: added cards and detailed descriptions of work, projects and interests.",
+            "2026: moved to Next.js and TypeScript, refreshed the design and added dedicated pages and material galleries.",
           ],
         },
       },

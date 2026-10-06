@@ -9,7 +9,16 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   title: "Виктор Строков",
   description: aboutCopy.subtitle,
-  keywords: ["Виктор Строков", "Витя Строков", "Строков", "менеджер проектов", "менеджер продукта"],
+  keywords: [
+    "Виктор Строков",
+    "Витя Строков",
+    "Строков",
+    "руководитель направления",
+    "развитие бизнеса",
+    "B2B",
+    "информационные продукты",
+    "аналитика рынков",
+  ],
   robots: {
     index: true,
     follow: true,

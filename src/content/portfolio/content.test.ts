@@ -191,14 +191,14 @@ describe("portfolio content", () => {
     expect(russian.map((material) => material.title)).toEqual([
       "Тестовые экраны",
       "Шаблон наклеек",
-      "Главная страница сайта",
-      "FAQ Сайта",
+      "Архивная главная страница",
+      "Архивный FAQ сайта",
     ]);
     expect(english.map((material) => material.title)).toEqual([
       "Test screens",
       "Sticker template",
-      "Website homepage",
-      "Website FAQ",
+      "Archived website homepage",
+      "Archived website FAQ",
     ]);
   });
 });

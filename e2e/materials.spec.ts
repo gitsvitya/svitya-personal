@@ -62,13 +62,13 @@ const mappngoMaterials = {
       url: undefined,
     },
     {
-      title: "Главная страница сайта",
+      title: "Архивная главная страница",
       file: "homepage-ru.pdf",
       image: "homepage-ru-preview",
       url: "https://www.mappngo.com/",
     },
     {
-      title: "FAQ Сайта",
+      title: "Архивный FAQ сайта",
       file: "faq-ru.pdf",
       image: "faq-ru-preview",
       url: "https://www.mappngo.com/faq/",
@@ -88,13 +88,13 @@ const mappngoMaterials = {
       url: undefined,
     },
     {
-      title: "Website homepage",
+      title: "Archived website homepage",
       file: "homepage-en.pdf",
       image: "homepage-en-preview",
       url: "https://www.mappngo.com/en/",
     },
     {
-      title: "Website FAQ",
+      title: "Archived website FAQ",
       file: "faq-en.pdf",
       image: "faq-en-preview",
       url: "https://www.mappngo.com/en/faq/",

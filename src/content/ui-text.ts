@@ -37,10 +37,10 @@ export const uiText = {
       portraitAlt: "Портрет Виктора Строкова",
       contact: "Связаться со мной",
       cv: "Скачать CV",
-      experience: "Более 10 лет в продукте, проектах и аналитике",
-      subtitle: "Исследую рынки, запускаю продукты и развиваю проекты",
+      experience: "Развитие B2B-направлений и отраслевых сервисов",
+      subtitle: "B2B-направления, данные и аналитика",
       description:
-        "Создаю информационные и цифровые продукты с опорой на потребности клиентов и понимание рынка. Выстраиваю процессы и объединяю команды, чтобы доводить идеи до запуска и развивать продукты дальше. Работал в международных и российских компаниях, развиваю собственные проекты. Открыт к новым задачам и сотрудничеству.",
+        "Развиваю B2B-направления с опорой на отраслевые данные и потребности корпоративных клиентов. Сейчас запускаю и развиваю платные отраслевые бюллетени — уже вывел на рынок 7. Ранее запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов, координировал внедрение фронтенд-системы для аукционов и разработал систему оценки сделок для коммерческих решений. Рассматриваю роли руководителя B2B-направления.",
     },
     notFound: {
       title: "Страница не найдена",
@@ -116,10 +116,10 @@ export const uiText = {
       portraitAlt: "Portrait of Victor Strokov",
       contact: "Contact me",
       cv: "Download CV",
-      experience: "10+ years in products, projects and analytics",
-      subtitle: "I research markets, launch products and lead projects",
+      experience: "B2B business development and industry services",
+      subtitle: "B2B business development, data and market analytics",
       description:
-        "I create information and digital products around client needs and market insights. I organise workflows and bring teams together to take ideas through launch and keep developing the products. I’ve worked in international and Russian companies and continue to develop my own projects. I’m open to new challenges and collaboration.",
+        "I work in B2B business development, combining industry data with corporate client research. I currently launch and develop paid market bulletins, with 7 brought to market so far. Previously, I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients, coordinated a frontend system for auction bid processing and developed a deal evaluation system to support commercial decisions. I am seeking B2B business leadership roles.",
     },
     notFound: {
       title: "Page not found",

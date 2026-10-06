@@ -160,18 +160,18 @@ export const PROJECT_COMPANIES = {
         name: "Mad Burglar Cat",
         title: "Основатель",
         about:
-          "Авторский e-commerce-проект по производству и дистрибуции уникальных изделий через онлайн-платформу.",
+          "Авторский проект одежды и текстиля для дома с интернет-магазином. Трансформировался из формата с полноценной командой в небольшое хобби-производство.",
         results:
-          "Запустил проект с нуля и выстроил полный цикл обработки заказов. Формирую видение дальнейшего стратегического развития и вывожу на рынок продукты авторской разработки и изготовления. Координирую работу небольшой команды на аутсорсе, которая помогает с производством контента, разработкой дизайна и обработкой заказов.",
+          "За время проекта вывел на рынок 10+ товарных позиций и обеспечил полный цикл обработки 100+ заказов. Проект трансформировался из формата с полноценной командой в небольшое хобби-производство.",
       },
       en: {
         year: "2024 → present",
         name: "Mad Burglar Cat",
         title: "Founder",
         about:
-          "An author-driven e-commerce project focused on producing and distributing unique products via an online platform.",
+          "A personal apparel and home textiles project with an online store. Previously run with a full team, it has since transformed into small-scale hobby production.",
         results:
-          "Launched the project from scratch and built the full order processing cycle. Defined the vision for further strategic development and brought original, self-designed products to market. Coordinated a small outsourced team supporting content production, design development, and order processing.",
+          "Brought 10+ products to market and managed the full processing cycle for 100+ orders over the course of the project. Previously run with a full team, the project has since transformed into small-scale hobby production.",
       },
     },
   },
@@ -244,10 +244,10 @@ export const PROJECT_COMPANIES = {
               url: "https://www.mappngo.com/en/",
             },
           },
-          title: { ru: "Главная страница сайта", en: "Website homepage" },
+          title: { ru: "Архивная главная страница", en: "Archived website homepage" },
           description: {
-            ru: "Главная страница сайта с подробным описанием проекта и наглядным представлением приложения и его функций.",
-            en: "The website’s main page with a detailed project overview and visuals showing the app and its features.",
+            ru: "Архивная промостраница тестового MVP. Описание приложения и его функций отражает концепцию проекта до закрытия в 2020 году.",
+            en: "An archived promotional page for the tested MVP, showing the app concept and features before the project closed in 2020.",
           },
         },
         {
@@ -266,10 +266,10 @@ export const PROJECT_COMPANIES = {
               url: "https://www.mappngo.com/en/faq/",
             },
           },
-          title: { ru: "FAQ Сайта", en: "Website FAQ" },
+          title: { ru: "Архивный FAQ сайта", en: "Archived website FAQ" },
           description: {
-            ru: "Раздел сайта с ответами на самые частые вопросы о проекте и использовании приложения.",
-            en: "A website section with answers to common questions about the project and using the app.",
+            ru: "Архивный FAQ, подготовленный для проекта. Упоминания запуска и App Store в архивных материалах относятся к планам: приложение осталось на стадии тестирования MVP.",
+            en: "An archived FAQ prepared for the project. References to launch and the App Store in archived materials describe plans; the app remained a tested MVP.",
           },
         },
       ],
@@ -280,18 +280,18 @@ export const PROJECT_COMPANIES = {
         name: "MappNgo",
         title: "Основатель",
         about:
-          "Приложение для iOS, которое помогало находить интересные городские маршруты для пеших прогулок в форматах B2C и C2C.",
+          "Проект iOS-приложения для поиска, создания и обмена городскими пешими маршрутами. Доведён до тестового MVP.",
         results:
-          "Придумал и разработал концепцию проекта, сформировал его стратегию и видение. Организовал команду на аутсорсе для полного цикла разработки и дизайна продукта. Провёл полноценное первичное тестирование на нескольких фокус-группах знакомых. Довёл проект до стадии MVP для iOS, но в 2020 году его пришлось закрыть из-за карантина, введённого во время пандемии COVID-19.",
+          "Разработан и протестирован MVP для iOS. До публичного запуска проект не дошёл: в 2020 году его закрыли на фоне ограничений во время пандемии COVID-19. Ниже представлены тестовые экраны и архивные материалы проекта.",
       },
       en: {
         year: "2019 → 2020",
         name: "MappNgo",
         title: "Founder",
         about:
-          "An iOS application that helped users discover interesting urban walking routes in B2C and C2C formats.",
+          "An iOS app project for finding, creating and sharing urban walking routes, developed to a tested MVP.",
         results:
-          "Conceived and developed the project concept, strategy and vision. Assembled an outsourced team to support the full product development and design cycle. Conducted comprehensive initial product testing with several focus groups from my personal network. Brought the iOS project to the MVP stage, but it had to close in 2020 due to lockdown measures introduced during the COVID-19 pandemic.",
+          "Developed and tested an iOS MVP. The project closed in 2020 amid COVID-19 restrictions before a public launch. Test screens and archived project materials are available below.",
       },
     },
   },
@@ -359,18 +359,18 @@ export const PROJECT_COMPANIES = {
         name: "Venivi",
         title: "Сооснователь",
         about:
-          "Конкурсная площадка, где рекламодатели проводили конкурсы и розыгрыши для привлечения аудитории.",
+          "Площадка, на которой рекламодатели привлекали аудиторию через конкурсы, розыгрыши и киберспортивные турниры.",
         results:
-          "Отвечал за разработку продукта и привлечение клиентов. Проект просуществовал чуть меньше года, но за это время на площадке было проведено не менее десятка розыгрышей и локальных киберспортивных турниров, а MAU достигал 7 000 пользователей. Проект закрылся на фоне ужесточения правил проведения конкурсов в социальной сети VK.com, из группы которой поступал основной трафик.",
+          "За неполный год площадка привлекла 30+ B2B-клиентов. Проведено 10+ мероприятий, включая 3 киберспортивных турнира с 300+ участниками. Аудитория достигала около 1 000 DAU и 7 000 MAU; удержание на 30-й день составляло 16%. В 2014 году проект закрыли после ужесточения правил проведения конкурсов в VK.com, откуда поступал основной трафик.",
       },
       en: {
         year: "2013 → 2014",
         name: "Venivi",
         title: "Co-founder",
         about:
-          "A promotional platform where advertisers ran contests and giveaways to attract audiences.",
+          "A platform where advertisers attracted audiences through contests, giveaways and esports tournaments.",
         results:
-          "Was responsible for product development and client acquisition. The project existed for just under a year, during which at least ten giveaways and local esports tournaments were held, and MAU reached 7,000 users. The project was closed following stricter contest regulations on the VK.com social network, which was the main traffic source.",
+          "Attracted 30+ B2B clients in under a year. Hosted 10+ events, including 3 esports tournaments with 300+ participants. The audience reached approximately 1,000 daily and 7,000 monthly active users, with 16% day-30 retention. The project closed in 2014 after VK.com tightened contest rules, affecting its main source of traffic.",
       },
     },
   },
