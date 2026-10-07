@@ -19,11 +19,11 @@
 # generated assets
 /output/
 
-# local assistant files and editorial drafts
+# local assistant files and documentation
 /.codex/
 /.claude/
 /.cursor/
-/docs/editorial/
+/docs/
 
 # misc
 .DS_Store
