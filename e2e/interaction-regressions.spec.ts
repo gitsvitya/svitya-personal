@@ -116,10 +116,7 @@ for (const width of [1280, 390]) {
     await page.goto("/ru/work/cheminsight");
     const trigger = page.getByRole("link", { name: "ХимИнсайт: Полиэтилен", exact: true });
     const dialog = page.getByRole("dialog");
-    for (const target of [
-      trigger.getByText("Полиэтилен", { exact: true }),
-      trigger.getByText("→"),
-    ]) {
+    for (const target of [trigger.getByText("Полиэтилен"), trigger.getByText("→")]) {
       await target.click();
       await expect(dialog).toHaveAccessibleName("Полиэтилен");
       await expect(dialog.getByRole("button", { name: "Закрыть окно" })).toBeFocused();
