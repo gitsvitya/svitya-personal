@@ -30,19 +30,6 @@ function AppFooter({ text, language }: AppFooterProps) {
                     <span className={styles.linkText}>Telegram</span>
                   </a>
                 </li>
-                {/* Instagram is temporarily hidden. Restore together with the Meta disclaimer.
-                <li className={styles.navigationListItem}>
-                  <a
-                    className={styles.link}
-                    href="https://www.instagram.com/vitya.strokov"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    <AppIcon name="instagram" className={styles.linkPic} />
-                    <span className={styles.linkText}>Instagram*</span>
-                  </a>
-                </li>
-                */}
                 <li className={styles.navigationListItem}>
                   <a className={styles.link} href="mailto:strokov.victor@gmail.com">
                     <AppIcon name="email" className={styles.linkPic} />
@@ -63,9 +50,6 @@ function AppFooter({ text, language }: AppFooterProps) {
               </ul>
             </div>
           </div>
-          {/* Restore together with the Instagram link.
-          <span className={styles.metaDisclaimer}>{text.footer.metaDisclaimer}</span>
-          */}
         </div>
         <span className={styles.year}>{currentYear}</span>
       </div>

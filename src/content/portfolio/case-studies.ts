@@ -1,7 +1,6 @@
 import type { CompanyId, Language } from "../../types/domain";
 import type { CaseStudy } from "./types";
 
-// Based on the portfolio, supplied CVs and facts confirmed by the author.
 export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>>> = {
   CI: {
     ru: {

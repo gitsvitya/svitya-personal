@@ -118,7 +118,6 @@ for (const width of [320, 375, 641, 961, 1101, 1280]) {
         reference ??= cards[0]!;
         for (const card of cards) {
           expect(card.contentFits, `${path}: full card content`).toBe(true);
-          // Keep the same reference when changing sections and languages.
           expect(Math.abs(card.width - reference.width), `${path}: card width`).toBeLessThan(1);
           expect(Math.abs(card.height - reference.height), `${path}: card height`).toBeLessThan(1);
         }
