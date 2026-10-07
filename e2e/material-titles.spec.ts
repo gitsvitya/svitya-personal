@@ -49,9 +49,14 @@ for (const language of ["ru", "en"] as const) {
               const arrowRange = document.createRange();
               arrowRange.selectNodeContents(arrow);
               const arrowBounds = arrowRange.getBoundingClientRect();
+              // Fallback glyphs have different font metrics on Linux and macOS.
+              // Overlapping text bounds detect a shared line without comparing their tops.
+              const verticalOverlap =
+                Math.min(arrowBounds.bottom, character.bottom) -
+                Math.max(arrowBounds.top, character.top);
               return {
                 title: link.getAttribute("aria-label"),
-                lineOffset: Math.abs(arrowBounds.top - character.top),
+                lineOverlap: verticalOverlap / Math.min(arrowBounds.height, character.height),
                 gap: arrowBounds.left - character.right,
                 overflow: arrowBounds.right - title.getBoundingClientRect().right,
               };
@@ -60,7 +65,7 @@ for (const language of ["ru", "en"] as const) {
         expect(measurements.length).toBeGreaterThan(0);
         for (const measurement of measurements) {
           const label = `${width}px: ${measurement.title}`;
-          expect(measurement.lineOffset, label).toBeLessThanOrEqual(1);
+          expect(measurement.lineOverlap, label).toBeGreaterThanOrEqual(0.5);
           expect(measurement.gap, label).toBeGreaterThanOrEqual(0);
           expect(measurement.gap, label).toBeLessThanOrEqual(12);
           expect(measurement.overflow, label).toBeLessThanOrEqual(1);

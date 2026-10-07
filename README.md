@@ -72,6 +72,10 @@ npm run format              # format source files
 
 The build copies `public/` and `.next/static/` into `.next/standalone/`. Deploy that directory
 as a unit and run `node server.js` inside it, with `PORT` and `HOSTNAME` set for your host.
+For publishing to Sprinthost shared hosting, see the Russian
+[build and deployment guide](docs/deploy-sprinthost.md).
+For a Sprintbox VPS running Ubuntu 24.04, see the separate
+[VPS deployment guide](docs/deploy-sprintbox.md).
 The CI workflow checks the code, builds production, and tests Chromium, Firefox, and WebKit.
 Theme checks also run in Google Chrome, including a pixel comparison in a temporary profile
 with visited-link history, since computed styles hide visited-link paint differences.
