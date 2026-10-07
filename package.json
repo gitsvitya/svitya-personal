@@ -24,6 +24,8 @@
     "start": "node .next/standalone/server.js",
     "typecheck": "next typegen && tsc --noEmit",
     "validate:content": "vitest run src/content/portfolio/content.test.ts",
+    "optimize:pdfs": "python3 scripts/optimize-pdfs.py",
+    "update:downloads": "node scripts/update-downloads.mjs",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

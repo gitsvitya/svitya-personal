@@ -1,4 +1,5 @@
-import { readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -6,7 +7,7 @@ import { COMPANY_IDS, LANGUAGES } from "../../types/domain";
 import { COMPANIES, getLocalizedCompany } from "./registry";
 import { CASE_STUDIES } from "./case-studies";
 import downloadNames from "../downloads.json";
-import { getDownloadFilename } from "../../utils/downloads";
+import { getDownloadFile, getDownloadFilename } from "../../utils/downloads";
 
 const PUBLIC_DIRECTORY = join(process.cwd(), "public");
 
@@ -159,13 +160,40 @@ describe("portfolio content", () => {
       .filter((path) => /\.(pdf|docx)$/.test(path))
       .map((path) => `/${path}`);
     expect(Object.keys(downloadNames).sort()).toEqual(publicDocuments.sort());
-    expect(new Set(Object.values(downloadNames)).size).toBe(publicDocuments.length);
-    for (const [path, filename] of Object.entries(downloadNames)) {
+    expect(new Set(Object.values(downloadNames).map((file) => file.filename)).size).toBe(
+      publicDocuments.length
+    );
+    for (const [path, { filename, sizeBytes }] of Object.entries(downloadNames)) {
       expect(filename).toMatch(
-        /^[А-Яа-яЁё0-9 .-]+ - [А-Яа-яЁё0-9 .-]+ - (Русский|Английский)\.(pdf|docx)$/
+        /^[А-Яа-яЁё0-9 .-]+ - [А-Яа-яЁё0-9 .-]+ - (Русский|Английский)( - Оригинал)?\.(pdf|docx)$/
       );
       expect(filename.split(".").at(-1)).toBe(path.split(".").at(-1));
       expect(Buffer.byteLength(filename, "utf8")).toBeLessThanOrEqual(255);
+      expect(sizeBytes).toBeGreaterThan(0);
+      expect(sizeBytes, `${path} must have an up-to-date download size`).toBe(
+        statSync(join(PUBLIC_DIRECTORY, path)).size
+      );
+    }
+  });
+
+  it("keeps smaller download copies paired with byte-for-byte preserved originals", () => {
+    const optimizedFiles = Object.keys(downloadNames).filter(
+      (path) => getDownloadFile(path).originalSrc
+    );
+    expect(optimizedFiles.length).toBeGreaterThan(0);
+    for (const path of optimizedFiles) {
+      const file = getDownloadFile(path);
+      const originalPath = file.originalSrc!;
+      const original = getDownloadFile(originalPath);
+      expect(originalPath).toBe(`/materials/originals${path.slice("/materials".length)}`);
+      expect(original.originalSrc).toBeUndefined();
+      expect(file.sizeBytes).toBeLessThan(original.sizeBytes);
+      expect(original.filename).toBe(file.filename.replace(/\.pdf$/, " - Оригинал.pdf"));
+      expect(
+        createHash("sha256")
+          .update(readFileSync(resolvePublicAsset(originalPath)))
+          .digest("hex")
+      ).toBe(original.sha256);
     }
   });
 

@@ -7,6 +7,7 @@ A bilingual portfolio built with Next.js App Router, React, TypeScript, and CSS 
 - Localized routes for Russian and English
 - Separate detail page for every work, project, and activity
 - Document, image, and external-link materials with a shared preview gallery
+- Download sizes and lighter PDFs with separately downloadable originals
 - Light and dark themes
 - A Settings tab for theme, language, and reopening the cookie notice
 - Responsive desktop, tablet, and mobile layouts
@@ -63,6 +64,8 @@ npm run build               # validate content and create a complete standalone 
 npm start                   # serve the standalone production build
 npm run check               # run content, lint, types, tests, and formatting checks
 npm run validate:content    # validate localized content and material targets
+npm run update:downloads    # refresh download sizes after replacing files
+npm run optimize:pdfs       # rebuild optimized PDFs from preserved originals (optional Python tools)
 npm run lint                # run ESLint
 npm run typecheck           # run Next.js route generation and TypeScript
 npm test                    # run Vitest
@@ -81,6 +84,34 @@ Theme checks also run in Google Chrome, including a pixel comparison in a tempor
 with visited-link history, since computed styles hide visited-link paint differences.
 Responsive checks also save page screenshots in `test-results/`, uploaded by CI as the
 `browser-checks` artifact for visual review. These are review images, not pixel-diff assertions.
+
+## Download files
+
+`src/content/downloads.json` records each public file's download name and byte size. An
+optimized PDF also has `originalSrc`, pointing to its preserved source under
+`public/materials/originals/`, and an `optimization` profile. The main Download and Open in
+new window actions use the existing material URL for the lighter copy. A separate Download
+original link appears only for files with both versions. The interface formats sizes for
+Russian and English; original filenames add ` - Оригинал` before the extension.
+
+The two MappNgo test-screen PDFs use lossless structural compression. The Mad Burglar Cat
+catalog additionally compresses large RGB images at JPEG quality 95 without reducing their
+pixel dimensions. Text, vector graphics, image color profiles, transparency masks and links
+are preserved. Print artwork and already small documents keep their existing files.
+
+The optional PDF maintenance tools require Python 3.9 or newer and the packages in
+`scripts/requirements-pdf.txt`. They are only needed when preparing new copies, not for the
+website build or deployment. `npm run optimize:pdfs` reads preserved originals, verifies
+their recorded checksums, rebuilds the lighter copies, and checks text, page dimensions,
+links and rendered pixels on every page at 144 dpi. Lossless copies must render identically;
+JPEG copies also require visual review of the resulting pages. The verification report is
+saved under the ignored `output/pdf-optimization/` directory.
+
+When deliberately replacing a managed original, update the file at its `originalSrc`, run
+`npm run update:downloads`, then `npm run optimize:pdfs`. Review the pages and run the regular
+checks and browser download tests before release. The optimizer never replaces an existing
+original with a compressed copy. Register any new download in the manifest; content
+validation checks the complete public document inventory and its byte sizes.
 
 The two locale trees are statically generated with `dynamicParams: false`. Unknown paths
 use Next's `global-not-found` convention so their localized HTML is available without

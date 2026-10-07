@@ -4,7 +4,7 @@ import downloadNames from "../src/content/downloads.json";
 test("preserves Cyrillic download names when documents are opened directly", async ({
   request,
 }) => {
-  for (const [path, filename] of Object.entries(downloadNames)) {
+  for (const [path, { filename }] of Object.entries(downloadNames)) {
     const response = await request.head(encodeURI(path));
     expect(response.status(), path).toBe(200);
     expect(response.headers()["content-disposition"], path).toBe(

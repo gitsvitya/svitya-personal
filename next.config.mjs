@@ -1,6 +1,6 @@
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import downloadNames from "./src/content/downloads.json" with { type: "json" };
+import downloadFiles from "./src/content/downloads.json" with { type: "json" };
 
 const projectRoot = dirname(fileURLToPath(import.meta.url));
 
@@ -10,7 +10,7 @@ const nextConfig = {
   outputFileTracingRoot: projectRoot,
   experimental: { globalNotFound: true },
   async headers() {
-    return Object.entries(downloadNames).map(([source, filename]) => ({
+    return Object.entries(downloadFiles).map(([source, { filename }]) => ({
       source: encodeURI(source),
       headers: [
         {

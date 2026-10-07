@@ -148,7 +148,9 @@ for (const language of ["ru", "en"] as const) {
             .evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)
         )
         .toBe(true);
-      await expect(dialog.locator(".button-control")).toHaveText([...labels[language]]);
+      await expect(dialog.locator(".button-control .button-label")).toHaveText([
+        ...labels[language],
+      ]);
       await expect(
         dialog.getByRole("link", { name: labels[language][1], exact: true })
       ).toHaveAttribute("href", href);
@@ -214,7 +216,7 @@ for (const language of ["ru", "en"] as const) {
       await expect(dialog).toHaveAccessibleName(material.title[language]);
       const actions = dialog.locator(".button-control");
       await expect(actions).toHaveCount(3);
-      await expect(actions).toHaveText([...labels[language]]);
+      await expect(actions.locator(".button-label")).toHaveText([...labels[language]]);
 
       for (const [index, label] of labels[language].entries()) {
         if (material.active[index]) {

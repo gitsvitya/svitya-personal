@@ -1,39 +1,173 @@
 {
-  "/cv/ru/CV_Строков_Виктор.pdf": "Строков Виктор - Резюме - Русский.pdf",
-  "/cv/ru/CV_Строков_Виктор.docx": "Строков Виктор - Резюме - Русский.docx",
-  "/cv/en/CV_Strokov_Victor.pdf": "Строков Виктор - Резюме - Английский.pdf",
-  "/cv/en/CV_Strokov_Victor.docx": "Строков Виктор - Резюме - Английский.docx",
-  "/materials/work/cheminsight/polyethylene.pdf": "ХимИнсайт - Полиэтилен - Русский.pdf",
-  "/materials/work/cheminsight/polypropylene.pdf": "ХимИнсайт - Полипропилен - Русский.pdf",
-  "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf": "ХимИнсайт - Бутиловые спирты и 2-ЭГ - Русский.pdf",
-  "/materials/work/cheminsight/feed-grade-methionine.pdf": "ХимИнсайт - Метионин кормовой - Русский.pdf",
-  "/materials/work/cheminsight/caustic-soda.pdf": "ХимИнсайт - Каустическая сода - Русский.pdf",
-  "/materials/work/cheminsight/caustic-potash.pdf": "ХимИнсайт - Калий едкий - Русский.pdf",
-  "/materials/work/cheminsight/boric-acid.pdf": "ХимИнсайт - Кислота борная - Русский.pdf",
-  "/materials/work/namex/otc-regional-agricultural-indices.pdf": "НТБ - Методика региональных индексов агропродукции - Русский.pdf",
-  "/materials/work/namex/wheat-cpt-novorossiysk-index.pdf": "НТБ - Методика индекса пшеницы с поставкой в Новороссийск - Русский.pdf",
-  "/materials/work/namex/exchange-sugar-cfd-index.pdf": "НТБ - Методика биржевого индекса сахара в ЦФО - Русский.pdf",
-  "/materials/work/namex/daily-otc-sugar-cfd-index.pdf": "НТБ - Методика ежедневного внебиржевого индекса сахара в ЦФО - Русский.pdf",
-  "/materials/work/namex/agricultural-indices-2024-07-15.pdf": "НТБ - Индексы агропродукции на 15.07.2024 - Русский.pdf",
-  "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf": "Рейтер - Спрос на сталь в России в 2017 году - Русский.pdf",
-  "/materials/work/thomsonreuters/russian-steel-discounts.pdf": "Рейтер - Скидки российских металлургов - Русский.pdf",
-  "/materials/work/thomsonreuters/port-hedland-cyclone-joyce.pdf": "Рейтер - Порт-Хедленд и ураган Джойс - Русский.pdf",
-  "/materials/work/thomsonreuters/moscow-renovation-steel.pdf": "Рейтер - Реновация Москвы и спрос на сталь - Русский.pdf",
-  "/materials/work/thomsonreuters/iron-ore-price-forecast-2017.pdf": "Рейтер - Прогноз цены железной руды на 2017 год - Английский.pdf",
-  "/materials/projects/madburglarcat/catalog.pdf": "Мэд Бёрглар Кэт - Каталог товаров - Русский.pdf",
-  "/materials/projects/madburglarcat/everything-is-fine.pdf": "Мэд Бёрглар Кэт - Карточка товара - Русский.pdf",
-  "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf": "Мэд Бёрглар Кэт - Оформление заказа - Русский.pdf",
-  "/materials/projects/madburglarcat/soldout.pdf": "Мэд Бёрглар Кэт - Прошлые выпуски - Русский.pdf",
-  "/materials/projects/madburglarcat/trademark-certificate-1222341.pdf": "Мэд Бёрглар Кэт - Свидетельство на товарный знак - Русский.pdf",
-  "/materials/projects/mappngo/final-test-screens.pdf": "Мэппнго - Тестовые экраны - Русский.pdf",
-  "/materials/projects/mappngo/final-test-screens-en.pdf": "Мэппнго - Тестовые экраны - Английский.pdf",
-  "/materials/projects/mappngo/souvenir-sticker.pdf": "Мэппнго - Шаблон наклеек - Русский.pdf",
-  "/materials/projects/mappngo/homepage-ru.pdf": "Мэппнго - Архивная главная страница - Русский.pdf",
-  "/materials/projects/mappngo/homepage-en.pdf": "Мэппнго - Архивная главная страница - Английский.pdf",
-  "/materials/projects/mappngo/faq-ru.pdf": "Мэппнго - Архивные вопросы и ответы - Русский.pdf",
-  "/materials/projects/mappngo/faq-en.pdf": "Мэппнго - Архивные вопросы и ответы - Английский.pdf",
-  "/materials/projects/venivi/retro-homepage.pdf": "Вениви - Архивная главная страница - Русский.pdf",
-  "/materials/projects/venivi/contest-xbox-one.pdf": "Вениви - Страница конкурса игровой консоли - Русский.pdf",
-  "/materials/activities/strokeoff/first-batch.pdf": "Строк Офф - Первая партия перцовки - Русский.pdf",
-  "/materials/activities/strokeoff/pepper-vodka-label.pdf": "Строк Офф - Этикетка перцовки - Русский.pdf"
+  "/cv/ru/CV_Строков_Виктор.pdf": {
+    "filename": "Строков Виктор - Резюме - Русский.pdf",
+    "sizeBytes": 111283
+  },
+  "/cv/ru/CV_Строков_Виктор.docx": {
+    "filename": "Строков Виктор - Резюме - Русский.docx",
+    "sizeBytes": 40826
+  },
+  "/cv/en/CV_Strokov_Victor.pdf": {
+    "filename": "Строков Виктор - Резюме - Английский.pdf",
+    "sizeBytes": 99168
+  },
+  "/cv/en/CV_Strokov_Victor.docx": {
+    "filename": "Строков Виктор - Резюме - Английский.docx",
+    "sizeBytes": 39965
+  },
+  "/materials/work/cheminsight/polyethylene.pdf": {
+    "filename": "ХимИнсайт - Полиэтилен - Русский.pdf",
+    "sizeBytes": 2253746
+  },
+  "/materials/work/cheminsight/polypropylene.pdf": {
+    "filename": "ХимИнсайт - Полипропилен - Русский.pdf",
+    "sizeBytes": 1958325
+  },
+  "/materials/work/cheminsight/butyl-alcohols-and-2-eh.pdf": {
+    "filename": "ХимИнсайт - Бутиловые спирты и 2-ЭГ - Русский.pdf",
+    "sizeBytes": 858645
+  },
+  "/materials/work/cheminsight/feed-grade-methionine.pdf": {
+    "filename": "ХимИнсайт - Метионин кормовой - Русский.pdf",
+    "sizeBytes": 802744
+  },
+  "/materials/work/cheminsight/caustic-soda.pdf": {
+    "filename": "ХимИнсайт - Каустическая сода - Русский.pdf",
+    "sizeBytes": 570776
+  },
+  "/materials/work/cheminsight/caustic-potash.pdf": {
+    "filename": "ХимИнсайт - Калий едкий - Русский.pdf",
+    "sizeBytes": 650153
+  },
+  "/materials/work/cheminsight/boric-acid.pdf": {
+    "filename": "ХимИнсайт - Кислота борная - Русский.pdf",
+    "sizeBytes": 675076
+  },
+  "/materials/work/namex/otc-regional-agricultural-indices.pdf": {
+    "filename": "НТБ - Методика региональных индексов агропродукции - Русский.pdf",
+    "sizeBytes": 188161
+  },
+  "/materials/work/namex/wheat-cpt-novorossiysk-index.pdf": {
+    "filename": "НТБ - Методика индекса пшеницы с поставкой в Новороссийск - Русский.pdf",
+    "sizeBytes": 183726
+  },
+  "/materials/work/namex/exchange-sugar-cfd-index.pdf": {
+    "filename": "НТБ - Методика биржевого индекса сахара в ЦФО - Русский.pdf",
+    "sizeBytes": 243073
+  },
+  "/materials/work/namex/daily-otc-sugar-cfd-index.pdf": {
+    "filename": "НТБ - Методика ежедневного внебиржевого индекса сахара в ЦФО - Русский.pdf",
+    "sizeBytes": 187665
+  },
+  "/materials/work/namex/agricultural-indices-2024-07-15.pdf": {
+    "filename": "НТБ - Индексы агропродукции на 15.07.2024 - Русский.pdf",
+    "sizeBytes": 185289
+  },
+  "/materials/work/thomsonreuters/russian-steel-demand-2017.pdf": {
+    "filename": "Рейтер - Спрос на сталь в России в 2017 году - Русский.pdf",
+    "sizeBytes": 275859
+  },
+  "/materials/work/thomsonreuters/russian-steel-discounts.pdf": {
+    "filename": "Рейтер - Скидки российских металлургов - Русский.pdf",
+    "sizeBytes": 81694
+  },
+  "/materials/work/thomsonreuters/port-hedland-cyclone-joyce.pdf": {
+    "filename": "Рейтер - Порт-Хедленд и ураган Джойс - Русский.pdf",
+    "sizeBytes": 134740
+  },
+  "/materials/work/thomsonreuters/moscow-renovation-steel.pdf": {
+    "filename": "Рейтер - Реновация Москвы и спрос на сталь - Русский.pdf",
+    "sizeBytes": 77432
+  },
+  "/materials/work/thomsonreuters/iron-ore-price-forecast-2017.pdf": {
+    "filename": "Рейтер - Прогноз цены железной руды на 2017 год - Английский.pdf",
+    "sizeBytes": 160762
+  },
+  "/materials/projects/madburglarcat/catalog.pdf": {
+    "filename": "Мэд Бёрглар Кэт - Каталог товаров - Русский.pdf",
+    "sizeBytes": 4342067,
+    "originalSrc": "/materials/originals/projects/madburglarcat/catalog.pdf",
+    "optimization": {
+      "jpegQuality": 95
+    }
+  },
+  "/materials/projects/madburglarcat/everything-is-fine.pdf": {
+    "filename": "Мэд Бёрглар Кэт - Карточка товара - Русский.pdf",
+    "sizeBytes": 4738058
+  },
+  "/materials/projects/madburglarcat/everything-is-fine-checkout.pdf": {
+    "filename": "Мэд Бёрглар Кэт - Оформление заказа - Русский.pdf",
+    "sizeBytes": 1184829
+  },
+  "/materials/projects/madburglarcat/soldout.pdf": {
+    "filename": "Мэд Бёрглар Кэт - Прошлые выпуски - Русский.pdf",
+    "sizeBytes": 2396213
+  },
+  "/materials/projects/madburglarcat/trademark-certificate-1222341.pdf": {
+    "filename": "Мэд Бёрглар Кэт - Свидетельство на товарный знак - Русский.pdf",
+    "sizeBytes": 2128366
+  },
+  "/materials/projects/mappngo/final-test-screens.pdf": {
+    "filename": "Мэппнго - Тестовые экраны - Русский.pdf",
+    "sizeBytes": 11842617,
+    "originalSrc": "/materials/originals/projects/mappngo/final-test-screens.pdf",
+    "optimization": {}
+  },
+  "/materials/projects/mappngo/final-test-screens-en.pdf": {
+    "filename": "Мэппнго - Тестовые экраны - Английский.pdf",
+    "sizeBytes": 11847137,
+    "originalSrc": "/materials/originals/projects/mappngo/final-test-screens-en.pdf",
+    "optimization": {}
+  },
+  "/materials/projects/mappngo/souvenir-sticker.pdf": {
+    "filename": "Мэппнго - Шаблон наклеек - Русский.pdf",
+    "sizeBytes": 106801
+  },
+  "/materials/projects/mappngo/homepage-ru.pdf": {
+    "filename": "Мэппнго - Архивная главная страница - Русский.pdf",
+    "sizeBytes": 2077141
+  },
+  "/materials/projects/mappngo/homepage-en.pdf": {
+    "filename": "Мэппнго - Архивная главная страница - Английский.pdf",
+    "sizeBytes": 2062043
+  },
+  "/materials/projects/mappngo/faq-ru.pdf": {
+    "filename": "Мэппнго - Архивные вопросы и ответы - Русский.pdf",
+    "sizeBytes": 101705
+  },
+  "/materials/projects/mappngo/faq-en.pdf": {
+    "filename": "Мэппнго - Архивные вопросы и ответы - Английский.pdf",
+    "sizeBytes": 82153
+  },
+  "/materials/projects/venivi/retro-homepage.pdf": {
+    "filename": "Вениви - Архивная главная страница - Русский.pdf",
+    "sizeBytes": 1125751
+  },
+  "/materials/projects/venivi/contest-xbox-one.pdf": {
+    "filename": "Вениви - Страница конкурса игровой консоли - Русский.pdf",
+    "sizeBytes": 854400
+  },
+  "/materials/activities/strokeoff/first-batch.pdf": {
+    "filename": "Строк Офф - Первая партия перцовки - Русский.pdf",
+    "sizeBytes": 3259543
+  },
+  "/materials/activities/strokeoff/pepper-vodka-label.pdf": {
+    "filename": "Строк Офф - Этикетка перцовки - Русский.pdf",
+    "sizeBytes": 1764860
+  },
+  "/materials/originals/projects/mappngo/final-test-screens.pdf": {
+    "filename": "Мэппнго - Тестовые экраны - Русский - Оригинал.pdf",
+    "sizeBytes": 22779815,
+    "sha256": "8ccc6c362be841683d5880131af1afd6bea3be92f6a34864bddb97f19c95e17d"
+  },
+  "/materials/originals/projects/mappngo/final-test-screens-en.pdf": {
+    "filename": "Мэппнго - Тестовые экраны - Английский - Оригинал.pdf",
+    "sizeBytes": 22784204,
+    "sha256": "070290f8b3c6906a3eadf2f73fc313b7b96d47cd8595101fcbcd6d237f93603e"
+  },
+  "/materials/originals/projects/madburglarcat/catalog.pdf": {
+    "filename": "Мэд Бёрглар Кэт - Каталог товаров - Русский - Оригинал.pdf",
+    "sizeBytes": 10715600,
+    "sha256": "2444bdca692ddab900d0d16140e84659620586f2ce31bbd23e5be17b0e5a65f4"
+  }
 }

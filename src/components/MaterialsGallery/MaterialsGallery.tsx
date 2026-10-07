@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
-import { getDownloadFilename } from "../../utils/downloads";
+import { formatDownloadSize, getDownloadFile, getDownloadFilename } from "../../utils/downloads";
 import { getTransitionDuration } from "../../utils/motion";
 import { shouldHandleClientNavigation } from "../../utils/navigation";
 import Modal from "../Modal/Modal";
@@ -235,7 +235,10 @@ function MaterialModalContent({
   descriptionId,
   materialCount,
 }: MaterialModalContentProps) {
+  const sizeId = useId();
   const actions = getMaterialActions(material, text);
+  const document = material.type === "document" ? getDownloadFile(material.fileSrc) : undefined;
+  const original = document?.originalSrc ? getDownloadFile(document.originalSrc) : undefined;
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
 
   return (
@@ -267,6 +270,10 @@ function MaterialModalContent({
         {Object.entries(actions).map(([key, action]) => {
           const className = `button-control ${styles.materialAction} ${action.className}`;
           const label = <span className={`button-label ${styles.actionText}`}>{action.label}</span>;
+          const fileSize =
+            key === "download" && document
+              ? formatDownloadSize(document.sizeBytes, text.detail.fileSize)
+              : undefined;
 
           return action.href ? (
             <a
@@ -274,6 +281,8 @@ function MaterialModalContent({
               className={className}
               href={action.href}
               download={action.download}
+              aria-label={action.label}
+              aria-describedby={fileSize ? `${sizeId}-download` : undefined}
               target={action.target}
               rel={action.target ? "noopener noreferrer" : undefined}
               onFocus={(event) => {
@@ -285,6 +294,12 @@ function MaterialModalContent({
               }}
             >
               {label}
+              {fileSize && (
+                <span id={`${sizeId}-download`} className={styles.fileSize}>
+                  <span aria-hidden="true">· </span>
+                  {fileSize}
+                </span>
+              )}
             </a>
           ) : (
             <button key={key} type="button" className={className} disabled>
@@ -292,6 +307,26 @@ function MaterialModalContent({
             </button>
           );
         })}
+        {original && document?.originalSrc && (
+          <a
+            className={styles.originalDownloadAction}
+            href={document.originalSrc}
+            download={original.filename}
+            aria-label={text.detail.downloadOriginal}
+            aria-describedby={`${sizeId}-original`}
+            onFocus={(event) => {
+              event.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest" });
+            }}
+          >
+            <span className={`button-label ${styles.actionText}`}>
+              {text.detail.downloadOriginal}
+            </span>
+            <span id={`${sizeId}-original`} className={styles.fileSize}>
+              <span aria-hidden="true">· </span>
+              {formatDownloadSize(original.sizeBytes, text.detail.fileSize)}
+            </span>
+          </a>
+        )}
       </div>
     </div>
   );
