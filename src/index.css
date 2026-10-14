@@ -227,9 +227,9 @@ body {
   height: 1em;
   line-height: 1;
   white-space: nowrap;
-  /* Vremena's visible glyphs sit slightly above the center of its line box. */
+  /* Keep Vremena optically centered at each control's font size. */
   position: relative;
-  top: 2px;
+  top: 0.08em;
 }
 
 @media (max-width: 1024px) {
@@ -243,9 +243,6 @@ body {
     --control-font-size: 17px;
     --body-font-size: 17px;
     --body-line-height: 1.55;
-  }
-  .button-label {
-    top: 1px;
   }
 }
 

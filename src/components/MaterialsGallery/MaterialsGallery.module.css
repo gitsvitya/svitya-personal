@@ -292,11 +292,6 @@
   white-space: normal;
 }
 
-.fileSize {
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
 .originalDownloadAction {
   display: flex;
   flex-basis: 100%;

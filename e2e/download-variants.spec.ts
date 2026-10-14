@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getTranslations } from "../src/content/ui-text";
-import { formatDownloadSize, getDownloadFile } from "../src/utils/downloads";
+import { getDownloadFile } from "../src/utils/downloads";
 
 for (const language of ["ru", "en"] as const) {
   const text = getTranslations(language).detail;
@@ -35,11 +35,9 @@ for (const language of ["ru", "en"] as const) {
         [originalSrc, original, text.downloadOriginal],
       ] as const) {
         const link = dialog.getByRole("link", { name: label, exact: true });
-        const size = formatDownloadSize(file.sizeBytes, text.fileSize);
         await expect(link).toHaveAttribute("href", href);
         await expect(link).toHaveAttribute("download", file.filename);
-        await expect(link).toHaveAccessibleDescription(size);
-        await expect(link).toContainText(size);
+        await expect(link).toHaveText(label);
         const response = await request.head(href);
         expect(response.status()).toBe(200);
         expect(response.headers()["content-type"]).toContain("application/pdf");
