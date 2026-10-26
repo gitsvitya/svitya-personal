@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getDownloadFilename } from "../src/utils/downloads";
+import { expectSuggestedFilename } from "./helpers/downloads";
 
 const materials = [
   {
@@ -126,6 +127,7 @@ for (const language of ["ru", "en"] as const) {
     context,
     page,
     baseURL,
+    browserName,
   }, testInfo) => {
     await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${language}/projects/mappngo`);
@@ -163,10 +165,12 @@ for (const language of ["ru", "en"] as const) {
           dialog.getByRole("button", { name: labels[language][2], exact: true })
         ).toBeDisabled();
       }
+      const link = dialog.getByRole("link", { name: labels[language][0], exact: true });
+      await expect(link).toHaveAttribute("download", getDownloadFilename(href));
       const downloadPromise = page.waitForEvent("download");
-      await dialog.getByRole("link", { name: labels[language][0], exact: true }).click();
+      await link.click();
       const download = await downloadPromise;
-      expect(download.suggestedFilename().normalize("NFC")).toBe(getDownloadFilename(href));
+      expectSuggestedFilename(download, getDownloadFilename(href), browserName);
       const downloaded = await readFile((await download.path())!);
       const source = await readFile(join(process.cwd(), "public", href));
       expect(downloaded.subarray(0, 5).toString()).toBe("%PDF-");
@@ -607,6 +611,7 @@ test("selects matching MappNgo material assets after changing the site language"
 
 test("downloads the matching MappNgo language version when application scripts fail", async ({
   page,
+  browserName,
 }) => {
   await page.route(/\.js(?:\?|$)/, (route) => route.abort());
   for (const language of ["ru", "en"] as const) {
@@ -614,16 +619,23 @@ test("downloads the matching MappNgo language version when application scripts f
     await expect(page.locator('main a[href^="https://www.mappngo.com"]')).toHaveCount(0);
     const previews = page.locator('main a[download][href^="/materials/projects/mappngo/"]');
     await expect(previews).toHaveCount(4);
-    for (const [index, material] of mappngoMaterials[language].entries())
+    for (const [index, material] of mappngoMaterials[language].entries()) {
       await expect(previews.nth(index)).toHaveAttribute(
         "href",
         `/materials/projects/mappngo/${material.file}`
       );
+      await expect(previews.nth(index)).toHaveAttribute(
+        "download",
+        getDownloadFilename(`/materials/projects/mappngo/${material.file}`)
+      );
+    }
     const downloadPromise = page.waitForEvent("download");
     await previews.first().click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename().normalize("NFC")).toBe(
-      getDownloadFilename(`/materials/projects/mappngo/${mappngoMaterials[language][0].file}`)
+    expectSuggestedFilename(
+      download,
+      getDownloadFilename(`/materials/projects/mappngo/${mappngoMaterials[language][0].file}`),
+      browserName
     );
     const downloaded = await readFile((await download.path())!);
     const source = await readFile(

@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { expectSuggestedFilename } from "./helpers/downloads";
 
 for (const { language, initialLanguage, label, filename, downloadName } of [
   {
@@ -23,6 +24,7 @@ for (const { language, initialLanguage, label, filename, downloadName } of [
     context,
     page,
     baseURL,
+    browserName,
   }) => {
     await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${initialLanguage}/settings`);
@@ -32,11 +34,13 @@ for (const { language, initialLanguage, label, filename, downloadName } of [
     await page.locator(`nav a[href="/${language}/about"]`).click();
     await expect(page).toHaveURL(`/${language}/about`);
 
+    const link = page.getByRole("link", { name: label, exact: true });
+    await expect(link).toHaveAttribute("download", downloadName);
     const downloadPromise = page.waitForEvent("download");
-    await page.getByRole("link", { name: label, exact: true }).click();
+    await link.click();
     const download = await downloadPromise;
 
-    expect(download.suggestedFilename().normalize("NFC")).toBe(downloadName);
+    expectSuggestedFilename(download, downloadName, browserName);
     expect(decodeURIComponent(new URL(download.url()).pathname)).toBe(
       `/cv/${language}/${filename}`
     );

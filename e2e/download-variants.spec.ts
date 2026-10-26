@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getTranslations } from "../src/content/ui-text";
 import { getDownloadFile } from "../src/utils/downloads";
+import { expectSuggestedFilename } from "./helpers/downloads";
 
 for (const language of ["ru", "en"] as const) {
   const text = getTranslations(language).detail;
@@ -19,6 +20,7 @@ for (const language of ["ru", "en"] as const) {
       page,
       request,
       baseURL,
+      browserName,
     }, testInfo) => {
       await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
       await page.goto(`/${language}/projects/${material.company}`);
@@ -47,7 +49,7 @@ for (const language of ["ru", "en"] as const) {
         const downloadPromise = page.waitForEvent("download");
         await link.click();
         const download = await downloadPromise;
-        expect(download.suggestedFilename().normalize("NFC")).toBe(file.filename);
+        expectSuggestedFilename(download, file.filename, browserName);
         const downloaded = await readFile((await download.path())!);
         const source = await readFile(join(process.cwd(), "public", href));
         expect(downloaded.length).toBe(file.sizeBytes);
