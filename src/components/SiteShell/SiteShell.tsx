@@ -23,9 +23,10 @@ import { SitePreferencesContext } from "./SitePreferencesContext";
 type SiteShellProps = {
   children: ReactNode;
   initialLanguage?: Language;
+  initialYear: number;
 };
 
-function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellProps) {
+function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE, initialYear }: SiteShellProps) {
   const pathname = usePathname();
   const router = useRouter();
   const parsedPath = parseLocalizedPath(pathname);
@@ -108,7 +109,7 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE }: SiteShellPr
               {children}
             </div>
           </main>
-          <AppFooter text={text} language={language} />
+          <AppFooter text={text} language={language} initialYear={initialYear} />
           <CookieBanner text={text} forceOpen={isCookieBannerOpen} onClose={hideCookieBanner} />
         </div>
       </SitePreferencesContext.Provider>

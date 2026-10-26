@@ -74,6 +74,42 @@ test("synchronizes cookie notice dismissal between open tabs without focusing or
   await expect(firstBanner).toHaveCount(0);
 });
 
+test("keeps focus in the gallery when the original download action disappears", async ({
+  context,
+  page,
+}) => {
+  await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
+  await page.goto("/en/projects/mappngo");
+  const trigger = page.getByRole("link", { name: "MappNgo: Test screens", exact: true });
+  await trigger.click();
+  const dialog = page.getByRole("dialog");
+  const close = dialog.getByRole("button", { name: "Close window" });
+  await expect(close).toBeFocused();
+  await page.keyboard.press("Shift+Tab");
+  await expect(dialog.getByRole("link", { name: "Download original", exact: true })).toBeFocused();
+
+  await page.keyboard.press("ArrowRight");
+  await expect(dialog).toHaveAccessibleName("Sticker template");
+  await expect(dialog.getByRole("link", { name: "Download original", exact: true })).toHaveCount(0);
+  await expect(close).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(dialog.getByRole("button", { name: "Previous material" })).toBeFocused();
+
+  // Recover keyboard navigation even if the browser has already reset focus to the body.
+  for (const key of ["Tab", "Shift+Tab"]) {
+    await page.evaluate(() => {
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+    });
+    await page.keyboard.press(key);
+    if (key === "Tab") await expect(close).toBeFocused();
+    else await expect(dialog.getByRole("link", { name: "Open in new window" })).toBeFocused();
+  }
+
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+});
+
 test("preserves carousel button focus across repeated keyboard activation", async ({
   context,
   page,

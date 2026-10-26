@@ -1,3 +1,4 @@
+import { useSyncExternalStore } from "react";
 import type { Language } from "../../types/domain";
 import type { AppTranslations } from "../../content/ui-text";
 import AppIcon from "../AppIcon/AppIcon";
@@ -6,10 +7,15 @@ import styles from "./AppFooter.module.css";
 type AppFooterProps = {
   text: AppTranslations;
   language: Language;
+  initialYear: number;
 };
 
-function AppFooter({ text, language }: AppFooterProps) {
-  const currentYear = new Date().getFullYear();
+const subscribeToHydration = () => () => undefined;
+const getCurrentYear = () => new Date().getFullYear();
+
+function AppFooter({ text, language, initialYear }: AppFooterProps) {
+  // Hydrate with the year serialized by the server, then use the visitor's current year.
+  const currentYear = useSyncExternalStore(subscribeToHydration, getCurrentYear, () => initialYear);
 
   return (
     <footer className={styles.footer} id="footer">

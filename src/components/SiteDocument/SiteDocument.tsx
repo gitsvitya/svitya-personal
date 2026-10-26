@@ -25,7 +25,9 @@ export default function SiteDocument({
         <ThemeInitScript />
       </head>
       <body>
-        <SiteShell initialLanguage={language}>{children}</SiteShell>
+        <SiteShell initialLanguage={language} initialYear={new Date().getFullYear()}>
+          {children}
+        </SiteShell>
         <div id="modal" />
       </body>
     </html>

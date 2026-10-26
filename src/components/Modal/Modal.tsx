@@ -59,7 +59,10 @@ const Modal = ({
       if (!first || !last) return;
       const active = document.activeElement;
 
-      if (evt.shiftKey && active === first) {
+      if (!modalRef.current?.contains(active) || active === modalRef.current) {
+        evt.preventDefault();
+        (evt.shiftKey ? last : first).focus();
+      } else if (evt.shiftKey && active === first) {
         evt.preventDefault();
         last.focus();
       } else if (!evt.shiftKey && active === last) {
@@ -79,12 +82,20 @@ const Modal = ({
   useEffect(() => {
     prevFocusedRef.current =
       document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    const timer = window.setTimeout(() => {
-      if (closeBtnRef.current) closeBtnRef.current.focus();
-      else if (modalRef.current) modalRef.current.focus();
-    }, 0);
+    function focusModal() {
+      (closeBtnRef.current ?? modalRef.current)?.focus({ preventScroll: true });
+    }
+    const timer = window.setTimeout(focusModal, 0);
+    // Changing materials can remove the focused action (for example, an original download).
+    const observer = new MutationObserver(() => {
+      if (!modalRef.current?.contains(document.activeElement)) focusModal();
+    });
+    if (modalRef.current) {
+      observer.observe(modalRef.current, { childList: true, subtree: true });
+    }
 
     return () => {
+      observer.disconnect();
       window.clearTimeout(timer);
       if (prevFocusedRef.current instanceof HTMLElement) {
         prevFocusedRef.current.focus({ preventScroll: true });
