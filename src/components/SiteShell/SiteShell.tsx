@@ -70,9 +70,14 @@ function SiteShell({
     (nextLanguage: Language) => {
       if (nextLanguage === language) return;
       const href = buildLanguageSwitchPath(nextLanguage, pathname);
+      // Global 404 pages are full documents, so avoid requesting an RSC payload.
+      if (isNotFound) {
+        window.location.assign(href);
+        return;
+      }
       navigate(href, { kind: "language" });
     },
-    [language, navigate, pathname]
+    [isNotFound, language, navigate, pathname]
   );
 
   const navigateToSection = useCallback(

@@ -83,8 +83,8 @@ export const PORTFOLIO_PRESENTATION: Record<CompanyId, Record<Language, Portfoli
   TR: {
     ru: {
       catalogDescription: "Информационные продукты Eikon, новости и аналитика рынков.",
-      catalogOutcome: "1 000+ публикаций · 20 000+ читателей",
-      heroSummary: "Подготовил 1 000+ публикаций с охватом 20 000+ читателей.",
+      catalogOutcome: "1\u00a0000+ публикаций · 20\u00a0000+ читателей",
+      heroSummary: "Подготовил 1\u00a0000+ публикаций с охватом 20\u00a0000+ читателей.",
     },
     en: {
       catalogDescription: "Eikon information products, market news and analysis.",
