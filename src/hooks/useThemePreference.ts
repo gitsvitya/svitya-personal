@@ -12,10 +12,28 @@ import type { Theme, ThemePreference } from "../types/domain";
 
 const THEME_EVENT = "svitya:theme-change";
 let themeTransitionVersion = 0;
+let sessionPreference: ThemePreference | null = null;
 
+function readCookiePreference(): ThemePreference | null {
+  try {
+    const match = document.cookie.match(/(?:^|;\s*)theme=(light|dark|system)(?:;|$)/);
+    return (match?.[1] as ThemePreference | undefined) ?? null;
+  } catch {
+    return null;
+  }
+}
 function readPreference(): ThemePreference {
-  const match = document.cookie.match(/(?:^|;\s*)theme=(light|dark|system)(?:;|$)/);
-  return (match?.[1] as ThemePreference | undefined) ?? "system";
+  return sessionPreference ?? readCookiePreference() ?? "system";
+}
+function savePreference(preference: ThemePreference): void {
+  // Keep the choice usable for this visit even when cookie writes are refused.
+  sessionPreference = preference;
+  try {
+    document.cookie = `theme=${preference}; path=/; max-age=31536000; samesite=lax`;
+    if (readCookiePreference() === preference) sessionPreference = null;
+  } catch {
+    // A browser can reject storage with an exception or ignore the write silently.
+  }
 }
 function resolveTheme(preference: ThemePreference): Theme {
   if (preference !== "system") return preference;
@@ -47,6 +65,10 @@ function subscribe(onStoreChange: () => void): () => void {
     }
   }
   media.addEventListener("change", onSystemChange);
+  // The system may change after the initial layout effect but before subscribing.
+  // Reconcile even if the new snapshot equals React's server snapshot.
+  const currentTheme = resolveTheme(readPreference());
+  if (document.documentElement.dataset.theme !== currentTheme) animateTheme(currentTheme);
   return () => {
     window.removeEventListener(THEME_EVENT, onStoreChange);
     media.removeEventListener("change", onSystemChange);
@@ -67,7 +89,7 @@ export function useThemePreference(initialTheme: Theme) {
   );
   const setTheme = useCallback<Dispatch<SetStateAction<ThemePreference>>>((next) => {
     const preference = typeof next === "function" ? next(readPreference()) : next;
-    document.cookie = `theme=${preference}; path=/; max-age=31536000; samesite=lax`;
+    savePreference(preference);
     animateTheme(resolveTheme(preference));
     window.dispatchEvent(new Event(THEME_EVENT));
   }, []);

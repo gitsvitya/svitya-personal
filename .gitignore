@@ -17,11 +17,10 @@
 # generated assets
 /output/
 
-# local assistant files and documentation
+# local assistant files
 /.codex/
 /.claude/
 /.cursor/
-/docs/
 
 # misc
 .DS_Store

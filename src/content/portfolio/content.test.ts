@@ -71,13 +71,28 @@ describe("portfolio content", () => {
 
   it("keeps tracked asset casing identical to the working tree", () => {
     if (!TRACKED_FILES) return;
+    const deletedFiles = new Set(
+      execFileSync("git", ["ls-files", "--deleted", "-z"], { encoding: "utf8" })
+        .split("\0")
+        .filter(Boolean)
+    );
 
     for (const trackedPath of TRACKED_FILES) {
       if (!trackedPath.startsWith("public/") && !trackedPath.startsWith("src/images/")) continue;
 
       let currentPath = process.cwd();
       for (const segment of trackedPath.split("/")) {
-        const exactEntry = readdirSync(currentPath).find((entry) => entry === segment);
+        const entries = readdirSync(currentPath);
+        const exactEntry = entries.find((entry) => entry === segment);
+        // Unstaged removals still appear in Git's index. A differently cased
+        // entry must still fail, while referenced assets are checked separately.
+        if (
+          !exactEntry &&
+          deletedFiles.has(trackedPath) &&
+          !entries.some((entry) => entry.toLowerCase() === segment.toLowerCase())
+        ) {
+          break;
+        }
         expect(exactEntry, `Git casing differs from the working tree: ${trackedPath}`).toBe(
           segment
         );

@@ -48,6 +48,57 @@ for (const width of [1280, 390]) {
   });
 }
 
+for (const control of ["header", "settings"] as const) {
+  test(`cancels a pending language change when Russian is reselected in ${control}`, async ({
+    context,
+    page,
+    baseURL,
+  }) => {
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
+    await page.setViewportSize({ width: control === "header" ? 1280 : 390, height: 900 });
+    const section = control === "header" ? "about" : "settings";
+    const languageControl = (language: "ru" | "en") =>
+      control === "header"
+        ? page.locator(`header a[lang="${language}"]`)
+        : page.locator(`[data-language-choice="${language}"]`);
+    let release = () => {};
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await page.route(`**/en/${section}?*`, async (route) => {
+      await gate;
+      await route.continue();
+    });
+    try {
+      await page.goto(`/ru/${section}`);
+      const originalHeading = await page.locator("main h1").textContent();
+      const historyLength = await page.evaluate(() => history.length);
+      await languageControl("en").click();
+      await expect(page.locator("main")).toHaveAttribute("aria-busy", "true");
+      await languageControl("ru").click();
+      const response = page.waitForResponse((response) =>
+        response.url().startsWith(`${baseURL}/en/${section}?`)
+      );
+      release();
+      await response;
+      await expect(page.locator("main")).toHaveAttribute("aria-busy", "false");
+      await expect(page).toHaveURL(`/ru/${section}`);
+      await expect(page.locator("html")).toHaveAttribute("lang", "ru");
+      await expect(page.locator("main h1")).toHaveText(originalHeading!);
+      await expect(page.locator('header a[lang="ru"]')).toHaveAttribute("aria-current", "true");
+      expect(await page.evaluate(() => history.length)).toBe(historyLength);
+
+      // The canceled response must not prevent a later language selection.
+      await languageControl("en").click();
+      await expect(page).toHaveURL(`/en/${section}`);
+      await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    } finally {
+      release();
+      await page.unrouteAll({ behavior: "ignoreErrors" });
+    }
+  });
+}
+
 test("synchronizes cookie notice dismissal between open tabs without focusing or navigating them", async ({
   context,
   page,
@@ -62,7 +113,7 @@ test("synchronizes cookie notice dismissal between open tabs without focusing or
   await secondBanner.getByRole("button", { name: "Close", exact: true }).click();
   await expect(secondBanner).toHaveCount(0);
   await expect(firstBanner).toHaveCount(0);
-  await expect(page).toHaveURL(`${origin}/en/about`);
+  await expect(page).toHaveURL("/en/about");
 
   await settings.getByRole("button", { name: "Show cookie notice", exact: true }).click();
   await expect(secondBanner).toBeVisible();
@@ -77,7 +128,10 @@ test("synchronizes cookie notice dismissal between open tabs without focusing or
 test("keeps focus in the gallery when the original download action disappears", async ({
   context,
   page,
+  browserName,
 }) => {
+  // macOS WebKit needs Option+Tab to include links without Full Keyboard Access.
+  const nativeTab = browserName === "webkit" && process.platform === "darwin" ? "Alt+Tab" : "Tab";
   await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: origin }]);
   await page.goto("/en/projects/mappngo");
   const trigger = page.getByRole("link", { name: "MappNgo: Test screens", exact: true });
@@ -92,13 +146,13 @@ test("keeps focus in the gallery when the original download action disappears", 
   await expect(dialog).toHaveAccessibleName("Sticker template");
   await expect(dialog.getByRole("link", { name: "Download original", exact: true })).toHaveCount(0);
   await expect(close).toBeFocused();
-  await page.keyboard.press("Tab");
+  await page.keyboard.press(nativeTab);
   await expect(
     dialog
       .getByRole("link", { name: "Open original", exact: true })
       .and(dialog.locator("a:has(img)"))
   ).toBeFocused();
-  await page.keyboard.press("Tab");
+  await page.keyboard.press(nativeTab);
   await expect(dialog.getByRole("button", { name: "Previous material" })).toBeFocused();
 
   // Recover keyboard navigation even if the browser has already reset focus to the body.

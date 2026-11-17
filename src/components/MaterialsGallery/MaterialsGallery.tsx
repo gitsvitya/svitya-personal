@@ -182,7 +182,7 @@ function MaterialsGallery({ items, text, companyName, compact = false }: Materia
                     <span className={styles.previewMetadata}>{material.metadata}</span>
                   )}
                   <span className={styles.previewAction}>
-                    {text.detail.fileSize.locale === "ru-RU" ? "Открыть материал" : "Open material"}
+                    {text.detail.openMaterial}
                     <span className={`link-arrow ${styles.previewArrow}`} aria-hidden="true">
                       →
                     </span>
@@ -234,8 +234,7 @@ function MaterialModalContent({
   const document = material.type === "document" ? getDownloadFile(material.fileSrc) : undefined;
   const original = document?.originalSrc ? getDownloadFile(document.originalSrc) : undefined;
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
-  const openOriginalLabel =
-    text.detail.fileSize.locale === "ru-RU" ? "Открыть оригинал" : "Open original";
+  const openOriginalLabel = text.detail.openOriginal;
   const originalHref = actions.openWindow.href ?? actions.openLink.href;
   const fullImage = material.fullImageSrc;
   const imageSrc = typeof fullImage === "string" ? fullImage : fullImage.src;
@@ -312,7 +311,13 @@ function MaterialModalContent({
       <p id={descriptionId} className={`${styles.description} ${visibilityClass}`}>
         {material.description}
       </p>
-      <div className={`${styles.materialActions} ${visibilityClass}`}>
+      <div
+        className={`${styles.materialActions} ${visibilityClass}`}
+        onFocus={(event) => {
+          // Firefox can focus a partially clipped link without fully revealing it.
+          event.target.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
+        }}
+      >
         <a
           className={`button-control ${styles.materialAction}`}
           href={originalHref}

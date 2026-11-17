@@ -3,18 +3,26 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+async function waitForAnimations(page: Page) {
+  await page.evaluate(async () => {
+    while (true) {
+      // Let style changes enqueue transitions before deciding that the page is idle.
+      await new Promise(requestAnimationFrame);
+      const running = document
+        .getAnimations()
+        .filter((animation) => animation.playState === "running" || animation.pending);
+      if (!running.length) return;
+      // Focus/hover changes can cancel a transition while the menu opens.
+      await Promise.allSettled(running.map((animation) => animation.finished));
+    }
+  });
+}
+
 // Compare actual colors on animation frames: matching CSS durations alone misses
 // instant changes and a second transition on an inherited/currentColor value.
 async function measureThemeSwitch(page: Page) {
   // Opening the menu has its own animation; measure the theme from rest.
-  await page.evaluate(async () => {
-    let running;
-    do {
-      running = document.getAnimations().filter((animation) => animation.playState === "running");
-      // Focus/hover changes can cancel a transition while the menu opens.
-      await Promise.allSettled(running.map((animation) => animation.finished));
-    } while (running.length);
-  });
+  await waitForAnimations(page);
   return page.evaluate(async () => {
     const color = (value: string) => {
       const srgb = value.match(/^color\(srgb\s+([^)]+)\)$/);
@@ -202,22 +210,36 @@ test("keeps visited navigation text accented throughout a theme change", async (
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
     const link = page.locator('nav a[aria-current="page"]');
     const label = link.locator("svg");
+    // Navigation leaves the link hovered/focused. Its emphasis and surface
+    // transitions must finish before comparing two captures of the same frame.
+    await page.mouse.move(0, 0);
+    await link.blur();
+    await waitForAnimations(page);
     for (const theme of ["dark", "light"]) {
-      await page.locator(`[data-theme-choice="${theme}"]`).click();
-      const count = await page.evaluate(() => {
-        const animations = document.documentElement.getAnimations();
+      const count = await page.evaluate((theme) => {
+        // Start and pause in one task, without introducing new pointer/focus
+        // transitions. Freeze descendants as well as the root palette: the
+        // icon's background can otherwise advance between the two screenshots.
+        (document.querySelector(`[data-theme-choice="${theme}"]`) as HTMLButtonElement).click();
+        const animations = document
+          .getAnimations()
+          .filter((animation) => animation.playState !== "finished");
         animations.forEach((animation) => {
           animation.pause();
           animation.currentTime = 0;
         });
-        return animations.length;
-      });
+        return document.documentElement.getAnimations().length;
+      }, theme);
       expect(count).toBeGreaterThan(0);
       for (const time of [0, 55, 110, 180]) {
         await page.evaluate((time) => {
-          document.documentElement.getAnimations().forEach((animation) => {
-            animation.currentTime = time;
-          });
+          document
+            .getAnimations()
+            .filter((animation) => animation.playState !== "finished")
+            .forEach((animation) => {
+              animation.pause();
+              animation.currentTime = time;
+            });
         }, time);
         const visited = await label.screenshot();
         // The same text without link history is our reference at this exact
@@ -238,10 +260,11 @@ test("keeps visited navigation text accented throughout a theme change", async (
         expect(visited.equals(reference), `${theme} at ${time}ms: visited text color`).toBe(true);
       }
       await page.evaluate(async () => {
-        document.documentElement.getAnimations().forEach((animation) => animation.finish());
+        document.getAnimations().forEach((animation) => animation.finish());
         await new Promise(requestAnimationFrame);
         await new Promise(requestAnimationFrame);
       });
+      await waitForAnimations(page);
     }
   } finally {
     await context.close();

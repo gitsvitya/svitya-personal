@@ -252,6 +252,7 @@ for (const legacyChoice of ["granted", "denied"]) {
   test(`removes analytics and migrates the old ${legacyChoice} choice on a public hostname`, async ({
     context,
     page,
+    baseURL,
   }) => {
     const testOrigin = "http://review.svitya.test";
     const externalRequests: string[] = [];
@@ -263,7 +264,7 @@ for (const legacyChoice of ["granted", "denied"]) {
     await context.route("**/*", async (route) => {
       const url = route.request().url();
       if (url.startsWith(`${testOrigin}/`)) {
-        const response = await route.fetch({ url: url.replace(testOrigin, origin) });
+        const response = await route.fetch({ url: url.replace(testOrigin, baseURL!) });
         await route.fulfill({ response });
       } else {
         externalRequests.push(url);
