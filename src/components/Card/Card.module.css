@@ -19,7 +19,7 @@
 }
 .cardHeader {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   min-height: 64px;
@@ -72,15 +72,10 @@
   transition: color var(--transition-theme);
 }
 .logoPic {
-  flex: 0 0 64px;
-  width: 64px;
-  height: 64px;
+  flex: 0 0 84px;
+  width: 84px;
+  height: 48px;
   object-fit: contain;
-}
-:global([data-theme="dark"]) .lightLogoPlate {
-  padding: 8px;
-  border-radius: 8px;
-  background: #fafaf8;
 }
 .card:focus-visible {
   outline: 2px solid var(--accent);
@@ -113,7 +108,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     column-gap: clamp(32px, calc(15vw - 136px), 80px);
-    align-items: stretch;
+    align-items: center;
     min-height: 0;
     padding: 24px 0;
     border: 0;
@@ -126,6 +121,13 @@
   .cardCompanyName {
     font-size: 22px;
     line-height: 28px;
+  }
+}
+@media (max-width: 360px) {
+  .logoPic {
+    flex-basis: 70px;
+    width: 70px;
+    height: 40px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

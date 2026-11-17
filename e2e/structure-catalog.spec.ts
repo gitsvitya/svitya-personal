@@ -30,12 +30,26 @@ async function expectCatalogFits(page: Page, language: string, section: Catalog)
       return {
         card: box(element),
         header: box(element.querySelector('[class*="cardHeader"]')!),
+        identity: box(element.querySelector('[class*="cardIdentity"]')!),
+        logo: box(element.querySelector('[class*="logoPic"]')!),
         body: box(element.querySelector('[class*="cardBody"]')!),
         cta: box(element.querySelector('[class*="cardCta"]')!),
       };
     })
   );
   for (const entry of cards) {
+    const headerCenter = entry.header.y + entry.header.height / 2;
+    for (const content of [entry.identity, entry.logo]) {
+      expect(Math.abs(content.y + content.height / 2 - headerCenter)).toBeLessThan(1);
+      expect(content.x).toBeGreaterThanOrEqual(entry.header.x - 1);
+      expect(content.x + content.width).toBeLessThanOrEqual(
+        entry.header.x + entry.header.width + 1
+      );
+      expect(content.y).toBeGreaterThanOrEqual(entry.header.y - 1);
+      expect(content.y + content.height).toBeLessThanOrEqual(
+        entry.header.y + entry.header.height + 1
+      );
+    }
     expect(entry.body.x + entry.body.width).toBeLessThanOrEqual(
       entry.card.x + entry.card.width + 1
     );
@@ -70,7 +84,9 @@ for (const section of Object.keys(catalogSlugs) as Catalog[]) {
           }
           if (width > 1024) {
             expect(entry.body.x).toBeGreaterThan(entry.header.x + entry.header.width + 20);
-            expect(Math.abs(entry.header.y - entry.body.y)).toBeLessThan(1);
+            const headerCenter = entry.header.y + entry.header.height / 2;
+            const bodyCenter = entry.body.y + entry.body.height / 2;
+            expect(Math.abs(headerCenter - bodyCenter)).toBeLessThan(1);
             expect(entry.body.width).toBeLessThanOrEqual(760);
           } else {
             expect(entry.body.y).toBeGreaterThanOrEqual(entry.header.y + entry.header.height + 12);

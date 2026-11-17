@@ -10,6 +10,8 @@ The maximum content width is 1220 px inside a 1280 px container with 30 px side 
 
 Above 1024 px, catalog rows and case-study sections use columns in a 1:2 ratio, with a shared gap of 32–80 px. Case titles and section headings sit on the left; summaries, descriptions, and body text sit on the right. Below that breakpoint, case content becomes one column and is centered within its maximum width. Catalog entries become bordered cards. The homepage uses the same desktop columns for the portrait and introduction, followed by a full-width contact invitation. On smaller screens the portrait, introduction, and contact block stack vertically.
 
+Catalog identity, logo, and description blocks share a vertical center on desktop. On smaller screens, the identity and logo stay centered within the card header. Logos fit inside an 84 × 48 px frame with their original proportions and transparent backgrounds preserved. At 360 px and below, the frame becomes 70 × 40 px to leave more room for company names.
+
 ## Colors and interaction
 
 Global semantic colors are declared in `src/index.css`, with light and dark themes and a system preference. Components use these tokens for text, surfaces, borders, and controls. Hover color transitions use 180 ms ease-out; pressed states use 120 ms. Focus uses an immediate 2 px accent outline with a 3 px offset. Links are never underlined; cards and images stay in place during interaction. Forward arrows move 4 px right and back arrows 4 px left over 300 ms with `cubic-bezier(0.22, 1, 0.36, 1)` on mouse hover and keyboard focus. Reduced motion and disabled controls suppress arrow movement. Catalog outcomes remain muted, while the action changes to the accent color. Primary contact actions use a filled accent background.

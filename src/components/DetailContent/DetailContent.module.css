@@ -105,11 +105,6 @@
   object-fit: contain;
   object-position: left center;
 }
-:global([data-theme="dark"]) .lightLogoPlate {
-  padding: 8px;
-  border-radius: 8px;
-  background: #fafaf8;
-}
 .summary {
   display: flex;
   flex-direction: column;

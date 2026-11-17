@@ -20,7 +20,7 @@ function DetailContent({ company, titleId, descriptionId, text }: DetailContentP
         <div className={styles.identityColumn}>
           <div className={styles.companyIdentity}>
             <Image
-              className={`${styles.logo} ${company.id === "KG" ? styles.lightLogoPlate : ""}`}
+              className={styles.logo}
               src={company.logo}
               alt=""
               sizes={`${Math.ceil((72 * company.logo.width) / company.logo.height)}px`}

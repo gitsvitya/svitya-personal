@@ -19,10 +19,10 @@ function Card({ company, href, ctaLabel, preloadLogo = false }: CardProps) {
           <span className={styles.cardCompanyName}>{company.name}</span>
         </div>
         <Image
-          className={`${styles.logoPic} ${company.id === "KG" ? styles.lightLogoPlate : ""}`}
+          className={styles.logoPic}
           src={company.logo}
           alt=""
-          sizes="64px"
+          sizes="(max-width: 360px) 70px, 84px"
           preload={preloadLogo}
         />
       </div>
