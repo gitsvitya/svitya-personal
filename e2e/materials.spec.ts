@@ -44,8 +44,8 @@ const materials = [
 ] as const;
 
 const labels = {
-  ru: ["Скачать", "Открыть в новом окне", "Перейти по ссылке"],
-  en: ["Download", "Open in new window", "Visit link"],
+  ru: ["Скачать", "Открыть оригинал", "Перейти по ссылке"],
+  en: ["Download", "Open original", "Visit link"],
 } as const;
 
 const mappngoMaterials = {
@@ -103,10 +103,18 @@ const mappngoMaterials = {
   ],
 } as const;
 
+function materialActionLink(dialog: Locator, label: string) {
+  return dialog
+    .getByRole("link", { name: label, exact: true })
+    .and(dialog.locator(".button-control"));
+}
+
 async function measureModalLayout(dialog: Locator) {
   return dialog.evaluate((element) => {
     const bounds = element.getBoundingClientRect();
-    const preview = element.querySelector("img")!.getBoundingClientRect();
+    const preview = element
+      .querySelector("img")!
+      .parentElement!.parentElement!.getBoundingClientRect();
     const description = element.querySelector("p")!.getBoundingClientRect();
     const actions = element
       .querySelector(".button-control")!
@@ -151,21 +159,21 @@ for (const language of ["ru", "en"] as const) {
         )
         .toBe(true);
       await expect(dialog.locator(".button-control .button-label")).toHaveText([
-        ...labels[language],
+        labels[language][1],
+        labels[language][0],
       ]);
-      await expect(
-        dialog.getByRole("link", { name: labels[language][1], exact: true })
-      ).toHaveAttribute("href", href);
+      await expect(materialActionLink(dialog, labels[language][1])).toHaveAttribute("href", href);
       if (material.url) {
-        await expect(
-          dialog.getByRole("link", { name: labels[language][2], exact: true })
-        ).toHaveAttribute("href", material.url);
+        await expect(materialActionLink(dialog, labels[language][2])).toHaveAttribute(
+          "href",
+          material.url
+        );
       } else {
         await expect(
           dialog.getByRole("button", { name: labels[language][2], exact: true })
-        ).toBeDisabled();
+        ).toHaveCount(0);
       }
-      const link = dialog.getByRole("link", { name: labels[language][0], exact: true });
+      const link = materialActionLink(dialog, labels[language][0]);
       await expect(link).toHaveAttribute("download", getDownloadFilename(href));
       const downloadPromise = page.waitForEvent("download");
       await link.click();
@@ -190,9 +198,7 @@ for (const language of ["ru", "en"] as const) {
     await previews.first().click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toHaveCSS("opacity", "1");
-    await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
-      `1 ${language === "ru" ? "из" : "of"} 4`
-    );
+    await expect(dialog.locator('[aria-live="polite"]')).toHaveText(`1 / 4`);
     await page.keyboard.press("ArrowRight");
     await expect(dialog).toHaveAccessibleName(mappngoMaterials[language][1].title);
     await page.keyboard.press("ArrowLeft");
@@ -207,7 +213,7 @@ for (const language of ["ru", "en"] as const) {
   });
 
   for (const material of materials) {
-    test(`provides usable and inert actions for the ${language} ${material.type} material`, async ({
+    test(`shows only available actions for the ${language} ${material.type} material`, async ({
       context,
       page,
       baseURL,
@@ -219,38 +225,22 @@ for (const language of ["ru", "en"] as const) {
       await expect(dialog).toHaveCSS("opacity", "1");
       await expect(dialog).toHaveAccessibleName(material.title[language]);
       const actions = dialog.locator(".button-control");
-      await expect(actions).toHaveCount(3);
-      await expect(actions.locator(".button-label")).toHaveText([...labels[language]]);
+      await expect(actions).toHaveCount(material.active.filter(Boolean).length);
+      await expect(actions.locator(".button-label")).toHaveText([
+        labels[language][1],
+        labels[language][0],
+        ...(material.active[2] ? [labels[language][2]] : []),
+      ]);
 
       for (const [index, label] of labels[language].entries()) {
         if (material.active[index]) {
-          await expect(dialog.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+          await expect(materialActionLink(dialog, label)).toHaveAttribute(
             "href",
             index === 2 && "sourceUrl" in material ? material.sourceUrl : material.href
           );
         } else {
-          const disabled = dialog.getByRole("button", { name: label, exact: true });
-          await expect(disabled).toBeDisabled();
-          const pagesBefore = context.pages().length;
-          await disabled.evaluate((element: HTMLButtonElement) => element.click());
-          expect(context.pages().length).toBe(pagesBefore);
-          await expect(page).toHaveURL(`/${language}/${material.path}`);
-
-          for (const theme of ["light", "dark"]) {
-            await page.locator("html").evaluate((element, value) => {
-              element.setAttribute("data-theme", value);
-            }, theme);
-            await page.mouse.move(0, 0);
-            await expect(disabled).toHaveCSS(
-              "color",
-              theme === "light" ? "rgb(89, 97, 109)" : "rgb(171, 183, 201)"
-            );
-            const color = await disabled.evaluate((element) => getComputedStyle(element).color);
-            await disabled.hover();
-            await expect(disabled).toHaveCSS("color", color);
-            await expect(disabled).toHaveCSS("border-color", color);
-            await expect(disabled).toHaveCSS("cursor", "default");
-          }
+          await expect(materialActionLink(dialog, label)).toHaveCount(0);
+          await expect(dialog.getByRole("button", { name: label, exact: true })).toHaveCount(0);
         }
       }
 
@@ -265,7 +255,7 @@ for (const language of ["ru", "en"] as const) {
       await expect(lastAction).toBeFocused();
 
       if (material.active[0]) {
-        const downloadLink = dialog.getByRole("link", { name: labels[language][0], exact: true });
+        const downloadLink = materialActionLink(dialog, labels[language][0]);
         const downloadPromise = page.waitForEvent("download");
         await downloadLink.click();
         const download = await downloadPromise;
@@ -277,7 +267,7 @@ for (const language of ["ru", "en"] as const) {
         await expect(page).toHaveURL(`/${language}/${material.path}`);
         await download.delete();
 
-        const openWindow = dialog.getByRole("link", { name: labels[language][1], exact: true });
+        const openWindow = materialActionLink(dialog, labels[language][1]);
         await expect(openWindow).toHaveAttribute("target", "_blank");
         await expect(openWindow).toHaveAttribute("rel", "noopener noreferrer");
         await expect(openWindow).not.toHaveAttribute("download");
@@ -294,7 +284,7 @@ for (const language of ["ru", "en"] as const) {
           route.fulfill({ contentType: "text/html", body: "<h1>External material</h1>" })
         );
         const popupPromise = context.waitForEvent("page");
-        await dialog.getByRole("link", { name: labels[language][2], exact: true }).click();
+        await materialActionLink(dialog, labels[language][2]).click();
         const popup = await popupPromise;
         await expect(popup).toHaveURL(material.sourceUrl);
         await expect(popup.getByRole("heading", { name: "External material" })).toBeVisible();
@@ -333,20 +323,15 @@ for (const language of ["ru", "en"] as const) {
     for (const [index, [slug, sourceUrl]] of articles.entries()) {
       await expect(next).toHaveAttribute("aria-disabled", "false");
       const href = `/materials/work/thomsonreuters/${slug}.pdf`;
-      await expect(
-        dialog.getByRole("link", { name: labels[language][0], exact: true })
-      ).toHaveAttribute("href", href);
-      await expect(
-        dialog.getByRole("link", { name: labels[language][1], exact: true })
-      ).toHaveAttribute("href", href);
-      await expect(
-        dialog.getByRole("link", { name: labels[language][2], exact: true })
-      ).toHaveAttribute("href", sourceUrl);
+      await expect(materialActionLink(dialog, labels[language][0])).toHaveAttribute("href", href);
+      await expect(materialActionLink(dialog, labels[language][1])).toHaveAttribute("href", href);
+      await expect(materialActionLink(dialog, labels[language][2])).toHaveAttribute(
+        "href",
+        sourceUrl
+      );
       await expect(dialog.locator(".button-control")).toHaveCount(3);
       await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
-      await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
-        `${index + 1} ${language === "ru" ? "из" : "of"} 5`
-      );
+      await expect(dialog.locator('[aria-live="polite"]')).toHaveText(`${index + 1} / 5`);
       await expect
         .poll(() =>
           dialog
@@ -395,18 +380,16 @@ for (const language of ["ru", "en"] as const) {
       for (const [actionIndex, label] of labels[language].entries()) {
         const target = actionIndex === 2 ? sourceUrl : href;
         if (target) {
-          await expect(dialog.getByRole("link", { name: label, exact: true })).toHaveAttribute(
-            "href",
-            target
-          );
+          await expect(materialActionLink(dialog, label)).toHaveAttribute("href", target);
         } else {
-          await expect(dialog.getByRole("button", { name: label, exact: true })).toBeDisabled();
+          await expect(materialActionLink(dialog, label)).toHaveCount(0);
+          await expect(dialog.getByRole("button", { name: label, exact: true })).toHaveCount(0);
         }
       }
-      await expect(dialog.locator(".button-control")).toHaveCount(3);
-      await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(sourceUrl ? 0 : 1);
+      await expect(dialog.locator(".button-control")).toHaveCount(sourceUrl ? 3 : 2);
+      await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
       await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
-        `${index + 1} ${language === "ru" ? "из" : "of"} ${pages.length}`
+        `${index + 1} / ${pages.length}`
       );
       await expect
         .poll(() =>
@@ -442,7 +425,7 @@ for (const language of ["ru", "en"] as const) {
           language === "ru" ? "Роспатента" : "Rospatent"
         );
         const downloadPromise = page.waitForEvent("download");
-        await dialog.getByRole("link", { name: labels[language][0], exact: true }).click();
+        await materialActionLink(dialog, labels[language][0]).click();
         const download = await downloadPromise;
         const downloaded = await readFile((await download.path())!);
         const source = await readFile(join(process.cwd(), "public", href));
@@ -463,10 +446,8 @@ for (const language of ["ru", "en"] as const) {
             name: language === "ru" ? "Закрыть окно" : "Close window",
           })
           .focus();
-        await dialog.getByRole("link", { name: labels[language][0], exact: true }).focus();
-        await expect(
-          dialog.getByRole("link", { name: labels[language][0], exact: true })
-        ).toBeInViewport({ ratio: 1 });
+        await materialActionLink(dialog, labels[language][0]).focus();
+        await expect(materialActionLink(dialog, labels[language][0])).toBeInViewport({ ratio: 1 });
         await dialog.screenshot({
           path: testInfo.outputPath("madburglarcat-trademark-mobile.png"),
         });
@@ -502,8 +483,12 @@ for (const language of ["ru", "en"] as const) {
         const dialog = page.getByRole("dialog");
         await expect(dialog).toHaveCSS("opacity", "1");
         const layout = await measureModalLayout(dialog);
-        if (reference) expect(layout, `${material.type} at ${width}×${height}`).toEqual(reference);
-        else reference = layout;
+        if (reference) {
+          expect(layout.modalWidth).toBe(reference.modalWidth);
+          expect(Math.abs(layout.previewWidth - reference.previewWidth)).toBeLessThanOrEqual(16);
+          expect(layout.contentInset).toBe(reference.contentInset);
+          expect(layout.actionsInset).toBe(layout.contentInset);
+        } else reference = layout;
 
         const buttons = await dialog.locator(".button-control").evaluateAll((actions) =>
           actions.map((action) => {
@@ -517,7 +502,7 @@ for (const language of ["ru", "en"] as const) {
           expect(button.right).toBeLessThanOrEqual(width);
         }
         expect(buttons[1]!.left).toBeGreaterThan(buttons[0]!.right);
-        expect(buttons[2]!.left).toBeGreaterThan(buttons[1]!.right);
+        if (buttons[2]) expect(buttons[2].left).toBeGreaterThan(buttons[1]!.right);
       }
     }
   });
@@ -538,8 +523,12 @@ for (const language of ["ru", "en"] as const) {
         await expect(dialog).toHaveCSS("opacity", "1");
         await page.evaluate(() => document.fonts.ready);
         const layout = await measureModalLayout(dialog);
-        if (reference) expect(layout, `${material.type} at ${width}px`).toEqual(reference);
-        else reference = layout;
+        if (reference) {
+          expect(layout.modalWidth).toBe(reference.modalWidth);
+          expect(Math.abs(layout.previewWidth - reference.previewWidth)).toBeLessThanOrEqual(16);
+          expect(layout.contentInset).toBe(reference.contentInset);
+          expect(layout.actionsInset).toBe(layout.contentInset);
+        } else reference = layout;
         const overflowingActions = await dialog.locator(".button-control").evaluateAll((actions) =>
           actions.flatMap((action) => {
             const bounds = action.getBoundingClientRect();
@@ -555,7 +544,7 @@ for (const language of ["ru", "en"] as const) {
           })
         );
         expect(overflowingActions, `${material.type} at ${width}px`).toEqual([]);
-        for (const action of await dialog.getByRole("link").all()) {
+        for (const action of await dialog.locator("a:not([aria-label])").all()) {
           await action.focus();
           await expect(action).toBeFocused();
           await expect(action).toBeInViewport({ ratio: 1 });
@@ -580,7 +569,7 @@ test("selects matching MappNgo material assets after changing the site language"
   await page.goto("/ru/projects/mappngo");
   for (const language of ["en", "ru"] as const) {
     await page.goto(`/${currentLanguage}/settings`);
-    await page.locator("#language-toggle").click();
+    await page.locator(`header a[lang="${language}"]`).click();
     await expect(page).toHaveURL(`/${language}/settings`);
     await page.locator(`nav a[href="/${language}/projects"]`).click();
     await page.locator(`main a[href="/${language}/projects/mappngo"]`).click();
@@ -602,7 +591,7 @@ test("selects matching MappNgo material assets after changing the site language"
     await expect(dialog).toHaveAccessibleName(mappngoMaterials[language][2].title);
     await expect(
       dialog.getByRole("button", { name: labels[language][2], exact: true })
-    ).toBeDisabled();
+    ).toHaveCount(0);
     await page.keyboard.press("Escape");
     await expect(dialog).not.toBeVisible();
     currentLanguage = language;

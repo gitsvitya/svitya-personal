@@ -1,5 +1,7 @@
 "use client";
 
+import { useContext, useLayoutEffect } from "react";
+import { RouteStatusContext } from "../SiteShell/RouteStatusContext";
 import { usePathname } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { DEFAULT_LANGUAGE, type Language } from "../../types/domain";
@@ -12,7 +14,13 @@ export default function NotFoundPage({
 }: {
   initialLanguage?: Language;
 }) {
-  const language = parseLocalizedPath(usePathname()).language || initialLanguage;
+  const pathname = usePathname();
+  const reportNotFound = useContext(RouteStatusContext);
+  useLayoutEffect(() => {
+    reportNotFound?.(pathname);
+    return () => reportNotFound?.(null);
+  }, [pathname, reportNotFound]);
+  const language = parseLocalizedPath(pathname).language || initialLanguage;
   const text = getTranslations(language).notFound;
   return (
     <section className={`layout-container ${styles.container}`}>

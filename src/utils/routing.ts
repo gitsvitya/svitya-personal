@@ -87,3 +87,11 @@ export function getLegacyHashPath(): SectionPath | null {
   const candidate = trimPath(hash.slice(1));
   return isAllowedSectionPath(candidate) ? candidate : null;
 }
+
+// Keep locale links and their client-side navigation identical, including 404 URLs.
+export function buildLanguageSwitchPath(language: Language, pathname: string): string {
+  const path = trimPath(pathname);
+  return /^\/(ru|en)(?:\/|$)/.test(path)
+    ? path.replace(/^\/(ru|en)(?=\/|$)/, `/${language}`)
+    : `/${language}${path === "/" ? "/about" : path}`;
+}

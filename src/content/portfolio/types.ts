@@ -13,6 +13,14 @@ export type CompanyCopy = {
   };
 };
 
+export type PortfolioPresentation = {
+  catalogDescription: string;
+  catalogOutcome: string;
+  heroSummary: string;
+  status?: string;
+  metrics?: { value: string; label: string }[];
+};
+
 export type CaseStudy = {
   challenge: string;
   contribution: string[];
@@ -20,6 +28,8 @@ export type CaseStudy = {
 };
 
 type MaterialCopy = {
+  metadata?: Record<Language, string>;
+  previewFit?: "cover" | "contain";
   title: Record<Language, string>;
   description: Record<Language, string>;
 };
@@ -64,6 +74,8 @@ type LocalizeMaterial<T> = T extends CompanyMaterial
       type: T["type"];
       title: string;
       description: string;
+      metadata?: string;
+      previewFit?: "cover" | "contain";
     }
   : never;
 
@@ -71,6 +83,9 @@ export type LocalizedMaterial = LocalizeMaterial<CompanyMaterial>;
 
 export type LocalizedCompany = Omit<CompanyRecord, "translations" | "materials"> &
   CompanyCopy & {
+    language: Language;
+    presentation: PortfolioPresentation;
+    nextCompany: { name: string; slug: string };
     caseStudy?: CaseStudy;
     materials?: {
       enabled: boolean;

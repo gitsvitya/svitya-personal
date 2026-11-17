@@ -40,7 +40,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "Координировал разработку и внедрение системы обработки заявок на товарных аукционах.",
       ],
       outcome:
-        "Запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов. За время моей работы число участников аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов (мест поставки) — до 50+. После внедрения системы обработки заявок их число выросло более чем в 2 раза. Ниже — версии методик, над которыми я работал, и пример дашборда с ценовыми индексами.",
+        "Запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов. За время моей работы число участников аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов (мест поставки) — до 50+. После внедрения системы обработки заявок их число выросло более чем в 2 раза. Ниже — версии методик, над которыми я работал.",
     },
     en: {
       challenge:
@@ -53,7 +53,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "I coordinated the development and implementation of a system to automate auction bid processing.",
       ],
       outcome:
-        "I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+, the product range reached 200+ items and delivery locations reached 50+. After the bid processing system was introduced, the number of bids increased more than 2-fold. Below are versions of the methodologies I worked on and a sample dashboard of price indices.",
+        "I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+, the product range reached 200+ items and delivery locations reached 50+. After the bid processing system was introduced, the number of bids increased more than 2-fold. Below are versions of methodologies I worked on.",
     },
   },
   LRNPT: {
@@ -127,7 +127,7 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
         "I ran workshops for Eikon clients and spoke as an industry expert at conferences.",
       ],
       outcome:
-        "The information products I developed attracted 3 B2B clients in total. I prepared 1,000+ publications reaching 20,000+ readers and progressed from intern to market analyst. The examples below explain my role in each piece: author, contributor or translator.",
+        "The information products I developed attracted 3 B2B clients in total. I prepared 1,000+ publications reaching 20,000+ readers and progressed from intern to market analyst. Below are examples of publications and materials I worked on.",
     },
   },
   MBC: {
@@ -161,10 +161,10 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
       contribution: [
         "Разработал концепцию приложения и основные сценарии его использования.",
         "Подобрал дизайнеров и разработчиков на аутсорсе и координировал их работу.",
-        "Организовал тестирование MVP среди знакомых.",
+        "Организовал тестирование MVP среди ограниченного круга тестеров.",
       ],
       outcome:
-        "Команда разработала MVP для iOS, и мы протестировали его среди знакомых. До публичного запуска проект не дошёл: в 2020 году он закрылся на фоне ограничений COVID-19. Ниже — тестовые экраны и архивные материалы.",
+        "Команда разработала MVP для iOS, и мы протестировали его среди ограниченного круга тестеров. До публичного запуска проект не дошёл: в 2020 году он закрылся на фоне ограничений COVID-19. Ниже — тестовые экраны и архивные материалы.",
     },
     en: {
       challenge:
@@ -172,10 +172,10 @@ export const CASE_STUDIES: Partial<Record<CompanyId, Record<Language, CaseStudy>
       contribution: [
         "I defined the app concept and the main ways people would use it.",
         "I brought in outsourced designers and developers and coordinated their work.",
-        "I organized MVP testing with people I knew.",
+        "I organized MVP testing with a limited group of testers.",
       ],
       outcome:
-        "The team developed an iOS MVP, which we tested with people we knew. The project closed in 2020 amid COVID-19 restrictions, before a public launch. Test screens and archived materials are below.",
+        "The team developed an iOS MVP, which we tested with a limited group of testers. The project closed in 2020 amid COVID-19 restrictions, before a public launch. Test screens and archived materials are below.",
     },
   },
   VNV: {

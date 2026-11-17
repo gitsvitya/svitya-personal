@@ -16,6 +16,7 @@ export const uiText = {
     navigation: {
       menuLabel: "Разделы",
       skipToContent: "Перейти к содержимому",
+      work: "Опыт работы",
     },
     sections: {
       about: "Обо мне",
@@ -30,17 +31,21 @@ export const uiText = {
       language: "Язык",
       russianLanguage: "Русский язык",
       cookies: "Cookie",
-      showCookieBanner: "Показать cookie баннер",
+      showCookieBanner: "Показать уведомление",
     },
     about: {
       title: "Виктор Строков",
       portraitAlt: "Портрет Виктора Строкова",
       contact: "Связаться со мной",
+      work: "Опыт работы",
+      projects: "Мои проекты",
+      invitation: "Есть проект, вакансия или просто вопрос?",
+      invitationDetail: "Напишите — я всегда на связи.",
       cv: "Скачать резюме",
       experience: "Продукты и сервисы для бизнеса",
       subtitle: "Данные, аналитика и продукты для бизнеса",
       description:
-        "Я занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Иногда запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили. Здесь рассказываю о своём опыте, идеях и творческих порывах — подробнее об этом в разделах сайта выше.",
+        "Занимаюсь рыночной аналитикой и развиваю продукты для бизнеса. Запускаю собственные проекты, делаю этот сайт и выращиваю перцы чили.",
     },
     notFound: {
       title: "Страница не найдена",
@@ -95,9 +100,10 @@ export const uiText = {
     navigation: {
       menuLabel: "Sections",
       skipToContent: "Skip to content",
+      work: "Work",
     },
     sections: {
-      about: "About me",
+      about: "About",
       work: "Work experience",
       projects: "Projects",
       activities: "Interests",
@@ -109,17 +115,21 @@ export const uiText = {
       language: "Language",
       russianLanguage: "Russian language",
       cookies: "Cookies",
-      showCookieBanner: "Show cookie banner",
+      showCookieBanner: "Show cookie notice",
     },
     about: {
       title: "Victor Strokov",
       portraitAlt: "Portrait of Victor Strokov",
       contact: "Contact me",
+      work: "Work experience",
+      projects: "My projects",
+      invitation: "Have a project, a job opportunity or a question?",
+      invitationDetail: "Get in touch — I’m always happy to hear from you.",
       cv: "Download CV",
       experience: "Products and services for businesses",
       subtitle: "Data, market analysis and products for businesses",
       description:
-        "I work in market analysis and develop products for businesses. Sometimes I start projects of my own, work on this website and grow chili peppers. Here I share stories about my experience, ideas and creative impulses — explore the site’s sections above to find out more.",
+        "I work in market intelligence and develop products for business. I also launch my own projects, build this website and grow chillies.",
     },
     notFound: {
       title: "Page not found",

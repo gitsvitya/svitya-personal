@@ -106,7 +106,7 @@
 
 @media (max-width: 768px) {
   .container {
-    gap: 16px;
+    gap: 20px;
   }
   .disclaimerBlock {
     gap: 10px;
@@ -115,6 +115,7 @@
 @media (max-width: 640px) {
   .container {
     flex-direction: column;
+    gap: 20px;
   }
   .contactsBlock {
     flex-direction: column;
@@ -140,4 +141,8 @@
     gap: 10px;
     flex-direction: row;
   }
+}
+
+.link:active {
+  color: var(--accent-pressed);
 }

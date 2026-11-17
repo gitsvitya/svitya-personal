@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { LocalizedMaterial } from "../../content/portfolio";
 import type { AppTranslations } from "../../content/ui-text";
 import { getDownloadFile, getDownloadFilename } from "../../utils/downloads";
@@ -14,6 +14,7 @@ type MaterialsGalleryProps = {
   items: LocalizedMaterial[];
   text: AppTranslations;
   companyName: string;
+  compact?: boolean;
 };
 
 type MaterialModalContentProps = {
@@ -21,12 +22,14 @@ type MaterialModalContentProps = {
   text: AppTranslations;
   companyName: string;
   isVisible: boolean;
-  materialCount?: string;
-  titleId?: string;
+  materialCount: string;
+  hasNavigation: boolean;
+  showPreviousMaterial: () => void;
+  showNextMaterial: () => void;
   descriptionId?: string;
 };
 
-function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
+function MaterialsGallery({ items, text, companyName, compact = false }: MaterialsGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isMaterialVisible, setIsMaterialVisible] = useState(true);
@@ -136,14 +139,18 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
       <h2 id="company-materials-title" className={styles.title}>
         {text.detail.materialsTitle}
       </h2>
-      <div className={styles.previewGrid}>
+      <div
+        className={`${styles.previewGrid} ${compact ? styles.compactGrid : ""} ${items.length === 2 ? styles.pairedGrid : ""}`}
+      >
         {items.map((material, index) => {
           const action = getMaterialAction(material, text);
-          const [, titleStart, titleEnd] = material.title.match(/^([\s\S]*\s)?(\S+)$/)!;
           return (
-            <h3 key={`${material.type}:${material.title}:${index}`} className={styles.previewItem}>
+            <article
+              key={`${material.type}:${material.title}:${index}`}
+              className={styles.previewItem}
+            >
               <a
-                className={styles.previewLink}
+                className={`arrow-link ${styles.previewLink}`}
                 href={action.href}
                 download={action.download}
                 target={action.target}
@@ -159,66 +166,52 @@ function MaterialsGallery({ items, text, companyName }: MaterialsGalleryProps) {
               >
                 <span className={styles.previewFrame}>
                   <Image
-                    className={styles.previewImage}
+                    className={`${styles.previewImage} ${material.previewFit === "cover" ? styles.fillPreview : ""}`}
                     src={material.previewSrc}
                     alt={`${companyName}: ${material.title}`}
-                    sizes="(max-width: 360px) calc(100vw - 32px), (max-width: 768px) calc((100vw - 48px) / 2), (max-width: 1024px) calc((100vw - 80px) / 3), 300px"
+                    sizes={
+                      compact
+                        ? "(max-width: 640px) 96px, (max-width: 1024px) calc((100vw - 68px) / 2), 394px"
+                        : "(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 68px) / 2), 394px"
+                    }
                   />
                 </span>
-                <span className={styles.previewTitle}>
-                  {titleStart}
-                  <span className={styles.previewTitleEnd}>
-                    {titleEnd}
-                    {"\u00a0"}
-                    <span className={styles.previewArrow} aria-hidden="true">
+                <div className={styles.previewDescription}>
+                  <h3 className={styles.previewTitle}>{material.title}</h3>
+                  {material.metadata && (
+                    <span className={styles.previewMetadata}>{material.metadata}</span>
+                  )}
+                  <span className={styles.previewAction}>
+                    {text.detail.fileSize.locale === "ru-RU" ? "Открыть материал" : "Open material"}
+                    <span className={`link-arrow ${styles.previewArrow}`} aria-hidden="true">
                       →
                     </span>
                   </span>
-                </span>
+                </div>
               </a>
-            </h3>
+            </article>
           );
         })}
       </div>
 
       {activeMaterial && (
         <Modal
-          className={styles.materialModal}
           closeModal={closeModal}
           showContent={isModalVisible}
           setShowContent={setIsModalVisible}
           closeLabel={text.modal.closeLabel}
-          overlayControls={
-            hasNavigation ? (
-              <>
-                <button
-                  type="button"
-                  className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
-                  onClick={showPreviousMaterial}
-                  aria-disabled={!isMaterialVisible}
-                  aria-label={text.detail.previousMaterial}
-                />
-                <button
-                  type="button"
-                  className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
-                  onClick={showNextMaterial}
-                  aria-disabled={!isMaterialVisible}
-                  aria-label={text.detail.nextMaterial}
-                />
-              </>
-            ) : undefined
-          }
+          title={activeMaterial.title}
+          titleVisible={isMaterialVisible}
         >
           <MaterialModalContent
             material={activeMaterial}
             text={text}
             companyName={companyName}
             isVisible={isMaterialVisible}
-            materialCount={
-              hasNavigation
-                ? `${(activeIndex ?? 0) + 1} ${text.detail.materialOf} ${items.length}`
-                : undefined
-            }
+            materialCount={`${(activeIndex ?? 0) + 1} / ${items.length}`}
+            hasNavigation={hasNavigation}
+            showPreviousMaterial={showPreviousMaterial}
+            showNextMaterial={showNextMaterial}
           />
         </Modal>
       )}
@@ -231,82 +224,129 @@ function MaterialModalContent({
   text,
   companyName,
   isVisible,
-  titleId,
   descriptionId,
   materialCount,
+  hasNavigation,
+  showPreviousMaterial,
+  showNextMaterial,
 }: MaterialModalContentProps) {
   const actions = getMaterialActions(material, text);
   const document = material.type === "document" ? getDownloadFile(material.fileSrc) : undefined;
   const original = document?.originalSrc ? getDownloadFile(document.originalSrc) : undefined;
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
+  const openOriginalLabel =
+    text.detail.fileSize.locale === "ru-RU" ? "Открыть оригинал" : "Open original";
+  const originalHref = actions.openWindow.href ?? actions.openLink.href;
+  const fullImage = material.fullImageSrc;
+  const imageSrc = typeof fullImage === "string" ? fullImage : fullImage.src;
+  const sourceDimensions = typeof fullImage === "string" ? material.previewSrc : fullImage;
+  const [loadedImage, setLoadedImage] = useState<{ src: string; ratio: number } | null>(null);
+  const imageRatio =
+    loadedImage?.src === imageSrc
+      ? loadedImage.ratio
+      : sourceDimensions.width / sourceDimensions.height;
 
   return (
     <div className={styles.modalContent}>
-      <h2 id={titleId} className={`${styles.modalTitle} ${visibilityClass}`}>
-        {material.title}
-      </h2>
       <div className={styles.imageFrame}>
-        <Image
-          className={`${styles.modalImage} ${visibilityClass}`}
-          src={material.fullImageSrc}
-          alt={`${companyName}: ${material.title}`}
-          sizes={
-            materialCount
-              ? "(max-width: 640px) calc(100vw - 136px), 400px"
-              : "(max-width: 640px) calc(100vw - 64px), 400px"
-          }
-        />
+        <a
+          className={styles.imageLink}
+          style={{ "--material-image-ratio": imageRatio } as CSSProperties}
+          href={originalHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={openOriginalLabel}
+          title={openOriginalLabel}
+        >
+          <Image
+            className={`${styles.modalImage} ${visibilityClass}`}
+            src={fullImage}
+            alt={`${companyName}: ${material.title}`}
+            width={sourceDimensions.width}
+            height={sourceDimensions.height}
+            sizes="(max-width: 640px) calc(100vw - 48px), 852px"
+            onLoad={
+              typeof fullImage === "string"
+                ? (event) => {
+                    const { naturalWidth, naturalHeight } = event.currentTarget;
+                    if (naturalWidth > 0 && naturalHeight > 0) {
+                      setLoadedImage({ src: imageSrc, ratio: naturalWidth / naturalHeight });
+                    }
+                  }
+                : undefined
+            }
+          />
+        </a>
       </div>
-      {materialCount && (
+      <div className={styles.galleryNavigation}>
+        {hasNavigation && (
+          <button
+            type="button"
+            className={`arrow-link ${styles.arrowButton}`}
+            onClick={showPreviousMaterial}
+            aria-disabled={!isVisible}
+            aria-label={text.detail.previousMaterial}
+          >
+            <span className="link-arrow link-arrow-back" aria-hidden="true">
+              ←
+            </span>
+          </button>
+        )}
         <span className={styles.materialCount} aria-live="polite" aria-atomic="true">
           {materialCount}
         </span>
-      )}
+        {hasNavigation && (
+          <button
+            type="button"
+            className={`arrow-link ${styles.arrowButton}`}
+            onClick={showNextMaterial}
+            aria-disabled={!isVisible}
+            aria-label={text.detail.nextMaterial}
+          >
+            <span className="link-arrow" aria-hidden="true">
+              →
+            </span>
+          </button>
+        )}
+      </div>
       <p id={descriptionId} className={`${styles.description} ${visibilityClass}`}>
         {material.description}
       </p>
       <div className={`${styles.materialActions} ${visibilityClass}`}>
-        {Object.entries(actions).map(([key, action]) => {
-          const className = `button-control ${styles.materialAction} ${action.className}`;
-          const label = <span className={`button-label ${styles.actionText}`}>{action.label}</span>;
-          return action.href ? (
-            <a
-              key={key}
-              className={className}
-              href={action.href}
-              download={action.download}
-              aria-label={action.label}
-              target={action.target}
-              rel={action.target ? "noopener noreferrer" : undefined}
-              onFocus={(event) => {
-                event.currentTarget.scrollIntoView({
-                  block: "nearest",
-                  inline: "nearest",
-                  behavior: "instant",
-                });
-              }}
-            >
-              {label}
-            </a>
-          ) : (
-            <button key={key} type="button" className={className} disabled>
-              {label}
-            </button>
-          );
-        })}
+        <a
+          className={`button-control ${styles.materialAction}`}
+          href={originalHref}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={`button-label ${styles.actionText}`}>{openOriginalLabel}</span>
+        </a>
+        {actions.download.href && (
+          <a
+            className={`button-control ${styles.materialAction}`}
+            href={actions.download.href}
+            download={actions.download.download}
+          >
+            <span className={`button-label ${styles.actionText}`}>{text.detail.download}</span>
+          </a>
+        )}
+        {actions.openLink.href && actions.openLink.href !== originalHref && (
+          <a
+            className={`button-control ${styles.materialAction}`}
+            href={actions.openLink.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={`button-label ${styles.actionText}`}>{text.detail.openLink}</span>
+          </a>
+        )}
         {original && document?.originalSrc && (
           <a
             className={styles.originalDownloadAction}
             href={document.originalSrc}
             download={original.filename}
-            aria-label={text.detail.downloadOriginal}
-            onFocus={(event) => {
-              event.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest" });
-            }}
           >
-            <span className={`button-label ${styles.actionText}`}>
-              {text.detail.downloadOriginal}
-            </span>
+            {text.detail.downloadOriginal}
           </a>
         )}
       </div>
@@ -340,21 +380,18 @@ function getMaterialActions(material: LocalizedMaterial, text: AppTranslations) 
     download: {
       href: fileHref,
       label: text.detail.download,
-      className: styles.downloadAction,
       download: material.type === "document" ? getDownloadFilename(material.fileSrc) : true,
       target: undefined,
     },
     openWindow: {
       href: fileHref,
       label: text.detail.openWindow,
-      className: styles.openWindowAction,
       download: undefined,
       target: "_blank",
     },
     openLink: {
       href: material.type === "image" ? undefined : material.url,
       label: text.detail.openLink,
-      className: styles.openLinkAction,
       download: undefined,
       target: "_blank",
     },

@@ -1,3 +1,34 @@
+@property --bg-hover {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e6e7e9;
+}
+@property --bg-pressed {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #dcdde0;
+}
+@property --accent-hover {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #932e2b;
+}
+@property --accent-pressed {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #7f2826;
+}
+@property --on-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+@property --bg-media {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
 /* Navigation animates selection separately from the changing theme colors. */
 @property --nav-emphasis {
   syntax: "<number>";
@@ -9,32 +40,32 @@
 @property --bg-page {
   syntax: "<color>";
   inherits: true;
-  initial-value: #ffffff;
+  initial-value: #fafaf8;
 }
 @property --bg-surface {
   syntax: "<color>";
   inherits: true;
-  initial-value: #f1f3f7;
+  initial-value: #f0f1f2;
 }
 @property --text-primary {
   syntax: "<color>";
   inherits: true;
-  initial-value: #111217;
+  initial-value: #202329;
 }
 @property --text-subtle {
   syntax: "<color>";
   inherits: true;
-  initial-value: #59616d;
+  initial-value: #5e6570;
 }
 @property --accent {
   syntax: "<color>";
   inherits: true;
-  initial-value: #cc302c;
+  initial-value: #ad3734;
 }
 @property --border-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #cbd0d7;
+  initial-value: #d9dadd;
 }
 @property --banner-bg {
   syntax: "<color>";
@@ -44,7 +75,7 @@
 @property --banner-text {
   syntax: "<color>";
   inherits: true;
-  initial-value: #ffffff;
+  initial-value: #fafaf8;
 }
 @property --control-track {
   syntax: "<color>";
@@ -54,32 +85,40 @@
 
 :root {
   color-scheme: light;
-  --bg-page: #ffffff;
-  --bg-surface: #f1f3f7;
-  --text-primary: #111217;
-  --text-subtle: #59616d;
-  --accent: #cc302c;
-  --border-color: #cbd0d7;
+  --bg-page: #fafaf8;
+  --bg-surface: #f0f1f2;
+  --text-primary: #202329;
+  --text-subtle: #5e6570;
+  --accent: #ad3734;
+  --border-color: #d9dadd;
+  --bg-hover: #e6e7e9;
+  --bg-media: #ffffff;
+  --bg-pressed: #dcdde0;
+  --accent-hover: #932e2b;
+  --accent-pressed: #7f2826;
+  --on-accent: #ffffff;
+  --text-secondary: var(--text-subtle);
   --control-border-width: 1px;
   --control-height: 44px;
-  --control-font-size: 18px;
+  --control-font-size: 16px;
   --control-radius: 999px;
   --icon-size: 22px;
   --focus-ring-width: 2px;
-  --focus-ring-offset: 4px;
+  --focus-ring-offset: 3px;
   --arrow-offset: 4px;
+  --transition-arrow: 300ms cubic-bezier(0.22, 1, 0.36, 1);
   --body-font-size: 20px;
   --body-line-height: 1.6;
   --overlay-base: #000000;
   --banner-bg: #333333;
-  --banner-text: #ffffff;
+  --banner-text: #fafaf8;
   /* The banner stays dark in both themes and needs a lighter red for text. */
   --banner-accent: #ff746e;
   --control-track: #dfe3eb;
-  --control-thumb: #ffffff;
+  --control-thumb: #fafaf8;
   --transition-duration: 300ms;
-  --transition-fast-duration: var(--transition-duration);
-  --transition-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast-duration: 180ms;
+  --transition-easing: ease-out;
   --transition-slow-duration: var(--transition-duration);
   --transition-fast: var(--transition-fast-duration) var(--transition-easing);
   /* Used for hover/focus and as a fallback without registered custom properties.
@@ -87,6 +126,12 @@
   --transition-theme: var(--transition-fast);
   --transition-slow: var(--transition-slow-duration) ease-in-out;
   transition:
+    --bg-hover var(--transition-fast),
+    --bg-pressed var(--transition-fast),
+    --accent-hover var(--transition-fast),
+    --accent-pressed var(--transition-fast),
+    --on-accent var(--transition-fast),
+    --bg-media var(--transition-fast),
     --bg-page var(--transition-fast),
     --bg-surface var(--transition-fast),
     --text-primary var(--transition-fast),
@@ -105,33 +150,45 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg-page: #0c111a;
-  --bg-surface: #101826;
-  --text-primary: #edf1f7;
-  --text-subtle: #abb7c9;
-  --accent: #f74843;
-  --border-color: #414c5e;
+  --bg-page: #11151b;
+  --bg-surface: #1a2029;
+  --text-primary: #edf1f6;
+  --text-subtle: #adb6c3;
+  --accent: #ff8a80;
+  --border-color: #39414b;
+  --bg-hover: #29323e;
+  --bg-media: #252c36;
+  --bg-pressed: #333e4b;
+  --accent-hover: #ffa198;
+  --accent-pressed: #e77b72;
+  --on-accent: #11151b;
   --overlay-base: #000000;
   --banner-bg: #1c2433;
   --banner-text: #e6ebf5;
   --control-track: #1f2a3b;
-  --control-thumb: #ffffff;
+  --control-thumb: #fafaf8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     color-scheme: dark;
-    --bg-page: #0c111a;
-    --bg-surface: #101826;
-    --text-primary: #edf1f7;
-    --text-subtle: #abb7c9;
-    --accent: #f74843;
-    --border-color: #414c5e;
+    --bg-page: #11151b;
+    --bg-surface: #1a2029;
+    --text-primary: #edf1f6;
+    --text-subtle: #adb6c3;
+    --accent: #ff8a80;
+    --border-color: #39414b;
+    --bg-hover: #29323e;
+    --bg-media: #252c36;
+    --bg-pressed: #333e4b;
+    --accent-hover: #ffa198;
+    --accent-pressed: #e77b72;
+    --on-accent: #11151b;
     --overlay-base: #000000;
     --banner-bg: #1c2433;
     --banner-text: #e6ebf5;
     --control-track: #1f2a3b;
-    --control-thumb: #ffffff;
+    --control-thumb: #fafaf8;
   }
 }
 
@@ -150,7 +207,7 @@ body {
   background-color: var(--bg-page);
   color: var(--text-primary);
   font-family: var(--font-body), sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -166,7 +223,7 @@ body {
 }
 
 .route-reveal {
-  animation: route-reveal var(--transition-fast-duration) var(--transition-easing) both;
+  animation: route-reveal var(--transition-duration) var(--transition-easing) both;
 }
 
 @keyframes route-reveal {
@@ -186,15 +243,15 @@ body {
   gap: 10px;
   min-height: var(--control-height);
   margin: 0;
-  padding: 8px 20px;
-  border: var(--control-border-width) solid currentColor;
+  padding: 9px 20px;
+  border: var(--control-border-width) solid var(--border-color);
   border-radius: var(--control-radius);
   background: transparent;
   font-family: var(--font-body), sans-serif;
   font-size: var(--control-font-size);
   font-style: normal;
-  font-weight: 400;
-  line-height: 1;
+  font-weight: 500;
+  line-height: 24px;
   text-rendering: optimizeLegibility;
   text-decoration: none;
   color: var(--text-primary);
@@ -203,7 +260,7 @@ body {
   transition:
     border-color var(--transition-theme),
     color var(--transition-theme),
-    outline-color var(--transition-theme),
+    background-color var(--transition-theme),
     opacity var(--transition-fast);
 }
 
@@ -224,12 +281,47 @@ body {
 .button-label {
   display: inline-flex;
   align-items: center;
-  height: 1em;
-  line-height: 1;
+  line-height: 24px;
   white-space: nowrap;
-  /* Keep Vremena optically centered at each control's font size. */
-  position: relative;
-  top: 0.08em;
+}
+
+.button-control:active {
+  background-color: var(--bg-pressed);
+  border-color: var(--accent);
+  color: var(--accent-pressed);
+  transition-duration: 120ms;
+}
+.button-control:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.button-primary,
+.button-primary:visited,
+.button-primary:focus-visible {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .button-control:hover {
+    background-color: var(--bg-hover);
+  }
+  .button-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: var(--on-accent);
+  }
+}
+.button-primary:active {
+  background-color: var(--accent-pressed);
+  border-color: var(--accent-pressed);
+  color: var(--on-accent);
+}
+a,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
 }
 
 @media (max-width: 1024px) {
@@ -240,9 +332,9 @@ body {
 
 @media (max-width: 640px) {
   :root {
-    --control-font-size: 17px;
-    --body-font-size: 17px;
-    --body-line-height: 1.55;
+    --control-font-size: 16px;
+    --body-font-size: 18px;
+    --body-line-height: 1.555556;
   }
 }
 
@@ -288,7 +380,28 @@ body {
   }
 }
 
+.link-arrow {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform var(--transition-arrow);
+}
+.link-arrow-back {
+  --arrow-direction: -1;
+}
+.arrow-link:not(:disabled):not([aria-disabled="true"]):focus-visible .link-arrow {
+  transform: translateX(calc(var(--arrow-direction, 1) * var(--arrow-offset)));
+}
+@media (hover: hover) and (pointer: fine) {
+  .arrow-link:not(:disabled):not([aria-disabled="true"]):hover .link-arrow {
+    transform: translateX(calc(var(--arrow-direction, 1) * var(--arrow-offset)));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .link-arrow {
+    transform: none !important;
+    transition: none;
+  }
   html {
     scroll-behavior: auto;
   }

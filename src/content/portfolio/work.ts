@@ -14,7 +14,6 @@ import namexRegionalOtcIndicesPreview from "../../images/portfolio/work/namex/ma
 import namexWheatCptIndexPreview from "../../images/portfolio/work/namex/materials/wheat-cpt-novorossiysk-index-preview.png";
 import namexExchangeSugarIndexPreview from "../../images/portfolio/work/namex/materials/exchange-sugar-cfd-index-preview.png";
 import namexDailyOtcSugarIndexPreview from "../../images/portfolio/work/namex/materials/daily-otc-sugar-cfd-index-preview.png";
-import namexAgriculturalIndicesPreview from "../../images/portfolio/work/namex/materials/agricultural-indices-2024-07-15-preview.png";
 import thomsonReutersSteelDemandPreview from "../../images/portfolio/work/thomsonreuters/materials/russian-steel-demand-2017-preview.png";
 import thomsonReutersSteelDiscountsPreview from "../../images/portfolio/work/thomsonreuters/materials/russian-steel-discounts-preview.png";
 import thomsonReutersPortHedlandPreview from "../../images/portfolio/work/thomsonreuters/materials/port-hedland-cyclone-joyce-preview.png";
@@ -35,6 +34,7 @@ export const WORK_COMPANIES = {
       enabled: true,
       items: [
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -58,6 +58,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -81,6 +82,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -104,6 +106,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -127,6 +130,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -150,6 +154,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -173,6 +178,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Бюллетень", en: "Market bulletin" },
           type: "document",
           assets: {
             ru: {
@@ -229,6 +235,7 @@ export const WORK_COMPANIES = {
       enabled: true,
       items: [
         {
+          metadata: { ru: "Методика", en: "Methodology" },
           type: "document",
           assets: {
             ru: {
@@ -252,6 +259,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Методика", en: "Methodology" },
           type: "document",
           assets: {
             ru: {
@@ -275,6 +283,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Методика", en: "Methodology" },
           type: "document",
           assets: {
             ru: {
@@ -298,6 +307,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Методика", en: "Methodology" },
           type: "document",
           assets: {
             ru: {
@@ -320,29 +330,6 @@ export const WORK_COMPANIES = {
             en: "The calculation method for the daily sugar price index outside exchange trading in Russia’s Central Federal District. PDF in Russian.",
           },
         },
-        {
-          type: "document",
-          assets: {
-            ru: {
-              previewSrc: namexAgriculturalIndicesPreview,
-              fullImageSrc: namexAgriculturalIndicesPreview,
-              fileSrc: "/materials/work/namex/agricultural-indices-2024-07-15.pdf",
-            },
-            en: {
-              previewSrc: namexAgriculturalIndicesPreview,
-              fullImageSrc: namexAgriculturalIndicesPreview,
-              fileSrc: "/materials/work/namex/agricultural-indices-2024-07-15.pdf",
-            },
-          },
-          title: {
-            ru: "Пример дашборда индексов НТБ",
-            en: "Sample NME price index dashboard",
-          },
-          description: {
-            ru: "Пример экрана с экспортными, биржевыми и внебиржевыми ценовыми индексами агропродукции.",
-            en: "A sample dashboard showing export, exchange-traded and off-exchange agricultural price indices. PDF in Russian.",
-          },
-        },
       ],
     },
     translations: {
@@ -353,7 +340,7 @@ export const WORK_COMPANIES = {
         about:
           "Товарная биржа в группе Московской биржи. Организует торги сельхозпродукцией и рассчитывает ценовые индексы.",
         results:
-          "Запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов. За время моей работы число участников аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов (мест поставки) — до 50+. После внедрения системы обработки заявок их число выросло более чем в 2 раза. Ниже — версии методик, над которыми я работал, и пример дашборда с ценовыми индексами.",
+          "Запустил 10+ ценовых индикаторов и 2 платных информационных продукта для 30+ B2B-клиентов. За время моей работы число участников аукционов выросло с 2 до 400+, ассортимент — до 200+ товаров, число торговых базисов (мест поставки) — до 50+. После внедрения системы обработки заявок их число выросло более чем в 2 раза. Ниже — версии методик, над которыми я работал.",
       },
       en: {
         year: "2021 → 2024",
@@ -362,7 +349,7 @@ export const WORK_COMPANIES = {
         about:
           "A commodity exchange within Moscow Exchange Group. It organizes agricultural commodity trading and calculates price indices.",
         results:
-          "I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+, the product range reached 200+ items and delivery locations reached 50+. After the bid processing system was introduced, the number of bids increased more than 2-fold. Below are versions of the methodologies I worked on and a sample dashboard of price indices.",
+          "I launched 10+ price indicators and 2 paid information products serving 30+ B2B clients. During my time at the exchange, auction participation grew from 2 to 400+, the product range reached 200+ items and delivery locations reached 50+. After the bid processing system was introduced, the number of bids increased more than 2-fold. Below are versions of methodologies I worked on.",
       },
     },
   },
@@ -433,6 +420,7 @@ export const WORK_COMPANIES = {
       enabled: true,
       items: [
         {
+          metadata: { ru: "Статья · RU · Автор", en: "Article · RU · Author" },
           type: "document",
           assets: {
             ru: {
@@ -458,6 +446,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Статья · RU · Автор", en: "Article · RU · Author" },
           type: "document",
           assets: {
             ru: {
@@ -483,6 +472,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Публикация", en: "Publication" },
           type: "document",
           assets: {
             ru: {
@@ -508,6 +498,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Статья · RU", en: "Article · RU" },
           type: "document",
           assets: {
             ru: {
@@ -533,6 +524,7 @@ export const WORK_COMPANIES = {
           },
         },
         {
+          metadata: { ru: "Статья · EN · Автор", en: "Article · EN · Author" },
           type: "document",
           assets: {
             ru: {
@@ -576,7 +568,7 @@ export const WORK_COMPANIES = {
         about:
           "An international information company. At the time, its businesses included Reuters and Eikon, a platform for analyzing commodity and financial markets.",
         results:
-          "The information products I developed attracted 3 B2B clients in total. I prepared 1,000+ publications reaching 20,000+ readers and progressed from intern to market analyst. The examples below explain my role in each piece: author, contributor or translator.",
+          "The information products I developed attracted 3 B2B clients in total. I prepared 1,000+ publications reaching 20,000+ readers and progressed from intern to market analyst. Below are examples of publications and materials I worked on.",
       },
     },
   },

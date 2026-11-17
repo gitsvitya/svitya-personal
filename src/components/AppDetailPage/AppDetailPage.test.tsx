@@ -65,4 +65,47 @@ describe("AppDetailPage", () => {
     expect(navigate).toHaveBeenCalledOnce();
     expect(navigate).toHaveBeenCalledWith("/ru/work", { replace: true });
   });
+
+  it.each([
+    ["CI", "ru", "/ru/work/namex"],
+    ["TR", "en", "/en/work/cheminsight"],
+    ["SDC", "ru", "/ru/activities/strokeoff"],
+  ] as const)("continues from %s in %s and keeps a return link", (id, language, nextHref) => {
+    const company = getLocalizedCompany(id, language);
+    const backHref = `/${language}/${company.section}`;
+    const page = AppDetailPage({
+      company,
+      text: getTranslations(language),
+      sectionTitle: getTranslations(language).sections[company.section],
+      backHref,
+    });
+    const container = page.props.children as ReactElement<{ children: ReactNode }>;
+    const navigation = Children.toArray(container.props.children).at(-1);
+    if (!isValidElement<{ children: ReactNode }>(navigation) || navigation.type !== "nav") {
+      throw new Error("Case navigation is missing");
+    }
+    const [allLink, nextLink] = Children.toArray(navigation.props.children);
+    if (
+      !isValidElement<ComponentProps<typeof TransitionLink>>(allLink) ||
+      !isValidElement<ComponentProps<typeof TransitionLink>>(nextLink)
+    ) {
+      throw new Error("Case navigation links are missing");
+    }
+    expect(allLink.props.href).toBe(backHref);
+    expect(allLink.props.replace).toBe(true);
+    const next = TransitionLink(nextLink.props);
+    const event = {
+      button: 0,
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+      defaultPrevented: false,
+      preventDefault: vi.fn(),
+    };
+    expect(next.props.href).toBe(nextHref);
+    next.props.onClick(event as unknown as MouseEvent<HTMLAnchorElement>);
+    expect(event.preventDefault).toHaveBeenCalledOnce();
+    expect(navigate).toHaveBeenCalledWith(nextHref, { replace: undefined });
+  });
 });

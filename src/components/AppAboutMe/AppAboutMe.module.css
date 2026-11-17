@@ -1,123 +1,167 @@
 .container {
-  display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-  gap: 24px 48px;
-  align-items: start;
-  padding-top: 48px;
-  padding-bottom: 64px;
-}
-
-.photo {
-  display: block;
-  object-fit: cover;
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  aspect-ratio: 1;
-}
-
-.textBlock {
+  --about-columns: minmax(0, 1fr) minmax(0, 2fr);
+  --about-gutter: clamp(32px, calc(15vw - 136px), 80px);
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: flex-start;
-  align-self: center;
-  gap: 20px;
+  gap: 40px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: var(--about-columns);
+  column-gap: var(--about-gutter);
+  align-items: center;
+  width: 100%;
+}
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+}
+.photo {
+  display: block;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  aspect-ratio: 1;
+}
+.overview {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 24px;
 }
 .header {
   margin: 0;
-  font-size: clamp(36px, 4.2vw, 56px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+  letter-spacing: -1px;
+  overflow-wrap: break-word;
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .subheader {
   margin: 0;
-  width: 100%;
-  font-size: clamp(20px, 2.2vw, 28px);
+  max-width: 900px;
+  font-size: 26px;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 36px;
 }
 .paragraph {
-  grid-column: 1 / -1;
   margin: 0;
-  width: 100%;
-  font-size: var(--body-font-size);
-  font-weight: 300;
-  line-height: var(--body-line-height);
-  color: var(--text-primary);
-  transition: color var(--transition-theme);
+  max-width: 780px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--text-subtle);
 }
 .actions {
-  grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 4px;
 }
-
-.action {
+.actions a {
+  gap: 4px;
   white-space: nowrap;
 }
-
-.actionArrow {
-  transition: transform var(--transition-fast);
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-color);
 }
-
-.action:focus-visible .actionArrow {
-  transform: translateX(var(--arrow-offset));
+.contactBody {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
 }
-
-@media (hover: hover) and (pointer: fine) {
-  .action:hover .actionArrow {
-    transform: translateX(var(--arrow-offset));
-  }
+.contactLink {
+  flex-shrink: 0;
 }
-
 @media (max-width: 1024px) {
-  .container {
-    column-gap: 32px;
+  .container:global(.layout-container) {
+    --about-columns: minmax(0, 1fr);
+    max-width: 828px;
   }
-}
-
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 24px;
-    padding-top: 24px;
+  .hero {
+    row-gap: 24px;
+  }
+  .identity {
+    align-items: flex-start;
   }
   .photo {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
   }
-  .textBlock {
-    align-items: center;
-    gap: 16px;
-  }
-  .header,
-  .subheader {
-    text-align: center;
-  }
-  .actions {
-    justify-content: center;
+  .header {
+    font-size: 40px;
+    line-height: 48px;
   }
 }
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .container {
+    gap: 24px;
+  }
   .photo {
     width: 144px;
     height: 144px;
   }
-  .container {
-    padding-top: 16px;
-    padding-bottom: 32px;
+  .header {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -0.9px;
   }
+  .subheader {
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .paragraph {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-top: 24px;
+  }
+  .contactBody {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 640px) {
   .actions {
     width: 100%;
-    gap: 10px;
   }
   .actions a {
-    flex: 1 1 auto;
+    flex: 1;
+    padding-inline: 8px;
+  }
+  .contactLink {
+    width: 100%;
+  }
+}
+@media (max-width: 359px) {
+  .actions {
+    flex-wrap: wrap;
+  }
+  .actions a {
+    flex-basis: 100%;
   }
 }

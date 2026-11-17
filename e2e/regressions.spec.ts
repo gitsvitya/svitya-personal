@@ -25,11 +25,11 @@ test("applies the saved theme and displays fallback text with application script
 }) => {
   await context.addCookies([{ name: "theme", value: "dark", url: origin }]);
   await page.emulateMedia({ colorScheme: "light" });
-  await page.route(/\.(?:js|woff2?)(?:\?|$)/, (route) => route.abort());
+  await page.route(/\.(?:js|woff2?|ttf)(?:\?|$)/, (route) => route.abort());
   await page.goto("/ru/about", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
-  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(12, 17, 26)");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(17, 21, 27)");
   await expect(page.locator("main h1")).toBeVisible();
   const displays = await page.evaluate(() =>
     [...document.fonts]
@@ -78,7 +78,7 @@ test("changes locale without reloading the document or losing a saved theme", as
     }).observe(document.documentElement, { childList: true, subtree: true });
   });
   for (const language of ["ru", "en"]) {
-    await page.locator("#language-toggle").click();
+    await page.locator(`header a[lang="${language}"]`).first().click();
     await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
     await expect(page.locator("html")).toHaveAttribute("lang", language);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -113,7 +113,7 @@ for (const width of [1280, 390]) {
       await page.goto("/en/about");
       const originalHeading = await page.locator("main h1").textContent();
       await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
-      const menu = page.getByRole("button", { name: "Sections" });
+      const menu = page.locator('button[aria-controls="app-nav-list"]');
       if (width < 769) await menu.click();
       await page.locator('nav a[href="/en/work"]').click();
       await expect(page.locator("main")).toHaveAttribute("aria-busy", "true");
@@ -126,10 +126,10 @@ for (const width of [1280, 390]) {
       await expect(page.locator('nav a[href="/en/work"]')).toHaveAttribute("aria-current", "page");
       await expect(page.locator("main h1")).not.toHaveText(originalHeading!);
       await expect(page.locator("main > div")).toHaveCSS("animation-duration", "0.3s");
-      const underlineDuration = await page
-        .locator('nav a[aria-current="page"]')
-        .evaluate((element) => getComputedStyle(element, "::after").transitionDuration);
-      expect(underlineDuration.split(",").every((value) => value.trim() === "0.3s")).toBe(true);
+      await expect(page.locator('nav a[aria-current="page"]')).toHaveCSS(
+        "text-decoration-line",
+        "none"
+      );
       if (width < 769) {
         await expect(menu).toHaveAttribute("aria-expanded", "false");
         await page.goBack();
@@ -143,7 +143,7 @@ for (const width of [1280, 390]) {
 }
 
 for (const width of [320, 1280]) {
-  test(`keeps gallery arrows fixed beside the modal as text grows at ${width}px`, async ({
+  test(`keeps gallery navigation below the full-width preview as text grows at ${width}px`, async ({
     context,
     page,
     request,
@@ -165,31 +165,24 @@ for (const width of [320, 1280]) {
         )
       )
       .toBe(true);
-    const image = await materialImage.boundingBox();
+    const image = await materialImage.locator("../..").boundingBox();
     const next = dialog.getByRole("button", { name: "Следующий материал" });
     const previous = dialog.getByRole("button", { name: "Предыдущий материал" });
     const modal = (await dialog.boundingBox())!;
     const controls = [(await previous.boundingBox())!, (await next.boundingBox())!] as const;
     for (const control of controls) {
-      expect(Math.abs(control.y + control.height / 2 - (modal.y + modal.height / 2))).toBeLessThan(
-        1
-      );
+      expect(control.width).toBe(56);
+      expect(control.height).toBe(56);
+      expect(control.y).toBeGreaterThanOrEqual(image!.y + image!.height);
       expect(control.x).toBeGreaterThanOrEqual(modal.x);
       expect(control.x + control.width).toBeLessThanOrEqual(modal.x + modal.width);
     }
-    expect(controls[0].x + controls[0].width).toBeLessThanOrEqual(image!.x);
-    expect(controls[1].x).toBeGreaterThanOrEqual(image!.x + image!.width);
-    expect(Math.abs(controls[0].x + controls[0].width / 2 - (modal.x + image!.x) / 2)).toBeLessThan(
-      1
-    );
-    expect(
-      Math.abs(
-        controls[1].x +
-          controls[1].width / 2 -
-          (modal.x + modal.width + image!.x + image!.width) / 2
-      )
-    ).toBeLessThan(1);
-    await expect(dialog.locator('[aria-live="polite"]')).toHaveText("1 из 7");
+    expect(controls[0].y).toBeCloseTo(controls[1].y, 0);
+    expect(controls[0].x).toBeCloseTo(image!.x, 0);
+    expect(controls[1].x + controls[1].width).toBeCloseTo(image!.x + image!.width, 0);
+    const counter = dialog.locator('[aria-live="polite"]');
+    await expect(counter).toHaveText("1 / 7");
+    await expect(counter).toBeVisible();
     const download = dialog.getByRole("link", { name: "Скачать", exact: true });
     const pdf = await request.get((await download.getAttribute("href"))!);
     expect(pdf.status()).toBe(200);
@@ -197,19 +190,23 @@ for (const width of [320, 1280]) {
     await dialog.locator("p").evaluate((description) => {
       description.textContent = `${description.textContent} `.repeat(20);
     });
-    expect((await dialog.boundingBox())!.height).toBeGreaterThan(modal.height);
+    expect((await dialog.boundingBox())!.height).toBeGreaterThanOrEqual(modal.height);
+    expect((await dialog.boundingBox())!.height).toBeLessThanOrEqual(844 - 32);
     for (const [button, before] of [
       [previous, controls[0]],
       [next, controls[1]],
     ] as const) {
       const after = (await button.boundingBox())!;
       expect(Math.abs(after.x - before.x)).toBeLessThan(1);
-      expect(Math.abs(after.y - before.y)).toBeLessThan(1);
+      const resizedImage = (await materialImage.locator("../..").boundingBox())!;
+      expect(after.y).toBeGreaterThanOrEqual(resizedImage.y + resizedImage.height);
+      await button.focus();
+      await expect(button).toBeInViewport({ ratio: 1 });
       await expect(button).toBeVisible();
     }
     await next.click();
     await expect(dialog).toHaveAccessibleName("Полипропилен");
-    await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 из 7");
+    await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 / 7");
     await page.keyboard.press("Escape");
     await expect(dialog).toHaveCount(0);
     await expect(trigger).toBeFocused();
@@ -304,14 +301,14 @@ for (const legacyChoice of ["granted", "denied"]) {
       await expectNoAnalytics();
       await page.locator('nav a[href="/en/settings"]').click();
       await expect(page).toHaveURL(/\/en\/settings$/);
-      await page.getByRole("button", { name: "Show cookie banner", exact: true }).click();
+      await page.getByRole("button", { name: "Show cookie notice", exact: true }).click();
       const banner = page.getByRole("region", { name: "Cookie notice" });
       await expect(banner.getByRole("button")).toHaveCount(1);
       await banner.getByRole("button", { name: "Close", exact: true }).click();
       await expect(banner).toHaveCount(0);
       await expectNoAnalytics();
       for (const language of ["ru", "en"]) {
-        await page.locator("#language-toggle").click();
+        await page.locator(`header a[lang="${language}"]`).first().click();
         await expect(page).toHaveURL(new RegExp(`/${language}/settings$`));
         await expectNoAnalytics();
       }

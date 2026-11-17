@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { vremena } from "../../fonts";
+import { onest } from "../../fonts";
 import type { Language } from "../../types/domain";
 import SiteShell from "../SiteShell/SiteShell";
 import ThemeInitScript from "./ThemeInitScript";
@@ -8,14 +8,16 @@ import "../../index.css";
 export default function SiteDocument({
   children,
   language,
+  isNotFound = false,
 }: {
   children: ReactNode;
   language: Language;
+  isNotFound?: boolean;
 }) {
   return (
     <html
       lang={language}
-      className={vremena.variable}
+      className={onest.variable}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
@@ -25,7 +27,11 @@ export default function SiteDocument({
         <ThemeInitScript />
       </head>
       <body>
-        <SiteShell initialLanguage={language} initialYear={new Date().getFullYear()}>
+        <SiteShell
+          initialLanguage={language}
+          initialYear={new Date().getFullYear()}
+          initialNotFound={isNotFound}
+        >
           {children}
         </SiteShell>
         <div id="modal" />

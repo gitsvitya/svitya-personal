@@ -4,34 +4,58 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.section[id="about"] .container {
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+.section[id="settings"] .container {
+  gap: 28px;
+  padding-top: 40px;
+  padding-bottom: 64px;
 }
 .title {
   padding: 0;
   margin: 0;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+  letter-spacing: 0;
 }
-.cardsGrid {
+.catalogList {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 20px;
   width: 100%;
 }
-@media (max-width: 960px) {
-  .cardsGrid {
-    grid-template-columns: 1fr;
+@media (min-width: 1025px) {
+  .catalogList {
+    gap: 0;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .container {
-    gap: 20px;
+    gap: 24px;
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+  .section[id="about"] .container {
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+  .section[id="settings"] .container {
+    gap: 28px;
+    padding-top: 16px;
+    padding-bottom: 40px;
   }
   .title {
-    font-size: 28px;
+    font-size: 32px;
+    line-height: 40px;
   }
-  .cardsGrid {
+  .catalogList {
     gap: 16px;
   }
 }

@@ -17,7 +17,7 @@ function PortfolioSection({ section, language, text }: PortfolioSectionProps) {
 
   return (
     <Section id={section} title={text.sections[section]}>
-      <div className={sectionStyles.cardsGrid}>
+      <div className={sectionStyles.catalogList}>
         {getCompaniesBySection(section).map((company, index) => (
           <Card
             key={company.id}

@@ -22,6 +22,7 @@ export type Section = (typeof SECTIONS)[number];
 export type CompanySection = (typeof COMPANY_SECTIONS)[number];
 export type SectionPath = (typeof SECTION_PATHS)[number];
 export type Theme = (typeof THEMES)[number];
+export type ThemePreference = Theme | "system";
 export type CompanyId = (typeof COMPANY_IDS)[number];
 export type LocalizedPath = `/${Language}/${Section}`;
 export type LocalizedDetailPath = `/${Language}/${Section}/${string}`;

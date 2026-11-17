@@ -85,12 +85,7 @@ function CookieBanner({ text, forceOpen, onClose }: CookieBannerProps) {
         {text.cookieBanner.description}
       </p>
       <button type="button" className={styles.button} onClick={closeBanner}>
-        <span className={`button-label ${styles.buttonText}`}>
-          {text.cookieBanner.close}
-          <span className={styles.buttonArrow} aria-hidden="true">
-            →
-          </span>
-        </span>
+        <span className={`button-label ${styles.buttonText}`}>{text.cookieBanner.close}</span>
       </button>
     </div>
   );

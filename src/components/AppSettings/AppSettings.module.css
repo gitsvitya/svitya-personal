@@ -1,105 +1,113 @@
+.layout:global(.layout-container) {
+  width: 100%;
+  max-width: 880px;
+}
 .settings {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   width: 100%;
 }
 .row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border-color);
-  transition: border-color var(--transition-theme);
-}
-.row:first-child {
-  padding-top: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  align-items: start;
+  gap: 12px 32px;
 }
 .row h2 {
   margin: 0;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.3;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
 }
-.cookieHeading {
+.segments {
   display: flex;
-  align-items: center;
-}
-.cookieIcon {
-  display: block;
-  width: 1.3em;
-  height: 1.3em;
-}
-.controlChanger,
-.cookieBannerButton {
-  flex-shrink: 0;
-}
-.controlChanger {
-  gap: 8px;
-}
-
-.controlChangerText {
-  margin: 0;
-  padding: 0;
-  color: var(--text-primary);
-  text-align: start;
-  transition: color var(--transition-theme);
-}
-
-.controlSwitcher {
-  position: relative;
-  width: 48px;
-  height: 24px;
-  border-radius: 12px;
-  background-color: var(--control-track);
-  border: var(--control-border-width) solid var(--border-color);
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  box-sizing: border-box;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--bg-surface);
+  max-width: 100%;
   transition:
     border-color var(--transition-theme),
     background-color var(--transition-theme);
 }
-
-.switcherThumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: var(--control-thumb);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+.languageSegments {
+  width: 360px;
+}
+.themeSegments {
+  width: 460px;
+}
+.choice {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
   transition:
-    transform var(--transition-fast),
-    background-color var(--transition-theme);
+    color var(--transition-theme),
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
 }
-
-.controlSwitcherActive .switcherThumb {
-  transform: translateX(22px);
-}
-
-.controlChanger:focus-visible .switcherThumb {
-  background-color: var(--accent);
-}
-
-.controlChanger[aria-pressed="false"]:focus-visible > .controlChangerText:first-child,
-.controlChanger[aria-pressed="true"]:focus-visible > .controlChangerText:last-child {
+.choice[aria-pressed="true"] {
+  background: var(--bg-page);
   color: var(--accent);
+  border-color: var(--accent);
+}
+.choice:focus-visible {
+  outline: var(--focus-ring-width) solid var(--accent);
+  outline-offset: var(--focus-ring-offset);
+  z-index: 1;
 }
 @media (hover: hover) and (pointer: fine) {
-  .controlChanger:hover .switcherThumb {
-    background-color: var(--accent);
+  .choice:hover {
+    background: var(--bg-hover);
   }
-  .controlChanger[aria-pressed="false"]:hover > .controlChangerText:first-child,
-  .controlChanger[aria-pressed="true"]:hover > .controlChangerText:last-child {
-    color: var(--accent);
+}
+.choice:active {
+  background: var(--bg-pressed);
+}
+.hint {
+  grid-column: 2;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-subtle);
+}
+.cookieBannerButton {
+  flex: none;
+  width: 266px;
+  max-width: 100%;
+}
+@media (max-width: 1024px) {
+  .layout:global(.layout-container) {
+    max-width: 868px;
+  }
+}
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hint {
+    grid-column: 1;
   }
 }
 @media (max-width: 640px) {
-  .row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 24px 0;
+  .segments,
+  .cookieBannerButton {
+    width: 100%;
   }
-  .row h2 {
-    font-size: 20px;
+  .choice {
+    padding-inline: 8px;
   }
 }

@@ -37,7 +37,7 @@ export async function GET(
   if (slugs[0] && !record) return new Response(null, { status: 404 });
   const company = record ? getLocalizedCompany(record.id, lang) : null;
   const text = getTranslations(lang);
-  const font = await readFile(join(process.cwd(), "src/fonts/vremenagrotesk.woff"));
+  const font = await readFile(join(process.cwd(), "src/fonts/Onest-Regular.ttf"));
   return new ImageResponse(
     <div
       style={{
@@ -47,14 +47,14 @@ export async function GET(
         width: "100%",
         height: "100%",
         padding: "60px 72px",
-        background: "#ffffff",
-        color: "#111217",
-        fontFamily: "Vremena",
+        background: "#fafaf8",
+        color: "#202329",
+        fontFamily: "Onest",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28 }}>
-        <span style={{ color: "#cc302c" }}>svitya.com</span>
-        <span style={{ color: "#59616d" }}>{text.sections[section]}</span>
+        <span style={{ color: "#ad3734" }}>svitya.com</span>
+        <span style={{ color: "#5e6570" }}>{text.sections[section]}</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <div
@@ -67,7 +67,7 @@ export async function GET(
             display: "flex",
             fontSize: 32,
             lineHeight: 1.4,
-            color: "#59616d",
+            color: "#5e6570",
             maxWidth: 980,
           }}
         >
@@ -75,14 +75,14 @@ export async function GET(
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 26 }}>
-        <div style={{ width: 64, height: 4, background: "#cc302c" }} />
+        <div style={{ width: 64, height: 4, background: "#ad3734" }} />
         <span>{company ? text.about.title : text.about.experience}</span>
       </div>
     </div>,
     {
       width: 1200,
       height: 630,
-      fonts: [{ name: "Vremena", data: font, weight: 400, style: "normal" }],
+      fonts: [{ name: "Onest", data: font, weight: 400, style: "normal" }],
     }
   );
 }

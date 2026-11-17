@@ -1,11 +1,12 @@
 "use client";
 
 import { createContext, useContext, type Dispatch, type SetStateAction } from "react";
-import type { Language, Theme } from "../../types/domain";
+import type { Language, Theme, ThemePreference } from "../../types/domain";
 
 type SitePreferences = {
   theme: Theme;
-  setTheme: Dispatch<SetStateAction<Theme>>;
+  themePreference: ThemePreference;
+  setTheme: Dispatch<SetStateAction<ThemePreference>>;
   language: Language;
   changeLanguage: (language: Language) => void;
   showCookieBanner: () => void;

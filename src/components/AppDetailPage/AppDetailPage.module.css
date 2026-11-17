@@ -1,34 +1,99 @@
 .detailPage {
   width: 100%;
 }
-
 .container {
   flex-direction: column;
   align-items: stretch;
   width: 100%;
   gap: 30px;
 }
-
+.backButton,
+.nextButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  max-width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    color var(--transition-theme),
+    border-color var(--transition-theme),
+    background-color var(--transition-theme);
+}
 .backButton {
   align-self: flex-start;
+  justify-self: start;
+  width: fit-content;
 }
-
-.backIcon {
-  transition: transform var(--transition-fast);
+.caseNavigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: flex-start;
+  gap: 16px clamp(32px, calc(15vw - 136px), 80px);
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
 }
-
-.backButton:focus-visible .backIcon {
-  transform: translateX(calc(-1 * var(--arrow-offset)));
+.backButton,
+.nextButton {
+  padding: 9px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
 }
-
+.nextButton {
+  width: 100%;
+  background: var(--bg-surface);
+}
+.backButton:focus-visible,
+.nextButton:focus-visible {
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.backButton:focus-visible,
+.nextButton:focus-visible {
+  border-color: var(--accent);
+}
 @media (hover: hover) and (pointer: fine) {
-  .backButton:hover .backIcon {
-    transform: translateX(calc(-1 * var(--arrow-offset)));
+  .backButton:hover,
+  .nextButton:hover {
+    color: var(--accent);
+  }
+  .backButton:hover,
+  .nextButton:hover {
+    border-color: var(--accent);
+    background: var(--bg-hover);
   }
 }
-
+.backButton:active,
+.nextButton:active {
+  color: var(--accent-pressed);
+  transition-duration: 120ms;
+}
+.backButton:active,
+.nextButton:active {
+  background: var(--bg-pressed);
+  border-color: var(--accent-pressed);
+}
+@media (max-width: 1024px) {
+  .caseNavigation {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 @media (max-width: 640px) {
   .container {
     gap: 20px;
+  }
+  .nextButton {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .backButton,
+  .nextButton {
+    transition: none;
   }
 }

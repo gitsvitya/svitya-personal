@@ -150,7 +150,7 @@ export const PROJECT_COMPANIES = {
         name: "Mad Burglar Cat",
         title: "Основатель",
         about:
-          "Мой проект одежды и текстиля для дома с интернет-магазином. Сначала над ним работала полноценная команда, а сейчас это небольшое хобби-производство.",
+          "Мой проект одежды и текстиля для дома с интернет-магазином. Сначала над ним работала полноценная команда. Сейчас проект находится на стадии трансформации.",
         results:
           "За время проекта запустил 10+ товарных позиций и организовал обработку 100+ заказов — от оформления до отправки покупателям.",
       },
@@ -159,7 +159,7 @@ export const PROJECT_COMPANIES = {
         name: "Mad Burglar Cat",
         title: "Founder",
         about:
-          "My clothing and home textiles project, with an online store. We initially worked with a full team. The project now continues on a small scale as a hobby.",
+          "My clothing and home textiles project, with an online store. We initially worked with a full team. The project is now in transition.",
         results:
           "Over the course of the project, I launched 10+ products and organized the processing of 100+ orders, from checkout to dispatch.",
       },
@@ -212,8 +212,8 @@ export const PROJECT_COMPANIES = {
             en: "Sticker template",
           },
           description: {
-            ru: "Сувенирные наклейки для знакомых, которые участвовали в тестировании MVP.",
-            en: "Souvenir stickers for people I knew who took part in MVP testing.",
+            ru: "Сувенирные наклейки для тестеров, которые участвовали в тестировании MVP.",
+            en: "Souvenir stickers for testers who took part in MVP testing.",
           },
         },
         {
@@ -232,8 +232,8 @@ export const PROJECT_COMPANIES = {
           },
           title: { ru: "Архивная главная страница", en: "Archived website homepage" },
           description: {
-            ru: "Архивная страница с описанием идеи и функций MappNgo. В ней есть формулировка о доступности приложения в App Store, которая расходится с фактической историей проекта: MVP тестировали среди знакомых, публичного запуска не было.",
-            en: "An archived page describing the MappNgo concept and features. Its wording about App Store availability differs from the project’s actual history: the MVP was tested with people we knew and never launched publicly.",
+            ru: "Архивная страница с описанием идеи и функций MappNgo. В ней есть формулировка о доступности приложения в App Store, которая расходится с фактической историей проекта: MVP тестировали среди ограниченного круга тестеров, публичного запуска не было.",
+            en: "An archived page describing the MappNgo concept and features. Its wording about App Store availability differs from the project’s actual history: the MVP was tested with a limited group of testers and never launched publicly.",
           },
         },
         {
@@ -264,18 +264,18 @@ export const PROJECT_COMPANIES = {
         name: "MappNgo",
         title: "Основатель",
         about:
-          "Проект приложения для iOS, в котором можно находить городские маршруты для прогулок, создавать свои и делиться ими.",
+          "Проект приложения для iOS, где можно было находить городские маршруты для прогулок, создавать свои и делиться ими.",
         results:
-          "Команда разработала MVP для iOS, и мы протестировали его среди знакомых. До публичного запуска проект не дошёл: в 2020 году он закрылся на фоне ограничений COVID-19. Ниже — тестовые экраны и архивные материалы.",
+          "Команда разработала MVP для iOS, и мы протестировали его среди ограниченного круга тестеров. До публичного запуска проект не дошёл: в 2020 году он закрылся на фоне ограничений COVID-19. Ниже — тестовые экраны и архивные материалы.",
       },
       en: {
         year: "2019 → 2020",
         name: "MappNgo",
         title: "Founder",
         about:
-          "An iOS app project for discovering city walks, creating routes and sharing them with others.",
+          "An iOS app project for finding city walking routes, creating your own and sharing them.",
         results:
-          "The team developed an iOS MVP, which we tested with people we knew. The project closed in 2020 amid COVID-19 restrictions, before a public launch. Test screens and archived materials are below.",
+          "The team developed an iOS MVP, which we tested with a limited group of testers. The project closed in 2020 amid COVID-19 restrictions, before a public launch. Test screens and archived materials are below.",
       },
     },
   },

@@ -6,7 +6,12 @@ async function interactiveContrast(card: Locator) {
     const canvas = document.createElement("canvas");
     canvas.width = canvas.height = 1;
     const context = canvas.getContext("2d")!;
-    const rgb = (color: string) => {
+    const rgb = (color: string, backing?: string) => {
+      context.clearRect(0, 0, 1, 1);
+      if (backing) {
+        context.fillStyle = backing;
+        context.fillRect(0, 0, 1, 1);
+      }
       context.fillStyle = color;
       context.fillRect(0, 0, 1, 1);
       return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3);
@@ -18,10 +23,14 @@ async function interactiveContrast(card: Locator) {
       });
       return linear[0]! * 0.2126 + linear[1]! * 0.7152 + linear[2]! * 0.0722;
     };
-    const cta = element.querySelector("div > span:last-child")!;
+    const cta = element.querySelector('[class*="cardCta"]')!;
+    const pageStyle = getComputedStyle(document.documentElement);
     const foreground = rgb(getComputedStyle(cta).color);
-    const background = rgb(getComputedStyle(element).backgroundColor);
-    const accent = rgb(getComputedStyle(document.documentElement).getPropertyValue("--accent"));
+    const background = rgb(
+      getComputedStyle(element).backgroundColor,
+      pageStyle.getPropertyValue("--bg-page")
+    );
+    const accent = rgb(pageStyle.getPropertyValue("--accent"));
     const light = Math.max(luminance(foreground), luminance(background));
     const dark = Math.min(luminance(foreground), luminance(background));
     return {
@@ -89,7 +98,7 @@ test("returns menu focus on Escape without moving focus from the page", async ({
   await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en/about");
-  const menu = page.getByRole("button", { name: "Sections" });
+  const menu = page.locator('button[aria-controls="app-nav-list"]');
   await menu.click();
   await page.locator('nav a[href="/en/work"]').focus();
   await page.keyboard.press("Escape");
@@ -156,12 +165,21 @@ for (const theme of ["light", "dark"]) {
     ]);
     await page.goto("/en/work");
     const card = page.locator('main a[href="/en/work/cheminsight"]');
+    const outcome = card.getByText("7 paid bulletins · 10+ B2B clients", { exact: true });
+    const outcomeColor = await outcome.evaluate((element) => getComputedStyle(element).color);
     await card.hover();
+    await expect(outcome).toHaveCSS("color", outcomeColor);
+    await expect(card).toHaveCSS("text-decoration-line", "none");
+    await expect(card).toHaveCSS("transform", "none");
     await expect.poll(async () => (await interactiveContrast(card)).isAccented).toBe(true);
     expect((await interactiveContrast(card)).ratio).toBeGreaterThanOrEqual(4.5);
     await page.mouse.move(0, 0);
     await card.focus();
     await expect(card).toBeFocused();
+    await expect(outcome).toHaveCSS("color", outcomeColor);
+    await expect(card).toHaveCSS("outline-width", "2px");
+    await expect(card).toHaveCSS("outline-offset", "3px");
+    await expect(card).toHaveCSS("text-decoration-line", "none");
     await expect.poll(async () => (await interactiveContrast(card)).isAccented).toBe(true);
     expect((await interactiveContrast(card)).ratio).toBeGreaterThanOrEqual(4.5);
   });
@@ -185,7 +203,7 @@ test("downloads materials and returns to the section when application scripts fa
     await download.delete();
     await expect(page).toHaveURL(detail);
 
-    await page.locator(`main a[href="/${language}/work"]`).click();
+    await page.locator(`main a[href="/${language}/work"]`).first().click();
     await expect(page).toHaveURL(`/${language}/work`);
     await expect(page.locator("main h1")).toBeVisible();
   }
@@ -205,7 +223,7 @@ test("returns from a detail page without reloading or adding browser history", a
     document.body.dataset.backNavigationSentinel = "present";
     return history.length;
   });
-  await page.locator('main a[href="/en/work"]').click();
+  await page.locator('main a[href="/en/work"]').first().click();
   await expect(page).toHaveURL("/en/work");
   expect(await page.evaluate(() => history.length)).toBe(historyLength);
   await expect(page.locator("body")).toHaveAttribute("data-back-navigation-sentinel", "present");
@@ -241,7 +259,7 @@ test("does not intercept modified material link clicks", async ({ page }) => {
   await expect(page).toHaveURL("/en/work/thomsonreuters");
 });
 
-test("shows centered material headings above previews in the narrow modal", async ({
+test("shows readable material headings above previews in the narrow modal", async ({
   context,
   page,
   baseURL,
@@ -256,15 +274,50 @@ test("shows centered material headings above previews in the narrow modal", asyn
     await expect(dialog).toHaveAccessibleName(title);
     await expect(heading).toBeVisible();
     await expect(heading).toHaveCSS("opacity", "1");
-    await expect(heading).toHaveCSS("text-align", "center");
+    await expect(heading).toHaveCSS("text-align", /^(left|start)$/);
     await expect(heading).toBeInViewport({ ratio: 1 });
     const bounds = (await heading.boundingBox())!;
     const image = (await dialog.getByRole("img").boundingBox())!;
+    const previewRegion = (await dialog.getByRole("img").locator("../..").boundingBox())!;
     expect(bounds.height).toBeGreaterThan(1);
     expect(bounds.y + bounds.height).toBeLessThanOrEqual(image.y);
-    expect(Math.abs(bounds.x + bounds.width / 2 - (image.x + image.width / 2))).toBeLessThan(1);
+    expect(bounds.x).toBeCloseTo(previewRegion.x, 0);
     if (title === "Polyethylene") {
       await dialog.getByRole("button", { name: "Next material" }).click();
     }
   }
 });
+
+for (const language of ["ru", "en"] as const) {
+  test(`keeps project statuses on detail pages and out of ${language} catalog cards`, async ({
+    context,
+    page,
+    baseURL,
+  }) => {
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
+    await page.goto(`/${language}/projects`);
+    const cards = page.locator(`main a[href^="/${language}/projects/"]`);
+    await expect(cards).toHaveCount(3);
+    for (const card of await cards.all()) {
+      await expect(card).not.toContainText(
+        /Хобби-производство|Архив|На стадии трансформации|Hobby production|Archived|In transition/
+      );
+    }
+    await page.locator(`main a[href="/${language}/projects/madburglarcat"]`).click();
+    await expect(page.locator("main")).toContainText(
+      language === "ru" ? "На стадии трансформации" : "In transition"
+    );
+    const caseNavigation = page.getByRole("navigation", {
+      name: language === "ru" ? "Другие истории" : "More stories",
+    });
+    await caseNavigation.getByRole("link", { name: /MappNgo/ }).click();
+    await expect(page).toHaveURL(`/${language}/projects/mappngo`);
+    await expect(page.locator("main")).toContainText(
+      language === "ru" ? "ограниченного круга тестеров" : "limited group of testers"
+    );
+    await caseNavigation
+      .getByRole("link", { name: language === "ru" ? "К проектам" : "All projects" })
+      .click();
+    await expect(page).toHaveURL(`/${language}/projects`);
+  });
+}

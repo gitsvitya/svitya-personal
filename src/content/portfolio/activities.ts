@@ -15,6 +15,7 @@ export const ACTIVITY_COMPANIES = {
       enabled: true,
       items: [
         {
+          previewFit: "cover",
           type: "document",
           assets: {
             ru: {
@@ -102,7 +103,7 @@ export const ACTIVITY_COMPANIES = {
       ru: {
         year: "2019 → настоящее время",
         name: "Svitya.com",
-        title: "Автор и разработчик сайта",
+        title: "Мастер на все руки",
         about:
           "Этот сайт — моё портфолио и практический проект по веб-разработке. С 2019 года он вырос из простой страницы в двуязычный сайт на Next.js.",
         results:
@@ -121,7 +122,7 @@ export const ACTIVITY_COMPANIES = {
       en: {
         year: "2019 → present",
         name: "Svitya.com",
-        title: "Website Creator and Developer",
+        title: "Jack of All Trades",
         about:
           "My personal portfolio and web development project. Since 2019, it has grown from a simple page into a bilingual Next.js site.",
         results:

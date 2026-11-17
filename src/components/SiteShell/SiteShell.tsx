@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useTransition, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, useTransition, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getTranslations } from "../../content/ui-text";
 import { useThemePreference } from "../../hooks/useThemePreference";
 import { useCookieBanner } from "../../hooks/useCookieBanner";
 import { DEFAULT_LANGUAGE, type Language, type SectionPath } from "../../types/domain";
 import {
-  buildLocalizedDetailPath,
+  buildLanguageSwitchPath,
   buildLocalizedPath,
   getLegacyHashPath,
   normalizeSectionPath,
@@ -19,21 +19,31 @@ import CookieBanner from "../CookieBanner/CookieBanner";
 import { RouteTransitionContext, type RouteTransitionOptions } from "./RouteTransitionContext";
 import styles from "./SiteShell.module.css";
 import { SitePreferencesContext } from "./SitePreferencesContext";
+import { RouteStatusContext } from "./RouteStatusContext";
 
 type SiteShellProps = {
   children: ReactNode;
   initialLanguage?: Language;
   initialYear: number;
+  initialNotFound?: boolean;
 };
 
-function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE, initialYear }: SiteShellProps) {
+function SiteShell({
+  children,
+  initialLanguage = DEFAULT_LANGUAGE,
+  initialYear,
+  initialNotFound = false,
+}: SiteShellProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const [initialNotFoundPath] = useState(initialNotFound ? pathname : null);
+  const [notFoundPath, setNotFoundPath] = useState<string | null>(null);
+  const isNotFound = initialNotFoundPath === pathname || notFoundPath === pathname;
   const parsedPath = parseLocalizedPath(pathname);
   const language = parsedPath.language || initialLanguage;
   const activePath = normalizeSectionPath(parsedPath.sectionPath);
   const text = getTranslations(language);
-  const { theme, setTheme } = useThemePreference("light");
+  const { theme, themePreference, setTheme } = useThemePreference("light");
   const [isPending, startTransition] = useTransition();
   const { isCookieBannerOpen, showCookieBanner, hideCookieBanner } = useCookieBanner();
 
@@ -59,12 +69,10 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE, initialYear }
   const changeLanguage = useCallback(
     (nextLanguage: Language) => {
       if (nextLanguage === language) return;
-      const href = parsedPath.detailSlug
-        ? buildLocalizedDetailPath(nextLanguage, activePath, parsedPath.detailSlug)
-        : buildLocalizedPath(nextLanguage, activePath);
+      const href = buildLanguageSwitchPath(nextLanguage, pathname);
       navigate(href, { kind: "language" });
     },
-    [activePath, language, navigate, parsedPath.detailSlug]
+    [language, navigate, pathname]
   );
 
   const navigateToSection = useCallback(
@@ -91,27 +99,30 @@ function SiteShell({ children, initialLanguage = DEFAULT_LANGUAGE, initialYear }
       <SitePreferencesContext.Provider
         value={{
           theme,
+          themePreference,
           setTheme,
           language,
           changeLanguage,
           showCookieBanner,
         }}
       >
-        <div className={styles.page}>
-          <AppHeader
-            text={text}
-            language={language}
-            activePath={activePath}
-            onNavigate={navigateToSection}
-          />
-          <main id="main-content" className={styles.main} aria-busy={isPending}>
-            <div key={pathname} className={`${styles.content} route-reveal`}>
-              {children}
-            </div>
-          </main>
-          <AppFooter text={text} language={language} initialYear={initialYear} />
-          <CookieBanner text={text} forceOpen={isCookieBannerOpen} onClose={hideCookieBanner} />
-        </div>
+        <RouteStatusContext.Provider value={setNotFoundPath}>
+          <div className={styles.page}>
+            <AppHeader
+              text={text}
+              language={language}
+              activePath={isNotFound ? null : activePath}
+              onNavigate={navigateToSection}
+            />
+            <main id="main-content" className={styles.main} aria-busy={isPending}>
+              <div key={pathname} className={`${styles.content} route-reveal`}>
+                {children}
+              </div>
+            </main>
+            <AppFooter text={text} language={language} initialYear={initialYear} />
+            <CookieBanner text={text} forceOpen={isCookieBannerOpen} onClose={hideCookieBanner} />
+          </div>
+        </RouteStatusContext.Provider>
       </SitePreferencesContext.Provider>
     </RouteTransitionContext.Provider>
   );

@@ -1,238 +1,218 @@
 .header {
   width: 100%;
 }
-
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  position: relative;
   align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
-
 .navigationBlock {
   display: flex;
   align-items: center;
-  position: relative;
 }
-
 .menuToggle {
   display: none;
 }
-
-.menuToggleActive {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 .menuIcon {
-  width: var(--icon-size);
+  width: 22px;
   height: 16px;
   flex-shrink: 0;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 .menuIcon span {
   display: block;
   height: 2px;
   width: 100%;
-  background-color: currentColor;
+  background: currentColor;
   transition:
     transform var(--transition-fast),
     opacity var(--transition-fast);
 }
-
 .menuToggleActive .menuIcon span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-
 .menuToggleActive .menuIcon span:nth-child(2) {
   opacity: 0;
 }
-
 .menuToggleActive .menuIcon span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
-
 .listItems {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
+  display: flex;
   align-items: center;
-  column-gap: 36px;
+  gap: 16px;
   padding: 0;
   margin: 0;
-  list-style-type: none;
+  list-style: none;
 }
-
 .listItem {
-  --nav-emphasis: 0;
-  display: block;
-  padding: 0;
   margin: 0;
-  /* Resolve animated colors outside the visited link. Chrome can paint its
-     inherited text color instead when custom properties animate inside a link.
-     Selection animates independently of the palette already changing at root. */
+  padding: 0;
+}
+.listItem,
+.languageItem {
+  --nav-emphasis: 0;
   color: color-mix(in srgb, var(--accent) calc(var(--nav-emphasis) * 100%), var(--text-primary));
   transition: --nav-emphasis var(--transition-fast);
 }
-
-.listItemActive {
+.listItemActive,
+.languageItemActive,
+.listItem:focus-within,
+.languageItem:focus-within {
   --nav-emphasis: 1;
 }
-
-.listItem:focus-within {
-  --nav-emphasis: 1;
-}
-
-.listItemLink {
+.listItemLink,
+.language {
   display: inline-flex;
   align-items: center;
-  min-height: var(--control-height);
-  font-family: var(--font-body), sans-serif;
-  text-rendering: optimizeLegibility;
-  position: relative;
-  padding: 0;
-  margin: 0;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.375;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
   text-decoration: none;
   color: inherit;
-  transition:
-    outline-color var(--transition-theme),
-    opacity var(--transition-fast);
   outline: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.iconLink {
-  min-width: 44px;
-  justify-content: center;
-}
-
-.settingsIcon {
-  display: block;
-  width: 1.15em;
-  height: 1.15em;
-}
-
-.listItemLink::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
-  height: 2px;
-  background-color: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  opacity: 0;
   transition:
-    transform var(--transition-fast),
-    opacity var(--transition-fast);
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
 }
-
-.listItemLinkActive::after {
-  transform: scaleX(1);
-  opacity: 1;
+.listItemLinkActive,
+.language[aria-current] {
+  background: var(--bg-surface);
 }
-
-.listItemLink:focus-visible {
+.iconLink {
+  width: 44px;
+  padding: 9px;
+}
+.settingsIcon {
+  width: 26px;
+  height: 26px;
+}
+.settingsLabel {
+  display: none;
+}
+.languages {
+  display: flex;
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  height: 44px;
+  align-items: center;
+}
+.language {
+  width: 44px;
+  padding: 10px 0;
+}
+.listItemLink:focus-visible,
+.language:focus-visible {
   outline: var(--focus-ring-width) solid var(--accent);
   outline-offset: var(--focus-ring-offset);
 }
-
 @media (hover: hover) and (pointer: fine) {
-  .listItem:hover {
+  .listItemLink:hover,
+  .language:hover {
+    background: var(--bg-hover);
+  }
+  .listItem:hover,
+  .languageItem:hover {
     --nav-emphasis: 1;
   }
 }
-
-@media (max-width: 1024px) {
-  .listItems {
-    column-gap: 24px;
-  }
-  .listItemLink {
-    font-size: 20px;
-  }
-  .container {
-    gap: 24px;
-  }
+.listItemLink:active,
+.language:active {
+  background: var(--bg-pressed);
 }
-
-@media (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 1024px) {
+  .listItems {
+    gap: 4px;
+  }
   .container {
-    flex-direction: row;
-    justify-content: flex-end;
     gap: 12px;
   }
-
+}
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .languages {
+    order: -1;
+  }
   .navigationBlock {
-    width: 100%;
+    flex: 1 0 100%;
   }
-
   .navigationBlock.enhanced {
-    width: auto;
-    justify-content: flex-end;
+    flex: 0 1 auto;
   }
-
   .enhanced .menuToggle {
     display: inline-flex;
+    gap: 10px;
+    padding: 9px 18px;
   }
-
   .listItems {
-    /* Keep native links usable while application scripts are loading or unavailable. */
-    display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
+    gap: 8px;
   }
-
   .enhanced .listItems {
     display: grid;
     position: absolute;
-    top: calc(100% + 12px);
-    right: 0;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    padding: 12px;
-    gap: 15px;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    min-width: 200px;
+    top: 100%;
+    left: var(--layout-padding-mobile);
+    right: var(--layout-padding-mobile);
     z-index: 10;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: var(--bg-surface);
+    box-shadow: 0 12px 30px #0000001f;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-8px) scale(0.98);
-    transform-origin: top right;
+    transform: translateY(-8px);
     transition:
       opacity var(--transition-fast),
       transform var(--transition-fast),
       visibility var(--transition-fast),
-      border-color var(--transition-theme),
-      background-color var(--transition-theme);
+      background-color var(--transition-theme),
+      border-color var(--transition-theme);
   }
-
   .enhanced .menuOpen {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0) scale(1);
+    transform: none;
   }
-
   .listItemLink {
-    font-size: 20px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    padding: 9px 12px;
+  }
+  .listItemLinkActive {
+    border-color: var(--accent);
+    background: var(--bg-page);
+  }
+  .iconLink {
+    width: 100%;
+  }
+  .settingsIcon {
+    display: none;
+  }
+  .settingsLabel {
+    display: inline;
   }
 }
-
-@media (max-width: 640px) {
-  .listItemLink {
-    font-size: 18px;
+@media (min-width: 641px) and (max-width: 768px) {
+  .enhanced .listItems {
+    left: var(--layout-padding-tablet);
+    right: var(--layout-padding-tablet);
   }
 }

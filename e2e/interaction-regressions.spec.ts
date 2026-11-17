@@ -21,7 +21,7 @@ for (const width of [1280, 390]) {
       await page.goto("/en/about");
       const originalHeading = await page.locator("main h1").textContent();
       const historyLength = await page.evaluate(() => history.length);
-      const menu = page.getByRole("button", { name: "Sections" });
+      const menu = page.locator('button[aria-controls="app-nav-list"]');
       if (width < 769) await menu.click();
       await page.locator('nav a[href="/en/work"]').click();
       await expect(page.locator("main")).toHaveAttribute("aria-busy", "true");
@@ -64,7 +64,7 @@ test("synchronizes cookie notice dismissal between open tabs without focusing or
   await expect(firstBanner).toHaveCount(0);
   await expect(page).toHaveURL(`${origin}/en/about`);
 
-  await settings.getByRole("button", { name: "Show cookie banner", exact: true }).click();
+  await settings.getByRole("button", { name: "Show cookie notice", exact: true }).click();
   await expect(secondBanner).toBeVisible();
   await expect(firstBanner).toHaveCount(0);
   await secondBanner.getByRole("button", { name: "Close", exact: true }).click();
@@ -93,6 +93,12 @@ test("keeps focus in the gallery when the original download action disappears", 
   await expect(dialog.getByRole("link", { name: "Download original", exact: true })).toHaveCount(0);
   await expect(close).toBeFocused();
   await page.keyboard.press("Tab");
+  await expect(
+    dialog
+      .getByRole("link", { name: "Open original", exact: true })
+      .and(dialog.locator("a:has(img)"))
+  ).toBeFocused();
+  await page.keyboard.press("Tab");
   await expect(dialog.getByRole("button", { name: "Previous material" })).toBeFocused();
 
   // Recover keyboard navigation even if the browser has already reset focus to the body.
@@ -102,7 +108,7 @@ test("keeps focus in the gallery when the original download action disappears", 
     });
     await page.keyboard.press(key);
     if (key === "Tab") await expect(close).toBeFocused();
-    else await expect(dialog.getByRole("link", { name: "Open in new window" })).toBeFocused();
+    else await expect(dialog.getByRole("link", { name: "Download", exact: true })).toBeFocused();
   }
 
   await page.keyboard.press("Escape");
@@ -124,18 +130,18 @@ test("preserves carousel button focus across repeated keyboard activation", asyn
   await next.focus();
   await page.keyboard.press("Enter");
   await expect(next).toBeFocused();
-  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 из 7");
+  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 / 7");
   await expect(next).toBeEnabled();
   await expect(next).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("3 из 7");
+  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("3 / 7");
   await expect(next).toBeEnabled();
   await expect(next).toBeFocused();
 
   const previous = dialog.getByRole("button", { name: "Предыдущий материал" });
   await previous.focus();
   await page.keyboard.press("Space");
-  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 из 7");
+  await expect(dialog.locator('[aria-live="polite"]')).toHaveText("2 / 7");
   await expect(previous).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);
@@ -167,7 +173,7 @@ test("keeps mobile section links usable when application scripts cannot load", a
   await page.setViewportSize({ width: 320, height: 844 });
   await page.route(/\.js(?:\?|$)/, (route) => route.abort());
   await page.goto("/en/about");
-  await expect(page.getByRole("button", { name: "Sections" })).toBeHidden();
+  await expect(page.locator('button[aria-controls="app-nav-list"]')).toBeHidden();
   for (const link of await page.locator("nav a").all()) await expect(link).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
   await page.locator('nav a[href="/en/work"]').click();
@@ -194,7 +200,7 @@ test("enhances visible mobile links into a working menu after delayed hydration"
   });
   try {
     await page.goto("/en/about", { waitUntil: "commit" });
-    const menu = page.getByRole("button", { name: "Sections" });
+    const menu = page.locator('button[aria-controls="app-nav-list"]');
     await expect(menu).toBeHidden();
     for (const link of await page.locator("nav a").all()) await expect(link).toBeVisible();
     await expect(page.locator('nav a[href="/en/work"]')).toBeVisible();

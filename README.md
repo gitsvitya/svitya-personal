@@ -9,11 +9,16 @@ A bilingual portfolio built with Next.js App Router, React, TypeScript, and CSS 
 - Document, image, and external-link materials with a shared preview gallery
 - Download sizes and lighter PDFs with separately downloadable originals
 - Light and dark themes
+- Direct RU/EN navigation and explicit system/light/dark appearance options
 - A Settings tab for theme, language, and reopening the cookie notice
 - Responsive desktop, tablet, and mobile layouts
+- Locally hosted Onest typography and the approved Figma design
 - Localized SEO metadata, sitemap, and language redirects
 
 ## Project Structure
+
+The interface follows the [final Figma design dated 20 October 2026](https://www.figma.com/design/Xr6HM7fEmdumbRfVlaFVld/?node-id=5-2),
+read directly from Figma on 16 November 2026, including both languages, themes, and mobile layouts.
 
 ```text
 app/                         App Router pages, layouts, redirects, and SEO

@@ -1,58 +1,21 @@
 import { expect, test } from "@playwright/test";
-import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
-import { expectSuggestedFilename } from "./helpers/downloads";
-
-for (const { language, initialLanguage, label, filename, downloadName } of [
-  {
-    language: "ru",
-    initialLanguage: "en",
-    label: "Скачать резюме",
-    filename: "CV_Строков_Виктор.pdf",
-    downloadName: "Строков Виктор - Резюме - Русский.pdf",
-  },
-  {
-    language: "en",
-    initialLanguage: "ru",
-    label: "Download CV",
-    filename: "CV_Strokov_Victor.pdf",
-    downloadName: "Строков Виктор - Резюме - Английский.pdf",
-  },
-]) {
-  test(`downloads the ${language} CV after changing language without leaving the about page`, async ({
+for (const language of ["ru", "en"]) {
+  test(`shows portfolio and contact actions on the ${language} homepage`, async ({
     context,
     page,
     baseURL,
-    browserName,
   }) => {
     await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
-    await page.goto(`/${initialLanguage}/settings`);
-    await page.locator("#language-toggle").click();
-    await expect(page).toHaveURL(`/${language}/settings`);
-    await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
-    await page.locator(`nav a[href="/${language}/about"]`).click();
-    await expect(page).toHaveURL(`/${language}/about`);
-
-    const link = page.getByRole("link", { name: label, exact: true });
-    await expect(link).toHaveAttribute("download", downloadName);
-    const downloadPromise = page.waitForEvent("download");
-    await link.click();
-    const download = await downloadPromise;
-
-    expectSuggestedFilename(download, downloadName, browserName);
-    expect(decodeURIComponent(new URL(download.url()).pathname)).toBe(
-      `/cv/${language}/${filename}`
-    );
-    const downloaded = await readFile((await download.path())!);
-    const source = await readFile(join(process.cwd(), "public", "cv", language, filename));
-    expect(downloaded.subarray(0, 5).toString()).toBe("%PDF-");
-    expect(createHash("sha256").update(downloaded).digest("hex")).toBe(
-      createHash("sha256").update(source).digest("hex")
-    );
-    await expect(page).toHaveURL(`/${language}/about`);
-    await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
-    await download.delete();
+    await page.goto(`/${language}/about`);
+    await expect(page.locator('main a[href*="/cv/"]')).toHaveCount(0);
+    await expect(page.locator(`main a[href="/${language}/work"]`)).toBeVisible();
+    await expect(page.locator(`main a[href="/${language}/projects"]`)).toBeVisible();
+    await expect(page.locator('main a[href="https://t.me/vstrokov"]')).toBeVisible();
+    const otherLanguage = language === "ru" ? "en" : "ru";
+    await page.locator(`header a[lang="${otherLanguage}"]`).first().click();
+    await expect(page).toHaveURL(`/${otherLanguage}/about`);
+    await page.locator(`main a[href="/${otherLanguage}/projects"]`).click();
+    await expect(page).toHaveURL(`/${otherLanguage}/projects`);
   });
 }
 
@@ -64,7 +27,10 @@ test("returns 404 for unknown localized and catch-all routes", async ({ request 
     // The previous requests set the Russian language preference cookie.
     ["/not-a-real-page", "Страница не найдена"],
   ] as const) {
-    const response = await request.get(path, { maxRedirects: 0 });
+    const response = await request.get(path, {
+      maxRedirects: 0,
+      headers: { "sec-fetch-dest": "document" },
+    });
     expect(response.status(), path).toBe(404);
     const html = await response.text();
     expect(html.match(/<h1[^>]*>(.*?)<\/h1>/)?.[1], path).toBe(heading);
@@ -87,7 +53,7 @@ test("keeps the preferred theme when changing language", async ({ context, page 
   await page.goto("/en/settings");
 
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await page.locator("#language-toggle").click();
+  await page.locator('header a[lang="ru"]').first().click();
   await expect(page).toHaveURL(/\/ru\/settings$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "ru");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -129,13 +95,13 @@ for (const language of ["ru", "en"] as const) {
               description:
                 "Я использую только технические cookie. Без аналитики и рекламных приколов.",
               close: "Закрыть",
-              show: "Показать cookie баннер",
+              show: "Показать уведомление",
             }
           : {
               label: "Cookie notice",
               description: "I use only functional cookies. No analytics, no ad tricks.",
               close: "Close",
-              show: "Show cookie banner",
+              show: "Show cookie notice",
             };
       await page.setViewportSize({ width, height: 844 });
       await page.goto(`/${language}/settings`);
@@ -144,7 +110,7 @@ for (const language of ["ru", "en"] as const) {
       await expect(banner).toHaveAccessibleDescription(copy.description);
       await expect(banner.getByRole("button")).toHaveCount(1);
       const closeButton = banner.getByRole("button", { name: copy.close, exact: true });
-      await expect(closeButton.locator('[aria-hidden="true"]')).toHaveText("→");
+
       await page.evaluate(() => document.fonts.ready);
       await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
       if (width === 320) await expect(page.locator("#app-nav-list")).toHaveCSS("opacity", "0");
@@ -173,24 +139,17 @@ for (const language of ["ru", "en"] as const) {
   }
 }
 
-test("animates the cookie close arrow on hover and keyboard focus and respects reduced motion", async ({
-  page,
-}) => {
+test("shows the cookie close button focus and respects reduced motion", async ({ page }) => {
   await page.goto("/en/about");
-  const closeButton = page
+  const close = page
     .getByRole("region", { name: "Cookie notice" })
     .getByRole("button", { name: "Close", exact: true });
-  const arrow = closeButton.locator('[aria-hidden="true"]');
-  await expect(arrow).toHaveCSS("transform", "none");
-  await closeButton.hover();
-  await expect(arrow).toHaveCSS("transform", "matrix(1, 0, 0, 1, 4, 0)");
-  await page.mouse.move(0, 0);
-  await page.keyboard.press("Tab");
-  await closeButton.focus();
-  await expect(arrow).toHaveCSS("transform", "matrix(1, 0, 0, 1, 4, 0)");
+  await close.focus();
+  await expect(close).toHaveCSS("outline-style", "solid");
+  await expect(close).toHaveCSS("outline-width", "2px");
   await page.emulateMedia({ reducedMotion: "reduce" });
   expect(
-    await arrow.evaluate((element) => parseFloat(getComputedStyle(element).transitionDuration))
+    await close.evaluate((element) => parseFloat(getComputedStyle(element).transitionDuration))
   ).toBeLessThan(0.001);
 });
 

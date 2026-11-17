@@ -251,4 +251,41 @@ describe("portfolio content", () => {
       "Archived questions and answers",
     ]);
   });
+
+  it("keeps reviewed summaries, project context and material labels complete in both languages", () => {
+    for (const language of LANGUAGES) {
+      for (const id of COMPANY_IDS) {
+        const company = getLocalizedCompany(id, language);
+        expect(company.presentation.catalogDescription.trim()).not.toBe("");
+        expect(company.presentation.catalogOutcome.trim()).not.toBe("");
+        expect(company.presentation.heroSummary.trim()).not.toBe("");
+        const next = Object.values(COMPANIES).find(
+          (item) => item.slug === company.nextCompany.slug
+        );
+        expect(next?.section).toBe(company.section);
+        expect(company.nextCompany.name).toBe(next?.translations[language].name);
+      }
+      const exchange = getLocalizedCompany("NTB", language);
+      expect(exchange.presentation.metrics?.map((metric) => metric.value)).toEqual([
+        "10+",
+        "2",
+        "30+",
+      ]);
+      expect(exchange.materials?.items).toHaveLength(4);
+      expect(exchange.materials?.items.every((item) => item.metadata?.trim())).toBe(true);
+      expect(exchange.materials?.items.some((item) => /дашборд|dashboard/i.test(item.title))).toBe(
+        false
+      );
+      const cat = getLocalizedCompany("MBC", language);
+      expect(cat.presentation.status).toBe(
+        language === "ru" ? "На стадии трансформации" : "In transition"
+      );
+      expect(cat.about).not.toMatch(/хобби-производство|as a hobby/);
+      const app = getLocalizedCompany("MNG", language);
+      expect(app.caseStudy?.outcome).toContain(
+        language === "ru" ? "ограниченного круга тестеров" : "limited group of testers"
+      );
+      expect(getLocalizedCompany("SKO", language).materials?.items[0]?.previewFit).toBe("cover");
+    }
+  });
 });

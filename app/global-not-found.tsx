@@ -15,7 +15,7 @@ export async function generateMetadata() {
 export default async function GlobalNotFound() {
   const language = await getServerLanguage();
   return (
-    <SiteDocument language={language}>
+    <SiteDocument language={language} isNotFound>
       <NotFoundPage initialLanguage={language} />
     </SiteDocument>
   );

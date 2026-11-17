@@ -5,8 +5,8 @@ import { useSyncExternalStore } from "react";
 // Runs directly from the initial HTML, even when Next's scripts cannot load.
 const THEME_INIT = `(function(){
   var theme;
-  try { var match = document.cookie.match(/(?:^|;\\s*)theme=(light|dark)(?:;|$)/); theme = match && match[1]; } catch(e) {}
-  if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try { var match = document.cookie.match(/(?:^|;\\s*)theme=(light|dark|system)(?:;|$)/); theme = match && match[1]; } catch(e) {}
+  if (!theme || theme === 'system') theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', theme);
 })();`;
 

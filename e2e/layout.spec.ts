@@ -58,22 +58,23 @@ for (const { name, path, width, theme } of scenarios) {
       const cards = page.locator('main a[href^="/ru/work/"]');
       const first = await cards.nth(0).boundingBox();
       const second = await cards.nth(1).boundingBox();
-      expect(first!.y).toBe(second!.y);
-      expect(second!.x).toBeGreaterThan(first!.x);
+      expect(second!.y).toBeGreaterThanOrEqual(first!.y + first!.height - 1);
+      expect(second!.x).toBe(first!.x);
+      expect(second!.width).toBe(first!.width);
     }
     await page.screenshot({ path: testInfo.outputPath(`${name}.png`), fullPage: true });
   });
 }
 
 for (const width of [320, 375, 641, 961, 1101, 1280]) {
-  test(`keeps card sizes equal across sections and languages at ${width}px`, async ({
+  test(`keeps each catalog consistent and all content visible across languages at ${width}px`, async ({
     context,
     page,
     baseURL,
   }) => {
     await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.setViewportSize({ width, height: 900 });
-    let reference: { width: number; height: number } | undefined;
+    const sectionWidths = new Map<string, number>();
     for (const language of ["ru", "en"]) {
       await context.addCookies([
         { name: "theme", value: language === "ru" ? "light" : "dark", url: baseURL! },
@@ -115,11 +116,14 @@ for (const width of [320, 375, 641, 961, 1101, 1280]) {
           })
         );
         expect(cards.length).toBeGreaterThan(1);
-        reference ??= cards[0]!;
+        const referenceWidth = sectionWidths.get(section) ?? cards[0]!.width;
+        sectionWidths.set(section, referenceWidth);
         for (const card of cards) {
           expect(card.contentFits, `${path}: full card content`).toBe(true);
-          expect(Math.abs(card.width - reference.width), `${path}: card width`).toBeLessThan(1);
-          expect(Math.abs(card.height - reference.height), `${path}: card height`).toBeLessThan(1);
+          expect(Math.abs(card.width - referenceWidth), `${path}: item width`).toBeLessThan(1);
+          if (width <= 1024) {
+            expect(card.height, `${path}: content-driven card height`).toBeGreaterThanOrEqual(224);
+          }
         }
       }
     }

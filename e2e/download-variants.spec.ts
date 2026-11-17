@@ -31,6 +31,15 @@ for (const language of ["ru", "en"] as const) {
       const originalSrc = optimized.originalSrc!;
       const original = getDownloadFile(originalSrc);
       expect(optimized.sizeBytes).toBeLessThan(original.sizeBytes);
+      const openOriginal = dialog
+        .getByRole("link", {
+          name: language === "ru" ? "Открыть оригинал" : "Open original",
+          exact: true,
+        })
+        .and(dialog.locator(".button-control"));
+      await expect(openOriginal).toHaveAttribute("href", material.fileSrc);
+      await expect(openOriginal).toHaveAttribute("target", "_blank");
+      await expect(openOriginal).not.toHaveAttribute("download");
 
       for (const [href, file, label] of [
         [material.fileSrc, optimized, text.download],

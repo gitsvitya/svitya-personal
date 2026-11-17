@@ -12,23 +12,30 @@ type CardProps = {
 
 function Card({ company, href, ctaLabel, preloadLogo = false }: CardProps) {
   return (
-    <TransitionLink className={styles.card} href={href}>
-      <div className={styles.cardText}>
-        <span className={styles.cardYear}>{company.year}</span>
-        <span className={styles.cardCompanyName}>{company.name}</span>
-        <span className={styles.cardTitle}>{company.title}</span>
+    <TransitionLink className={`${styles.card} ${styles.catalogRow} arrow-link`} href={href}>
+      <div className={styles.cardHeader}>
+        <div className={styles.cardIdentity}>
+          <span className={styles.cardYear}>{company.year}</span>
+          <span className={styles.cardCompanyName}>{company.name}</span>
+        </div>
+        <Image
+          className={`${styles.logoPic} ${company.id === "KG" ? styles.lightLogoPlate : ""}`}
+          src={company.logo}
+          alt=""
+          sizes="64px"
+          preload={preloadLogo}
+        />
+      </div>
+      <div className={styles.cardBody}>
+        <span className={styles.cardDescription}>{company.presentation.catalogDescription}</span>
+        <span className={styles.cardOutcome}>{company.presentation.catalogOutcome}</span>
         <span className={styles.cardCta}>
           {ctaLabel}
-          <span aria-hidden="true">→</span>
+          <span className="link-arrow" aria-hidden="true">
+            →
+          </span>
         </span>
       </div>
-      <Image
-        className={styles.logoPic}
-        src={company.logo}
-        alt=""
-        sizes="(max-width: 640px) 80px, 112px"
-        preload={preloadLogo}
-      />
     </TransitionLink>
   );
 }

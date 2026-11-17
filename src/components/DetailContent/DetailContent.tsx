@@ -12,40 +12,63 @@ type DetailContentProps = {
 
 function DetailContent({ company, titleId, descriptionId, text }: DetailContentProps) {
   if (!company) return null;
+  const { presentation } = company;
+
   return (
     <div className={styles.detailContent}>
       <div id={descriptionId} className={styles.header}>
-        <div className={styles.companyIdentity}>
-          <Image
-            className={styles.logo}
-            src={company.logo}
-            alt=""
-            sizes={`${Math.ceil((112 * company.logo.width) / company.logo.height)}px`}
-            preload
-          />
-          <div className={styles.companyBox}>
-            <h1 id={titleId} className={styles.companyName}>
-              {company.name}
-            </h1>
-            {company.url && (
-              <a
-                className={styles.link}
-                href={company.url}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <span className={styles.linkLabel}>{company.linkLabel}</span>
-                <span className={styles.linkArrow} aria-hidden="true">
-                  →
-                </span>
-              </a>
-            )}
+        <div className={styles.identityColumn}>
+          <div className={styles.companyIdentity}>
+            <Image
+              className={`${styles.logo} ${company.id === "KG" ? styles.lightLogoPlate : ""}`}
+              src={company.logo}
+              alt=""
+              sizes={`${Math.ceil((72 * company.logo.width) / company.logo.height)}px`}
+              preload
+            />
+            <div className={styles.companyBox}>
+              <h1 id={titleId} className={styles.companyName}>
+                {company.name}
+              </h1>
+              {company.url && (
+                <a
+                  className={`${styles.link} arrow-link`}
+                  href={company.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <span className={styles.linkLabel}>{company.linkLabel}</span>
+                  <span className="link-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              )}
+            </div>
+          </div>
+          <div className={styles.metaBox}>
+            <span className={styles.title}>{company.title}</span>
+            <span className={styles.year}>{company.year}</span>
+            {presentation.status && <span className={styles.status}>{presentation.status}</span>}
           </div>
         </div>
-        <p className={`${styles.paragraph} ${styles.description}`}>{company.about}</p>
-        <div className={styles.metaBox}>
-          <span className={styles.title}>{company.title}</span>
-          <span className={styles.year}>{company.year}</span>
+        <div className={styles.overview}>
+          <div className={styles.summary}>
+            <span className={styles.summaryLabel}>
+              {company.language === "ru" ? "Главное" : "At a glance"}
+            </span>
+            <p className={styles.heroResult}>{presentation.heroSummary}</p>
+            {presentation.metrics && (
+              <dl className={styles.metrics}>
+                {presentation.metrics.map((metric) => (
+                  <div key={metric.label} className={styles.metric}>
+                    <dt>{metric.label}</dt>
+                    <dd>{metric.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </div>
+          <p className={styles.description}>{company.about}</p>
         </div>
       </div>
       <div className={styles.caseStudy}>

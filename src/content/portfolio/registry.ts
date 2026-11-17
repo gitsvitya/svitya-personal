@@ -4,6 +4,7 @@ import { PROJECT_COMPANIES } from "./projects";
 import type { CompanyMaterial, CompanyRecord, LocalizedCompany, LocalizedMaterial } from "./types";
 import { WORK_COMPANIES } from "./work";
 import { CASE_STUDIES } from "./case-studies";
+import { PORTFOLIO_PRESENTATION } from "./presentation";
 
 export const COMPANIES: Record<CompanyId, CompanyRecord> = {
   ...WORK_COMPANIES,
@@ -30,6 +31,9 @@ export function getCompanyBySlug(
 export function getLocalizedCompany(companyId: CompanyId, language: Language): LocalizedCompany {
   const company = COMPANIES[companyId];
   const translation = company.translations[language];
+  const sectionCompanies = getCompaniesBySection(company.section);
+  const currentIndex = sectionCompanies.findIndex((item) => item.id === companyId);
+  const nextCompany = sectionCompanies[(currentIndex + 1) % sectionCompanies.length]!;
 
   if (!translation) {
     throw new Error(`Missing translation for company "${companyId}" and language "${language}"`);
@@ -37,6 +41,9 @@ export function getLocalizedCompany(companyId: CompanyId, language: Language): L
 
   return {
     id: company.id,
+    language,
+    presentation: PORTFOLIO_PRESENTATION[companyId][language],
+    nextCompany: { name: nextCompany.translations[language].name, slug: nextCompany.slug },
     slug: company.slug,
     section: company.section,
     logo: company.logo,
@@ -66,6 +73,8 @@ function localizeMaterial(material: CompanyMaterial, language: Language): Locali
   const copy = {
     title: material.title[language],
     description: material.description[language],
+    metadata: material.metadata?.[language],
+    previewFit: material.previewFit,
   };
 
   switch (material.type) {

@@ -16,7 +16,8 @@ import styles from "./Modal.module.css";
 type ModalProps = {
   children: ReactNode;
   className?: string;
-  overlayControls?: ReactNode;
+  title: string;
+  titleVisible?: boolean;
   closeModal: () => void;
   showContent: boolean;
   setShowContent: Dispatch<SetStateAction<boolean>>;
@@ -26,7 +27,8 @@ type ModalProps = {
 const Modal = ({
   children,
   className = "",
-  overlayControls,
+  title,
+  titleVisible = true,
   closeModal,
   showContent,
   setShowContent,
@@ -120,6 +122,12 @@ const Modal = ({
         ref={modalRef}
       >
         <div className={styles.modalHeader}>
+          <h2
+            id={titleId}
+            className={`${styles.modalTitle} ${titleVisible ? "" : styles.titleHidden}`}
+          >
+            {title}
+          </h2>
           <button
             type="button"
             className={styles.closeIcon}
@@ -128,11 +136,8 @@ const Modal = ({
             ref={closeBtnRef}
           />
         </div>
-        {overlayControls}
 
-        <div className={styles.modalBody}>
-          {renderModalChildren(children, titleId, descriptionId)}
-        </div>
+        <div className={styles.modalBody}>{renderModalChildren(children, descriptionId)}</div>
       </div>
       <ModalOverlay onClick={closeModal} showContent={showContent} />
     </>,
@@ -140,13 +145,12 @@ const Modal = ({
   );
 };
 
-function renderModalChildren(children: ReactNode, titleId: string, descriptionId: string) {
+function renderModalChildren(children: ReactNode, descriptionId: string) {
   if (!isValidElement(children) || typeof children.type === "string") {
     return children;
   }
 
   return cloneElement(children as ReactElement<Record<string, unknown>>, {
-    titleId,
     descriptionId,
   });
 }

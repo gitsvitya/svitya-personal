@@ -1,29 +1,54 @@
 .container {
   flex: 1;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   width: 100%;
-  min-height: 45dvh;
+  padding-top: clamp(64px, 12vh, 128px);
+  padding-bottom: 64px;
+  gap: 20px;
 }
-
+.container:global(.layout-container) {
+  max-width: 700px;
+}
 .container h1 {
   margin: 0;
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 400;
+  max-width: 640px;
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 600;
 }
-
 .container p {
   margin: 0;
-  max-width: 50ch;
-  font-size: var(--body-font-size);
-  line-height: var(--body-line-height);
+  max-width: 640px;
+  font-size: 20px;
+  line-height: 32px;
   color: var(--text-subtle);
   transition: color var(--transition-theme);
 }
-
 .container .code {
   color: var(--accent);
-  font-size: 18px;
-  letter-spacing: 0.12em;
+  font-size: 16px;
+  line-height: 24px;
+}
+@media (max-width: 1024px) {
+  .container:global(.layout-container) {
+    max-width: 688px;
+  }
+}
+@media (max-width: 640px) {
+  .container:global(.layout-container) {
+    max-width: 672px;
+  }
+  .container {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+  .container h1 {
+    font-size: 32px;
+    line-height: 38px;
+  }
+  .container p {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }

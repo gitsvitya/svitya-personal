@@ -31,6 +31,8 @@ async function measureThemeSwitch(page: Page) {
       [];
     for (const element of document.querySelectorAll("body, body *")) {
       if (!(element instanceof HTMLElement || element instanceof SVGElement)) continue;
+      // Selecting a theme also changes its selected button styling independently.
+      if (element.closest("[data-theme-choice]")) continue;
       if (!element.getClientRects().length || getComputedStyle(element).visibility === "hidden")
         continue;
       for (const pseudo of [null, "::before", "::after", "::marker"]) {
@@ -58,18 +60,21 @@ async function measureThemeSwitch(page: Page) {
       }
     }
     const snapshot = () =>
-      targets.map(({ element, pseudo, property }) =>
-        color(getComputedStyle(element, pseudo).getPropertyValue(property))!
-      );
+      targets.map(({ element, pseudo, property, label }) => {
+        const raw = getComputedStyle(element, pseudo).getPropertyValue(property);
+        const parsed = color(raw);
+        if (!parsed) throw new Error(`Unsupported color for ${label}: ${raw}`);
+        return parsed;
+      });
     const before = snapshot();
-    (document.querySelector("#theme-toggle") as HTMLButtonElement).click();
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    (document.querySelector(`[data-theme-choice="${nextTheme}"]`) as HTMLButtonElement).click();
     const activeLink = document.querySelector('nav a[aria-current="page"]')!;
     const frames: {
       time: number;
       colors: number[][];
       accent: string;
       labelColor: string;
-      underlineColor: string;
     }[] = [];
     const start = performance.now();
     await new Promise<void>((resolve) => {
@@ -79,7 +84,6 @@ async function measureThemeSwitch(page: Page) {
           colors: snapshot(),
           accent: getComputedStyle(document.documentElement).getPropertyValue("--accent"),
           labelColor: getComputedStyle(activeLink.firstElementChild!).color,
-          underlineColor: getComputedStyle(activeLink, "::after").backgroundColor,
         });
         if (performance.now() - start < 600) requestAnimationFrame(frame);
         else resolve();
@@ -125,8 +129,8 @@ async function measureThemeSwitch(page: Page) {
       sampledFrames,
       mismatches: mismatches.slice(0, 20),
       activeMismatches: frames
-        .filter(({ accent, labelColor, underlineColor }) =>
-          [labelColor, underlineColor].some((value) => {
+        .filter(({ accent, labelColor }) =>
+          [labelColor].some((value) => {
             const actual = color(value);
             const expected = color(accent);
             // color-mix serializes as color(srgb), while the palette uses rgb().
@@ -137,11 +141,10 @@ async function measureThemeSwitch(page: Page) {
             );
           })
         )
-        .map(({ time, accent, labelColor, underlineColor }) => ({
+        .map(({ time, accent, labelColor }) => ({
           time,
           accent,
           labelColor,
-          underlineColor,
         })),
       changedColors: after.filter((value, index) => progress(index, value) !== null).length,
     };
@@ -198,9 +201,9 @@ test("keeps visited navigation text accented throughout a theme change", async (
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
     const link = page.locator('nav a[aria-current="page"]');
-    const label = link.locator("span");
+    const label = link.locator("svg");
     for (const theme of ["dark", "light"]) {
-      await page.locator("#theme-toggle").click();
+      await page.locator(`[data-theme-choice="${theme}"]`).click();
       const count = await page.evaluate(() => {
         const animations = document.documentElement.getAnimations();
         animations.forEach((animation) => {
@@ -256,15 +259,14 @@ test("finishes rapid theme toggles and honors reduced motion", async ({ context,
     await page.goto("/en/settings");
     await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
     await page.evaluate(async () => {
-      const toggle = document.querySelector("#theme-toggle") as HTMLButtonElement;
-      for (let click = 0; click < 3; click++) {
-        toggle.click();
+      for (const theme of ["dark", "light", "dark"]) {
+        (document.querySelector(`[data-theme-choice="${theme}"]`) as HTMLButtonElement).click();
         await new Promise(requestAnimationFrame);
       }
     });
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-    await expect(page.locator("body")).toHaveCSS("background-color", "rgb(12, 17, 26)");
-    await expect(page.locator("body")).toHaveCSS("color", "rgb(237, 241, 247)");
+    await expect(page.locator("body")).toHaveCSS("background-color", "rgb(17, 21, 27)");
+    await expect(page.locator("body")).toHaveCSS("color", "rgb(237, 241, 246)");
     await expect
       .poll(() =>
         page.evaluate(() => document.documentElement.style.getPropertyValue("--transition-theme"))
@@ -273,7 +275,7 @@ test("finishes rapid theme toggles and honors reduced motion", async ({ context,
     if (reducedMotion === "reduce") {
       const durations = await page.evaluate(() => [
         ...getComputedStyle(document.documentElement).transitionDuration.split(","),
-        getComputedStyle(document.querySelector("#theme-toggle")!).transitionDuration,
+        getComputedStyle(document.querySelector('[data-theme-choice="dark"]')!).transitionDuration,
       ]);
       expect(durations.every((duration) => parseFloat(duration) < 0.001)).toBe(true);
     }

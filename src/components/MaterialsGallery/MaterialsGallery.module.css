@@ -1,26 +1,30 @@
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 24px;
   border-top: 1px solid var(--border-color);
-  transition: border-color var(--transition-theme);
 }
 
 .title {
   padding: 0;
   margin: 0;
   font-size: 28px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.3;
+  font-weight: 600;
+  line-height: 36px;
 }
 
 .previewGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+.pairedGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, calc((100% - 40px) / 3 * 2 + 20px));
+  justify-self: center;
+  align-self: center;
 }
 
 .previewItem {
@@ -32,11 +36,11 @@
 .previewLink {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   width: 100%;
+  height: 100%;
   padding: 0;
-  border: 0;
-  background: transparent;
+  border-radius: 10px;
   color: var(--text-primary);
   font: inherit;
   text-align: left;
@@ -45,85 +49,86 @@
 }
 
 .previewFrame {
+  --material-frame-height: 300px;
+  position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 5 / 6;
-  padding: 0;
-  border: var(--control-border-width) solid currentColor;
-  border-radius: 12px;
-  background-color: transparent;
-  color: var(--text-primary);
+  height: 300px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background-color: var(--bg-media, #fff);
   overflow: hidden;
-  cursor: pointer;
-  transition:
-    outline-color var(--transition-theme),
-    color var(--transition-theme),
-    border-color var(--transition-theme);
+  transition: border-color var(--transition-theme);
 }
 
 .previewLink:focus-visible {
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .previewLink:focus-visible .previewFrame {
-  outline: var(--focus-ring-width) solid var(--accent);
-  outline-offset: var(--focus-ring-offset);
   border-color: var(--accent);
 }
 
-.previewLink:focus-visible .previewTitle {
+.previewLink:focus-visible .previewAction {
   color: var(--accent);
-}
-
-.previewLink:focus-visible .previewArrow {
-  transform: translateX(var(--arrow-offset));
 }
 
 .previewImage {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+}
+
+.fillPreview {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  width: max(100%, var(--material-frame-height));
+  height: auto;
+  aspect-ratio: 1;
   object-fit: cover;
+  object-position: center;
+  transform: translate(-50%, -70%);
+}
+
+.previewDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
 }
 
 .previewTitle {
   display: block;
-  padding: 0 var(--arrow-offset) 0 0;
   margin: 0;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
   overflow-wrap: anywhere;
+  color: var(--text-primary);
+}
+
+.previewMetadata {
+  color: var(--text-subtle);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.previewAction {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   color: var(--text-primary);
   transition: color var(--transition-theme);
 }
 
-.previewTitleEnd {
-  display: inline-block;
-}
-
 .previewArrow {
   display: inline-block;
-  transition: transform var(--transition-fast);
-}
-
-.materialModal {
-  --material-preview-width: min(38dvh, 400px);
-  --material-control-size: var(--control-height);
-  /* Centre each control in the gap between the modal edge and the preview. */
-  --material-control-inset: max(
-    calc(var(--modal-padding) / 2),
-    calc((100% - var(--material-preview-width)) / 4 - var(--material-control-size) / 2)
-  );
-  /* Reserve the same space in the scrollable body, plus an 8px text clearance. */
-  --modal-controls-gutter: max(
-    var(--material-control-size),
-    calc(
-      (100% - var(--material-preview-width)) / 4 - var(--modal-padding) / 2 +
-        var(--material-control-size) / 2 + 8px
-    )
-  );
+  margin-left: 8px;
 }
 
 .modalContent {
@@ -132,42 +137,34 @@
   gap: 12px;
 }
 
-.modalTitle {
-  padding: 0;
-  margin: 0;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.3;
-  text-align: center;
-  overflow-wrap: anywhere;
-  transition: opacity var(--transition-fast);
-}
-
-.materialCount {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
 .imageFrame {
+  --material-preview-height: min(560px, 56dvh);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: var(--material-preview-height);
+}
+
+.imageLink {
+  display: block;
+  flex: 0 0 auto;
+  width: min(100%, calc(var(--material-preview-height) * var(--material-image-ratio)));
+  aspect-ratio: var(--material-image-ratio);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.imageLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .modalImage {
   display: block;
-  width: min(100%, var(--material-preview-width));
-  height: auto;
-  aspect-ratio: 5 / 6;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   transition: opacity var(--transition-fast);
 }
@@ -180,80 +177,63 @@
   opacity: 0;
 }
 
+.galleryNavigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+}
+
+.materialCount {
+  flex: 1;
+  text-align: center;
+  color: var(--text-subtle);
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .arrowButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--material-control-size);
-  height: var(--material-control-size);
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
   padding: 0;
-  border: var(--control-border-width) solid currentColor;
-  border-radius: 50%;
-  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background-color: var(--bg-surface);
   color: var(--text-primary);
-
+  font: inherit;
+  font-size: 28px;
+  line-height: 32px;
   cursor: pointer;
   transition:
-    outline-color var(--transition-theme),
+    background-color var(--transition-theme),
     border-color var(--transition-theme),
     color var(--transition-theme);
 }
 
-.arrowButton::before {
-  content: "";
-  display: block;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  flex: 0 0 var(--icon-size);
-  background-color: currentColor;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  mask-size: contain;
-}
-
 .arrowButton[aria-disabled="true"] {
   cursor: default;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
-.arrowButton:focus-visible {
-  outline: var(--focus-ring-width) solid var(--accent);
-  outline-offset: var(--focus-ring-offset);
+.arrowButton:focus-visible,
+.materialAction:focus-visible,
+.originalDownloadAction:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
   color: var(--accent);
-}
-
-.arrowButtonLeft {
-  left: var(--material-control-inset);
-}
-
-.arrowButtonRight {
-  right: var(--material-control-inset);
-}
-
-.arrowButtonLeft::before {
-  -webkit-mask-image: url("../../images/ui/carousel/previous.png");
-  mask-image: url("../../images/ui/carousel/previous.png");
-}
-
-.arrowButtonRight::before {
-  -webkit-mask-image: url("../../images/ui/carousel/next.png");
-  mask-image: url("../../images/ui/carousel/next.png");
 }
 
 .description {
   padding: 0;
   margin: 0;
-  font-size: 18px;
-  font-style: normal;
+  color: var(--text-subtle);
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 24px;
   transition: opacity var(--transition-fast);
 }
 
@@ -266,176 +246,150 @@
 }
 
 .materialAction {
-  --icon-size: 18px;
-  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 180px;
   max-width: 100%;
-  min-height: 36px;
-  padding: 6px 12px;
-  gap: 6px;
-  font-size: 14px;
-  line-height: 1.375;
-  scroll-margin-block: calc(var(--focus-ring-width) + var(--focus-ring-offset));
-}
-
-.materialAction:disabled,
-.materialAction:disabled:hover {
-  color: var(--text-subtle);
-  border-color: currentColor;
-  opacity: 0.5;
-  cursor: default;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 24px;
+  scroll-margin-block: 5px;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    color var(--transition-theme);
 }
 
 .materialAction .actionText {
   min-width: 0;
   height: auto;
-  line-height: 1.375;
+  line-height: 24px;
   white-space: normal;
 }
 
 .originalDownloadAction {
-  display: flex;
   flex-basis: 100%;
-  align-items: center;
-  gap: 6px;
   max-width: 100%;
-  min-height: 36px;
-  padding: 6px 0;
+  min-height: 44px;
+  padding: 10px 0;
   color: var(--text-subtle);
   font-size: 14px;
-  line-height: 1.375;
-  scroll-margin-block: calc(var(--focus-ring-width) + var(--focus-ring-offset));
-}
-
-.originalDownloadAction .actionText {
-  height: auto;
-  line-height: 1.375;
-  white-space: normal;
-}
-
-.originalDownloadAction:focus-visible {
-  outline: var(--focus-ring-width) solid var(--accent);
-  outline-offset: var(--focus-ring-offset);
-  color: var(--accent);
-}
-
-.materialAction::before {
-  content: "";
-  display: block;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  flex: 0 0 var(--icon-size);
-  background-color: currentColor;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  mask-size: contain;
-}
-
-.downloadAction::before {
-  -webkit-mask-image: url("../../images/ui/actions/download.png");
-  mask-image: url("../../images/ui/actions/download.png");
-}
-
-.openWindowAction::before {
-  -webkit-mask-image: url("../../images/ui/actions/open-image.png");
-  mask-image: url("../../images/ui/actions/open-image.png");
-}
-
-.openLinkAction::before {
-  -webkit-mask-image: url("../../images/ui/actions/open-in-new.png");
-  mask-image: url("../../images/ui/actions/open-in-new.png");
+  line-height: 24px;
+  text-decoration: none;
+  scroll-margin-block: 5px;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .originalDownloadAction:hover {
-    color: var(--accent);
-  }
-
   .previewLink:hover .previewFrame {
     border-color: var(--accent);
   }
 
-  .previewLink:hover .previewTitle {
+  .previewLink:hover .previewAction,
+  .originalDownloadAction:hover {
     color: var(--accent);
   }
 
-  .previewLink:hover .previewArrow {
-    transform: translateX(var(--arrow-offset));
-  }
-
-  .arrowButton:hover {
+  .arrowButton:not([aria-disabled="true"]):hover,
+  .materialAction:hover {
     border-color: var(--accent);
+    background: var(--bg-hover);
     color: var(--accent);
   }
+}
 
-  .arrowButton[aria-disabled="true"]:hover {
-    border-color: currentColor;
-    color: var(--text-primary);
-  }
+.previewLink:active .previewAction {
+  color: var(--accent);
+  transition-duration: 120ms;
+}
+
+.arrowButton:not([aria-disabled="true"]):active,
+.materialAction:active {
+  border-color: var(--accent);
+  background: var(--bg-pressed);
+  color: var(--accent);
+  transition-duration: 120ms;
 }
 
 @media (max-width: 1024px) {
-  .previewGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .pairedGrid {
+    width: min(100%, calc(1220px / 3 * 2 - 20px / 3));
   }
-
-  .title {
-    font-size: 24px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .materialActions {
-    display: grid;
-    grid-template-columns: max-content minmax(0, max-content) minmax(0, max-content);
-  }
-
-  .originalDownloadAction {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery {
-    padding-top: 28px;
-  }
-
   .previewGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
+  .gallery {
+    gap: 16px;
+    padding-top: 20px;
+  }
+
   .title {
-    font-size: 22px;
+    font-size: 24px;
+    line-height: 32px;
   }
 
-  .modalTitle {
-    font-size: 22px;
+  .previewGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .description {
-    font-size: 16px;
+  .previewFrame {
+    --material-frame-height: 0px;
+    height: auto;
+    aspect-ratio: 358 / 279;
   }
 
-  .materialActions {
-    flex-direction: column;
-    align-items: stretch;
+  .compactGrid .previewLink {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
   }
 
-  .materialAction {
-    width: 100%;
+  .compactGrid .previewFrame {
+    height: 124px;
+    aspect-ratio: auto;
   }
 
   .previewTitle {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .imageFrame {
+    --material-preview-height: min(410px, 50dvh);
+  }
+
+  .materialAction {
+    flex: 1 1 calc(45% - 4px);
+  }
+
+  .materialAction:first-child {
+    flex-basis: calc(55% - 4px);
+  }
+
+  .materialActions {
+    align-items: stretch;
   }
 }
 
-@media (max-width: 360px) {
-  .previewGrid {
-    grid-template-columns: 1fr;
+@media (prefers-reduced-motion: reduce) {
+  .previewFrame,
+  .previewAction,
+  .modalImage,
+  .arrowButton,
+  .description,
+  .materialActions,
+  .materialAction {
+    transition: none;
   }
 }

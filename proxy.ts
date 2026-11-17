@@ -21,7 +21,11 @@ export function proxy(request: NextRequest) {
   });
   const currentCookie = request.cookies.get("lang")?.value;
 
-  if (currentCookie !== firstSegment) {
+  // Only document navigation saves a preference. Next removes its internal
+  // prefetch headers before this proxy; background RSC fetches must be read-only.
+  // Client navigation persists its committed locale in SiteShell.
+  const isDocumentNavigation = request.headers.get("sec-fetch-dest") === "document";
+  if (isDocumentNavigation && currentCookie !== firstSegment) {
     response.cookies.set({
       name: "lang",
       value: firstSegment,
