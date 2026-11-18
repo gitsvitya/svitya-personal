@@ -29,36 +29,16 @@ function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageP
   return (
     <section className={styles.detailPage} aria-labelledby={titleId}>
       <div className={`layout-container ${styles.container}`}>
-        <TransitionLink
-          href={backHref}
-          replace
-          className={`${styles.backButton} arrow-link`}
-          aria-label={`${text.detail.backToSection}: ${sectionTitle}`}
-        >
-          <span className="link-arrow link-arrow-back" aria-hidden="true">
-            ←
-          </span>
-          <span>{backLabel}</span>
-        </TransitionLink>
-        <DetailContent
-          company={company}
-          titleId={titleId}
-          descriptionId={descriptionId}
-          text={text}
-        />
-        {materials && (
-          <MaterialsGallery
-            items={materials.items}
-            text={text}
-            companyName={company.name}
-            compact={company.section === "work"}
-          />
-        )}
         <nav
           className={styles.caseNavigation}
           aria-label={company.language === "ru" ? "Другие истории" : "More stories"}
         >
-          <TransitionLink href={backHref} replace className={`${styles.backButton} arrow-link`}>
+          <TransitionLink
+            href={backHref}
+            replace
+            className={`${styles.backButton} arrow-link`}
+            aria-label={`${text.detail.backToSection}: ${sectionTitle}`}
+          >
             <span className="link-arrow link-arrow-back" aria-hidden="true">
               ←
             </span>
@@ -76,6 +56,20 @@ function AppDetailPage({ company, text, sectionTitle, backHref }: AppDetailPageP
             </span>
           </TransitionLink>
         </nav>
+        <DetailContent
+          company={company}
+          titleId={titleId}
+          descriptionId={descriptionId}
+          text={text}
+        />
+        {materials && (
+          <MaterialsGallery
+            items={materials.items}
+            text={text}
+            companyName={company.name}
+            compact={company.section === "work"}
+          />
+        )}
       </div>
     </section>
   );

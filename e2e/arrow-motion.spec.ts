@@ -48,9 +48,8 @@ test("moves only arrow glyphs in the matching direction on hover and keyboard fo
   await expectArrowMotion(page, page.locator('main a[href="/ru/work/cheminsight"]'), 1);
 
   await page.goto("/ru/work/cheminsight");
-  await expectArrowMotion(page, page.locator('main a[href="/ru/work"]').first(), -1);
+  await expectArrowMotion(page, page.locator('main a[href="/ru/work"]'), -1);
   await expectArrowMotion(page, page.locator('main a[href="https://cheminsight.ru/"]'), 1);
-  await expectArrowMotion(page, page.locator('main a[href="/ru/work"]').last(), -1);
   await expectArrowMotion(page, page.locator('main a[href="/ru/work/namex"]'), 1);
 });
 

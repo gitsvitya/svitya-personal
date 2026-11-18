@@ -165,58 +165,75 @@ for (const language of ["ru", "en"]) {
     expect(Math.abs(next.width - overview.width)).toBeLessThan(1);
   });
 
-  for (const path of ["work/namex", "projects/madburglarcat", "activities/strokeoff"]) {
-    for (const width of [1440, 390]) {
-      test(`${language}/${path} has matching compact return buttons at ${width}px`, async ({
+  for (const [path, nextSlug] of [
+    ["work/cheminsight", "namex"],
+    ["projects/madburglarcat", "mappngo"],
+    ["activities/strokeoff", "svityacom"],
+  ] as const) {
+    for (const width of [1440, 390, 320]) {
+      test(`${language}/${path} has one navigation pair above the story at ${width}px in both themes`, async ({
+        context,
         page,
+        baseURL,
       }) => {
-        await openPage(page, `/${language}/${path}`, width);
-        const section = path.split("/")[0];
-        const returns = page.locator(`main a[href="/${language}/${section}"]`);
-        await expect(returns).toHaveCount(2);
-        const top = await bounds(returns.first());
-        const bottom = await bounds(returns.last());
-        expect(top.height).toBeGreaterThanOrEqual(44);
-        expect(bottom.height).toBeGreaterThanOrEqual(44);
-        expect(Math.abs(top.width - bottom.width)).toBeLessThan(1);
-        expect(Math.abs(top.height - bottom.height)).toBeLessThan(1);
-        expect(Math.abs(top.x - bottom.x)).toBeLessThan(1);
+        for (const theme of ["light", "dark"]) {
+          await context.addCookies([{ name: "theme", value: theme, url: baseURL! }]);
+          await openPage(page, `/${language}/${path}`, width);
+          await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+          const section = path.split("/")[0];
+          const returns = page.locator(`main a[href="/${language}/${section}"]`);
+          await expect(returns).toHaveCount(1);
+          await expect(returns).toHaveAccessibleName(
+            language === "ru" ? /^Вернуться к разделу: / : /^Back to section: /
+          );
+          await expect(returns).toHaveCSS("border-width", "1px");
+          await expect(returns).toHaveCSS("border-style", "solid");
 
-        const styles = await returns.evaluateAll((elements) =>
-          elements.map((element) => {
-            const style = getComputedStyle(element);
-            return {
-              padding: style.padding,
-              gap: style.gap,
-              borderWidth: style.borderWidth,
-              borderStyle: style.borderStyle,
-              borderColor: style.borderColor,
-              borderRadius: style.borderRadius,
-              backgroundColor: style.backgroundColor,
-              color: style.color,
-              fontSize: style.fontSize,
-              fontWeight: style.fontWeight,
-              lineHeight: style.lineHeight,
-            };
-          })
-        );
-        expect(styles[0]).toEqual(styles[1]);
-        expect(styles[0]?.borderWidth).toBe("1px");
-        expect(styles[0]?.borderStyle).toBe("solid");
-
-        const nav = page.getByRole("navigation", {
-          name: language === "ru" ? "Другие истории" : "More stories",
-        });
-        const navBounds = await bounds(nav);
-        const next = await bounds(nav.getByRole("link").last());
-        expect(next.height).toBeGreaterThanOrEqual(44);
-        if (width > 1024) {
-          const identity = await bounds(page.locator('[class*="identityColumn"]'));
-          expect(bottom.width).toBeLessThan(identity.width);
-        } else {
-          expect(bottom.width).toBeLessThan(navBounds.width);
-          expect(Math.abs(next.width - navBounds.width)).toBeLessThan(1);
-          expect(next.y).toBeGreaterThanOrEqual(bottom.y + bottom.height + 12);
+          const nav = page.getByRole("navigation", {
+            name: language === "ru" ? "Другие истории" : "More stories",
+          });
+          await expect(page.locator("main nav")).toHaveCount(1);
+          await expect(nav.getByRole("link")).toHaveCount(2);
+          expect(
+            await nav.evaluate((element) => element.parentElement?.firstElementChild === element)
+          ).toBe(true);
+          const nextLink = nav.getByRole("link", {
+            name: language === "ru" ? /^Далее: / : /^Next: /,
+          });
+          const nextHref = `/${language}/${section}/${nextSlug}`;
+          await expect(nextLink).toHaveAttribute("href", nextHref);
+          await expect(page.locator(`main a[href="${nextHref}"]`)).toHaveCount(1);
+          await expect(nav).toBeInViewport({ ratio: 1 });
+          const navBounds = await bounds(nav);
+          const back = await bounds(returns);
+          const next = await bounds(nextLink);
+          const story = await bounds(page.locator('[class*="detailContent"]'));
+          expect(navBounds.y + navBounds.height).toBeLessThanOrEqual(story.y);
+          expect(back.height).toBeGreaterThanOrEqual(44);
+          expect(next.height).toBeGreaterThanOrEqual(44);
+          const overflowing = await nav.locator("a, a span").evaluateAll((elements) =>
+            elements
+              .filter((element) => {
+                const container = element.closest("nav")!.getBoundingClientRect();
+                const rect = element.getBoundingClientRect();
+                return (
+                  rect.left < container.left - 1 ||
+                  rect.right > container.right + 1 ||
+                  rect.top < container.top - 1 ||
+                  rect.bottom > container.bottom + 1
+                );
+              })
+              .map((element) => element.textContent)
+          );
+          expect(overflowing, `${theme} navigation labels fit at ${width}px`).toEqual([]);
+          if (width > 1024) {
+            const identity = await bounds(page.locator('[class*="identityColumn"]'));
+            expect(back.width).toBeLessThan(identity.width);
+          } else {
+            expect(back.width).toBeLessThan(navBounds.width);
+            expect(Math.abs(next.width - navBounds.width)).toBeLessThan(1);
+            expect(next.y).toBeGreaterThanOrEqual(back.y + back.height + 12);
+          }
         }
       });
     }

@@ -39,7 +39,11 @@ describe("AppDetailPage", () => {
       backHref: "/ru/work",
     });
     const container = page.props.children as ReactElement<{ children: ReactNode }>;
-    const backLink = Children.toArray(container.props.children)[0];
+    const navigation = Children.toArray(container.props.children)[0];
+    if (!isValidElement<{ children: ReactNode }>(navigation) || navigation.type !== "nav") {
+      throw new Error("Top case navigation is missing");
+    }
+    const backLink = Children.toArray(navigation.props.children)[0];
 
     if (
       !isValidElement<ComponentProps<typeof TransitionLink>>(backLink) ||
@@ -59,6 +63,7 @@ describe("AppDetailPage", () => {
       preventDefault: vi.fn(),
     };
     expect(link.props.href).toBe("/ru/work");
+    expect(link.props["aria-label"]).toBe("Вернуться к разделу: Опыт работы");
     link.props.onClick(event as unknown as MouseEvent<HTMLAnchorElement>);
 
     expect(event.preventDefault).toHaveBeenCalledOnce();
@@ -80,10 +85,15 @@ describe("AppDetailPage", () => {
       backHref,
     });
     const container = page.props.children as ReactElement<{ children: ReactNode }>;
-    const navigation = Children.toArray(container.props.children).at(-1);
+    const children = Children.toArray(container.props.children);
+    const navigation = children[0];
     if (!isValidElement<{ children: ReactNode }>(navigation) || navigation.type !== "nav") {
-      throw new Error("Case navigation is missing");
+      throw new Error("Top case navigation is missing");
     }
+    expect(children.filter((child) => isValidElement(child) && child.type === "nav")).toHaveLength(
+      1
+    );
+    expect(Children.toArray(navigation.props.children)).toHaveLength(2);
     const [allLink, nextLink] = Children.toArray(navigation.props.children);
     if (
       !isValidElement<ComponentProps<typeof TransitionLink>>(allLink) ||

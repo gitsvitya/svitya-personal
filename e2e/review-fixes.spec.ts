@@ -316,7 +316,10 @@ for (const language of ["ru", "en"] as const) {
       language === "ru" ? "ограниченного круга тестеров" : "limited group of testers"
     );
     await caseNavigation
-      .getByRole("link", { name: language === "ru" ? "К проектам" : "All projects" })
+      .getByRole("link", {
+        name: language === "ru" ? "Вернуться к разделу: Проекты" : "Back to section: Projects",
+        exact: true,
+      })
       .click();
     await expect(page).toHaveURL(`/${language}/projects`);
   });

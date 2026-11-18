@@ -34,8 +34,6 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   align-items: flex-start;
   gap: 16px clamp(32px, calc(15vw - 136px), 80px);
-  padding-top: 24px;
-  border-top: 1px solid var(--border-color);
 }
 .backButton,
 .nextButton {

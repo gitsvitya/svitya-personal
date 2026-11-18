@@ -28,6 +28,6 @@ The viewer keeps its title and close control above a scrollable body. Its maximu
 
 ## Content and navigation
 
-The homepage groups work/project links separately from the contact invitation. It has no CV download action. Catalog cards have no status badges; status belongs in the detailed project or interest page. Case pages lead with a summary, keep verified metrics distinct from prose, and finish with section and next-story links.
+The homepage groups work/project links separately from the contact invitation. It has no CV download action. Catalog cards have no status badges; status belongs in the detailed project or interest page. Case pages place section-return and next-story links together above the content, without repeating them at the bottom. They lead with a summary and keep verified metrics distinct from prose.
 
 Portfolio presentation copy is bilingual in `src/content/portfolio/presentation.ts`; company descriptions and material records live in the section-specific files, and structured narratives live in `case-studies.ts`. Preserve both languages, document targets, and download originals when editing the presentation. Existing public CV and material URLs remain available even when a page no longer links to them.
