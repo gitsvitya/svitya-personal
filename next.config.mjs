@@ -17,6 +17,9 @@ const nextConfig = {
           key: "Content-Disposition",
           value: `inline; filename*=UTF-8''${encodeURIComponent(filename)}`,
         },
+        ...(source.endsWith(".fig")
+          ? [{ key: "Content-Type", value: "application/octet-stream" }]
+          : []),
       ],
     }));
   },

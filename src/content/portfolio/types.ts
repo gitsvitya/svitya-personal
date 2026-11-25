@@ -42,7 +42,10 @@ type MaterialImages = {
 export type CompanyMaterial =
   | (MaterialCopy & {
       type: "document";
-      assets: Record<Language, MaterialImages & { fileSrc: string; url?: string }>;
+      assets: Record<
+        Language,
+        MaterialImages & { fileSrc: string; url?: string; imageDownloadSrc?: string }
+      >;
     })
   | (MaterialCopy & {
       type: "image";

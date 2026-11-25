@@ -159,6 +159,10 @@ describe("portfolio content", () => {
               resolvePublicAsset(document.fileSrc);
               expect(getDownloadFilename(document.fileSrc)).toBeTruthy();
               if (document.url) expectExternalUrl(document.url);
+              if (document.imageDownloadSrc) {
+                resolvePublicAsset(document.imageDownloadSrc);
+                expect(getDownloadFilename(document.imageDownloadSrc)).toBeTruthy();
+              }
               break;
             }
             case "link":
@@ -172,15 +176,18 @@ describe("portfolio content", () => {
 
   it("gives every downloadable file a unique Cyrillic name using the same convention", () => {
     const publicDocuments = readdirSync(PUBLIC_DIRECTORY, { recursive: true, encoding: "utf8" })
-      .filter((path) => /\.(pdf|docx)$/.test(path))
+      .filter((path) => /\.(pdf|docx|fig)$/.test(path))
       .map((path) => `/${path}`);
-    expect(Object.keys(downloadNames).sort()).toEqual(publicDocuments.sort());
+    const downloadPaths = Object.keys(downloadNames);
+    expect(downloadPaths.filter((path) => !path.endsWith(".png")).sort()).toEqual(
+      publicDocuments.sort()
+    );
     expect(new Set(Object.values(downloadNames).map((file) => file.filename)).size).toBe(
-      publicDocuments.length
+      downloadPaths.length
     );
     for (const [path, { filename, sizeBytes }] of Object.entries(downloadNames)) {
       expect(filename).toMatch(
-        /^[А-Яа-яЁё0-9 .-]+ - [А-Яа-яЁё0-9 .-]+ - (Русский|Английский)( - Оригинал)?\.(pdf|docx)$/
+        /^[А-Яа-яЁё0-9 .-]+ - [А-Яа-яЁё0-9 .-]+ - (Русский|Английский|Двуязычный)( - Оригинал)?\.(pdf|docx|fig|png)$/
       );
       expect(filename.split(".").at(-1)).toBe(path.split(".").at(-1));
       expect(Buffer.byteLength(filename, "utf8")).toBeLessThanOrEqual(255);

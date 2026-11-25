@@ -233,6 +233,7 @@ function MaterialModalContent({
   const actions = getMaterialActions(material, text);
   const document = material.type === "document" ? getDownloadFile(material.fileSrc) : undefined;
   const original = document?.originalSrc ? getDownloadFile(document.originalSrc) : undefined;
+  const imageDownloadSrc = material.type === "document" ? material.imageDownloadSrc : undefined;
   const visibilityClass = isVisible ? styles.materialVisible : styles.materialHidden;
   const openOriginalLabel = text.detail.openOriginal;
   const originalHref = actions.openWindow.href ?? actions.openLink.href;
@@ -343,6 +344,15 @@ function MaterialModalContent({
             rel="noopener noreferrer"
           >
             <span className={`button-label ${styles.actionText}`}>{text.detail.openLink}</span>
+          </a>
+        )}
+        {imageDownloadSrc && (
+          <a
+            className={styles.originalDownloadAction}
+            href={imageDownloadSrc}
+            download={getDownloadFilename(imageDownloadSrc)}
+          >
+            {text.detail.downloadImage}
           </a>
         )}
         {original && document?.originalSrc && (

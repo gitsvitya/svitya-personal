@@ -1,9 +1,19 @@
 import strokeOffLogo from "../../images/portfolio/activities/strokeoff/logo-v2.png";
 import svityaComLogo from "../../images/portfolio/activities/svityacom/logo.png";
+import svityaComDesignPreview from "../../images/portfolio/activities/svityacom/materials/svitya-com-design-preview.png";
 import strokeOffFirstBatchPreview from "../../images/portfolio/activities/strokeoff/materials/first-batch-preview.png";
 import strokeOffLabelPreview from "../../images/portfolio/activities/strokeoff/materials/pepper-vodka-label-preview.png";
 import type { CompanyId } from "../../types/domain";
 import type { CompanyRecord } from "./types";
+
+const svityaComDesignImage = "/materials/activities/svityacom/svitya-com-design.png";
+const svityaComDesignAssets = {
+  previewSrc: svityaComDesignPreview,
+  fullImageSrc: svityaComDesignPreview,
+  imageDownloadSrc: svityaComDesignImage,
+  fileSrc: "/materials/activities/svityacom/svitya-com-design.fig",
+  url: "https://www.figma.com/design/Xr6HM7fEmdumbRfVlaFVld/?node-id=400-48",
+};
 
 export const ACTIVITY_COMPANIES = {
   SKO: {
@@ -99,6 +109,23 @@ export const ACTIVITY_COMPANIES = {
     logo: svityaComLogo,
     url: "https://github.com/gitsvitya",
     linkLabel: "github.com/gitsvitya",
+    materials: {
+      enabled: true,
+      items: [
+        {
+          type: "document",
+          assets: { ru: svityaComDesignAssets, en: svityaComDesignAssets },
+          title: {
+            ru: "Дизайн svitya.com",
+            en: "svitya.com design",
+          },
+          description: {
+            ru: "Компактный макет сайта на русском и английском. В нём есть светлые экраны для компьютера и телефона, примеры подробных страниц и пометки о тёмной теме.",
+            en: "A compact bilingual design with light-theme desktop and mobile screens, sample detail pages, and notes on the dark theme.",
+          },
+        },
+      ],
+    },
     translations: {
       ru: {
         year: "2019 → настоящее время",

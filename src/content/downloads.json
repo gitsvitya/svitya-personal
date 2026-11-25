@@ -169,5 +169,13 @@
     "filename": "Мэд Бёрглар Кэт - Каталог товаров - Русский - Оригинал.pdf",
     "sizeBytes": 10715600,
     "sha256": "2444bdca692ddab900d0d16140e84659620586f2ce31bbd23e5be17b0e5a65f4"
+  },
+  "/materials/activities/svityacom/svitya-com-design.fig": {
+    "filename": "Свитя.ком - Макет сайта - Двуязычный.fig",
+    "sizeBytes": 3742863
+  },
+  "/materials/activities/svityacom/svitya-com-design.png": {
+    "filename": "Свитя.ком - Макет сайта - Двуязычный.png",
+    "sizeBytes": 3109788
   }
 }

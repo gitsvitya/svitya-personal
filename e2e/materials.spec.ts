@@ -103,6 +103,55 @@ const mappngoMaterials = {
   ],
 } as const;
 
+for (const [language, title, downloadImageLabel] of [
+  ["ru", "Дизайн svitya.com", "Скачать изображение"],
+  ["en", "svitya.com design", "Download image"],
+] as const) {
+  test(`provides the Svitya.com Figma material in ${language}`, async ({
+    context,
+    page,
+    baseURL,
+    browserName,
+  }) => {
+    const directory = "/materials/activities/svityacom";
+    const file = `${directory}/svitya-com-design.fig`;
+    const image = `${directory}/svitya-com-design.png`;
+    const figma = "https://www.figma.com/design/Xr6HM7fEmdumbRfVlaFVld/?node-id=400-48";
+    await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
+    await page.goto(`/${language}/activities/svityacom`);
+    const gallery = page.locator('section[aria-labelledby="company-materials-title"]');
+    const preview = gallery.getByRole("link", { name: `Svitya.com: ${title}` });
+    await expect(gallery.getByRole("link")).toHaveCount(1);
+    await expect(preview.locator("img")).toHaveAttribute("src", /svitya-com-design-preview/);
+    await expect(preview).toHaveAttribute("href", file);
+    await preview.click();
+
+    const dialog = page.getByRole("dialog", { name: title });
+    await expect(dialog.locator("img")).toHaveAttribute("src", /svitya-com-design-preview/);
+    await expect(materialActionLink(dialog, labels[language][2])).toHaveAttribute("href", figma);
+    const downloads = [
+      [materialActionLink(dialog, labels[language][0]), file, "application/octet-stream"],
+      [dialog.getByRole("link", { name: downloadImageLabel, exact: true }), image, "image/png"],
+    ] as const;
+    for (const [link, path, contentType] of downloads) {
+      const filename = getDownloadFilename(path);
+      await expect(link).toHaveAttribute("href", path);
+      await expect(link).toHaveAttribute("download", filename);
+      const response = await page.request.head(path);
+      expect(response.status()).toBe(200);
+      expect(response.headers()["content-type"]).toBe(contentType);
+
+      const downloadPromise = page.waitForEvent("download");
+      await link.click();
+      const download = await downloadPromise;
+      expectSuggestedFilename(download, filename, browserName);
+      const contents = await readFile((await download.path())!);
+      expect(contents.length).toBe(Number(response.headers()["content-length"]));
+      await download.delete();
+    }
+  });
+}
+
 function materialActionLink(dialog: Locator, label: string) {
   return dialog
     .getByRole("link", { name: label, exact: true })
