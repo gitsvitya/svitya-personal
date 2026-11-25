@@ -1,4 +1,5 @@
 import madBurglarCatLogo from "../../images/portfolio/projects/madburglarcat/logo.png";
+import madBurglarCatOrderProcessPreview from "../../images/portfolio/projects/madburglarcat/materials/order-process-preview.png";
 import madBurglarCatCatalogPreview from "../../images/portfolio/projects/madburglarcat/materials/catalog-preview.png";
 import madBurglarCatProductPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-preview.png";
 import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-checkout-preview.png";
@@ -17,6 +18,11 @@ import veniviHomepagePreview from "../../images/portfolio/projects/venivi/materi
 import veniviContestPreview from "../../images/portfolio/projects/venivi/materials/contest-xbox-one-preview.png";
 import type { CompanyId } from "../../types/domain";
 import type { CompanyRecord } from "./types";
+
+const madBurglarCatOrderProcessAssets = {
+  previewSrc: madBurglarCatOrderProcessPreview,
+  fullImageSrc: "/materials/projects/madburglarcat/order-process.png",
+};
 
 export const PROJECT_COMPANIES = {
   MBC: {
@@ -140,6 +146,18 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "Свидетельство Роспатента о регистрации товарного знака Mad Burglar Cat.",
             en: "The Rospatent certificate for the Mad Burglar Cat trademark registration. PDF in Russian.",
+          },
+        },
+        {
+          type: "image",
+          assets: { ru: madBurglarCatOrderProcessAssets, en: madBurglarCatOrderProcessAssets },
+          title: {
+            ru: "BPMN-модель процессов Mad Burglar Cat",
+            en: "BPMN model of Mad Burglar Cat’s operations",
+          },
+          description: {
+            ru: "Схема показывает, как команда запускала новые изделия и выполняла заказы. По ней можно проследить действия покупателя, магазина, платёжного сервиса и СДЭК от выбора модели до вручения посылки.",
+            en: "The model shows how the team launched new products and fulfilled orders. It maps the roles of the customer, shop, payment provider and CDEK from product selection to delivery. Diagram in Russian.",
           },
         },
       ],

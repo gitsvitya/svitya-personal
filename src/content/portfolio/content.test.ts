@@ -226,8 +226,15 @@ describe("portfolio content", () => {
         expect(company.url).toBeUndefined();
         expect(company.linkLabel).toBeUndefined();
         for (const material of company.materials!.items) {
-          expect(material.type).toBe("document");
-          if (material.type === "document") expect(material.url).toBeUndefined();
+          if (material.type === "image") {
+            expect(id).toBe("MBC");
+            expect(material.fullImageSrc).toBe(
+              "/materials/projects/madburglarcat/order-process.png"
+            );
+          } else {
+            expect(material.type).toBe("document");
+            expect(material.url).toBeUndefined();
+          }
         }
       }
     }

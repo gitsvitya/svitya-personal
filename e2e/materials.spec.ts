@@ -5,6 +5,8 @@ import { join } from "node:path";
 import { getDownloadFilename } from "../src/utils/downloads";
 import { expectSuggestedFilename } from "./helpers/downloads";
 
+const orderDiagram = "/materials/projects/madburglarcat/order-process.png";
+
 const materials = [
   {
     type: "document",
@@ -39,6 +41,16 @@ const materials = [
     path: "projects/madburglarcat",
     href: "/materials/projects/madburglarcat/catalog.pdf",
     title: { ru: "Каталог товаров", en: "Product catalog" },
+    active: [true, true, false],
+  },
+  {
+    type: "diagram",
+    path: "projects/madburglarcat",
+    href: orderDiagram,
+    title: {
+      ru: "BPMN-модель процессов Mad Burglar Cat",
+      en: "BPMN model of Mad Burglar Cat’s operations",
+    },
     active: [true, true, false],
   },
 ] as const;
@@ -325,6 +337,7 @@ for (const language of ["ru", "en"] as const) {
           await openWindow.click();
           const popup = await popupPromise;
           await expect(popup).toHaveURL(material.href);
+          await expect(popup.locator("img")).toBeVisible();
           await popup.close();
         }
       }
@@ -404,7 +417,7 @@ for (const language of ["ru", "en"] as const) {
     });
   });
 
-  test(`provides all five ${language} Mad Burglar Cat materials with PDFs without external links`, async ({
+  test(`provides the five PDFs and order diagram in the ${language} Mad Burglar Cat gallery`, async ({
     context,
     page,
     request,
@@ -421,7 +434,9 @@ for (const language of ["ru", "en"] as const) {
     await page.goto(`/${language}/projects/madburglarcat`);
     await expect(page.locator('main a[href^="https://madburglarcat.ru"]')).toHaveCount(0);
     const previews = page.locator('main a[href^="/materials/projects/madburglarcat/"]');
-    await expect(previews).toHaveCount(pages.length);
+    const materialCount = pages.length + 1;
+    await expect(previews).toHaveCount(materialCount);
+    await expect(previews.last()).toHaveAttribute("href", orderDiagram);
     await previews.first().click();
     const dialog = page.getByRole("dialog");
     for (const [index, [slug, sourceUrl]] of pages.entries()) {
@@ -438,7 +453,7 @@ for (const language of ["ru", "en"] as const) {
       await expect(dialog.locator(".button-control")).toHaveCount(sourceUrl ? 3 : 2);
       await expect(dialog.getByRole("button", { disabled: true })).toHaveCount(0);
       await expect(dialog.locator('[aria-live="polite"]')).toHaveText(
-        `${index + 1} / ${pages.length}`
+        `${index + 1} / ${materialCount}`
       );
       await expect
         .poll(() =>
