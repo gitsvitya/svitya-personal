@@ -17,6 +17,7 @@ import mappngoFaqEnPreview from "../../images/portfolio/projects/mappngo/materia
 import veniviLogo from "../../images/portfolio/projects/venivi/logo.png";
 import veniviHomepagePreview from "../../images/portfolio/projects/venivi/materials/retro-homepage-preview.png";
 import veniviContestPreview from "../../images/portfolio/projects/venivi/materials/contest-xbox-one-preview.png";
+import veniviProjectResultsPreview from "../../images/portfolio/projects/venivi/materials/project-results-preview.png";
 import type { CompanyId } from "../../types/domain";
 import type { CompanyRecord } from "./types";
 
@@ -31,6 +32,13 @@ const madBurglarCatSalesSummaryAssets = {
   fullImageSrc: madBurglarCatSalesSummaryImage,
   fileSrc: "/materials/projects/madburglarcat/sales-summary.pdf",
   imageDownloadSrc: madBurglarCatSalesSummaryImage,
+};
+
+const veniviProjectResultsAssets = {
+  previewSrc: veniviProjectResultsPreview,
+  fullImageSrc: veniviProjectResultsPreview,
+  fileSrc: "/materials/projects/venivi/project-results.pdf",
+  imageDownloadSrc: "/materials/projects/venivi/project-results.png",
 };
 
 export const PROJECT_COMPANIES = {
@@ -370,6 +378,15 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "Архивный экран конкурса: правила участия, число участников, время до завершения и комментарии.",
             en: "An archived contest page with entry instructions, a participant count, a countdown and comments. PDF in Russian.",
+          },
+        },
+        {
+          type: "document",
+          assets: { ru: veniviProjectResultsAssets, en: veniviProjectResultsAssets },
+          title: { ru: "Итоги проекта Venivi", en: "Venivi project results" },
+          description: {
+            ru: "Инфографика о клиентах, мероприятиях и участниках турниров Venivi. Графики показывают активную аудиторию за день и месяц и удержание на 30-й день.",
+            en: "An infographic covering Venivi’s clients, events and tournament participants, with charts showing daily and monthly active users and day-30 retention. In Russian.",
           },
         },
       ],

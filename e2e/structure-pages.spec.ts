@@ -129,15 +129,18 @@ for (const language of ["ru", "en"]) {
     });
   }
 
-  for (const path of ["activities/strokeoff", "projects/venivi"]) {
-    test(`${language}/${path} centers two materials without enlarging previews`, async ({
+  for (const [path, count] of [
+    ["activities/strokeoff", 2],
+    ["projects/venivi", 3],
+  ] as const) {
+    test(`${language}/${path} centers ${count} materials without enlarging previews`, async ({
       page,
     }) => {
       await openPage(page, `/${language}/work/namex`, 1440);
       const reference = await bounds(page.locator('[class*="previewFrame"]').first());
       await openPage(page, `/${language}/${path}`, 1440);
       const frames = page.locator('[class*="previewFrame"]');
-      await expect(frames).toHaveCount(2);
+      await expect(frames).toHaveCount(count);
       const first = await bounds(frames.first());
       const last = await bounds(frames.last());
       expect(Math.abs(first.width - reference.width)).toBeLessThan(1);
