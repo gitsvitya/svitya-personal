@@ -1,5 +1,6 @@
 import madBurglarCatLogo from "../../images/portfolio/projects/madburglarcat/logo.png";
 import madBurglarCatOrderProcessPreview from "../../images/portfolio/projects/madburglarcat/materials/order-process-preview.png";
+import madBurglarCatSalesSummaryPreview from "../../images/portfolio/projects/madburglarcat/materials/sales-summary-preview.png";
 import madBurglarCatCatalogPreview from "../../images/portfolio/projects/madburglarcat/materials/catalog-preview.png";
 import madBurglarCatProductPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-preview.png";
 import madBurglarCatCheckoutPreview from "../../images/portfolio/projects/madburglarcat/materials/everything-is-fine-checkout-preview.png";
@@ -22,6 +23,14 @@ import type { CompanyRecord } from "./types";
 const madBurglarCatOrderProcessAssets = {
   previewSrc: madBurglarCatOrderProcessPreview,
   fullImageSrc: "/materials/projects/madburglarcat/order-process.png",
+};
+
+const madBurglarCatSalesSummaryImage = "/materials/projects/madburglarcat/sales-summary.png";
+const madBurglarCatSalesSummaryAssets = {
+  previewSrc: madBurglarCatSalesSummaryPreview,
+  fullImageSrc: madBurglarCatSalesSummaryImage,
+  fileSrc: "/materials/projects/madburglarcat/sales-summary.pdf",
+  imageDownloadSrc: madBurglarCatSalesSummaryImage,
 };
 
 export const PROJECT_COMPANIES = {
@@ -146,6 +155,18 @@ export const PROJECT_COMPANIES = {
           description: {
             ru: "Свидетельство Роспатента о регистрации товарного знака Mad Burglar Cat.",
             en: "The Rospatent certificate for the Mad Burglar Cat trademark registration. PDF in Russian.",
+          },
+        },
+        {
+          type: "document",
+          assets: { ru: madBurglarCatSalesSummaryAssets, en: madBurglarCatSalesSummaryAssets },
+          title: {
+            ru: "Итоги продаж за 2024–2026 годы",
+            en: "Sales summary, 2024–2026",
+          },
+          description: {
+            ru: "Инфографика о покупателях, самых популярных товарах, способах доставки и доле возвратов. Средний чек приведён как оценка.",
+            en: "An infographic about the shop’s customers, bestsellers, delivery methods and return rate. The average order value is an estimate. In Russian.",
           },
         },
         {

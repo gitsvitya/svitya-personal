@@ -333,6 +333,15 @@ for (const language of ["ru", "en"] as const) {
         await expect(openWindow).toHaveAttribute("rel", "noopener noreferrer");
         await expect(openWindow).not.toHaveAttribute("download");
         if (material.href.endsWith(".png")) {
+          const modalImage = dialog.getByRole("img");
+          const originalUrl = new URL(material.href, page.url()).href;
+          await expect
+            .poll(() =>
+              modalImage.evaluate((img: HTMLImageElement) =>
+                img.complete && img.naturalWidth > 0 ? img.currentSrc : ""
+              )
+            )
+            .toBe(originalUrl);
           const popupPromise = context.waitForEvent("page");
           await openWindow.click();
           const popup = await popupPromise;
@@ -417,7 +426,7 @@ for (const language of ["ru", "en"] as const) {
     });
   });
 
-  test(`provides the five PDFs and order diagram in the ${language} Mad Burglar Cat gallery`, async ({
+  test(`provides the documents, sales infographic and order diagram in the ${language} Mad Burglar Cat gallery`, async ({
     context,
     page,
     request,
@@ -429,6 +438,7 @@ for (const language of ["ru", "en"] as const) {
       ["everything-is-fine-checkout", undefined],
       ["soldout", undefined],
       ["trademark-certificate-1222341", undefined],
+      ["sales-summary", undefined],
     ] as const;
     await context.addCookies([{ name: "cookie_notice_closed", value: "1", url: baseURL! }]);
     await page.goto(`/${language}/projects/madburglarcat`);
@@ -516,6 +526,29 @@ for (const language of ["ru", "en"] as const) {
           path: testInfo.outputPath("madburglarcat-trademark-mobile.png"),
         });
         await page.setViewportSize({ width: 1280, height: 720 });
+      }
+      if (slug === "sales-summary") {
+        await expect(dialog).toHaveAccessibleName(
+          language === "ru" ? "Итоги продаж за 2024–2026 годы" : "Sales summary, 2024–2026"
+        );
+        await expect(materialActionLink(dialog, labels[language][1])).toHaveAttribute(
+          "target",
+          "_blank"
+        );
+        const imagePath = "/materials/projects/madburglarcat/sales-summary.png";
+        const image = dialog.getByRole("link", {
+          name: language === "ru" ? "Скачать изображение" : "Download image",
+        });
+        await expect(image).toHaveAttribute("href", imagePath);
+        await expect(image).toHaveAttribute("download", getDownloadFilename(imagePath));
+        const downloadPromise = page.waitForEvent("download");
+        await image.click();
+        const download = await downloadPromise;
+        const downloaded = await readFile((await download.path())!);
+        expect(downloaded.equals(await readFile(join(process.cwd(), "public", imagePath)))).toBe(
+          true
+        );
+        await download.delete();
       }
       if (index < pages.length - 1) await page.keyboard.press("ArrowRight");
     }

@@ -261,6 +261,7 @@ function MaterialModalContent({
           <Image
             className={`${styles.modalImage} ${visibilityClass}`}
             src={fullImage}
+            unoptimized={material.type === "image" && typeof fullImage === "string"}
             alt={`${companyName}: ${material.title}`}
             width={sourceDimensions.width}
             height={sourceDimensions.height}
